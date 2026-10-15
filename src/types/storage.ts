@@ -5,6 +5,7 @@ import { StationFilters } from "./filters";
 export type PreferredRouteApp = "google" | "waze";
 export type AppearanceMode = "light" | "dark";
 export type FontSizePreference = "small" | "default" | "large";
+export type BatterySource = "demo" | "manual" | "unknown";
 
 export type RecentHistoryAction =
   | "viewed_station"
@@ -35,6 +36,8 @@ export type UserPreferences = {
   fontSize: FontSizePreference;
   vehicleRangeKm: number;
   batteryPercent: number;
+  batterySource: BatterySource;
+  batteryUpdatedAt: string | null;
 };
 
 export type FluiStorageSnapshot = {

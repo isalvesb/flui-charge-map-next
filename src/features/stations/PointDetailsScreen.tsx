@@ -55,15 +55,17 @@ import { useAppPreferences } from "../../context/PreferencesContext";
 import { getStationImageSource } from "../../assets/stations";
 import { triggerImpact, type PressableVisualState } from "../../utils/interaction";
 import { avaliarAlcance } from "../../utils/autonomia";
+import { useCurrentTime } from "../../hooks/useCurrentTime";
+import { isStationOpenAt } from "../../utils/stationHours";
+import {
+  getStationStatusInfo,
+  getStationRecommendation,
+  getWaitingLevel,
+} from "./stationPresentation";
 
 const imagemPerfilUsuario = require("../../assets/user/profile1.webp");
 
 type Station = (typeof chargingStations)[number];
-
-type StatusInfo = {
-  label: string;
-  description: string;
-};
 
 type RouteProvider = "google" | "waze";
 
@@ -83,34 +85,6 @@ function formatAddress(station: Station) {
   return [station.address, station.neighborhood, station.city, station.state]
     .filter(Boolean)
     .join(", ");
-}
-
-function getStatusInfo(status: Station["status"]): StatusInfo {
-  if (status === "available") {
-    return {
-      label: "Aberto agora",
-      description: "Carregadores disponíveis neste momento",
-    };
-  }
-
-  if (status === "busy") {
-    return {
-      label: "Ocupado agora",
-      description: "Alta procura no momento",
-    };
-  }
-
-  if (status === "maintenance") {
-    return {
-      label: "Em manutenção",
-      description: "Ponto temporariamente indisponível",
-    };
-  }
-
-  return {
-    label: "Status indisponível",
-    description: "Não foi possível consultar a disponibilidade",
-  };
 }
 
 function getAmenityLabel(amenity: string) {
@@ -191,44 +165,6 @@ function calcularTempoEstimadoCarga(powerKw: number) {
   return "1h30 ou mais";
 }
 
-function montarTextoDeRecomendacao(
-  station: Station,
-  carregadoresDisponiveis: number,
-) {
-  if (station.status === "maintenance") {
-    return "Evite este ponto por enquanto";
-  }
-
-  if (carregadoresDisponiveis > 0 && station.powerKw >= 120) {
-    return "Boa escolha para uma parada rápida";
-  }
-
-  if (carregadoresDisponiveis > 0) {
-    return "Boa opção para recarregar com conforto";
-  }
-
-  return "Verifique a fila antes de ir";
-}
-
-function montarOrientacaoDeEspera(
-  status: Station["status"],
-  carregadoresDisponiveis: number,
-) {
-  if (status === "maintenance") {
-    return "Indisponível";
-  }
-
-  if (carregadoresDisponiveis > 1) {
-    return "Baixa";
-  }
-
-  if (carregadoresDisponiveis === 1) {
-    return "Moderada";
-  }
-
-  return "Alta";
-}
-
 function montarPerfilDoPonto(station: Station) {
   if (station.powerKw >= 120) {
     return "Carga rápida";
@@ -266,6 +202,7 @@ function obterIconeDeAlcance(nivel: ReturnType<typeof avaliarAlcance>["nivel"]) 
 }
 
 export default function PointDetailsScreen() {
+  const now = useCurrentTime();
   const { styles, colors, isDarkMode } = useTelaComPreferencias(baseStyles);
   const { userPreferences } = useAppPreferences();
   const { stationId } = useLocalSearchParams<{
@@ -451,7 +388,7 @@ export default function PointDetailsScreen() {
     );
   }
 
-  const statusInfo = getStatusInfo(station.status);
+  const statusInfo = getStationStatusInfo(station, now);
 
   const availableChargers = station.connectors.reduce(
     (total, connector) => total + connector.availableChargers,
@@ -478,14 +415,14 @@ export default function PointDetailsScreen() {
     userPreferences.batteryPercent,
   );
   const tempoEstimadoCarga = calcularTempoEstimadoCarga(station.powerKw);
-  const recomendacaoDoPonto = montarTextoDeRecomendacao(
+  const recomendacaoDoPonto = getStationRecommendation(
     station,
     availableChargers,
+    now,
   );
-  const orientacaoDeEspera = montarOrientacaoDeEspera(
-    station.status,
-    availableChargers,
-  );
+  const orientacaoDeEspera = isStationOpenAt(station, now)
+    ? getWaitingLevel(station.status, availableChargers)
+    : "Indisponível";
   const perfilDoPonto = montarPerfilDoPonto(station);
   const userStationReview = sentReviews.find(
     (review) => review.stationId === station.id,
@@ -650,8 +587,9 @@ export default function PointDetailsScreen() {
             <Text style={styles.resumoEyebrow}>Guia do ponto</Text>
             <Text style={styles.resumoTitle}>{recomendacaoDoPonto}</Text>
             <Text style={styles.resumoDescription}>
-              Compare disponibilidade, potência e conforto antes de escolher onde
-              recarregar.
+              Dados demonstrativos, sem disponibilidade em tempo real. Distância,
+              autonomia e tempo de carga são estimativas simplificadas; confirme o
+              funcionamento e a compatibilidade do veículo antes de ir.
             </Text>
 
             <View style={styles.resumoInfoGrid}>
@@ -666,7 +604,7 @@ export default function PointDetailsScreen() {
               <View style={styles.resumoInfoItem}>
                 <View style={styles.resumoInfoLabelRow}>
                   <BatteryCharging size={12} color={colors.textLight} strokeWidth={2.3} />
-                  <Text style={styles.resumoInfoLabel}>Tempo</Text>
+                  <Text style={styles.resumoInfoLabel}>Tempo estimado</Text>
                 </View>
                 <Text style={styles.resumoInfoValue}>{tempoEstimadoCarga}</Text>
               </View>

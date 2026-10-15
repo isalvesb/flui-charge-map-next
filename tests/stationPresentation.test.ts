@@ -45,3 +45,11 @@ test("resume status, recomendação e espera sem depender da tela", () => {
   );
   assert.equal(getWaitingLevel(station.status, 1), "Moderada");
 });
+
+test("não promete parada rápida quando só o conector lento está utilizável", () => {
+  const station = createStation({powerKw: 150, connectors: [
+    {id: "dc", type: "ccs2", label: "CCS2", powerKw: 150, totalChargers: 2, availableChargers: 0},
+    {id: "ac", type: "type2", label: "Tipo 2", powerKw: 22, totalChargers: 1, availableChargers: 1},
+  ]});
+  assert.equal(getStationRecommendation(station, 1), "Opção de recarga nos dados demonstrativos");
+});

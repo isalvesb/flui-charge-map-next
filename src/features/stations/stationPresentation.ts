@@ -1,5 +1,6 @@
 import type { ChargingStation } from "../../types";
-import { isStationOpenAt } from "../../utils/stationHours";
+import { getStationOpeningState, isStationOpenAt } from "../../utils/stationHours";
+import { canChargeAt, getUsableConnectors } from "../../utils/stationAvailability";
 
 export type StationStatusInfo = {
   label: string;
@@ -32,6 +33,12 @@ export function getStationStatusInfo(
     };
   }
 
+  if (getStationOpeningState(station, date) === "unknown") {
+    return {
+      label: "Horário não confirmado",
+      description: "Consulte o funcionamento antes de ir",
+    };
+  }
   if (!isStationOpenAt(station, date)) {
     return {
       label: "Fechado agora",
@@ -42,7 +49,9 @@ export function getStationStatusInfo(
   if (station.status === "available") {
     return {
       label: "Aberto agora",
-      description: "Carregadores disponíveis neste momento",
+      description: canChargeAt(station, date)
+        ? "Disponibilidade demonstrativa de carregadores"
+        : "Sem carregadores utilizáveis nos dados locais",
     };
   }
 
@@ -98,17 +107,26 @@ export function getEstimatedChargingTime(powerKw: number) {
 export function getStationRecommendation(
   station: ChargingStation,
   availableChargers: number,
+  date = new Date(),
 ) {
   if (station.status === "maintenance") {
     return "Evite este ponto por enquanto";
   }
 
-  if (availableChargers > 0 && station.powerKw >= 120) {
+  if (!canChargeAt(station, date)) {
+    return "Recarga não confirmada neste ponto";
+  }
+
+  const usablePowerKw = Math.min(
+    station.powerKw,
+    Math.max(...getUsableConnectors(station).map(connector => connector.powerKw)),
+  );
+  if (availableChargers > 0 && usablePowerKw >= 120) {
     return "Boa escolha para uma parada rápida";
   }
 
   if (availableChargers > 0) {
-    return "Boa opção para recarregar com conforto";
+    return "Opção de recarga nos dados demonstrativos";
   }
 
   return "Verifique a fila antes de ir";
@@ -118,7 +136,7 @@ export function getWaitingLevel(
   status: ChargingStation["status"],
   availableChargers: number,
 ) {
-  if (status === "maintenance") return "Indisponível";
+  if (status === "maintenance" || status === "unavailable") return "Indisponível";
   if (availableChargers > 1) return "Baixa";
   if (availableChargers === 1) return "Moderada";
   return "Alta";

@@ -51,6 +51,9 @@ import { defaultFilters } from "../../data/filterOptions";
 import { StationFilters } from "../../types";
 import { filtrarEstacoes } from "../../utils/filtrarEstacoes";
 import { avaliarAlcance } from "../../utils/autonomia";
+import { canChargeAt } from "../../utils/stationAvailability";
+import { getBatterySourceLabels } from "../../utils/batteryData";
+import { useCurrentTime } from "../../hooks/useCurrentTime";
 import {
   LoadingOverlay,
   PressableScale,
@@ -710,12 +713,12 @@ export default function HomeMapScreen() {
   );
   const { userPreferences, updateBatteryPercent } = useAppPreferences();
   const reduceMotionEnabled = useReducedMotion();
+  const now = useCurrentTime();
+  const batteryLabels = getBatterySourceLabels(userPreferences);
   const batteryPercent = userPreferences.batteryPercent;
   const vehicleRangeKm = userPreferences.vehicleRangeKm;
   const [seletorBateriaAberto, setSeletorBateriaAberto] = useState(false);
   const [bateriaEmEdicao, setBateriaEmEdicao] = useState(batteryPercent);
-  const [bateriaInformadaManualmente, setBateriaInformadaManualmente] =
-    useState(false);
   const { width: larguraJanela, height: alturaJanela } =
     useWindowDimensions();
   const isTelaLarga = larguraJanela >= TABLET_BREAKPOINT;
@@ -1034,6 +1037,7 @@ export default function HomeMapScreen() {
       estacoes: chargingStations,
       filtros: filtrosDoMapa,
       termoBusca: searchTerm,
+      agora: now,
     });
 
     return ordenarPorFiltrosRapidos(
@@ -1043,16 +1047,11 @@ export default function HomeMapScreen() {
       })),
       filtrosRapidos,
     );
-  }, [filtrosDoMapa, filtrosRapidos, searchTerm]);
+  }, [filtrosDoMapa, filtrosRapidos, searchTerm, now]);
 
   const estacoesRecomendadas = useMemo(() => {
-    return visibleStations.filter((item) => {
-      return (
-        getRawStationStatus(item.station) === "available" &&
-        stationHasAvailableCharger(item.station)
-      );
-    });
-  }, [visibleStations]);
+    return visibleStations.filter((item) => canChargeAt(item.station, now));
+  }, [visibleStations, now]);
 
   const points = useMemo(() => {
     return estacoesRecomendadas.map((item, cardIndex) => {
@@ -1207,7 +1206,6 @@ export default function HomeMapScreen() {
     ? "Nenhum ponto disponível"
     : "Melhores escolhas";
 
-  const IconeBateriaAtual = obterIconeDeBateriaAtual(batteryPercent);
   const corBateriaAtual = obterCorDeBateriaAtual(batteryPercent, colors);
   const autonomiaAtualKm = Math.round((vehicleRangeKm * batteryPercent) / 100);
   const IconeBateriaEmEdicao = obterIconeDeBateriaAtual(bateriaEmEdicao);
@@ -1236,10 +1234,7 @@ export default function HomeMapScreen() {
   };
 
   const definirNivelDeBateria = async () => {
-    if (bateriaEmEdicao !== batteryPercent) {
-      await updateBatteryPercent(bateriaEmEdicao);
-      setBateriaInformadaManualmente(true);
-    }
+    await updateBatteryPercent(bateriaEmEdicao);
 
     setSeletorBateriaAberto(false);
   };
@@ -1487,12 +1482,10 @@ export default function HomeMapScreen() {
                   </View>
 
                   <Text style={styles.vehicleBatterySource} numberOfLines={1}>
-                    {bateriaInformadaManualmente
-                      ? "Informado manualmente"
-                      : "Atualizado pelo veículo"}
+                    {batteryLabels.source}
                   </Text>
                   <Text style={styles.vehicleBatteryUpdatedAt}>
-                    {bateriaInformadaManualmente ? "agora" : "há 1 min."}
+                    {batteryLabels.detail}
                   </Text>
                 </View>
 
@@ -2022,7 +2015,8 @@ export default function HomeMapScreen() {
 
         <FluiAssistantSheet
           visible={assistenteFluiAberto}
-          stations={chargingStations}
+          stations={visibleStations.map(item => item.station)}
+          now={now}
           batteryPercent={batteryPercent}
           vehicleRangeKm={vehicleRangeKm}
           onClose={() => setAssistenteFluiAberto(false)}
@@ -2069,10 +2063,10 @@ export default function HomeMapScreen() {
 
                 <View style={styles.batterySheetHeaderText}>
                   <Text style={styles.batterySheetTitle}>
-                    Bateria do veículo
+                    Bateria para estimativa
                   </Text>
                   <Text style={styles.batterySheetSubtitle}>
-                    ≈{autonomiaEmEdicaoKm} km de autonomia
+                    ≈{autonomiaEmEdicaoKm} km estimados · sem telemetria
                   </Text>
                 </View>
 
