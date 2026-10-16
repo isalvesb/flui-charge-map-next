@@ -1,6 +1,7 @@
 import { SentReview } from "./activity";
 import { Amenity, ConnectorType } from "./chargingStation";
 import { StationFilters } from "./filters";
+import type { OrigemDemonstrativaId } from "../data/demonstracao";
 
 export type PreferredRouteApp = "google" | "waze";
 export type AppearanceMode = "light" | "dark";
@@ -35,6 +36,8 @@ export type UserPreferences = {
   appearanceMode: AppearanceMode;
   fontSize: FontSizePreference;
   vehicleRangeKm: number;
+  vehicleName: string;
+  demoOriginId: OrigemDemonstrativaId;
   batteryPercent: number;
   batterySource: BatterySource;
   batteryUpdatedAt: string | null;

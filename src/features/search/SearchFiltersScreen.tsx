@@ -31,7 +31,8 @@ import {
   Zap,
 } from "lucide-react-native";
 
-import { chargingStations } from "../../data";
+import { useAppPreferences } from "../../context/PreferencesContext";
+import { useCurrentTime } from "../../hooks/useCurrentTime";
 import {
   amenityOptions,
   connectorOptions,
@@ -208,6 +209,8 @@ function Chip({
 }
 
 export default function SearchFiltersScreen() {
+  const { demoStations, demoOrigin } = useAppPreferences();
+  const now = useCurrentTime();
   const { styles, colors, isDarkMode } = useTelaComPreferencias(
     baseStyles,
     baseColors,
@@ -217,9 +220,10 @@ export default function SearchFiltersScreen() {
   const [isApplying, setIsApplying] = useState(false);
 
   const pontosEncontrados = filtrarEstacoes({
-    estacoes: chargingStations,
+    estacoes: demoStations,
     filtros: filters,
     termoBusca,
+    agora: now,
   });
   const textoBotaoMapa =
     pontosEncontrados.length === 1
@@ -562,6 +566,9 @@ export default function SearchFiltersScreen() {
               <Text style={styles.sectionTitle}>Raio de busca</Text>
             </View>
 
+            <Text style={styles.distanceDescription}>
+              Em linha reta desde {demoOrigin.nome}, origem demonstrativa. Sem cálculo de percurso.
+            </Text>
             <View style={styles.chipRow}>
               {distanceOptions.map((distance) => (
                 <Chip

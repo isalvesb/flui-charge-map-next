@@ -77,7 +77,7 @@ export function FluiAssistantSheet({
   onClose,
   onSelectStation,
 }: Props) {
-  const { theme, fontScale, appearanceMode } = useAppPreferences();
+  const { theme, fontScale, appearanceMode, demoOrigin, userPreferences } = useAppPreferences();
   const reduceMotionEnabled = useReducedMotion();
   const styles = useMemo(
     () => createStyles(theme, fontScale, appearanceMode === "dark"),
@@ -312,6 +312,8 @@ export function FluiAssistantSheet({
                 </Text>
                 <Text style={styles.explanationText}>
                   {recommendation.explanation}{"\n"}
+                  {userPreferences.vehicleName} · origem demonstrativa: {demoOrigin.nome}.
+                  Distância em linha reta, sem cálculo de percurso.
                   Estimativa linear com reserva de 5%. Compatibilidade do veículo
                   não confirmada; não há integração em tempo real.
                 </Text>

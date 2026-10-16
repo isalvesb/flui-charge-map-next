@@ -34,7 +34,6 @@ type Station = (typeof chargingStations)[number];
 
 const FEEDBACK_DURATION = 1500;
 const nomeMotorista = "Caio Duarte";
-const modeloCarro = "BYD Dolphin Plus";
 const imagemPerfilUsuario = require("../../assets/user/profile1.webp");
 const imagemCarroUsuario = require("../../assets/user/car1.webp");
 
@@ -124,7 +123,7 @@ const formatarDataCurta = (value: unknown) => {
 };
 
 export default function ProfileScreen() {
-  const { theme, fontScale, appearanceMode } = useAppPreferences();
+  const { theme, fontScale, appearanceMode, userPreferences, demoOrigin } = useAppPreferences();
 
   const styles = useMemo(
     () => createProfileStyles(theme, fontScale),
@@ -425,6 +424,7 @@ export default function ProfileScreen() {
             <View style={styles.profileHeroCard}>
               <Image
                 source={imagemCarroUsuario}
+                accessibilityLabel="Imagem ilustrativa de veículo"
                 style={styles.profileHeroImage}
                 resizeMode="cover"
               />
@@ -439,7 +439,11 @@ export default function ProfileScreen() {
             </View>
 
             <Text style={styles.profileName}>{nomeMotorista}</Text>
-            <Text style={styles.profileVehicle}>{modeloCarro}</Text>
+            <Text style={styles.profileVehicle}>{userPreferences.vehicleName}</Text>
+            <Text style={styles.sectionText}>
+              Veículo demonstrativo · {userPreferences.vehicleRangeKm} km com bateria cheia
+              {"\n"}Origem demonstrativa: {demoOrigin.nome} · imagem ilustrativa
+            </Text>
           </View>
 
           {profileFeedbackMessage ? (

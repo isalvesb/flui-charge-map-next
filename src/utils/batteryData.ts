@@ -1,4 +1,5 @@
 import type { BatterySource } from "../types/storage";
+import { demonstracaoPadrao } from "../data/demonstracao";
 export type BatteryData = {
   batteryPercent: number;
   batterySource: BatterySource;
@@ -12,7 +13,7 @@ export function normalizeBatteryData(
   const validPercent = typeof percent === "number" && Number.isFinite(percent);
   const batteryPercent = validPercent
     ? Math.min(100, Math.max(0, percent))
-    : 70;
+    : demonstracaoPadrao.batteryPercent;
   const timestamp = data?.batteryUpdatedAt;
   const validTimestamp =
     typeof timestamp === "string" && Number.isFinite(Date.parse(timestamp));

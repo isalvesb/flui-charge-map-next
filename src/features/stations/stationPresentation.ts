@@ -94,7 +94,7 @@ export function getStationArrivalPresentation(
   date = new Date(),
 ) {
   const arrival = assessment.nivel === "foraDeAlcance"
-    ? `Autonomia insuficiente para o trajeto — faltam ${assessment.kmFaltantes} km.`
+    ? `Autonomia insuficiente para a distância aproximada — faltam ${assessment.kmFaltantes} km.`
     : `${assessment.nivel === "apertado" ? "Autonomia limitada — " : ""}Chegada estimada com ${assessment.bateriaAoChegarPercent}% de bateria.`;
   const tone = assessment.nivel === "foraDeAlcance"
     ? "danger"
