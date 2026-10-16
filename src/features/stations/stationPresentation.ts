@@ -76,6 +76,14 @@ export function formatRatingStars(rating: number) {
   ).join(" ");
 }
 
+export function getStationRouteNotice(station: ChargingStation, date = new Date()) {
+  const status = getStationStatusInfo(station, date);
+  const availability = canChargeAt(station, date)
+    ? "A abertura e os carregadores livres são demonstrativos."
+    : `${status.description}. A recarga não está confirmada neste ponto.`;
+  return `Nos dados demonstrativos: ${status.label}. ${availability} Abrir a rota não garante atendimento; confirme o funcionamento e a compatibilidade antes de ir.`;
+}
+
 export function getUserInitials(userName: string) {
   const nameParts = userName.trim().split(/\s+/);
   const firstInitial = nameParts[0]?.[0] ?? "";

@@ -3,6 +3,7 @@ import {
   Alert,
   Image,
   Linking,
+  Modal,
   StatusBar,
   Pressable,
   ScrollView,
@@ -59,6 +60,8 @@ import { useCurrentTime } from "../../hooks/useCurrentTime";
 import { isStationOpenAt } from "../../utils/stationHours";
 import {
   getStationStatusInfo,
+  getStationRouteNotice,
+  getStationRouteUrl,
   getStationRecommendation,
   getWaitingLevel,
 } from "./stationPresentation";
@@ -142,17 +145,6 @@ function getUserInitials(userName: string) {
   return `${firstInitial}${lastInitial}`.toUpperCase();
 }
 
-function getRouteUrl(station: Station, provider: RouteProvider) {
-  const latitude = station.latitude;
-  const longitude = station.longitude;
-
-  if (provider === "waze") {
-    return `https://www.waze.com/ul?ll=${latitude},${longitude}&navigate=yes`;
-  }
-
-  return `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}&travelmode=driving`;
-}
-
 function calcularTempoEstimadoCarga(powerKw: number) {
   if (powerKw >= 120) {
     return "20 a 35 min";
@@ -224,6 +216,8 @@ export default function PointDetailsScreen() {
   } = useFluiStorage();
 
   const [isLoadingAction, setIsLoadingAction] = useState(false);
+  const [isRouteDialogOpen, setIsRouteDialogOpen] = useState(false);
+  const [routeError, setRouteError] = useState<string | null>(null);
 
   useFocusEffect(
     useCallback(() => {
@@ -278,15 +272,12 @@ export default function PointDetailsScreen() {
       Number.isFinite(station.latitude) && Number.isFinite(station.longitude);
 
     if (!hasCoordinates) {
-      Alert.alert(
-        "Rota indisponível",
-        "Este ponto ainda não possui coordenadas cadastradas.",
-      );
+      setRouteError("Este ponto ainda não possui coordenadas cadastradas.");
 
       return;
     }
 
-    const url = getRouteUrl(station, provider);
+    const url = getStationRouteUrl(station, provider);
 
     try {
       setIsLoadingAction(true);
@@ -294,20 +285,15 @@ export default function PointDetailsScreen() {
       const canOpen = await Linking.canOpenURL(url);
 
       if (!canOpen) {
-        Alert.alert(
-          "Não foi possível abrir a rota",
-          "Seu dispositivo não conseguiu abrir o aplicativo de mapas.",
-        );
+        setRouteError("Seu dispositivo não conseguiu abrir o aplicativo de mapas.");
 
         return;
       }
 
       await Linking.openURL(url);
+      setIsRouteDialogOpen(false);
     } catch {
-      Alert.alert(
-        "Erro ao abrir rota",
-        "Não foi possível abrir a rota agora. Tente novamente em alguns instantes.",
-      );
+      setRouteError("Não foi possível abrir a rota agora. Tente novamente em alguns instantes.");
     } finally {
       setIsLoadingAction(false);
     }
@@ -318,24 +304,8 @@ export default function PointDetailsScreen() {
       return;
     }
 
-    Alert.alert(
-      "Abrir rota",
-      `Escolha como deseja navegar até ${station.name}.`,
-      [
-        {
-          text: "Google Maps",
-          onPress: () => openRouteInExternalApp("google"),
-        },
-        {
-          text: "Waze",
-          onPress: () => openRouteInExternalApp("waze"),
-        },
-        {
-          text: "Cancelar",
-          style: "cancel",
-        },
-      ],
-    );
+    setRouteError(null);
+    setIsRouteDialogOpen(true);
   }
 
   function voltarAoMapa() {
@@ -920,7 +890,7 @@ export default function PointDetailsScreen() {
         <Pressable
           accessibilityRole="button"
           accessibilityLabel={`Iniciar rota para ${station.name}`}
-          accessibilityHint="Permite escolher Google Maps ou Waze."
+          accessibilityHint="Mostra o aviso de funcionamento antes de escolher Google Maps ou Waze."
           accessibilityState={{ disabled: isLoadingAction }}
           style={({ pressed, hovered }: PressableVisualState) => [
             styles.primaryActionButton,
@@ -936,6 +906,51 @@ export default function PointDetailsScreen() {
           <Text style={styles.primaryActionText}>Iniciar rota</Text>
         </Pressable>
       </SafeAreaView>
+
+      <Modal
+        visible={isRouteDialogOpen}
+        transparent
+        animationType="fade"
+        onRequestClose={() => !isLoadingAction && setIsRouteDialogOpen(false)}
+      >
+        <View style={styles.routeBackdrop}>
+          <View style={styles.routeDialog} accessibilityViewIsModal>
+            <Text style={styles.routeTitle} accessibilityRole="header">
+              Antes de iniciar a rota
+            </Text>
+            <Text style={styles.routeDescription}>{station.name}</Text>
+            <Text style={styles.routeDescription} accessibilityLiveRegion="polite">
+              {getStationRouteNotice(station, now)}
+            </Text>
+            {routeError ? (
+              <Text style={styles.routeDescription} accessibilityRole="alert">
+                {routeError}
+              </Text>
+            ) : null}
+            {(["google", "waze"] as const).map((provider) => (
+              <Pressable
+                key={provider}
+                accessibilityRole="button"
+                disabled={isLoadingAction}
+                style={styles.routeAction}
+                onPress={() => void openRouteInExternalApp(provider)}
+              >
+                <Text style={styles.primaryActionText}>
+                  {provider === "google" ? "Abrir Google Maps" : "Abrir Waze"}
+                </Text>
+              </Pressable>
+            ))}
+            <Pressable
+              accessibilityRole="button"
+              disabled={isLoadingAction}
+              style={[styles.routeAction, styles.routeCancelAction]}
+              onPress={() => setIsRouteDialogOpen(false)}
+            >
+              <Text style={styles.secondaryActionText}>Cancelar</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
 
       <LoadingOverlay visible={isLoadingAction} message="Preparando ação..." />
     </ScreenTransition>

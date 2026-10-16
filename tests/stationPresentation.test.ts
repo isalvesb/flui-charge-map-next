@@ -8,6 +8,7 @@ import {
   getStationProfile,
   getStationRecommendation,
   getStationRouteUrl,
+  getStationRouteNotice,
   getStationStatusInfo,
   getUserInitials,
   getWaitingLevel,
@@ -32,6 +33,36 @@ test("gera URLs seguras para os provedores suportados", () => {
 
   assert.match(getStationRouteUrl(station, "google"), /destination=-23\.55,-46\.63/);
   assert.match(getStationRouteUrl(station, "waze"), /ll=-23\.55,-46\.63/);
+});
+
+test("avisa sobre recarga não confirmada antes de oferecer a rota", () => {
+  const now = new Date("2026-10-16T22:00:00Z");
+  const cases = [
+    { station: createStation({ status: "unavailable" }), expected: /Status indisponível/ },
+    { station: createStation({ status: "maintenance" }), expected: /Em manutenção/ },
+    { station: createStation({ status: "busy" }), expected: /Ocupado agora/ },
+    { station: createStation({ openingSchedule: undefined, openingHours: "A confirmar" }), expected: /Horário não confirmado/ },
+    { station: createStation({ connectors: [] }), expected: /Sem carregadores utilizáveis/ },
+  ];
+  for (const { station, expected } of cases) {
+    const notice = getStationRouteNotice(station, now);
+    assert.match(notice, expected);
+    assert.match(notice, /recarga não está confirmada/);
+    assert.match(notice, /Abrir a rota não garante atendimento/);
+  }
+});
+
+test("aviso da rota acompanha o limite de fechamento e não promete dados reais", () => {
+  const station = createStation({ openingSchedule: {
+    timeZone: "America/Sao_Paulo",
+    periods: [{ days: ["fri"], opensAt: "08:00", closesAt: "20:00" }],
+  } });
+  const before = getStationRouteNotice(station, new Date("2026-10-16T22:59:59Z"));
+  assert.match(before, /Aberto agora/);
+  assert.match(before, /carregadores livres são demonstrativos/);
+  const closed = getStationRouteNotice(station, new Date("2026-10-16T23:00:00Z"));
+  assert.match(closed, /Fechado agora/);
+  assert.match(closed, /recarga não está confirmada/);
 });
 
 test("resume status, recomendação e espera sem depender da tela", () => {
