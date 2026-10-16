@@ -1,0 +1,125 @@
+Browser tab: 2, Title: "127.0.0.1:8774/review?stationId=station-07&clock=1", URL: "http://127.0.0.1:8774/review?stationId=station-07&clock=1".
+1 AXWebArea 127.0.0.1:8774/review?stationId=station-07&clock=1
+	2 container
+		3 button Voltar
+			4 image
+		5 text Avaliação
+		6 container
+			7 container
+				8 text Type 2
+				9 container
+					10 text 22  kW
+				11 text EcoCarga Parque Aclimação R. Muniz de Sousa, 1119, Aclimação, São Paulo, SP
+				12 text Aberto agora
+			13 button Adicionar aos favoritos
+				14 image
+			15 text Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo.
+			16 text Avalie sua experiência
+			17 text Registre sua avaliação neste dispositivo.
+			18 text Avaliações salvas somente neste dispositivo, sem envio ou publicação para outros motoristas.
+			19 container
+				20 image
+				21 text Avaliação geral
+				22 text Como foi a experiência neste ponto?
+				23 button Avaliação geral: 1 estrelas
+					24 image
+				25 button Avaliação geral: 2 estrelas
+					26 image
+				27 button Avaliação geral: 3 estrelas
+					28 image
+				29 button Avaliação geral: 4 estrelas
+					30 image
+				31 button Avaliação geral: 5 estrelas
+					32 image
+			33 container
+				34 container
+					35 text Qualidade Funcionamento do carregador
+				36 container
+					37 button Qualidade: 1 estrelas
+						38 image
+					39 button Qualidade: 2 estrelas
+						40 image
+					41 button Qualidade: 3 estrelas
+						42 image
+					43 button Qualidade: 4 estrelas
+						44 image
+					45 button Qualidade: 5 estrelas
+						46 image
+				47 container
+					48 text Limpeza Ambiente e conservação
+				49 container
+					50 button Limpeza: 1 estrelas
+						51 image
+					52 button Limpeza: 2 estrelas
+						53 image
+					54 button Limpeza: 3 estrelas
+						55 image
+					56 button Limpeza: 4 estrelas
+						57 image
+					58 button Limpeza: 5 estrelas
+						59 image
+				60 container
+					61 text Disponibilidade Tempo de espera e vagas livres
+				62 container
+					63 button Disponibilidade: 1 estrelas
+						64 image
+					65 button Disponibilidade: 2 estrelas
+						66 image
+					67 button Disponibilidade: 3 estrelas
+						68 image
+					69 button Disponibilidade: 4 estrelas
+						70 image
+					71 button Disponibilidade: 5 estrelas
+						72 image
+				73 container
+					74 text Comodidades Serviços úteis próximos ao ponto
+				75 container
+					76 button Comodidades: 1 estrelas
+						77 image
+					78 button Comodidades: 2 estrelas
+						79 image
+					80 button Comodidades: 3 estrelas
+						81 image
+					82 button Comodidades: 4 estrelas
+						83 image
+					84 button Comodidades: 5 estrelas
+						85 image
+			86 container
+				87 text Comentário
+				88 text opcional
+				89 text entry area (settable) Comentário da avaliação
+				90 text 0 / 200
+			91 container
+				92 container
+					93 text Voltaria aqui Você voltaria a usar este ponto?
+				94 container
+					95 button Voltaria aqui: sim
+						96 image
+						97 text Sim
+					98 button Voltaria aqui: não
+						99 image
+						100 text Não
+				101 container
+					102 text Recomendo Você recomendaria este ponto?
+				103 container
+					104 button Recomendo este ponto: sim
+						105 image
+						106 text Sim
+					107 button Recomendo este ponto: não
+						108 image
+						109 text Não
+			110 container
+				111 text Resumo do ponto
+				112 text 4,2
+				113 image
+				114 text Excelente 58  avaliações demonstrativas
+			115 container
+				116 text 4 de 4 carregadores livres no exemplo 22  kW ·  Type 2 ≈2,6 km  em linha reta desde  FIAP
+		117 button Salvar avaliação
+			118 text Salvar avaliação
+	119 container
+		123 text Relógio de teste: 19:58:00 
+		121 button Teste: simular 19h58
+		122 button Teste: aproximar fechamento
+
+The focused UI element is 121 button Teste: simular 19h58

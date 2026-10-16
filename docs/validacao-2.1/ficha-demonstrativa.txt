@@ -1,0 +1,135 @@
+Browser tab: 1, Title: "127.0.0.1:8774/point-details?stationId=station-01", URL: "http://127.0.0.1:8774/point-details?stationId=station-01".
+0 AXWebArea 127.0.0.1:8774/point-details?stationId=station-01
+	1 container
+		2 container
+			3 container
+				4 button Voltar ao mapa
+					5 image
+				6 button Adicionar aos favoritos
+					7 image
+			8 text Higienópolis Prime Charge
+			9 text Rua Alagoas, 974, Higienópolis, São Paulo, SP
+			10 container
+				11 image
+				12 text 4.9
+				13 container
+					14 text ( 184  avaliações demonstrativas)
+				15 text Aberto agora
+			16 container
+				17 image
+				18 text 4 de 6 carregadores livres no exemplo
+			19 container
+				20 text GUIA DO PONTO Opção com conector rápido no exemplo Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo. Distância em linha reta, autonomia e tempo de carga são estimativas simplificadas, sem telemetria ou cálculo de percurso. Confirme o funcionamento e a compatibilidade do veículo antes de ir.
+				21 container
+					22 image
+					23 text Espera simulada
+					24 text Baixa
+				25 container
+					26 image
+					27 text Tempo estimado
+					28 text 20 a 35 min
+				29 container
+					30 image
+					31 text Perfil
+					32 text Carga rápida
+			33 container
+				34 image
+				35 text Autonomia para chegar ao local
+Chegada estimada com 69% de bateria.
+Não garante recarga no local.
+			36 container
+				37 container
+					38 image
+					39 text Potência
+					40 container
+						41 text 150  kW
+					42 text Velocidade de carga
+				43 container
+					44 image
+					45 text Conectores
+					46 text CCS2, Type 2
+					47 text Tipos compatíveis
+				48 container
+					49 image
+					50 text Funcionamento
+					51 text 24 horas, todos os dias
+					52 text Disponibilidade demonstrativa de carregadores
+				53 container
+					54 image
+					55 text Distância aproximada
+					56 text ≈2,1 km
+					57 container
+						58 text Em linha reta desde  FIAP . Não é distância de percurso.
+			59 container
+				60 image
+				61 text Horário sugerido no exemplo
+				62 text 06h às 08h ou 13h às 15h ou 22h às 00h
+				63 text Sem previsão de movimento em tempo real
+			64 container
+				65 text Conectores do ponto
+				66 container
+					67 text CCS2 150  kW ·  2 de 4 carregadores livres no exemplo
+				68 container
+					69 text Type 2 22  kW ·  2 de 2 carregadores livres no exemplo
+			70 container
+				71 text Comodidades próximas
+				72 container
+					73 image
+					74 text Estacionamento
+				75 container
+					76 image
+					77 text Área coberta
+				78 container
+					79 image
+					80 text Banheiro
+				81 container
+					82 image
+					83 text Café
+				84 container
+					85 image
+					86 text Wi-Fi
+				87 container
+					88 image
+					89 text Segurança
+			90 container
+				91 text Avaliações Notas, totais, distribuição e comentários do catálogo são exemplos. Sua avaliação local não altera esses números.
+				92 container
+					93 text 4.9 ★ ★ ★ ★ ★ 184  avaliações demonstrativas
+				94 container
+					95 text 5 ★
+					96 text 85%
+					97 text 4 ★
+					98 text 10%
+					99 text 3 ★
+					100 text 3%
+					101 text 2 ★
+					102 text 1%
+					103 text 1 ★
+					104 text 1%
+				105 button Avaliar este ponto
+					106 image
+					107 text Avaliar este ponto
+				108 container
+					109 text LB
+					110 text Leonardo Bragatti
+					111 text Avaliação demonstrativa
+					112 text ★ ★ ★ ★ ★
+					113 text Cobertura, banheiro e café deixam a parada bem confortável para uma recarga rápida.
+				114 container
+					115 text MP
+					116 text Marina Polverari
+					117 text Avaliação demonstrativa
+					118 text ★ ★ ★ ★ ★
+					119 text Boa sinalização, ambiente limpo e conexão estável no CCS2 durante a recarga.
+				120 container
+					121 text JP
+					122 text John Paul
+					123 text Avaliação demonstrativa
+					124 text ★ ★ ★ ★ ★
+					125 text Ponto completo para quem precisa carregar sem abrir mão de segurança e Wi-Fi.
+		126 button Ver mapa
+			127 text Ver mapa
+		128 button Iniciar rota para Higienópolis Prime Charge
+			129 text Iniciar rota
+
+The focused UI element is 0 AXWebArea 127.0.0.1:8774/point-details?stationId=station-01

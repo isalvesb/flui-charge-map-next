@@ -1,0 +1,40 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+React Compiler enabled
+Starting Metro Bundler
+Static rendering is enabled. Learn more: https://docs.expo.dev/router/reference/static-rendering/
+| (node:49015) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:49017) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:49020) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:49018) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:49019) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:49014) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:49016) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓░░░░░ 68.9% (460/554)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓▓▓▓▓▓▓▓▓░░░ 87.2% ( 621/2378)
+λ Bundled 3453ms node_modules/expo-router/node/render.js (2547 modules)
+Web Bundled 4552ms node_modules/expo-router/entry.js (2523 modules)
+
+› web bundles (1):
+_expo/static/js/web/entry-89d55713ff7bf257b2aac5a9654249cf.js (3.66 MB)
+
+› Static routes (11):
+/map (98 kB)
+/ (index) (39.6 kB)
+/review (40.6 kB)
+/search (74.1 kB)
+/loading (40.8 kB)
+/profile (51.3 kB)
+/settings (59.2 kB)
+/_sitemap (38.8 kB)
+/onboarding (44.5 kB)
+/+not-found (38.8 kB)
+/point-details (69.7 kB)
+
+Exported: /tmp/flui-beta21-web

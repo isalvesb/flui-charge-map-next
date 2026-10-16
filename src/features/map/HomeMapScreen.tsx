@@ -64,6 +64,8 @@ import baseStyles, { colors as baseColors } from "./HomeMapScreen.styles";
 import { useTelaComPreferencias } from "../../hooks/useTelaComPreferencias";
 import { useReducedMotion } from "../../hooks/useReducedMotion";
 import { useAppPreferences } from "../../context/PreferencesContext";
+import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
+import { identificacaoDados } from "../../data/identificacaoDados";
 import { FluiAssistantSheet } from "../assistant/FluiAssistantSheet";
 import { FluiAiIcon } from "../assistant/FluiAiIcon";
 
@@ -833,6 +835,7 @@ export default function HomeMapScreen() {
   }, [reduceMotionEnabled, userLocationPulseProgress]);
 
   useEffect(() => {
+    if (!funcionalidadesExperimentais.fluia) return;
     assistantLabelProgress.setValue(1);
 
     const labelTimeout = setTimeout(() => {
@@ -1732,7 +1735,7 @@ export default function HomeMapScreen() {
             </PressableScale>
           </View>
 
-          <Animated.View
+          {funcionalidadesExperimentais.fluia ? <Animated.View
             style={[
               styles.fluiAssistantFloating,
               {
@@ -1775,7 +1778,7 @@ export default function HomeMapScreen() {
                 </Animated.View>
               </PressableScale>
             </Animated.View>
-          </Animated.View>
+          </Animated.View> : null}
 
           <Animated.View
             style={[
@@ -1817,6 +1820,7 @@ export default function HomeMapScreen() {
                 <Text style={styles.sheetTitle}>{sheetTitle}</Text>
               </View>
               <Text style={styles.originDescription}>
+                {identificacaoDados.catalogo.aviso}{"\n"}
                 Origem: {demoOrigin.nome} · distâncias em linha reta, sem cálculo de percurso
               </Text>
 
@@ -2001,7 +2005,7 @@ export default function HomeMapScreen() {
           ) : null}
         </View>
 
-        <FluiAssistantSheet
+        {funcionalidadesExperimentais.fluia ? <FluiAssistantSheet
           visible={assistenteFluiAberto}
           stations={visibleStations.map(item => item.station)}
           now={now}
@@ -2009,7 +2013,7 @@ export default function HomeMapScreen() {
           vehicleRangeKm={vehicleRangeKm}
           onClose={() => setAssistenteFluiAberto(false)}
           onSelectStation={openStationDetails}
-        />
+        /> : null}
 
         <LoadingOverlay
           visible={isOpeningDetails}

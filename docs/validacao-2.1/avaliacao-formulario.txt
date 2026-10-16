@@ -1,0 +1,121 @@
+Browser tab: 1, Title: "127.0.0.1:8774/review?stationId=station-01", URL: "http://127.0.0.1:8774/review?stationId=station-01".
+0 AXWebArea 127.0.0.1:8774/review?stationId=station-01
+	1 container
+		2 button Voltar
+			3 image
+		4 text Avaliação
+		5 container
+			6 container
+				7 text CCS2, Type 2
+				8 container
+					9 text 150  kW
+				10 text Higienópolis Prime Charge Rua Alagoas, 974, Higienópolis, São Paulo, SP
+				11 text Aberto agora
+			12 button Adicionar aos favoritos
+				13 image
+			14 text Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo.
+			15 text Avalie sua experiência
+			16 text Registre sua avaliação neste dispositivo.
+			17 text Avaliações salvas somente neste dispositivo, sem envio ou publicação para outros motoristas.
+			18 container
+				19 image
+				20 text Avaliação geral
+				21 text Como foi a experiência neste ponto?
+				22 button Avaliação geral: 1 estrelas
+					23 image
+				24 button Avaliação geral: 2 estrelas
+					25 image
+				26 button Avaliação geral: 3 estrelas
+					27 image
+				28 button Avaliação geral: 4 estrelas
+					29 image
+				30 button Avaliação geral: 5 estrelas
+					31 image
+			32 container
+				33 container
+					34 text Qualidade Funcionamento do carregador
+				35 container
+					36 button Qualidade: 1 estrelas
+						37 image
+					38 button Qualidade: 2 estrelas
+						39 image
+					40 button Qualidade: 3 estrelas
+						41 image
+					42 button Qualidade: 4 estrelas
+						43 image
+					44 button Qualidade: 5 estrelas
+						45 image
+				46 container
+					47 text Limpeza Ambiente e conservação
+				48 container
+					49 button Limpeza: 1 estrelas
+						50 image
+					51 button Limpeza: 2 estrelas
+						52 image
+					53 button Limpeza: 3 estrelas
+						54 image
+					55 button Limpeza: 4 estrelas
+						56 image
+					57 button Limpeza: 5 estrelas
+						58 image
+				59 container
+					60 text Disponibilidade Tempo de espera e vagas livres
+				61 container
+					62 button Disponibilidade: 1 estrelas
+						63 image
+					64 button Disponibilidade: 2 estrelas
+						65 image
+					66 button Disponibilidade: 3 estrelas
+						67 image
+					68 button Disponibilidade: 4 estrelas
+						69 image
+					70 button Disponibilidade: 5 estrelas
+						71 image
+				72 container
+					73 text Comodidades Serviços úteis próximos ao ponto
+				74 container
+					75 button Comodidades: 1 estrelas
+						76 image
+					77 button Comodidades: 2 estrelas
+						78 image
+					79 button Comodidades: 3 estrelas
+						80 image
+					81 button Comodidades: 4 estrelas
+						82 image
+					83 button Comodidades: 5 estrelas
+						84 image
+			85 container
+				86 text Comentário
+				87 text opcional
+				88 text entry area (settable) Comentário da avaliação
+				89 text 0 / 200
+			90 container
+				91 container
+					92 text Voltaria aqui Você voltaria a usar este ponto?
+				93 container
+					94 button Voltaria aqui: sim
+						95 image
+						96 text Sim
+					97 button Voltaria aqui: não
+						98 image
+						99 text Não
+				100 container
+					101 text Recomendo Você recomendaria este ponto?
+				102 container
+					103 button Recomendo este ponto: sim
+						104 image
+						105 text Sim
+					106 button Recomendo este ponto: não
+						107 image
+						108 text Não
+			109 container
+				110 text Resumo do ponto
+				111 text 4,9
+				112 image
+				113 text Excelente 184  avaliações demonstrativas
+			114 container
+				115 text 4 de 6 carregadores livres no exemplo 150  kW ·  CCS2, Type 2 ≈2,1 km  em linha reta desde  FIAP
+		116 button Salvar avaliação
+			117 text Salvar avaliação
+
+The focused UI element is 0 AXWebArea 127.0.0.1:8774/review?stationId=station-01

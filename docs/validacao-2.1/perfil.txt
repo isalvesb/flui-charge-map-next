@@ -1,0 +1,72 @@
+Browser tab: 2, Title: "127.0.0.1:8774/profile", URL: "http://127.0.0.1:8774/profile".
+1 AXWebArea 127.0.0.1:8774/profile
+	2 container
+		3 button Voltar
+		4 text Perfil
+		5 container
+			6 container Imagem ilustrativa de veículo
+				7 image Imagem ilustrativa de veículo
+			8 text Caio Duarte
+			9 text Perfil demonstrativo · nome e foto ilustrativos
+			10 text BYD Dolphin Plus
+			11 container
+				12 text Veículo demonstrativo ·  400  km com bateria cheia Origem demonstrativa:  FIAP  · imagem ilustrativa
+			13 container
+				14 text 0 favoritos
+			15 container
+				16 text 1 histórico
+			17 container
+				18 text 1 avaliações
+			19 button Abrir configurações
+				20 container
+					21 image
+					22 text Configurações
+			23 button Sair da conta
+				24 container
+					25 image
+					26 text Sair da conta
+			27 text Atalhos úteis
+			28 text Acesse rapidamente as áreas mais importantes antes de escolher onde carregar.
+			29 container
+				30 button Abrir mapa
+					31 container
+						32 image
+						33 text Mapa Ver pontos
+				34 button Abrir filtros
+					35 container
+						36 image
+						37 text Filtros Refinar busca
+			38 button Mostrar favoritos
+				39 container
+					40 image
+					41 text Favoritos
+			42 button Mostrar histórico
+				43 container
+					44 image
+					45 text Histórico
+			46 text Últimos pontos vistos
+			47 text Pontos acessados recentemente para você não perder o caminho.
+			48 button Higienópolis Prime Charge. Rua Alagoas, 974. Nota 4,9. Potência 150 kW.
+				49 container
+					50 image
+					51 text Higienópolis Prime Charge
+					52 container
+						53 image
+						54 text Rua Alagoas, 974
+					55 container
+						56 image
+						57 text 4,9
+						58 image
+						59 text 150 kW
+					60 image
+			61 text Avaliações locais
+			62 text Avaliações salvas somente neste dispositivo, sem envio ou publicação para outros motoristas.
+			63 button Avaliação de Higienópolis Prime Charge. Nota 4,0 estrelas.
+				64 container
+					65 image
+					66 text Higienópolis Prime Charge
+					67 container
+						68 text 4,0  estrelas •  Teste local Beta 2.1 — sem publicação.
+					69 image
+
+The focused UI element is 42 button Mostrar histórico
