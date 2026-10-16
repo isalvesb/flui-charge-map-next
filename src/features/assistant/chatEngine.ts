@@ -32,13 +32,16 @@ export function answerMessage(
   text: string,
   context: AssistantContext,
 ): ChatResponse {
+  if (!funcionalidadesExperimentais.fluia) {
+    return { text: "FluIA desabilitada nesta versão.", state: "aviso" };
+  }
   const message = normalize(text);
 
   const programmed = programmedAnswers.find((item) =>
     item.keywords.some((keyword) => message.includes(keyword)),
   );
   if (programmed) {
-    return { text: programmed.answer, state: "respondendo" };
+    return { text: `${programmed.answer} ${identificacaoDados.fluia.aviso}`, state: "respondendo" };
   }
 
   if (message.includes("rapid")) {
@@ -52,7 +55,7 @@ export function answerMessage(
 
     if (!recommendation) {
       return {
-        text: "Não encontrei estações disponíveis agora.",
+        text: "Não encontrei uma opção viável nos dados demonstrativos. Isso não confirma a disponibilidade real das estações.",
         state: "alerta",
       };
     }

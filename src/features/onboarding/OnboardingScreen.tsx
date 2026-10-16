@@ -28,7 +28,7 @@ const onboardingSteps: OnboardingStep[] = [
   {
     title: "Encontre pontos próximos",
     description:
-      "Veja estações no mapa, acompanhe disponibilidade e descubra pontos recomendados para a sua rota.",
+      "Explore estações demonstrativas no mapa, com disponibilidade simulada e distâncias aproximadas em linha reta.",
     image: require("../../assets/onboarding/1.webp"),
   },
   {
@@ -40,13 +40,13 @@ const onboardingSteps: OnboardingStep[] = [
   {
     title: "Escolha com confiança",
     description:
-      "Use avaliações, comentários e critérios de experiência para evitar paradas ruins.",
+      "Compare notas e comentários demonstrativos. Eles não representam experiências verificadas de outros motoristas.",
     image: require("../../assets/onboarding/3.webp"),
   },
   {
     title: "Salve seus favoritos",
     description:
-      "Guarde pontos preferidos, acompanhe histórico e encontre suas avaliações dentro do Perfil.",
+      "Guarde favoritos, histórico e avaliações neste dispositivo. Seus registros não são publicados para outros motoristas.",
     image: require("../../assets/onboarding/4.webp"),
   },
 ];

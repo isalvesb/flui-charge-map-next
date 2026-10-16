@@ -20,6 +20,8 @@ function criarAvaliacao(dados: DadosAvaliacao): ChargingStationReview {
   return dados;
 }
 
+// Catálogo inteiramente demonstrativo, incluindo avaliações e imagens.
+// Classificação e avisos compartilhados: ../identificacaoDados.ts.
 export const chargingStations: ChargingStation[] = [
   {
     id: 'station-01',

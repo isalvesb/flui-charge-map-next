@@ -703,6 +703,13 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
 
+  originDescription: {
+    color: colors.textLight,
+    fontSize: 12,
+    lineHeight: 17,
+    marginBottom: 10,
+  },
+
   restaurarPainelWrapper: {
     position: "absolute",
     left: 0,

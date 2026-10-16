@@ -43,6 +43,7 @@ import {
   Zap,
 } from "lucide-react-native";
 
+import { identificacaoDados } from "../../data/identificacaoDados";
 import { chargingStations } from "../../data";
 import { styles as baseStyles } from "./PointDetailsScreen.styles";
 import {
@@ -56,6 +57,7 @@ import { useAppPreferences } from "../../context/PreferencesContext";
 import { getStationImageSource } from "../../assets/stations";
 import { triggerImpact, type PressableVisualState } from "../../utils/interaction";
 import { avaliarAlcance } from "../../utils/autonomia";
+import { formatarDistanciaDemonstrativa } from "../../utils/demonstracao";
 import { useCurrentTime } from "../../hooks/useCurrentTime";
 import { isStationOpenAt } from "../../utils/stationHours";
 import {
@@ -186,7 +188,7 @@ function obterIconeDeAlcance(nivel: ReturnType<typeof avaliarAlcance>["nivel"]) 
 export default function PointDetailsScreen() {
   const now = useCurrentTime();
   const { styles, colors, isDarkMode } = useTelaComPreferencias(baseStyles);
-  const { userPreferences } = useAppPreferences();
+  const { userPreferences, demoStations, demoOrigin } = useAppPreferences();
   const { stationId } = useLocalSearchParams<{
     stationId?: string | string[];
   }>();
@@ -194,8 +196,8 @@ export default function PointDetailsScreen() {
   const selectedStationId = normalizeParam(stationId) ?? "station-01";
 
   const station = useMemo(() => {
-    return chargingStations.find((item) => item.id === selectedStationId);
-  }, [selectedStationId]);
+    return demoStations.find((item) => item.id === selectedStationId);
+  }, [selectedStationId, demoStations]);
 
   const {
     favoriteStationIds,
@@ -517,7 +519,7 @@ export default function PointDetailsScreen() {
               </Text>
 
               <Text style={styles.reviewCount}>
-                ({station.reviewCount} avaliações)
+                ({station.reviewCount} avaliações demonstrativas)
               </Text>
             </View>
 
@@ -555,9 +557,8 @@ export default function PointDetailsScreen() {
             <Text style={styles.resumoEyebrow}>Guia do ponto</Text>
             <Text style={styles.resumoTitle}>{recomendacaoDoPonto}</Text>
             <Text style={styles.resumoDescription}>
-              Dados demonstrativos, sem disponibilidade em tempo real. Distância,
-              autonomia e tempo de carga são estimativas simplificadas; confirme o
-              funcionamento e a compatibilidade do veículo antes de ir.
+              {identificacaoDados.catalogo.aviso} {identificacaoDados.estimativas.aviso}
+              {" "}Confirme o funcionamento e a compatibilidade do veículo antes de ir.
             </Text>
 
             <View style={styles.resumoInfoGrid}>
@@ -657,9 +658,11 @@ export default function PointDetailsScreen() {
                 </View>
 
                 <View style={styles.infoTextBox}>
-                  <Text style={styles.infoLabel}>Distância</Text>
-                  <Text style={styles.infoValue}>{station.distanceKm} km</Text>
-                  <Text style={styles.infoDescription}>Próximo de você</Text>
+                  <Text style={styles.infoLabel}>Distância aproximada</Text>
+                  <Text style={styles.infoValue}>{formatarDistanciaDemonstrativa(station.distanceKm)}</Text>
+                  <Text style={styles.infoDescription}>
+                    Em linha reta desde {demoOrigin.nome}. Não é distância de percurso.
+                  </Text>
                 </View>
               </View>
             </View>
@@ -736,7 +739,8 @@ export default function PointDetailsScreen() {
           </View>
 
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Avaliações de usuários</Text>
+            <Text style={styles.sectionTitle}>Avaliações</Text>
+            <Text style={styles.resumoDescription}>{identificacaoDados.avaliacoesExemplo.aviso}</Text>
 
             <View style={styles.ratingPanel}>
               <View style={styles.ratingPanelLeft}>
@@ -749,7 +753,7 @@ export default function PointDetailsScreen() {
                 </Text>
 
                 <Text style={styles.totalReviews}>
-                  {station.reviewCount} avaliações
+                  {station.reviewCount} avaliações demonstrativas
                 </Text>
               </View>
 
@@ -825,7 +829,7 @@ export default function PointDetailsScreen() {
               <View style={styles.userReviewsList}>
                 {stationReviews.map((review) => (
                   <View key={review.id} style={styles.userReviewCard}>
-                    {review.id.startsWith("local-") ? (
+                    {review === userReviewCard ? (
                       <Image
                         source={imagemPerfilUsuario}
                         style={styles.avatarImage}
@@ -842,6 +846,11 @@ export default function PointDetailsScreen() {
 
                     <View style={styles.userReviewContent}>
                       <Text style={styles.userName}>{review.userName}</Text>
+                      <Text style={styles.userComment}>
+                        {review === userReviewCard
+                          ? identificacaoDados.avaliacoesLocais.rotulo
+                          : identificacaoDados.avaliacoesExemplo.rotulo}
+                      </Text>
 
                       <Text style={styles.userStars}>
                         {getRatingStars(review.rating)}

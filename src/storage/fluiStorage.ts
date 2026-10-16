@@ -1,4 +1,5 @@
 import { normalizeBatteryData } from "../utils/batteryData";
+import { normalizarConfiguracaoDemonstrativa } from "../utils/demonstracao";
 import { defaultFilters } from "../data/filterOptions";
 import {
   CreateLocalReviewInput,
@@ -56,7 +57,7 @@ function createDefaultUserPreferences(): UserPreferences {
     hasSeenOnboarding: false,
     appearanceMode: "light",
     fontSize: "default",
-    vehicleRangeKm: 400,
+    ...normalizarConfiguracaoDemonstrativa(),
     ...normalizeBatteryData(),
   };
 }
@@ -108,12 +109,7 @@ function normalizeUserPreferences(
     fontSize: isFontSizePreference(preferences.fontSize)
       ? preferences.fontSize
       : base.fontSize,
-    vehicleRangeKm:
-      typeof preferences.vehicleRangeKm === "number" &&
-      Number.isFinite(preferences.vehicleRangeKm) &&
-      preferences.vehicleRangeKm > 0
-        ? preferences.vehicleRangeKm
-        : base.vehicleRangeKm,
+    ...normalizarConfiguracaoDemonstrativa(preferences),
     ...normalizeBatteryData(preferences),
     savedFilters: {
       ...base.savedFilters,

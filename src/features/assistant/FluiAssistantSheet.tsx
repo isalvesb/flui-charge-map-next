@@ -37,6 +37,8 @@ import {
   recommendStations,
   type FluiAssistantIntent,
 } from "./fluiAssistant";
+import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
+import { identificacaoDados } from "../../data/identificacaoDados";
 import { FluiAiIcon } from "./FluiAiIcon";
 import { answerMessage, RECOMMENDATION_DISCLAIMER } from "./chatEngine";
 
@@ -89,7 +91,7 @@ export function FluiAssistantSheet({
   onClose,
   onSelectStation,
 }: Props) {
-  const { theme, fontScale, appearanceMode } = useAppPreferences();
+  const { theme, fontScale, appearanceMode, demoOrigin, userPreferences } = useAppPreferences();
   const reduceMotionEnabled = useReducedMotion();
   const styles = useMemo(
     () => createStyles(theme, fontScale, appearanceMode === "dark"),
@@ -108,7 +110,7 @@ export function FluiAssistantSheet({
   const chatScrollRef = useRef<ScrollView>(null);
 
   const recommendation = useMemo(() => {
-    if (!selectedIntent || isAnalyzing) return null;
+    if (!funcionalidadesExperimentais.fluia || !selectedIntent || isAnalyzing) return null;
     return recommendStations({
       stations,
       intent: selectedIntent,
@@ -226,6 +228,8 @@ export function FluiAssistantSheet({
     closeAssistant();
     onSelectStation(stationId);
   };
+
+  if (!funcionalidadesExperimentais.fluia) return null;
 
   return (
     <Modal

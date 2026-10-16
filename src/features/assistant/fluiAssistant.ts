@@ -1,3 +1,6 @@
+import { avaliarAlcance } from "../../utils/autonomia";
+import { formatarDistanciaDemonstrativa } from "../../utils/demonstracao";
+import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
 import type { ChargingStation, ConnectorType } from "../../types";
 import {
   canChargeAt,
@@ -70,8 +73,7 @@ function getIntentScore(
 }
 
 export function formatAssistantDistance(distanceKm: number) {
-  if (distanceKm < 1) return `${Math.round(distanceKm * 1000)} m`;
-  return `${distanceKm.toFixed(1).replace(".", ",")} km`;
+  return formatarDistanciaDemonstrativa(distanceKm);
 }
 
 function createExplanation(
@@ -109,6 +111,7 @@ export function recommendStations({
   vehicleConnectorTypes?: ConnectorType[];
   now?: Date;
 }): FluiAssistantRecommendation | null {
+  if (!funcionalidadesExperimentais.fluia) return null;
   if (
     !Number.isFinite(vehicleRangeKm) ||
     vehicleRangeKm <= 0 ||
@@ -169,7 +172,9 @@ export function recommendStations({
     intent,
     primary: primary.station,
     backup: candidates[1]?.station,
-    arrivalBatteryPercent: primary.arrivalBatteryPercent,
+    arrivalBatteryPercent: avaliarAlcance(
+      primary.station.distanceKm, vehicleRangeKm, batteryPercent,
+    ).bateriaAoChegarPercent,
     availableChargers: primary.availableChargers,
     powerKw: primary.powerKw,
     compatibilityVerified: !!vehicleConnectorTypes?.length,
