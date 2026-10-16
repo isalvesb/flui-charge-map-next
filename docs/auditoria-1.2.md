@@ -1,6 +1,6 @@
 # Flui NEXT 2026 — Auditoria técnica da tarefa 1.2
 
-Data: 15/10/2026. Escopo: versão Alfa, tarefa 1.2. A aprovação do backlog permanece pendente de revisão humana.
+Atualizado em 16/10/2026. Escopo: versão Alfa, tarefa 1.2. A aprovação do backlog permanece pendente de revisão humana.
 
 ## Estado inicial e recuperação
 
@@ -33,7 +33,7 @@ O mapa e a ficha reavaliam horários a cada 30 segundos e ao retomar o aplicativ
 
 Preservados Expo Router, telas por funcionalidade, armazenamento local, temas e componentes específicos por plataforma. Expo 54.0.37, React Native 0.81.5 e React 19.1.0 foram mantidos; `expo-doctor` aprovou 18/18 verificações. A [matriz oficial do Expo](https://docs.expo.dev/versions/v54.0.0/) é compatível com essa família de versões.
 
-Alertas atuais de `npm audit --omit=dev`: **49 pacotes sinalizados**, sendo 1 baixo, 15 moderados, 32 altos e 1 crítico. Não são 49 vulnerabilidades distintas nem prova de exploração no aplicativo. A consulta atual reproduziu as contagens do benchmarking.
+Consulta de 15/10 de `npm audit --omit=dev`: **49 pacotes sinalizados**, sendo 1 baixo, 15 moderados, 32 altos e 1 crítico. Não são 49 vulnerabilidades distintas nem prova de exploração no aplicativo. A consulta reproduziu as contagens do benchmarking; não foi repetida na validação complementar, pois as dependências não mudaram.
 
 - Crítico: `react-native → react-devtools-core → shell-quote@1.8.3`. O [GHSA-w7jw-789q-3m8p](https://github.com/advisories/GHSA-w7jw-789q-3m8p) depende de objetos `.op` maliciosos e execução do resultado em shell. Não foi identificada essa cadeia a partir das entradas do Flui; o risco das ferramentas de desenvolvimento permanece.
 - `node-forge@1.4.0`: alcançado pela CLI/certificados Expo; o [GHSA-86w9-cpqp-85rv](https://github.com/advisories/GHSA-86w9-cpqp-85rv) envolve verificação de assinaturas RSA. Não foi demonstrada exploração pela jornada do aplicativo.
@@ -55,19 +55,40 @@ Ambiente local: macOS, Node 24.13.1 e npm 11.8.0. Instalação reproduzida pelo 
 | `EXPO_OFFLINE=1 CI=1 npx expo export --platform web` | Sucesso; **11 rotas estáticas**, incluindo mapa, assistente embutido e ficha |
 | `git diff --check` | Aprovado |
 | `npm audit --omit=dev --json` | Consulta concluída; código 1 por alertas, sem remediação automática |
-| Navegador | Não validado: falha de transporte da automação impediu a inspeção funcional |
+| Navegador na primeira execução | Bloqueado pelo transporte da automação; validação posterior descrita abaixo |
 
 Os testes exercitam as cinco intenções, reserva antes do arredondamento, principal/alternativa, status adversos, conectores incompatíveis/ocupados, comodidades ausentes, dados inválidos, horários noturnos, domingo, limites de fechamento, precedência do calendário, fuso inválido e origem da bateria após serialização. A concordância de horários foi exercitada para as **12 estações reais do catálogo em três instantes**, usando as mesmas funções importadas pelas telas.
 
-Os testes de bateria comprovam normalização e conservação dos metadados após serialização; **não comprovam edição pela interface seguida de reload real**. Não foram validados dispositivos físicos, emuladores, builds nativos, mapas externos, interação no navegador ou layout após os novos textos. Exportação e testes de domínio não substituem essas verificações.
+Na rodada anterior de navegador foram efetivamente verificados: recusa da FluIA com bateria em 0% nas intenções de bateria baixa e carga rápida; recusa com estação fechada ou indisponível como única candidata; edição manual para 35% com origem/data preservadas após reload; concordância inicial entre filtro e ficha; avisos demonstrativos. Esses cenários não foram repetidos nesta rodada. Testes de serialização, por si só, não comprovam persistência pela interface.
+
+## Validação complementar — 16/10/2026
+
+Revisão da PR e execução na branch `alfa/auditoria-tecnica-1.2`, a partir de `8eb2faf`. Não houve mudança de dependências, catálogo, arquitetura ou outras tarefas do backlog.
+
+| Pendência | Resultado e evidência prática |
+| --- | --- |
+| Marcadores web | Defeito reproduzido: `icon` era ignorado e os botões mediam 0 × 0. Agora renderizam a imagem e têm área de 44 × 44. Cliques nos próprios marcadores abriram Higienópolis Prime Charge (`station-01`, aberto), Plug & Café Consolação (`station-03`, fechado) e Garagem Liberdade Solar (`station-10`, indisponível), com o estado correspondente na ficha. Não foi usada navegação direta para substituir esses cliques. [Mapa corrigido](validacao-1.2/marcadores-web.png). |
+| Horários entre mapa, filtro e ficha | A ficha e o filtro já compartilhavam as regras, mas o texto/cor do mapa e a cor do indicador da ficha ainda dependiam do status estático. Agora os cartões, descrições e cores consideram o mesmo horário; fechado deixa de aparecer em verde. A reavaliação a cada 30 s foi observada na interface. |
+| Transição automática aberta → fechada | No navegador, relógio de teste em sexta-feira, 16/10, São Paulo: Plug & Café aberto às 19h58, filtro “Aberto agora” ativo e FluIA com sugestão. Aproximado o relógio para 19h59min50s, o tempo passou normalmente: após 20h e o próximo ciclo do aplicativo, marcador/cartão sumiram do filtro e a FluIA exibiu “Nenhuma opção viável confirmada”, sem reload ou navegação. Em outra aba, a mesma ficha mudou de “Aberto agora” para “Fechado agora” e deixou de confirmar recarga, também automaticamente. [Filtro e FluIA](validacao-1.2/horario-filtro-fluia.png) · [Ficha](validacao-1.2/horario-ficha.png). |
+| Textos e indicadores | “Melhor escolha agora” passou a “Sugestão demonstrativa”. Foram removidos os superlativos dos cartões, atribuídos pela posição da lista: o primeiro não era sequer o mais próximo. Agora são “Opções demonstrativas”. Acessibilidade da bateria inclui origem e estimativa; espera e horário sugerido identificam a simulação. Indisponibilidade não sugere uma consulta real frustrada. Os avisos, o novo selo da FluIA e os estados das fichas foram observados no navegador. |
+| Mapa nativo iOS | Aplicativo executado no Expo Go 54.0.7, simulador iPhone 18 Pro Max / iOS 27. A tela nativa exibiu mapa geográfico, marcadores, painel e bateria de origem não registrada com “Sem telemetria”. [Captura nativa](validacao-1.2/mapa-ios.png). Isso comprova execução/renderização nesse ambiente, sem comprovar interações ou build de distribuição. |
+| Filtros, fichas e FluIA nativos | **Pendentes.** O simulador funcionou sem janela controlável disponível. Uma tentativa posterior de navegação nativa e uma de captura excederam o tempo de resposta; após essas duas falhas a abordagem foi interrompida. Não houve clique nativo verificado. Ambos os simuladores iniciados foram desligados. Android e dispositivo físico não foram executados. |
+
+A transição de horário foi um teste prático da interface **com relógio simulado**, não observação de mudança real no estabelecimento. O servidor auxiliar `scripts/validar-horarios-web.cjs` serve somente em `127.0.0.1` e acrescenta o painel de relógio apenas com `?clock=1`. Não altera relógio do sistema, catálogo ou código empacotado do aplicativo. Para reproduzir tecnicamente: exportar com `EXPO_OFFLINE=1 CI=1 npx expo export --platform web --output-dir /tmp/flui-validacao-web`, servir com `node scripts/validar-horarios-web.cjs /tmp/flui-validacao-web 8768` e abrir `/map?clock=1` e `/point-details?stationId=station-03&clock=1`. Os botões simulam 19h58 e aproximam o fechamento; aguardar o ciclo real de 30 s da tela. A captura de filtro/FluIA precede apenas ajustes finais de redação. A ficha foi novamente observada após a correção visual: verde enquanto aberta e cinza após fechar, sem recarregar.
+
+Verificações das partes alteradas: TypeScript e lint aprovados; teste focado de apresentação **4/4 aprovado**; sintaxe e lint do servidor auxiliar aprovados; exportação web final com **11 rotas**; `git diff --check` sem problemas. A suíte de 33 testes e o Expo Doctor já comprovados não foram repetidos localmente. A execução automática da PR verifica novamente os requisitos ao receber commits. Exportação, testes e captura de mapa não substituem validação interativa nativa.
 
 ## Pendências e Git
 
-- Conferir no navegador/dispositivo: filtro aberto agora versus ficha, ausência de opção com bateria insuficiente, edição manual seguida de reload, mensagens e encaixe dos textos.
+- Completar interações nativas de mapa, filtros, fichas e FluIA, inclusive atualização de horário. Alternativa sem dispositivo físico: executor macOS com Xcode completo e simulador controlável, com automação de interface como [Maestro](https://docs.maestro.dev/get-started/supported-platform/ios). Essa infraestrutura não estava disponível e não foi provisionada nesta tarefa; a alternativa ainda não foi executada. Não se solicita preparação de ambiente pelo usuário.
+- Verificar build nativo de distribuição e Android; a execução em Expo Go não comprova configuração de mapas/credenciais da versão publicada.
 - Tratar alertas de dependências em atualização específica, com nova validação de Expo e builds; não há evidência para declarar o aplicativo livre de vulnerabilidades.
 - A tela principal continua extensa e há duplicações de apresentação não relacionadas às correções. Extrações maiores, validação integral do armazenamento e planejamento por trajetos ficam como recomendações futuras.
 - Não foram implementados backend, IA generativa, serviços externos, configuração dos dados de demonstração da tarefa 1.3 ou funcionalidades Beta/Gama.
 - Implementação e testes: `4e45e4660624da6d25b544ea5b215529f40e1f15` — `corrige recomendações, horários e origem dos dados na versão Alfa`.
+- Registro inicial da auditoria: `8eb2faf` — `documenta auditoria técnica e limitações da tarefa 1.2`.
+- Correções da validação final: `75b99e1` — `corrige marcadores e mensagens demonstrativas na validação final`. O commit de documentação que contém esta atualização acrescenta as capturas verificáveis.
+- Indicador da ficha: `b458609` — `alinha indicador da ficha ao horário de funcionamento`.
 - Trabalho isolado na branch `alfa/auditoria-tecnica-1.2`, para revisão por PR em rascunho. `main` não foi alterada; tarefa não marcada como aprovada.
 
-Principais arquivos: `src/features/assistant/{fluiAssistant.ts,FluiAssistantSheet.tsx}`, `src/utils/{stationHours.ts,stationAvailability.ts,filtrarEstacoes.ts,batteryData.ts}`, `src/features/stations/{PointDetailsScreen.tsx,stationPresentation.ts}`, `src/features/map/HomeMapScreen.tsx`, `src/hooks/useCurrentTime.ts`, contexto/tipos/armazenamento de preferências, `package.json` e testes de domínio.
+Principais arquivos: `src/components/MapSurface/index.web.tsx`, `src/features/assistant/{fluiAssistant.ts,FluiAssistantSheet.tsx}`, `src/utils/{stationHours.ts,stationAvailability.ts,filtrarEstacoes.ts,batteryData.ts}`, `src/features/stations/{PointDetailsScreen.tsx,stationPresentation.ts}`, `src/features/map/HomeMapScreen.tsx`, `src/hooks/useCurrentTime.ts`, contexto/tipos/armazenamento de preferências, `package.json`, testes de domínio e `scripts/validar-horarios-web.cjs`.
