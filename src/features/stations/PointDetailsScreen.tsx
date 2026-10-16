@@ -449,13 +449,15 @@ export default function PointDetailsScreen() {
     ? [userReviewCard, ...(station.reviews ?? [])]
     : (station.reviews ?? []);
   const statusColor =
-    station.status === "available"
-      ? colors.success
-      : station.status === "busy"
-        ? colors.yellowDark
-        : station.status === "maintenance"
-          ? colors.dangerBorder
-          : colors.textLight;
+    station.status === "maintenance"
+      ? colors.dangerBorder
+      : !isStationOpenAt(station, now)
+        ? colors.textLight
+        : station.status === "available"
+          ? colors.success
+          : station.status === "busy"
+            ? colors.yellowDark
+            : colors.textLight;
 
   const IconeAlcance = obterIconeDeAlcance(avaliacaoAlcance.nivel);
   const textoAlcance = montarTextoDeAlcance(avaliacaoAlcance);
@@ -564,7 +566,9 @@ export default function PointDetailsScreen() {
                 ]}
               />
 
-              <Text style={styles.statusText}>{statusInfo.label}</Text>
+              <Text style={[styles.statusText, { color: statusColor }]}>
+                {statusInfo.label}
+              </Text>
             </View>
           </View>
 
@@ -579,7 +583,7 @@ export default function PointDetailsScreen() {
             </View>
 
             <Text style={styles.availableText}>
-              {availableChargers} de {totalChargers} carregadores disponíveis
+              {availableChargers} de {totalChargers} carregadores livres no exemplo
             </Text>
           </View>
 
@@ -711,7 +715,7 @@ export default function PointDetailsScreen() {
           </View>
 
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Conectores disponíveis</Text>
+            <Text style={styles.sectionTitle}>Conectores do ponto</Text>
 
             {station.connectors.map((connector) => {
               const ConnectorIcon = getConnectorIcon(connector.type);
