@@ -1,5 +1,5 @@
-import { programmedAnswers } from "@/src/features/assistant/programmedAnswers";
-import type { ChargingStation } from "@/src/types";
+import { programmedAnswers } from "./programmedAnswers";
+import type { ChargingStation } from "../../types";
 import {
   FluiAssistantRecommendation,
   recommendStations,
@@ -9,7 +9,11 @@ export type AssistantContext = {
   stations: ChargingStation[];
   vehicleRangeKm: number;
   batteryPercent: number;
+  now: Date;
 };
+
+export const RECOMMENDATION_DISCLAIMER =
+  "Estimativa linear com reserva de 5%. Compatibilidade do veículo não confirmada; não há integração em tempo real.";
 
 export type ChatResponse = {
   text: string;
@@ -43,6 +47,7 @@ export function answerMessage(
       intent: "fastCharge",
       vehicleRangeKm: context.vehicleRangeKm,
       batteryPercent: context.batteryPercent,
+      now: context.now,
     });
 
     if (!recommendation) {
@@ -53,7 +58,30 @@ export function answerMessage(
     }
 
     return {
-      text: recommendation.explanation,
+      text: `${recommendation.explanation}\n${RECOMMENDATION_DISCLAIMER}`,
+      state: "respondendo",
+      recommendation,
+    };
+  }
+
+  if (message.includes("bateria") || message.includes("chegar")) {
+    const recommendation = recommendStations({
+      stations: context.stations,
+      intent: "lowBattery",
+      vehicleRangeKm: context.vehicleRangeKm,
+      batteryPercent: context.batteryPercent,
+      now: context.now,
+    });
+
+    if (!recommendation) {
+      return {
+        text: "Não encontrei um posto alcançável com a bateria atual.",
+        state: "alerta",
+      };
+    }
+
+    return {
+      text: `${recommendation.explanation}\n${RECOMMENDATION_DISCLAIMER}`,
       state: "respondendo",
       recommendation,
     };

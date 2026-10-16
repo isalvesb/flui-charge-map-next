@@ -2,11 +2,14 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   Animated,
   Easing,
+  KeyboardAvoidingView,
   Modal,
+  Platform,
   Pressable,
   ScrollView,
   StyleSheet,
   Text,
+  TextInput,
   View,
 } from "react-native";
 import {
@@ -35,6 +38,7 @@ import {
   type FluiAssistantIntent,
 } from "./fluiAssistant";
 import { FluiAiIcon } from "./FluiAiIcon";
+import { answerMessage, RECOMMENDATION_DISCLAIMER } from "./chatEngine";
 
 type Props = {
   visible: boolean;
@@ -47,6 +51,14 @@ type Props = {
 };
 
 const ASSISTANT_THINKING_DURATION = 1800;
+
+type ChatMessage = {
+  id: number;
+  from: "user" | "flui";
+  text: string;
+  state?: "respondendo" | "aviso" | "alerta";
+  stationId?: string;
+};
 
 const options: {
   id: FluiAssistantIntent;
@@ -88,6 +100,12 @@ export function FluiAssistantSheet({
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const analysisTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const thinkingProgress = useRef(new Animated.Value(0)).current;
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [draft, setDraft] = useState("");
+  const [isChatThinking, setIsChatThinking] = useState(false);
+  const chatTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const nextMessageId = useRef(0);
+  const chatScrollRef = useRef<ScrollView>(null);
 
   const recommendation = useMemo(() => {
     if (!selectedIntent || isAnalyzing) return null;
@@ -98,11 +116,19 @@ export function FluiAssistantSheet({
       batteryPercent,
       now,
     });
-  }, [batteryPercent, isAnalyzing, selectedIntent, stations, vehicleRangeKm, now]);
+  }, [
+    batteryPercent,
+    isAnalyzing,
+    selectedIntent,
+    stations,
+    vehicleRangeKm,
+    now,
+  ]);
 
   useEffect(() => {
     return () => {
       if (analysisTimeoutRef.current) clearTimeout(analysisTimeoutRef.current);
+      if (chatTimeoutRef.current) clearTimeout(chatTimeoutRef.current);
     };
   }, []);
 
@@ -136,6 +162,13 @@ export function FluiAssistantSheet({
       clearTimeout(analysisTimeoutRef.current);
       analysisTimeoutRef.current = null;
     }
+    if (chatTimeoutRef.current) {
+      clearTimeout(chatTimeoutRef.current);
+      chatTimeoutRef.current = null;
+    }
+    setMessages([]);
+    setDraft("");
+    setIsChatThinking(false);
     setSelectedIntent(null);
     setIsAnalyzing(false);
     onClose();
@@ -148,6 +181,42 @@ export function FluiAssistantSheet({
       () => {
         setIsAnalyzing(false);
         analysisTimeoutRef.current = null;
+      },
+      reduceMotionEnabled ? 0 : ASSISTANT_THINKING_DURATION,
+    );
+  };
+
+  const sendMessage = () => {
+    const text = draft.trim();
+    if (!text || isChatThinking) return;
+
+    setDraft("");
+    setMessages((current) => [
+      ...current,
+      { id: nextMessageId.current++, from: "user", text },
+    ]);
+    setIsChatThinking(true);
+
+    chatTimeoutRef.current = setTimeout(
+      () => {
+        const response = answerMessage(text, {
+          stations,
+          vehicleRangeKm,
+          batteryPercent,
+          now,
+        });
+        setMessages((current) => [
+          ...current,
+          {
+            id: nextMessageId.current++,
+            from: "flui",
+            text: response.text,
+            state: response.state,
+            stationId: response.recommendation?.primary.id,
+          },
+        ]);
+        setIsChatThinking(false);
+        chatTimeoutRef.current = null;
       },
       reduceMotionEnabled ? 0 : ASSISTANT_THINKING_DURATION,
     );
@@ -166,10 +235,14 @@ export function FluiAssistantSheet({
       statusBarTranslucent
       onRequestClose={closeAssistant}
     >
-      <View style={styles.overlay} accessibilityViewIsModal>
+      <KeyboardAvoidingView
+        style={styles.overlay}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        accessibilityViewIsModal
+      >
         <Pressable
           accessibilityRole="button"
-          accessibilityLabel="Fechar assistente Flui IA"
+          accessibilityLabel="Fechar assistente FluIA"
           style={StyleSheet.absoluteFill}
           onPress={closeAssistant}
         />
@@ -181,11 +254,13 @@ export function FluiAssistantSheet({
               <FluiAiIcon color={theme.primary} size={22} />
             </View>
             <View style={styles.headerText}>
-              <Text style={styles.title}>Flui IA</Text>
+              <Text style={styles.title}>FluIA</Text>
               <Text style={styles.subtitle}>
                 {selectedIntent
                   ? "Recomendação simulada com os dados do protótipo."
-                  : "Como posso ajudar?\nEscolha uma necessidade."}
+                  : messages.length > 0
+                    ? "Pergunte o que quiser sobre recarga."
+                    : "Como posso ajudar?\nEscolha uma necessidade."}
               </Text>
             </View>
             <PressableScale
@@ -269,7 +344,9 @@ export function FluiAssistantSheet({
                 accessibilityLiveRegion="polite"
               >
                 <View style={styles.bestChoiceBadge}>
-                  <Text style={styles.bestChoiceText}>Sugestão demonstrativa</Text>
+                  <Text style={styles.bestChoiceText}>
+                    Sugestão demonstrativa
+                  </Text>
                 </View>
                 <Text style={styles.stationName}>
                   {recommendation.primary.name}
@@ -311,9 +388,9 @@ export function FluiAssistantSheet({
                   Por que essa escolha?
                 </Text>
                 <Text style={styles.explanationText}>
-                  {recommendation.explanation}{"\n"}
-                  Estimativa linear com reserva de 5%. Compatibilidade do veículo
-                  não confirmada; não há integração em tempo real.
+                  {recommendation.explanation}
+                  {"\n"}
+                  {RECOMMENDATION_DISCLAIMER}
                 </Text>
               </View>
 
@@ -326,17 +403,15 @@ export function FluiAssistantSheet({
                   onPress={() => chooseStation(recommendation.backup!.id)}
                 >
                   <View style={styles.backupIcon}>
-                    <MapPin
-                      size={22}
-                      color={theme.primary}
-                      strokeWidth={2.3}
-                    />
+                    <MapPin size={22} color={theme.primary} strokeWidth={2.3} />
                   </View>
                   <View style={styles.backupText}>
                     <Text style={styles.backupTitle}>Plano B</Text>
                     <Text style={styles.backupDescription} numberOfLines={1}>
                       {recommendation.backup.name} ·{" "}
-                      {formatAssistantDistance(recommendation.backup.distanceKm)}
+                      {formatAssistantDistance(
+                        recommendation.backup.distanceKm,
+                      )}
                     </Text>
                   </View>
                   <ChevronRight
@@ -373,12 +448,13 @@ export function FluiAssistantSheet({
                 Nenhuma opção viável confirmada
               </Text>
               <Text style={styles.analyzingText}>
-                Os dados disponíveis não confirmam uma opção com alcance, horário,
-                carregador livre e comodidades solicitadas. Revise os filtros e
-                os dados informados. Não há indicação segura neste cenário.
+                Os dados disponíveis não confirmam uma opção com alcance,
+                horário, carregador livre e comodidades solicitadas. Revise os
+                filtros e os dados informados. Não há indicação segura neste
+                cenário.
               </Text>
             </View>
-          ) : (
+          ) : messages.length === 0 ? (
             <ScrollView
               style={styles.optionsScroll}
               contentContainerStyle={styles.optionsContent}
@@ -394,11 +470,7 @@ export function FluiAssistantSheet({
                   onPress={() => chooseIntent(id)}
                 >
                   <View style={styles.optionIcon}>
-                    <Icon
-                      size={22}
-                      color={theme.primary}
-                      strokeWidth={2.3}
-                    />
+                    <Icon size={22} color={theme.primary} strokeWidth={2.3} />
                   </View>
                   <Text style={styles.optionText}>{label}</Text>
                   <ChevronRight
@@ -409,9 +481,68 @@ export function FluiAssistantSheet({
                 </PressableScale>
               ))}
             </ScrollView>
-          )}
+          ) : null}
+          <View style={styles.chatBox}>
+            <ScrollView
+              ref={chatScrollRef}
+              style={styles.chatMessages}
+              showsVerticalScrollIndicator={false}
+              onContentSizeChange={() =>
+                chatScrollRef.current?.scrollToEnd({ animated: true })
+              }
+            >
+              {messages.map((message) => (
+                <View
+                  key={message.id}
+                  style={
+                    message.from === "user"
+                      ? styles.userBubble
+                      : styles.fluiBubble
+                  }
+                >
+                  <Text style={styles.bubbleText}>{message.text}</Text>
+                  {message.stationId ? (
+                    <PressableScale
+                      accessibilityRole="button"
+                      accessibilityLabel="Ver ponto no mapa"
+                      style={styles.chatButton}
+                      onPress={() => chooseStation(message.stationId!)}
+                    >
+                      <Text style={styles.chatButtonText}>
+                        Ver ponto no mapa
+                      </Text>
+                    </PressableScale>
+                  ) : null}
+                </View>
+              ))}
+              {isChatThinking ? (
+                <Text style={styles.thinkingText}>FluIA está pensando...</Text>
+              ) : null}
+            </ScrollView>
+
+            <View style={styles.inputRow}>
+              <TextInput
+                value={draft}
+                onChangeText={setDraft}
+                onSubmitEditing={sendMessage}
+                placeholder="Pergunte algo à FluIA"
+                placeholderTextColor={theme.textMuted}
+                accessibilityLabel="Mensagem para a FluIA"
+                returnKeyType="send"
+                style={styles.input}
+              />
+              <PressableScale
+                accessibilityRole="button"
+                accessibilityLabel="Enviar mensagem"
+                style={styles.sendButton}
+                onPress={sendMessage}
+              >
+                <Text style={styles.sendButtonText}>Enviar</Text>
+              </PressableScale>
+            </View>
+          </View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </Modal>
   );
 }
@@ -435,11 +566,7 @@ function Metric({
   );
 }
 
-function createStyles(
-  theme: AppTheme,
-  fontScale: number,
-  isDarkMode: boolean,
-) {
+function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean) {
   const font = (size: number) => scaleFontSize(size, fontScale);
   const purple = isDarkMode
     ? {
@@ -462,10 +589,10 @@ function createStyles(
       backgroundColor: "rgba(7, 12, 18, 0.42)",
     },
     sheet: {
-      maxHeight: "76%",
+      height: "88%",
       paddingHorizontal: 20,
       paddingTop: 10,
-      paddingBottom: 24,
+      paddingBottom: 34,
       borderTopLeftRadius: 30,
       borderTopRightRadius: 30,
       backgroundColor: purple.sheet,
@@ -523,7 +650,7 @@ function createStyles(
       borderWidth: 1,
       borderColor: purple.border,
     },
-    optionsScroll: { marginTop: 18 },
+    optionsScroll: { marginTop: 18, flexGrow: 0, flexShrink: 1 },
     optionsContent: { gap: 10, paddingBottom: 4 },
     optionCard: {
       minHeight: 58,
@@ -731,6 +858,87 @@ function createStyles(
       fontSize: font(13),
       lineHeight: font(18),
       fontWeight: "800",
+    },
+    chatBox: {
+      flex: 1,
+      minHeight: 220,
+      marginTop: 12,
+      paddingTop: 12,
+      borderTopWidth: 1,
+      borderColor: purple.border,
+    },
+    chatMessages: { flex: 1 },
+    userBubble: {
+      alignSelf: "flex-end",
+      maxWidth: "80%",
+      marginBottom: 8,
+      padding: 10,
+      borderRadius: 16,
+      backgroundColor: purple.soft,
+    },
+    fluiBubble: {
+      alignSelf: "flex-start",
+      maxWidth: "85%",
+      marginBottom: 8,
+      padding: 10,
+      borderRadius: 16,
+      backgroundColor: purple.surface,
+      borderWidth: 1,
+      borderColor: purple.border,
+    },
+    bubbleText: {
+      color: theme.text,
+      fontSize: font(14),
+      lineHeight: font(19),
+      fontWeight: "600",
+    },
+    chatButton: {
+      marginTop: 8,
+      minHeight: 40,
+      borderRadius: 14,
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: theme.primary,
+    },
+    chatButtonText: {
+      color: theme.onPrimary,
+      fontSize: font(13),
+      fontWeight: "900",
+    },
+    thinkingText: {
+      marginBottom: 8,
+      color: theme.textMuted,
+      fontSize: font(13),
+      fontWeight: "600",
+    },
+    inputRow: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: 8,
+    },
+    input: {
+      flex: 1,
+      minHeight: 44,
+      paddingHorizontal: 14,
+      borderRadius: 16,
+      borderWidth: 1,
+      borderColor: purple.border,
+      backgroundColor: purple.surface,
+      color: theme.text,
+      fontSize: font(14),
+    },
+    sendButton: {
+      minHeight: 44,
+      paddingHorizontal: 14,
+      borderRadius: 16,
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: theme.primary,
+    },
+    sendButtonText: {
+      color: theme.onPrimary,
+      fontSize: font(13),
+      fontWeight: "900",
     },
   });
 }

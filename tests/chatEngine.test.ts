@@ -8,6 +8,7 @@ const context = {
   stations: [createStation({ id: "near", distanceKm: 1, powerKw: 150 })],
   vehicleRangeKm: 300,
   batteryPercent: 80,
+  now: new Date(),
 };
 
 test("responde pergunta programada sem acento e em maiúsculas", () => {
