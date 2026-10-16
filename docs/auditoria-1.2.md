@@ -92,7 +92,7 @@ Evidências do aviso: [estação fechada](validacao-1.2/rota-estacao-fechada.png
 
 ## Pendências e Git
 
-- Revisar o defeito nativo de reposicionamento periódico do mapa registrado abaixo. As interações antes pendentes foram executadas pelo Device Hub; os limites restantes estão discriminados na rodada nativa.
+- Revalidar no simulador a correção do reposicionamento periódico descrita na última seção. As interações antes pendentes foram executadas pelo Device Hub; os limites restantes estão discriminados na rodada nativa.
 - Verificar build nativo de distribuição e Android; a execução em Expo Go não comprova configuração de mapas/credenciais da versão publicada.
 - Tratar alertas de dependências em atualização específica, com nova validação de Expo e builds; não há evidência para declarar o aplicativo livre de vulnerabilidades.
 - A tela principal continua extensa e há duplicações de apresentação não relacionadas às correções. Extrações maiores, validação integral do armazenamento e planejamento por trajetos ficam como recomendações futuras.
@@ -129,3 +129,14 @@ O auxiliar `scripts/validar-relogio-ios.cjs` usa o protocolo de depuração Herm
 **Limites restantes:** não foi validado build de distribuição, Android, dispositivo físico, abertura efetiva de Google Maps/Waze, todos os filtros e detalhes visuais de cores/recortes. Persistência após reload permanece comprovada na web, sem repetição nativa nesta rodada. Expo Go comprova execução interativa nesse ambiente, não a configuração de credenciais do aplicativo publicado. Nenhum custo, backend ou infraestrutura de automação foi criado. PR #1 continua em rascunho e sem merge; aprovação da tarefa permanece com a equipe.
 
 Ambiente encerrado após os testes: relógio real restaurado, servidor Metro local interrompido, simulador desligado pelo Device Hub e captura de teclado devolvida ao estado desligado. A configuração de teclado virtual do simulador foi utilizada no teste e não foi conferida novamente após desligar.
+
+## Correção do enquadramento — rodada final de 16/10/2026
+
+Correção restrita a `src/features/map/HomeMapScreen.tsx`: o efeito que anima a câmera compara os critérios de foco (busca, filtros e localização) com a última execução. Quando somente o relógio/resultados mudam, não anima a câmera nem sobrescreve `currentMapRegionRef`. A região efetivamente escolhida continua sendo atualizada por `onRegionChangeComplete`; os botões de zoom/centralização mantêm seus comandos diretos. Mudanças de busca/filtros/localização continuam podendo reposicionar. Nenhuma regra ou temporizador de horário, filtragem, marcador, ficha ou FluIA foi removido ou alterado. Não houve atualização de dependências nem refatoração de arquitetura.
+
+- `npm run check`: TypeScript e lint aprovados; **35/35 testes aprovados**, incluindo regras de horários, filtros, FluIA e apresentação. Não existe nesta suíte uma asserção prática da câmera nativa; esses resultados não comprovam preservação do enquadramento na interface.
+- `git diff --check`: aprovado.
+- CI: solicitado disparo normal no commit desta correção, sem `[skip ci]`, conforme a instrução mais recente. O resultado vinculado ao SHA final é informado nos Checks e na descrição da PR; a CI histórica de `abe0123` não deve ser usada como evidência desta alteração.
+- **Revalidação iOS bloqueada nesta sessão:** simulador iniciado pelo Device Hub; a captura de inspeção mostrou a tela inicial do iOS, mas a árvore de acessibilidade expôs somente controles do Mac. Os acessos por Home e App Switcher não disponibilizaram os controles dos aplicativos iOS. A abordagem foi interrompida após essa verificação, sem repetir os downloads/falhas anteriores de Maestro ou simctl. [Registro do impedimento e encerramento](validacao-1.2/ios-correcao-zoom.txt).
+- **Pendentes no código corrigido:** observar preservação do zoom e deslocamento por dois ciclos, verificar fechamento automático junto à preservação da câmera, e conferir reposicionamento intencional por busca/filtro/centralização. A rodada nativa anterior comprova os fluxos no código anterior, não a correção atual. Alternativa viável: nova sessão do Device Hub quando o acesso aos controles iOS estiver restabelecido, operada pelo agente e sem instalação adicional; não foi solicitado teste manual ao usuário.
+- O simulador foi desligado, janela/captura de teclado restauradas e Metro interrompido ao concluir a tentativa. Nenhum relógio de teste foi aplicado nesta rodada. `main` e estado inicial preservados; PR permanece em rascunho, sem merge; tarefa 1.2 pendente de aprovação.

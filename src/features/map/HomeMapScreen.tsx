@@ -1101,17 +1101,38 @@ export default function HomeMapScreen() {
   }, [hasFiltersApplied, hasSearchTerm, localizacaoUsuario, visibleStations]);
 
   const isPrimeiraRegiaoRef = useRef(true);
+  const criteriosDeFocoRef = useRef({
+    filtros: filtrosDoMapa,
+    busca: searchTerm,
+    localizacao: localizacaoUsuario,
+  });
 
   useEffect(() => {
-    currentMapRegionRef.current = mapRegion;
+    const anteriores = criteriosDeFocoRef.current;
+    const mudouCriterio =
+      anteriores.filtros !== filtrosDoMapa ||
+      anteriores.busca !== searchTerm ||
+      anteriores.localizacao !== localizacaoUsuario;
+
+    criteriosDeFocoRef.current = {
+      filtros: filtrosDoMapa,
+      busca: searchTerm,
+      localizacao: localizacaoUsuario,
+    };
 
     if (isPrimeiraRegiaoRef.current) {
+      currentMapRegionRef.current = mapRegion;
       isPrimeiraRegiaoRef.current = false;
       return;
     }
 
+    // O relógio atualiza resultados e estados, mas não é uma ação de navegação.
+    // Preserve também a região usada pelos controles de zoom e centralização.
+    if (!mudouCriterio) return;
+
+    currentMapRegionRef.current = mapRegion;
     mapRef.current?.animateToRegion(mapRegion, reduceMotionEnabled ? 0 : 450);
-  }, [mapRegion, reduceMotionEnabled]);
+  }, [filtrosDoMapa, localizacaoUsuario, mapRegion, reduceMotionEnabled, searchTerm]);
 
   const ajusteInicialDeCentralizacaoRef = useRef(false);
 
