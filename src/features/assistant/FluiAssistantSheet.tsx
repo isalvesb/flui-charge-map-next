@@ -34,6 +34,8 @@ import {
   recommendStations,
   type FluiAssistantIntent,
 } from "./fluiAssistant";
+import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
+import { identificacaoDados } from "../../data/identificacaoDados";
 import { FluiAiIcon } from "./FluiAiIcon";
 
 type Props = {
@@ -90,7 +92,7 @@ export function FluiAssistantSheet({
   const thinkingProgress = useRef(new Animated.Value(0)).current;
 
   const recommendation = useMemo(() => {
-    if (!selectedIntent || isAnalyzing) return null;
+    if (!funcionalidadesExperimentais.fluia || !selectedIntent || isAnalyzing) return null;
     return recommendStations({
       stations,
       intent: selectedIntent,
@@ -158,6 +160,8 @@ export function FluiAssistantSheet({
     onSelectStation(stationId);
   };
 
+  if (!funcionalidadesExperimentais.fluia) return null;
+
   return (
     <Modal
       transparent
@@ -185,7 +189,7 @@ export function FluiAssistantSheet({
               <Text style={styles.subtitle}>
                 {selectedIntent
                   ? "Recomendação simulada com os dados do protótipo."
-                  : "Como posso ajudar?\nEscolha uma necessidade."}
+                  : identificacaoDados.fluia.aviso}
               </Text>
             </View>
             <PressableScale

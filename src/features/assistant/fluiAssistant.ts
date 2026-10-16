@@ -1,5 +1,6 @@
 import { avaliarAlcance } from "../../utils/autonomia";
 import { formatarDistanciaDemonstrativa } from "../../utils/demonstracao";
+import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
 import type { ChargingStation, ConnectorType } from "../../types";
 import {
   canChargeAt,
@@ -110,6 +111,7 @@ export function recommendStations({
   vehicleConnectorTypes?: ConnectorType[];
   now?: Date;
 }): FluiAssistantRecommendation | null {
+  if (!funcionalidadesExperimentais.fluia) return null;
   if (
     !Number.isFinite(vehicleRangeKm) ||
     vehicleRangeKm <= 0 ||

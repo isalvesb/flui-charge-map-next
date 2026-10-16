@@ -43,6 +43,7 @@ import {
   Zap,
 } from "lucide-react-native";
 
+import { identificacaoDados } from "../../data/identificacaoDados";
 import { chargingStations } from "../../data";
 import { styles as baseStyles } from "./PointDetailsScreen.styles";
 import {
@@ -518,7 +519,7 @@ export default function PointDetailsScreen() {
               </Text>
 
               <Text style={styles.reviewCount}>
-                ({station.reviewCount} avaliações)
+                ({station.reviewCount} avaliações demonstrativas)
               </Text>
             </View>
 
@@ -556,9 +557,8 @@ export default function PointDetailsScreen() {
             <Text style={styles.resumoEyebrow}>Guia do ponto</Text>
             <Text style={styles.resumoTitle}>{recomendacaoDoPonto}</Text>
             <Text style={styles.resumoDescription}>
-              Dados demonstrativos, sem disponibilidade em tempo real. Distância em linha reta,
-              autonomia e tempo de carga são estimativas simplificadas; confirme o
-              funcionamento e a compatibilidade do veículo antes de ir.
+              {identificacaoDados.catalogo.aviso} {identificacaoDados.estimativas.aviso}
+              {" "}Confirme o funcionamento e a compatibilidade do veículo antes de ir.
             </Text>
 
             <View style={styles.resumoInfoGrid}>
@@ -739,7 +739,8 @@ export default function PointDetailsScreen() {
           </View>
 
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Avaliações de usuários</Text>
+            <Text style={styles.sectionTitle}>Avaliações</Text>
+            <Text style={styles.resumoDescription}>{identificacaoDados.avaliacoesExemplo.aviso}</Text>
 
             <View style={styles.ratingPanel}>
               <View style={styles.ratingPanelLeft}>
@@ -752,7 +753,7 @@ export default function PointDetailsScreen() {
                 </Text>
 
                 <Text style={styles.totalReviews}>
-                  {station.reviewCount} avaliações
+                  {station.reviewCount} avaliações demonstrativas
                 </Text>
               </View>
 
@@ -828,7 +829,7 @@ export default function PointDetailsScreen() {
               <View style={styles.userReviewsList}>
                 {stationReviews.map((review) => (
                   <View key={review.id} style={styles.userReviewCard}>
-                    {review.id.startsWith("local-") ? (
+                    {review === userReviewCard ? (
                       <Image
                         source={imagemPerfilUsuario}
                         style={styles.avatarImage}
@@ -845,6 +846,11 @@ export default function PointDetailsScreen() {
 
                     <View style={styles.userReviewContent}>
                       <Text style={styles.userName}>{review.userName}</Text>
+                      <Text style={styles.userComment}>
+                        {review === userReviewCard
+                          ? identificacaoDados.avaliacoesLocais.rotulo
+                          : identificacaoDados.avaliacoesExemplo.rotulo}
+                      </Text>
 
                       <Text style={styles.userStars}>
                         {getRatingStars(review.rating)}

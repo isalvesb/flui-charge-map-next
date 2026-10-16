@@ -14,7 +14,7 @@ export const programmedAnswers: ProgrammedAnswer[] = [
   {
     keywords: ["autonomia"],
     answer:
-      "Autonomia é a distância que o veículo consegue percorrer com a carga atual. A estimativa do app considera a bateria e a distância até a estação.",
+      "Autonomia é a distância que o veículo consegue percorrer com a carga atual. A estimativa do app multiplica a autonomia configurada pela porcentagem de bateria. A chegada estimada também considera a distância em linha reta até a estação, sem telemetria.",
   },
   {
     keywords: ["quanto tempo", "demora"],

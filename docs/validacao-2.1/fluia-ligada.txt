@@ -1,0 +1,205 @@
+Browser tab: 1, Title: "127.0.0.1:8774/map", URL: "http://127.0.0.1:8774/map".
+0 AXWebArea 127.0.0.1:8774/map
+	1 container
+		2 container
+			3 image
+			4 button BYD Dolphin Plus. Bateria para estimativa: 70 por cento. Bateria demonstrativa. Sem telemetria. Cerca de 280 quilômetros estimados
+				5 container
+					6 container
+						7 text 70 %
+					8 text Bateria demonstrativa
+					9 text Sem telemetria
+			10 button Abrir perfil
+		11 container
+			12 image
+			13 text field (settable) Buscar no mapa
+			14 button Abrir busca e filtros
+		15 container
+			16 button Mostrar atalhos de filtro
+			17 container
+				18 button Aberto agora
+					19 container
+						20 image
+						21 text Aberto agora
+				22 button CCS2
+					23 container
+						24 image
+						25 text CCS2
+				26 button Rápido
+					27 container
+						28 image
+						29 text Rápido
+				30 button Banheiro
+					31 container
+						32 image
+						33 text Banheiro
+		34 container Mapa com pontos de recarga próximos
+			35 container
+				36 text Prévia do mapa -23.567 ,  -46.653
+			37 button Abrir ficha de Higienópolis Prime Charge
+			38 button Abrir ficha de Flui Express MASP
+			39 button Abrir ficha de Plug & Café Consolação
+			40 button Abrir ficha de Charge City Jardins
+			41 button Abrir ficha de Estação Jardins Pamplona
+			42 button Abrir ficha de Flui Vila Mariana Lins
+			43 button Abrir ficha de EcoCarga Parque Aclimação
+			44 button Abrir ficha de Hub Paraíso Vergueiro
+			45 button Abrir ficha de Mercado Charge Cambuci
+			46 button Abrir ficha de Garagem Liberdade Solar
+			47 button Abrir ficha de Fast Point Ana Rosa
+			48 button Abrir ficha de Garagem Verde Brigadeiro
+		49 container
+			50 button Aumentar zoom do mapa
+				51 text +
+			52 button Diminuir zoom do mapa
+				53 text −
+			54 button Centralizar origem demonstrativa: FIAP
+		55 button Abrir assistente Flui IA
+			56 container
+				57 image
+				58 image
+				59 image
+				60 text Flui IA
+		61 container
+			62 button Minimizar opções demonstrativas para ver o mapa inteiro
+			63 text Opções demonstrativas
+			64 text Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo. Origem:  FIAP  · distâncias em linha reta, sem cálculo de percurso
+			65 container
+				66 button Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈2,1 km em linha reta. Chegada estimada com 69% de bateria.
+					67 container
+						68 container
+							69 image
+							70 text OPÇÃO DEMONSTRATIVA
+							71 image
+							72 text Confortável
+						73 image
+						74 text Higienópolis Prime Charge Rua Alagoas, 974 ≈2,1 km  em linha reta
+						75 container
+							76 text Aberto agora
+						77 container
+							78 image
+							79 text 4,9
+						80 container
+							81 image
+							82 text 150 kW
+				83 button Plug & Café Consolação. Opção demonstrativa. R. da Consolação, 2302. Aberto agora. Nota 4,3. 50 kW. ≈1,1 km em linha reta. Chegada estimada com 70% de bateria.
+					84 container
+						85 container
+							86 image
+							87 text OPÇÃO DEMONSTRATIVA
+							88 image
+							89 text Confortável
+						90 image
+						91 text Plug & Café Consolação R. da Consolação, 2302 ≈1,1 km  em linha reta
+						92 container
+							93 text Aberto agora
+						94 container
+							95 image
+							96 text 4,3
+						97 container
+							98 image
+							99 text 50 kW
+				100 button Charge City Jardins. Opção demonstrativa. Alameda Santos, 2159. Aberto agora. Nota 4,7. 120 kW. ≈1,2 km em linha reta. Chegada estimada com 70% de bateria.
+					101 container
+						102 container
+							103 image
+							104 text OPÇÃO DEMONSTRATIVA
+							105 image
+							106 text Confortável
+						107 image
+						108 text Charge City Jardins Alameda Santos, 2159 ≈1,2 km  em linha reta
+						109 container
+							110 text Aberto agora
+						111 container
+							112 image
+							113 text 4,7
+						114 container
+							115 image
+							116 text 120 kW
+				117 button Flui Vila Mariana Lins. Opção demonstrativa. Av. Lins de Vasconcelos, 1264. Aberto agora. Nota 4,8. 150 kW. ≈3,1 km em linha reta. Chegada estimada com 69% de bateria.
+					118 container
+						119 container
+							120 image
+							121 text OPÇÃO DEMONSTRATIVA
+							122 image
+							123 text Confortável
+						124 image
+						125 text Flui Vila Mariana Lins Av. Lins de Vasconcelos, 1264 ≈3,1 km  em linha reta
+						126 container
+							127 text Aberto agora
+						128 container
+							129 image
+							130 text 4,8
+						131 container
+							132 image
+							133 text 150 kW
+				134 button EcoCarga Parque Aclimação. Opção demonstrativa. R. Muniz de Sousa, 1119. Aberto agora. Nota 4,2. 22 kW. ≈2,6 km em linha reta. Chegada estimada com 69% de bateria.
+					135 container
+						136 container
+							137 image
+							138 text OPÇÃO DEMONSTRATIVA
+							139 image
+							140 text Confortável
+						141 image
+						142 text EcoCarga Parque Aclimação R. Muniz de Sousa, 1119 ≈2,6 km  em linha reta
+						143 container
+							144 text Aberto agora
+						145 container
+							146 image
+							147 text 4,2
+						148 container
+							149 image
+							150 text 22 kW
+				151 button Mercado Charge Cambuci. Opção demonstrativa. R. Luís Gama, 650. Aberto agora. Nota 4,1. 50 kW. ≈3,6 km em linha reta. Chegada estimada com 69% de bateria.
+					152 container
+						153 container
+							154 image
+							155 text OPÇÃO DEMONSTRATIVA
+							156 image
+							157 text Confortável
+						158 image
+						159 text Mercado Charge Cambuci R. Luís Gama, 650 ≈3,6 km  em linha reta
+						160 container
+							161 text Aberto agora
+						162 container
+							163 image
+							164 text 4,1
+						165 container
+							166 image
+							167 text 50 kW
+	168 container
+		169 container
+			170 button Fechar assistente Flui IA
+			171 container
+				172 text Flui IA
+				173 text Recomendação simulada com os dados do protótipo.
+				174 button Fechar assistente
+			175 container
+				176 text Sugestão demonstrativa
+				177 text Higienópolis Prime Charge
+				178 text Rua Alagoas, 974
+				179 container
+					180 image
+					181 text Chegada ≈69%
+					182 image
+					183 text 150 kW
+					184 image
+					185 text 4 livres
+					186 image
+					187 text ≈2,1 km
+				188 text Por que essa escolha?
+				189 container
+					190 text Oferece até 150 kW nos conectores utilizáveis e 4 carregadores livres nos dados demonstrativos. BYD Dolphin Plus  · origem demonstrativa:  FIAP . Distância em linha reta, sem cálculo de percurso. Estimativa linear com reserva de 5%. Compatibilidade do veículo não confirmada; não há integração em tempo real.
+				191 button Abrir Plano B, Flui Vila Mariana Lins
+					192 container
+						193 image
+						194 text Plano B
+						195 container
+							196 text Flui Vila Mariana Lins  · ≈3,1 km
+						197 image
+				198 button Ver Higienópolis Prime Charge no mapa
+					199 text Ver ponto no mapa
+				200 button Escolher outra necessidade
+					201 text Escolher outra necessidade
+
+The focused UI element is 0 AXWebArea 127.0.0.1:8774/map

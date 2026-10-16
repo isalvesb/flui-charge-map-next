@@ -1,0 +1,123 @@
+Browser tab: 3, Title: "127.0.0.1:8775/point-details?stationId=station-03", URL: "http://127.0.0.1:8775/point-details?stationId=station-03".
+0 AXWebArea 127.0.0.1:8775/point-details?stationId=station-03
+	1 container
+		2 container
+			3 container
+				4 button Voltar ao mapa
+					5 image
+				6 button Adicionar aos favoritos
+					7 image
+			13 text Plug & Café Consolação
+			14 text R. da Consolação, 2302, Consolação, São Paulo, SP
+			15 container
+				16 image
+				17 text 4.3
+				18 container
+					19 text ( 72  avaliações demonstrativas)
+				20 text Aberto agora
+			21 container
+				22 image
+				23 text 3 de 4 carregadores livres no exemplo
+			24 container
+				25 text GUIA DO PONTO Opção de recarga nos dados demonstrativos Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo. Distância em linha reta, autonomia e tempo de carga são estimativas simplificadas, sem telemetria ou cálculo de percurso. Confirme o funcionamento e a compatibilidade do veículo antes de ir.
+				26 container
+					27 image
+					28 text Espera simulada
+					29 text Baixa
+				30 container
+					31 image
+					32 text Tempo estimado
+					33 text 40 a 60 min
+				34 container
+					35 image
+					36 text Perfil
+					37 text Parada confortável
+			38 container
+				39 image
+				40 text Autonomia para chegar ao local
+Chegada estimada com 70% de bateria.
+Não garante recarga no local.
+			41 container
+				42 container
+					43 image
+					44 text Potência
+					45 container
+						46 text 50  kW
+					47 text Velocidade de carga
+				48 container
+					49 image
+					50 text Conectores
+					51 text CCS2, Type 2
+					52 text Tipos compatíveis
+				53 container
+					54 image
+					55 text Funcionamento
+					56 text Segunda a sábado, 08h às 20h
+					57 text Disponibilidade demonstrativa de carregadores
+				58 container
+					59 image
+					60 text Distância aproximada
+					61 text ≈1,1 km
+					62 container
+						63 text Em linha reta desde  FIAP . Não é distância de percurso.
+			64 container
+				65 image
+				66 text Horário sugerido no exemplo
+				67 text 08h às 10h ou 15h às 17h
+				68 text Sem previsão de movimento em tempo real
+			69 container
+				70 text Conectores do ponto
+				71 container
+					72 text CCS2 50  kW ·  1 de 2 carregadores livres no exemplo
+				73 container
+					74 text Type 2 22  kW ·  2 de 2 carregadores livres no exemplo
+			75 container
+				76 text Comodidades próximas
+				77 container
+					78 image
+					79 text Café
+				80 container
+					81 image
+					82 text Banheiro
+				83 container
+					84 image
+					85 text Wi-Fi
+				86 container
+					87 image
+					88 text Área coberta
+			8 container
+				89 text Avaliações Notas, totais, distribuição e comentários do catálogo são exemplos. Sua avaliação local não altera esses números.
+				90 container
+					91 text 4.3 ★ ★ ★ ★ ☆ 72  avaliações demonstrativas
+				92 container
+					93 text 5 ★
+					94 text 85%
+					95 text 4 ★
+					96 text 10%
+					97 text 3 ★
+					98 text 3%
+					99 text 2 ★
+					100 text 1%
+					101 text 1 ★
+					102 text 1%
+				9 button Avaliar este ponto
+					10 image
+					103 text Avaliar este ponto
+				104 container
+					105 text MP
+					106 text Marina Polverari
+					107 text Avaliação demonstrativa
+					108 text ★ ★ ★ ★ ☆
+					109 text Bom equilíbrio entre recarga e pausa curta, principalmente pela estrutura de café.
+				110 container
+					111 text WS
+					112 text Wagner Sanchez
+					113 text Avaliação demonstrativa
+					114 text ★ ★ ★ ★ ☆
+					115 text O Type 2 atende bem uma parada mais longa, com área coberta e Wi-Fi como apoio.
+		11 button Ver mapa
+			116 text Ver mapa
+		12 button Iniciar rota para Plug & Café Consolação
+			117 text Iniciar rota
+
+The focused UI element is 0 AXWebArea 127.0.0.1:8775/point-details?stationId=station-03

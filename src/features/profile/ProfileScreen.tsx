@@ -23,6 +23,7 @@ import {
   Zap,
 } from "lucide-react-native";
 
+import { identificacaoDados } from "../../data/identificacaoDados";
 import { chargingStations } from "../../data";
 import { PressableScale, ScreenTransition } from "../../components";
 import { useFluiStorage } from "../../hooks/useFluiStorage";
@@ -439,6 +440,7 @@ export default function ProfileScreen() {
             </View>
 
             <Text style={styles.profileName}>{nomeMotorista}</Text>
+            <Text style={styles.profileVehicle}>{identificacaoDados.perfil.rotulo}</Text>
             <Text style={styles.profileVehicle}>{userPreferences.vehicleName}</Text>
             <Text style={styles.sectionText}>
               Veículo demonstrativo · {userPreferences.vehicleRangeKm} km com bateria cheia
@@ -618,11 +620,10 @@ export default function ProfileScreen() {
 
           {activeTab === "history" ? (
             <View style={styles.reviewsHeader}>
-              <Text style={styles.sectionTitle}>Avaliações enviadas</Text>
+              <Text style={styles.sectionTitle}>Avaliações locais</Text>
 
               <Text style={styles.sectionText}>
-                Seus comentários ajudam a dar mais contexto sobre qualidade,
-                disponibilidade e comodidades.
+                {identificacaoDados.avaliacoesLocais.aviso}
               </Text>
 
               <View style={styles.cardsList}>
