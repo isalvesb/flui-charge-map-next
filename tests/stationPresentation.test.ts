@@ -41,7 +41,7 @@ test("resume status, recomendação e espera sem depender da tela", () => {
   assert.equal(getStationStatusInfo(station, now).label, "Aberto agora");
   assert.equal(
     getStationRecommendation(station, 1),
-    "Boa escolha para uma parada rápida",
+    "Opção com conector rápido no exemplo",
   );
   assert.equal(getWaitingLevel(station.status, 1), "Moderada");
 });

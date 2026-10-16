@@ -269,7 +269,7 @@ export function FluiAssistantSheet({
                 accessibilityLiveRegion="polite"
               >
                 <View style={styles.bestChoiceBadge}>
-                  <Text style={styles.bestChoiceText}>Melhor escolha agora</Text>
+                  <Text style={styles.bestChoiceText}>Sugestão demonstrativa</Text>
                 </View>
                 <Text style={styles.stationName}>
                   {recommendation.primary.name}

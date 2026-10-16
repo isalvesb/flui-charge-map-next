@@ -596,7 +596,7 @@ export default function PointDetailsScreen() {
               <View style={styles.resumoInfoItem}>
                 <View style={styles.resumoInfoLabelRow}>
                   <Timer size={12} color={colors.textLight} strokeWidth={2.3} />
-                  <Text style={styles.resumoInfoLabel}>Espera</Text>
+                  <Text style={styles.resumoInfoLabel}>Espera simulada</Text>
                 </View>
                 <Text style={styles.resumoInfoValue}>{orientacaoDeEspera}</Text>
               </View>
@@ -702,10 +702,10 @@ export default function PointDetailsScreen() {
             </View>
 
             <View style={styles.highlightContent}>
-              <Text style={styles.highlightLabel}>Melhor horário</Text>
+              <Text style={styles.highlightLabel}>Horário sugerido no exemplo</Text>
               <Text style={styles.highlightValue}>{lessBusyText}</Text>
               <Text style={styles.highlightDescription}>
-                Período com menor movimento e espera
+                Sem previsão de movimento em tempo real
               </Text>
             </View>
           </View>

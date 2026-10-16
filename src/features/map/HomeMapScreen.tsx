@@ -33,10 +33,8 @@ import {
   BatteryWarning,
   ChevronRight,
   Clock3,
-  Coffee,
   Crosshair,
   Maximize2,
-  Navigation,
   Plug,
   Search,
   SlidersHorizontal,
@@ -52,6 +50,8 @@ import { StationFilters } from "../../types";
 import { filtrarEstacoes } from "../../utils/filtrarEstacoes";
 import { avaliarAlcance } from "../../utils/autonomia";
 import { canChargeAt } from "../../utils/stationAvailability";
+import { isStationOpenAt } from "../../utils/stationHours";
+import { getStationStatusInfo } from "../stations/stationPresentation";
 import { getBatterySourceLabels } from "../../utils/batteryData";
 import { useCurrentTime } from "../../hooks/useCurrentTime";
 import {
@@ -163,14 +163,6 @@ const filtrosRapidosIniciais: FiltrosRapidos = {
   fast: false,
   restroom: false,
 };
-
-const pointLabels = [
-  { id: "near", title: "Mais próximo", icon: Navigation },
-  { id: "best", title: "Melhor avaliado", icon: Star },
-  { id: "comfort", title: "Mais confortável", icon: Coffee },
-  { id: "fast", title: "Carga rápida", icon: Zap },
-  { id: "open", title: "Recomendado", icon: Clock3 },
-];
 
 type Station = (typeof chargingStations)[number];
 
@@ -382,23 +374,8 @@ const getRawStationStatus = (station: Station) => {
   return readString(station, "status", "available").toLowerCase();
 };
 
-const getStationStatus = (station: Station) => {
-  const status = getRawStationStatus(station);
-
-  if (status.includes("maintenance") || status.includes("manutenção")) {
-    return "Em manutenção";
-  }
-
-  if (status.includes("unavailable") || status.includes("indispon")) {
-    return "Indisponível";
-  }
-
-  if (status.includes("busy") || status.includes("ocup")) {
-    return "Ocupado agora";
-  }
-
-  return readString(station, "statusLabel", "Aberto agora");
-};
+const getStationStatus = (station: Station, now: Date) =>
+  getStationStatusInfo(station, now).label;
 
 const getStationPowerNumber = (station: Station) => {
   const stationPower = readNumber(
@@ -477,37 +454,37 @@ const limitarValor = (value: number, min: number, max: number) => {
   return Math.min(Math.max(value, min), max);
 };
 
-const getStationMarkerColor = (station: Station, colorSet: MapColorTokens) => {
+const getStationMarkerColor = (station: Station, colorSet: MapColorTokens, now: Date) => {
   const status = getRawStationStatus(station);
-
-  if (status === "busy") {
-    return colorSet.yellowDark;
-  }
 
   if (status === "maintenance") {
     return colorSet.dangerBorder ?? colorSet.yellowDark;
   }
 
-  if (status === "unavailable") {
+  if (status === "unavailable" || !isStationOpenAt(station, now)) {
     return colorSet.textLight;
+  }
+
+  if (status === "busy") {
+    return colorSet.yellowDark;
   }
 
   return colorSet.green ?? colorSet.success ?? colorSet.primary;
 };
 
-const getStationMarkerIcon = (station: Station) => {
+const getStationMarkerIcon = (station: Station, now: Date) => {
   const status = getRawStationStatus(station);
-
-  if (status === "busy") {
-    return iconeMarcadorAmarelo;
-  }
 
   if (status === "maintenance") {
     return iconeMarcadorVermelho;
   }
 
-  if (status === "unavailable") {
+  if (status === "unavailable" || !isStationOpenAt(station, now)) {
     return iconeMarcadorCinza;
+  }
+
+  if (status === "busy") {
+    return iconeMarcadorAmarelo;
   }
 
   return iconeMarcadorVerde;
@@ -1054,19 +1031,18 @@ export default function HomeMapScreen() {
   }, [visibleStations, now]);
 
   const points = useMemo(() => {
-    return estacoesRecomendadas.map((item, cardIndex) => {
-      const label = pointLabels[cardIndex];
-      const cardId = label?.id ?? `station-${cardIndex}`;
+    return estacoesRecomendadas.map((item) => {
+      const cardId = getStationId(item.station, item.index);
 
       return {
         id: cardId,
         stationId: getStationId(item.station, item.index),
-        criterioLabel: label?.title ?? "Recomendado",
-        criterioIcon: label?.icon ?? Zap,
+        criterioLabel: "Opção demonstrativa",
+        criterioIcon: Zap,
         nomeEstacao: getStationName(item.station),
         address: getStationAddress(item.station),
-        status: getStationStatus(item.station),
-        statusColor: getStationMarkerColor(item.station, colors),
+        status: getStationStatus(item.station, now),
+        statusColor: getStationMarkerColor(item.station, colors, now),
         rating: getStationRating(item.station),
         power: getStationPower(item.station),
         alcance: avaliarAlcance(
@@ -1076,7 +1052,7 @@ export default function HomeMapScreen() {
         ),
       };
     });
-  }, [batteryPercent, colors, estacoesRecomendadas, vehicleRangeKm]);
+  }, [batteryPercent, colors, estacoesRecomendadas, vehicleRangeKm, now]);
 
   const hasNoResults = estacoesRecomendadas.length === 0;
   const hasSearchTerm = searchTerm.trim().length > 0;
@@ -1204,7 +1180,7 @@ export default function HomeMapScreen() {
 
   const sheetTitle = hasNoResults
     ? "Nenhum ponto disponível"
-    : "Melhores escolhas";
+    : "Opções demonstrativas";
 
   const corBateriaAtual = obterCorDeBateriaAtual(batteryPercent, colors);
   const autonomiaAtualKm = Math.round((vehicleRangeKm * batteryPercent) / 100);
@@ -1434,7 +1410,7 @@ export default function HomeMapScreen() {
             <View style={styles.headerActions}>
               <PressableScale
                 accessibilityRole="button"
-                accessibilityLabel={`Bateria do veículo: ${batteryPercent} por cento, cerca de ${autonomiaAtualKm} quilômetros de autonomia`}
+                accessibilityLabel={`Bateria para estimativa: ${batteryPercent} por cento. ${batteryLabels.source}. ${batteryLabels.detail}. Cerca de ${autonomiaAtualKm} quilômetros estimados`}
                 accessibilityHint="Toque para ajustar o nível de bateria e ver o alcance nos pontos."
                 style={styles.vehicleButton}
                 onPress={abrirSeletorDeBateria}
@@ -1653,7 +1629,7 @@ export default function HomeMapScreen() {
 
             {visibleStations.map((item) => {
               const stationId = getStationId(item.station, item.index);
-              const markerIcon = getStationMarkerIcon(item.station);
+              const markerIcon = getStationMarkerIcon(item.station, now);
 
               return (
                 <Marker
@@ -1663,13 +1639,13 @@ export default function HomeMapScreen() {
                     longitude: item.station.longitude,
                   }}
                   title={getStationName(item.station)}
-                  description={`${getStationStatus(item.station)} • ${getStationPower(item.station)}`}
+                  description={`${getStationStatus(item.station, now)} • ${getStationPower(item.station)}`}
                   onPress={() => openStationDetails(stationId)}
                   anchor={{ x: 0.5, y: 0.87 }}
                   accessible
                   accessibilityRole="button"
                   accessibilityLabel={`Abrir ficha de ${getStationNameById(stationId)}`}
-                  accessibilityHint="Mostra detalhes, disponibilidade e comodidades do ponto."
+                  accessibilityHint={`${getStationStatus(item.station, now)}. Mostra detalhes e dados demonstrativos do ponto.`}
                   icon={markerIcon}
                   tracksViewChanges={false}
                 />
@@ -1811,7 +1787,7 @@ export default function HomeMapScreen() {
             >
               <PressableScale
                 accessibilityRole="button"
-                accessibilityLabel="Minimizar melhores escolhas para ver o mapa inteiro"
+                accessibilityLabel="Minimizar opções demonstrativas para ver o mapa inteiro"
                 accessibilityHint="Esconde completamente o painel, deixando só um atalho para trazê-lo de volta."
                 hitSlop={{ top: 10, right: 44, bottom: 10, left: 44 }}
                 pressedScale={0.94}
@@ -1998,7 +1974,7 @@ export default function HomeMapScreen() {
             >
               <PressableScale
                 accessibilityRole="button"
-                accessibilityLabel="Mostrar melhores escolhas"
+                accessibilityLabel="Mostrar opções demonstrativas"
                 accessibilityHint="Traz de volta a lista de pontos recomendados."
                 pressedScale={0.94}
                 style={styles.restaurarPainelPill}
@@ -2006,7 +1982,7 @@ export default function HomeMapScreen() {
               >
                 <Maximize2 size={16} color={colors.primary} strokeWidth={2.3} />
                 <Text style={styles.restaurarPainelPillText}>
-                  Melhores escolhas
+                  Opções demonstrativas
                 </Text>
               </PressableScale>
             </View>

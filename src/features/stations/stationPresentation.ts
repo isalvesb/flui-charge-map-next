@@ -29,7 +29,7 @@ export function getStationStatusInfo(
   if (station.status === "unavailable") {
     return {
       label: "Status indisponível",
-      description: "Não foi possível consultar a disponibilidade",
+      description: "Disponibilidade não confirmada nos dados demonstrativos",
     };
   }
 
@@ -58,13 +58,13 @@ export function getStationStatusInfo(
   if (station.status === "busy") {
     return {
       label: "Ocupado agora",
-      description: "Alta procura no momento",
+      description: "Ocupação indicada nos dados demonstrativos",
     };
   }
 
   return {
     label: "Status indisponível",
-    description: "Não foi possível consultar a disponibilidade",
+    description: "Disponibilidade não confirmada nos dados demonstrativos",
   };
 }
 
@@ -122,7 +122,7 @@ export function getStationRecommendation(
     Math.max(...getUsableConnectors(station).map(connector => connector.powerKw)),
   );
   if (availableChargers > 0 && usablePowerKw >= 120) {
-    return "Boa escolha para uma parada rápida";
+    return "Opção com conector rápido no exemplo";
   }
 
   if (availableChargers > 0) {

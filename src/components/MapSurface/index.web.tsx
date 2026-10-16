@@ -5,7 +5,15 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import { Pressable, StyleSheet, Text, View, type ViewProps } from "react-native";
+import {
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  type ImageSourcePropType,
+  type ViewProps,
+} from "react-native";
 
 export type Region = {
   latitude: number;
@@ -43,7 +51,7 @@ type MarkerProps = {
   accessibilityLabel?: string;
   accessibilityHint?: string;
   anchor?: { x: number; y: number };
-  icon?: unknown;
+  icon?: ImageSourcePropType;
   tracksViewChanges?: boolean;
 };
 
@@ -123,7 +131,7 @@ export const Marker = ({
   accessibilityLabel,
   accessibilityHint,
   anchor: _anchor,
-  icon: _icon,
+  icon,
   tracksViewChanges: _tracksViewChanges,
 }: MarkerProps) => {
   const position = useMemo(() => {
@@ -143,9 +151,9 @@ export const Marker = ({
       accessibilityRole={accessibilityRole}
       accessibilityLabel={accessibilityLabel}
       accessibilityHint={accessibilityHint}
-      style={[styles.marker, position]}
+      style={[styles.marker, position, icon ? styles.stationMarker : null]}
     >
-      {children}
+      {children ?? (icon ? <Image source={icon} style={styles.markerIcon} /> : null)}
     </Pressable>
   );
 };
@@ -207,6 +215,17 @@ const styles = StyleSheet.create({
     position: "absolute",
     transform: [{ translateX: -20 }, { translateY: -20 }],
     zIndex: 2,
+  },
+  stationMarker: {
+    width: 44,
+    height: 44,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  markerIcon: {
+    width: 40,
+    height: 40,
+    resizeMode: "contain",
   },
 });
 
