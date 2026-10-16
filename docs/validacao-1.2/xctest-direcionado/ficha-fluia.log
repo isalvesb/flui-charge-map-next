@@ -1,0 +1,245 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -xctestrun /tmp/flui-xctest-12/DerivedData/Build/Products/FluiValidacao_iphonesimulator27.1-arm64-x86_64.xctestrun -destination "platform=iOS Simulator,id=4A2C862B-D6FC-4E88-8FB5-88164A5C5A2E" -destination-timeout 25 -parallel-testing-enabled NO -collect-test-diagnostics never -test-timeouts-enabled YES -default-test-execution-time-allowance 180 -maximum-test-execution-time-allowance 180 -resultBundlePath /tmp/flui-xctest-12/FichaFluia.xcresult
+
+Writing result bundle at path:
+	/tmp/flui-xctest-12/FichaFluia.xcresult
+
+2026-10-16 09:14:05.227 xcodebuild[35153:3868906] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 09:14:45.243240-0300 FluiValidacao-Runner[35382:3870802] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'All tests' started at 2026-10-16 09:15:06.600.
+Test Suite 'FluiValidacao.xctest' started at 2026-10-16 09:15:06.603.
+Test Suite 'FluiValidacao' started at 2026-10-16 09:15:06.604.
+Test Case '-[FluiValidacao.FluiValidacao testFichaPelaFluiaSemBusca]' started.
+    t =     0.11s Start Test at 2026-10-16 09:15:06.712
+    t =     0.59s Set Up
+    t =     0.59s Open host.exp.Exponent
+    t =     0.60s     Launch host.exp.Exponent
+    t =     0.87s         Setting up automation session
+objc[35382]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x107f50398) and /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x108478310). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =     9.81s         Wait for host.exp.Exponent to idle
+    t =    12.78s Waiting 3.0s for Button (First Match) to exist
+    t =    13.82s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    13.82s         Checking existence of `Button (First Match)`
+    t =    16.05s         Capturing element debug description
+    t =    16.05s     Checking existence of `Button (First Match)`
+    t =    17.33s Collecting debug information to assist test failure triage
+    t =    17.33s     Requesting snapshot of accessibility hierarchy for app with pid 35476
+    t =    17.39s Waiting 8.0s for Button (First Match) to exist
+    t =    18.40s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    18.41s         Checking existence of `Button (First Match)`
+    t =    18.63s Tap Button (First Match)
+    t =    18.63s     Wait for host.exp.Exponent to idle
+    t =    18.87s     Find the Button (First Match)
+    t =    18.99s     Check for interrupting elements affecting "flui-charge-map" Button
+    t =    19.08s     Synthesize event
+    t =    19.77s     Wait for host.exp.Exponent to idle
+    t =    19.95s Waiting 45.0s for Button (First Match) to exist
+    t =    20.99s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    20.99s         Checking existence of `Button (First Match)`
+    t =    21.03s         Capturing element debug description
+    t =    21.97s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    21.97s         Checking existence of `Button (First Match)`
+    t =    21.99s         Capturing element debug description
+    t =    22.96s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    22.96s         Checking existence of `Button (First Match)`
+    t =    22.99s         Capturing element debug description
+    t =    24.03s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    24.03s         Checking existence of `Button (First Match)`
+    t =    24.05s         Capturing element debug description
+    t =    24.99s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    24.99s         Checking existence of `Button (First Match)`
+    t =    25.02s         Capturing element debug description
+    t =    26.05s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    26.05s         Checking existence of `Button (First Match)`
+    t =    26.07s         Capturing element debug description
+    t =    26.96s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    26.96s         Checking existence of `Button (First Match)`
+    t =    27.00s         Capturing element debug description
+    t =    28.03s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    28.04s         Checking existence of `Button (First Match)`
+    t =    28.07s         Capturing element debug description
+    t =    29.00s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    29.00s         Checking existence of `Button (First Match)`
+    t =    29.03s         Capturing element debug description
+    t =    29.96s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    29.96s         Checking existence of `Button (First Match)`
+    t =    30.00s         Capturing element debug description
+    t =    31.03s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    31.03s         Checking existence of `Button (First Match)`
+    t =    31.05s         Capturing element debug description
+    t =    31.98s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    31.98s         Checking existence of `Button (First Match)`
+    t =    32.00s         Capturing element debug description
+    t =    33.05s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    33.05s         Checking existence of `Button (First Match)`
+    t =    33.08s         Capturing element debug description
+    t =    34.01s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    34.01s         Checking existence of `Button (First Match)`
+    t =    34.03s         Capturing element debug description
+    t =    34.97s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    34.97s         Checking existence of `Button (First Match)`
+    t =    34.99s         Capturing element debug description
+    t =    36.02s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    36.02s         Checking existence of `Button (First Match)`
+    t =    36.04s         Capturing element debug description
+    t =    36.98s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    36.99s         Checking existence of `Button (First Match)`
+    t =    37.00s         Capturing element debug description
+    t =    38.05s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    38.05s         Checking existence of `Button (First Match)`
+    t =    38.06s         Capturing element debug description
+    t =    38.99s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    38.99s         Checking existence of `Button (First Match)`
+    t =    39.04s         Capturing element debug description
+    t =    39.98s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    39.98s         Checking existence of `Button (First Match)`
+    t =    39.99s         Capturing element debug description
+    t =    40.98s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    40.98s         Checking existence of `Button (First Match)`
+    t =    41.00s         Capturing element debug description
+    t =    42.04s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    42.04s         Checking existence of `Button (First Match)`
+    t =    42.05s         Capturing element debug description
+    t =    42.98s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    42.98s         Checking existence of `Button (First Match)`
+    t =    42.99s         Capturing element debug description
+    t =    44.02s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    44.02s         Checking existence of `Button (First Match)`
+    t =    44.03s         Capturing element debug description
+    t =    44.96s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    44.96s         Checking existence of `Button (First Match)`
+    t =    44.97s         Capturing element debug description
+    t =    46.01s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    46.01s         Checking existence of `Button (First Match)`
+    t =    46.04s         Capturing element debug description
+    t =    46.97s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    46.97s         Checking existence of `Button (First Match)`
+    t =    46.99s         Capturing element debug description
+    t =    48.02s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    48.02s         Checking existence of `Button (First Match)`
+    t =    48.04s         Capturing element debug description
+    t =    48.96s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    48.96s         Checking existence of `Button (First Match)`
+    t =    48.98s         Capturing element debug description
+    t =    50.00s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    50.00s         Checking existence of `Button (First Match)`
+    t =    50.02s         Capturing element debug description
+    t =    50.95s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    50.95s         Checking existence of `Button (First Match)`
+    t =    50.98s         Capturing element debug description
+    t =    52.00s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    52.00s         Checking existence of `Button (First Match)`
+    t =    52.02s         Capturing element debug description
+    t =    53.04s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    53.04s         Checking existence of `Button (First Match)`
+    t =    53.05s         Capturing element debug description
+    t =    53.98s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    53.98s         Checking existence of `Button (First Match)`
+    t =    54.00s         Capturing element debug description
+    t =    55.03s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    55.04s         Checking existence of `Button (First Match)`
+    t =    55.06s         Capturing element debug description
+    t =    55.99s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    55.99s         Checking existence of `Button (First Match)`
+    t =    56.01s         Capturing element debug description
+    t =    57.04s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    57.04s         Checking existence of `Button (First Match)`
+    t =    57.05s         Capturing element debug description
+    t =    57.98s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    57.98s         Checking existence of `Button (First Match)`
+    t =    57.99s         Capturing element debug description
+    t =    59.02s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    59.02s         Checking existence of `Button (First Match)`
+    t =    59.03s         Capturing element debug description
+    t =    59.96s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    59.96s         Checking existence of `Button (First Match)`
+    t =    59.97s         Capturing element debug description
+    t =    61.00s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    61.00s         Checking existence of `Button (First Match)`
+    t =    61.01s         Capturing element debug description
+    t =    62.04s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    62.04s         Checking existence of `Button (First Match)`
+    t =    62.06s         Capturing element debug description
+    t =    63.01s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    63.01s         Checking existence of `Button (First Match)`
+    t =    63.03s         Capturing element debug description
+    t =    63.96s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    63.96s         Checking existence of `Button (First Match)`
+    t =    63.99s         Capturing element debug description
+    t =    64.97s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    64.97s         Checking existence of `Button (First Match)`
+    t =    65.00s         Capturing element debug description
+    t =    65.00s     Checking existence of `Button (First Match)`
+    t =    65.02s Collecting debug information to assist test failure triage
+    t =    65.02s     Requesting snapshot of accessibility hierarchy for app with pid 35476
+    t =    65.09s Requesting snapshot of accessibility hierarchy for app with pid 35476
+    t =    65.27s Requesting snapshot of accessibility hierarchy for app with pid 35476
+/tmp/flui-xctest-12/FluiValidacao.swift:17: error: -[FluiValidacao.FluiValidacao testFichaPelaFluiaSemBusca] : XCTAssertTrue failed - Attributes: Application, 0x10801d2c0, pid: 35476, label: 'Expo Go'
+Element subtree:
+ →Application, 0x10801d2c0, pid: 35476, label: 'Expo Go'
+    Window (Main), 0x10801c780, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x10801e6c0, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x10801cdc0, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x10801db80, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x10801c500, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x1051a3980, {{0.0, 0.0}, {440.0, 956.0}}
+                ActivityIndicator, 0x1051a3c00, {{148.2, 414.0}, {20.0, 20.0}}, label: 'In progress', value: 1
+                StaticText, 0x1051a3ac0, {{176.2, 415.5}, {115.7, 17.0}}, label: 'Opening project...'
+                Button, 0x1051a12c0, {{178.0, 462.5}, {84.0, 36.0}}, label: 'Go back'
+                  StaticText, 0x1051a1400, {{192.7, 472.2}, {55.0, 17.0}}, label: 'Go back'
+                StaticText, 0x1051a3840, {{71.7, 522.5}, {296.7, 50.3}}, label: 'This is taking much longer than it should. You might want to check your internet connectivity.'
+              Other, 0x109624b40, {{0.0, 0.0}, {440.0, 956.0}}
+                ScrollView, 0x109624c80, {{0.0, 62.0}, {440.0, 860.0}}
+                  StaticText, 0x109624dc0, {{16.0, 86.0}, {408.0, 57.3}}, label: 'There was a problem running the requested app.'
+                  TextView, 0x109624f00, {{16.0, 159.3}, {408.0, 19.3}}, value: Unknown error: Cou...
+                    TextView, 0x109625040, {{16.0, 159.3}, {348.8, 19.1}}, label: 'Unknown error: Could not connect to the server.'
+                    Other, 0x109625180, {{391.0, 159.3}, {30.0, 19.3}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                      Other, 0x1096252c0, {{418.0, 163.7}, {3.0, 28.2}}
+                    Other, 0x109625400, {{16.0, 166.0}, {408.0, 9.7}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                      Other, 0x109625540, {{19.0, 172.7}, {376.0, 3.0}}
+                  StaticText, 0x109625680, {{16.0, 194.7}, {408.0, 17.0}}, label: 'exp://127.0.0.1:8084'
+                  Other, 0x1096257c0, {{0.0, 854.0}, {440.0, 68.0}}
+                    Other, 0x109625900, {{16.0, 870.0}, {408.0, 36.0}}
+                      Button, 0x109625a40, {{16.0, 870.0}, {408.0, 36.0}}, label: 'Go Home'
+                        StaticText, 0x109625b80, {{188.7, 879.7}, {63.0, 17.0}}, label: 'Go Home'
+                  Other, 0x109625cc0, {{407.0, 62.0}, {30.0, 832.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                    Other, 0x109625e00, {{434.0, 912.0}, {3.0, 7.0}}
+                  Other, 0x109625f40, {{28.0, 889.0}, {384.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                    Other, 0x109626080, {{430.0, 916.0}, {7.0, 3.0}}
+                  Other, 0x1096261c0, {{407.0, 62.0}, {30.0, 832.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                    Other, 0x109626300, {{434.0, 912.0}, {3.0, 7.0}}
+                  Other, 0x109626440, {{28.0, 889.0}, {384.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                    Other, 0x109626580, {{430.0, 916.0}, {7.0, 3.0}}
+Path to element:
+ →Application, 0x10801d2c0, pid: 35476, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x1096266c0, pid: 35476, label: 'Expo Go'
+  }
+
+    t =    66.10s Tear Down
+Test Case '-[FluiValidacao.FluiValidacao testFichaPelaFluiaSemBusca]' failed (66.320 seconds).
+Test Suite 'FluiValidacao' failed at 2026-10-16 09:16:13.032.
+	 Executed 1 test, with 1 failure (0 unexpected) in 66.320 (66.429) seconds
+Test Suite 'FluiValidacao.xctest' failed at 2026-10-16 09:16:13.033.
+	 Executed 1 test, with 1 failure (0 unexpected) in 66.320 (66.430) seconds
+Test Suite 'All tests' failed at 2026-10-16 09:16:13.034.
+	 Executed 1 test, with 1 failure (0 unexpected) in 66.320 (66.434) seconds
+2026-10-16 09:16:13.224 xcodebuild[35153:3868906] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 09:16:13.230 xcodebuild[35153:3868906] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 09:16:13.249 xcodebuild[35153:3868906] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 09:16:13.534 xcodebuild[35153:3868906] [MT] IDETestOperationsObserverDebug: 133.242 elapsed -- Testing started completed.
+2026-10-16 09:16:13.534 xcodebuild[35153:3868906] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-16 09:16:13.534 xcodebuild[35153:3868906] [MT] IDETestOperationsObserverDebug: 133.243 sec, +133.242 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/flui-xctest-12/FichaFluia.xcresult
+
+Failing tests:
+	FluiValidacao.testFichaPelaFluiaSemBusca()
+
+** TEST EXECUTE FAILED **
+
+Testing started
