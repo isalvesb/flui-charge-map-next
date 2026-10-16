@@ -33,6 +33,12 @@ Projeto desenvolvido para o **Enterprise Challenge — Charge Map Cup**, parceri
 
 ---
 
+## 📋 Planejamento NEXT 2026
+
+- [Lista de Tarefas (LDT v2.0)](docs/LDT.md) · referência de planejamento; propostas da Gama sujeitas à aprovação da equipe.
+
+---
+
 ## ⚡ O desafio
 
 A mobilidade elétrica está crescendo no Brasil, mas encontrar um bom ponto de recarga ainda pode ser uma tarefa incerta.
