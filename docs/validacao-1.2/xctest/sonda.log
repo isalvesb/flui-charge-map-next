@@ -1,0 +1,200 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -xctestrun /tmp/flui-xctest-12/DerivedData/Build/Products/FluiValidacao_iphonesimulator27.1-arm64-x86_64.xctestrun -destination "platform=iOS Simulator,id=4A2C862B-D6FC-4E88-8FB5-88164A5C5A2E" -destination-timeout 25 -parallel-testing-enabled NO -test-timeouts-enabled YES -default-test-execution-time-allowance 60 -maximum-test-execution-time-allowance 90 -resultBundlePath /tmp/flui-xctest-12/Resultado.xcresult
+
+Writing result bundle at path:
+	/tmp/flui-xctest-12/Resultado.xcresult
+
+2026-10-16 07:17:41.745 xcodebuild[29078:3736194] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 07:18:49.990422-0300 FluiValidacao-Runner[29292:3738976] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+objc[29292]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x1072fc398) and /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x107828310). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+Test Suite 'All tests' started at 2026-10-16 07:18:54.878.
+Test Suite 'FluiValidacao.xctest' started at 2026-10-16 07:18:54.880.
+Test Suite 'FluiValidacao' started at 2026-10-16 07:18:54.881.
+Test Case '-[FluiValidacao.FluiValidacao testAcessoAoFlui]' started.
+    t =     0.02s Start Test at 2026-10-16 07:18:54.899
+    t =     0.65s Set Up
+    t =     0.66s Open host.exp.Exponent with URL exp://127.0.0.1:8084
+    t =     0.66s     Launch host.exp.Exponent
+    t =     0.79s         Setting up automation session
+    t =     6.90s         Wait for host.exp.Exponent to idle
+    t =     9.31s Waiting 45.0s for "Abrir busca e filtros" Button to exist
+    t =    10.36s     Checking `Expect predicate `existsNoRetry == 1` for object "Abrir busca e filtros" Button`
+    t =    10.36s         Checking existence of `"Abrir busca e filtros" Button`
+    t =    15.74s         Capturing element debug description
+    t =    16.38s     Checking `Expect predicate `existsNoRetry == 1` for object "Abrir busca e filtros" Button`
+    t =    16.38s         Checking existence of `"Abrir busca e filtros" Button`
+    t =    16.40s         Capturing element debug description
+    t =    17.34s     Checking `Expect predicate `existsNoRetry == 1` for object "Abrir busca e filtros" Button`
+    t =    17.34s         Checking existence of `"Abrir busca e filtros" Button`
+    t =    17.53s         Capturing element debug description
+    t =    18.36s     Checking `Expect predicate `existsNoRetry == 1` for object "Abrir busca e filtros" Button`
+    t =    18.36s         Checking existence of `"Abrir busca e filtros" Button`
+    t =    18.37s         Capturing element debug description
+    t =    19.31s     Checking `Expect predicate `existsNoRetry == 1` for object "Abrir busca e filtros" Button`
+    t =    19.32s         Checking existence of `"Abrir busca e filtros" Button`
+    t =    19.33s         Capturing element debug description
+    t =    20.39s     Checking `Expect predicate `existsNoRetry == 1` for object "Abrir busca e filtros" Button`
+    t =    20.39s         Checking existence of `"Abrir busca e filtros" Button`
+    t =    20.41s         Capturing element debug description
+    t =    21.35s     Checking `Expect predicate `existsNoRetry == 1` for object "Abrir busca e filtros" Button`
+    t =    21.35s         Checking existence of `"Abrir busca e filtros" Button`
+    t =    21.37s         Capturing element debug description
+    t =    22.34s     Checking `Expect predicate `existsNoRetry == 1` for object "Abrir busca e filtros" Button`
+    t =    22.34s         Checking existence of `"Abrir busca e filtros" Button`
+    t =    22.36s         Capturing element debug description
+    t =    23.35s     Checking `Expect predicate `existsNoRetry == 1` for object "Abrir busca e filtros" Button`
+    t =    23.36s         Checking existence of `"Abrir busca e filtros" Button`
+    t =    23.38s         Capturing element debug description
+    t =    24.36s     Checking `Expect predicate `existsNoRetry == 1` for object "Abrir busca e filtros" Button`
+    t =    24.37s         Checking existence of `"Abrir busca e filtros" Button`
+    t =    24.39s         Capturing element debug description
+    t =    25.34s     Checking `Expect predicate `existsNoRetry == 1` for object "Abrir busca e filtros" Button`
+    t =    25.34s         Checking existence of `"Abrir busca e filtros" Button`
+    t =    31.75s         Capturing element debug description
+    t =    32.37s     Checking `Expect predicate `existsNoRetry == 1` for object "Abrir busca e filtros" Button`
+    t =    32.38s         Checking existence of `"Abrir busca e filtros" Button`
+    t =    32.38s         Capturing element debug description
+    t =    33.32s     Checking `Expect predicate `existsNoRetry == 1` for object "Abrir busca e filtros" Button`
+    t =    33.32s         Checking existence of `"Abrir busca e filtros" Button`
+    t =    33.33s         Capturing element debug description
+    t =    34.38s     Checking `Expect predicate `existsNoRetry == 1` for object "Abrir busca e filtros" Button`
+    t =    34.38s         Checking existence of `"Abrir busca e filtros" Button`
+    t =    34.41s         Capturing element debug description
+    t =    35.34s     Checking `Expect predicate `existsNoRetry == 1` for object "Abrir busca e filtros" Button`
+    t =    35.34s         Checking existence of `"Abrir busca e filtros" Button`
+    t =    35.36s         Capturing element debug description
+    t =    36.39s     Checking `Expect predicate `existsNoRetry == 1` for object "Abrir busca e filtros" Button`
+    t =    36.39s         Checking existence of `"Abrir busca e filtros" Button`
+    t =    36.40s         Capturing element debug description
+    t =    37.37s     Checking `Expect predicate `existsNoRetry == 1` for object "Abrir busca e filtros" Button`
+    t =    37.37s         Checking existence of `"Abrir busca e filtros" Button`
+    t =    37.51s         Capturing element debug description
+    t =    38.41s     Checking `Expect predicate `existsNoRetry == 1` for object "Abrir busca e filtros" Button`
+    t =    38.42s         Checking existence of `"Abrir busca e filtros" Button`
+    t =    38.55s Requesting snapshot of accessibility hierarchy for app with pid 29332
+    t =    39.74s Requesting snapshot of accessibility hierarchy for app with pid 29332
+FLUI_ARVORE_NATIVE
+Attributes: Application, 0x107645e00, pid: 29332, label: 'Expo Go'
+Element subtree:
+ →Application, 0x107645e00, pid: 29332, label: 'Expo Go'
+    Window (Main), 0x1076461c0, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x107646580, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x1076466c0, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x107646300, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x107646800, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x107646440, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x107646bc0, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x107646a80, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x107646d00, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x107646f80, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1076470c0, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x107646e40, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x107647200, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x107647480, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x1076475c0, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x107647340, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x107647700, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Other, 0x107647980, {{0.0, 62.0}, {440.0, 162.0}}
+                                        Other, 0x107647ac0, {{20.0, 76.0}, {76.0, 36.0}}
+                                          Other, 0x107647840, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x107647c00, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x107647d40, {{89.2, 82.8}, {6.7, 6.7}}
+                                        Button, 0x107647e80, {{191.7, 71.0}, {180.3, 46.0}}, label: 'Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 180 quilômetros estimados'
+                                        Button, 0x107644500, {{374.0, 71.0}, {46.0, 46.0}}, label: 'Abrir perfil'
+                                        Other, 0x107644b40, {{20.0, 132.0}, {400.0, 58.0}}
+                                          Other, 0x1045a3340, {{39.0, 150.7}, {21.0, 21.0}}
+                                            Other, 0x1081a0000, {{40.8, 152.4}, {17.5, 17.5}}
+                                              Other, 0x1081a0140, {{40.8, 152.4}, {15.8, 15.8}}
+                                              Other, 0x1081a0280, {{52.7, 164.4}, {5.5, 5.5}}
+                                          Other, 0x1081a03c0, {{73.0, 150.7}, {277.0, 20.3}}
+                                            TextField, 0x1081a0500, {{73.0, 150.7}, {277.0, 20.3}}, label: 'Buscar no mapa', placeholderValue: 'Buscar endereço, bairro ou ponto'
+                                          Other, 0x1081a0640, {{358.0, 146.0}, {1.0, 30.0}}
+                                          Button, 0x1081a0780, {{367.0, 140.0}, {42.0, 42.0}}, label: 'Abrir busca e filtros'
+                                        Button, 0x1081a08c0, {{20.0, 194.0}, {400.0, 16.0}}, label: 'Mostrar atalhos de filtro'
+                                      Other, 0x1081a0a00, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x1081a0b40, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                          Other, 0x1081a0c80, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x1081a0dc0, {{0.0, 224.0}, {72.0, 72.0}}
+                                            Other, 0x1081a0f00, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                              Button, 0x1081a1040, {{184.0, 420.7}, {72.0, 72.0}}, identifier: 'AIRGMSMarker_0x117f96300', label: 'Você na FIAP'
+                                              Button, 0x1081a1180, {{95.3, 303.7}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x117f97980', label: 'Flui Express MASP'
+                                              Button, 0x1081a12c0, {{180.3, 540.0}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x117f97200', label: 'Estação Jardins Pamplona'
+                                              Button, 0x1081a1400, {{324.7, 684.0}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x117f943c0', label: 'Garagem Verde Brigadeiro'
+                                              Other, 0x1081a1540, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x1081a1680, {{0.0, 224.0}, {440.0, 698.0}}
+                                              Other, 0x1081a17c0, {{0.0, 224.0}, {440.0, 698.0}}
+                                                Button, 0x1081a1900, {{5.0, 895.0}, {60.0, 22.0}}, label: 'Google Maps'
+                                            Other, 0x1081a1a40, {{1912.0, 2136.0}, {74.0, 74.0}}
+                                              Other, 0x1081a1b80, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                Other, 0x1081a1cc0, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                  Other, 0x1081a1e00, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                    Other, 0x1081a1f40, {{1916.4, 2140.4}, {63.2, 63.2}}
+                                                    Other, 0x1081a2080, {{1936.0, 2160.0}, {24.0, 24.0}}
+                                        Other, 0x1081a21c0, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x1081a2300, {{372.0, 242.0}, {52.0, 166.0}}
+                                          Other, 0x1081a2440, {{372.0, 242.0}, {52.0, 104.0}}
+                                            Button, 0x1081a2580, {{372.0, 243.0}, {52.0, 51.0}}, label: 'Aumentar zoom do mapa'
+                                            Button, 0x1081a26c0, {{372.0, 295.0}, {52.0, 51.0}}, label: 'Diminuir zoom do mapa'
+                                            Other, 0x1081a2800, {{384.0, 294.0}, {28.0, 1.0}}
+                                          Button, 0x1081a2940, {{372.0, 356.0}, {52.0, 52.0}}, label: 'Centralizar localização na FIAP'
+                                        Other, 0x1081a2a80, {{304.0, 527.3}, {120.0, 52.0}}
+                                          Other, 0x1081a2bc0, {{304.0, 527.3}, {120.0, 52.0}}
+                                            Button, 0x1081a2d00, {{304.0, 527.3}, {120.0, 52.0}}, label: 'Abrir assistente Flui IA'
+                                        Other, 0x1081a2e40, {{16.0, 583.3}, {408.0, 338.7}}
+                                          Other, 0x1081a2f80, {{16.0, 583.3}, {408.0, 338.7}}
+                                            Button, 0x1081a30c0, {{35.0, 602.3}, {370.0, 12.0}}, label: 'Minimizar opções demonstrativas para ver o mapa inteiro'
+                                            StaticText, 0x1081a3200, {{35.0, 614.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                              StaticText, 0x1081a3340, {{35.0, 614.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                            Other, 0x1081a3480, {{35.0, 650.0}, {370.0, 262.0}}
+                                              ScrollView, 0x1081a35c0, {{35.0, 650.0}, {370.0, 262.0}}
+                                                Other, 0x1081a3700, {{35.0, 650.0}, {370.0, 538.7}}
+                                                  Other, 0x1081a3840, {{35.0, 650.0}, {370.0, 538.7}}
+                                                    Button, 0x1081a3980, {{35.0, 650.0}, {370.0, 134.7}}, label: 'Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. Chegada estimada com 44% de bateria.'
+                                                    Button, 0x1081a3ac0, {{35.0, 784.7}, {370.0, 134.7}}, label: 'Charge City Jardins. Opção demonstrativa. Alameda Santos, 2159. Aberto agora. Nota 4,7. 120 kW. Chegada estimada com 45% de bateria.'
+                                                    Button, 0x1081a3c00, {{35.0, 919.3}, {370.0, 134.7}}, label: 'Flui Vila Mariana Lins. Opção demonstrativa. Av. Lins de Vasconcelos, 1264. Aberto agora. Nota 4,8. 150 kW. Chegada estimada com 45% de bateria.'
+                                                    Button, 0x1081a3d40, {{35.0, 1054.0}, {370.0, 134.7}}, label: 'EcoCarga Parque Aclimação. Opção demonstrativa. R. Muniz de Sousa, 1119. Aberto agora. Nota 4,2. 22 kW. Chegada estimada com 45% de bateria.'
+                                                Other, 0x1081a3e80, {{372.0, 650.0}, {30.0, 244.0}}, label: 'Vertical scroll bar, 3 pages', value: 0%
+                                                  Other, 0x1081b4000, {{399.0, 653.0}, {3.0, 115.7}}
+                                                Other, 0x1081b4140, {{53.0, 879.0}, {334.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x1081b4280, {{56.0, 906.0}, {328.0, 3.0}}
+                                                Other, 0x1081b43c0, {{372.0, 650.0}, {30.0, 244.0}}, label: 'Vertical scroll bar, 3 pages', value: 0%
+                                                  Other, 0x1081b4500, {{399.0, 653.0}, {3.0, 115.7}}
+                                                Other, 0x1081b4640, {{53.0, 879.0}, {334.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x1081b4780, {{56.0, 906.0}, {328.0, 3.0}}
+                          Toolbar, 0x1081b48c0, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x1081b4a00, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1081b4b40, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1081b4c80, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1081b4dc0, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x107645e00, pid: 29332, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x1081b4f00, pid: 29332, label: 'Expo Go'
+  }
+
+    t =    39.87s Find the Application 'host.exp.Exponent'
+    t =    40.43s Added attachment named 'Flui nativo — acesso por XCTest'
+    t =    40.43s Tear Down
+Test Case '-[FluiValidacao.FluiValidacao testAcessoAoFlui]' passed (40.849 seconds).
+Test Suite 'FluiValidacao' passed at 2026-10-16 07:19:35.749.
+	 Executed 1 test, with 0 failures (0 unexpected) in 40.849 (40.868) seconds
+Test Suite 'FluiValidacao.xctest' passed at 2026-10-16 07:19:35.765.
+	 Executed 1 test, with 0 failures (0 unexpected) in 40.849 (40.885) seconds
+Test Suite 'All tests' passed at 2026-10-16 07:19:35.766.
+	 Executed 1 test, with 0 failures (0 unexpected) in 40.849 (40.887) seconds
+2026-10-16 07:19:35.972 xcodebuild[29078:3736194] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 07:19:35.984 xcodebuild[29078:3736194] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 07:19:36.012 xcodebuild[29078:3736194] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 07:19:36.340 xcodebuild[29078:3736194] [MT] IDETestOperationsObserverDebug: 125.162 elapsed -- Testing started completed.
+2026-10-16 07:19:36.340 xcodebuild[29078:3736194] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-16 07:19:36.340 xcodebuild[29078:3736194] [MT] IDETestOperationsObserverDebug: 125.162 sec, +125.162 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/flui-xctest-12/Resultado.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started
