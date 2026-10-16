@@ -1,4 +1,5 @@
 import type { ChargingStation } from "../../types";
+import type { AvaliacaoDeAlcance } from "../../utils/autonomia";
 import { getStationOpeningState, isStationOpenAt } from "../../utils/stationHours";
 import { canChargeAt, getUsableConnectors } from "../../utils/stationAvailability";
 
@@ -74,6 +75,37 @@ export function formatRatingStars(rating: number) {
   return Array.from({ length: 5 }, (_, index) =>
     index < roundedRating ? "★" : "☆",
   ).join(" ");
+}
+
+export function getStationChargerCountLabel(
+  station: ChargingStation,
+  availableChargers: number,
+  totalChargers: number,
+  date = new Date(),
+) {
+  return canChargeAt(station, date)
+    ? `${availableChargers} de ${totalChargers} carregadores livres no exemplo`
+    : `${totalChargers} carregadores cadastrados no exemplo. Recarga não confirmada.`;
+}
+
+export function getStationArrivalPresentation(
+  station: ChargingStation,
+  assessment: AvaliacaoDeAlcance,
+  date = new Date(),
+) {
+  const arrival = assessment.nivel === "foraDeAlcance"
+    ? `Autonomia insuficiente para o trajeto — faltam ${assessment.kmFaltantes} km.`
+    : `${assessment.nivel === "apertado" ? "Autonomia limitada — " : ""}Chegada estimada com ${assessment.bateriaAoChegarPercent}% de bateria.`;
+  const tone = assessment.nivel === "foraDeAlcance"
+    ? "danger"
+    : assessment.nivel === "apertado"
+      ? "warning"
+      : canChargeAt(station, date) ? "success" : "neutral";
+
+  return {
+    text: `Autonomia para chegar ao local\n${arrival}\nNão garante recarga no local.`,
+    tone,
+  } as const;
 }
 
 export function getStationRouteNotice(station: ChargingStation, date = new Date()) {

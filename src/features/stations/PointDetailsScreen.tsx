@@ -63,6 +63,8 @@ import {
   getStationRouteNotice,
   getStationRouteUrl,
   getStationRecommendation,
+  getStationChargerCountLabel,
+  getStationArrivalPresentation,
   getWaitingLevel,
 } from "./stationPresentation";
 
@@ -167,18 +169,6 @@ function montarPerfilDoPonto(station: Station) {
   }
 
   return "Recarga essencial";
-}
-
-function montarTextoDeAlcance(avaliacao: ReturnType<typeof avaliarAlcance>) {
-  if (avaliacao.nivel === "foraDeAlcance") {
-    return `Autonomia insuficiente para este trajeto — faltam ${avaliacao.kmFaltantes} km`;
-  }
-
-  if (avaliacao.nivel === "apertado") {
-    return `Autonomia limitada — chegada estimada com ${avaliacao.bateriaAoChegarPercent}% de bateria`;
-  }
-
-  return `Autonomia confortável — chegada estimada com ${avaliacao.bateriaAoChegarPercent}% de bateria`;
 }
 
 function obterIconeDeAlcance(nivel: ReturnType<typeof avaliarAlcance>["nivel"]) {
@@ -430,19 +420,23 @@ export default function PointDetailsScreen() {
             : colors.textLight;
 
   const IconeAlcance = obterIconeDeAlcance(avaliacaoAlcance.nivel);
-  const textoAlcance = montarTextoDeAlcance(avaliacaoAlcance);
+  const apresentacaoAlcance = getStationArrivalPresentation(station, avaliacaoAlcance, now);
   const corAlcance =
-    avaliacaoAlcance.nivel === "foraDeAlcance"
+    apresentacaoAlcance.tone === "danger"
       ? colors.dangerBorder
-      : avaliacaoAlcance.nivel === "apertado"
+      : apresentacaoAlcance.tone === "warning"
         ? colors.yellowDark
-        : colors.success;
+        : apresentacaoAlcance.tone === "success"
+          ? colors.success
+          : colors.textLight;
   const corFundoAlcance =
-    avaliacaoAlcance.nivel === "foraDeAlcance"
+    apresentacaoAlcance.tone === "danger"
       ? colors.dangerSoft
-      : avaliacaoAlcance.nivel === "apertado"
+      : apresentacaoAlcance.tone === "warning"
         ? colors.warningLight
-        : colors.successSoft;
+        : apresentacaoAlcance.tone === "success"
+          ? colors.successSoft
+          : colors.surface;
 
   return (
     <ScreenTransition style={styles.container}>
@@ -553,7 +547,7 @@ export default function PointDetailsScreen() {
             </View>
 
             <Text style={styles.availableText}>
-              {availableChargers} de {totalChargers} carregadores livres no exemplo
+              {getStationChargerCountLabel(station, availableChargers, totalChargers, now)}
             </Text>
           </View>
 
@@ -594,6 +588,7 @@ export default function PointDetailsScreen() {
           </View>
 
           <View
+            accessible
             style={[
               styles.alcanceBanner,
               { backgroundColor: corFundoAlcance, borderColor: corAlcance },
@@ -602,7 +597,7 @@ export default function PointDetailsScreen() {
             <IconeAlcance size={20} color={corAlcance} strokeWidth={2.3} />
 
             <Text style={[styles.alcanceBannerText, { color: corAlcance }]}>
-              {textoAlcance}
+              {apresentacaoAlcance.text}
             </Text>
           </View>
 
@@ -704,8 +699,9 @@ export default function PointDetailsScreen() {
                     <Text style={styles.connectorName}>{connector.label}</Text>
 
                     <Text style={styles.connectorDescription}>
-                      {connector.powerKw} kW · {connector.availableChargers} de{" "}
-                      {connector.totalChargers} disponíveis
+                      {connector.powerKw} kW · {getStationChargerCountLabel(
+                        station, connector.availableChargers, connector.totalChargers, now,
+                      )}
                     </Text>
                   </View>
                 </View>

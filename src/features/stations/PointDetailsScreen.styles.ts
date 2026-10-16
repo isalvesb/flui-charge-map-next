@@ -219,6 +219,7 @@ export const styles = StyleSheet.create({
   },
 
   availableText: {
+    flex: 1,
     color: "#3F554F",
     fontSize: 16,
     fontWeight: "700",
