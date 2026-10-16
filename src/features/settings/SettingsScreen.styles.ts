@@ -125,6 +125,26 @@ export function createSettingsStyles(colors: AppTheme, fontScale: number) {
       gap: 10,
     },
 
+    fieldLabel: {
+      marginTop: 16,
+      marginBottom: 6,
+      color: colors.text,
+      fontSize: s(13.5),
+      fontWeight: "700",
+    },
+
+    input: {
+      minHeight: 48,
+      borderWidth: 1,
+      borderColor: colors.border,
+      borderRadius: 14,
+      backgroundColor: colors.surface,
+      color: colors.text,
+      paddingHorizontal: 14,
+      paddingVertical: 12,
+      fontSize: s(16),
+    },
+
     optionButton: {
       minHeight: 82,
       padding: 13,

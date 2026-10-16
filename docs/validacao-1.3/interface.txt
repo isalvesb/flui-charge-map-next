@@ -1,0 +1,1210 @@
+CONFIGURAÇÃO APÓS RECARREGAR
+Browser tab: 1, Title: "127.0.0.1:8773/settings", URL: "http://127.0.0.1:8773/settings".
+There has been no change in the accessibility tree.
+The focused UI element is 1 AXWebArea 127.0.0.1:8773/settings
+
+MAPA APÓS BATERIA MANUAL E RELOAD
+Browser tab: 1, Title: "127.0.0.1:8773/map", URL: "http://127.0.0.1:8773/map".
+There has been no change in the accessibility tree.
+The focused UI element is 1 AXWebArea 127.0.0.1:8773/map
+
+FICHA HIGIENÓPOLIS — VILA MARIANA, 300 KM, BATERIA 35%
+Browser tab: 1, Title: "127.0.0.1:8773/point-details?stationId=station-01", URL: "http://127.0.0.1:8773/point-details?stationId=station-01".
+There has been no change in the accessibility tree.
+The focused UI element is 1 AXWebArea 127.0.0.1:8773/point-details?stationId=station-01
+
+FLUIA — VILA MARIANA, 300 KM, BATERIA 35%
+Browser tab: 1, Title: "127.0.0.1:8773/point-details?stationId=station-01", URL: "http://127.0.0.1:8773/map".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 178-191, 197-201
+~				174 text Recomendação simulada com os dados do protótipo.
+~				177 text Sugestão demonstrativa
++				178 text Flui Vila Mariana Lins
++				179 text Av. Lins de Vasconcelos, 1264
++				180 container
++					181 image
++					182 text Chegada ≈35%
++					183 image
++					184 text 150 kW
++					185 image
++					186 text 3 livres
++					187 image
++					188 text ≈0 m
++				189 text Por que essa escolha?
++				190 container
++					191 text Oferece até 150 kW nos conectores utilizáveis e 3 carregadores livres nos dados demonstrativos. Veículo NEXT  · origem demonstrativa:  Vila Mariana . Distância em linha reta, sem cálculo de percurso. Estimativa linear com reserva de 5%. Compatibilidade do veículo não confirmada; não há integração em tempo real.
+~				192 button Abrir Plano B, Higienópolis Prime Charge
+~						195 text Plano B
+~						196 container
++							197 text Higienópolis Prime Charge  · ≈4,9 km
++						198 image
++				199 button Ver Flui Vila Mariana Lins no mapa
++					200 text Ver ponto no mapa
++				201 button Escolher outra necessidade
++					202 text Escolher outra necessidade
+The focused UI element is 1 AXWebArea 127.0.0.1:8773/map
+
+FICHA DA RECOMENDAÇÃO — CHEGADA E DISTÂNCIA
+Browser tab: 1, Title: "127.0.0.1:8773/point-details?stationId=station-06", URL: "http://127.0.0.1:8773/point-details?stationId=station-06".
+1 AXWebArea 127.0.0.1:8773/point-details?stationId=station-06
+	2 container
+		3 container
+			4 container
+				5 button Voltar ao mapa
+					6 image
+				7 button Adicionar aos favoritos
+					8 image
+			9 text Flui Vila Mariana Lins
+			10 text Av. Lins de Vasconcelos, 1264, Aclimação, São Paulo, SP
+			11 container
+				12 image
+				13 text 4.8
+				14 container
+					15 text ( 132  avaliações)
+				16 text Aberto agora
+			17 container
+				18 image
+				19 text 3 de 5 carregadores livres no exemplo
+			20 container
+				21 text GUIA DO PONTO Opção com conector rápido no exemplo Dados demonstrativos, sem disponibilidade em tempo real. Distância em linha reta, autonomia e tempo de carga são estimativas simplificadas; confirme o funcionamento e a compatibilidade do veículo antes de ir.
+				22 container
+					23 image
+					24 text Espera simulada
+					25 text Baixa
+				26 container
+					27 image
+					28 text Tempo estimado
+					29 text 20 a 35 min
+				30 container
+					31 image
+					32 text Perfil
+					33 text Carga rápida
+			34 container
+				35 image
+				36 text Autonomia para chegar ao local
+Chegada estimada com 35% de bateria.
+Não garante recarga no local.
+			37 container
+				38 container
+					39 image
+					40 text Potência
+					41 container
+						42 text 150  kW
+					43 text Velocidade de carga
+				44 container
+					45 image
+					46 text Conectores
+					47 text CCS2, Type 2
+					48 text Tipos compatíveis
+				49 container
+					50 image
+					51 text Funcionamento
+					52 text Todos os dias, 06h às 22h
+					53 text Disponibilidade demonstrativa de carregadores
+				54 container
+					55 image
+					56 text Distância aproximada
+					57 text ≈0 m
+					58 container
+						59 text Em linha reta desde  Vila Mariana . Não é distância de percurso.
+			60 container
+				61 image
+				62 text Horário sugerido no exemplo
+				63 text 07h às 09h ou 13h às 15h
+				64 text Sem previsão de movimento em tempo real
+			65 container
+				66 text Conectores do ponto
+				67 container
+					68 text CCS2 150  kW ·  2 de 3 carregadores livres no exemplo
+				69 container
+					70 text Type 2 22  kW ·  1 de 2 carregadores livres no exemplo
+			71 container
+				72 text Comodidades próximas
+				73 container
+					74 image
+					75 text Café
+				76 container
+					77 image
+					78 text Banheiro
+				79 container
+					80 image
+					81 text Estacionamento
+				82 container
+					83 image
+					84 text Wi-Fi
+				85 container
+					86 image
+					87 text Segurança
+			88 container
+				89 text Avaliações de usuários
+				90 container
+					91 text 4.8 ★ ★ ★ ★ ★ 132  avaliações
+				92 container
+					93 text 5 ★
+					94 text 85%
+					95 text 4 ★
+					96 text 10%
+					97 text 3 ★
+					98 text 3%
+					99 text 2 ★
+					100 text 1%
+					101 text 1 ★
+					102 text 1%
+				103 button Avaliar este ponto
+					104 image
+					105 text Avaliar este ponto
+				106 container
+					107 text MP
+					108 text Marina Polverari
+					109 text ★ ★ ★ ★ ★
+					110 text Muito bom para a rotina perto da Lins, com carregamento rápido e estrutura completa.
+				111 container
+					112 text JB
+					113 text Joseffe Barroso
+					114 text ★ ★ ★ ★ ★
+					115 text A sinalização facilita a chegada e as comodidades tornam a espera bem tranquila.
+		116 button Ver mapa
+			117 text Ver mapa
+		118 button Iniciar rota para Flui Vila Mariana Lins
+			119 text Iniciar rota
+
+The focused UI element is 1 AXWebArea 127.0.0.1:8773/point-details?stationId=station-06
+
+FILTRO 500 M — VILA MARIANA
+Browser tab: 1, Title: "127.0.0.1:8773/search", URL: "http://127.0.0.1:8773/search".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+~				110 button 500 m, selecionado
+~			123 text Ver 1 ponto no mapa
+The focused UI element is 110 button 500 m, selecionado
+
+OBSERVAÇÃO TRANSITÓRIA APÓS APLICAR 500 M (MAPA ESTABILIZADO REGISTRADO ADIANTE)
+Browser tab: 1, Title: "127.0.0.1:8773/search", URL: "http://127.0.0.1:8773/search".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+~		122 button (disabled) Ver pontos encontrados no mapa
++		125 container Buscando pontos...
++			126 container
++				127 text Buscando pontos...
+The focused UI element is 1 AXWebArea 127.0.0.1:8773/search
+
+PERFIL COM VEÍCULO CONFIGURADO
+Browser tab: 1, Title: "127.0.0.1:8773/profile", URL: "http://127.0.0.1:8773/profile".
+1 AXWebArea 127.0.0.1:8773/profile
+	2 container
+		3 button Voltar
+		4 text Perfil
+		5 container
+			6 container Imagem ilustrativa de veículo
+				7 image Imagem ilustrativa de veículo
+			8 text Caio Duarte
+			9 text Veículo NEXT
+			10 container
+				11 text Veículo demonstrativo ·  300  km com bateria cheia Origem demonstrativa:  Vila Mariana  · imagem ilustrativa
+			12 container
+				13 text 0 favoritos
+			14 container
+				15 text 0 histórico
+			16 container
+				17 text 0 avaliações
+			18 button Abrir configurações
+				19 container
+					20 image
+					21 text Configurações
+			22 button Sair da conta
+				23 container
+					24 image
+					25 text Sair da conta
+			26 text Atalhos úteis
+			27 text Acesse rapidamente as áreas mais importantes antes de escolher onde carregar.
+			28 container
+				29 button Abrir mapa
+					30 container
+						31 image
+						32 text Mapa Ver pontos
+				33 button Abrir filtros
+					34 container
+						35 image
+						36 text Filtros Refinar busca
+			37 button Mostrar favoritos
+				38 container
+					39 image
+					40 text Favoritos
+			41 button Mostrar histórico
+				42 container
+					43 image
+					44 text Histórico
+			45 text Pontos favoritos
+			46 text Sua seleção de estações para consultar antes de sair.
+			47 container
+				48 image
+				49 text Nenhum favorito salvo
+				50 text Toque no coração de uma estação para montar sua lista de pontos preferidos.
+
+The focused UI element is 1 AXWebArea 127.0.0.1:8773/profile
+
+MAPA ESTABILIZADO COM RAIO DE 500 M — VILA MARIANA
+Browser tab: 1, Title: "127.0.0.1:8773/search", URL: "http://127.0.0.1:8773/map?filters=%7B%22connectorTypes%22%3A%5B%5D%2C%22statuses%22%3A%5B%5D%2C%22amenities%22%3A%5B%5D%2C%22power%22%3A%7B%22minKw%22%3A0%7D%2C%22distance%22%3A%7B%22maxKm%22%3A0.5%7D%2C%22rating%22%3A%7B%22minRating%22%3A0%7D%2C%22onlyOpenNow%22%3Afalse%2C%22onlyAvailableChargers%22%3Afalse%2C%22onlyOpen24h%22%3Afalse%7D&query=".
+1 AXWebArea 127.0.0.1:8773/map?filters=%7B%22connectorTypes%22%3A%5B%5D%2C%22statuses%22%3A%5B%5D%2C%22amenities%22%3A%5B%5D%2C%22power%22%3A%7B%22minKw%22%3A0%7D%2C%22distance%22%3A%7B%22maxKm%22%3A0.5%7D%2C%22rating%22%3A%7B%22minRating%22%3A0%7D%2C%22onlyOpenNow%22%3Afalse%2C%22onlyAvailableChargers%22%3Afalse%2C%22onlyOpen24h%22%3Afalse%7D&query=
+	2 container
+		3 container
+			4 image
+			5 button Veículo NEXT. Bateria para estimativa: 35 por cento. Informado manualmente. 16/10, 12:25. Cerca de 105 quilômetros estimados
+				6 container
+					7 container
+						8 text 35 %
+					9 text Informado manualmente
+					10 text 16/10, 12:25
+			11 button Abrir perfil
+		12 container
+			13 image
+			14 text field (settable) Buscar no mapa
+			15 button Abrir busca e filtros
+		16 container
+			17 button Mostrar atalhos de filtro
+			18 container
+				19 button Aberto agora
+					20 container
+						21 image
+						22 text Aberto agora
+				23 button CCS2
+					24 container
+						25 image
+						26 text CCS2
+				27 button Rápido
+					28 container
+						29 image
+						30 text Rápido
+				31 button Banheiro
+					32 container
+						33 image
+						34 text Banheiro
+		35 container Mapa com pontos de recarga próximos
+			36 container
+				37 text Prévia do mapa -23.574 ,  -46.624
+			38 button Abrir ficha de Flui Vila Mariana Lins
+		39 container
+			40 button Aumentar zoom do mapa
+				41 text +
+			42 button Diminuir zoom do mapa
+				43 text −
+			44 button Centralizar origem demonstrativa: Vila Mariana
+		45 button Abrir assistente Flui IA
+			46 container
+				47 image
+				48 image
+				49 image
+				50 text Flui IA
+		51 container
+			52 button Minimizar opções demonstrativas para ver o mapa inteiro
+			53 text Opções demonstrativas
+			54 text Origem:  Vila Mariana  · distâncias em linha reta, sem cálculo de percurso
+			55 button Flui Vila Mariana Lins. Opção demonstrativa. Av. Lins de Vasconcelos, 1264. Aberto agora. Nota 4,8. 150 kW. ≈0 m em linha reta. Chegada estimada com 35% de bateria.
+				56 container
+					57 container
+						58 image
+						59 text OPÇÃO DEMONSTRATIVA
+						60 image
+						61 text Confortável
+					62 image
+					63 text Flui Vila Mariana Lins Av. Lins de Vasconcelos, 1264 ≈0 m  em linha reta
+					64 container
+						65 text Aberto agora
+					66 container
+						67 image
+						68 text 4,8
+					69 container
+						70 image
+						71 text 150 kW
+
+The focused UI element is 1 AXWebArea 127.0.0.1:8773/map?filters=%7B%22connectorTypes%22%3A%5B%5D%2C%22statuses%22%3A%5B%5D%2C%22amenities%22%3A%5B%5D%2C%22power%22%3A%7B%22minKw%22%3A0%7D%2C%22distance%22%3A%7B%22maxKm%22%3A0.5%7D%2C%22rating%22%3A%7B%22minRating%22%3A0%7D%2C%22onlyOpenNow%22%3Afalse%2C%22onlyAvailableChargers%22%3Afalse%2C%22onlyOpen24h%22%3Afalse%7D&query=
+
+VALIDAÇÃO DE AUTONOMIA INVÁLIDA
+Browser tab: 1, Title: "127.0.0.1:8773/settings", URL: "http://127.0.0.1:8773/settings".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+~			12 text field (settable) Description: Autonomia com bateria cheia em quilômetros, Value: 0
++			74 text Informe autonomia maior que zero e de até 2000 km.
+The focused UI element is 26 button Salvar demonstração
+
+TENTATIVA ANTECIPADA DE TROCA — A AUTOMAÇÃO NÃO AGUARDOU CARREGAMENTO/CONFIRMAÇÃO; VALORES AINDA ANTERIORES (NÃO COMPROVA TROCA)
+Browser tab: 1, Title: "127.0.0.1:8773/settings", URL: "http://127.0.0.1:8773/settings".
+1 AXWebArea 127.0.0.1:8773/settings
+	2 container
+		3 button Voltar
+		4 text Configurações
+		5 button Reiniciar dados locais do Flui
+		6 container
+			7 text Demonstração NEXT
+			8 text Veículo e autonomia usados nas simulações. Sem GPS ou integração com o veículo.
+			9 text Veículo demonstrativo
+			10 text field (settable) Description: Veículo demonstrativo, Value: Veículo NEXT
+			11 text Autonomia com bateria cheia (km)
+			12 text field (settable) Description: Autonomia com bateria cheia em quilômetros, Value: 300
+			13 text Origem demonstrativa
+			14 text Distâncias em linha reta a partir da origem escolhida. Não representam percursos reais.
+			15 container
+				16 button Selecionar origem FIAP
+					17 container
+						18 text FIAP
+				19 button Selecionar origem Paulista
+					20 container
+						21 text Paulista
+				22 button Selecionar origem Vila Mariana
+					23 container
+						24 text Vila Mariana
+						25 image
+			26 button Salvar demonstração
+				27 container
+					28 image
+					29 text Salvar demonstração
+			30 container
+				31 text Bateria:  35 % ·  Informado manualmente .  16/10, 12:25 . Para alterar, use o indicador de bateria no mapa.
+			32 button Abrir mapa para editar bateria
+				33 text Editar bateria no mapa
+			34 text Aparência
+			35 text Escolha o tema visual do app.
+			36 container
+				37 button Selecionar tema claro
+					38 container
+						39 image
+						40 text Claro
+						41 text Fundo claro e cartões brancos.
+						42 image
+				43 button Selecionar tema escuro
+					44 container
+						45 image
+						46 text Escuro
+						47 text Visual mais confortável para baixa luz.
+			48 text Acessibilidade
+			49 text Ajuste o tamanho da fonte para melhorar a leitura.
+			50 container
+				51 button Selecionar fonte menor
+					52 container
+						53 image
+						54 text Fonte menor
+						55 text Mais conteúdo visível por tela.
+				56 button Selecionar fonte padrão
+					57 container
+						58 image
+						59 text Fonte padrão
+						60 text Equilíbrio entre leitura e espaço.
+						61 image
+				62 button Selecionar fonte maior
+					63 container
+						64 image
+						65 text Fonte maior
+						66 text Leitura mais confortável.
+			67 text Introdução
+			68 text Reveja o tour inicial do app no tema visual ativo agora.
+			69 button Ver introdução do app
+				70 container
+					71 image
+					72 text Ver introdução
+					73 text Acesse novamente os recursos principais do Flui.
+
+The focused UI element is 1 AXWebArea 127.0.0.1:8773/settings
+
+FIAP E 200 KM PERSISTIDOS — APÓS CONFIRMAÇÃO DE SALVAMENTO E RELOAD
+Browser tab: 1, Title: "127.0.0.1:8773/settings", URL: "http://127.0.0.1:8773/settings".
+1 AXWebArea 127.0.0.1:8773/settings
+	2 container
+		3 button Voltar
+		4 text Configurações
+		5 button Reiniciar dados locais do Flui
+		6 container
+			7 text Demonstração NEXT
+			8 text Veículo e autonomia usados nas simulações. Sem GPS ou integração com o veículo.
+			9 text Veículo demonstrativo
+			10 text field (settable) Description: Veículo demonstrativo, Value: Veículo NEXT
+			11 text Autonomia com bateria cheia (km)
+			12 text field (settable) Description: Autonomia com bateria cheia em quilômetros, Value: 200
+			13 text Origem demonstrativa
+			14 text Distâncias em linha reta a partir da origem escolhida. Não representam percursos reais.
+			15 container
+				16 button Selecionar origem FIAP
+					17 container
+						18 text FIAP
+						19 image
+				20 button Selecionar origem Paulista
+					21 container
+						22 text Paulista
+				23 button Selecionar origem Vila Mariana
+					24 container
+						25 text Vila Mariana
+			26 button Salvar demonstração
+				27 container
+					28 image
+					29 text Salvar demonstração
+			30 container
+				31 text Bateria:  35 % ·  Informado manualmente .  16/10, 12:25 . Para alterar, use o indicador de bateria no mapa.
+			32 button Abrir mapa para editar bateria
+				33 text Editar bateria no mapa
+			34 text Aparência
+			35 text Escolha o tema visual do app.
+			36 container
+				37 button Selecionar tema claro
+					38 container
+						39 image
+						40 text Claro
+						41 text Fundo claro e cartões brancos.
+						42 image
+				43 button Selecionar tema escuro
+					44 container
+						45 image
+						46 text Escuro
+						47 text Visual mais confortável para baixa luz.
+			48 text Acessibilidade
+			49 text Ajuste o tamanho da fonte para melhorar a leitura.
+			50 container
+				51 button Selecionar fonte menor
+					52 container
+						53 image
+						54 text Fonte menor
+						55 text Mais conteúdo visível por tela.
+				56 button Selecionar fonte padrão
+					57 container
+						58 image
+						59 text Fonte padrão
+						60 text Equilíbrio entre leitura e espaço.
+						61 image
+				62 button Selecionar fonte maior
+					63 container
+						64 image
+						65 text Fonte maior
+						66 text Leitura mais confortável.
+			67 text Introdução
+			68 text Reveja o tour inicial do app no tema visual ativo agora.
+			69 button Ver introdução do app
+				70 container
+					71 image
+					72 text Ver introdução
+					73 text Acesse novamente os recursos principais do Flui.
+
+The focused UI element is 1 AXWebArea 127.0.0.1:8773/settings
+
+MAPA — FIAP, 200 KM, BATERIA MANUAL 35%
+Browser tab: 1, Title: "127.0.0.1:8773/map", URL: "http://127.0.0.1:8773/map".
+1 AXWebArea 127.0.0.1:8773/map
+	2 container
+		3 container
+			4 image
+			5 button Veículo NEXT. Bateria para estimativa: 35 por cento. Informado manualmente. 16/10, 12:25. Cerca de 70 quilômetros estimados
+				6 container
+					7 container
+						8 text 35 %
+					9 text Informado manualmente
+					10 text 16/10, 12:25
+			11 button Abrir perfil
+		12 container
+			13 image
+			14 text field (settable) Buscar no mapa
+			15 button Abrir busca e filtros
+		16 container
+			17 button Mostrar atalhos de filtro
+			18 container
+				19 button Aberto agora
+					20 container
+						21 image
+						22 text Aberto agora
+				23 button CCS2
+					24 container
+						25 image
+						26 text CCS2
+				27 button Rápido
+					28 container
+						29 image
+						30 text Rápido
+				31 button Banheiro
+					32 container
+						33 image
+						34 text Banheiro
+		35 container Mapa com pontos de recarga próximos
+			36 container
+				37 text Prévia do mapa -23.568 ,  -46.653
+			38 button Abrir ficha de Higienópolis Prime Charge
+			39 button Abrir ficha de Flui Express MASP
+			40 button Abrir ficha de Plug & Café Consolação
+			41 button Abrir ficha de Charge City Jardins
+			42 button Abrir ficha de Estação Jardins Pamplona
+			43 button Abrir ficha de Flui Vila Mariana Lins
+			44 button Abrir ficha de EcoCarga Parque Aclimação
+			45 button Abrir ficha de Hub Paraíso Vergueiro
+			46 button Abrir ficha de Mercado Charge Cambuci
+			47 button Abrir ficha de Garagem Liberdade Solar
+			48 button Abrir ficha de Fast Point Ana Rosa
+			49 button Abrir ficha de Garagem Verde Brigadeiro
+		50 container
+			51 button Aumentar zoom do mapa
+				52 text +
+			53 button Diminuir zoom do mapa
+				54 text −
+			55 button Centralizar origem demonstrativa: FIAP
+		56 button Abrir assistente Flui IA
+			57 container
+				58 image
+				59 image
+				60 image
+				61 text Flui IA
+		62 container
+			63 button Minimizar opções demonstrativas para ver o mapa inteiro
+			64 text Opções demonstrativas
+			65 text Origem:  FIAP  · distâncias em linha reta, sem cálculo de percurso
+			66 container
+				67 button Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈2,1 km em linha reta. Chegada estimada com 34% de bateria.
+					68 container
+						69 container
+							70 image
+							71 text OPÇÃO DEMONSTRATIVA
+							72 image
+							73 text Confortável
+						74 image
+						75 text Higienópolis Prime Charge Rua Alagoas, 974 ≈2,1 km  em linha reta
+						76 container
+							77 text Aberto agora
+						78 container
+							79 image
+							80 text 4,9
+						81 container
+							82 image
+							83 text 150 kW
+				84 button Plug & Café Consolação. Opção demonstrativa. R. da Consolação, 2302. Aberto agora. Nota 4,3. 50 kW. ≈1,1 km em linha reta. Chegada estimada com 34% de bateria.
+					85 container
+						86 container
+							87 image
+							88 text OPÇÃO DEMONSTRATIVA
+							89 image
+							90 text Confortável
+						91 image
+						92 text Plug & Café Consolação R. da Consolação, 2302 ≈1,1 km  em linha reta
+						93 container
+							94 text Aberto agora
+						95 container
+							96 image
+							97 text 4,3
+						98 container
+							99 image
+							100 text 50 kW
+				101 button Charge City Jardins. Opção demonstrativa. Alameda Santos, 2159. Aberto agora. Nota 4,7. 120 kW. ≈1,2 km em linha reta. Chegada estimada com 34% de bateria.
+					102 container
+						103 container
+							104 image
+							105 text OPÇÃO DEMONSTRATIVA
+							106 image
+							107 text Confortável
+						108 image
+						109 text Charge City Jardins Alameda Santos, 2159 ≈1,2 km  em linha reta
+						110 container
+							111 text Aberto agora
+						112 container
+							113 image
+							114 text 4,7
+						115 container
+							116 image
+							117 text 120 kW
+				118 button Flui Vila Mariana Lins. Opção demonstrativa. Av. Lins de Vasconcelos, 1264. Aberto agora. Nota 4,8. 150 kW. ≈3,1 km em linha reta. Chegada estimada com 33% de bateria.
+					119 container
+						120 container
+							121 image
+							122 text OPÇÃO DEMONSTRATIVA
+							123 image
+							124 text Confortável
+						125 image
+						126 text Flui Vila Mariana Lins Av. Lins de Vasconcelos, 1264 ≈3,1 km  em linha reta
+						127 container
+							128 text Aberto agora
+						129 container
+							130 image
+							131 text 4,8
+						132 container
+							133 image
+							134 text 150 kW
+				135 button EcoCarga Parque Aclimação. Opção demonstrativa. R. Muniz de Sousa, 1119. Aberto agora. Nota 4,2. 22 kW. ≈2,6 km em linha reta. Chegada estimada com 34% de bateria.
+					136 container
+						137 container
+							138 image
+							139 text OPÇÃO DEMONSTRATIVA
+							140 image
+							141 text Confortável
+						142 image
+						143 text EcoCarga Parque Aclimação R. Muniz de Sousa, 1119 ≈2,6 km  em linha reta
+						144 container
+							145 text Aberto agora
+						146 container
+							147 image
+							148 text 4,2
+						149 container
+							150 image
+							151 text 22 kW
+				152 button Mercado Charge Cambuci. Opção demonstrativa. R. Luís Gama, 650. Aberto agora. Nota 4,1. 50 kW. ≈3,6 km em linha reta. Chegada estimada com 33% de bateria.
+					153 container
+						154 container
+							155 image
+							156 text OPÇÃO DEMONSTRATIVA
+							157 image
+							158 text Confortável
+						159 image
+						160 text Mercado Charge Cambuci R. Luís Gama, 650 ≈3,6 km  em linha reta
+						161 container
+							162 text Aberto agora
+						163 container
+							164 image
+							165 text 4,1
+						166 container
+							167 image
+							168 text 50 kW
+
+The focused UI element is 1 AXWebArea 127.0.0.1:8773/map
+
+FICHA HIGIENÓPOLIS — FIAP, 200 KM, BATERIA 35%
+Browser tab: 1, Title: "127.0.0.1:8773/point-details?stationId=station-01", URL: "http://127.0.0.1:8773/point-details?stationId=station-01".
+1 AXWebArea 127.0.0.1:8773/point-details?stationId=station-01
+	2 container
+		3 container
+			4 container
+				5 button Voltar ao mapa
+					6 image
+				7 button Adicionar aos favoritos
+					8 image
+			9 text Higienópolis Prime Charge
+			10 text Rua Alagoas, 974, Higienópolis, São Paulo, SP
+			11 container
+				12 image
+				13 text 4.9
+				14 container
+					15 text ( 184  avaliações)
+				16 text Aberto agora
+			17 container
+				18 image
+				19 text 4 de 6 carregadores livres no exemplo
+			20 container
+				21 text GUIA DO PONTO Opção com conector rápido no exemplo Dados demonstrativos, sem disponibilidade em tempo real. Distância em linha reta, autonomia e tempo de carga são estimativas simplificadas; confirme o funcionamento e a compatibilidade do veículo antes de ir.
+				22 container
+					23 image
+					24 text Espera simulada
+					25 text Baixa
+				26 container
+					27 image
+					28 text Tempo estimado
+					29 text 20 a 35 min
+				30 container
+					31 image
+					32 text Perfil
+					33 text Carga rápida
+			34 container
+				35 image
+				36 text Autonomia para chegar ao local
+Chegada estimada com 34% de bateria.
+Não garante recarga no local.
+			37 container
+				38 container
+					39 image
+					40 text Potência
+					41 container
+						42 text 150  kW
+					43 text Velocidade de carga
+				44 container
+					45 image
+					46 text Conectores
+					47 text CCS2, Type 2
+					48 text Tipos compatíveis
+				49 container
+					50 image
+					51 text Funcionamento
+					52 text 24 horas, todos os dias
+					53 text Disponibilidade demonstrativa de carregadores
+				54 container
+					55 image
+					56 text Distância aproximada
+					57 text ≈2,1 km
+					58 container
+						59 text Em linha reta desde  FIAP . Não é distância de percurso.
+			60 container
+				61 image
+				62 text Horário sugerido no exemplo
+				63 text 06h às 08h ou 13h às 15h ou 22h às 00h
+				64 text Sem previsão de movimento em tempo real
+			65 container
+				66 text Conectores do ponto
+				67 container
+					68 text CCS2 150  kW ·  2 de 4 carregadores livres no exemplo
+				69 container
+					70 text Type 2 22  kW ·  2 de 2 carregadores livres no exemplo
+			71 container
+				72 text Comodidades próximas
+				73 container
+					74 image
+					75 text Estacionamento
+				76 container
+					77 image
+					78 text Área coberta
+				79 container
+					80 image
+					81 text Banheiro
+				82 container
+					83 image
+					84 text Café
+				85 container
+					86 image
+					87 text Wi-Fi
+				88 container
+					89 image
+					90 text Segurança
+			91 container
+				92 text Avaliações de usuários
+				93 container
+					94 text 4.9 ★ ★ ★ ★ ★ 184  avaliações
+				95 container
+					96 text 5 ★
+					97 text 85%
+					98 text 4 ★
+					99 text 10%
+					100 text 3 ★
+					101 text 3%
+					102 text 2 ★
+					103 text 1%
+					104 text 1 ★
+					105 text 1%
+				106 button Avaliar este ponto
+					107 image
+					108 text Avaliar este ponto
+				109 container
+					110 text LB
+					111 text Leonardo Bragatti
+					112 text ★ ★ ★ ★ ★
+					113 text Cobertura, banheiro e café deixam a parada bem confortável para uma recarga rápida.
+				114 container
+					115 text MP
+					116 text Marina Polverari
+					117 text ★ ★ ★ ★ ★
+					118 text Boa sinalização, ambiente limpo e conexão estável no CCS2 durante a recarga.
+				119 container
+					120 text JP
+					121 text John Paul
+					122 text ★ ★ ★ ★ ★
+					123 text Ponto completo para quem precisa carregar sem abrir mão de segurança e Wi-Fi.
+		124 button Ver mapa
+			125 text Ver mapa
+		126 button Iniciar rota para Higienópolis Prime Charge
+			127 text Iniciar rota
+
+The focused UI element is 1 AXWebArea 127.0.0.1:8773/point-details?stationId=station-01
+
+FILTRO 500 M — FIAP
+Browser tab: 1, Title: "127.0.0.1:8773/search", URL: "http://127.0.0.1:8773/search".
+1 AXWebArea 127.0.0.1:8773/search
+	2 container
+		3 button Voltar ao mapa
+			4 image
+		5 text Busca e filtros
+		6 container
+			7 container
+				8 image
+				9 text field (settable) Campo de busca de pontos de recarga
+			10 text Sugestões rápidas
+			11 container
+				12 button Buscar por Paulista
+					13 text Paulista
+				14 button Buscar por Vila Mariana
+					15 text Vila Mariana
+				16 button Buscar por Higienópolis
+					17 text Higienópolis
+				18 button Buscar por Jardins
+					19 text Jardins
+				20 button Buscar por Liberdade
+					21 text Liberdade
+				22 button Buscar por Cambuci
+					23 text Cambuci
+			24 container
+				25 image
+				26 text Tipo de conector
+			27 container
+				28 button CCS2
+					29 image
+					30 text CCS2
+				31 button Tipo 2
+					32 image
+					33 text Tipo 2
+				34 button CHAdeMO
+					35 image
+					36 text CHAdeMO
+				37 button GB/T
+					38 image
+					39 text GB/T
+			40 container
+				41 image
+				42 text Potência mínima
+			43 container
+				44 button 22 kW
+					45 image
+					46 text 22 kW
+				47 button 50 kW
+					48 image
+					49 text 50 kW
+				50 button 100 kW
+					51 image
+					52 text 100 kW
+				53 button 150 kW
+					54 image
+					55 text 150 kW
+				56 button 250 kW
+					57 image
+					58 text 250 kW
+			59 container
+				60 image
+				61 text Disponibilidade
+			62 container
+				63 button Aberto agora
+					64 image
+					65 text Aberto agora
+				66 button Carregadores livres
+					67 image
+					68 text Carregadores livres
+				69 button Aberto 24h
+					70 image
+					71 text Aberto 24h
+			72 container
+				73 image
+				74 text Comodidades
+			75 container
+				76 button Restaurante
+					77 image
+					78 text Restaurante
+				79 button Café
+					80 image
+					81 text Café
+				82 button Banheiro
+					83 image
+					84 text Banheiro
+				85 button Estacionamento
+					86 image
+					87 text Estacionamento
+				88 button Área coberta
+					89 image
+					90 text Área coberta
+				91 button Wi-Fi
+					92 image
+					93 text Wi-Fi
+			94 container
+				95 image
+				96 text Avaliação mínima
+			97 container
+				98 button 4,0+
+					99 image
+					100 text 4,0+
+				101 button 4,5+
+					102 image
+					103 text 4,5+
+			104 container
+				105 image
+				106 text Raio de busca
+			107 container
+				108 text Em linha reta desde  FIAP , origem demonstrativa. Sem cálculo de percurso.
+			109 container
+				110 button 500 m, selecionado
+					111 image
+					112 text 500 m
+				113 button 1 km
+					114 image
+					115 text 1 km
+				116 button 5 km
+					117 image
+					118 text 5 km
+		119 button Limpar busca e filtros
+			120 image
+			121 text Limpar busca
+		122 button Ver pontos encontrados no mapa
+			123 text Ver 2 pontos no mapa
+			124 image
+
+The focused UI element is 110 button 500 m, selecionado
+
+MAPA 500 M — FIAP, PONTOS OCUPADO E EM MANUTENÇÃO
+Browser tab: 1, Title: "127.0.0.1:8773/search", URL: "http://127.0.0.1:8773/map?filters=%7B%22connectorTypes%22%3A%5B%5D%2C%22statuses%22%3A%5B%5D%2C%22amenities%22%3A%5B%5D%2C%22power%22%3A%7B%22minKw%22%3A0%7D%2C%22distance%22%3A%7B%22maxKm%22%3A0.5%7D%2C%22rating%22%3A%7B%22minRating%22%3A0%7D%2C%22onlyOpenNow%22%3Afalse%2C%22onlyAvailableChargers%22%3Afalse%2C%22onlyOpen24h%22%3Afalse%7D&query=".
+1 AXWebArea 127.0.0.1:8773/map?filters=%7B%22connectorTypes%22%3A%5B%5D%2C%22statuses%22%3A%5B%5D%2C%22amenities%22%3A%5B%5D%2C%22power%22%3A%7B%22minKw%22%3A0%7D%2C%22distance%22%3A%7B%22maxKm%22%3A0.5%7D%2C%22rating%22%3A%7B%22minRating%22%3A0%7D%2C%22onlyOpenNow%22%3Afalse%2C%22onlyAvailableChargers%22%3Afalse%2C%22onlyOpen24h%22%3Afalse%7D&query=
+	2 container
+		3 container
+			4 image
+			5 button Veículo NEXT. Bateria para estimativa: 35 por cento. Informado manualmente. 16/10, 12:25. Cerca de 70 quilômetros estimados
+				6 container
+					7 container
+						8 text 35 %
+					9 text Informado manualmente
+					10 text 16/10, 12:25
+			11 button Abrir perfil
+		12 container
+			13 image
+			14 text field (settable) Buscar no mapa
+			15 button Abrir busca e filtros
+		16 container
+			17 button Mostrar atalhos de filtro
+			18 container
+				19 button Aberto agora
+					20 container
+						21 image
+						22 text Aberto agora
+				23 button CCS2
+					24 container
+						25 image
+						26 text CCS2
+				27 button Rápido
+					28 container
+						29 image
+						30 text Rápido
+				31 button Banheiro
+					32 container
+						33 image
+						34 text Banheiro
+		35 container Mapa com pontos de recarga próximos
+			36 container
+				37 text Prévia do mapa -23.562 ,  -46.655
+			38 button Abrir ficha de Flui Express MASP
+			39 button Abrir ficha de Estação Jardins Pamplona
+		40 container
+			41 button Aumentar zoom do mapa
+				42 text +
+			43 button Diminuir zoom do mapa
+				44 text −
+			45 button Centralizar origem demonstrativa: FIAP
+		46 button Abrir assistente Flui IA
+			47 container
+				48 image
+				49 image
+				50 image
+				51 text Flui IA
+		52 container
+			53 button Minimizar opções demonstrativas para ver o mapa inteiro
+			54 text Nenhum ponto disponível
+			55 text Origem:  FIAP  · distâncias em linha reta, sem cálculo de percurso
+			56 text Não encontramos pontos com esses critérios.
+			57 text Tente limpar alguns filtros ou buscar por outro endereço.
+			58 button Ajustar busca
+				59 text Ajustar busca
+
+The focused UI element is 1 AXWebArea 127.0.0.1:8773/map?filters=%7B%22connectorTypes%22%3A%5B%5D%2C%22statuses%22%3A%5B%5D%2C%22amenities%22%3A%5B%5D%2C%22power%22%3A%7B%22minKw%22%3A0%7D%2C%22distance%22%3A%7B%22maxKm%22%3A0.5%7D%2C%22rating%22%3A%7B%22minRating%22%3A0%7D%2C%22onlyOpenNow%22%3Afalse%2C%22onlyAvailableChargers%22%3Afalse%2C%22onlyOpen24h%22%3Afalse%7D&query=
+
+FLUIA — NENHUMA RECARGA VIÁVEL COM FILTRO 500 M NA FIAP
+Browser tab: 1, Title: "127.0.0.1:8773/search", URL: "http://127.0.0.1:8773/map?filters=%7B%22connectorTypes%22%3A%5B%5D%2C%22statuses%22%3A%5B%5D%2C%22amenities%22%3A%5B%5D%2C%22power%22%3A%7B%22minKw%22%3A0%7D%2C%22distance%22%3A%7B%22maxKm%22%3A0.5%7D%2C%22rating%22%3A%7B%22minRating%22%3A0%7D%2C%22onlyOpenNow%22%3Afalse%2C%22onlyAvailableChargers%22%3Afalse%2C%22onlyOpen24h%22%3Afalse%7D&query=".
+1 AXWebArea 127.0.0.1:8773/map?filters=%7B%22connectorTypes%22%3A%5B%5D%2C%22statuses%22%3A%5B%5D%2C%22amenities%22%3A%5B%5D%2C%22power%22%3A%7B%22minKw%22%3A0%7D%2C%22distance%22%3A%7B%22maxKm%22%3A0.5%7D%2C%22rating%22%3A%7B%22minRating%22%3A0%7D%2C%22onlyOpenNow%22%3Afalse%2C%22onlyAvailableChargers%22%3Afalse%2C%22onlyOpen24h%22%3Afalse%7D&query=
+	2 container
+		3 container
+			4 image
+			5 button Veículo NEXT. Bateria para estimativa: 35 por cento. Informado manualmente. 16/10, 12:25. Cerca de 70 quilômetros estimados
+				6 container
+					7 container
+						8 text 35 %
+					9 text Informado manualmente
+					10 text 16/10, 12:25
+			11 button Abrir perfil
+		12 container
+			13 image
+			14 text field (settable) Buscar no mapa
+			15 button Abrir busca e filtros
+		16 container
+			17 button Mostrar atalhos de filtro
+			18 container
+				19 button Aberto agora
+					20 container
+						21 image
+						22 text Aberto agora
+				23 button CCS2
+					24 container
+						25 image
+						26 text CCS2
+				27 button Rápido
+					28 container
+						29 image
+						30 text Rápido
+				31 button Banheiro
+					32 container
+						33 image
+						34 text Banheiro
+		35 container Mapa com pontos de recarga próximos
+			36 container
+				37 text Prévia do mapa -23.562 ,  -46.655
+			38 button Abrir ficha de Flui Express MASP
+			39 button Abrir ficha de Estação Jardins Pamplona
+		40 container
+			41 button Aumentar zoom do mapa
+				42 text +
+			43 button Diminuir zoom do mapa
+				44 text −
+			45 button Centralizar origem demonstrativa: FIAP
+		46 button Abrir assistente Flui IA
+			47 container
+				48 image
+				49 image
+				50 image
+				51 text Flui IA
+		52 container
+			53 button Minimizar opções demonstrativas para ver o mapa inteiro
+			54 text Nenhum ponto disponível
+			55 text Origem:  FIAP  · distâncias em linha reta, sem cálculo de percurso
+			56 text Não encontramos pontos com esses critérios.
+			57 text Tente limpar alguns filtros ou buscar por outro endereço.
+			58 button Ajustar busca
+				59 text Ajustar busca
+	60 container
+		61 container
+			62 button Fechar assistente Flui IA
+			63 container
+				64 text Flui IA
+				65 text Recomendação simulada com os dados do protótipo.
+				66 button Fechar assistente
+			67 container
+				68 text Nenhuma opção viável confirmada Os dados disponíveis não confirmam uma opção com alcance, horário, carregador livre e comodidades solicitadas. Revise os filtros e os dados informados. Não há indicação segura neste cenário.
+
+The focused UI element is 1 AXWebArea 127.0.0.1:8773/map?filters=%7B%22connectorTypes%22%3A%5B%5D%2C%22statuses%22%3A%5B%5D%2C%22amenities%22%3A%5B%5D%2C%22power%22%3A%7B%22minKw%22%3A0%7D%2C%22distance%22%3A%7B%22maxKm%22%3A0.5%7D%2C%22rating%22%3A%7B%22minRating%22%3A0%7D%2C%22onlyOpenNow%22%3Afalse%2C%22onlyAvailableChargers%22%3Afalse%2C%22onlyOpen24h%22%3Afalse%7D&query=
+
+ORIGEM PAULISTA PERSISTIDA APÓS RELOAD
+Browser tab: 1, Title: "127.0.0.1:8773/settings", URL: "http://127.0.0.1:8773/settings".
+1 AXWebArea 127.0.0.1:8773/settings
+	2 container
+		3 button Voltar
+		4 text Configurações
+		5 button Reiniciar dados locais do Flui
+		6 container
+			7 text Demonstração NEXT
+			8 text Veículo e autonomia usados nas simulações. Sem GPS ou integração com o veículo.
+			9 text Veículo demonstrativo
+			10 text field (settable) Description: Veículo demonstrativo, Value: Veículo NEXT
+			11 text Autonomia com bateria cheia (km)
+			12 text field (settable) Description: Autonomia com bateria cheia em quilômetros, Value: 200
+			13 text Origem demonstrativa
+			14 text Distâncias em linha reta a partir da origem escolhida. Não representam percursos reais.
+			15 container
+				16 button Selecionar origem FIAP
+					17 container
+						18 text FIAP
+				19 button Selecionar origem Paulista
+					20 container
+						21 text Paulista
+						22 image
+				23 button Selecionar origem Vila Mariana
+					24 container
+						25 text Vila Mariana
+			26 button Salvar demonstração
+				27 container
+					28 image
+					29 text Salvar demonstração
+			30 container
+				31 text Bateria:  35 % ·  Informado manualmente .  16/10, 12:25 . Para alterar, use o indicador de bateria no mapa.
+			32 button Abrir mapa para editar bateria
+				33 text Editar bateria no mapa
+			34 text Aparência
+			35 text Escolha o tema visual do app.
+			36 container
+				37 button Selecionar tema claro
+					38 container
+						39 image
+						40 text Claro
+						41 text Fundo claro e cartões brancos.
+						42 image
+				43 button Selecionar tema escuro
+					44 container
+						45 image
+						46 text Escuro
+						47 text Visual mais confortável para baixa luz.
+			48 text Acessibilidade
+			49 text Ajuste o tamanho da fonte para melhorar a leitura.
+			50 container
+				51 button Selecionar fonte menor
+					52 container
+						53 image
+						54 text Fonte menor
+						55 text Mais conteúdo visível por tela.
+				56 button Selecionar fonte padrão
+					57 container
+						58 image
+						59 text Fonte padrão
+						60 text Equilíbrio entre leitura e espaço.
+						61 image
+				62 button Selecionar fonte maior
+					63 container
+						64 image
+						65 text Fonte maior
+						66 text Leitura mais confortável.
+			67 text Introdução
+			68 text Reveja o tour inicial do app no tema visual ativo agora.
+			69 button Ver introdução do app
+				70 container
+					71 image
+					72 text Ver introdução
+					73 text Acesse novamente os recursos principais do Flui.
+
+The focused UI element is 1 AXWebArea 127.0.0.1:8773/settings
+
+EXPORTAÇÃO FINAL — CONFIGURAÇÃO PERSISTIDA
+Browser tab: 1, Title: "127.0.0.1:8773/settings", URL: "http://127.0.0.1:8773/settings".
+1 AXWebArea 127.0.0.1:8773/settings
+	2 container
+		3 button Voltar
+		4 text Configurações
+		5 button Reiniciar dados locais do Flui
+		6 container
+			7 text Demonstração NEXT
+			8 text Veículo e autonomia usados nas simulações. Sem GPS ou integração com o veículo.
+			9 text Veículo demonstrativo
+			10 text field (settable) Description: Veículo demonstrativo, Value: Veículo NEXT
+			11 text Autonomia com bateria cheia (km)
+			12 text field (settable) Description: Autonomia com bateria cheia em quilômetros, Value: 200
+			13 text Origem demonstrativa
+			14 text Distâncias em linha reta a partir da origem escolhida. Não representam percursos reais.
+			15 container
+				16 button Selecionar origem FIAP
+					17 container
+						18 text FIAP
+				19 button Selecionar origem Paulista
+					20 container
+						21 text Paulista
+						22 image
+				23 button Selecionar origem Vila Mariana
+					24 container
+						25 text Vila Mariana
+			26 button Salvar demonstração
+				27 container
+					28 image
+					29 text Salvar demonstração
+			30 container
+				31 text Bateria:  35 % ·  Informado manualmente .  16/10, 12:25 . Para alterar, use o indicador de bateria no mapa.
+			32 button Abrir mapa para editar bateria
+				33 text Editar bateria no mapa
+			34 text Aparência
+			35 text Escolha o tema visual do app.
+			36 container
+				37 button Selecionar tema claro
+					38 container
+						39 image
+						40 text Claro
+						41 text Fundo claro e cartões brancos.
+						42 image
+				43 button Selecionar tema escuro
+					44 container
+						45 image
+						46 text Escuro
+						47 text Visual mais confortável para baixa luz.
+			48 text Acessibilidade
+			49 text Ajuste o tamanho da fonte para melhorar a leitura.
+			50 container
+				51 button Selecionar fonte menor
+					52 container
+						53 image
+						54 text Fonte menor
+						55 text Mais conteúdo visível por tela.
+				56 button Selecionar fonte padrão
+					57 container
+						58 image
+						59 text Fonte padrão
+						60 text Equilíbrio entre leitura e espaço.
+						61 image
+				62 button Selecionar fonte maior
+					63 container
+						64 image
+						65 text Fonte maior
+						66 text Leitura mais confortável.
+			67 text Introdução
+			68 text Reveja o tour inicial do app no tema visual ativo agora.
+			69 button Ver introdução do app
+				70 container
+					71 image
+					72 text Ver introdução
+					73 text Acesse novamente os recursos principais do Flui.
+
+The focused UI element is 1 AXWebArea 127.0.0.1:8773/settings

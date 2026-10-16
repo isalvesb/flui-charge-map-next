@@ -1,0 +1,40 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+React Compiler enabled
+Starting Metro Bundler
+Static rendering is enabled. Learn more: https://docs.expo.dev/router/reference/static-rendering/
+| (node:41033) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:41035) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:41037) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:41034) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:41038) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:41036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:41039) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓░░░░░░░ 57.4% (407/557)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░ 87.9% ( 663/2419)
+λ Bundled 2129ms node_modules/expo-router/node/render.js (2545 modules)
+Web Bundled 2464ms node_modules/expo-router/entry.js (2521 modules)
+
+› web bundles (1):
+_expo/static/js/web/entry-227c59eecfc455491f3aaa6fef2e8fd1.js (3.66 MB)
+
+› Static routes (11):
+/map (97.9 kB)
+/ (index) (39.6 kB)
+/review (40.6 kB)
+/search (74.1 kB)
+/loading (40.8 kB)
+/profile (51.1 kB)
+/settings (59.2 kB)
+/_sitemap (38.8 kB)
+/onboarding (44.4 kB)
+/+not-found (38.8 kB)
+/point-details (69 kB)
+
+Exported: /tmp/flui-alfa-1.3-web

@@ -48,7 +48,8 @@ import { chargingStations } from "../../data";
 import { defaultFilters } from "../../data/filterOptions";
 import { StationFilters } from "../../types";
 import { filtrarEstacoes } from "../../utils/filtrarEstacoes";
-import { avaliarAlcance } from "../../utils/autonomia";
+import { avaliarAlcance, calcularAutonomiaAtualKm } from "../../utils/autonomia";
+import { formatarDistanciaDemonstrativa } from "../../utils/demonstracao";
 import { canChargeAt } from "../../utils/stationAvailability";
 import { isStationOpenAt } from "../../utils/stationHours";
 import { getStationStatusInfo } from "../stations/stationPresentation";
@@ -175,18 +176,6 @@ type MapColorTokens = typeof baseColors & {
   successSoft?: string;
   dangerSoft?: string;
   warningLight?: string;
-};
-
-type UserLocation = {
-  latitude: number;
-  longitude: number;
-  accuracy?: number | null;
-};
-
-const LOCALIZACAO_DEMO_FIAP: UserLocation = {
-  latitude: -23.564304,
-  longitude: -46.652537,
-  accuracy: 25,
 };
 
 const toRecord = (value: unknown): Record<string, unknown> => {
@@ -688,7 +677,7 @@ export default function HomeMapScreen() {
     baseStyles,
     baseColors,
   );
-  const { userPreferences, updateBatteryPercent } = useAppPreferences();
+  const { userPreferences, updateBatteryPercent, demoOrigin, demoStations } = useAppPreferences();
   const reduceMotionEnabled = useReducedMotion();
   const now = useCurrentTime();
   const batteryLabels = getBatterySourceLabels(userPreferences);
@@ -721,8 +710,7 @@ export default function HomeMapScreen() {
   const userLocationPulseProgress = useRef(new Animated.Value(0)).current;
   const assistantLabelProgress = useRef(new Animated.Value(1)).current;
   const sheetPositionRef = useRef(0);
-  const [localizacaoUsuario, setLocalizacaoUsuario] =
-    useState<UserLocation | null>(LOCALIZACAO_DEMO_FIAP);
+  const localizacaoUsuario = demoOrigin;
   const [isLocatingUser, setIsLocatingUser] = useState(false);
   const [isSheetCollapsed, setIsSheetCollapsed] = useState(false);
   const [painelTotalmenteOculto, setPainelTotalmenteOculto] = useState(false);
@@ -1011,7 +999,7 @@ export default function HomeMapScreen() {
 
   const visibleStations = useMemo(() => {
     const filtradas = filtrarEstacoes({
-      estacoes: chargingStations,
+      estacoes: demoStations,
       filtros: filtrosDoMapa,
       termoBusca: searchTerm,
       agora: now,
@@ -1020,11 +1008,11 @@ export default function HomeMapScreen() {
     return ordenarPorFiltrosRapidos(
       filtradas.map((station) => ({
         station,
-        index: chargingStations.indexOf(station),
+        index: demoStations.indexOf(station),
       })),
       filtrosRapidos,
     );
-  }, [filtrosDoMapa, filtrosRapidos, searchTerm, now]);
+  }, [filtrosDoMapa, filtrosRapidos, searchTerm, now, demoStations]);
 
   const estacoesRecomendadas = useMemo(() => {
     return visibleStations.filter((item) => canChargeAt(item.station, now));
@@ -1045,6 +1033,7 @@ export default function HomeMapScreen() {
         statusColor: getStationMarkerColor(item.station, colors, now),
         rating: getStationRating(item.station),
         power: getStationPower(item.station),
+        distancia: formatarDistanciaDemonstrativa(item.station.distanceKm),
         alcance: avaliarAlcance(
           getStationDistanceNumber(item.station, item.index),
           vehicleRangeKm,
@@ -1078,7 +1067,7 @@ export default function HomeMapScreen() {
 
   const mapRegion = useMemo(() => {
     const firstVisibleStation =
-      visibleStations[0]?.station ?? chargingStations[0];
+      visibleStations[0]?.station ?? demoStations[0];
 
     if ((hasFiltersApplied || hasSearchTerm) && firstVisibleStation) {
       return criarRegiaoDoMapa(firstVisibleStation, true);
@@ -1098,7 +1087,7 @@ export default function HomeMapScreen() {
     // reflete o layout (sheet/mapArea) se estabilizando, e recalcular a
     // região a cada ajuste fazia o mapa reanimar várias vezes seguidas
     // logo na abertura, deixando o carregamento visivelmente mais lento.
-  }, [hasFiltersApplied, hasSearchTerm, localizacaoUsuario, visibleStations]);
+  }, [hasFiltersApplied, hasSearchTerm, localizacaoUsuario, visibleStations, demoStations]);
 
   const isPrimeiraRegiaoRef = useRef(true);
   const criteriosDeFocoRef = useRef({
@@ -1204,11 +1193,11 @@ export default function HomeMapScreen() {
     : "Opções demonstrativas";
 
   const corBateriaAtual = obterCorDeBateriaAtual(batteryPercent, colors);
-  const autonomiaAtualKm = Math.round((vehicleRangeKm * batteryPercent) / 100);
+  const autonomiaAtualKm = Math.round(calcularAutonomiaAtualKm(vehicleRangeKm, batteryPercent));
   const IconeBateriaEmEdicao = obterIconeDeBateriaAtual(bateriaEmEdicao);
   const corBateriaEmEdicao = obterCorDeBateriaAtual(bateriaEmEdicao, colors);
   const autonomiaEmEdicaoKm = Math.round(
-    (vehicleRangeKm * bateriaEmEdicao) / 100,
+    calcularAutonomiaAtualKm(vehicleRangeKm, bateriaEmEdicao),
   );
   const alturaListaComDoisCards = alturaCardPonto
     ? alturaCardPonto * 2
@@ -1389,9 +1378,7 @@ export default function HomeMapScreen() {
 
     setIsLocatingUser(true);
 
-    const nextLocation = LOCALIZACAO_DEMO_FIAP;
-
-    setLocalizacaoUsuario(nextLocation);
+    const nextLocation = demoOrigin;
 
     mapRef.current?.animateToRegion(
       criarRegiaoComFocoVisivel(
@@ -1403,7 +1390,7 @@ export default function HomeMapScreen() {
       reduceMotionEnabled ? 0 : 500,
     );
 
-    showLocationFeedback("Localização centralizada na FIAP");
+    showLocationFeedback(`Origem demonstrativa centralizada: ${demoOrigin.nome}`);
 
     if (isSheetCollapsed || painelTotalmenteOculto) {
       alternarModalDePontos(false);
@@ -1431,7 +1418,7 @@ export default function HomeMapScreen() {
             <View style={styles.headerActions}>
               <PressableScale
                 accessibilityRole="button"
-                accessibilityLabel={`Bateria para estimativa: ${batteryPercent} por cento. ${batteryLabels.source}. ${batteryLabels.detail}. Cerca de ${autonomiaAtualKm} quilômetros estimados`}
+                accessibilityLabel={`${userPreferences.vehicleName}. Bateria para estimativa: ${batteryPercent} por cento. ${batteryLabels.source}. ${batteryLabels.detail}. Cerca de ${autonomiaAtualKm} quilômetros estimados`}
                 accessibilityHint="Toque para ajustar o nível de bateria e ver o alcance nos pontos."
                 style={styles.vehicleButton}
                 onPress={abrirSeletorDeBateria}
@@ -1628,7 +1615,7 @@ export default function HomeMapScreen() {
                   latitude: localizacaoUsuario.latitude,
                   longitude: localizacaoUsuario.longitude,
                 }}
-                title="Você na FIAP"
+                title={`Origem demonstrativa: ${demoOrigin.nome}`}
                 description="Localização simulada para demonstração."
                 anchor={{ x: 0.5, y: 0.5 }}
                 tracksViewChanges={!reduceMotionEnabled}
@@ -1725,8 +1712,8 @@ export default function HomeMapScreen() {
 
             <PressableScale
               accessibilityRole="button"
-              accessibilityLabel="Centralizar localização na FIAP"
-              accessibilityHint="Centraliza o mapa em uma localização próxima à FIAP."
+              accessibilityLabel={`Centralizar origem demonstrativa: ${demoOrigin.nome}`}
+              accessibilityHint="Centraliza na origem selecionada nas configurações. Sem GPS."
               accessibilityState={{ busy: isLocatingUser }}
               pressedScale={0.94}
               style={[
@@ -1829,6 +1816,9 @@ export default function HomeMapScreen() {
               <View style={styles.sheetHeader}>
                 <Text style={styles.sheetTitle}>{sheetTitle}</Text>
               </View>
+              <Text style={styles.originDescription}>
+                Origem: {demoOrigin.nome} · distâncias em linha reta, sem cálculo de percurso
+              </Text>
 
             {hasNoResults ? (
               <View style={styles.emptyCard}>
@@ -1880,7 +1870,7 @@ export default function HomeMapScreen() {
                     <PressableScale
                       key={`${point.id}-${point.stationId}`}
                       accessibilityRole="button"
-                      accessibilityLabel={`${point.nomeEstacao}. ${point.criterioLabel}. ${point.address}. ${point.status}. Nota ${point.rating}. ${point.power}. ${legendaAlcance}.`}
+                      accessibilityLabel={`${point.nomeEstacao}. ${point.criterioLabel}. ${point.address}. ${point.status}. Nota ${point.rating}. ${point.power}. ${point.distancia} em linha reta. ${legendaAlcance}.`}
                       accessibilityHint="Abre a ficha detalhada do ponto de recarga."
                       style={styles.pointCard}
                       onPress={() => openStationDetails(point.stationId)}
@@ -1948,6 +1938,7 @@ export default function HomeMapScreen() {
                         {point.address}
                       </Text>
 
+                      <Text style={styles.pointAddress}>{point.distancia} em linha reta</Text>
                       <View style={styles.pointInlineMetaRow}>
                         <View style={styles.metaRow}>
                           <View

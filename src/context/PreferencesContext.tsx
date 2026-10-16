@@ -1,4 +1,12 @@
 import { normalizeBatteryData } from "../utils/batteryData";
+import { chargingStations } from "../data/fixtures/chargingStations";
+import { obterOrigemDemonstrativa } from "../data/demonstracao";
+import {
+  aplicarOrigemDemonstrativa,
+  normalizarConfiguracaoDemonstrativa,
+  validarConfiguracaoDemonstrativa,
+  type ConfiguracaoDemonstrativa,
+} from "../utils/demonstracao";
 import React, {
   createContext,
   useCallback,
@@ -35,6 +43,9 @@ type PreferencesContextValue = {
   updateAppearanceMode: (appearanceMode: AppearanceMode) => Promise<void>;
   updateFontSize: (fontSize: FontSizePreference) => Promise<void>;
   updateBatteryPercent: (batteryPercent: number) => Promise<void>;
+  updateDemoConfiguration: (config: ConfiguracaoDemonstrativa) => Promise<void>;
+  demoOrigin: ReturnType<typeof obterOrigemDemonstrativa>;
+  demoStations: ReturnType<typeof aplicarOrigemDemonstrativa>;
   scale: (size: number) => number;
 };
 
@@ -56,7 +67,7 @@ const defaultUserPreferences: UserPreferences = {
   hasSeenOnboarding: false,
   appearanceMode: "light",
   fontSize: "default",
-  vehicleRangeKm: 400,
+  ...normalizarConfiguracaoDemonstrativa(),
   ...normalizeBatteryData(),
 };
 
@@ -137,6 +148,20 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
     [savePreferences],
   );
 
+  const updateDemoConfiguration = useCallback(
+    async (config: ConfiguracaoDemonstrativa) => {
+      const error = validarConfiguracaoDemonstrativa(config);
+      if (error) throw new Error(error);
+      await savePreferences(normalizarConfiguracaoDemonstrativa(config));
+    },
+    [savePreferences],
+  );
+
+  const demoOrigin = obterOrigemDemonstrativa(userPreferences.demoOriginId);
+  const demoStations = useMemo(
+    () => aplicarOrigemDemonstrativa(chargingStations, demoOrigin),
+    [demoOrigin],
+  );
   const appearanceMode = userPreferences.appearanceMode;
   const fontSize = userPreferences.fontSize;
 
@@ -164,6 +189,9 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
       updateAppearanceMode,
       updateFontSize,
       updateBatteryPercent,
+      updateDemoConfiguration,
+      demoOrigin,
+      demoStations,
       scale,
     }),
     [
@@ -179,6 +207,9 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
       updateAppearanceMode,
       updateFontSize,
       updateBatteryPercent,
+      updateDemoConfiguration,
+      demoOrigin,
+      demoStations,
       scale,
     ],
   );
