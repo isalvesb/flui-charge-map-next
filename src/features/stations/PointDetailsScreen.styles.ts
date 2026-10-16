@@ -219,6 +219,7 @@ export const styles = StyleSheet.create({
   },
 
   availableText: {
+    flex: 1,
     color: "#3F554F",
     fontSize: 16,
     fontWeight: "700",
@@ -780,6 +781,44 @@ export const styles = StyleSheet.create({
     borderTopColor: "#DDE8E3",
     flexDirection: "row",
     gap: 12,
+  },
+
+  routeBackdrop: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+    backgroundColor: "rgba(0, 0, 0, 0.55)",
+  },
+  routeDialog: {
+    width: "100%",
+    maxWidth: 440,
+    padding: 24,
+    borderRadius: 24,
+    backgroundColor: "#FCFEFA",
+    gap: 12,
+  },
+  routeTitle: {
+    color: "#10221E",
+    fontSize: 20,
+    fontWeight: "800",
+  },
+  routeDescription: {
+    color: "#3F554F",
+    fontSize: 15,
+    lineHeight: 22,
+  },
+  routeAction: {
+    height: 52,
+    borderRadius: 18,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#2B0055",
+  },
+  routeCancelAction: {
+    backgroundColor: "#FCFEFA",
+    borderWidth: 1.5,
+    borderColor: "#2B0055",
   },
 
   secondaryActionButton: {

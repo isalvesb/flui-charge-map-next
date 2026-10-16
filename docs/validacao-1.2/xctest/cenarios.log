@@ -1,0 +1,761 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -xctestrun /tmp/flui-xctest-12/DerivedData/Build/Products/FluiValidacao_iphonesimulator27.1-arm64-x86_64.xctestrun -destination "platform=iOS Simulator,id=4A2C862B-D6FC-4E88-8FB5-88164A5C5A2E" -destination-timeout 25 -parallel-testing-enabled NO -test-timeouts-enabled YES -default-test-execution-time-allowance 180 -maximum-test-execution-time-allowance 180 -resultBundlePath /tmp/flui-xctest-12/CenariosRecentes.xcresult
+
+Writing result bundle at path:
+	/tmp/flui-xctest-12/CenariosRecentes.xcresult
+
+2026-10-16 07:31:50.675 xcodebuild[30823:3766711] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 07:32:56.690059-0300 FluiValidacao-Runner[30999:3768450] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'All tests' started at 2026-10-16 07:32:59.549.
+Test Suite 'FluiValidacao.xctest' started at 2026-10-16 07:32:59.550.
+Test Suite 'FluiValidacao' started at 2026-10-16 07:32:59.551.
+Test Case '-[FluiValidacao.FluiValidacao test01ZoomDeslocamentoEReposicionamento]' started.
+    t =     0.02s Start Test at 2026-10-16 07:32:59.571
+objc[30999]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x10880c398) and /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x109138310). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =     0.74s Set Up
+    t =     0.74s     Open host.exp.Exponent
+    t =     0.75s         Launch host.exp.Exponent
+    t =     2.06s             Setting up automation session
+    t =    10.88s             Wait for host.exp.Exponent to idle
+    t =    13.40s     Waiting 3.0s for Button (First Match) to exist
+    t =    14.49s         Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    14.49s             Checking existence of `Button (First Match)`
+    t =    16.72s             Capturing element debug description
+    t =    16.81s         Checking existence of `Button (First Match)`
+    t =    21.89s     Collecting debug information to assist test failure triage
+    t =    21.89s         Requesting snapshot of accessibility hierarchy for app with pid 31056
+    t =    22.05s     Waiting 5.0s for Button (First Match) to exist
+    t =    23.15s         Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    23.15s             Checking existence of `Button (First Match)`
+    t =    23.18s             Capturing element debug description
+    t =    24.13s         Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    24.14s             Checking existence of `Button (First Match)`
+    t =    24.50s     Tap Button (First Match)
+    t =    24.50s         Wait for host.exp.Exponent to idle
+    t =    24.83s         Find the Button (First Match)
+    t =    25.02s         Check for interrupting elements affecting "flui-charge-map" Button
+    t =    25.16s         Synthesize event
+    t =    25.90s         Wait for host.exp.Exponent to idle
+    t =    26.84s     Waiting 45.0s for Button (First Match) to exist
+    t =    27.93s         Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    27.93s             Checking existence of `Button (First Match)`
+    t =    27.96s             Capturing element debug description
+    t =    28.89s         Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    28.89s             Checking existence of `Button (First Match)`
+    t =    32.27s             Capturing element debug description
+    t =    32.85s         Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    32.85s             Checking existence of `Button (First Match)`
+    t =    32.87s             Capturing element debug description
+    t =    33.91s         Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    33.92s             Checking existence of `Button (First Match)`
+    t =    34.29s             Capturing element debug description
+    t =    34.91s         Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    34.91s             Checking existence of `Button (First Match)`
+    t =    34.94s             Capturing element debug description
+    t =    35.87s         Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    35.87s             Checking existence of `Button (First Match)`
+    t =    35.89s             Capturing element debug description
+    t =    36.94s         Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    36.94s             Checking existence of `Button (First Match)`
+    t =    36.99s             Capturing element debug description
+    t =    37.86s         Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    37.87s             Checking existence of `Button (First Match)`
+    t =    38.03s             Capturing element debug description
+    t =    38.89s         Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    38.91s             Checking existence of `Button (First Match)`
+    t =    39.03s Waiting 15.0s for Button (First Match) to exist
+    t =    40.11s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    40.11s         Checking existence of `Button (First Match)`
+    t =    40.20s Checking existence of `Button (First Match)`
+    t =    40.30s Tap Button (First Match)
+    t =    40.31s     Wait for host.exp.Exponent to idle
+    t =    40.33s     Find the Button (First Match)
+    t =    40.48s     Check for interrupting elements affecting "Minimizar opções demonstrativas para ver o mapa inteiro" Button
+    t =    40.74s     Synthesize event
+    t =    41.21s     Wait for host.exp.Exponent to idle
+    t =    41.26s Find the Button (First Match)
+    t =    41.40s Find the Button (First Match)
+    t =    41.51s Tap Button (First Match)
+    t =    41.51s     Wait for host.exp.Exponent to idle
+    t =    41.53s     Find the Button (First Match)
+    t =    41.66s     Check for interrupting elements affecting "Diminuir zoom do mapa" Button
+    t =    41.83s     Synthesize event
+    t =    42.46s     Wait for host.exp.Exponent to idle
+    t =    43.51s Find the Button (First Match)
+    t =    43.60s Find the Button (First Match)
+    t =    43.69s Find the Button (First Match)
+    t =    43.75s Press Application 'host.exp.Exponent'[0.30, 0.48] for 0.1 seconds, then drag to Application 'host.exp.Exponent'[0.53, 0.58] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    43.75s     Wait for host.exp.Exponent to idle
+    t =    43.76s     Find the Application 'host.exp.Exponent'
+    t =    43.80s     Check for interrupting elements affecting "Expo Go" Application
+    t =    43.85s     Synthesize event
+    t =    43.85s         Find the Application 'host.exp.Exponent'
+    t =    43.89s         Find the Application 'host.exp.Exponent'
+    t =    43.96s         Find the Application 'host.exp.Exponent'
+    t =    44.02s         Find the Application 'host.exp.Exponent'
+    t =    44.10s         Find the Application 'host.exp.Exponent'
+    t =    44.82s     Wait for host.exp.Exponent to idle
+    t =    46.84s Find the Button (First Match)
+    t =    46.93s Find the Button (First Match)
+    t =    47.02s Find the Button (First Match)
+    t =    47.09s Requesting snapshot of accessibility hierarchy for app with pid 31056
+    t =    48.21s Requesting snapshot of accessibility hierarchy for app with pid 31056
+FLUI_EVIDENCIA Zoom e deslocamento escolhidos
+Attributes: Application, 0x10853db80, pid: 31056, label: 'Expo Go'
+Element subtree:
+ →Application, 0x10853db80, pid: 31056, label: 'Expo Go'
+    Window (Main), 0x10853de00, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x10853df40, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x10853e080, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x10853e1c0, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x10853e300, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x10853e440, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x10853e580, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x10853e6c0, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x10853e800, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x10853e940, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x10853ea80, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x10853ebc0, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x10853ed00, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x10853ee40, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x10853ef80, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x10853f0c0, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x10853f200, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Other, 0x10853f340, {{0.0, 62.0}, {440.0, 162.0}}
+                                        Other, 0x10853f480, {{20.0, 76.0}, {76.0, 36.0}}
+                                          Other, 0x10853f5c0, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x10853f700, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x10853f840, {{89.2, 82.8}, {6.7, 6.7}}
+                                        Button, 0x10853f980, {{191.7, 71.0}, {180.3, 46.0}}, label: 'Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 180 quilômetros estimados'
+                                        Button, 0x10853fac0, {{374.0, 71.0}, {46.0, 46.0}}, label: 'Abrir perfil'
+                                        Other, 0x10853fc00, {{20.0, 132.0}, {400.0, 58.0}}
+                                          Other, 0x10853fd40, {{39.0, 150.7}, {21.0, 21.0}}
+                                            Other, 0x10853fe80, {{40.8, 152.4}, {17.5, 17.5}}
+                                              Other, 0x10853c000, {{40.8, 152.4}, {15.8, 15.8}}
+                                              Other, 0x10853c140, {{52.7, 164.4}, {5.5, 5.5}}
+                                          Other, 0x10853c280, {{73.0, 150.7}, {277.0, 20.3}}
+                                            TextField, 0x10853c3c0, {{73.0, 150.7}, {277.0, 20.3}}, label: 'Buscar no mapa', placeholderValue: 'Buscar endereço, bairro ou ponto'
+                                          Other, 0x10853c500, {{358.0, 146.0}, {1.0, 30.0}}
+                                          Button, 0x10853c640, {{367.0, 140.0}, {42.0, 42.0}}, label: 'Abrir busca e filtros'
+                                        Button, 0x10853c780, {{20.0, 194.0}, {400.0, 16.0}}, label: 'Mostrar atalhos de filtro'
+                                      Other, 0x10853c8c0, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x10853ca00, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                          Other, 0x10853cb40, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x104da7ac0, {{0.0, 224.0}, {72.0, 72.0}}
+                                            Other, 0x104da7d40, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                              Button, 0x104da7e80, {{378.3, 646.7}, {72.0, 72.0}}, identifier: 'AIRGMSMarker_0x11bb7d180', label: 'Você na FIAP'
+                                              Button, 0x104da57c0, {{191.7, 244.0}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x11bb7d680', label: 'Higienópolis Prime Charge'
+                                              Button, 0x104da5a40, {{321.7, 562.7}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x11bb7e080', label: 'Flui Express MASP'
+                                              Button, 0x107edcb40, {{260.7, 436.7}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x11bb7ee40', label: 'Plug & Café Consolação'
+                                              Button, 0x107edd040, {{165.3, 520.7}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x11bb7db80', label: 'Charge City Jardins'
+                                              Button, 0x107edd180, {{376.3, 715.3}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x11bb7fc00', label: 'Estação Jardins Pamplona'
+                                              Other, 0x107ede080, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x107edd2c0, {{0.0, 224.0}, {440.0, 698.0}}
+                                              Other, 0x107edcc80, {{0.0, 224.0}, {440.0, 698.0}}
+                                                Button, 0x107edd400, {{5.0, 895.0}, {60.0, 22.0}}, label: 'Google Maps'
+                                            Other, 0x107edd680, {{1912.0, 2136.0}, {74.0, 74.0}}
+                                              Other, 0x107edd7c0, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                Other, 0x107edd900, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                  Other, 0x107edd540, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                    Other, 0x107eddf40, {{1921.4, 2145.4}, {53.2, 53.2}}
+                                                    Other, 0x107edda40, {{1936.0, 2160.0}, {24.0, 24.0}}
+                                        Other, 0x107ede1c0, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x107ede300, {{372.0, 242.0}, {52.0, 166.0}}
+                                          Other, 0x107ede580, {{372.0, 242.0}, {52.0, 104.0}}
+                                            Button, 0x107ede440, {{372.0, 243.0}, {52.0, 51.0}}, label: 'Aumentar zoom do mapa'
+                                            Button, 0x107ede6c0, {{372.0, 295.0}, {52.0, 51.0}}, label: 'Diminuir zoom do mapa'
+                                            Other, 0x107ede940, {{384.0, 294.0}, {28.0, 1.0}}
+                                          Button, 0x107edebc0, {{372.0, 356.0}, {52.0, 52.0}}, label: 'Centralizar localização na FIAP'
+                                        Other, 0x107edea80, {{0.0, 850.0}, {440.0, 52.0}}
+                                          Button, 0x107ede800, {{99.0, 853.0}, {242.0, 46.0}}, label: 'Mostrar opções demonstrativas'
+                                        Other, 0x107edee40, {{372.0, 850.0}, {52.0, 52.0}}
+                                          Other, 0x107edf0c0, {{372.0, 850.0}, {52.0, 52.0}}
+                                            Button, 0x107edef80, {{372.0, 850.0}, {52.0, 52.0}}, label: 'Abrir assistente Flui IA'
+                                        Other, 0x107edf200, {{16.0, 962.0}, {408.0, 338.7}}
+                                          Other, 0x108544000, {{16.0, 962.0}, {408.0, 338.7}}
+                                            Button, 0x108544140, {{35.0, 981.0}, {370.0, 12.0}}, label: 'Minimizar opções demonstrativas para ver o mapa inteiro'
+                                            StaticText, 0x108544280, {{35.0, 993.0}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                              StaticText, 0x1085443c0, {{35.0, 993.0}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                            Other, 0x108544500, {{35.0, 1028.7}, {370.0, 262.0}}
+                                              ScrollView, 0x108544640, {{35.0, 1028.7}, {370.0, 262.0}}
+                                                Other, 0x108544780, {{35.0, 1028.7}, {370.0, 538.7}}
+                                                  Other, 0x1085448c0, {{35.0, 1028.7}, {370.0, 538.7}}
+                                                    Button, 0x108544a00, {{35.0, 1028.7}, {370.0, 134.7}}, label: 'Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. Chegada estimada com 44% de bateria.'
+                                                    Button, 0x108544b40, {{35.0, 1163.3}, {370.0, 134.7}}, label: 'Charge City Jardins. Opção demonstrativa. Alameda Santos, 2159. Aberto agora. Nota 4,7. 120 kW. Chegada estimada com 45% de bateria.'
+                                                    Button, 0x108544c80, {{35.0, 1298.0}, {370.0, 134.7}}, label: 'Flui Vila Mariana Lins. Opção demonstrativa. Av. Lins de Vasconcelos, 1264. Aberto agora. Nota 4,8. 150 kW. Chegada estimada com 45% de bateria.'
+                                                    Button, 0x108544dc0, {{35.0, 1432.7}, {370.0, 134.7}}, label: 'EcoCarga Parque Aclimação. Opção demonstrativa. R. Muniz de Sousa, 1119. Aberto agora. Nota 4,2. 22 kW. Chegada estimada com 45% de bateria.'
+                                                Other, 0x108544f00, {{372.0, 1028.7}, {30.0, 244.0}}, label: 'Vertical scroll bar, 3 pages', value: 0%
+                                                  Other, 0x108545040, {{399.0, 1031.7}, {3.0, 115.7}}
+                                                Other, 0x108545180, {{53.0, 1257.7}, {334.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x1085452c0, {{56.0, 1284.7}, {328.0, 3.0}}
+                                                Other, 0x108545400, {{372.0, 1028.7}, {30.0, 244.0}}, label: 'Vertical scroll bar, 3 pages', value: 0%
+                                                  Other, 0x108545540, {{399.0, 1031.7}, {3.0, 115.7}}
+                                                Other, 0x108545680, {{53.0, 1257.7}, {334.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x1085457c0, {{56.0, 1284.7}, {328.0, 3.0}}
+                          Toolbar, 0x108545900, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x108545a40, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x108545b80, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x108545cc0, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x108545e00, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x10853db80, pid: 31056, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x108545f40, pid: 31056, label: 'Expo Go'
+  }
+
+    t =    48.37s Find the Application 'host.exp.Exponent'
+    t =    48.88s Added attachment named 'Zoom e deslocamento escolhidos'
+    t =    83.88s Find the Button (First Match)
+FLUI_FRAME FIAP após primeiro ciclo antes=(414.3333435058594, 682.6666564941406) depois=(414.3333435058594, 682.6666564941406)
+    t =    85.01s Find the Button (First Match)
+FLUI_FRAME MASP após primeiro ciclo antes=(356.3333435058594, 597.3333435058594) depois=(356.3333435058594, 597.3333435058594)
+    t =   120.10s Find the Button (First Match)
+FLUI_FRAME FIAP após segundo ciclo antes=(414.3333435058594, 682.6666564941406) depois=(414.3333435058594, 682.6666564941406)
+    t =   120.28s Find the Button (First Match)
+FLUI_FRAME MASP após segundo ciclo antes=(356.3333435058594, 597.3333435058594) depois=(356.3333435058594, 597.3333435058594)
+    t =   120.38s Requesting snapshot of accessibility hierarchy for app with pid 31056
+    t =   121.74s Requesting snapshot of accessibility hierarchy for app with pid 31056
+FLUI_EVIDENCIA Enquadramento preservado após 70 segundos
+Attributes: Application, 0x10853db80, pid: 31056, label: 'Expo Go'
+Element subtree:
+ →Application, 0x10853db80, pid: 31056, label: 'Expo Go'
+    Window (Main), 0x10853de00, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x10853df40, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x10853e080, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x10853e1c0, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x10853e300, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x10853e440, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x10853e580, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x10853e6c0, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x10853e800, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x10853e940, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x10853ea80, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x10853ebc0, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x10853ed00, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x10853ee40, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x10853ef80, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x10853f0c0, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x10853f200, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Other, 0x10853c8c0, {{0.0, 62.0}, {440.0, 162.0}}
+                                        Other, 0x10853ca00, {{20.0, 76.0}, {76.0, 36.0}}
+                                          Other, 0x10853cb40, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x10853f340, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x10853c780, {{89.2, 82.8}, {6.7, 6.7}}
+                                        Button, 0x10853fc00, {{191.7, 71.0}, {180.3, 46.0}}, label: 'Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 180 quilômetros estimados'
+                                        Button, 0x10853c640, {{374.0, 71.0}, {46.0, 46.0}}, label: 'Abrir perfil'
+                                        Other, 0x10853c500, {{20.0, 132.0}, {400.0, 58.0}}
+                                          Other, 0x10853c280, {{39.0, 150.7}, {21.0, 21.0}}
+                                            Other, 0x10853c3c0, {{40.8, 152.4}, {17.5, 17.5}}
+                                              Other, 0x10853fd40, {{40.8, 152.4}, {15.8, 15.8}}
+                                              Other, 0x10853fe80, {{52.7, 164.4}, {5.5, 5.5}}
+                                          Other, 0x10853c140, {{73.0, 150.7}, {277.0, 20.3}}
+                                            TextField, 0x10853c000, {{73.0, 150.7}, {277.0, 20.3}}, label: 'Buscar no mapa', placeholderValue: 'Buscar endereço, bairro ou ponto'
+                                          Other, 0x10853fac0, {{358.0, 146.0}, {1.0, 30.0}}
+                                          Button, 0x10853f980, {{367.0, 140.0}, {42.0, 42.0}}, label: 'Abrir busca e filtros'
+                                        Button, 0x10853f480, {{20.0, 194.0}, {400.0, 16.0}}, label: 'Mostrar atalhos de filtro'
+                                      Other, 0x10853f5c0, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x10853f840, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                          Other, 0x10853f700, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x107edf200, {{0.0, 224.0}, {72.0, 72.0}}
+                                            Other, 0x107edee40, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                              Button, 0x107edf0c0, {{378.3, 646.7}, {72.0, 72.0}}, identifier: 'AIRGMSMarker_0x11bb7d180', label: 'Você na FIAP'
+                                              Button, 0x107edef80, {{191.7, 244.0}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x11bb7d680', label: 'Higienópolis Prime Charge'
+                                              Button, 0x107edea80, {{321.7, 562.7}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x11bb7e080', label: 'Flui Express MASP'
+                                              Button, 0x107ede800, {{260.7, 436.7}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x11bb7ee40', label: 'Plug & Café Consolação'
+                                              Button, 0x107ede300, {{165.3, 520.7}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x11bb7db80', label: 'Charge City Jardins'
+                                              Button, 0x107edebc0, {{376.3, 715.3}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x11bb7fc00', label: 'Estação Jardins Pamplona'
+                                              Other, 0x107ede580, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x107ede940, {{0.0, 224.0}, {440.0, 698.0}}
+                                              Other, 0x107ede6c0, {{0.0, 224.0}, {440.0, 698.0}}
+                                                Button, 0x107ede440, {{5.0, 895.0}, {60.0, 22.0}}, label: 'Google Maps'
+                                            Other, 0x107ede1c0, {{1912.0, 2136.0}, {74.0, 74.0}}
+                                              Other, 0x107edd680, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                Other, 0x107edd7c0, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                  Other, 0x107edd900, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                    Other, 0x107edd540, {{1921.5, 2145.5}, {52.9, 52.9}}
+                                                    Other, 0x107edda40, {{1936.0, 2160.0}, {24.0, 24.0}}
+                                        Other, 0x107eddf40, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x107edd2c0, {{372.0, 242.0}, {52.0, 166.0}}
+                                          Other, 0x107edcc80, {{372.0, 242.0}, {52.0, 104.0}}
+                                            Button, 0x107edd400, {{372.0, 243.0}, {52.0, 51.0}}, label: 'Aumentar zoom do mapa'
+                                            Button, 0x107ede080, {{372.0, 295.0}, {52.0, 51.0}}, label: 'Diminuir zoom do mapa'
+                                            Other, 0x107edd180, {{384.0, 294.0}, {28.0, 1.0}}
+                                          Button, 0x107edd040, {{372.0, 356.0}, {52.0, 52.0}}, label: 'Centralizar localização na FIAP'
+                                        Other, 0x107edcb40, {{0.0, 850.0}, {440.0, 52.0}}
+                                          Button, 0x104da7d40, {{99.0, 853.0}, {242.0, 46.0}}, label: 'Mostrar opções demonstrativas'
+                                        Other, 0x104da5a40, {{372.0, 850.0}, {52.0, 52.0}}
+                                          Other, 0x104da57c0, {{372.0, 850.0}, {52.0, 52.0}}
+                                            Button, 0x104da7e80, {{372.0, 850.0}, {52.0, 52.0}}, label: 'Abrir assistente Flui IA'
+                                        Other, 0x104da7ac0, {{16.0, 962.0}, {408.0, 338.7}}
+                                          Other, 0x108544000, {{16.0, 962.0}, {408.0, 338.7}}
+                                            Button, 0x108544140, {{35.0, 981.0}, {370.0, 12.0}}, label: 'Minimizar opções demonstrativas para ver o mapa inteiro'
+                                            StaticText, 0x108544280, {{35.0, 993.0}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                              StaticText, 0x1085443c0, {{35.0, 993.0}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                            Other, 0x108544500, {{35.0, 1028.7}, {370.0, 262.0}}
+                                              ScrollView, 0x108544640, {{35.0, 1028.7}, {370.0, 262.0}}
+                                                Other, 0x108544780, {{35.0, 1028.7}, {370.0, 538.7}}
+                                                  Other, 0x1085448c0, {{35.0, 1028.7}, {370.0, 538.7}}
+                                                    Button, 0x108544a00, {{35.0, 1028.7}, {370.0, 134.7}}, label: 'Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. Chegada estimada com 44% de bateria.'
+                                                    Button, 0x108544b40, {{35.0, 1163.3}, {370.0, 134.7}}, label: 'Charge City Jardins. Opção demonstrativa. Alameda Santos, 2159. Aberto agora. Nota 4,7. 120 kW. Chegada estimada com 45% de bateria.'
+                                                    Button, 0x108544c80, {{35.0, 1298.0}, {370.0, 134.7}}, label: 'Flui Vila Mariana Lins. Opção demonstrativa. Av. Lins de Vasconcelos, 1264. Aberto agora. Nota 4,8. 150 kW. Chegada estimada com 45% de bateria.'
+                                                    Button, 0x108544dc0, {{35.0, 1432.7}, {370.0, 134.7}}, label: 'EcoCarga Parque Aclimação. Opção demonstrativa. R. Muniz de Sousa, 1119. Aberto agora. Nota 4,2. 22 kW. Chegada estimada com 45% de bateria.'
+                                                Other, 0x108544f00, {{372.0, 1028.7}, {30.0, 244.0}}, label: 'Vertical scroll bar, 3 pages', value: 0%
+                                                  Other, 0x108545040, {{399.0, 1031.7}, {3.0, 115.7}}
+                                                Other, 0x108545180, {{53.0, 1257.7}, {334.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x1085452c0, {{56.0, 1284.7}, {328.0, 3.0}}
+                                                Other, 0x108545400, {{372.0, 1028.7}, {30.0, 244.0}}, label: 'Vertical scroll bar, 3 pages', value: 0%
+                                                  Other, 0x108545540, {{399.0, 1031.7}, {3.0, 115.7}}
+                                                Other, 0x108545680, {{53.0, 1257.7}, {334.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x1085457c0, {{56.0, 1284.7}, {328.0, 3.0}}
+                          Toolbar, 0x108545900, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x108545a40, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x108545b80, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x108545cc0, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x108545e00, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x10853db80, pid: 31056, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x108545f40, pid: 31056, label: 'Expo Go'
+  }
+
+    t =   121.87s Find the Application 'host.exp.Exponent'
+    t =   122.33s Added attachment named 'Enquadramento preservado após 70 segundos'
+    t =   122.34s Tap Button (First Match)
+    t =   122.34s     Wait for host.exp.Exponent to idle
+    t =   122.36s     Find the Button (First Match)
+    t =   122.44s     Check for interrupting elements affecting "Centralizar localização na FIAP" Button
+    t =   122.54s     Synthesize event
+    t =   122.91s     Wait for host.exp.Exponent to idle
+    t =   123.96s Find the Button (First Match)
+    t =   124.06s Checking existence of `Button (First Match)`
+    t =   124.17s Tap TextField (First Match)
+    t =   124.17s     Wait for host.exp.Exponent to idle
+    t =   124.18s     Find the TextField (First Match)
+    t =   124.24s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =   124.30s     Synthesize event
+    t =   124.68s     Wait for host.exp.Exponent to idle
+    t =   128.59s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =   128.73s Type 'Higienópolis Prime...' into "Buscar endereço, bairro ou ponto" TextField
+    t =   128.73s     Wait for host.exp.Exponent to idle
+    t =   128.74s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =   128.83s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =   128.93s     Synthesize event
+    t =   129.67s     Wait for host.exp.Exponent to idle
+    t =   129.92s Waiting 10.0s for Button (First Match) to exist
+    t =   130.99s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =   130.99s         Checking existence of `Button (First Match)`
+    t =   131.10s         Capturing element debug description
+    t =   131.94s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =   131.94s         Checking existence of `Button (First Match)`
+    t =   132.03s         Capturing element debug description
+    t =   132.97s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =   132.98s         Checking existence of `Button (First Match)`
+    t =   133.08s         Capturing element debug description
+    t =   133.95s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =   133.95s         Checking existence of `Button (First Match)`
+    t =   134.05s         Capturing element debug description
+    t =   135.00s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =   135.00s         Checking existence of `Button (First Match)`
+    t =   135.08s         Capturing element debug description
+    t =   136.02s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =   136.03s         Checking existence of `Button (First Match)`
+    t =   136.18s         Capturing element debug description
+    t =   136.95s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =   136.96s         Checking existence of `Button (First Match)`
+    t =   137.09s         Capturing element debug description
+    t =   137.93s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =   137.93s         Checking existence of `Button (First Match)`
+    t =   138.02s         Capturing element debug description
+    t =   138.95s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =   138.95s         Checking existence of `Button (First Match)`
+    t =   139.04s         Capturing element debug description
+    t =   139.93s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =   139.93s         Checking existence of `Button (First Match)`
+    t =   140.07s         Capturing element debug description
+    t =   140.07s     Checking existence of `Button (First Match)`
+    t =   140.14s Collecting debug information to assist test failure triage
+    t =   140.15s     Requesting snapshot of accessibility hierarchy for app with pid 31056
+/tmp/flui-xctest-12/FluiValidacao.swift:76: error: -[FluiValidacao.FluiValidacao test01ZoomDeslocamentoEReposicionamento] : XCTAssertTrue failed
+    t =   141.66s Tear Down
+Test Case '-[FluiValidacao.FluiValidacao test01ZoomDeslocamentoEReposicionamento]' failed (145.683 seconds).
+Test Case '-[FluiValidacao.FluiValidacao test02FechamentoMapaFiltroFluiaSemMoverCamera]' started.
+    t =     0.00s Start Test at 2026-10-16 07:35:25.263
+    t =     0.13s Set Up
+    t =     0.13s     Open host.exp.Exponent
+    t =     0.15s         Activate host.exp.Exponent
+    t =     0.38s             Wait for host.exp.Exponent to idle
+    t =     0.48s     Waiting 3.0s for Button (First Match) to exist
+    t =     1.52s         Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     1.52s             Checking existence of `Button (First Match)`
+FLUI_CLOCK MAPA_ABRIR
+    t =     1.58s Tap TextField (First Match)
+    t =     1.58s     Wait for host.exp.Exponent to idle
+    t =     1.60s     Find the TextField (First Match)
+    t =     1.68s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =     1.77s     Synthesize event
+    t =     2.12s     Wait for host.exp.Exponent to idle
+    t =     2.89s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =     3.20s Type '...' into "Buscar endereço, bairro ou ponto" TextField
+    t =     3.21s     Wait for host.exp.Exponent to idle
+    t =     3.24s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =     3.44s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =     3.57s     Synthesize event
+    t =     4.17s     Wait for host.exp.Exponent to idle
+    t =     4.62s Type 'Plug & Café Consol...' into "Buscar endereço, bairro ou ponto" TextField
+    t =     4.62s     Wait for host.exp.Exponent to idle
+    t =     4.65s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =     4.80s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =     4.97s     Synthesize event
+    t =     5.76s     Wait for host.exp.Exponent to idle
+    t =     5.81s Checking existence of `Button (First Match)`
+    t =     5.85s Tap Button (First Match)
+    t =     5.85s     Wait for host.exp.Exponent to idle
+    t =     5.89s     Find the Button (First Match)
+    t =     5.96s     Check for interrupting elements affecting "Mostrar atalhos de filtro" Button
+    t =     6.06s     Synthesize event
+    t =     6.45s     Wait for host.exp.Exponent to idle
+    t =     6.52s Waiting 5.0s for Button (First Match) to exist
+    t =     7.55s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     7.55s         Checking existence of `Button (First Match)`
+    t =     7.65s Find the Button (First Match)
+    t =     7.73s Tap "Aberto agora" Button
+    t =     7.73s     Wait for host.exp.Exponent to idle
+    t =     7.74s     Find the "Aberto agora" Button
+    t =     7.84s     Check for interrupting elements affecting "Aberto agora" Button
+    t =     7.91s     Synthesize event
+    t =     8.26s     Wait for host.exp.Exponent to idle
+    t =     8.31s Find the "Aberto agora" Button
+    t =     8.40s Waiting 45.0s for Button (First Match) to exist
+    t =     9.42s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     9.42s         Checking existence of `Button (First Match)`
+    t =     9.52s         Capturing element debug description
+    t =    10.46s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    10.46s         Checking existence of `Button (First Match)`
+    t =    10.55s         Capturing element debug description
+    t =    11.48s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    11.49s         Checking existence of `Button (First Match)`
+    t =    11.58s         Capturing element debug description
+    t =    12.42s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    12.42s         Checking existence of `Button (First Match)`
+    t =    12.52s         Capturing element debug description
+    t =    13.44s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    13.45s         Checking existence of `Button (First Match)`
+    t =    13.57s         Capturing element debug description
+    t =    14.41s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    14.41s         Checking existence of `Button (First Match)`
+    t =    14.51s         Capturing element debug description
+    t =    15.45s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    15.46s         Checking existence of `Button (First Match)`
+    t =    15.58s         Capturing element debug description
+    t =    16.41s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    16.41s         Checking existence of `Button (First Match)`
+    t =    16.51s         Capturing element debug description
+    t =    17.47s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    17.48s         Checking existence of `Button (First Match)`
+    t =    17.59s         Capturing element debug description
+    t =    18.41s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    18.41s         Checking existence of `Button (First Match)`
+    t =    18.51s         Capturing element debug description
+    t =    19.49s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    19.50s         Checking existence of `Button (First Match)`
+    t =    19.61s         Capturing element debug description
+    t =    20.45s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    20.45s         Checking existence of `Button (First Match)`
+    t =    20.61s         Capturing element debug description
+    t =    21.46s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    21.46s         Checking existence of `Button (First Match)`
+    t =    21.56s         Capturing element debug description
+    t =    22.49s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    22.49s         Checking existence of `Button (First Match)`
+    t =    22.57s         Capturing element debug description
+    t =    23.50s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    23.50s         Checking existence of `Button (First Match)`
+    t =    23.60s         Capturing element debug description
+    t =    24.43s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    24.44s         Checking existence of `Button (First Match)`
+    t =    24.52s         Capturing element debug description
+    t =    25.44s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    25.44s         Checking existence of `Button (First Match)`
+    t =    25.56s         Capturing element debug description
+    t =    26.49s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    26.49s         Checking existence of `Button (First Match)`
+    t =    26.59s         Capturing element debug description
+    t =    27.42s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    27.42s         Checking existence of `Button (First Match)`
+    t =    27.55s         Capturing element debug description
+    t =    28.49s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    28.49s         Checking existence of `Button (First Match)`
+    t =    28.60s         Capturing element debug description
+    t =    29.44s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    29.44s         Checking existence of `Button (First Match)`
+    t =    29.55s         Capturing element debug description
+    t =    30.48s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    30.48s         Checking existence of `Button (First Match)`
+    t =    30.60s         Capturing element debug description
+    t =    31.42s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    31.43s         Checking existence of `Button (First Match)`
+    t =    31.54s         Capturing element debug description
+    t =    32.45s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    32.45s         Checking existence of `Button (First Match)`
+    t =    32.55s         Capturing element debug description
+    t =    33.47s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    33.48s         Checking existence of `Button (First Match)`
+    t =    33.58s         Capturing element debug description
+    t =    34.41s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    34.41s         Checking existence of `Button (First Match)`
+    t =    34.51s         Capturing element debug description
+    t =    35.44s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    35.44s         Checking existence of `Button (First Match)`
+    t =    35.55s         Capturing element debug description
+    t =    36.47s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    36.47s         Checking existence of `Button (First Match)`
+    t =    36.57s         Capturing element debug description
+    t =    37.49s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    37.49s         Checking existence of `Button (First Match)`
+    t =    37.60s         Capturing element debug description
+    t =    38.41s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    38.41s         Checking existence of `Button (First Match)`
+    t =    38.52s         Capturing element debug description
+    t =    39.43s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    39.44s         Checking existence of `Button (First Match)`
+    t =    39.53s         Capturing element debug description
+    t =    40.44s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    40.44s         Checking existence of `Button (First Match)`
+    t =    40.53s         Capturing element debug description
+    t =    41.44s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    41.44s         Checking existence of `Button (First Match)`
+    t =    41.54s         Capturing element debug description
+    t =    42.46s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    42.46s         Checking existence of `Button (First Match)`
+    t =    42.56s         Capturing element debug description
+    t =    43.49s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    43.49s         Checking existence of `Button (First Match)`
+    t =    43.59s         Capturing element debug description
+    t =    44.41s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    44.41s         Checking existence of `Button (First Match)`
+    t =    44.52s         Capturing element debug description
+    t =    45.45s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    45.45s         Checking existence of `Button (First Match)`
+    t =    45.54s         Capturing element debug description
+    t =    46.47s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    46.48s         Checking existence of `Button (First Match)`
+    t =    46.58s         Capturing element debug description
+    t =    47.41s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    47.41s         Checking existence of `Button (First Match)`
+    t =    47.50s         Capturing element debug description
+    t =    48.42s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    48.43s         Checking existence of `Button (First Match)`
+    t =    48.52s         Capturing element debug description
+    t =    49.46s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    49.46s         Checking existence of `Button (First Match)`
+    t =    49.56s         Capturing element debug description
+    t =    50.50s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    50.50s         Checking existence of `Button (First Match)`
+    t =    50.60s         Capturing element debug description
+    t =    51.47s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    51.48s         Checking existence of `Button (First Match)`
+    t =    51.56s         Capturing element debug description
+    t =    52.49s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    52.49s         Checking existence of `Button (First Match)`
+    t =    52.58s         Capturing element debug description
+    t =    53.41s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    53.41s         Checking existence of `Button (First Match)`
+    t =    53.51s         Capturing element debug description
+    t =    53.52s     Checking existence of `Button (First Match)`
+    t =    53.59s Collecting debug information to assist test failure triage
+    t =    53.59s     Requesting snapshot of accessibility hierarchy for app with pid 31056
+/tmp/flui-xctest-12/FluiValidacao.swift:88: error: -[FluiValidacao.FluiValidacao test02FechamentoMapaFiltroFluiaSemMoverCamera] : XCTAssertTrue failed
+    t =    53.68s Tear Down
+Test Case '-[FluiValidacao.FluiValidacao test02FechamentoMapaFiltroFluiaSemMoverCamera]' failed (55.001 seconds).
+Test Case '-[FluiValidacao.FluiValidacao test03FechamentoAutomaticoDaFicha]' started.
+    t =     0.00s Start Test at 2026-10-16 07:36:20.268
+    t =     0.09s Set Up
+    t =     0.11s     Open host.exp.Exponent
+    t =     0.12s         Activate host.exp.Exponent
+    t =     0.17s             Wait for host.exp.Exponent to idle
+    t =     0.23s     Waiting 3.0s for Button (First Match) to exist
+    t =     1.26s         Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     1.27s             Checking existence of `Button (First Match)`
+FLUI_CLOCK FICHA_ABRIR
+    t =     1.36s Tap TextField (First Match)
+    t =     1.36s     Wait for host.exp.Exponent to idle
+    t =     1.41s     Find the TextField (First Match)
+    t =     1.51s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =     1.68s     Synthesize event
+    t =     2.09s     Wait for host.exp.Exponent to idle
+    t =     2.46s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =     2.63s Type '...' into "Buscar endereço, bairro ou ponto" TextField
+    t =     2.63s     Wait for host.exp.Exponent to idle
+    t =     2.65s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =     2.76s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =     2.89s     Synthesize event
+    t =     3.53s     Wait for host.exp.Exponent to idle
+    t =     3.87s Type 'Plug & Café Consol...' into "Buscar endereço, bairro ou ponto" TextField
+    t =     3.87s     Wait for host.exp.Exponent to idle
+    t =     3.89s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =     4.04s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =     4.23s     Synthesize event
+    t =     4.84s     Wait for host.exp.Exponent to idle
+    t =     4.87s Checking existence of `Button (First Match)`
+    t =     4.98s Waiting 5.0s for Button (First Match) to exist
+    t =     6.01s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     6.02s         Checking existence of `Button (First Match)`
+    t =     6.13s Find the Button (First Match)
+    t =     6.24s Find the "Aberto agora, filtro ativo" Button
+    t =     6.30s Waiting 45.0s for Button (First Match) to exist
+    t =     7.32s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     7.32s         Checking existence of `Button (First Match)`
+    t =     7.43s         Capturing element debug description
+    t =     8.36s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     8.36s         Checking existence of `Button (First Match)`
+    t =     8.47s         Capturing element debug description
+    t =     9.30s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     9.30s         Checking existence of `Button (First Match)`
+    t =     9.40s         Capturing element debug description
+    t =    10.34s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    10.34s         Checking existence of `Button (First Match)`
+    t =    10.44s         Capturing element debug description
+    t =    11.36s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    11.36s         Checking existence of `Button (First Match)`
+    t =    11.46s         Capturing element debug description
+    t =    12.38s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    12.39s         Checking existence of `Button (First Match)`
+    t =    12.50s         Capturing element debug description
+    t =    13.32s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    13.32s         Checking existence of `Button (First Match)`
+    t =    13.41s         Capturing element debug description
+    t =    14.33s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    14.33s         Checking existence of `Button (First Match)`
+    t =    14.44s         Capturing element debug description
+    t =    15.36s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    15.36s         Checking existence of `Button (First Match)`
+    t =    15.46s         Capturing element debug description
+    t =    16.39s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    16.39s         Checking existence of `Button (First Match)`
+    t =    16.49s         Capturing element debug description
+    t =    17.31s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    17.32s         Checking existence of `Button (First Match)`
+    t =    17.41s         Capturing element debug description
+    t =    18.34s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    18.34s         Checking existence of `Button (First Match)`
+    t =    18.45s         Capturing element debug description
+    t =    19.32s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    19.33s         Checking existence of `Button (First Match)`
+    t =    19.53s         Capturing element debug description
+    t =    20.53s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    20.58s         Checking existence of `Button (First Match)`
+    t =    20.85s         Capturing element debug description
+    t =    21.42s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    21.51s         Checking existence of `Button (First Match)`
+    t =    21.68s         Capturing element debug description
+    t =    22.40s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    22.40s         Checking existence of `Button (First Match)`
+    t =    22.56s         Capturing element debug description
+    t =    23.35s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    23.35s         Checking existence of `Button (First Match)`
+    t =    23.52s         Capturing element debug description
+    t =    24.35s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    24.36s         Checking existence of `Button (First Match)`
+    t =    24.75s         Capturing element debug description
+    t =    25.34s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    25.34s         Checking existence of `Button (First Match)`
+    t =    25.54s         Capturing element debug description
+    t =    26.45s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    26.50s         Checking existence of `Button (First Match)`
+    t =    26.72s         Capturing element debug description
+    t =    27.35s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    27.35s         Checking existence of `Button (First Match)`
+    t =    27.47s         Capturing element debug description
+    t =    28.31s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    28.32s         Checking existence of `Button (First Match)`
+    t =    28.47s         Capturing element debug description
+    t =    29.40s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    29.40s         Checking existence of `Button (First Match)`
+    t =    29.55s         Capturing element debug description
+    t =    30.31s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    30.32s         Checking existence of `Button (First Match)`
+    t =    30.46s         Capturing element debug description
+    t =    31.37s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    31.37s         Checking existence of `Button (First Match)`
+    t =    31.52s         Capturing element debug description
+    t =    32.41s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    32.42s         Checking existence of `Button (First Match)`
+    t =    32.61s         Capturing element debug description
+    t =    33.33s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    33.36s         Checking existence of `Button (First Match)`
+    t =    33.50s         Capturing element debug description
+    t =    34.38s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    34.39s         Checking existence of `Button (First Match)`
+    t =    34.61s         Capturing element debug description
+    t =    35.37s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    35.37s         Checking existence of `Button (First Match)`
+    t =    35.53s         Capturing element debug description
+    t =    36.38s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    36.38s         Checking existence of `Button (First Match)`
+    t =    36.51s         Capturing element debug description
+    t =    37.31s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    37.32s         Checking existence of `Button (First Match)`
+    t =    37.46s         Capturing element debug description
+    t =    38.38s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    38.39s         Checking existence of `Button (First Match)`
+    t =    38.52s         Capturing element debug description
+    t =    39.31s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    39.32s         Checking existence of `Button (First Match)`
+    t =    39.42s         Capturing element debug description
+    t =    40.33s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    40.33s         Checking existence of `Button (First Match)`
+    t =    40.49s         Capturing element debug description
+    t =    41.38s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    41.39s         Checking existence of `Button (First Match)`
+    t =    41.52s         Capturing element debug description
+    t =    42.31s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    42.31s         Checking existence of `Button (First Match)`
+    t =    42.43s         Capturing element debug description
+    t =    43.37s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    43.38s         Checking existence of `Button (First Match)`
+    t =    43.49s         Capturing element debug description
+    t =    44.32s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    44.33s         Checking existence of `Button (First Match)`
+    t =    44.45s         Capturing element debug description
+    t =    45.30s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    45.31s         Checking existence of `Button (First Match)`
+    t =    45.43s         Capturing element debug description
+    t =    46.38s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    46.39s         Checking existence of `Button (First Match)`
+    t =    46.50s         Capturing element debug description
+    t =    47.34s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    47.34s         Checking existence of `Button (First Match)`
+    t =    47.45s         Capturing element debug description
+    t =    48.39s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    48.39s         Checking existence of `Button (First Match)`
+    t =    48.50s         Capturing element debug description
+    t =    49.34s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    49.35s         Checking existence of `Button (First Match)`
+    t =    49.47s         Capturing element debug description
+    t =    50.31s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    50.32s         Checking existence of `Button (First Match)`
+    t =    50.42s         Capturing element debug description
+    t =    51.35s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    51.35s         Checking existence of `Button (First Match)`
+    t =    51.44s         Capturing element debug description
+    t =    51.45s     Checking existence of `Button (First Match)`
+    t =    51.54s Collecting debug information to assist test failure triage
+    t =    51.54s     Requesting snapshot of accessibility hierarchy for app with pid 31056
+/tmp/flui-xctest-12/FluiValidacao.swift:109: error: -[FluiValidacao.FluiValidacao test03FechamentoAutomaticoDaFicha] : XCTAssertTrue failed
+    t =    51.67s Tear Down
+Test Case '-[FluiValidacao.FluiValidacao test03FechamentoAutomaticoDaFicha]' failed (52.900 seconds).
+Test Suite 'FluiValidacao' failed at 2026-10-16 07:37:13.165.
+	 Executed 3 tests, with 3 failures (0 unexpected) in 253.584 (253.615) seconds
+Test Suite 'FluiValidacao.xctest' failed at 2026-10-16 07:37:13.176.
+	 Executed 3 tests, with 3 failures (0 unexpected) in 253.584 (253.626) seconds
+Test Suite 'All tests' failed at 2026-10-16 07:37:13.179.
+	 Executed 3 tests, with 3 failures (0 unexpected) in 253.584 (253.631) seconds
+2026-10-16 07:37:13.610 xcodebuild[30823:3766711] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 07:37:13.634 xcodebuild[30823:3766711] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 07:37:13.671 xcodebuild[30823:3766711] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+** BUILD INTERRUPTED **

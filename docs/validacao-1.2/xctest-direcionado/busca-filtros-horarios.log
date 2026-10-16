@@ -1,0 +1,1502 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -xctestrun /tmp/flui-xctest-12/DerivedData/Build/Products/FluiValidacao_iphonesimulator27.1-arm64-x86_64.xctestrun -destination "platform=iOS Simulator,id=4A2C862B-D6FC-4E88-8FB5-88164A5C5A2E" -destination-timeout 25 -parallel-testing-enabled NO -collect-test-diagnostics never -test-timeouts-enabled YES -default-test-execution-time-allowance 300 -maximum-test-execution-time-allowance 300 -resultBundlePath /tmp/flui-xctest-12/Direcionados.xcresult
+
+Writing result bundle at path:
+	/tmp/flui-xctest-12/Direcionados.xcresult
+
+2026-10-16 09:00:38.339 xcodebuild[34116:3848038] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 09:01:22.979113-0300 FluiValidacao-Runner[34290:3849747] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'All tests' started at 2026-10-16 09:01:38.590.
+Test Suite 'FluiValidacao.xctest' started at 2026-10-16 09:01:38.591.
+Test Suite 'FluiValidacao' started at 2026-10-16 09:01:38.591.
+Test Case '-[FluiValidacao.FluiValidacao test01BuscaSincronizadaEReposicionamentoPorFiltro]' started.
+    t =     0.02s Start Test at 2026-10-16 09:01:38.607
+    t =     0.73s Set Up
+    t =     0.73s     Open host.exp.Exponent
+    t =     0.74s         Launch host.exp.Exponent
+objc[34290]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x106b80398) and /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x109ae8310). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =     0.85s             Setting up automation session
+    t =     7.07s             Wait for host.exp.Exponent to idle
+    t =     9.50s     Waiting 3.0s for Button (First Match) to exist
+    t =    10.51s         Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    10.51s             Checking existence of `Button (First Match)`
+    t =    12.77s             Capturing element debug description
+    t =    12.77s         Checking existence of `Button (First Match)`
+    t =    14.24s     Collecting debug information to assist test failure triage
+    t =    14.24s         Requesting snapshot of accessibility hierarchy for app with pid 34351
+    t =    14.35s     Waiting 8.0s for Button (First Match) to exist
+    t =    15.37s         Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    15.37s             Checking existence of `Button (First Match)`
+    t =    15.70s     Tap Button (First Match)
+    t =    15.71s         Wait for host.exp.Exponent to idle
+    t =    15.95s         Find the Button (First Match)
+    t =    16.08s         Check for interrupting elements affecting "flui-charge-map" Button
+    t =    16.17s         Synthesize event
+    t =    16.79s         Wait for host.exp.Exponent to idle
+    t =    17.50s     Waiting 45.0s for Button (First Match) to exist
+    t =    18.51s         Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    18.52s             Checking existence of `Button (First Match)`
+    t =    22.54s             Capturing element debug description
+    t =    23.53s         Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    23.54s             Checking existence of `Button (First Match)`
+    t =    23.55s             Capturing element debug description
+    t =    24.53s         Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    24.54s             Checking existence of `Button (First Match)`
+    t =    24.59s             Capturing element debug description
+    t =    25.56s         Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    25.56s             Checking existence of `Button (First Match)`
+    t =    25.58s             Capturing element debug description
+    t =    26.56s         Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    26.56s             Checking existence of `Button (First Match)`
+    t =    26.58s             Capturing element debug description
+    t =    27.52s         Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    27.53s             Checking existence of `Button (First Match)`
+    t =    27.80s             Capturing element debug description
+    t =    28.56s         Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    28.57s             Checking existence of `Button (First Match)`
+    t =    28.65s Tap Button (First Match)
+    t =    28.66s     Wait for host.exp.Exponent to idle
+    t =    28.67s     Find the Button (First Match)
+    t =    28.76s     Check for interrupting elements affecting "Abrir busca e filtros" Button
+    t =    29.01s     Synthesize event
+    t =    29.42s     Wait for host.exp.Exponent to idle
+    t =    29.56s Waiting 8.0s for Button (First Match) to exist
+    t =    30.56s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    30.56s         Checking existence of `Button (First Match)`
+    t =    30.58s Tap Button (First Match)
+    t =    30.59s     Wait for host.exp.Exponent to idle
+    t =    30.60s     Find the Button (First Match)
+    t =    30.63s     Check for interrupting elements affecting "Limpar busca e filtros" Button
+    t =    30.71s     Synthesize event
+    t =    31.02s     Wait for host.exp.Exponent to idle
+    t =    31.03s Tap Button (First Match)
+    t =    31.03s     Wait for host.exp.Exponent to idle
+    t =    31.04s     Find the Button (First Match)
+    t =    31.07s     Check for interrupting elements affecting "Ver pontos encontrados no mapa" Button
+    t =    31.13s     Synthesize event
+    t =    31.45s     Wait for host.exp.Exponent to idle
+    t =    31.46s Waiting 10.0s for Button (First Match) to exist
+    t =    32.49s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    32.50s         Checking existence of `Button (First Match)`
+    t =    32.65s Tap Button (First Match)
+    t =    32.66s     Wait for host.exp.Exponent to idle
+    t =    32.71s     Find the Button (First Match)
+    t =    32.81s     Check for interrupting elements affecting "Centralizar localização na FIAP" Button
+    t =    33.17s     Synthesize event
+    t =    33.62s     Wait for host.exp.Exponent to idle
+    t =    34.73s Checking existence of `Button (First Match)`
+    t =    34.88s Find the TextField (First Match)
+    t =    34.98s Tap "Buscar endereço, bairro ou ponto" TextField
+    t =    34.98s     Wait for host.exp.Exponent to idle
+    t =    35.02s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    35.22s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    35.53s     Synthesize event
+    t =    35.88s     Wait for host.exp.Exponent to idle
+    t =    38.93s Type 'H' into "Buscar endereço, bairro ou ponto" TextField
+    t =    38.94s     Wait for host.exp.Exponent to idle
+    t =    39.02s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    39.30s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    39.74s     Synthesize event
+    t =    40.14s     Wait for host.exp.Exponent to idle
+    t =    41.33s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    41.49s Type 'i' into "Buscar endereço, bairro ou ponto" TextField
+    t =    41.50s     Wait for host.exp.Exponent to idle
+    t =    41.62s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    42.00s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    42.48s     Synthesize event
+    t =    42.88s     Wait for host.exp.Exponent to idle
+    t =    43.95s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    44.16s Type 'g' into "Buscar endereço, bairro ou ponto" TextField
+    t =    44.16s     Wait for host.exp.Exponent to idle
+    t =    44.29s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    44.49s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    44.81s     Synthesize event
+    t =    45.19s     Wait for host.exp.Exponent to idle
+    t =    46.21s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    46.40s Type 'i' into "Buscar endereço, bairro ou ponto" TextField
+    t =    46.40s     Wait for host.exp.Exponent to idle
+    t =    46.47s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    46.76s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    46.93s     Synthesize event
+    t =    47.61s     Wait for host.exp.Exponent to idle
+    t =    48.81s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    49.52s Type 'e' into "Buscar endereço, bairro ou ponto" TextField
+    t =    49.52s     Wait for host.exp.Exponent to idle
+    t =    49.71s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    49.87s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    50.03s     Synthesize event
+    t =    50.67s     Wait for host.exp.Exponent to idle
+    t =    51.85s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    52.09s Type 'n' into "Buscar endereço, bairro ou ponto" TextField
+    t =    52.09s     Wait for host.exp.Exponent to idle
+    t =    52.52s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    52.74s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    53.17s     Synthesize event
+    t =    53.91s     Wait for host.exp.Exponent to idle
+    t =    55.03s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    55.21s Type 'ó' into "Buscar endereço, bairro ou ponto" TextField
+    t =    55.22s     Wait for host.exp.Exponent to idle
+    t =    55.26s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    55.44s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    55.65s     Synthesize event
+    t =    56.00s     Wait for host.exp.Exponent to idle
+    t =    57.11s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    57.28s Type 'p' into "Buscar endereço, bairro ou ponto" TextField
+    t =    57.28s     Wait for host.exp.Exponent to idle
+    t =    57.30s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    57.45s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    57.80s     Synthesize event
+    t =    58.08s     Wait for host.exp.Exponent to idle
+    t =    59.21s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    59.35s Type 'o' into "Buscar endereço, bairro ou ponto" TextField
+    t =    59.35s     Wait for host.exp.Exponent to idle
+    t =    59.38s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    59.51s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    59.66s     Synthesize event
+    t =    59.94s     Wait for host.exp.Exponent to idle
+    t =    61.03s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    61.20s Type 'l' into "Buscar endereço, bairro ou ponto" TextField
+    t =    61.20s     Wait for host.exp.Exponent to idle
+    t =    61.24s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    61.37s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    61.51s     Synthesize event
+    t =    61.80s     Wait for host.exp.Exponent to idle
+    t =    62.99s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    63.18s Type 'i' into "Buscar endereço, bairro ou ponto" TextField
+    t =    63.19s     Wait for host.exp.Exponent to idle
+    t =    63.31s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    63.49s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    63.61s     Synthesize event
+    t =    63.91s     Wait for host.exp.Exponent to idle
+    t =    64.99s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    65.13s Type 's' into "Buscar endereço, bairro ou ponto" TextField
+    t =    65.13s     Wait for host.exp.Exponent to idle
+    t =    65.17s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    65.32s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    65.43s     Synthesize event
+    t =    65.73s     Wait for host.exp.Exponent to idle
+    t =    66.82s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    66.95s Type ' ' into "Buscar endereço, bairro ou ponto" TextField
+    t =    66.96s     Wait for host.exp.Exponent to idle
+    t =    66.98s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    67.09s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    67.41s     Synthesize event
+    t =    67.75s     Wait for host.exp.Exponent to idle
+    t =    68.87s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    69.00s Type 'P' into "Buscar endereço, bairro ou ponto" TextField
+    t =    69.00s     Wait for host.exp.Exponent to idle
+    t =    69.02s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    69.16s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    69.27s     Synthesize event
+    t =    69.60s     Wait for host.exp.Exponent to idle
+    t =    70.68s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    70.99s Type 'r' into "Buscar endereço, bairro ou ponto" TextField
+    t =    71.01s     Wait for host.exp.Exponent to idle
+    t =    71.36s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    71.72s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    72.11s     Synthesize event
+    t =    72.52s     Wait for host.exp.Exponent to idle
+    t =    73.61s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    73.81s Type 'i' into "Buscar endereço, bairro ou ponto" TextField
+    t =    73.81s     Wait for host.exp.Exponent to idle
+    t =    73.89s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    74.12s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    74.36s     Synthesize event
+    t =    74.72s     Wait for host.exp.Exponent to idle
+    t =    75.90s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    76.12s Type 'm' into "Buscar endereço, bairro ou ponto" TextField
+    t =    76.12s     Wait for host.exp.Exponent to idle
+    t =    76.17s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    76.34s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    76.51s     Synthesize event
+    t =    76.92s     Wait for host.exp.Exponent to idle
+    t =    78.07s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    78.25s Type 'e' into "Buscar endereço, bairro ou ponto" TextField
+    t =    78.25s     Wait for host.exp.Exponent to idle
+    t =    78.27s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    78.41s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    78.54s     Synthesize event
+    t =    78.86s     Wait for host.exp.Exponent to idle
+    t =    79.94s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    80.07s Type ' ' into "Buscar endereço, bairro ou ponto" TextField
+    t =    80.07s     Wait for host.exp.Exponent to idle
+    t =    80.10s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    80.23s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    80.53s     Synthesize event
+    t =    80.97s     Wait for host.exp.Exponent to idle
+    t =    82.04s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    82.24s Type 'C' into "Buscar endereço, bairro ou ponto" TextField
+    t =    82.24s     Wait for host.exp.Exponent to idle
+    t =    82.28s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    82.44s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    82.65s     Synthesize event
+    t =    82.95s     Wait for host.exp.Exponent to idle
+    t =    84.19s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    84.33s Type 'h' into "Buscar endereço, bairro ou ponto" TextField
+    t =    84.33s     Wait for host.exp.Exponent to idle
+    t =    84.37s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    84.51s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    84.70s     Synthesize event
+    t =    85.01s     Wait for host.exp.Exponent to idle
+    t =    86.11s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    86.28s Type 'a' into "Buscar endereço, bairro ou ponto" TextField
+    t =    86.28s     Wait for host.exp.Exponent to idle
+    t =    86.42s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    87.20s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    87.84s     Synthesize event
+    t =    88.48s     Wait for host.exp.Exponent to idle
+    t =    89.64s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    89.88s Type 'r' into "Buscar endereço, bairro ou ponto" TextField
+    t =    89.88s     Wait for host.exp.Exponent to idle
+    t =    89.97s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    90.14s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    90.23s     Synthesize event
+    t =    90.75s     Wait for host.exp.Exponent to idle
+    t =    91.88s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    92.09s Type 'g' into "Buscar endereço, bairro ou ponto" TextField
+    t =    92.09s     Wait for host.exp.Exponent to idle
+    t =    92.16s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    92.34s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    92.50s     Synthesize event
+    t =    92.81s     Wait for host.exp.Exponent to idle
+    t =    93.91s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    94.03s Type 'e' into "Buscar endereço, bairro ou ponto" TextField
+    t =    94.03s     Wait for host.exp.Exponent to idle
+    t =    94.06s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    94.22s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    94.36s     Synthesize event
+    t =    94.69s     Wait for host.exp.Exponent to idle
+    t =    95.80s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    95.93s Type '
+' into "Buscar endereço, bairro ou ponto" TextField
+    t =    95.93s     Wait for host.exp.Exponent to idle
+    t =    95.96s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    96.10s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    96.28s     Synthesize event
+    t =    96.61s     Wait for host.exp.Exponent to idle
+    t =    96.68s Find the "Buscar endereço, bairro ou ponto" TextField
+FLUI_BUSCA_CONFIRMADA Optional(Higienópolis Prime Charge)
+    t =    96.76s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    96.84s Waiting 10.0s for Button (First Match) to exist
+    t =    97.92s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    97.93s         Checking existence of `Button (First Match)`
+    t =    98.05s Requesting snapshot of accessibility hierarchy for app with pid 34351
+    t =   100.39s Requesting snapshot of accessibility hierarchy for app with pid 34351
+FLUI_EVIDENCIA Busca com texto completo reposiciona para Higienópolis
+Attributes: Application, 0x10b1babc0, pid: 34351, label: 'Expo Go'
+Element subtree:
+ →Application, 0x10b1babc0, pid: 34351, label: 'Expo Go'
+    Window (Main), 0x10b1bad00, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x10b1bae40, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x10b1baf80, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x10b1b9540, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x10b1b9680, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x10b1b97c0, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x10b1b9900, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x10b1b9a40, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x10b1b9b80, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x10b1b9cc0, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x10b1b9e00, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x10b1b9f40, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x10b1ba080, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x10b1ba1c0, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x10b1ba300, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x10b1ba440, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x10b1ba580, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Other, 0x10b1ba6c0, {{0.0, 62.0}, {440.0, 162.0}}
+                                        Other, 0x10b1ba800, {{20.0, 76.0}, {76.0, 36.0}}
+                                          Other, 0x10b1ba940, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x10b1baa80, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x10b1bbe80, {{89.2, 82.8}, {6.7, 6.7}}
+                                        Button, 0x10b1b8000, {{191.7, 71.0}, {180.3, 46.0}}, label: 'Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 180 quilômetros estimados'
+                                        Button, 0x10b1b8140, {{374.0, 71.0}, {46.0, 46.0}}, label: 'Abrir perfil'
+                                        Other, 0x10b1b8280, {{20.0, 132.0}, {400.0, 58.0}}
+                                          Other, 0x10b1b9180, {{39.0, 150.7}, {21.0, 21.0}}
+                                            Other, 0x10b1b88c0, {{40.8, 152.4}, {17.5, 17.5}}
+                                              Other, 0x10b1b8b40, {{40.8, 152.4}, {15.8, 15.8}}
+                                              Other, 0x10b1b8c80, {{52.7, 164.4}, {5.5, 5.5}}
+                                          Other, 0x10b1b8dc0, {{73.0, 150.7}, {277.0, 20.3}}
+                                            TextField, 0x10b1b8f00, {{73.0, 150.7}, {277.0, 20.3}}, label: 'Buscar no mapa', placeholderValue: 'Buscar endereço, bairro ou ponto', value: Higienópolis Prime...
+                                          Other, 0x10b1b9040, {{358.0, 146.0}, {1.0, 30.0}}
+                                          Button, 0x10b1bb0c0, {{367.0, 140.0}, {42.0, 42.0}}, label: 'Abrir busca e filtros'
+                                        Button, 0x10b1bb200, {{20.0, 194.0}, {400.0, 16.0}}, label: 'Mostrar atalhos de filtro'
+                                      Other, 0x10b1bb340, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x10b1bb480, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                          Other, 0x10b1bb5c0, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x10b1bb700, {{0.0, 224.0}, {72.0, 72.0}}
+                                            Other, 0x10b1bb840, {{0.0, 224.0}, {440.0, 697.1}}
+                                              Other, 0x10b1bb980, {{0.0, 224.0}, {440.0, 697.1}}
+                                                Button, 0x10b1bbac0, {{5.0, 894.0}, {60.0, 22.0}}, label: 'Google Maps'
+                                            Other, 0x10b1bbc00, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                              Button, 0x10b1bbd40, {{185.3, 512.3}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x11aa08140', label: 'Higienópolis Prime Charge'
+                                              Other, 0x10b1b83c0, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x10b1b8500, {{1912.0, 2136.0}, {74.0, 74.0}}
+                                              Other, 0x10b1b8640, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                Other, 0x10b1b8780, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                  Other, 0x106d9f840, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                    Other, 0x109c1f0c0, {{1926.8, 2150.8}, {42.4, 42.4}}
+                                                    Other, 0x109c1f340, {{1936.0, 2160.0}, {24.0, 24.0}}
+                                        Other, 0x109c1f480, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x109c1f200, {{372.0, 242.0}, {52.0, 166.0}}
+                                          Other, 0x109c1f5c0, {{372.0, 242.0}, {52.0, 104.0}}
+                                            Button, 0x109c1f840, {{372.0, 243.0}, {52.0, 51.0}}, label: 'Aumentar zoom do mapa'
+                                            Button, 0x109c1f980, {{372.0, 295.0}, {52.0, 51.0}}, label: 'Diminuir zoom do mapa'
+                                            Other, 0x109c1f700, {{384.0, 294.0}, {28.0, 1.0}}
+                                          Button, 0x109c1fac0, {{372.0, 356.0}, {52.0, 52.0}}, label: 'Centralizar localização na FIAP'
+                                        Other, 0x109c1fc00, {{372.0, 527.3}, {52.0, 52.0}}
+                                          Other, 0x109c1fe80, {{372.0, 527.3}, {52.0, 52.0}}
+                                            Button, 0x109c1fd40, {{372.0, 527.3}, {52.0, 52.0}}, label: 'Abrir assistente Flui IA'
+                                        Other, 0x109c1c500, {{16.0, 583.3}, {408.0, 338.7}}
+                                          Other, 0x109c1c640, {{16.0, 583.3}, {408.0, 338.7}}
+                                            Button, 0x109c1d040, {{35.0, 602.3}, {370.0, 12.0}}, label: 'Minimizar opções demonstrativas para ver o mapa inteiro'
+                                            StaticText, 0x109c1cf00, {{35.0, 614.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                              StaticText, 0x109c1d2c0, {{35.0, 614.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                            Other, 0x109c1d180, {{35.0, 650.0}, {370.0, 262.0}}
+                                              ScrollView, 0x109c1d400, {{35.0, 650.0}, {370.0, 262.0}}
+                                                Other, 0x109c1d540, {{35.0, 650.0}, {370.0, 134.7}}
+                                                  Other, 0x109c1da40, {{35.0, 650.0}, {370.0, 134.7}}
+                                                    Button, 0x109c1de00, {{35.0, 650.0}, {370.0, 134.7}}, label: 'Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. Chegada estimada com 44% de bateria.'
+                                                Other, 0x109c1df40, {{53.0, 879.0}, {334.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x109c1db80, {{65.0, 906.0}, {310.0, 3.0}}
+                                                Other, 0x109c1e080, {{53.0, 879.0}, {334.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x109c1e300, {{65.0, 906.0}, {310.0, 3.0}}
+                          Toolbar, 0x109c1e580, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x109c1e1c0, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x109c1e6c0, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x109c1e940, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x109c1ea80, {{0.0, 0.0}, {440.0, 956.0}}
+    Window, 0x109c1e440, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x109c1ebc0, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x109c1ee40, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x10b1babc0, pid: 34351, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x109c1dcc0, pid: 34351, label: 'Expo Go'
+  }
+
+    t =   100.54s Find the Application 'host.exp.Exponent'
+    t =   101.23s Added attachment named 'Busca com texto completo reposiciona para Higienópolis'
+    t =   101.25s Checking existence of `Button (First Match)`
+    t =   101.33s Tap Button (First Match)
+    t =   101.34s     Wait for host.exp.Exponent to idle
+    t =   101.35s     Find the Button (First Match)
+    t =   101.44s     Check for interrupting elements affecting "Minimizar opções demonstrativas para ver o mapa inteiro" Button
+    t =   101.52s     Synthesize event
+    t =   101.95s     Wait for host.exp.Exponent to idle
+    t =   102.03s Checking existence of `Button (First Match)`
+    t =   102.09s Tap Button (First Match)
+    t =   102.09s     Wait for host.exp.Exponent to idle
+    t =   102.12s     Find the Button (First Match)
+    t =   102.21s     Check for interrupting elements affecting "Mostrar atalhos de filtro" Button
+    t =   102.32s     Synthesize event
+    t =   102.74s     Wait for host.exp.Exponent to idle
+    t =   102.84s Press Application 'host.exp.Exponent'[0.28, 0.48] for 0.3 seconds, then drag to Application 'host.exp.Exponent'[0.36, 0.52] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds
+    t =   102.85s     Wait for host.exp.Exponent to idle
+    t =   102.94s     Find the Application 'host.exp.Exponent'
+    t =   103.04s     Check for interrupting elements affecting "Expo Go" Application
+    t =   103.14s     Synthesize event
+    t =   103.17s         Find the Application 'host.exp.Exponent'
+    t =   103.22s         Find the Application 'host.exp.Exponent'
+    t =   103.29s         Find the Application 'host.exp.Exponent'
+    t =   103.36s         Find the Application 'host.exp.Exponent'
+    t =   103.46s         Find the Application 'host.exp.Exponent'
+    t =   104.20s     Wait for host.exp.Exponent to idle
+    t =   105.25s Find the Button (First Match)
+    t =   105.37s Tap Button (First Match)
+    t =   105.38s     Wait for host.exp.Exponent to idle
+    t =   105.41s     Find the Button (First Match)
+    t =   105.53s     Check for interrupting elements affecting "CCS2" Button
+    t =   105.61s     Synthesize event
+    t =   106.05s     Wait for host.exp.Exponent to idle
+    t =   106.08s Find the "CCS2" Button
+    t =   107.21s Find the Button (First Match)
+FLUI_REPOSICIONAMENTO_FILTRO antes=(322.3333435058594, 684.6666564941406) depois=(220.0, 575.0)
+    t =   107.36s Requesting snapshot of accessibility hierarchy for app with pid 34351
+    t =   110.07s Requesting snapshot of accessibility hierarchy for app with pid 34351
+FLUI_EVIDENCIA Filtro CCS2 reposiciona após arraste intencional
+Attributes: Application, 0x10b1c4140, pid: 34351, label: 'Expo Go'
+Element subtree:
+ →Application, 0x10b1c4140, pid: 34351, label: 'Expo Go'
+    Window (Main), 0x10b1c4280, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x10b1c43c0, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x10b1c4500, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x10b1c4640, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x10b1c4780, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x10b1c48c0, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x10b1c4a00, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x10b1c4b40, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x10b1c4c80, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x10b1c4dc0, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x10b1c4f00, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x10b1c5040, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x10b1c5180, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x10b1c52c0, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x10b1c5400, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x10b1c5540, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x10b1c5680, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Other, 0x10b1c57c0, {{0.0, 62.0}, {440.0, 218.0}}
+                                        Other, 0x10b1c5900, {{20.0, 76.0}, {76.0, 36.0}}
+                                          Other, 0x10b1c5a40, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x10b1c5b80, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x10b1c5cc0, {{89.2, 82.8}, {6.7, 6.7}}
+                                        Button, 0x10b1c5e00, {{191.7, 71.0}, {180.3, 46.0}}, label: 'Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 180 quilômetros estimados'
+                                        Button, 0x10b1c5f40, {{374.0, 71.0}, {46.0, 46.0}}, label: 'Abrir perfil'
+                                        Other, 0x10b1c6080, {{20.0, 132.0}, {400.0, 58.0}}
+                                          Other, 0x10b1c61c0, {{39.0, 150.7}, {21.0, 21.0}}
+                                            Other, 0x10b1c6300, {{40.8, 152.4}, {17.5, 17.5}}
+                                              Other, 0x10b1c6440, {{40.8, 152.4}, {15.8, 15.8}}
+                                              Other, 0x10b1c6580, {{52.7, 164.4}, {5.5, 5.5}}
+                                          Other, 0x10b1c66c0, {{73.0, 150.7}, {277.0, 20.3}}
+                                            TextField, 0x10b1c6800, {{73.0, 150.7}, {277.0, 20.3}}, label: 'Buscar no mapa', placeholderValue: 'Buscar endereço, bairro ou ponto', value: Higienópolis Prime...
+                                          Other, 0x10b1c6940, {{358.0, 146.0}, {1.0, 30.0}}
+                                          Button, 0x10b1c6a80, {{367.0, 140.0}, {42.0, 42.0}}, label: 'Abrir busca e filtros'
+                                        Other, 0x10b1c6bc0, {{20.0, 194.0}, {400.0, 56.0}}
+                                          Other, 0x10b1c6d00, {{20.0, 194.0}, {400.0, 56.0}}
+                                            ScrollView, 0x10b1c6e40, {{20.0, 194.0}, {400.0, 56.0}}
+                                              Other, 0x10b1c6f80, {{20.0, 194.0}, {510.0, 56.0}}
+                                                Other, 0x10b1c70c0, {{20.0, 194.0}, {510.0, 56.0}}
+                                                  Button, 0x10b1c7200, {{20.0, 198.0}, {155.3, 52.0}}, label: 'Aberto agora'
+                                                  Button, 0x10b1c7340, {{179.3, 198.0}, {100.3, 52.0}}, label: 'CCS2, filtro ativo', Selected
+                                                  Button, 0x10b1c7480, {{283.7, 198.0}, {110.0, 52.0}}, label: 'Rápido'
+                                                  Button, 0x10b1c75c0, {{397.7, 198.0}, {124.3, 52.0}}, label: 'Banheiro'
+                                              Other, 0x10b1c7700, {{387.0, 194.0}, {30.0, 56.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                                                Other, 0x10b1c7840, {{414.0, 195.0}, {3.0, 36.0}}
+                                              Other, 0x10b1c7980, {{387.0, 194.0}, {30.0, 56.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                                                Other, 0x10b1c7ac0, {{414.0, 195.0}, {3.0, 36.0}}
+                                        Button, 0x10b1c7c00, {{20.0, 250.0}, {400.0, 16.0}}, label: 'Recolher atalhos de filtro', value: expanded
+                                      Other, 0x10b1c7d40, {{0.0, 280.0}, {440.0, 642.0}}
+                                        Other, 0x10b1c7e80, {{0.0, 280.0}, {440.0, 642.0}}, label: 'Mapa com pontos de recarga próximos'
+                                          Other, 0x109c1dcc0, {{0.0, 280.0}, {440.0, 642.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x109c1e440, {{0.0, 280.0}, {72.0, 72.0}}
+                                            Other, 0x109c1ebc0, {{0.0, 280.0}, {440.0, 641.1}}
+                                              Other, 0x109c1ee40, {{0.0, 280.0}, {440.0, 641.1}}
+                                                Button, 0x109c1e6c0, {{5.0, 894.0}, {60.0, 22.0}}, label: 'Google Maps'
+                                            Other, 0x109c1e940, {{0.0, 280.0}, {440.0, 642.0}}, label: 'Mapa com pontos de recarga próximos'
+                                              Button, 0x109c1ea80, {{185.3, 540.3}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x11aa08140', label: 'Higienópolis Prime Charge'
+                                              Other, 0x109c1e580, {{0.0, 280.0}, {440.0, 642.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x109c1e1c0, {{1912.0, 2192.0}, {74.0, 74.0}}
+                                              Other, 0x109c1c500, {{1912.0, 2192.0}, {72.0, 72.0}}
+                                                Other, 0x109c1c640, {{1912.0, 2192.0}, {72.0, 72.0}}
+                                                  Other, 0x109c1d180, {{1912.0, 2192.0}, {72.0, 72.0}}
+                                                    Other, 0x109c1d400, {{1923.7, 2203.7}, {48.7, 48.7}}
+                                                    Other, 0x109c1e080, {{1936.0, 2216.0}, {24.0, 24.0}}
+                                        Other, 0x109c1e300, {{0.0, 280.0}, {440.0, 642.0}}
+                                        Other, 0x109c1df40, {{372.0, 298.0}, {52.0, 166.0}}
+                                          Other, 0x109c1db80, {{372.0, 298.0}, {52.0, 104.0}}
+                                            Button, 0x109c1d540, {{372.0, 299.0}, {52.0, 51.0}}, label: 'Aumentar zoom do mapa'
+                                            Button, 0x109c1da40, {{372.0, 351.0}, {52.0, 51.0}}, label: 'Diminuir zoom do mapa'
+                                            Other, 0x109c1de00, {{384.0, 350.0}, {28.0, 1.0}}
+                                          Button, 0x109c1cf00, {{372.0, 412.0}, {52.0, 52.0}}, label: 'Centralizar localização na FIAP'
+                                        Other, 0x109c1d2c0, {{0.0, 850.0}, {440.0, 52.0}}
+                                          Button, 0x109c1d040, {{99.0, 853.0}, {242.0, 46.0}}, label: 'Mostrar opções demonstrativas'
+                                        Other, 0x10b1b9cc0, {{372.0, 850.0}, {52.0, 52.0}}
+                                          Other, 0x10b1b9a40, {{372.0, 850.0}, {52.0, 52.0}}
+                                            Button, 0x1137b8000, {{372.0, 850.0}, {52.0, 52.0}}, label: 'Abrir assistente Flui IA'
+                                        Other, 0x1137b8140, {{16.0, 962.0}, {408.0, 338.7}}
+                                          Other, 0x1137b8280, {{16.0, 962.0}, {408.0, 338.7}}
+                                            Button, 0x1137b83c0, {{35.0, 981.0}, {370.0, 12.0}}, label: 'Minimizar opções demonstrativas para ver o mapa inteiro'
+                                            StaticText, 0x1137b8500, {{35.0, 993.0}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                              StaticText, 0x1137b8640, {{35.0, 993.0}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                            Other, 0x1137b8780, {{35.0, 1028.7}, {370.0, 262.0}}
+                                              ScrollView, 0x1137b88c0, {{35.0, 1028.7}, {370.0, 262.0}}
+                                                Other, 0x1137b8a00, {{35.0, 1028.7}, {370.0, 134.7}}
+                                                  Other, 0x1137b8b40, {{35.0, 1028.7}, {370.0, 134.7}}
+                                                    Button, 0x1137b8c80, {{35.0, 1028.7}, {370.0, 134.7}}, label: 'Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. Chegada estimada com 44% de bateria.'
+                                                Other, 0x1137b8dc0, {{35.0, 1257.7}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x1137b8f00, {{65.0, 1284.7}, {310.0, 3.0}}
+                                                Other, 0x1137b9040, {{35.0, 1257.7}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x1137b9180, {{65.0, 1284.7}, {310.0, 3.0}}
+                          Toolbar, 0x1137b92c0, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x1137b9400, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1137b9540, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1137b9680, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1137b97c0, {{0.0, 0.0}, {440.0, 956.0}}
+    Window, 0x1137b9900, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x1137b9a40, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x1137b9b80, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x10b1c4140, pid: 34351, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x1137b9cc0, pid: 34351, label: 'Expo Go'
+  }
+
+    t =   110.32s Find the Application 'host.exp.Exponent'
+    t =   110.91s Added attachment named 'Filtro CCS2 reposiciona após arraste intencional'
+    t =   110.92s Tear Down
+Test Case '-[FluiValidacao.FluiValidacao test01BuscaSincronizadaEReposicionamentoPorFiltro]' passed (112.961 seconds).
+Test Case '-[FluiValidacao.FluiValidacao test02FechamentoSemDependerDaBusca]' started.
+    t =     0.00s Start Test at 2026-10-16 09:03:31.572
+    t =     0.20s Set Up
+    t =     0.21s     Open host.exp.Exponent
+    t =     0.22s         Activate host.exp.Exponent
+    t =     0.35s             Wait for host.exp.Exponent to idle
+    t =     0.43s     Waiting 3.0s for Button (First Match) to exist
+    t =     1.52s         Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     1.52s             Checking existence of `Button (First Match)`
+    t =     1.59s     Waiting 45.0s for Button (First Match) to exist
+    t =     2.64s         Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     2.64s             Checking existence of `Button (First Match)`
+FLUI_CLOCK MAPA_ABRIR
+    t =     2.71s Tap Button (First Match)
+    t =     2.72s     Wait for host.exp.Exponent to idle
+    t =     2.78s     Find the Button (First Match)
+    t =     2.87s     Check for interrupting elements affecting "Abrir busca e filtros" Button
+    t =     3.00s     Synthesize event
+    t =     3.40s     Wait for host.exp.Exponent to idle
+    t =     3.55s Waiting 8.0s for Button (First Match) to exist
+    t =     4.59s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     4.59s         Checking existence of `Button (First Match)`
+    t =     4.63s Tap Button (First Match)
+    t =     4.63s     Wait for host.exp.Exponent to idle
+    t =     4.64s     Find the Button (First Match)
+    t =     4.73s     Check for interrupting elements affecting "Limpar busca e filtros" Button
+    t =     4.84s     Synthesize event
+    t =     5.22s     Wait for host.exp.Exponent to idle
+    t =     5.30s Find the Button (First Match)
+    t =     5.48s Swipe up ScrollView (First Match)
+    t =     5.48s     Wait for host.exp.Exponent to idle
+    t =     5.49s     Find the ScrollView (First Match)
+    t =     5.55s     Check for interrupting elements affecting ScrollView
+    t =     5.70s     Synthesize event
+    t =     6.36s     Wait for host.exp.Exponent to idle
+    t =     8.47s Find the "Carregadores livres" Button
+    t =     8.58s Find the "Carregadores livres" Button
+    t =     8.65s Find the "Carregadores livres" Button
+    t =     8.72s Tap "Carregadores livres" Button
+    t =     8.73s     Wait for host.exp.Exponent to idle
+    t =     8.74s     Find the "Carregadores livres" Button
+    t =     8.80s     Check for interrupting elements affecting "Carregadores livres" Button
+    t =     8.88s     Synthesize event
+    t =     9.20s     Wait for host.exp.Exponent to idle
+    t =     9.21s Find the "Carregadores livres" Button
+    t =     9.30s Find the "Carregadores livres, selecionado" Button
+FLUI_FILTRO Carregadores livres selecionado=true
+    t =     9.36s Find the Button (First Match)
+    t =     9.45s Find the "Aberto agora" Button
+    t =     9.55s Find the "Aberto agora" Button
+    t =     9.60s Tap "Aberto agora" Button
+    t =     9.60s     Wait for host.exp.Exponent to idle
+    t =     9.61s     Find the "Aberto agora" Button
+    t =     9.66s     Check for interrupting elements affecting "Aberto agora" Button
+    t =     9.75s     Synthesize event
+    t =    10.07s     Wait for host.exp.Exponent to idle
+    t =    10.08s Find the "Aberto agora" Button
+    t =    10.23s Find the "Aberto agora, selecionado" Button
+FLUI_FILTRO Aberto agora selecionado=true
+    t =    10.28s Find the Button (First Match)
+    t =    10.42s Swipe up ScrollView (First Match)
+    t =    10.42s     Wait for host.exp.Exponent to idle
+    t =    10.43s     Find the ScrollView (First Match)
+    t =    10.46s     Check for interrupting elements affecting ScrollView
+    t =    10.53s     Synthesize event
+    t =    11.14s     Wait for host.exp.Exponent to idle
+    t =    11.60s Find the "1 km" Button
+    t =    11.73s Find the "1 km" Button
+    t =    11.82s Find the "1 km" Button
+    t =    11.89s Tap "1 km" Button
+    t =    11.89s     Wait for host.exp.Exponent to idle
+    t =    11.90s     Find the "1 km" Button
+    t =    11.98s     Check for interrupting elements affecting "1 km" Button
+    t =    12.04s     Synthesize event
+    t =    12.35s     Wait for host.exp.Exponent to idle
+    t =    12.36s Find the "1 km" Button
+    t =    12.43s Find the "1 km, selecionado" Button
+FLUI_FILTRO 1 km selecionado=true
+    t =    12.49s Tap Button (First Match)
+    t =    12.49s     Wait for host.exp.Exponent to idle
+    t =    12.50s     Find the Button (First Match)
+    t =    12.53s     Check for interrupting elements affecting "Ver pontos encontrados no mapa" Button
+    t =    12.59s     Synthesize event
+    t =    12.90s     Wait for host.exp.Exponent to idle
+    t =    12.92s Waiting 10.0s for Button (First Match) to exist
+    t =    13.97s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    13.98s         Checking existence of `Button (First Match)`
+    t =    14.06s Find the TextField (First Match)
+FLUI_HORARIO_SEM_BUSCA campo=Optional(Buscar endereço, bairro ou ponto)
+    t =    14.17s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    14.25s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    14.31s Waiting 45.0s for Button (First Match) to exist
+    t =    15.37s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    15.37s         Checking existence of `Button (First Match)`
+    t =    15.45s Checking existence of `Button (First Match)`
+    t =    15.52s Tap Button (First Match)
+    t =    15.52s     Wait for host.exp.Exponent to idle
+    t =    15.55s     Find the Button (First Match)
+    t =    15.65s     Check for interrupting elements affecting "Minimizar opções demonstrativas para ver o mapa inteiro" Button
+    t =    15.77s     Synthesize event
+    t =    16.23s     Wait for host.exp.Exponent to idle
+    t =    16.34s Tap Button (First Match)
+    t =    16.35s     Wait for host.exp.Exponent to idle
+    t =    16.54s     Find the Button (First Match)
+    t =    16.72s     Check for interrupting elements affecting "Diminuir zoom do mapa" Button
+    t =    16.83s     Synthesize event
+    t =    17.34s     Wait for host.exp.Exponent to idle
+    t =    17.38s Tap Button (First Match)
+    t =    17.38s     Wait for host.exp.Exponent to idle
+    t =    17.40s     Find the Button (First Match)
+    t =    17.49s     Check for interrupting elements affecting "Diminuir zoom do mapa" Button
+    t =    17.58s     Synthesize event
+    t =    18.08s     Wait for host.exp.Exponent to idle
+    t =    18.20s Tap Button (First Match)
+    t =    18.20s     Wait for host.exp.Exponent to idle
+    t =    18.24s     Find the Button (First Match)
+    t =    18.36s     Check for interrupting elements affecting "Diminuir zoom do mapa" Button
+    t =    18.46s     Synthesize event
+    t =    18.85s     Wait for host.exp.Exponent to idle
+    t =    18.86s Tap Button (First Match)
+    t =    18.86s     Wait for host.exp.Exponent to idle
+    t =    18.89s     Find the Button (First Match)
+    t =    19.03s     Check for interrupting elements affecting "Diminuir zoom do mapa" Button
+    t =    19.15s     Synthesize event
+    t =    19.51s     Wait for host.exp.Exponent to idle
+    t =    20.57s Checking existence of `Button (First Match)`
+    t =    20.64s Find the Button (First Match)
+    t =    20.73s Requesting snapshot of accessibility hierarchy for app with pid 34351
+    t =    21.86s Requesting snapshot of accessibility hierarchy for app with pid 34351
+FLUI_EVIDENCIA Antes das 22h: filtro sem busca e zoom escolhido
+Attributes: Application, 0x109c1f340, pid: 34351, label: 'Expo Go'
+Element subtree:
+ →Application, 0x109c1f340, pid: 34351, label: 'Expo Go'
+    Window (Main), 0x109c1f0c0, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x109c1cdc0, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x109c1c8c0, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x109c1ef80, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x109c1ed00, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x109c1d2c0, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x109c1d040, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x109c1df40, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x109c1cf00, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x109c1db80, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x109c1de00, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x109c1da40, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x109c1d540, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x109c1e300, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x109c1dcc0, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x109c1e1c0, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x109c1c500, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Other, 0x109c1c640, {{0.0, 62.0}, {440.0, 162.0}}
+                                        Other, 0x109c1d180, {{20.0, 76.0}, {76.0, 36.0}}
+                                          Other, 0x109c1e080, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x109c1d400, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x109c1e940, {{89.2, 82.8}, {6.7, 6.7}}
+                                        Button, 0x109c1e580, {{191.7, 71.0}, {180.3, 46.0}}, label: 'Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 180 quilômetros estimados'
+                                        Button, 0x109c1ea80, {{374.0, 71.0}, {46.0, 46.0}}, label: 'Abrir perfil'
+                                        Other, 0x109c1ebc0, {{20.0, 132.0}, {400.0, 58.0}}
+                                          Other, 0x109c1ee40, {{39.0, 150.7}, {21.0, 21.0}}
+                                            Other, 0x109c1e6c0, {{40.8, 152.4}, {17.5, 17.5}}
+                                              Other, 0x109c1e440, {{40.8, 152.4}, {15.8, 15.8}}
+                                              Other, 0x10b1ba580, {{52.7, 164.4}, {5.5, 5.5}}
+                                          Other, 0x10b1b8000, {{73.0, 150.7}, {277.0, 20.3}}
+                                            TextField, 0x10b1ba800, {{73.0, 150.7}, {277.0, 20.3}}, label: 'Buscar no mapa', placeholderValue: 'Buscar endereço, bairro ou ponto'
+                                          Other, 0x10b1b8640, {{358.0, 146.0}, {1.0, 30.0}}
+                                          Button, 0x10b1b8780, {{367.0, 140.0}, {42.0, 42.0}}, label: 'Abrir busca e filtros'
+                                        Button, 0x10b1bbc00, {{20.0, 194.0}, {400.0, 16.0}}, label: 'Mostrar atalhos de filtro'
+                                      Other, 0x10b1b83c0, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x10b1bbe80, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                          Other, 0x10b1baa80, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x10b1bbd40, {{0.0, 224.0}, {72.0, 72.0}}
+                                            Other, 0x10b1bb840, {{0.0, 224.0}, {440.0, 694.0}}
+                                              Other, 0x10b1bb980, {{0.0, 224.0}, {440.0, 694.0}}
+                                                Button, 0x10b1b92c0, {{5.0, 891.0}, {60.0, 22.0}}, label: 'Google Maps'
+                                            Other, 0x10b1b9400, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                              Button, 0x10b1b97c0, {{25.3, 470.7}, {72.0, 72.0}}, identifier: 'AIRGMSMarker_0x131d04280', label: 'Você na FIAP'
+                                              Button, 0x10b1b9900, {{185.3, 503.3}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x11ab46080', label: 'Flui Vila Mariana Lins'
+                                              Other, 0x10b1b9e00, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x10b1b9f40, {{1912.0, 2136.0}, {74.0, 74.0}}
+                                              Other, 0x10b1ba080, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                Other, 0x10b1ba1c0, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                  Other, 0x10b1ba300, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                    Other, 0x10b1ba440, {{1917.1, 2141.1}, {61.8, 61.8}}
+                                                    Other, 0x1137b8000, {{1936.0, 2160.0}, {24.0, 24.0}}
+                                        Other, 0x1137b8140, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x1137b8280, {{372.0, 242.0}, {52.0, 166.0}}
+                                          Other, 0x1137b83c0, {{372.0, 242.0}, {52.0, 104.0}}
+                                            Button, 0x1137b8500, {{372.0, 243.0}, {52.0, 51.0}}, label: 'Aumentar zoom do mapa'
+                                            Button, 0x1137b8640, {{372.0, 295.0}, {52.0, 51.0}}, label: 'Diminuir zoom do mapa'
+                                            Other, 0x1137b8780, {{384.0, 294.0}, {28.0, 1.0}}
+                                          Button, 0x1137b88c0, {{372.0, 356.0}, {52.0, 52.0}}, label: 'Centralizar localização na FIAP'
+                                        Other, 0x1137b8a00, {{0.0, 850.0}, {440.0, 52.0}}
+                                          Button, 0x1137b8b40, {{99.0, 853.0}, {242.0, 46.0}}, label: 'Mostrar opções demonstrativas'
+                                        Other, 0x1137b8c80, {{372.0, 850.0}, {52.0, 52.0}}
+                                          Other, 0x1137b8dc0, {{372.0, 850.0}, {52.0, 52.0}}
+                                            Button, 0x1137b8f00, {{372.0, 850.0}, {52.0, 52.0}}, label: 'Abrir assistente Flui IA'
+                                        Other, 0x1137b9040, {{16.0, 962.0}, {408.0, 338.7}}
+                                          Other, 0x1137b9180, {{16.0, 962.0}, {408.0, 338.7}}
+                                            Button, 0x1137b92c0, {{35.0, 981.0}, {370.0, 12.0}}, label: 'Minimizar opções demonstrativas para ver o mapa inteiro'
+                                            StaticText, 0x1137b9400, {{35.0, 993.0}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                              StaticText, 0x1137b9540, {{35.0, 993.0}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                            Other, 0x1137b9680, {{35.0, 1028.7}, {370.0, 262.0}}
+                                              ScrollView, 0x1137b97c0, {{35.0, 1028.7}, {370.0, 262.0}}
+                                                Other, 0x1137b9900, {{35.0, 1028.7}, {370.0, 134.7}}
+                                                  Other, 0x1137b9a40, {{35.0, 1028.7}, {370.0, 134.7}}
+                                                    Button, 0x1137b9b80, {{35.0, 1028.7}, {370.0, 134.7}}, label: 'Flui Vila Mariana Lins. Opção demonstrativa. Av. Lins de Vasconcelos, 1264. Aberto agora. Nota 4,8. 150 kW. Chegada estimada com 45% de bateria.'
+                                                Other, 0x1137b9cc0, {{53.0, 1257.7}, {334.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x1137b9e00, {{60.0, 1284.7}, {320.0, 3.0}}
+                                                Other, 0x1137b9f40, {{53.0, 1257.7}, {334.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x1137ba080, {{60.0, 1284.7}, {320.0, 3.0}}
+                          Toolbar, 0x1137ba1c0, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x1137ba300, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1137ba440, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1137ba580, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1137ba6c0, {{0.0, 0.0}, {440.0, 956.0}}
+    Window, 0x1137ba800, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x1137ba940, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x1137baa80, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x109c1f340, pid: 34351, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x1137babc0, pid: 34351, label: 'Expo Go'
+  }
+
+    t =    22.03s Find the Application 'host.exp.Exponent'
+    t =    22.62s Added attachment named 'Antes das 22h: filtro sem busca e zoom escolhido'
+    t =    22.63s Tap Button (First Match)
+    t =    22.63s     Wait for host.exp.Exponent to idle
+    t =    22.64s     Find the Button (First Match)
+    t =    22.74s     Check for interrupting elements affecting "Abrir assistente Flui IA" Button
+    t =    22.82s     Synthesize event
+    t =    23.19s     Wait for host.exp.Exponent to idle
+    t =    23.22s Waiting 5.0s for Button (First Match) to exist
+    t =    24.27s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    24.28s         Checking existence of `Button (First Match)`
+    t =    24.35s Tap Button (First Match)
+    t =    24.35s     Wait for host.exp.Exponent to idle
+    t =    24.48s     Find the Button (First Match)
+    t =    24.56s     Check for interrupting elements affecting "Quero carregar rápido" Button
+    t =    24.69s     Synthesize event
+    t =    25.07s     Wait for host.exp.Exponent to idle
+    t =    25.09s Waiting 12.0s for Button (First Match) to exist
+    t =    26.11s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    26.11s         Checking existence of `Button (First Match)`
+    t =    26.26s         Capturing element debug description
+    t =    27.10s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    27.10s         Checking existence of `Button (First Match)`
+    t =    27.23s Requesting snapshot of accessibility hierarchy for app with pid 34351
+    t =    30.58s Requesting snapshot of accessibility hierarchy for app with pid 34351
+FLUI_EVIDENCIA FluIA recomenda Vila Mariana antes das 22h
+Attributes: Application, 0x1137b9f40, pid: 34351, label: 'Expo Go'
+Element subtree:
+ →Application, 0x1137b9f40, pid: 34351, label: 'Expo Go'
+    Window (Main), 0x1137ba080, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x1137b9cc0, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x1137b9e00, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x1137b9900, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x1137b9a40, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x1137b9b80, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x1137b9400, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x1137b9540, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1137b92c0, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1137b8c80, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1137b8dc0, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x1137ba940, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x1137baa80, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x1137ba440, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x1137ba580, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x1137ba6c0, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x1137ba1c0, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Other, 0x1137ba300, {{0.0, 62.0}, {440.0, 162.0}}
+                                        Other, 0x1137b9040, {{20.0, 76.0}, {76.0, 36.0}}
+                                          Other, 0x1137b9180, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x1137b9680, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x1137b97c0, {{89.2, 82.8}, {6.7, 6.7}}
+                                        Button, 0x1137b8f00, {{191.7, 71.0}, {180.3, 46.0}}, label: 'Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 180 quilômetros estimados'
+                                        Button, 0x1137ba800, {{374.0, 71.0}, {46.0, 46.0}}, label: 'Abrir perfil'
+                                        Other, 0x1137b8a00, {{20.0, 132.0}, {400.0, 58.0}}
+                                          Other, 0x1137b8b40, {{39.0, 150.7}, {21.0, 21.0}}
+                                            Other, 0x1137b8280, {{40.8, 152.4}, {17.5, 17.5}}
+                                              Other, 0x1137b88c0, {{40.8, 152.4}, {15.8, 15.8}}
+                                              Other, 0x1137b83c0, {{52.7, 164.4}, {5.5, 5.5}}
+                                          Other, 0x1137b8780, {{73.0, 150.7}, {277.0, 20.3}}
+                                            TextField, 0x1137b8640, {{73.0, 150.7}, {277.0, 20.3}}, label: 'Buscar no mapa', placeholderValue: 'Buscar endereço, bairro ou ponto'
+                                          Other, 0x1137b8500, {{358.0, 146.0}, {1.0, 30.0}}
+                                          Button, 0x1137b8140, {{367.0, 140.0}, {42.0, 42.0}}, label: 'Abrir busca e filtros'
+                                        Button, 0x1137b8000, {{20.0, 194.0}, {400.0, 16.0}}, label: 'Mostrar atalhos de filtro'
+                                      Other, 0x1137bad00, {{0.0, 62.0}, {440.0, 956.0}}
+                                      Other, 0x1137bae40, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x1137baf80, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                          Other, 0x1137bb0c0, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x1137bb200, {{0.0, 224.0}, {72.0, 72.0}}
+                                            Other, 0x1137bb340, {{0.0, 224.0}, {440.0, 694.0}}
+                                              Other, 0x1137bb480, {{0.0, 224.0}, {440.0, 694.0}}
+                                                Button, 0x1137bb5c0, {{5.0, 891.0}, {60.0, 22.0}}, label: 'Google Maps'
+                                            Other, 0x1137bb700, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                              Button, 0x1137bb840, {{25.3, 470.7}, {72.0, 72.0}}, identifier: 'AIRGMSMarker_0x131d04280', label: 'Você na FIAP'
+                                              Button, 0x1137bb980, {{185.3, 503.3}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x11ab46080', label: 'Flui Vila Mariana Lins'
+                                              Other, 0x1137bbac0, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x1137bbc00, {{1912.0, 2136.0}, {74.0, 74.0}}
+                                              Other, 0x1137bbd40, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                Other, 0x1137bbe80, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                  Other, 0x10b1b83c0, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                    Other, 0x10b1bbe80, {{1924.2, 2148.2}, {47.6, 47.6}}
+                                                    Other, 0x10b1baa80, {{1936.0, 2160.0}, {24.0, 24.0}}
+                                        Other, 0x10b1b9f40, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x10b1ba080, {{372.0, 242.0}, {52.0, 166.0}}
+                                          Other, 0x10b1ba1c0, {{372.0, 242.0}, {52.0, 104.0}}
+                                            Button, 0x10b1ba300, {{372.0, 243.0}, {52.0, 51.0}}, label: 'Aumentar zoom do mapa'
+                                            Button, 0x10b1ba440, {{372.0, 295.0}, {52.0, 51.0}}, label: 'Diminuir zoom do mapa'
+                                            Other, 0x10b1b9400, {{384.0, 294.0}, {28.0, 1.0}}
+                                          Button, 0x10b1b9e00, {{372.0, 356.0}, {52.0, 52.0}}, label: 'Centralizar localização na FIAP'
+                                        Other, 0x10b1b9900, {{0.0, 850.0}, {440.0, 52.0}}
+                                          Button, 0x10b1b97c0, {{99.0, 853.0}, {242.0, 46.0}}, label: 'Mostrar opções demonstrativas'
+                                        Other, 0x10b1bb840, {{372.0, 850.0}, {52.0, 52.0}}
+                                          Other, 0x10b1bb980, {{372.0, 850.0}, {52.0, 52.0}}
+                                            Button, 0x10b1b92c0, {{372.0, 850.0}, {52.0, 52.0}}, label: 'Abrir assistente Flui IA'
+                                        Other, 0x10b1bbd40, {{16.0, 962.0}, {408.0, 338.7}}
+                                          Other, 0x10b1bbc00, {{16.0, 962.0}, {408.0, 338.7}}
+                                            Button, 0x10b1b8780, {{35.0, 981.0}, {370.0, 12.0}}, label: 'Minimizar opções demonstrativas para ver o mapa inteiro'
+                                            StaticText, 0x10b1b8640, {{35.0, 993.0}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                              StaticText, 0x10b1b8000, {{35.0, 993.0}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                            Other, 0x10b1ba800, {{35.0, 1028.7}, {370.0, 262.0}}
+                                              ScrollView, 0x10b1ba580, {{35.0, 1028.7}, {370.0, 262.0}}
+                                                Other, 0x109c1f340, {{35.0, 1028.7}, {370.0, 134.7}}
+                                                  Other, 0x109c1f0c0, {{35.0, 1028.7}, {370.0, 134.7}}
+                                                    Button, 0x109c1cdc0, {{35.0, 1028.7}, {370.0, 134.7}}, label: 'Flui Vila Mariana Lins. Opção demonstrativa. Av. Lins de Vasconcelos, 1264. Aberto agora. Nota 4,8. 150 kW. Chegada estimada com 45% de bateria.'
+                                                Other, 0x109c1c8c0, {{53.0, 1257.7}, {334.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x109c1ef80, {{60.0, 1284.7}, {320.0, 3.0}}
+                                                Other, 0x109c1ed00, {{53.0, 1257.7}, {334.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x109c1d2c0, {{60.0, 1284.7}, {320.0, 3.0}}
+                          Toolbar, 0x109c1d040, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x109c1df40, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x109c1cf00, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x109c1db80, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x109c1de00, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x109c1da40, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x109c1d540, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x109c1e300, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x109c1dcc0, {{0.0, 0.0}, {440.0, 956.0}}
+              Button, 0x109c1e1c0, {{0.0, 0.0}, {440.0, 956.0}}, label: 'Fechar assistente Flui IA'
+              Other, 0x109c1c500, {{0.0, 296.0}, {440.0, 660.0}}
+                Other, 0x109c1c640, {{199.0, 307.0}, {42.0, 4.0}}
+                Other, 0x109c1ebc0, {{20.0, 327.0}, {42.0, 42.0}}
+                StaticText, 0x109c1ee40, {{72.0, 328.0}, {296.0, 29.0}}, label: 'Flui IA'
+                  StaticText, 0x109c1e6c0, {{72.0, 328.0}, {296.0, 29.0}}, label: 'Flui IA'
+                Button, 0x109c1e440, {{378.0, 327.0}, {42.0, 42.0}}, label: 'Fechar assistente'
+                Other, 0x109c1ea80, {{24.7, 337.0}, {22.0, 22.0}}
+                  Other, 0x109c1e580, {{26.3, 337.7}, {18.7, 20.5}}
+                    Other, 0x109c1d180, {{26.3, 337.7}, {18.7, 20.5}}
+                Other, 0x109c1e080, {{44.7, 335.0}, {8.0, 8.0}}
+                  Other, 0x109c1e940, {{45.0, 335.3}, {7.4, 7.4}}
+                    Other, 0x109c1d400, {{45.0, 335.3}, {7.4, 7.4}}
+                Other, 0x10b1c4000, {{50.3, 342.7}, {6.0, 6.0}}
+                  Other, 0x10b1c4140, {{50.6, 342.9}, {5.6, 5.6}}
+                    Other, 0x10b1c4280, {{50.6, 342.9}, {5.6, 5.6}}
+                StaticText, 0x10b1c43c0, {{72.0, 360.0}, {296.0, 40.0}}, label: 'Recomendação simulada com os dados do protótipo.'
+                  StaticText, 0x10b1c4500, {{72.0, 360.0}, {296.0, 40.0}}, label: 'Recomendação simulada com os dados do protótipo.'
+                Other, 0x10b1c4640, {{20.0, 418.0}, {400.0, 514.0}}
+                  ScrollView, 0x10b1c4780, {{20.0, 418.0}, {400.0, 514.0}}
+                    Other, 0x10b1c48c0, {{20.0, 418.0}, {400.0, 514.0}}
+                      Other, 0x10b1c4a00, {{20.0, 418.0}, {400.0, 514.0}}
+                        Other, 0x10b1c4b40, {{20.0, 418.0}, {400.0, 396.0}}
+                        Other, 0x10b1c4c80, {{37.0, 435.0}, {190.7, 30.0}}
+                        StaticText, 0x10b1c4dc0, {{48.0, 441.0}, {168.7, 18.0}}, label: 'Sugestão demonstrativa'
+                          StaticText, 0x10b1c4f00, {{48.0, 441.0}, {168.7, 18.0}}, label: 'Sugestão demonstrativa'
+                        StaticText, 0x10b1c5040, {{37.0, 477.0}, {366.0, 31.0}}, label: 'Flui Vila Mariana Lins'
+                          StaticText, 0x10b1c5180, {{37.0, 477.0}, {366.0, 31.0}}, label: 'Flui Vila Mariana Lins'
+                        StaticText, 0x10b1c52c0, {{37.0, 511.0}, {366.0, 20.0}}, label: 'Av. Lins de Vasconcelos, 1264'
+                          StaticText, 0x10b1c5400, {{37.0, 511.0}, {366.0, 20.0}}, label: 'Av. Lins de Vasconcelos, 1264'
+                        Other, 0x10b1c5540, {{37.0, 546.0}, {175.7, 48.0}}
+                        Other, 0x10b1c5680, {{220.7, 546.0}, {175.7, 48.0}}
+                        Other, 0x10b1c57c0, {{47.0, 560.7}, {19.0, 19.0}}
+                          Other, 0x10b1c5900, {{47.7, 564.5}, {17.7, 11.3}}
+                            Other, 0x10b1c5a40, {{47.7, 564.5}, {14.5, 11.3}}
+                            Other, 0x10b1c5b80, {{50.8, 567.7}, {1.8, 5.0}}
+                            Other, 0x10b1c5cc0, {{54.0, 567.7}, {1.8, 5.0}}
+                            Other, 0x10b1c5e00, {{63.5, 567.7}, {1.8, 5.0}}
+                        StaticText, 0x10b1c5f40, {{74.0, 560.3}, {111.0, 19.0}}, label: 'Chegada ≈44%'
+                          StaticText, 0x10b1c6080, {{74.0, 560.3}, {111.0, 19.0}}, label: 'Chegada ≈44%'
+                        Other, 0x10b1c61c0, {{230.7, 560.7}, {19.0, 19.0}}
+                          Other, 0x10b1c6300, {{232.1, 561.3}, {16.1, 17.7}}
+                            Other, 0x10b1c6440, {{232.1, 561.3}, {16.1, 17.7}}
+                        StaticText, 0x10b1c6580, {{257.7, 560.3}, {52.7, 19.0}}, label: '150 kW'
+                          StaticText, 0x10b1c66c0, {{257.7, 560.3}, {52.7, 19.0}}, label: '150 kW'
+                        Other, 0x10b1c6800, {{37.0, 602.0}, {175.7, 48.0}}
+                        Other, 0x10b1c6940, {{220.7, 602.0}, {175.7, 48.0}}
+                        Other, 0x10b1c6a80, {{47.0, 616.7}, {19.0, 19.0}}
+                          Other, 0x10b1c6bc0, {{50.8, 617.3}, {11.3, 17.7}}
+                            Other, 0x10b1c6d00, {{50.8, 622.1}, {11.3, 8.9}}
+                            Other, 0x10b1c6e40, {{53.2, 617.3}, {1.8, 6.6}}
+                            Other, 0x10b1c6f80, {{58.0, 617.3}, {1.8, 6.6}}
+                            Other, 0x10b1c70c0, {{55.6, 629.2}, {1.8, 5.8}}
+                        StaticText, 0x10b1c7200, {{74.0, 616.3}, {52.7, 19.0}}, label: '3 livres'
+                          StaticText, 0x10b1c7340, {{74.0, 616.3}, {52.7, 19.0}}, label: '3 livres'
+                        Other, 0x10b1c7480, {{230.7, 616.7}, {19.0, 19.0}}
+                          Other, 0x10b1c75c0, {{232.9, 617.3}, {14.5, 17.6}}
+                            Other, 0x10b1c7700, {{232.9, 617.3}, {14.5, 17.6}}
+                            Other, 0x10b1c7840, {{236.9, 621.3}, {6.6, 6.6}}
+                        StaticText, 0x10b1c7980, {{257.7, 616.3}, {46.0, 19.0}}, label: '300 m'
+                          StaticText, 0x10b1c7ac0, {{257.7, 616.3}, {46.0, 19.0}}, label: '300 m'
+                        StaticText, 0x10b1c7c00, {{37.0, 666.0}, {366.0, 22.0}}, label: 'Por que essa escolha?'
+                          StaticText, 0x10b1c7d40, {{37.0, 666.0}, {366.0, 22.0}}, label: 'Por que essa escolha?'
+                        StaticText, 0x10b1c7e80, {{37.0, 692.0}, {366.0, 105.0}}, label: 'Oferece até 150 kW nos conectores utilizáveis e 3 carregadores livres nos dados demonstrativos.
+Estimativa linear com reserva de 5%. Compatibilidade do veículo não confirmada; não há integração em tempo real.'
+                          StaticText, 0x113910000, {{37.0, 692.0}, {366.0, 105.0}}, label: 'Oferece até 150 kW nos conectores utilizáveis e 3 carregadores livres nos dados demonstrativos.
+Estimativa linear com reserva de 5%. Compatibilidade do veículo não confirmada; não há integração em tempo real.'
+                        Button, 0x113910140, {{20.0, 814.0}, {400.0, 68.0}}, label: 'Ver Flui Vila Mariana Lins no mapa'
+                        Button, 0x113910280, {{20.0, 882.0}, {400.0, 44.0}}, label: 'Escolher outra necessidade'
+                    Other, 0x1139103c0, {{58.0, 899.0}, {324.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                      Other, 0x113910500, {{61.0, 926.0}, {318.0, 3.0}}
+                    Other, 0x113910640, {{58.0, 899.0}, {324.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                      Other, 0x113910780, {{61.0, 926.0}, {318.0, 3.0}}
+            Other, 0x1139108c0, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x113910a00, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x113910b40, {{0.0, 0.0}, {440.0, 956.0}}
+    Window, 0x113910c80, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x113910dc0, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x113910f00, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x1137b9f40, pid: 34351, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x113911040, pid: 34351, label: 'Expo Go'
+  }
+
+    t =    30.78s Find the Application 'host.exp.Exponent'
+    t =    31.24s Added attachment named 'FluIA recomenda Vila Mariana antes das 22h'
+FLUI_CLOCK MAPA_FECHAR
+    t =    31.25s Waiting 55.0s for StaticText (First Match) to exist
+    t =    32.26s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    32.26s         Checking existence of `StaticText (First Match)`
+    t =    32.47s         Capturing element debug description
+    t =    33.32s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    33.33s         Checking existence of `StaticText (First Match)`
+    t =    33.52s         Capturing element debug description
+    t =    34.27s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    34.27s         Checking existence of `StaticText (First Match)`
+    t =    34.42s         Capturing element debug description
+    t =    35.35s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    35.35s         Checking existence of `StaticText (First Match)`
+    t =    35.51s         Capturing element debug description
+    t =    36.32s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    36.32s         Checking existence of `StaticText (First Match)`
+    t =    36.49s         Capturing element debug description
+    t =    37.27s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    37.28s         Checking existence of `StaticText (First Match)`
+    t =    37.47s         Capturing element debug description
+    t =    38.31s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    38.31s         Checking existence of `StaticText (First Match)`
+    t =    38.48s         Capturing element debug description
+    t =    39.35s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    39.35s         Checking existence of `StaticText (First Match)`
+    t =    39.54s         Capturing element debug description
+    t =    40.26s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    40.26s         Checking existence of `StaticText (First Match)`
+    t =    40.42s         Capturing element debug description
+    t =    41.34s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    41.34s         Checking existence of `StaticText (First Match)`
+    t =    41.49s         Capturing element debug description
+    t =    42.31s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    42.31s         Checking existence of `StaticText (First Match)`
+    t =    42.47s         Capturing element debug description
+    t =    43.29s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    43.29s         Checking existence of `StaticText (First Match)`
+    t =    43.44s         Capturing element debug description
+    t =    44.29s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    44.30s         Checking existence of `StaticText (First Match)`
+    t =    44.34s Requesting snapshot of accessibility hierarchy for app with pid 34351
+    t =    45.93s Requesting snapshot of accessibility hierarchy for app with pid 34351
+FLUI_EVIDENCIA Após 22h: FluIA atualiza sem navegação
+Attributes: Application, 0x1137b9f40, pid: 34351, label: 'Expo Go'
+Element subtree:
+ →Application, 0x1137b9f40, pid: 34351, label: 'Expo Go'
+    Window (Main), 0x1137b9cc0, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x1137b9e00, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x1137b9900, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x1137b9a40, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x1137b9b80, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x1137b9400, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x1137b9540, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x1137ba080, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1137b92c0, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1137b8c80, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1137b8dc0, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x1137ba940, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x1137baa80, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x1137ba440, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x1137ba580, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x1137ba6c0, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x1137ba1c0, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Other, 0x1137bae40, {{0.0, 62.0}, {440.0, 162.0}}
+                                        Other, 0x1137baf80, {{20.0, 76.0}, {76.0, 36.0}}
+                                          Other, 0x1137bb0c0, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x1137bbc00, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x1137bbd40, {{89.2, 82.8}, {6.7, 6.7}}
+                                        Button, 0x1137bbe80, {{191.7, 71.0}, {180.3, 46.0}}, label: 'Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 180 quilômetros estimados'
+                                        Button, 0x1137bb700, {{374.0, 71.0}, {46.0, 46.0}}, label: 'Abrir perfil'
+                                        Other, 0x1137bbac0, {{20.0, 132.0}, {400.0, 58.0}}
+                                          Other, 0x1137bb980, {{39.0, 150.7}, {21.0, 21.0}}
+                                            Other, 0x1137bb840, {{40.8, 152.4}, {17.5, 17.5}}
+                                              Other, 0x1137bb340, {{40.8, 152.4}, {15.8, 15.8}}
+                                              Other, 0x1137bb480, {{52.7, 164.4}, {5.5, 5.5}}
+                                          Other, 0x1137bb5c0, {{73.0, 150.7}, {277.0, 20.3}}
+                                            TextField, 0x1137bb200, {{73.0, 150.7}, {277.0, 20.3}}, label: 'Buscar no mapa', placeholderValue: 'Buscar endereço, bairro ou ponto'
+                                          Other, 0x1137bad00, {{358.0, 146.0}, {1.0, 30.0}}
+                                          Button, 0x1137ba300, {{367.0, 140.0}, {42.0, 42.0}}, label: 'Abrir busca e filtros'
+                                        Button, 0x1137b8000, {{20.0, 194.0}, {400.0, 16.0}}, label: 'Mostrar atalhos de filtro'
+                                      Other, 0x1137b8a00, {{0.0, 62.0}, {440.0, 956.0}}
+                                      Other, 0x1137b8140, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x1137b8500, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                          Other, 0x1137b8780, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x1137b8640, {{0.0, 224.0}, {72.0, 72.0}}
+                                            Other, 0x1137b8b40, {{0.0, 224.0}, {440.0, 694.0}}
+                                              Other, 0x1137b8280, {{0.0, 224.0}, {440.0, 694.0}}
+                                                Button, 0x1137b83c0, {{5.0, 891.0}, {60.0, 22.0}}, label: 'Google Maps'
+                                            Other, 0x1137b88c0, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                              Button, 0x1137ba800, {{25.3, 470.7}, {72.0, 72.0}}, identifier: 'AIRGMSMarker_0x131d04280', label: 'Você na FIAP'
+                                              Other, 0x1137b8f00, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x1137b9040, {{1912.0, 2136.0}, {74.0, 74.0}}
+                                              Other, 0x1137b9180, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                Other, 0x1137b97c0, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                  Other, 0x1137b9680, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                    Other, 0x109c1da40, {{1917.8, 2141.8}, {60.4, 60.4}}
+                                                    Other, 0x109c1d540, {{1936.0, 2160.0}, {24.0, 24.0}}
+                                        Other, 0x109c1e300, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x109c1dcc0, {{372.0, 242.0}, {52.0, 166.0}}
+                                          Other, 0x109c1c500, {{372.0, 242.0}, {52.0, 104.0}}
+                                            Button, 0x109c1e080, {{372.0, 243.0}, {52.0, 51.0}}, label: 'Aumentar zoom do mapa'
+                                            Button, 0x109c1e940, {{372.0, 295.0}, {52.0, 51.0}}, label: 'Diminuir zoom do mapa'
+                                            Other, 0x109c1d400, {{384.0, 294.0}, {28.0, 1.0}}
+                                          Button, 0x109c1ea80, {{372.0, 356.0}, {52.0, 52.0}}, label: 'Centralizar localização na FIAP'
+                                        Other, 0x109c1e580, {{0.0, 850.0}, {440.0, 52.0}}
+                                          Button, 0x109c1d180, {{99.0, 853.0}, {242.0, 46.0}}, label: 'Mostrar opções demonstrativas'
+                                        Other, 0x109c1e440, {{372.0, 850.0}, {52.0, 52.0}}
+                                          Other, 0x109c1ee40, {{372.0, 850.0}, {52.0, 52.0}}
+                                            Button, 0x109c1e6c0, {{372.0, 850.0}, {52.0, 52.0}}, label: 'Abrir assistente Flui IA'
+                                        Other, 0x109c1ebc0, {{16.0, 962.0}, {408.0, 254.7}}
+                                          Other, 0x109c1c640, {{16.0, 962.0}, {408.0, 254.7}}
+                                            Button, 0x109c1e1c0, {{35.0, 981.0}, {370.0, 12.0}}, label: 'Minimizar opções demonstrativas para ver o mapa inteiro'
+                                            StaticText, 0x109c1cf00, {{35.0, 993.0}, {370.0, 27.7}}, label: 'Nenhum ponto disponível'
+                                              StaticText, 0x109c1db80, {{35.0, 993.0}, {370.0, 27.7}}, label: 'Nenhum ponto disponível'
+                                            Other, 0x109c1de00, {{35.0, 1038.7}, {370.0, 176.0}}
+                                            StaticText, 0x109c1d040, {{52.0, 1055.7}, {336.0, 44.0}}, label: 'Não encontramos pontos com esses critérios.'
+                                              StaticText, 0x109c1df40, {{52.0, 1055.7}, {336.0, 44.0}}, label: 'Não encontramos pontos com esses critérios.'
+                                            StaticText, 0x109c1ed00, {{52.0, 1105.7}, {336.0, 40.0}}, label: 'Tente limpar alguns filtros ou buscar por outro endereço.'
+                                              StaticText, 0x109c1d2c0, {{52.0, 1105.7}, {336.0, 40.0}}, label: 'Tente limpar alguns filtros ou buscar por outro endereço.'
+                                            Button, 0x109c1c8c0, {{52.0, 1145.7}, {336.0, 52.0}}, label: 'Ajustar busca'
+                          Toolbar, 0x109c1ef80, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x109c1f340, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x109c1f0c0, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x109c1cdc0, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x10b1bbd40, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x10b1bbc00, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x10b1ba800, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x10b1ba580, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x10b1b8640, {{0.0, 0.0}, {440.0, 956.0}}
+              Button, 0x10b1b8000, {{0.0, 0.0}, {440.0, 956.0}}, label: 'Fechar assistente Flui IA'
+              Other, 0x10b1b8780, {{0.0, 596.0}, {440.0, 360.0}}
+                Other, 0x10b1bb840, {{199.0, 607.0}, {42.0, 4.0}}
+                Other, 0x10b1bb980, {{20.0, 627.0}, {42.0, 42.0}}
+                StaticText, 0x10b1b92c0, {{72.0, 628.0}, {296.0, 29.0}}, label: 'Flui IA'
+                  StaticText, 0x10b1b9900, {{72.0, 628.0}, {296.0, 29.0}}, label: 'Flui IA'
+                Button, 0x10b1b97c0, {{378.0, 627.0}, {42.0, 42.0}}, label: 'Fechar assistente'
+                Other, 0x10b1ba080, {{24.7, 637.0}, {22.0, 22.0}}
+                  Other, 0x10b1b9e00, {{26.3, 637.7}, {18.7, 20.5}}
+                    Other, 0x10b1ba1c0, {{26.3, 637.7}, {18.7, 20.5}}
+                Other, 0x10b1b9400, {{44.7, 635.0}, {8.0, 8.0}}
+                  Other, 0x10b1ba440, {{45.0, 635.3}, {7.4, 7.4}}
+                    Other, 0x10b1ba300, {{45.0, 635.3}, {7.4, 7.4}}
+                Other, 0x10b1b9f40, {{50.3, 642.7}, {6.0, 6.0}}
+                  Other, 0x10b1b83c0, {{50.6, 642.9}, {5.6, 5.6}}
+                    Other, 0x10b1baa80, {{50.6, 642.9}, {5.6, 5.6}}
+                StaticText, 0x10b1bbe80, {{72.0, 660.0}, {296.0, 40.0}}, label: 'Recomendação simulada com os dados do protótipo.'
+                  StaticText, 0x113910000, {{72.0, 660.0}, {296.0, 40.0}}, label: 'Recomendação simulada com os dados do protótipo.'
+                Other, 0x113910140, {{20.0, 722.0}, {400.0, 210.0}}
+                StaticText, 0x113910280, {{54.3, 767.0}, {331.0, 24.0}}, label: 'Nenhuma opção viável confirmada'
+                  StaticText, 0x1139103c0, {{54.3, 767.0}, {331.0, 24.0}}, label: 'Nenhuma opção viável confirmada'
+                StaticText, 0x113910500, {{45.0, 799.0}, {350.0, 100.0}}, label: 'Os dados disponíveis não confirmam uma opção com alcance, horário, carregador livre e comodidades solicitadas. Revise os filtros e os dados informados. Não há indicação segura neste cenário.'
+                  StaticText, 0x113910640, {{45.0, 799.0}, {350.0, 100.0}}, label: 'Os dados disponíveis não confirmam uma opção com alcance, horário, carregador livre e comodidades solicitadas. Revise os filtros e os dados informados. Não há indicação segura neste cenário.'
+            Other, 0x113910780, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x1139108c0, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x113910a00, {{0.0, 0.0}, {440.0, 956.0}}
+    Window, 0x113910b40, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x113910c80, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x113910dc0, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x1137b9f40, pid: 34351, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x113910f00, pid: 34351, label: 'Expo Go'
+  }
+
+    t =    46.08s Find the Application 'host.exp.Exponent'
+    t =    46.64s Added attachment named 'Após 22h: FluIA atualiza sem navegação'
+    t =    46.64s Tap Button (First Match)
+    t =    46.65s     Wait for host.exp.Exponent to idle
+    t =    46.66s     Find the Button (First Match)
+    t =    46.74s     Check for interrupting elements affecting "Fechar assistente Flui IA" Button
+    t =    46.87s     Synthesize event
+    t =    47.27s     Wait for host.exp.Exponent to idle
+    t =    47.82s Checking existence of `Button (First Match)`
+    t =    47.94s Find the Button (First Match)
+FLUI_FRAME_FECHAMENTO antes=(61.33333206176758, 506.6666564941406) depois=(61.33333206176758, 506.6666564941406)
+    t =    48.05s Tap Button (First Match)
+    t =    48.05s     Wait for host.exp.Exponent to idle
+    t =    48.07s     Find the Button (First Match)
+    t =    48.17s     Check for interrupting elements affecting "Mostrar opções demonstrativas" Button
+    t =    48.37s     Synthesize event
+    t =    48.86s     Wait for host.exp.Exponent to idle
+    t =    48.89s Waiting 8.0s for StaticText (First Match) to exist
+    t =    49.95s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    49.96s         Checking existence of `StaticText (First Match)`
+    t =    50.02s Requesting snapshot of accessibility hierarchy for app with pid 34351
+    t =    51.01s Requesting snapshot of accessibility hierarchy for app with pid 34351
+FLUI_EVIDENCIA Após 22h: marcador e cartão removidos, enquadramento preservado
+Attributes: Application, 0x1137b9f40, pid: 34351, label: 'Expo Go'
+Element subtree:
+ →Application, 0x1137b9f40, pid: 34351, label: 'Expo Go'
+    Window (Main), 0x1137b9cc0, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x1137b9e00, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x1137b9900, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x1137b9a40, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x1137b9b80, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x1137b9400, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x1137b9540, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x1137ba080, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1137b92c0, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1137b8c80, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1137b8dc0, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x1137ba940, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x1137baa80, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x1137ba440, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x1137ba580, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x1137ba6c0, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x1137ba1c0, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Other, 0x1137b8140, {{0.0, 62.0}, {440.0, 162.0}}
+                                        Other, 0x1137b8500, {{20.0, 76.0}, {76.0, 36.0}}
+                                          Other, 0x1137b8780, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x1137b9040, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x1137b9180, {{89.2, 82.8}, {6.7, 6.7}}
+                                        Button, 0x1137b97c0, {{191.7, 71.0}, {180.3, 46.0}}, label: 'Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 180 quilômetros estimados'
+                                        Button, 0x1137b9680, {{374.0, 71.0}, {46.0, 46.0}}, label: 'Abrir perfil'
+                                        Other, 0x1137b88c0, {{20.0, 132.0}, {400.0, 58.0}}
+                                          Other, 0x1137b8f00, {{39.0, 150.7}, {21.0, 21.0}}
+                                            Other, 0x1137ba800, {{40.8, 152.4}, {17.5, 17.5}}
+                                              Other, 0x1137b8b40, {{40.8, 152.4}, {15.8, 15.8}}
+                                              Other, 0x1137b8280, {{52.7, 164.4}, {5.5, 5.5}}
+                                          Other, 0x1137b83c0, {{73.0, 150.7}, {277.0, 20.3}}
+                                            TextField, 0x1137b8640, {{73.0, 150.7}, {277.0, 20.3}}, label: 'Buscar no mapa', placeholderValue: 'Buscar endereço, bairro ou ponto'
+                                          Other, 0x1137b8a00, {{358.0, 146.0}, {1.0, 30.0}}
+                                          Button, 0x1137bae40, {{367.0, 140.0}, {42.0, 42.0}}, label: 'Abrir busca e filtros'
+                                        Button, 0x1137b8000, {{20.0, 194.0}, {400.0, 16.0}}, label: 'Mostrar atalhos de filtro'
+                                      Other, 0x1137bbac0, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x1137ba300, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                          Other, 0x1137bad00, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x1137bb5c0, {{0.0, 224.0}, {72.0, 72.0}}
+                                            Other, 0x1137bb200, {{0.0, 224.0}, {440.0, 694.0}}
+                                              Other, 0x1137bb980, {{0.0, 224.0}, {440.0, 694.0}}
+                                                Button, 0x1137bb840, {{5.0, 891.0}, {60.0, 22.0}}, label: 'Google Maps'
+                                            Other, 0x1137bb480, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                              Button, 0x1137bb340, {{25.3, 470.7}, {72.0, 72.0}}, identifier: 'AIRGMSMarker_0x131d04280', label: 'Você na FIAP'
+                                              Other, 0x1137bb700, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x1137bbe80, {{1912.0, 2136.0}, {74.0, 74.0}}
+                                              Other, 0x1137baf80, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                Other, 0x1137bb0c0, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                  Other, 0x1137bbd40, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                    Other, 0x1137bbc00, {{1916.5, 2140.5}, {63.0, 63.0}}
+                                                    Other, 0x10b1bbc00, {{1936.0, 2160.0}, {24.0, 24.0}}
+                                        Other, 0x10b1ba800, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x10b1ba580, {{372.0, 242.0}, {52.0, 166.0}}
+                                          Other, 0x10b1b8640, {{372.0, 242.0}, {52.0, 104.0}}
+                                            Button, 0x10b1b8780, {{372.0, 243.0}, {52.0, 51.0}}, label: 'Aumentar zoom do mapa'
+                                            Button, 0x10b1bbe80, {{372.0, 295.0}, {52.0, 51.0}}, label: 'Diminuir zoom do mapa'
+                                            Other, 0x10b1b9f40, {{384.0, 294.0}, {28.0, 1.0}}
+                                          Button, 0x10b1b83c0, {{372.0, 356.0}, {52.0, 52.0}}, label: 'Centralizar localização na FIAP'
+                                        Other, 0x10b1baa80, {{372.0, 611.3}, {52.0, 52.0}}
+                                          Other, 0x10b1b9400, {{372.0, 611.3}, {52.0, 52.0}}
+                                            Button, 0x10b1ba440, {{372.0, 611.3}, {52.0, 52.0}}, label: 'Abrir assistente Flui IA'
+                                        Other, 0x10b1ba300, {{16.0, 667.3}, {408.0, 254.7}}
+                                          Other, 0x10b1ba080, {{16.0, 667.3}, {408.0, 254.7}}
+                                            Button, 0x10b1b9e00, {{35.0, 686.3}, {370.0, 12.0}}, label: 'Minimizar opções demonstrativas para ver o mapa inteiro'
+                                            StaticText, 0x10b1ba1c0, {{35.0, 698.3}, {370.0, 27.7}}, label: 'Nenhum ponto disponível'
+                                              StaticText, 0x10b1b97c0, {{35.0, 698.3}, {370.0, 27.7}}, label: 'Nenhum ponto disponível'
+                                            Other, 0x10b1b92c0, {{35.0, 744.0}, {370.0, 176.0}}
+                                            StaticText, 0x10b1b9900, {{52.0, 761.0}, {336.0, 44.0}}, label: 'Não encontramos pontos com esses critérios.'
+                                              StaticText, 0x10b1bb980, {{52.0, 761.0}, {336.0, 44.0}}, label: 'Não encontramos pontos com esses critérios.'
+                                            StaticText, 0x10b1bb840, {{52.0, 811.0}, {336.0, 40.0}}, label: 'Tente limpar alguns filtros ou buscar por outro endereço.'
+                                              StaticText, 0x10b1b8000, {{52.0, 811.0}, {336.0, 40.0}}, label: 'Tente limpar alguns filtros ou buscar por outro endereço.'
+                                            Button, 0x10b1bbd40, {{52.0, 851.0}, {336.0, 52.0}}, label: 'Ajustar busca'
+                          Toolbar, 0x109c1f0c0, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x109c1cdc0, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x109c1ef80, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x109c1f340, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x109c1ebc0, {{0.0, 0.0}, {440.0, 956.0}}
+    Window, 0x109c1c640, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x109c1c8c0, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x109c1ed00, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x1137b9f40, pid: 34351, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x109c1d2c0, pid: 34351, label: 'Expo Go'
+  }
+
+    t =    51.17s Find the Application 'host.exp.Exponent'
+    t =    51.69s Added attachment named 'Após 22h: marcador e cartão removidos, enquadramento preservado'
+FLUI_CLOCK FICHA_ABRIR
+    t =    51.70s Waiting 45.0s for Button (First Match) to exist
+    t =    52.71s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    52.71s         Checking existence of `Button (First Match)`
+    t =    52.83s         Capturing element debug description
+    t =    53.77s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    53.77s         Checking existence of `Button (First Match)`
+    t =    53.87s         Capturing element debug description
+    t =    54.71s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    54.71s         Checking existence of `Button (First Match)`
+    t =    54.79s         Capturing element debug description
+    t =    55.72s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    55.73s         Checking existence of `Button (First Match)`
+    t =    55.83s         Capturing element debug description
+    t =    56.70s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    56.70s         Checking existence of `Button (First Match)`
+    t =    56.81s         Capturing element debug description
+    t =    57.75s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    57.76s         Checking existence of `Button (First Match)`
+    t =    57.91s         Capturing element debug description
+    t =    58.78s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    58.79s         Checking existence of `Button (First Match)`
+    t =    58.93s         Capturing element debug description
+    t =    59.75s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    59.79s         Checking existence of `Button (First Match)`
+    t =    59.95s         Capturing element debug description
+    t =    60.78s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    60.78s         Checking existence of `Button (First Match)`
+    t =    60.90s         Capturing element debug description
+    t =    61.72s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    61.72s         Checking existence of `Button (First Match)`
+    t =    61.82s         Capturing element debug description
+    t =    62.74s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    62.74s         Checking existence of `Button (First Match)`
+    t =    62.82s         Capturing element debug description
+    t =    63.78s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    63.78s         Checking existence of `Button (First Match)`
+    t =    63.90s         Capturing element debug description
+    t =    64.76s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    64.76s         Checking existence of `Button (First Match)`
+    t =    64.86s         Capturing element debug description
+    t =    65.70s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    65.70s         Checking existence of `Button (First Match)`
+    t =    65.79s         Capturing element debug description
+    t =    66.74s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    66.75s         Checking existence of `Button (First Match)`
+    t =    66.84s         Capturing element debug description
+    t =    67.71s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    67.71s         Checking existence of `Button (First Match)`
+    t =    67.87s         Capturing element debug description
+    t =    68.76s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    68.77s         Checking existence of `Button (First Match)`
+    t =    68.91s         Capturing element debug description
+    t =    69.71s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    69.71s         Checking existence of `Button (First Match)`
+    t =    69.81s         Capturing element debug description
+    t =    70.75s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    70.75s         Checking existence of `Button (First Match)`
+    t =    70.83s         Capturing element debug description
+    t =    71.76s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    71.76s         Checking existence of `Button (First Match)`
+    t =    71.85s         Capturing element debug description
+    t =    72.79s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    72.79s         Checking existence of `Button (First Match)`
+    t =    72.90s         Capturing element debug description
+    t =    73.74s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    73.74s         Checking existence of `Button (First Match)`
+    t =    73.85s         Capturing element debug description
+    t =    74.79s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    74.79s         Checking existence of `Button (First Match)`
+    t =    74.88s         Capturing element debug description
+    t =    75.78s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    75.79s         Checking existence of `Button (First Match)`
+    t =    75.86s         Capturing element debug description
+    t =    76.78s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    76.78s         Checking existence of `Button (First Match)`
+    t =    76.88s         Capturing element debug description
+    t =    77.70s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    77.70s         Checking existence of `Button (First Match)`
+    t =    77.81s         Capturing element debug description
+    t =    78.73s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    78.73s         Checking existence of `Button (First Match)`
+    t =    78.82s         Capturing element debug description
+    t =    79.72s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    79.72s         Checking existence of `Button (First Match)`
+    t =    79.87s         Capturing element debug description
+    t =    80.78s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    80.78s         Checking existence of `Button (First Match)`
+    t =    80.88s         Capturing element debug description
+    t =    81.71s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    81.71s         Checking existence of `Button (First Match)`
+    t =    81.81s         Capturing element debug description
+    t =    82.76s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    82.76s         Checking existence of `Button (First Match)`
+    t =    82.85s         Capturing element debug description
+    t =    83.79s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    83.79s         Checking existence of `Button (First Match)`
+    t =    83.89s         Capturing element debug description
+    t =    84.72s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    84.72s         Checking existence of `Button (First Match)`
+    t =    84.80s         Capturing element debug description
+    t =    85.76s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    85.76s         Checking existence of `Button (First Match)`
+    t =    85.84s         Capturing element debug description
+    t =    86.76s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    86.76s         Checking existence of `Button (First Match)`
+    t =    86.85s         Capturing element debug description
+    t =    87.70s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    87.71s         Checking existence of `Button (First Match)`
+    t =    87.81s         Capturing element debug description
+    t =    88.76s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    88.76s         Checking existence of `Button (First Match)`
+    t =    88.86s         Capturing element debug description
+    t =    89.73s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    89.73s         Checking existence of `Button (First Match)`
+    t =    89.83s         Capturing element debug description
+    t =    90.77s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    90.77s         Checking existence of `Button (First Match)`
+    t =    90.95s         Capturing element debug description
+    t =    91.76s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    91.77s         Checking existence of `Button (First Match)`
+    t =    91.89s         Capturing element debug description
+    t =    92.75s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    92.75s         Checking existence of `Button (First Match)`
+    t =    92.84s         Capturing element debug description
+    t =    93.75s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    93.75s         Checking existence of `Button (First Match)`
+    t =    93.85s         Capturing element debug description
+    t =    94.76s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    94.76s         Checking existence of `Button (First Match)`
+    t =    94.86s         Capturing element debug description
+    t =    95.78s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    95.78s         Checking existence of `Button (First Match)`
+    t =    95.90s         Capturing element debug description
+    t =    96.72s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    96.72s         Checking existence of `Button (First Match)`
+    t =    96.80s         Capturing element debug description
+    t =    96.81s     Checking existence of `Button (First Match)`
+    t =    96.87s Collecting debug information to assist test failure triage
+    t =    96.88s     Requesting snapshot of accessibility hierarchy for app with pid 34351
+    t =    97.01s Requesting snapshot of accessibility hierarchy for app with pid 34351
+    t =    98.38s Requesting snapshot of accessibility hierarchy for app with pid 34351
+/tmp/flui-xctest-12/FluiValidacao.swift:100: error: -[FluiValidacao.FluiValidacao test02FechamentoSemDependerDaBusca] : XCTAssertTrue failed - Attributes: Application, 0x1137baa80, pid: 34351, label: 'Expo Go'
+Element subtree:
+ →Application, 0x1137baa80, pid: 34351, label: 'Expo Go'
+    Window (Main), 0x1137babc0, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x1137bad00, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x1137bae40, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x1137baf80, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x1137bb0c0, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x1137bb200, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x1137bb340, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x1137bb480, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1137bb5c0, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1137bb700, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1137bb840, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x1137bb980, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x1137bbac0, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x1137bbc00, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x1137bbd40, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x1137bbe80, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x109c1c8c0, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Other, 0x109c1d2c0, {{0.0, 62.0}, {440.0, 162.0}}
+                                        Other, 0x113910000, {{20.0, 76.0}, {76.0, 36.0}}
+                                          Other, 0x113910140, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x113910280, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x1139103c0, {{89.2, 82.8}, {6.7, 6.7}}
+                                        Button, 0x113910500, {{191.7, 71.0}, {180.3, 46.0}}, label: 'Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 180 quilômetros estimados'
+                                        Button, 0x113910640, {{374.0, 71.0}, {46.0, 46.0}}, label: 'Abrir perfil'
+                                        Other, 0x113910780, {{20.0, 132.0}, {400.0, 58.0}}
+                                          Other, 0x1139108c0, {{39.0, 150.7}, {21.0, 21.0}}
+                                            Other, 0x113910a00, {{40.8, 152.4}, {17.5, 17.5}}
+                                              Other, 0x113910b40, {{40.8, 152.4}, {15.8, 15.8}}
+                                              Other, 0x113910c80, {{52.7, 164.4}, {5.5, 5.5}}
+                                          Other, 0x113910dc0, {{73.0, 150.7}, {277.0, 20.3}}
+                                            TextField, 0x113910f00, {{73.0, 150.7}, {277.0, 20.3}}, label: 'Buscar no mapa', placeholderValue: 'Buscar endereço, bairro ou ponto'
+                                          Other, 0x113911040, {{358.0, 146.0}, {1.0, 30.0}}
+                                          Button, 0x113911180, {{367.0, 140.0}, {42.0, 42.0}}, label: 'Abrir busca e filtros'
+                                        Button, 0x1139112c0, {{20.0, 194.0}, {400.0, 16.0}}, label: 'Mostrar atalhos de filtro'
+                                      Other, 0x113911400, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x113911540, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                          Other, 0x113911680, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x1139117c0, {{0.0, 224.0}, {72.0, 72.0}}
+                                            Other, 0x113911900, {{0.0, 224.0}, {440.0, 694.0}}
+                                              Other, 0x113911a40, {{0.0, 224.0}, {440.0, 694.0}}
+                                                Button, 0x113911b80, {{5.0, 891.0}, {60.0, 22.0}}, label: 'Google Maps'
+                                            Other, 0x113911cc0, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                              Button, 0x113911e00, {{25.3, 470.7}, {72.0, 72.0}}, identifier: 'AIRGMSMarker_0x131d04280', label: 'Você na FIAP'
+                                              Other, 0x113911f40, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x113912080, {{1912.0, 2136.0}, {74.0, 74.0}}
+                                              Other, 0x1139121c0, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                Other, 0x113912300, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                  Other, 0x113912440, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                    Other, 0x113912580, {{1923.1, 2147.1}, {49.7, 49.7}}
+                                                    Other, 0x1139126c0, {{1936.0, 2160.0}, {24.0, 24.0}}
+                                        Other, 0x113912800, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x113912940, {{372.0, 242.0}, {52.0, 166.0}}
+                                          Other, 0x113912a80, {{372.0, 242.0}, {52.0, 104.0}}
+                                            Button, 0x113912bc0, {{372.0, 243.0}, {52.0, 51.0}}, label: 'Aumentar zoom do mapa'
+                                            Button, 0x113912d00, {{372.0, 295.0}, {52.0, 51.0}}, label: 'Diminuir zoom do mapa'
+                                            Other, 0x113912e40, {{384.0, 294.0}, {28.0, 1.0}}
+                                          Button, 0x113912f80, {{372.0, 356.0}, {52.0, 52.0}}, label: 'Centralizar localização na FIAP'
+                                        Other, 0x1139130c0, {{372.0, 527.3}, {52.0, 52.0}}
+                                          Other, 0x113913200, {{372.0, 527.3}, {52.0, 52.0}}
+                                            Button, 0x113913340, {{372.0, 527.3}, {52.0, 52.0}}, label: 'Abrir assistente Flui IA'
+                                        Other, 0x113913480, {{16.0, 583.3}, {408.0, 338.7}}
+                                          Other, 0x1139135c0, {{16.0, 583.3}, {408.0, 338.7}}
+                                            Button, 0x113913700, {{35.0, 602.3}, {370.0, 12.0}}, label: 'Minimizar opções demonstrativas para ver o mapa inteiro'
+                                            StaticText, 0x113913840, {{35.0, 614.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                              StaticText, 0x113913980, {{35.0, 614.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                            Other, 0x113913ac0, {{35.0, 650.0}, {370.0, 262.0}}
+                                              ScrollView, 0x113913c00, {{35.0, 650.0}, {370.0, 262.0}}
+                                                Other, 0x113913d40, {{35.0, 650.0}, {370.0, 134.7}}
+                                                  Other, 0x113913e80, {{35.0, 650.0}, {370.0, 134.7}}
+                                                    Button, 0x113914000, {{35.0, 650.0}, {370.0, 134.7}}, label: 'Flui Vila Mariana Lins. Opção demonstrativa. Av. Lins de Vasconcelos, 1264. Aberto agora. Nota 4,8. 150 kW. Chegada estimada com 45% de bateria.'
+                                                Other, 0x113914140, {{53.0, 879.0}, {334.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x113914280, {{38.0, 906.0}, {394.0, 3.0}}
+                                                Other, 0x1139143c0, {{53.0, 879.0}, {334.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x113914500, {{38.0, 906.0}, {394.0, 3.0}}
+                          Toolbar, 0x113914640, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x113914780, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1139148c0, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x113914a00, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x113914b40, {{0.0, 0.0}, {440.0, 956.0}}
+    Window, 0x113914c80, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x113914dc0, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x113914f00, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x1137baa80, pid: 34351, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x113915040, pid: 34351, label: 'Expo Go'
+  }
+
+    t =   103.73s Tear Down
+Test Case '-[FluiValidacao.FluiValidacao test02FechamentoSemDependerDaBusca]' failed (105.814 seconds).
+Test Suite 'FluiValidacao' failed at 2026-10-16 09:05:17.392.
+	 Executed 2 tests, with 1 failure (0 unexpected) in 218.774 (218.800) seconds
+Test Suite 'FluiValidacao.xctest' failed at 2026-10-16 09:05:17.399.
+	 Executed 2 tests, with 1 failure (0 unexpected) in 218.774 (218.807) seconds
+Test Suite 'All tests' failed at 2026-10-16 09:05:17.400.
+	 Executed 2 tests, with 1 failure (0 unexpected) in 218.774 (218.810) seconds
+2026-10-16 09:05:17.729 xcodebuild[34116:3848038] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 09:05:17.737 xcodebuild[34116:3848038] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 09:05:17.763 xcodebuild[34116:3848038] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 09:05:20.199 xcodebuild[34116:3848038] [MT] IDETestOperationsObserverDebug: 287.944 elapsed -- Testing started completed.
+2026-10-16 09:05:20.199 xcodebuild[34116:3848038] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-16 09:05:20.199 xcodebuild[34116:3848038] [MT] IDETestOperationsObserverDebug: 287.944 sec, +287.944 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/flui-xctest-12/Direcionados.xcresult
+
+Failing tests:
+	FluiValidacao.test02FechamentoSemDependerDaBusca()
+
+** TEST EXECUTE FAILED **
+
+Testing started

@@ -33,10 +33,8 @@ import {
   BatteryWarning,
   ChevronRight,
   Clock3,
-  Coffee,
   Crosshair,
   Maximize2,
-  Navigation,
   Plug,
   Search,
   SlidersHorizontal,
@@ -51,6 +49,11 @@ import { defaultFilters } from "../../data/filterOptions";
 import { StationFilters } from "../../types";
 import { filtrarEstacoes } from "../../utils/filtrarEstacoes";
 import { avaliarAlcance } from "../../utils/autonomia";
+import { canChargeAt } from "../../utils/stationAvailability";
+import { isStationOpenAt } from "../../utils/stationHours";
+import { getStationStatusInfo } from "../stations/stationPresentation";
+import { getBatterySourceLabels } from "../../utils/batteryData";
+import { useCurrentTime } from "../../hooks/useCurrentTime";
 import {
   LoadingOverlay,
   PressableScale,
@@ -160,14 +163,6 @@ const filtrosRapidosIniciais: FiltrosRapidos = {
   fast: false,
   restroom: false,
 };
-
-const pointLabels = [
-  { id: "near", title: "Mais próximo", icon: Navigation },
-  { id: "best", title: "Melhor avaliado", icon: Star },
-  { id: "comfort", title: "Mais confortável", icon: Coffee },
-  { id: "fast", title: "Carga rápida", icon: Zap },
-  { id: "open", title: "Recomendado", icon: Clock3 },
-];
 
 type Station = (typeof chargingStations)[number];
 
@@ -379,23 +374,8 @@ const getRawStationStatus = (station: Station) => {
   return readString(station, "status", "available").toLowerCase();
 };
 
-const getStationStatus = (station: Station) => {
-  const status = getRawStationStatus(station);
-
-  if (status.includes("maintenance") || status.includes("manutenção")) {
-    return "Em manutenção";
-  }
-
-  if (status.includes("unavailable") || status.includes("indispon")) {
-    return "Indisponível";
-  }
-
-  if (status.includes("busy") || status.includes("ocup")) {
-    return "Ocupado agora";
-  }
-
-  return readString(station, "statusLabel", "Aberto agora");
-};
+const getStationStatus = (station: Station, now: Date) =>
+  getStationStatusInfo(station, now).label;
 
 const getStationPowerNumber = (station: Station) => {
   const stationPower = readNumber(
@@ -474,37 +454,37 @@ const limitarValor = (value: number, min: number, max: number) => {
   return Math.min(Math.max(value, min), max);
 };
 
-const getStationMarkerColor = (station: Station, colorSet: MapColorTokens) => {
+const getStationMarkerColor = (station: Station, colorSet: MapColorTokens, now: Date) => {
   const status = getRawStationStatus(station);
-
-  if (status === "busy") {
-    return colorSet.yellowDark;
-  }
 
   if (status === "maintenance") {
     return colorSet.dangerBorder ?? colorSet.yellowDark;
   }
 
-  if (status === "unavailable") {
+  if (status === "unavailable" || !isStationOpenAt(station, now)) {
     return colorSet.textLight;
+  }
+
+  if (status === "busy") {
+    return colorSet.yellowDark;
   }
 
   return colorSet.green ?? colorSet.success ?? colorSet.primary;
 };
 
-const getStationMarkerIcon = (station: Station) => {
+const getStationMarkerIcon = (station: Station, now: Date) => {
   const status = getRawStationStatus(station);
-
-  if (status === "busy") {
-    return iconeMarcadorAmarelo;
-  }
 
   if (status === "maintenance") {
     return iconeMarcadorVermelho;
   }
 
-  if (status === "unavailable") {
+  if (status === "unavailable" || !isStationOpenAt(station, now)) {
     return iconeMarcadorCinza;
+  }
+
+  if (status === "busy") {
+    return iconeMarcadorAmarelo;
   }
 
   return iconeMarcadorVerde;
@@ -710,12 +690,12 @@ export default function HomeMapScreen() {
   );
   const { userPreferences, updateBatteryPercent } = useAppPreferences();
   const reduceMotionEnabled = useReducedMotion();
+  const now = useCurrentTime();
+  const batteryLabels = getBatterySourceLabels(userPreferences);
   const batteryPercent = userPreferences.batteryPercent;
   const vehicleRangeKm = userPreferences.vehicleRangeKm;
   const [seletorBateriaAberto, setSeletorBateriaAberto] = useState(false);
   const [bateriaEmEdicao, setBateriaEmEdicao] = useState(batteryPercent);
-  const [bateriaInformadaManualmente, setBateriaInformadaManualmente] =
-    useState(false);
   const { width: larguraJanela, height: alturaJanela } =
     useWindowDimensions();
   const isTelaLarga = larguraJanela >= TABLET_BREAKPOINT;
@@ -1034,6 +1014,7 @@ export default function HomeMapScreen() {
       estacoes: chargingStations,
       filtros: filtrosDoMapa,
       termoBusca: searchTerm,
+      agora: now,
     });
 
     return ordenarPorFiltrosRapidos(
@@ -1043,31 +1024,25 @@ export default function HomeMapScreen() {
       })),
       filtrosRapidos,
     );
-  }, [filtrosDoMapa, filtrosRapidos, searchTerm]);
+  }, [filtrosDoMapa, filtrosRapidos, searchTerm, now]);
 
   const estacoesRecomendadas = useMemo(() => {
-    return visibleStations.filter((item) => {
-      return (
-        getRawStationStatus(item.station) === "available" &&
-        stationHasAvailableCharger(item.station)
-      );
-    });
-  }, [visibleStations]);
+    return visibleStations.filter((item) => canChargeAt(item.station, now));
+  }, [visibleStations, now]);
 
   const points = useMemo(() => {
-    return estacoesRecomendadas.map((item, cardIndex) => {
-      const label = pointLabels[cardIndex];
-      const cardId = label?.id ?? `station-${cardIndex}`;
+    return estacoesRecomendadas.map((item) => {
+      const cardId = getStationId(item.station, item.index);
 
       return {
         id: cardId,
         stationId: getStationId(item.station, item.index),
-        criterioLabel: label?.title ?? "Recomendado",
-        criterioIcon: label?.icon ?? Zap,
+        criterioLabel: "Opção demonstrativa",
+        criterioIcon: Zap,
         nomeEstacao: getStationName(item.station),
         address: getStationAddress(item.station),
-        status: getStationStatus(item.station),
-        statusColor: getStationMarkerColor(item.station, colors),
+        status: getStationStatus(item.station, now),
+        statusColor: getStationMarkerColor(item.station, colors, now),
         rating: getStationRating(item.station),
         power: getStationPower(item.station),
         alcance: avaliarAlcance(
@@ -1077,7 +1052,7 @@ export default function HomeMapScreen() {
         ),
       };
     });
-  }, [batteryPercent, colors, estacoesRecomendadas, vehicleRangeKm]);
+  }, [batteryPercent, colors, estacoesRecomendadas, vehicleRangeKm, now]);
 
   const hasNoResults = estacoesRecomendadas.length === 0;
   const hasSearchTerm = searchTerm.trim().length > 0;
@@ -1126,17 +1101,38 @@ export default function HomeMapScreen() {
   }, [hasFiltersApplied, hasSearchTerm, localizacaoUsuario, visibleStations]);
 
   const isPrimeiraRegiaoRef = useRef(true);
+  const criteriosDeFocoRef = useRef({
+    filtros: filtrosDoMapa,
+    busca: searchTerm,
+    localizacao: localizacaoUsuario,
+  });
 
   useEffect(() => {
-    currentMapRegionRef.current = mapRegion;
+    const anteriores = criteriosDeFocoRef.current;
+    const mudouCriterio =
+      anteriores.filtros !== filtrosDoMapa ||
+      anteriores.busca !== searchTerm ||
+      anteriores.localizacao !== localizacaoUsuario;
+
+    criteriosDeFocoRef.current = {
+      filtros: filtrosDoMapa,
+      busca: searchTerm,
+      localizacao: localizacaoUsuario,
+    };
 
     if (isPrimeiraRegiaoRef.current) {
+      currentMapRegionRef.current = mapRegion;
       isPrimeiraRegiaoRef.current = false;
       return;
     }
 
+    // O relógio atualiza resultados e estados, mas não é uma ação de navegação.
+    // Preserve também a região usada pelos controles de zoom e centralização.
+    if (!mudouCriterio) return;
+
+    currentMapRegionRef.current = mapRegion;
     mapRef.current?.animateToRegion(mapRegion, reduceMotionEnabled ? 0 : 450);
-  }, [mapRegion, reduceMotionEnabled]);
+  }, [filtrosDoMapa, localizacaoUsuario, mapRegion, reduceMotionEnabled, searchTerm]);
 
   const ajusteInicialDeCentralizacaoRef = useRef(false);
 
@@ -1205,9 +1201,8 @@ export default function HomeMapScreen() {
 
   const sheetTitle = hasNoResults
     ? "Nenhum ponto disponível"
-    : "Melhores escolhas";
+    : "Opções demonstrativas";
 
-  const IconeBateriaAtual = obterIconeDeBateriaAtual(batteryPercent);
   const corBateriaAtual = obterCorDeBateriaAtual(batteryPercent, colors);
   const autonomiaAtualKm = Math.round((vehicleRangeKm * batteryPercent) / 100);
   const IconeBateriaEmEdicao = obterIconeDeBateriaAtual(bateriaEmEdicao);
@@ -1236,10 +1231,7 @@ export default function HomeMapScreen() {
   };
 
   const definirNivelDeBateria = async () => {
-    if (bateriaEmEdicao !== batteryPercent) {
-      await updateBatteryPercent(bateriaEmEdicao);
-      setBateriaInformadaManualmente(true);
-    }
+    await updateBatteryPercent(bateriaEmEdicao);
 
     setSeletorBateriaAberto(false);
   };
@@ -1439,7 +1431,7 @@ export default function HomeMapScreen() {
             <View style={styles.headerActions}>
               <PressableScale
                 accessibilityRole="button"
-                accessibilityLabel={`Bateria do veículo: ${batteryPercent} por cento, cerca de ${autonomiaAtualKm} quilômetros de autonomia`}
+                accessibilityLabel={`Bateria para estimativa: ${batteryPercent} por cento. ${batteryLabels.source}. ${batteryLabels.detail}. Cerca de ${autonomiaAtualKm} quilômetros estimados`}
                 accessibilityHint="Toque para ajustar o nível de bateria e ver o alcance nos pontos."
                 style={styles.vehicleButton}
                 onPress={abrirSeletorDeBateria}
@@ -1487,12 +1479,10 @@ export default function HomeMapScreen() {
                   </View>
 
                   <Text style={styles.vehicleBatterySource} numberOfLines={1}>
-                    {bateriaInformadaManualmente
-                      ? "Informado manualmente"
-                      : "Atualizado pelo veículo"}
+                    {batteryLabels.source}
                   </Text>
                   <Text style={styles.vehicleBatteryUpdatedAt}>
-                    {bateriaInformadaManualmente ? "agora" : "há 1 min."}
+                    {batteryLabels.detail}
                   </Text>
                 </View>
 
@@ -1660,7 +1650,7 @@ export default function HomeMapScreen() {
 
             {visibleStations.map((item) => {
               const stationId = getStationId(item.station, item.index);
-              const markerIcon = getStationMarkerIcon(item.station);
+              const markerIcon = getStationMarkerIcon(item.station, now);
 
               return (
                 <Marker
@@ -1670,13 +1660,13 @@ export default function HomeMapScreen() {
                     longitude: item.station.longitude,
                   }}
                   title={getStationName(item.station)}
-                  description={`${getStationStatus(item.station)} • ${getStationPower(item.station)}`}
+                  description={`${getStationStatus(item.station, now)} • ${getStationPower(item.station)}`}
                   onPress={() => openStationDetails(stationId)}
                   anchor={{ x: 0.5, y: 0.87 }}
                   accessible
                   accessibilityRole="button"
                   accessibilityLabel={`Abrir ficha de ${getStationNameById(stationId)}`}
-                  accessibilityHint="Mostra detalhes, disponibilidade e comodidades do ponto."
+                  accessibilityHint={`${getStationStatus(item.station, now)}. Mostra detalhes e dados demonstrativos do ponto.`}
                   icon={markerIcon}
                   tracksViewChanges={false}
                 />
@@ -1818,7 +1808,7 @@ export default function HomeMapScreen() {
             >
               <PressableScale
                 accessibilityRole="button"
-                accessibilityLabel="Minimizar melhores escolhas para ver o mapa inteiro"
+                accessibilityLabel="Minimizar opções demonstrativas para ver o mapa inteiro"
                 accessibilityHint="Esconde completamente o painel, deixando só um atalho para trazê-lo de volta."
                 hitSlop={{ top: 10, right: 44, bottom: 10, left: 44 }}
                 pressedScale={0.94}
@@ -2005,7 +1995,7 @@ export default function HomeMapScreen() {
             >
               <PressableScale
                 accessibilityRole="button"
-                accessibilityLabel="Mostrar melhores escolhas"
+                accessibilityLabel="Mostrar opções demonstrativas"
                 accessibilityHint="Traz de volta a lista de pontos recomendados."
                 pressedScale={0.94}
                 style={styles.restaurarPainelPill}
@@ -2013,7 +2003,7 @@ export default function HomeMapScreen() {
               >
                 <Maximize2 size={16} color={colors.primary} strokeWidth={2.3} />
                 <Text style={styles.restaurarPainelPillText}>
-                  Melhores escolhas
+                  Opções demonstrativas
                 </Text>
               </PressableScale>
             </View>
@@ -2022,7 +2012,8 @@ export default function HomeMapScreen() {
 
         <FluiAssistantSheet
           visible={assistenteFluiAberto}
-          stations={chargingStations}
+          stations={visibleStations.map(item => item.station)}
+          now={now}
           batteryPercent={batteryPercent}
           vehicleRangeKm={vehicleRangeKm}
           onClose={() => setAssistenteFluiAberto(false)}
@@ -2069,10 +2060,10 @@ export default function HomeMapScreen() {
 
                 <View style={styles.batterySheetHeaderText}>
                   <Text style={styles.batterySheetTitle}>
-                    Bateria do veículo
+                    Bateria para estimativa
                   </Text>
                   <Text style={styles.batterySheetSubtitle}>
-                    ≈{autonomiaEmEdicaoKm} km de autonomia
+                    ≈{autonomiaEmEdicaoKm} km estimados · sem telemetria
                   </Text>
                 </View>
 

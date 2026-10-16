@@ -1,0 +1,100 @@
+Tentativa de revalidação da correção do zoom | 2026-10-16T10:08:13.672Z
+Simulador iPhone 18 Pro Max / iOS 27 iniciado pelo Device Hub.
+O screenshot mostrou a tela inicial do iOS, mas a árvore abaixo expôs somente controles do Mac, sem controles dos aplicativos iOS.
+Após testar Home e App Switcher, sem acesso aos controles do iOS, a abordagem foi interrompida.
+Não houve interação do Flui corrigido nesta rodada; não comprova preservação prática do enquadramento nem passagem do horário.
+
+Window: "iPhone 18 Pro Max", App: Device Hub.
+0 standard window iPhone 18 Pro Max – iOS 27.0, ID: com.apple.dt.DeviceKit.DeviceManagementWindow-AppWindow-1, Secondary Actions: Raise
+	1 split group
+		2 split group com.apple.dt.DeviceKit.DeviceManagementWindow-AppWindow-1, SidebarNavigationSplitView
+			3 scroll area
+				4 list Sidebar
+					5 row (selectable) Description: Available, Value: Expanded
+					6 row (selected) Description: Iphone, Third Generation, Value: iPhone 18 Pro Max
+27.0
+Simulator
+					7 row (selectable) Description: Iphone, Value: iPhone 17e
+27.0
+Simulator
+					8 row (selectable) Description: Unavailable, Value: Collapsed
+			9 search text field (settable) Search
+				10 button Search
+			11 splitter (disabled, settable, float) 248
+			12 container
+				13 button Description: Home, ID: app.grid.3x3
+				14 button Description: Screenshot, ID: camera.viewfinder
+				15 button Description: Record, ID: record.circle
+				16 button Rotate Left
+		17 splitter (disabled, settable, float) 1710
+	18 toolbar
+		19 menu button Add Device, ID: plus
+		20 toggle button Description: Filter, Help: Sort and Filter, Value: off
+		21 button Description: Hide Sidebar, Secondary Actions: Increment, Decrement, Delete, Cancel
+		22 toggle button Description: Capture Keyboard, Value: on
+		23 toggle button (disabled) Description: Resize mode, Help: Enter resize mode, Value: off
+		24 Zoom
+			25 radio button Description: Zoom Out, Value: 0, ID: minus.magnifyingglass
+			26 radio button Description: Up, Right, Down, And Left Triangles In A Magnifying Glass, Help: Zoom to Fit, Value: 1, ID: arrowtriangles.up.right.down.left.magnifyingglass
+			27 radio button Description: Zoom To Actual Size, Help: Physical Size, Value: 0, ID: 1.magnifyingglass
+			28 radio button Description: Zoom In, Value: 0, ID: plus.magnifyingglass
+		29 button Description: Switch to compact window, Secondary Actions: Increment, Decrement, Delete, Cancel, Move previous, Move next, Remove from toolbar
+		30 menu button More Actions, ID: ellipsis
+		31 Inspector Category
+			32 radio button Description: Edit, Help: Settings, Value: 0, ID: slider.horizontal.3
+			33 radio button Description: Text Document, Help: Reports, Value: 0, ID: text.document
+			34 radio button Description: Info, Value: 0, ID: info
+	35 close button
+	36 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	37 minimize button
+	38 text iPhone 18 Pro Max iOS 27.0
+39 menu bar
+	40 Device Hub
+	41 File
+	42 Edit
+	43 View
+	44 Device
+	45 Controls
+	46 Window
+	47 Help
+
+Selected:
+	6 row (selected)
+
+Note: Pay special attention to the content selected by the user. If the user asks a question or refers to the content they are looking at on-screen, they might be referring to the selected content (but they might be referring to something else that's visible, too).
+
+Encerramento 2026-10-16T10:08:37.607Z
+Window: "iPhone 18 Pro Max", App: Device Hub.
+0 standard window iPhone 18 Pro Max – iOS 27.0, ID: com.apple.dt.DeviceKit.DeviceManagementWindow-AppWindow-1, Secondary Actions: Raise
+	1 split group
+		2 split group com.apple.dt.DeviceKit.DeviceManagementWindow-AppWindow-1, SidebarNavigationSplitView
+			3 scroll area
+				4 list Sidebar
+					5 row (selectable) Description: Available, Value: Expanded
+					6 row (selected) Description: Iphone, Third Generation, Value: iPhone 18 Pro Max
+27.0
+Simulator
+					7 row (selectable) Description: Iphone, Value: iPhone 17e
+27.0
+Simulator
+					8 row (selectable) Description: Unavailable, Value: Collapsed
+			9 search text field (settable) Search
+				10 button Search
+			11 splitter (disabled, settable, float) 248
+			12 container
+				13 image
+				14 text iPhone 18 Pro Max iOS 27.0 Simulator
+				15 button Start
+		16 splitter (disabled, settable, float) 1039
+	17 toolbar
+		18 menu button Add Device, ID: plus
+		19 toggle button Description: Filter, Help: Sort and Filter, Value: off
+		20 button Description: Hide Sidebar, Secondary Actions: Increment, Decrement, Delete, Cancel
+		21 toggle button (disabled) Description: Capture Keyboard, Value: off
+		22 toggle button (disabled) Description: Resize mode, Help: Enter resize mode, Value: off
+		23 (disabled)
+			24 radio button (disabled) Description: Zoom Out, Value: 0, ID: minus.magnifyingglass
+			25 radio button (disabled) Description: Up, Right, Down, And Left Triangles In A Magnifying Glass, Help: Zoom to Fit, Value: 0, ID: arrowtriangles.up.right.down.left.magnifyingglass
+			26 radio button (disabled) Description: Zoom To Actual Size, Help: Physical Size, Value: 0, ID: 1.magnifyingglass
+			27 radio button (disabled) Description: Zoom In, Value: 0, ID: plus.magnifyingglass
+		28 button Description:

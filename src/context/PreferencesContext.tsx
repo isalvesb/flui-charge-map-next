@@ -1,3 +1,4 @@
+import { normalizeBatteryData } from "../utils/batteryData";
 import React, {
   createContext,
   useCallback,
@@ -56,7 +57,7 @@ const defaultUserPreferences: UserPreferences = {
   appearanceMode: "light",
   fontSize: "default",
   vehicleRangeKm: 400,
-  batteryPercent: 70,
+  ...normalizeBatteryData(),
 };
 
 const PreferencesContext = createContext<PreferencesContextValue | null>(null);
@@ -129,6 +130,8 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
     async (batteryPercent: number) => {
       await savePreferences({
         batteryPercent: Math.min(100, Math.max(0, batteryPercent)),
+        batterySource: "manual",
+        batteryUpdatedAt: new Date().toISOString(),
       });
     },
     [savePreferences],

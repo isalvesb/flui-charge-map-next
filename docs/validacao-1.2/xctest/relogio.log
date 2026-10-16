@@ -1,0 +1,21 @@
+2026-10-16T10:35:28.406Z MAPA_ABRIR 2026-10-16T22:50:00Z
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-1","urls":[]}
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-2","urls":["http://127.0.0.1:8084/node_modules/expo-router/entry.bundle//&platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=app&transform.reactCompiler=true&unstable_transformProfile=hermes-stable"]}
+{"clock":{"result":{"className":"Object","description":"Object","type":"object","value":{"real":"2026-10-16T10:35:28.364Z","simulated":"2026-10-16T22:50:00.000Z"}}}}
+
+2026-10-16T10:36:21.993Z FICHA_ABRIR 2026-10-16T22:50:00Z
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-1","urls":[]}
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-2","urls":["http://127.0.0.1:8084/node_modules/expo-router/entry.bundle//&platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=app&transform.reactCompiler=true&unstable_transformProfile=hermes-stable"]}
+{"clock":{"result":{"className":"Object","description":"Object","type":"object","value":{"real":"2026-10-16T10:36:21.939Z","simulated":"2026-10-16T22:50:00.000Z"}}}}
+
+
+RESTAURACAO_EXPLICITA 2026-10-16T10:37:42.346Z
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-1","urls":[]}
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-2","urls":["http://127.0.0.1:8084/node_modules/expo-router/entry.bundle//&platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=app&transform.reactCompiler=true&unstable_transformProfile=hermes-stable"]}
+{"clock":{"result":{"className":"Object","description":"Object","type":"object","value":{"now":"2026-10-16T10:37:42.323Z","restored":true}}}}
+
+2026-10-16T10:39:49.789Z LIMPEZA restore
+fetch failed
+Command failed: /usr/local/bin/node /Users/guicunha/.codex/.chatgpt-projects/g-p-69f512a9480481918bb9b34c4162ae65/flui-charge-map-next/scripts/validar-relogio-ios.cjs restore
+fetch failed
+

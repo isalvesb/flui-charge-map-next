@@ -1,0 +1,19 @@
+2026-10-16T12:03:35.123Z MAPA_ABRIR 2026-10-17T00:50:00Z
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-1","urls":[]}
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-2","urls":["http://127.0.0.1:8084/node_modules/expo-router/entry.bundle//&platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=app&transform.reactCompiler=true&unstable_transformProfile=hermes-stable"]}
+{"clock":{"result":{"className":"Object","description":"Object","type":"object","value":{"real":"2026-10-16T12:03:35.025Z","simulated":"2026-10-17T00:50:00.000Z"}}}}
+
+2026-10-16T12:04:03.390Z MAPA_FECHAR 2026-10-17T00:59:50Z
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-1","urls":[]}
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-2","urls":["http://127.0.0.1:8084/node_modules/expo-router/entry.bundle//&platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=app&transform.reactCompiler=true&unstable_transformProfile=hermes-stable"]}
+{"clock":{"result":{"className":"Object","description":"Object","type":"object","value":{"real":"2026-10-16T12:04:03.326Z","simulated":"2026-10-17T00:59:50.000Z"}}}}
+
+2026-10-16T12:04:23.725Z FICHA_ABRIR 2026-10-17T00:50:00Z
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-1","urls":[]}
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-2","urls":["http://127.0.0.1:8084/node_modules/expo-router/entry.bundle//&platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=app&transform.reactCompiler=true&unstable_transformProfile=hermes-stable"]}
+{"clock":{"result":{"className":"Object","description":"Object","type":"object","value":{"real":"2026-10-16T12:04:23.683Z","simulated":"2026-10-17T00:50:00.000Z"}}}}
+
+2026-10-16T12:05:24.037Z LIMPEZA restore
+Flui não encontrado no Metro local da porta 8084
+Command failed: /usr/local/bin/node /Users/guicunha/.codex/.chatgpt-projects/g-p-69f512a9480481918bb9b34c4162ae65/flui-charge-map-next/scripts/validar-relogio-ios.cjs restore
+Flui não encontrado no Metro local da porta 8084

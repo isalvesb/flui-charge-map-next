@@ -41,6 +41,7 @@ type Props = {
   stations: ChargingStation[];
   batteryPercent: number;
   vehicleRangeKm: number;
+  now: Date;
   onClose: () => void;
   onSelectStation: (stationId: string) => void;
 };
@@ -72,6 +73,7 @@ export function FluiAssistantSheet({
   stations,
   batteryPercent,
   vehicleRangeKm,
+  now,
   onClose,
   onSelectStation,
 }: Props) {
@@ -94,8 +96,9 @@ export function FluiAssistantSheet({
       intent: selectedIntent,
       vehicleRangeKm,
       batteryPercent,
+      now,
     });
-  }, [batteryPercent, isAnalyzing, selectedIntent, stations, vehicleRangeKm]);
+  }, [batteryPercent, isAnalyzing, selectedIntent, stations, vehicleRangeKm, now]);
 
   useEffect(() => {
     return () => {
@@ -266,7 +269,7 @@ export function FluiAssistantSheet({
                 accessibilityLiveRegion="polite"
               >
                 <View style={styles.bestChoiceBadge}>
-                  <Text style={styles.bestChoiceText}>Melhor escolha agora</Text>
+                  <Text style={styles.bestChoiceText}>Sugestão demonstrativa</Text>
                 </View>
                 <Text style={styles.stationName}>
                   {recommendation.primary.name}
@@ -279,13 +282,13 @@ export function FluiAssistantSheet({
                   <Metric
                     styles={styles}
                     icon={BatteryMedium}
-                    label={`Chegada: ${recommendation.arrivalBatteryPercent}%`}
+                    label={`Chegada ≈${recommendation.arrivalBatteryPercent}%`}
                     color={theme.primary}
                   />
                   <Metric
                     styles={styles}
                     icon={Zap}
-                    label={`${recommendation.primary.powerKw} kW`}
+                    label={`${recommendation.powerKw} kW`}
                     color={theme.primary}
                   />
                   <Metric
@@ -308,7 +311,9 @@ export function FluiAssistantSheet({
                   Por que essa escolha?
                 </Text>
                 <Text style={styles.explanationText}>
-                  {recommendation.explanation}
+                  {recommendation.explanation}{"\n"}
+                  Estimativa linear com reserva de 5%. Compatibilidade do veículo
+                  não confirmada; não há integração em tempo real.
                 </Text>
               </View>
 
@@ -365,10 +370,12 @@ export function FluiAssistantSheet({
           ) : selectedIntent ? (
             <View style={styles.analyzingCard}>
               <Text style={styles.analyzingTitle}>
-                Nenhum ponto compatível encontrado
+                Nenhuma opção viável confirmada
               </Text>
               <Text style={styles.analyzingText}>
-                Tente outra necessidade ou ajuste o nível da bateria.
+                Os dados disponíveis não confirmam uma opção com alcance, horário,
+                carregador livre e comodidades solicitadas. Revise os filtros e
+                os dados informados. Não há indicação segura neste cenário.
               </Text>
             </View>
           ) : (

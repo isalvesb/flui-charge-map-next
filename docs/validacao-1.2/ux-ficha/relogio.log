@@ -1,0 +1,21 @@
+2026-10-16T13:14:15.564Z FICHA_ABRIR 2026-10-17T00:50:00Z
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-1","urls":[]}
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-2","urls":["http://127.0.0.1:8084/node_modules/expo-router/entry.bundle//&platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=app&transform.reactCompiler=true&unstable_transformProfile=hermes-stable"]}
+{"clock":{"result":{"className":"Object","description":"Object","type":"object","value":{"real":"2026-10-16T13:14:15.537Z","simulated":"2026-10-17T00:50:00.000Z"}}}}
+
+2026-10-16T13:14:47.842Z CAPTURA antes.png status=0
+2026-10-16T13:14:48.031Z FICHA_FECHAR 2026-10-17T00:59:50Z
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-1","urls":[]}
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-2","urls":["http://127.0.0.1:8084/node_modules/expo-router/entry.bundle//&platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=app&transform.reactCompiler=true&unstable_transformProfile=hermes-stable"]}
+{"clock":{"result":{"className":"Object","description":"Object","type":"object","value":{"real":"2026-10-16T13:14:48.022Z","simulated":"2026-10-17T00:59:50.000Z"}}}}
+
+2026-10-16T13:15:37.890Z CAPTURA depois.png status=0
+2026-10-16T13:15:38.182Z RESTAURAR restore
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-1","urls":[]}
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-2","urls":["http://127.0.0.1:8084/node_modules/expo-router/entry.bundle//&platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=app&transform.reactCompiler=true&unstable_transformProfile=hermes-stable"]}
+{"clock":{"result":{"className":"Object","description":"Object","type":"object","value":{"now":"2026-10-16T13:15:38.163Z","restored":true}}}}
+
+2026-10-16T13:15:46.635Z LIMPEZA restore
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-1","urls":[]}
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-2","urls":["http://127.0.0.1:8084/node_modules/expo-router/entry.bundle//&platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=app&transform.reactCompiler=true&unstable_transformProfile=hermes-stable"]}
+{"clock":{"result":{"className":"Object","description":"Object","type":"object","value":{"now":"2026-10-16T13:15:46.587Z","restored":true}}}}

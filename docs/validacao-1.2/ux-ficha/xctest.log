@@ -1,0 +1,1026 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -xctestrun /tmp/flui-xctest-12/DerivedData/Build/Products/FluiValidacao_iphonesimulator27.1-arm64-x86_64.xctestrun -destination "platform=iOS Simulator,id=4A2C862B-D6FC-4E88-8FB5-88164A5C5A2E" -destination-timeout 25 -parallel-testing-enabled NO -collect-test-diagnostics never -test-timeouts-enabled YES -default-test-execution-time-allowance 180 -maximum-test-execution-time-allowance 180 -resultBundlePath /tmp/flui-ux-ficha/Resultado.xcresult
+
+Writing result bundle at path:
+	/tmp/flui-ux-ficha/Resultado.xcresult
+
+2026-10-16 10:12:44.989 xcodebuild[37924:3932319] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 10:13:19.099289-0300 FluiValidacao-Runner[37994:3933257] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'All tests' started at 2026-10-16 10:14:10.332.
+Test Suite 'FluiValidacao.xctest' started at 2026-10-16 10:14:10.337.
+Test Suite 'FluiValidacao' started at 2026-10-16 10:14:10.337.
+Test Case '-[FluiValidacao.FluiValidacao testFichaUxAutonomiaERecarga]' started.
+    t =     0.32s Start Test at 2026-10-16 10:14:10.660
+    t =     1.28s Set Up
+    t =     1.28s Open host.exp.Exponent
+    t =     1.29s     Activate host.exp.Exponent
+    t =     1.70s         Wait for host.exp.Exponent to idle
+    t =     2.11s Waiting 3.0s for Button (First Match) to exist
+    t =     3.16s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     3.17s         Checking existence of `Button (First Match)`
+    t =     3.32s Waiting 45.0s for Button (First Match) to exist
+    t =     4.38s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     4.38s         Checking existence of `Button (First Match)`
+FLUI_CLOCK FICHA_ABRIR
+    t =     4.50s Tap Button (First Match)
+    t =     4.50s     Wait for host.exp.Exponent to idle
+    t =     4.82s     Find the Button (First Match)
+    t =     5.31s     Check for interrupting elements affecting "Abrir busca e filtros" Button
+    t =     5.99s     Synthesize event
+    t =     6.63s     Wait for host.exp.Exponent to idle
+    t =     6.81s Waiting 8.0s for Button (First Match) to exist
+    t =     7.86s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     7.86s         Checking existence of `Button (First Match)`
+objc[37994]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x104fa4398) and /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x108478310). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =     7.96s Tap Button (First Match)
+    t =     7.96s     Wait for host.exp.Exponent to idle
+    t =     7.98s     Find the Button (First Match)
+    t =     8.25s     Check for interrupting elements affecting "Limpar busca e filtros" Button
+    t =     8.49s     Synthesize event
+    t =     8.82s     Wait for host.exp.Exponent to idle
+    t =     8.88s Find the Button (First Match)
+    t =     9.04s Swipe up ScrollView (First Match)
+    t =     9.04s     Wait for host.exp.Exponent to idle
+    t =     9.05s     Find the ScrollView (First Match)
+    t =     9.07s     Check for interrupting elements affecting ScrollView
+    t =     9.13s     Synthesize event
+    t =     9.79s     Wait for host.exp.Exponent to idle
+    t =    11.83s Find the "Carregadores livres" Button
+    t =    11.99s Find the "Carregadores livres" Button
+    t =    12.12s Find the "Carregadores livres" Button
+    t =    12.20s Tap "Carregadores livres" Button
+    t =    12.20s     Wait for host.exp.Exponent to idle
+    t =    12.22s     Find the "Carregadores livres" Button
+    t =    12.33s     Check for interrupting elements affecting "Carregadores livres" Button
+    t =    12.42s     Synthesize event
+    t =    12.74s     Wait for host.exp.Exponent to idle
+    t =    12.76s Find the "Carregadores livres" Button
+    t =    12.81s Find the Button (First Match)
+    t =    12.95s Swipe up ScrollView (First Match)
+    t =    12.95s     Wait for host.exp.Exponent to idle
+    t =    12.96s     Find the ScrollView (First Match)
+    t =    13.02s     Check for interrupting elements affecting ScrollView
+    t =    13.10s     Synthesize event
+    t =    13.72s     Wait for host.exp.Exponent to idle
+    t =    14.20s Find the "1 km" Button
+    t =    14.43s Find the "1 km" Button
+    t =    14.52s Find the "1 km" Button
+    t =    14.58s Tap "1 km" Button
+    t =    14.58s     Wait for host.exp.Exponent to idle
+    t =    14.59s     Find the "1 km" Button
+    t =    14.65s     Check for interrupting elements affecting "1 km" Button
+    t =    14.71s     Synthesize event
+    t =    15.01s     Wait for host.exp.Exponent to idle
+    t =    15.02s Find the "1 km" Button
+    t =    15.07s Tap Button (First Match)
+    t =    15.07s     Wait for host.exp.Exponent to idle
+    t =    15.08s     Find the Button (First Match)
+    t =    15.11s     Check for interrupting elements affecting "Ver pontos encontrados no mapa" Button
+    t =    15.17s     Synthesize event
+    t =    15.49s     Wait for host.exp.Exponent to idle
+    t =    15.50s Waiting 10.0s for Button (First Match) to exist
+    t =    16.67s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    16.77s         Checking existence of `Button (First Match)`
+    t =    17.11s Tap Button (First Match)
+    t =    17.11s     Wait for host.exp.Exponent to idle
+    t =    17.14s     Find the Button (First Match)
+    t =    17.23s     Check for interrupting elements affecting "Abrir assistente Flui IA" Button
+    t =    17.33s     Synthesize event
+    t =    17.79s     Wait for host.exp.Exponent to idle
+    t =    18.51s Waiting 5.0s for Button (First Match) to exist
+    t =    19.58s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    19.58s         Checking existence of `Button (First Match)`
+    t =    19.77s Tap Button (First Match)
+    t =    19.78s     Wait for host.exp.Exponent to idle
+    t =    19.96s     Find the Button (First Match)
+    t =    20.37s     Check for interrupting elements affecting "Quero carregar rápido" Button
+    t =    20.58s     Synthesize event
+    t =    21.09s     Wait for host.exp.Exponent to idle
+    t =    21.12s Waiting 40.0s for Button (First Match) to exist
+    t =    22.23s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    22.23s         Checking existence of `Button (First Match)`
+    t =    22.38s         Capturing element debug description
+    t =    23.20s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    23.20s         Checking existence of `Button (First Match)`
+    t =    23.36s Requesting snapshot of accessibility hierarchy for app with pid 37805
+    t =    26.59s Requesting snapshot of accessibility hierarchy for app with pid 37805
+FLUI_EVIDENCIA FluIA fornece acesso direto à ficha da Vila Mariana
+Attributes: Application, 0x10801d040, pid: 37805, label: 'Expo Go'
+Element subtree:
+ →Application, 0x10801d040, pid: 37805, label: 'Expo Go'
+    Window (Main), 0x10801e800, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x10801e940, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x10801e1c0, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x10801ea80, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x10801ed00, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x10801ee40, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x10801ebc0, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x10801d180, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x10801f0c0, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x10801f340, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x10801f200, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x10801f480, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x10801f5c0, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x10801f840, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x10801f700, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x10801f980, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x10801fac0, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Other, 0x10801fc00, {{0.0, 62.0}, {440.0, 162.0}}
+                                        Other, 0x10801fe80, {{20.0, 76.0}, {76.0, 36.0}}
+                                          Other, 0x10801fd40, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x10801c3c0, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x10801c640, {{89.2, 82.8}, {6.7, 6.7}}
+                                        Button, 0x10801ef80, {{191.7, 71.0}, {180.3, 46.0}}, label: 'Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 180 quilômetros estimados'
+                                        Button, 0x10801cc80, {{374.0, 71.0}, {46.0, 46.0}}, label: 'Abrir perfil'
+                                        Other, 0x10801cdc0, {{20.0, 132.0}, {400.0, 58.0}}
+                                          Other, 0x1051a2f80, {{39.0, 150.7}, {21.0, 21.0}}
+                                            Other, 0x1051a3340, {{40.8, 152.4}, {17.5, 17.5}}
+                                              Other, 0x1051a35c0, {{40.8, 152.4}, {15.8, 15.8}}
+                                              Other, 0x1051a3700, {{52.7, 164.4}, {5.5, 5.5}}
+                                          Other, 0x1051a3840, {{73.0, 150.7}, {277.0, 20.3}}
+                                            TextField, 0x1051a3980, {{73.0, 150.7}, {277.0, 20.3}}, label: 'Buscar no mapa', placeholderValue: 'Buscar endereço, bairro ou ponto'
+                                          Other, 0x109728000, {{358.0, 146.0}, {1.0, 30.0}}
+                                          Button, 0x109728140, {{367.0, 140.0}, {42.0, 42.0}}, label: 'Abrir busca e filtros'
+                                        Button, 0x109728280, {{20.0, 194.0}, {400.0, 16.0}}, label: 'Mostrar atalhos de filtro'
+                                      Other, 0x1097283c0, {{0.0, 62.0}, {440.0, 956.0}}
+                                      Other, 0x109728500, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x109728640, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                          Other, 0x109728780, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x1097288c0, {{0.0, 224.0}, {72.0, 72.0}}
+                                            Other, 0x109728a00, {{0.0, 224.0}, {440.0, 694.4}}
+                                              Other, 0x109728b40, {{0.0, 224.0}, {440.0, 694.4}}
+                                                Button, 0x109728c80, {{5.0, 891.3}, {60.0, 22.0}}, label: 'Google Maps'
+                                            Other, 0x109728dc0, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                              Button, 0x109728f00, {{185.3, 511.0}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x1268fae40', label: 'Flui Vila Mariana Lins'
+                                              Other, 0x109729040, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x109729180, {{1912.0, 2136.0}, {74.0, 74.0}}
+                                              Other, 0x1097292c0, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                Other, 0x109729400, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                  Other, 0x109729540, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                    Other, 0x109729680, {{1917.2, 2141.2}, {61.5, 61.5}}
+                                                    Other, 0x1097297c0, {{1936.0, 2160.0}, {24.0, 24.0}}
+                                        Other, 0x109729900, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x109729a40, {{372.0, 242.0}, {52.0, 166.0}}
+                                          Other, 0x109729b80, {{372.0, 242.0}, {52.0, 104.0}}
+                                            Button, 0x109729cc0, {{372.0, 243.0}, {52.0, 51.0}}, label: 'Aumentar zoom do mapa'
+                                            Button, 0x109729e00, {{372.0, 295.0}, {52.0, 51.0}}, label: 'Diminuir zoom do mapa'
+                                            Other, 0x109729f40, {{384.0, 294.0}, {28.0, 1.0}}
+                                          Button, 0x10972a080, {{372.0, 356.0}, {52.0, 52.0}}, label: 'Centralizar localização na FIAP'
+                                        Other, 0x10972a1c0, {{372.0, 527.3}, {52.0, 52.0}}
+                                          Other, 0x10972a300, {{372.0, 527.3}, {52.0, 52.0}}
+                                            Button, 0x10972a440, {{372.0, 527.3}, {52.0, 52.0}}, label: 'Abrir assistente Flui IA'
+                                        Other, 0x10972a580, {{16.0, 583.3}, {408.0, 338.7}}
+                                          Other, 0x10972a6c0, {{16.0, 583.3}, {408.0, 338.7}}
+                                            Button, 0x10972a800, {{35.0, 602.3}, {370.0, 12.0}}, label: 'Minimizar opções demonstrativas para ver o mapa inteiro'
+                                            StaticText, 0x10972a940, {{35.0, 614.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                              StaticText, 0x10972aa80, {{35.0, 614.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                            Other, 0x10972abc0, {{35.0, 650.0}, {370.0, 262.0}}
+                                              ScrollView, 0x10972ad00, {{35.0, 650.0}, {370.0, 262.0}}
+                                                Other, 0x10972ae40, {{35.0, 650.0}, {370.0, 134.7}}
+                                                  Other, 0x10972af80, {{35.0, 650.0}, {370.0, 134.7}}
+                                                    Button, 0x10972b0c0, {{35.0, 650.0}, {370.0, 134.7}}, label: 'Flui Vila Mariana Lins. Opção demonstrativa. Av. Lins de Vasconcelos, 1264. Aberto agora. Nota 4,8. 150 kW. Chegada estimada com 45% de bateria.'
+                                                Other, 0x10972b200, {{53.0, 879.0}, {334.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x10972b340, {{65.0, 906.0}, {310.0, 3.0}}
+                                                Other, 0x10972b480, {{53.0, 879.0}, {334.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x10972b5c0, {{65.0, 906.0}, {310.0, 3.0}}
+                          Toolbar, 0x10972b700, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x10972b840, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x10972b980, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x10972bac0, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x10972bc00, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x10972bd40, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x10972be80, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x11190c000, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x11190c140, {{0.0, 0.0}, {440.0, 956.0}}
+              Button, 0x11190c280, {{0.0, 0.0}, {440.0, 956.0}}, label: 'Fechar assistente Flui IA'
+              Other, 0x11190c3c0, {{0.0, 296.0}, {440.0, 660.0}}
+                Other, 0x11190c500, {{199.0, 307.0}, {42.0, 4.0}}
+                Other, 0x11190c640, {{20.0, 327.0}, {42.0, 42.0}}
+                StaticText, 0x11190c780, {{72.0, 328.0}, {296.0, 29.0}}, label: 'Flui IA'
+                  StaticText, 0x11190c8c0, {{72.0, 328.0}, {296.0, 29.0}}, label: 'Flui IA'
+                Button, 0x11190ca00, {{378.0, 327.0}, {42.0, 42.0}}, label: 'Fechar assistente'
+                Other, 0x11190cb40, {{24.7, 337.0}, {22.0, 22.0}}
+                  Other, 0x11190cc80, {{26.3, 337.7}, {18.7, 20.5}}
+                    Other, 0x11190cdc0, {{26.3, 337.7}, {18.7, 20.5}}
+                Other, 0x11190cf00, {{44.7, 335.0}, {8.0, 8.0}}
+                  Other, 0x11190d040, {{45.0, 335.3}, {7.4, 7.4}}
+                    Other, 0x11190d180, {{45.0, 335.3}, {7.4, 7.4}}
+                Other, 0x11190d2c0, {{50.3, 342.7}, {6.0, 6.0}}
+                  Other, 0x11190d400, {{50.6, 342.9}, {5.6, 5.6}}
+                    Other, 0x11190d540, {{50.6, 342.9}, {5.6, 5.6}}
+                StaticText, 0x11190d680, {{72.0, 360.0}, {296.0, 40.0}}, label: 'Recomendação simulada com os dados do protótipo.'
+                  StaticText, 0x11190d7c0, {{72.0, 360.0}, {296.0, 40.0}}, label: 'Recomendação simulada com os dados do protótipo.'
+                Other, 0x11190d900, {{20.0, 418.0}, {400.0, 514.0}}
+                  ScrollView, 0x11190da40, {{20.0, 418.0}, {400.0, 514.0}}
+                    Other, 0x11190db80, {{20.0, 418.0}, {400.0, 514.0}}
+                      Other, 0x11190dcc0, {{20.0, 418.0}, {400.0, 514.0}}
+                        Other, 0x11190de00, {{20.0, 418.0}, {400.0, 396.0}}
+                        Other, 0x11190df40, {{37.0, 435.0}, {190.7, 30.0}}
+                        StaticText, 0x11190e080, {{48.0, 441.0}, {168.7, 18.0}}, label: 'Sugestão demonstrativa'
+                          StaticText, 0x11190e1c0, {{48.0, 441.0}, {168.7, 18.0}}, label: 'Sugestão demonstrativa'
+                        StaticText, 0x11190e300, {{37.0, 477.0}, {366.0, 31.0}}, label: 'Flui Vila Mariana Lins'
+                          StaticText, 0x11190e440, {{37.0, 477.0}, {366.0, 31.0}}, label: 'Flui Vila Mariana Lins'
+                        StaticText, 0x11190e580, {{37.0, 511.0}, {366.0, 20.0}}, label: 'Av. Lins de Vasconcelos, 1264'
+                          StaticText, 0x11190e6c0, {{37.0, 511.0}, {366.0, 20.0}}, label: 'Av. Lins de Vasconcelos, 1264'
+                        Other, 0x11190e800, {{37.0, 546.0}, {175.7, 48.0}}
+                        Other, 0x11190e940, {{220.7, 546.0}, {175.7, 48.0}}
+                        Other, 0x11190ea80, {{47.0, 560.7}, {19.0, 19.0}}
+                          Other, 0x11190ebc0, {{47.7, 564.5}, {17.7, 11.3}}
+                            Other, 0x11190ed00, {{47.7, 564.5}, {14.5, 11.3}}
+                            Other, 0x11190ee40, {{50.8, 567.7}, {1.8, 5.0}}
+                            Other, 0x11190ef80, {{54.0, 567.7}, {1.8, 5.0}}
+                            Other, 0x11190f0c0, {{63.5, 567.7}, {1.8, 5.0}}
+                        StaticText, 0x11190f200, {{74.0, 560.3}, {111.0, 19.0}}, label: 'Chegada ≈44%'
+                          StaticText, 0x11190f340, {{74.0, 560.3}, {111.0, 19.0}}, label: 'Chegada ≈44%'
+                        Other, 0x11190f480, {{230.7, 560.7}, {19.0, 19.0}}
+                          Other, 0x11190f5c0, {{232.1, 561.3}, {16.1, 17.7}}
+                            Other, 0x11190f700, {{232.1, 561.3}, {16.1, 17.7}}
+                        StaticText, 0x11190f840, {{257.7, 560.3}, {52.7, 19.0}}, label: '150 kW'
+                          StaticText, 0x11190f980, {{257.7, 560.3}, {52.7, 19.0}}, label: '150 kW'
+                        Other, 0x11190fac0, {{37.0, 602.0}, {175.7, 48.0}}
+                        Other, 0x11190fc00, {{220.7, 602.0}, {175.7, 48.0}}
+                        Other, 0x11190fd40, {{47.0, 616.7}, {19.0, 19.0}}
+                          Other, 0x11190fe80, {{50.8, 617.3}, {11.3, 17.7}}
+                            Other, 0x111914000, {{50.8, 622.1}, {11.3, 8.9}}
+                            Other, 0x111914140, {{53.2, 617.3}, {1.8, 6.6}}
+                            Other, 0x111914280, {{58.0, 617.3}, {1.8, 6.6}}
+                            Other, 0x1119143c0, {{55.6, 629.2}, {1.8, 5.8}}
+                        StaticText, 0x111914500, {{74.0, 616.3}, {52.7, 19.0}}, label: '3 livres'
+                          StaticText, 0x111914640, {{74.0, 616.3}, {52.7, 19.0}}, label: '3 livres'
+                        Other, 0x111914780, {{230.7, 616.7}, {19.0, 19.0}}
+                          Other, 0x1119148c0, {{232.9, 617.3}, {14.5, 17.6}}
+                            Other, 0x111914a00, {{232.9, 617.3}, {14.5, 17.6}}
+                            Other, 0x111914b40, {{236.9, 621.3}, {6.6, 6.6}}
+                        StaticText, 0x111914c80, {{257.7, 616.3}, {46.0, 19.0}}, label: '300 m'
+                          StaticText, 0x111914dc0, {{257.7, 616.3}, {46.0, 19.0}}, label: '300 m'
+                        StaticText, 0x111914f00, {{37.0, 666.0}, {366.0, 22.0}}, label: 'Por que essa escolha?'
+                          StaticText, 0x111915040, {{37.0, 666.0}, {366.0, 22.0}}, label: 'Por que essa escolha?'
+                        StaticText, 0x111915180, {{37.0, 692.0}, {366.0, 105.0}}, label: 'Oferece até 150 kW nos conectores utilizáveis e 3 carregadores livres nos dados demonstrativos.
+Estimativa linear com reserva de 5%. Compatibilidade do veículo não confirmada; não há integração em tempo real.'
+                          StaticText, 0x1119152c0, {{37.0, 692.0}, {366.0, 105.0}}, label: 'Oferece até 150 kW nos conectores utilizáveis e 3 carregadores livres nos dados demonstrativos.
+Estimativa linear com reserva de 5%. Compatibilidade do veículo não confirmada; não há integração em tempo real.'
+                        Button, 0x111915400, {{20.0, 814.0}, {400.0, 68.0}}, label: 'Ver Flui Vila Mariana Lins no mapa'
+                        Button, 0x111915540, {{20.0, 882.0}, {400.0, 44.0}}, label: 'Escolher outra necessidade'
+                    Other, 0x111915680, {{58.0, 899.0}, {324.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                      Other, 0x1119157c0, {{61.0, 926.0}, {318.0, 3.0}}
+                    Other, 0x111915900, {{58.0, 899.0}, {324.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                      Other, 0x111915a40, {{61.0, 926.0}, {318.0, 3.0}}
+            Other, 0x111915b80, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x111915cc0, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x111915e00, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x10801d040, pid: 37805, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x111915f40, pid: 37805, label: 'Expo Go'
+  }
+
+    t =    26.85s Find the Application 'host.exp.Exponent'
+    t =    27.34s Added attachment named 'FluIA fornece acesso direto à ficha da Vila Mariana'
+    t =    27.35s Tap Button (First Match)
+    t =    27.35s     Wait for host.exp.Exponent to idle
+    t =    27.38s     Find the Button (First Match)
+    t =    27.52s     Check for interrupting elements affecting "Ver Flui Vila Mariana Lins no mapa" Button
+    t =    27.68s     Synthesize event
+    t =    28.17s     Wait for host.exp.Exponent to idle
+    t =    28.21s Waiting 15.0s for StaticText (First Match) to exist
+    t =    29.22s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    29.22s         Checking existence of `StaticText (First Match)`
+    t =    29.57s Checking existence of `StaticText (First Match)`
+    t =    29.73s Checking existence of `Any (First Match)`
+    t =    29.82s Find the Any (First Match)
+    t =    29.91s Requesting snapshot of accessibility hierarchy for app with pid 37805
+    t =    31.70s Requesting snapshot of accessibility hierarchy for app with pid 37805
+    t =    31.93s Press ScrollView (First Match)[0.50, 0.75] for 0.1 seconds, then drag to ScrollView (First Match)[0.50, 0.58] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds
+    t =    31.93s     Wait for host.exp.Exponent to idle
+    t =    31.94s     Find the ScrollView (First Match)
+    t =    31.97s     Check for interrupting elements affecting ScrollView
+    t =    32.11s     Synthesize event
+    t =    32.16s         Find the ScrollView at {{0.0, 0.0}, {440.0, 956.0}}
+    t =    32.19s         Find the ScrollView at {{0.0, 0.0}, {440.0, 956.0}}
+    t =    32.23s         Find the ScrollView at {{0.0, 0.0}, {440.0, 956.0}}
+    t =    32.27s         Find the ScrollView at {{0.0, 0.0}, {440.0, 956.0}}
+    t =    32.31s         Find the ScrollView at {{0.0, 0.0}, {440.0, 956.0}}
+    t =    33.03s     Wait for host.exp.Exponent to idle
+    t =    34.63s Requesting snapshot of accessibility hierarchy for app with pid 37805
+    t =    35.67s Requesting snapshot of accessibility hierarchy for app with pid 37805
+FLUI_EVIDENCIA UX corrigida — ficha aberta antes das 22h
+Attributes: Application, 0x1126a2800, pid: 37805, label: 'Expo Go'
+Element subtree:
+ →Application, 0x1126a2800, pid: 37805, label: 'Expo Go'
+    Window (Main), 0x1126a2940, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x1126a12c0, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x1126a1400, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x1126a1540, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x1126a1680, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x1126a17c0, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x1126a1900, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x1126a1a40, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1126a1b80, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1126a1cc0, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1126a1e00, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x1126a1f40, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x1126a2080, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x1126a21c0, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x1126a2300, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x1126a2440, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x1126a2580, {{0.0, 0.0}, {440.0, 956.0}}
+                                      ScrollView, 0x1126a26c0, {{0.0, 0.0}, {440.0, 956.0}}
+                                        Other, 0x1126a2f80, {{0.0, -330.3}, {440.0, 2458.7}}
+                                          Other, 0x1126a30c0, {{0.0, -330.3}, {440.0, 2458.7}}
+                                            Other, 0x1126a3200, {{0.0, -330.3}, {440.0, 290.0}}
+                                              Other, 0x1126a3340, {{0.0, -330.3}, {440.0, 290.0}}
+                                                Other, 0x1126a3480, {{0.0, -330.3}, {440.0, 290.0}}
+                                                Other, 0x1126a35c0, {{0.0, -330.3}, {440.0, 290.0}}
+                                              Other, 0x1126a3700, {{20.0, -330.3}, {400.0, 110.0}}
+                                                Button, 0x1126a3840, {{20.0, -268.3}, {48.0, 48.0}}, label: 'Voltar ao mapa'
+                                                Button, 0x1126a3980, {{372.0, -268.3}, {48.0, 48.0}}, label: 'Adicionar aos favoritos'
+                                            Other, 0x1126a3ac0, {{0.0, -74.3}, {440.0, 2082.7}}
+                                            StaticText, 0x1126a3c00, {{22.0, -46.3}, {396.0, 38.3}}, label: 'Flui Vila Mariana Lins'
+                                              StaticText, 0x1126a3d40, {{22.0, -46.3}, {396.0, 38.3}}, label: 'Flui Vila Mariana Lins'
+                                            StaticText, 0x1126a3e80, {{22.0, 0.0}, {396.0, 22.0}}, label: 'Av. Lins de Vasconcelos, 1264, Aclimação, São Paulo, SP'
+                                              StaticText, 0x111fb3980, {{22.0, 0.0}, {396.0, 22.0}}, label: 'Av. Lins de Vasconcelos, 1264, Aclimação, São Paulo, SP'
+                                            Other, 0x111fb3ac0, {{22.0, 37.3}, {19.0, 19.0}}
+                                              Other, 0x111fb3c00, {{22.8, 38.1}, {17.4, 16.7}}
+                                                Other, 0x111fb3d40, {{22.8, 38.1}, {17.4, 16.7}}
+                                            StaticText, 0x111fb3e80, {{48.0, 36.0}, {28.7, 21.7}}, label: '4.8'
+                                              StaticText, 0x111fb2300, {{48.0, 36.0}, {28.7, 21.7}}, label: '4.8'
+                                            StaticText, 0x111fb2440, {{81.7, 37.7}, {111.0, 18.0}}, label: '(132 avaliações)'
+                                              StaticText, 0x111fb2580, {{81.7, 37.7}, {111.0, 18.0}}, label: '(132 avaliações)'
+                                            Other, 0x111fb26c0, {{305.7, 42.7}, {9.0, 9.0}}
+                                            StaticText, 0x111fb2800, {{321.7, 38.0}, {96.3, 18.0}}, label: 'Aberto agora'
+                                              StaticText, 0x111fb2940, {{321.7, 38.0}, {96.3, 18.0}}, label: 'Aberto agora'
+                                            Other, 0x111fb2a80, {{22.0, 73.7}, {32.0, 32.0}}
+                                            Other, 0x111fb2bc0, {{29.7, 81.3}, {17.0, 17.0}}
+                                              Other, 0x111fb2d00, {{31.0, 82.0}, {14.3, 15.7}}
+                                                Other, 0x111fb2e40, {{31.0, 82.0}, {14.3, 15.7}}
+                                            StaticText, 0x111fb2f80, {{64.0, 78.7}, {354.0, 21.7}}, label: '3 de 5 carregadores livres no exemplo'
+                                              StaticText, 0x111fb30c0, {{64.0, 78.7}, {354.0, 21.7}}, label: '3 de 5 carregadores livres no exemplo'
+                                            Other, 0x111fb3200, {{22.0, 123.7}, {396.0, 290.3}}
+                                            StaticText, 0x111fb3340, {{39.0, 140.7}, {362.0, 15.7}}, label: 'GUIA DO PONTO'
+                                              StaticText, 0x111fb3480, {{39.0, 140.7}, {362.0, 15.7}}, label: 'GUIA DO PONTO'
+                                            StaticText, 0x111fb35c0, {{39.0, 162.3}, {362.0, 56.0}}, label: 'Opção com conector rápido no exemplo'
+                                              StaticText, 0x111fb3700, {{39.0, 162.3}, {362.0, 56.0}}, label: 'Opção com conector rápido no exemplo'
+                                            StaticText, 0x111fb3840, {{39.0, 224.3}, {362.0, 84.0}}, label: 'Dados demonstrativos, sem disponibilidade em tempo real. Distância, autonomia e tempo de carga são estimativas simplificadas; confirme o funcionamento e a compatibilidade do veículo antes de ir.'
+                                              StaticText, 0x1126a4000, {{39.0, 224.3}, {362.0, 84.0}}, label: 'Dados demonstrativos, sem disponibilidade em tempo real. Distância, autonomia e tempo de carga são estimativas simplificadas; confirme o funcionamento e a compatibilidade do veículo antes de ir.'
+                                            Other, 0x1126a4140, {{39.0, 322.3}, {114.0, 74.7}}
+                                            Other, 0x1126a4280, {{163.0, 322.3}, {114.0, 74.7}}
+                                            Other, 0x1126a43c0, {{287.0, 322.3}, {114.0, 74.7}}
+                                            StaticText, 0x1126a4500, {{66.0, 333.3}, {92.0, 28.7}}, label: 'Espera simulada'
+                                              StaticText, 0x1126a4640, {{66.0, 333.3}, {92.0, 28.7}}, label: 'Espera simulada'
+                                            StaticText, 0x1126a4780, {{190.0, 333.3}, {92.0, 28.7}}, label: 'Tempo estimado'
+                                              StaticText, 0x1126a48c0, {{190.0, 333.3}, {92.0, 28.7}}, label: 'Tempo estimado'
+                                            Other, 0x1126a4a00, {{50.0, 341.7}, {12.0, 12.0}}
+                                              Other, 0x1126a4b40, {{51.4, 342.1}, {9.2, 11.1}}
+                                                Other, 0x1126a4c80, {{51.4, 344.1}, {9.2, 9.1}}
+                                                Other, 0x1126a4dc0, {{54.4, 342.1}, {3.2, 1.1}}
+                                                Other, 0x1126a4f00, {{55.4, 346.6}, {2.7, 2.6}}
+                                            Other, 0x1126a5040, {{174.0, 341.7}, {12.0, 12.0}}
+                                              Other, 0x1126a5180, {{174.4, 344.1}, {11.1, 7.1}}
+                                                Other, 0x1126a52c0, {{174.4, 344.1}, {3.6, 7.1}}
+                                                Other, 0x1126a5400, {{177.4, 344.6}, {3.2, 6.2}}
+                                                Other, 0x1126a5540, {{180.0, 344.1}, {3.6, 7.1}}
+                                                Other, 0x1126a5680, {{184.4, 346.1}, {1.1, 3.1}}
+                                            Other, 0x1126a57c0, {{298.0, 342.0}, {12.0, 12.0}}
+                                              Other, 0x1126a5900, {{298.4, 342.4}, {11.1, 11.1}}
+                                                Other, 0x1126a5a40, {{298.4, 342.4}, {11.1, 11.1}}
+                                                Other, 0x1126a5b80, {{300.9, 344.9}, {1.6, 1.6}}
+                                            StaticText, 0x1126a5cc0, {{314.0, 340.7}, {32.7, 14.3}}, label: 'Perfil'
+                                              StaticText, 0x1126a5e00, {{314.0, 340.7}, {32.7, 14.3}}, label: 'Perfil'
+                                            StaticText, 0x1126a5f40, {{50.0, 367.0}, {92.0, 19.0}}, label: 'Baixa'
+                                              StaticText, 0x1126a6080, {{50.0, 367.0}, {92.0, 19.0}}, label: 'Baixa'
+                                            StaticText, 0x1126a61c0, {{174.0, 367.0}, {92.0, 19.0}}, label: '20 a 35 min'
+                                              StaticText, 0x1126a6300, {{174.0, 367.0}, {92.0, 19.0}}, label: '20 a 35 min'
+                                            StaticText, 0x1126a6440, {{298.0, 359.7}, {92.0, 19.0}}, label: 'Carga rápida'
+                                              StaticText, 0x1126a6580, {{298.0, 359.7}, {92.0, 19.0}}, label: 'Carga rápida'
+                                            Other, 0x1126a66c0, {{22.0, 426.0}, {396.0, 76.0}}, label: 'Autonomia para chegar ao local
+Chegada estimada com 45% de bateria.
+Não garante recarga no local.'
+                                            Other, 0x1126a6800, {{22.0, 514.0}, {192.0, 146.7}}
+                                            Other, 0x1126a6940, {{226.0, 514.0}, {192.0, 146.7}}
+                                            Other, 0x1126a6a80, {{37.0, 529.0}, {40.0, 40.0}}
+                                            Other, 0x1126a6bc0, {{241.0, 529.0}, {40.0, 40.0}}
+                                            Other, 0x1126a6d00, {{47.0, 539.0}, {20.0, 20.0}}
+                                              Other, 0x1126a6e40, {{47.7, 541.4}, {18.5, 14.3}}
+                                                Other, 0x1126a6f80, {{47.7, 541.4}, {18.5, 14.3}}
+                                                Other, 0x1126a70c0, {{56.1, 546.4}, {5.2, 5.2}}
+                                            Other, 0x1126a7200, {{251.0, 539.0}, {20.0, 20.0}}
+                                              Other, 0x1126a7340, {{255.1, 539.7}, {11.8, 18.5}}
+                                                Other, 0x1126a7480, {{255.1, 544.7}, {11.8, 9.3}}
+                                                Other, 0x1126a75c0, {{257.6, 539.7}, {1.8, 6.8}}
+                                                Other, 0x1126a7700, {{262.6, 539.7}, {1.8, 6.8}}
+                                                Other, 0x1126a7840, {{260.1, 552.2}, {1.8, 6.0}}
+                                            StaticText, 0x1126a7980, {{37.0, 579.0}, {162.0, 15.7}}, label: 'Potência'
+                                              StaticText, 0x1126a7ac0, {{37.0, 579.0}, {162.0, 15.7}}, label: 'Potência'
+                                            StaticText, 0x1126a7c00, {{241.0, 579.0}, {162.0, 15.7}}, label: 'Conectores'
+                                              StaticText, 0x1126a7d40, {{241.0, 579.0}, {162.0, 15.7}}, label: 'Conectores'
+                                            StaticText, 0x1126a7e80, {{37.0, 599.7}, {162.0, 24.0}}, label: '150 kW'
+                                              StaticText, 0x1126ac000, {{37.0, 599.7}, {162.0, 24.0}}, label: '150 kW'
+                                            StaticText, 0x1126ac140, {{241.0, 599.7}, {162.0, 24.0}}, label: 'CCS2, Type 2'
+                                              StaticText, 0x1126ac280, {{241.0, 599.7}, {162.0, 24.0}}, label: 'CCS2, Type 2'
+                                            StaticText, 0x1126ac3c0, {{37.0, 627.7}, {162.0, 18.0}}, label: 'Velocidade de carga'
+                                              StaticText, 0x1126ac500, {{37.0, 627.7}, {162.0, 18.0}}, label: 'Velocidade de carga'
+                                            StaticText, 0x1126ac640, {{241.0, 627.7}, {162.0, 18.0}}, label: 'Tipos compatíveis'
+                                              StaticText, 0x1126ac780, {{241.0, 627.7}, {162.0, 18.0}}, label: 'Tipos compatíveis'
+                                            Other, 0x1126ac8c0, {{22.0, 674.7}, {192.0, 206.7}}
+                                            Other, 0x1126aca00, {{226.0, 674.7}, {192.0, 206.7}}
+                                            Other, 0x1126acb40, {{37.0, 689.7}, {40.0, 40.0}}
+                                            Other, 0x1126acc80, {{241.0, 689.7}, {40.0, 40.0}}
+                                            Other, 0x1126acdc0, {{47.0, 699.7}, {20.0, 20.0}}
+                                              Other, 0x1126acf00, {{47.8, 701.2}, {18.5, 16.8}}
+                                                Other, 0x1126ad040, {{47.8, 701.2}, {4.3, 4.3}}
+                                                Other, 0x1126ad180, {{49.4, 702.9}, {15.2, 15.2}}
+                                                Other, 0x1126ad2c0, {{56.1, 706.2}, {3.5, 6.8}}
+                                                Other, 0x1126ad400, {{61.9, 701.2}, {4.3, 4.3}}
+                                                Other, 0x1126ad540, {{49.4, 714.3}, {3.8, 3.8}}
+                                                Other, 0x1126ad680, {{60.8, 714.3}, {3.8, 3.8}}
+                                            Other, 0x1126ad7c0, {{251.0, 699.7}, {20.0, 20.0}}
+                                              Other, 0x1126ad900, {{254.2, 700.4}, {13.5, 17.7}}
+                                                Other, 0x1126ada40, {{254.2, 700.4}, {13.5, 17.7}}
+                                            StaticText, 0x1126adb80, {{37.0, 739.7}, {162.0, 15.7}}, label: 'Funcionamento'
+                                              StaticText, 0x1126adcc0, {{37.0, 739.7}, {162.0, 15.7}}, label: 'Funcionamento'
+                                            StaticText, 0x1126ade00, {{241.0, 739.7}, {162.0, 15.7}}, label: 'Distância'
+                                              StaticText, 0x1126adf40, {{241.0, 739.7}, {162.0, 15.7}}, label: 'Distância'
+                                            StaticText, 0x1126ae080, {{37.0, 760.3}, {162.0, 48.0}}, label: 'Todos os dias, 06h às 22h'
+                                              StaticText, 0x1126ae1c0, {{37.0, 760.3}, {162.0, 48.0}}, label: 'Todos os dias, 06h às 22h'
+                                            StaticText, 0x1126ae300, {{241.0, 760.3}, {162.0, 24.0}}, label: '0.3 km'
+                                              StaticText, 0x1126ae440, {{241.0, 760.3}, {162.0, 24.0}}, label: '0.3 km'
+                                            StaticText, 0x1126ae580, {{241.0, 788.3}, {162.0, 18.0}}, label: 'Próximo de você'
+                                              StaticText, 0x1126ae6c0, {{241.0, 788.3}, {162.0, 18.0}}, label: 'Próximo de você'
+                                            StaticText, 0x1126ae800, {{37.0, 812.3}, {162.0, 54.0}}, label: 'Disponibilidade demonstrativa de carregadores'
+                                              StaticText, 0x1126ae940, {{37.0, 812.3}, {162.0, 54.0}}, label: 'Disponibilidade demonstrativa de carregadores'
+                                            Other, 0x1126aea80, {{22.0, 895.3}, {396.0, 93.0}}
+                                            Other, 0x1126aebc0, {{37.0, 916.0}, {52.0, 52.0}}
+                                            StaticText, 0x1126aed00, {{102.0, 910.3}, {301.0, 17.0}}, label: 'Horário sugerido no exemplo'
+                                              StaticText, 0x1126aee40, {{102.0, 910.3}, {301.0, 17.0}}, label: 'Horário sugerido no exemplo'
+                                            Other, 0x1126aef80, {{51.0, 930.0}, {24.0, 24.0}}
+                                              Other, 0x1126af0c0, {{51.9, 930.9}, {22.2, 22.2}}
+                                                Other, 0x1126af200, {{51.9, 930.9}, {22.2, 22.2}}
+                                                Other, 0x1126af340, {{61.9, 934.9}, {6.2, 8.2}}
+                                            StaticText, 0x1126af480, {{102.0, 930.3}, {301.0, 23.0}}, label: '07h às 09h ou 13h às 15h'
+                                              StaticText, 0x1126af5c0, {{102.0, 930.3}, {301.0, 23.0}}, label: '07h às 09h ou 13h às 15h'
+                                            StaticText, 0x1126af700, {{102.0, 956.3}, {301.0, 17.0}}, label: 'Sem previsão de movimento em tempo real'
+                                              StaticText, 0x1126af840, {{102.0, 956.3}, {301.0, 17.0}}, label: 'Sem previsão de movimento em tempo real'
+                                            Other, 0x1126af980, {{22.0, 1008.3}, {396.0, 190.3}}
+                                            StaticText, 0x1126afac0, {{39.0, 1025.3}, {362.0, 21.7}}, label: 'Conectores do ponto'
+                                              StaticText, 0x1126afc00, {{39.0, 1025.3}, {362.0, 21.7}}, label: 'Conectores do ponto'
+                                            Other, 0x1126afd40, {{39.0, 1072.3}, {38.0, 38.0}}
+                                            StaticText, 0x1126afe80, {{89.0, 1071.0}, {312.0, 20.3}}, label: 'CCS2'
+                                              StaticText, 0x1126b0000, {{89.0, 1071.0}, {312.0, 20.3}}, label: 'CCS2'
+                                            Other, 0x1126b0140, {{49.0, 1082.3}, {18.0, 18.0}}
+                                              Other, 0x1126b0280, {{49.7, 1086.0}, {16.7, 10.7}}
+                                                Other, 0x1126b03c0, {{49.7, 1086.0}, {5.4, 10.7}}
+                                                Other, 0x1126b0500, {{54.2, 1086.8}, {4.7, 9.2}}
+                                                Other, 0x1126b0640, {{58.0, 1086.0}, {5.4, 10.7}}
+                                                Other, 0x1126b0780, {{64.7, 1089.0}, {1.7, 4.7}}
+                                            StaticText, 0x1126b08c0, {{89.0, 1094.3}, {312.0, 17.0}}, label: '150 kW · 2 de 3 carregadores livres no exemplo'
+                                              StaticText, 0x1126b0a00, {{89.0, 1094.3}, {312.0, 17.0}}, label: '150 kW · 2 de 3 carregadores livres no exemplo'
+                                            Other, 0x1126b0b40, {{39.0, 1132.7}, {38.0, 38.0}}
+                                            StaticText, 0x1126b0c80, {{89.0, 1131.3}, {312.0, 20.3}}, label: 'Type 2'
+                                              StaticText, 0x1126b0dc0, {{89.0, 1131.3}, {312.0, 20.3}}, label: 'Type 2'
+                                            Other, 0x1126b0f00, {{49.0, 1142.7}, {18.0, 18.0}}
+                                              Other, 0x1126b1040, {{52.7, 1143.3}, {10.7, 16.7}}
+                                                Other, 0x1126b1180, {{52.7, 1147.8}, {10.7, 8.4}}
+                                                Other, 0x1126b12c0, {{54.9, 1143.3}, {1.7, 6.2}}
+                                                Other, 0x1126b1400, {{59.4, 1143.3}, {1.7, 6.2}}
+                                                Other, 0x1126b1540, {{57.2, 1154.6}, {1.7, 5.4}}
+                                            StaticText, 0x1126b1680, {{89.0, 1154.7}, {312.0, 17.0}}, label: '22 kW · 1 de 2 carregadores livres no exemplo'
+                                              StaticText, 0x1126b17c0, {{89.0, 1154.7}, {312.0, 17.0}}, label: '22 kW · 1 de 2 carregadores livres no exemplo'
+                                            Other, 0x1126b1900, {{22.0, 1208.7}, {396.0, 226.7}}
+                                            StaticText, 0x1126b1a40, {{39.0, 1225.7}, {362.0, 21.7}}, label: 'Comodidades próximas'
+                                              StaticText, 0x1126b1b80, {{39.0, 1225.7}, {362.0, 21.7}}, label: 'Comodidades próximas'
+                                            Other, 0x1126b1cc0, {{97.0, 1261.3}, {42.0, 42.0}}
+                                            Other, 0x1126b1e00, {{199.0, 1261.3}, {42.0, 42.0}}
+                                            Other, 0x1126b1f40, {{301.0, 1261.3}, {42.0, 42.0}}
+                                            Other, 0x1126b2080, {{109.0, 1273.3}, {18.0, 18.0}}
+                                              Other, 0x1126b21c0, {{110.5, 1274.0}, {15.8, 15.8}}
+                                                Other, 0x1126b2300, {{110.5, 1278.5}, {15.8, 11.3}}
+                                                Other, 0x1126b2440, {{112.7, 1274.0}, {1.6, 3.1}}
+                                                Other, 0x1126b2580, {{115.7, 1274.0}, {1.6, 3.1}}
+                                                Other, 0x1126b26c0, {{118.7, 1274.0}, {1.6, 3.1}}
+                                            Other, 0x1126b2800, {{211.0, 1273.3}, {18.0, 18.0}}
+                                              Other, 0x1126b2940, {{212.5, 1274.0}, {15.1, 16.6}}
+                                                Other, 0x1126b2a80, {{212.5, 1274.0}, {10.6, 13.6}}
+                                                Other, 0x1126b2bc0, {{213.9, 1281.5}, {13.6, 9.1}}
+                                            Other, 0x1126b2d00, {{313.0, 1273.3}, {18.0, 18.0}}
+                                              Other, 0x1126b2e40, {{313.7, 1274.0}, {16.6, 16.6}}
+                                                Other, 0x1126b2f80, {{313.7, 1274.0}, {16.6, 16.6}}
+                                                Other, 0x1126b30c0, {{319.0, 1277.8}, {6.8, 9.1}}
+                                            StaticText, 0x1126b3200, {{104.0, 1310.3}, {28.0, 14.3}}, label: 'Café'
+                                              StaticText, 0x1126b3340, {{104.0, 1310.3}, {28.0, 14.3}}, label: 'Café'
+                                            StaticText, 0x1126b3480, {{193.0, 1310.3}, {54.0, 14.3}}, label: 'Banheiro'
+                                              StaticText, 0x1126b35c0, {{193.0, 1310.3}, {54.0, 14.3}}, label: 'Banheiro'
+                                            StaticText, 0x1126b3700, {{276.0, 1310.3}, {92.0, 28.7}}, label: 'Estacionamento'
+                                              StaticText, 0x1126b3840, {{276.0, 1310.3}, {92.0, 28.7}}, label: 'Estacionamento'
+                                            Other, 0x1126b3980, {{148.0, 1355.0}, {42.0, 42.0}}
+                                            Other, 0x1126b3ac0, {{250.0, 1355.0}, {42.0, 42.0}}
+                                            Other, 0x1126b3c00, {{160.0, 1367.0}, {18.0, 18.0}}
+                                              Other, 0x1126b3d40, {{160.7, 1370.0}, {16.6, 12.8}}
+                                                Other, 0x1126b3e80, {{160.7, 1370.0}, {16.6, 4.4}}
+                                                Other, 0x1126b4000, {{163.0, 1373.7}, {12.1, 3.7}}
+                                                Other, 0x1126b4140, {{165.6, 1377.5}, {6.8, 2.6}}
+                                                Other, 0x1126b4280, {{168.2, 1381.2}, {1.6, 1.6}}
+                                            Other, 0x1126b43c0, {{262.0, 1367.0}, {18.0, 18.0}}
+                                              Other, 0x1126b4500, {{264.2, 1367.7}, {13.6, 16.6}}
+                                                Other, 0x1126b4640, {{264.2, 1367.7}, {13.6, 16.6}}
+                                                Other, 0x1126b4780, {{268.0, 1373.7}, {6.1, 4.6}}
+                                            StaticText, 0x1126b48c0, {{153.0, 1404.0}, {32.0, 14.3}}, label: 'Wi-Fi'
+                                              StaticText, 0x1126b4a00, {{153.0, 1404.0}, {32.0, 14.3}}, label: 'Wi-Fi'
+                                            StaticText, 0x1126b4b40, {{238.7, 1404.0}, {64.7, 14.3}}, label: 'Segurança'
+                                              StaticText, 0x1126b4c80, {{238.7, 1404.0}, {64.7, 14.3}}, label: 'Segurança'
+                                            Other, 0x1126b4dc0, {{22.0, 1445.3}, {396.0, 539.0}}
+                                            StaticText, 0x1126b4f00, {{39.0, 1462.3}, {362.0, 21.7}}, label: 'Avaliações de usuários'
+                                              StaticText, 0x1126b5040, {{39.0, 1462.3}, {362.0, 21.7}}, label: 'Avaliações de usuários'
+                                            StaticText, 0x1126b5180, {{56.3, 1508.3}, {75.0, 53.0}}, label: '4.8'
+                                              StaticText, 0x1126b52c0, {{56.3, 1508.3}, {75.0, 53.0}}, label: '4.8'
+                                            StaticText, 0x1126b5400, {{149.0, 1505.0}, {32.0, 14.3}}, label: '5 ★'
+                                              StaticText, 0x1126b5540, {{149.0, 1505.0}, {32.0, 14.3}}, label: '5 ★'
+                                            StaticText, 0x1126b5680, {{373.0, 1498.0}, {28.0, 28.7}}, label: '85%'
+                                              StaticText, 0x1126b57c0, {{373.0, 1498.0}, {28.0, 28.7}}, label: '85%'
+                                            Other, 0x1126b5900, {{189.0, 1510.0}, {176.0, 5.0}}
+                                              Other, 0x1126b5a40, {{189.0, 1510.0}, {149.7, 5.0}}
+                                            StaticText, 0x1126b5b80, {{149.0, 1532.7}, {32.0, 14.3}}, label: '4 ★'
+                                              StaticText, 0x1126b5cc0, {{149.0, 1532.7}, {32.0, 14.3}}, label: '4 ★'
+                                            Other, 0x1126b5e00, {{189.0, 1537.3}, {176.0, 5.0}}
+                                              Other, 0x1126b5f40, {{189.0, 1537.3}, {17.7, 5.0}}
+                                            StaticText, 0x1126b6080, {{373.0, 1532.7}, {28.0, 14.3}}, label: '10%'
+                                              StaticText, 0x1126b61c0, {{373.0, 1532.7}, {28.0, 14.3}}, label: '10%'
+                                            StaticText, 0x1126b6300, {{149.0, 1553.0}, {32.0, 14.3}}, label: '3 ★'
+                                              StaticText, 0x1126b6440, {{149.0, 1553.0}, {32.0, 14.3}}, label: '3 ★'
+                                            StaticText, 0x1126b6580, {{48.3, 1564.3}, {91.0, 18.0}}, label: '★ ★ ★ ★ ★'
+                                              StaticText, 0x1126b66c0, {{48.3, 1564.3}, {91.0, 18.0}}, label: '★ ★ ★ ★ ★'
+                                            Other, 0x1126b6800, {{189.0, 1557.7}, {176.0, 5.0}}
+                                              Other, 0x1126b6940, {{189.0, 1557.7}, {5.3, 5.0}}
+                                            StaticText, 0x1126b6a80, {{373.0, 1553.0}, {28.0, 14.3}}, label: '3%'
+                                              StaticText, 0x1126b6bc0, {{373.0, 1553.0}, {28.0, 14.3}}, label: '3%'
+                                            StaticText, 0x1126b6d00, {{149.0, 1573.3}, {32.0, 14.3}}, label: '2 ★'
+                                              StaticText, 0x1126b6e40, {{149.0, 1573.3}, {32.0, 14.3}}, label: '2 ★'
+                                            Other, 0x1126b6f80, {{189.0, 1578.0}, {176.0, 5.0}}
+                                              Other, 0x1126b70c0, {{189.0, 1578.0}, {1.7, 5.0}}
+                                            StaticText, 0x1126b7200, {{373.0, 1573.3}, {28.0, 14.3}}, label: '1%'
+                                              StaticText, 0x1126b7340, {{373.0, 1573.3}, {28.0, 14.3}}, label: '1%'
+                                            StaticText, 0x1126b7480, {{49.7, 1588.3}, {88.7, 15.7}}, label: '132 avaliações'
+                                              StaticText, 0x1126b75c0, {{49.7, 1588.3}, {88.7, 15.7}}, label: '132 avaliações'
+                                            StaticText, 0x1126b7700, {{149.0, 1593.7}, {32.0, 14.3}}, label: '1 ★'
+                                              StaticText, 0x1126b7840, {{149.0, 1593.7}, {32.0, 14.3}}, label: '1 ★'
+                                            Other, 0x1126b7980, {{189.0, 1598.3}, {176.0, 5.0}}
+                                              Other, 0x1126b7ac0, {{189.0, 1598.3}, {1.7, 5.0}}
+                                            StaticText, 0x1126b7c00, {{373.0, 1593.7}, {28.0, 14.3}}, label: '1%'
+                                              StaticText, 0x1126b7d40, {{373.0, 1593.7}, {28.0, 14.3}}, label: '1%'
+                                            Button, 0x1126b7e80, {{39.0, 1628.0}, {362.0, 48.0}}, label: 'Avaliar este ponto'
+                                            Other, 0x1126bc000, {{39.0, 1694.0}, {362.0, 130.7}}
+                                            Other, 0x1126bc140, {{54.0, 1709.0}, {44.0, 44.0}}
+                                            StaticText, 0x1126bc280, {{110.0, 1709.0}, {276.0, 18.0}}, label: 'Marina Polverari'
+                                              StaticText, 0x1126bc3c0, {{110.0, 1709.0}, {276.0, 18.0}}, label: 'Marina Polverari'
+                                            StaticText, 0x1126bc500, {{64.0, 1722.0}, {24.0, 18.0}}, label: 'MP'
+                                              StaticText, 0x1126bc640, {{64.0, 1722.0}, {24.0, 18.0}}, label: 'MP'
+                                            StaticText, 0x1126bc780, {{110.0, 1729.0}, {276.0, 15.7}}, label: '★ ★ ★ ★ ★'
+                                              StaticText, 0x1126bc8c0, {{110.0, 1729.0}, {276.0, 15.7}}, label: '★ ★ ★ ★ ★'
+                                            StaticText, 0x1126bca00, {{110.0, 1749.7}, {276.0, 60.0}}, label: 'Muito bom para a rotina perto da Lins, com carregamento rápido e estrutura completa.'
+                                              StaticText, 0x1126bcb40, {{110.0, 1749.7}, {276.0, 60.0}}, label: 'Muito bom para a rotina perto da Lins, com carregamento rápido e estrutura completa.'
+                                            Other, 0x1126bcc80, {{39.0, 1836.7}, {362.0, 130.7}}
+                                            Other, 0x1126bcdc0, {{54.0, 1851.7}, {44.0, 44.0}}
+                                            StaticText, 0x1126bcf00, {{110.0, 1851.7}, {276.0, 18.0}}, label: 'Joseffe Barroso'
+                                              StaticText, 0x1126bd040, {{110.0, 1851.7}, {276.0, 18.0}}, label: 'Joseffe Barroso'
+                                            StaticText, 0x1126bd180, {{66.0, 1864.7}, {20.0, 18.0}}, label: 'JB'
+                                              StaticText, 0x1126bd2c0, {{66.0, 1864.7}, {20.0, 18.0}}, label: 'JB'
+                                            StaticText, 0x1126bd400, {{110.0, 1871.7}, {276.0, 15.7}}, label: '★ ★ ★ ★ ★'
+                                              StaticText, 0x1126bd540, {{110.0, 1871.7}, {276.0, 15.7}}, label: '★ ★ ★ ★ ★'
+                                            StaticText, 0x1126bd680, {{110.0, 1892.3}, {276.0, 60.0}}, label: 'A sinalização facilita a chegada e as comodidades tornam a espera bem tranquila.'
+                                              StaticText, 0x1126bd7c0, {{110.0, 1892.3}, {276.0, 60.0}}, label: 'A sinalização facilita a chegada e as comodidades tornam a espera bem tranquila.'
+                                        Other, 0x1126bd900, {{62.0, 923.0}, {316.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                          Other, 0x1126bda40, {{65.0, 950.0}, {310.0, 3.0}}
+                                        Other, 0x1126bdb80, {{62.0, 923.0}, {316.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                          Other, 0x1126bdcc0, {{65.0, 950.0}, {310.0, 3.0}}
+                                    Other, 0x1126bde00, {{0.0, 847.0}, {440.0, 109.0}}
+                                      Button, 0x1126bdf40, {{22.0, 860.0}, {193.7, 52.0}}, label: 'Ver mapa'
+                                      Button, 0x1126be080, {{227.7, 860.0}, {190.3, 52.0}}, label: 'Iniciar rota para Flui Vila Mariana Lins'
+                          Toolbar, 0x1126be1c0, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x1126be300, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1126be440, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1126be580, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1126be6c0, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x1126a2800, pid: 37805, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x1126be800, pid: 37805, label: 'Expo Go'
+  }
+
+    t =    35.88s Find the Application 'host.exp.Exponent'
+    t =    36.21s Added attachment named 'UX corrigida — ficha aberta antes das 22h'
+FLUI_CLOCK FICHA_FECHAR
+    t =    36.21s Waiting 55.0s for StaticText (First Match) to exist
+    t =    37.23s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    37.23s         Checking existence of `StaticText (First Match)`
+    t =    37.45s         Capturing element debug description
+    t =    38.27s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    38.27s         Checking existence of `StaticText (First Match)`
+    t =    38.47s         Capturing element debug description
+    t =    39.28s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    39.28s         Checking existence of `StaticText (First Match)`
+    t =    39.49s         Capturing element debug description
+    t =    40.30s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    40.31s         Checking existence of `StaticText (First Match)`
+    t =    40.44s         Capturing element debug description
+    t =    41.27s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    41.27s         Checking existence of `StaticText (First Match)`
+    t =    41.49s         Capturing element debug description
+    t =    42.31s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    42.31s         Checking existence of `StaticText (First Match)`
+    t =    42.59s         Capturing element debug description
+    t =    43.30s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    43.30s         Checking existence of `StaticText (First Match)`
+    t =    43.57s         Capturing element debug description
+    t =    44.28s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    44.28s         Checking existence of `StaticText (First Match)`
+    t =    44.55s         Capturing element debug description
+    t =    45.25s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    45.25s         Checking existence of `StaticText (First Match)`
+    t =    45.47s         Capturing element debug description
+    t =    46.30s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    46.30s         Checking existence of `StaticText (First Match)`
+    t =    46.50s         Capturing element debug description
+    t =    47.22s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    47.22s         Checking existence of `StaticText (First Match)`
+    t =    47.44s         Capturing element debug description
+    t =    48.25s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    48.25s         Checking existence of `StaticText (First Match)`
+    t =    48.47s         Capturing element debug description
+    t =    49.29s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    49.29s         Checking existence of `StaticText (First Match)`
+    t =    49.52s         Capturing element debug description
+    t =    50.24s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    50.24s         Checking existence of `StaticText (First Match)`
+    t =    50.54s         Capturing element debug description
+    t =    51.26s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    51.26s         Checking existence of `StaticText (First Match)`
+    t =    51.97s         Capturing element debug description
+    t =    52.48s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    52.48s         Checking existence of `StaticText (First Match)`
+    t =    53.32s         Capturing element debug description
+    t =    54.52s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    54.52s         Checking existence of `StaticText (First Match)`
+    t =    55.25s         Capturing element debug description
+    t =    56.29s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    56.51s         Checking existence of `StaticText (First Match)`
+    t =    57.29s         Capturing element debug description
+    t =    58.28s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    58.42s         Checking existence of `StaticText (First Match)`
+    t =    59.25s         Capturing element debug description
+    t =    60.30s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    60.30s         Checking existence of `StaticText (First Match)`
+    t =    60.42s Checking existence of `StaticText (First Match)`
+    t =    60.60s Checking existence of `StaticText (First Match)`
+    t =    60.74s Checking existence of `StaticText (First Match)`
+    t =    61.49s Checking existence of `"Autonomia para chegar ao local
+Chegada estimada com 45% de bateria.
+Não garante recarga no local." Other`
+    t =    61.73s Find the "Autonomia para chegar ao local
+Chegada estimada com 45% de bateria.
+Não garante recarga no local." Other
+    t =    62.04s Find the "Autonomia para chegar ao local
+Chegada estimada com 45% de bateria.
+Não garante recarga no local." Other
+    t =    62.28s Requesting snapshot of accessibility hierarchy for app with pid 37805
+    t =    84.98s Requesting snapshot of accessibility hierarchy for app with pid 37805
+FLUI_EVIDENCIA UX corrigida — ficha fechada automaticamente, sem interação durante a transição
+Attributes: Application, 0x1126bf700, pid: 37805, label: 'Expo Go'
+Element subtree:
+ →Application, 0x1126bf700, pid: 37805, label: 'Expo Go'
+    Window (Main), 0x1126be440, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x1126bcb40, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x1126bc780, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x1126bc8c0, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x1126bc500, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x1126bc640, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x1126bc280, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x1126bc3c0, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1126bc140, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1126bc000, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1126be940, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x1126bea80, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x1126bebc0, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x1126bed00, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x1126bee40, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x1126bef80, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x1126bf0c0, {{0.0, 0.0}, {440.0, 956.0}}
+                                      ScrollView, 0x1126bf200, {{0.0, 0.0}, {440.0, 956.0}}
+                                        Other, 0x1126bf340, {{0.0, -330.3}, {440.0, 2467.0}}
+                                          Other, 0x1126bf480, {{0.0, -330.3}, {440.0, 2467.0}}
+                                            Other, 0x1126bf5c0, {{0.0, -330.3}, {440.0, 290.0}}
+                                              Other, 0x1126bf840, {{0.0, -330.3}, {440.0, 290.0}}
+                                                Other, 0x1126bf980, {{0.0, -330.3}, {440.0, 290.0}}
+                                                Other, 0x1126bfac0, {{0.0, -330.3}, {440.0, 290.0}}
+                                              Other, 0x1126bfc00, {{20.0, -330.3}, {400.0, 110.0}}
+                                                Button, 0x1126bfd40, {{20.0, -268.3}, {48.0, 48.0}}, label: 'Voltar ao mapa'
+                                                Button, 0x1126bfe80, {{372.0, -268.3}, {48.0, 48.0}}, label: 'Adicionar aos favoritos'
+                                            Other, 0x1051a35c0, {{0.0, -74.3}, {440.0, 2091.0}}
+                                            StaticText, 0x1051a3840, {{22.0, -46.3}, {396.0, 38.3}}, label: 'Flui Vila Mariana Lins'
+                                              StaticText, 0x1051a3980, {{22.0, -46.3}, {396.0, 38.3}}, label: 'Flui Vila Mariana Lins'
+                                            StaticText, 0x1051a2f80, {{22.0, 0.0}, {396.0, 22.0}}, label: 'Av. Lins de Vasconcelos, 1264, Aclimação, São Paulo, SP'
+                                              StaticText, 0x1051a3340, {{22.0, 0.0}, {396.0, 22.0}}, label: 'Av. Lins de Vasconcelos, 1264, Aclimação, São Paulo, SP'
+                                            Other, 0x1051a3700, {{22.0, 37.3}, {19.0, 19.0}}
+                                              Other, 0x1126a2800, {{22.8, 38.1}, {17.4, 16.7}}
+                                                Other, 0x1126a2940, {{22.8, 38.1}, {17.4, 16.7}}
+                                            StaticText, 0x1126a12c0, {{48.0, 36.0}, {28.7, 21.7}}, label: '4.8'
+                                              StaticText, 0x1126a1400, {{48.0, 36.0}, {28.7, 21.7}}, label: '4.8'
+                                            StaticText, 0x1126a1540, {{81.7, 37.7}, {111.0, 18.0}}, label: '(132 avaliações)'
+                                              StaticText, 0x1126a1680, {{81.7, 37.7}, {111.0, 18.0}}, label: '(132 avaliações)'
+                                            Other, 0x1126a17c0, {{293.7, 42.7}, {9.0, 9.0}}
+                                            StaticText, 0x1126a1900, {{309.7, 38.0}, {108.3, 18.0}}, label: 'Fechado agora'
+                                              StaticText, 0x1126a1a40, {{309.7, 38.0}, {108.3, 18.0}}, label: 'Fechado agora'
+                                            Other, 0x1126a1b80, {{22.0, 79.3}, {32.0, 32.0}}
+                                            StaticText, 0x1126a1cc0, {{64.0, 73.7}, {354.0, 43.0}}, label: '5 carregadores cadastrados no exemplo. Recarga não confirmada.'
+                                              StaticText, 0x1126a1e00, {{64.0, 73.7}, {354.0, 43.0}}, label: '5 carregadores cadastrados no exemplo. Recarga não confirmada.'
+                                            Other, 0x1126a1f40, {{29.7, 87.0}, {17.0, 17.0}}
+                                              Other, 0x1126a2080, {{31.0, 87.6}, {14.3, 15.7}}
+                                                Other, 0x1126a21c0, {{31.0, 87.6}, {14.3, 15.7}}
+                                            Other, 0x1126a2300, {{22.0, 134.7}, {396.0, 290.3}}
+                                            StaticText, 0x1126a2440, {{39.0, 151.7}, {362.0, 15.7}}, label: 'GUIA DO PONTO'
+                                              StaticText, 0x1126a2580, {{39.0, 151.7}, {362.0, 15.7}}, label: 'GUIA DO PONTO'
+                                            StaticText, 0x1126a26c0, {{39.0, 173.3}, {362.0, 56.0}}, label: 'Recarga não confirmada neste ponto'
+                                              StaticText, 0x1126a2f80, {{39.0, 173.3}, {362.0, 56.0}}, label: 'Recarga não confirmada neste ponto'
+                                            StaticText, 0x1126a30c0, {{39.0, 235.3}, {362.0, 84.0}}, label: 'Dados demonstrativos, sem disponibilidade em tempo real. Distância, autonomia e tempo de carga são estimativas simplificadas; confirme o funcionamento e a compatibilidade do veículo antes de ir.'
+                                              StaticText, 0x1126a3e80, {{39.0, 235.3}, {362.0, 84.0}}, label: 'Dados demonstrativos, sem disponibilidade em tempo real. Distância, autonomia e tempo de carga são estimativas simplificadas; confirme o funcionamento e a compatibilidade do veículo antes de ir.'
+                                            Other, 0x1126a3c00, {{39.0, 333.3}, {114.0, 74.7}}
+                                            Other, 0x1126a3d40, {{163.0, 333.3}, {114.0, 74.7}}
+                                            Other, 0x1126a3ac0, {{287.0, 333.3}, {114.0, 74.7}}
+                                            StaticText, 0x1126a3200, {{66.0, 344.3}, {92.0, 28.7}}, label: 'Espera simulada'
+                                              StaticText, 0x1126a3700, {{66.0, 344.3}, {92.0, 28.7}}, label: 'Espera simulada'
+                                            StaticText, 0x1126a3980, {{190.0, 344.3}, {92.0, 28.7}}, label: 'Tempo estimado'
+                                              StaticText, 0x1126a3840, {{190.0, 344.3}, {92.0, 28.7}}, label: 'Tempo estimado'
+                                            Other, 0x1126a3340, {{50.0, 352.7}, {12.0, 12.0}}
+                                              Other, 0x1126a35c0, {{51.4, 353.1}, {9.2, 11.1}}
+                                                Other, 0x1126a3480, {{51.4, 355.1}, {9.2, 9.1}}
+                                                Other, 0x10801cf00, {{54.4, 353.1}, {3.2, 1.1}}
+                                                Other, 0x10801d2c0, {{55.4, 357.6}, {2.7, 2.6}}
+                                            Other, 0x10801d400, {{174.0, 352.7}, {12.0, 12.0}}
+                                              Other, 0x10801de00, {{174.4, 355.1}, {11.1, 7.1}}
+                                                Other, 0x10801db80, {{174.4, 355.1}, {3.6, 7.1}}
+                                                Other, 0x10801e440, {{177.4, 355.6}, {3.2, 6.2}}
+                                                Other, 0x10801e080, {{180.0, 355.1}, {3.6, 7.1}}
+                                                Other, 0x10801d900, {{184.4, 357.1}, {1.1, 3.1}}
+                                            Other, 0x10801dcc0, {{298.0, 353.0}, {12.0, 12.0}}
+                                              Other, 0x10801e300, {{298.4, 353.4}, {11.1, 11.1}}
+                                                Other, 0x10801df40, {{298.4, 353.4}, {11.1, 11.1}}
+                                                Other, 0x10801e1c0, {{300.9, 355.9}, {1.6, 1.6}}
+                                            StaticText, 0x10801e580, {{314.0, 351.7}, {32.7, 14.3}}, label: 'Perfil'
+                                              StaticText, 0x10801e800, {{314.0, 351.7}, {32.7, 14.3}}, label: 'Perfil'
+                                            StaticText, 0x10801d040, {{50.0, 378.0}, {92.0, 19.0}}, label: 'Indisponível'
+                                              StaticText, 0x10801e940, {{50.0, 378.0}, {92.0, 19.0}}, label: 'Indisponível'
+                                            StaticText, 0x10801ed00, {{174.0, 378.0}, {92.0, 19.0}}, label: '20 a 35 min'
+                                              StaticText, 0x10801ea80, {{174.0, 378.0}, {92.0, 19.0}}, label: '20 a 35 min'
+                                            StaticText, 0x10801ee40, {{298.0, 370.7}, {92.0, 19.0}}, label: 'Carga rápida'
+                                              StaticText, 0x10801d180, {{298.0, 370.7}, {92.0, 19.0}}, label: 'Carga rápida'
+                                            Other, 0x10801f0c0, {{22.0, 437.0}, {396.0, 76.0}}, label: 'Autonomia para chegar ao local
+Chegada estimada com 45% de bateria.
+Não garante recarga no local.'
+                                            Other, 0x10801ebc0, {{22.0, 525.0}, {192.0, 146.7}}
+                                            Other, 0x10801f200, {{226.0, 525.0}, {192.0, 146.7}}
+                                            Other, 0x10801f480, {{37.0, 540.0}, {40.0, 40.0}}
+                                            Other, 0x10801f840, {{241.0, 540.0}, {40.0, 40.0}}
+                                            Other, 0x10801f340, {{47.0, 550.0}, {20.0, 20.0}}
+                                              Other, 0x10801f700, {{47.7, 552.4}, {18.5, 14.3}}
+                                                Other, 0x10801f5c0, {{47.7, 552.4}, {18.5, 14.3}}
+                                                Other, 0x10801fc00, {{56.1, 557.4}, {5.2, 5.2}}
+                                            Other, 0x10801cdc0, {{251.0, 550.0}, {20.0, 20.0}}
+                                              Other, 0x10801fac0, {{255.1, 550.7}, {11.8, 18.5}}
+                                                Other, 0x10801f980, {{255.1, 555.7}, {11.8, 9.3}}
+                                                Other, 0x10801c3c0, {{257.6, 550.7}, {1.8, 6.8}}
+                                                Other, 0x10801c640, {{262.6, 550.7}, {1.8, 6.8}}
+                                                Other, 0x10801ef80, {{260.1, 563.2}, {1.8, 6.0}}
+                                            StaticText, 0x10801cc80, {{37.0, 590.0}, {162.0, 15.7}}, label: 'Potência'
+                                              StaticText, 0x10801fe80, {{37.0, 590.0}, {162.0, 15.7}}, label: 'Potência'
+                                            StaticText, 0x10801fd40, {{241.0, 590.0}, {162.0, 15.7}}, label: 'Conectores'
+                                              StaticText, 0x111916bc0, {{241.0, 590.0}, {162.0, 15.7}}, label: 'Conectores'
+                                            StaticText, 0x111916d00, {{37.0, 610.7}, {162.0, 24.0}}, label: '150 kW'
+                                              StaticText, 0x111916e40, {{37.0, 610.7}, {162.0, 24.0}}, label: '150 kW'
+                                            StaticText, 0x111916f80, {{241.0, 610.7}, {162.0, 24.0}}, label: 'CCS2, Type 2'
+                                              StaticText, 0x1119170c0, {{241.0, 610.7}, {162.0, 24.0}}, label: 'CCS2, Type 2'
+                                            StaticText, 0x111917200, {{37.0, 638.7}, {162.0, 18.0}}, label: 'Velocidade de carga'
+                                              StaticText, 0x111917340, {{37.0, 638.7}, {162.0, 18.0}}, label: 'Velocidade de carga'
+                                            StaticText, 0x111917480, {{241.0, 638.7}, {162.0, 18.0}}, label: 'Tipos compatíveis'
+                                              StaticText, 0x1119175c0, {{241.0, 638.7}, {162.0, 18.0}}, label: 'Tipos compatíveis'
+                                            Other, 0x111917e80, {{22.0, 685.7}, {192.0, 170.7}}
+                                            Other, 0x111917d40, {{226.0, 685.7}, {192.0, 170.7}}
+                                            Other, 0x111917c00, {{37.0, 700.7}, {40.0, 40.0}}
+                                            Other, 0x111917700, {{241.0, 700.7}, {40.0, 40.0}}
+                                            Other, 0x111917840, {{47.0, 710.7}, {20.0, 20.0}}
+                                              Other, 0x111917ac0, {{47.8, 712.2}, {18.5, 16.8}}
+                                                Other, 0x111917980, {{47.8, 712.2}, {4.3, 4.3}}
+                                                Other, 0x111916580, {{49.4, 713.9}, {15.2, 15.2}}
+                                                Other, 0x1119166c0, {{56.1, 717.2}, {3.5, 6.8}}
+                                                Other, 0x111916a80, {{61.9, 712.2}, {4.3, 4.3}}
+                                                Other, 0x111916940, {{49.4, 725.3}, {3.8, 3.8}}
+                                                Other, 0x111916800, {{60.8, 725.3}, {3.8, 3.8}}
+                                            Other, 0x111916300, {{251.0, 710.7}, {20.0, 20.0}}
+                                              Other, 0x111916440, {{254.2, 711.4}, {13.5, 17.7}}
+                                                Other, 0x111916080, {{254.2, 711.4}, {13.5, 17.7}}
+                                            StaticText, 0x1119161c0, {{37.0, 750.7}, {162.0, 15.7}}, label: 'Funcionamento'
+                                              StaticText, 0x111914000, {{37.0, 750.7}, {162.0, 15.7}}, label: 'Funcionamento'
+                                            StaticText, 0x111914140, {{241.0, 750.7}, {162.0, 15.7}}, label: 'Distância'
+                                              StaticText, 0x111914280, {{241.0, 750.7}, {162.0, 15.7}}, label: 'Distância'
+                                            StaticText, 0x111914640, {{37.0, 771.3}, {162.0, 48.0}}, label: 'Todos os dias, 06h às 22h'
+                                              StaticText, 0x1119143c0, {{37.0, 771.3}, {162.0, 48.0}}, label: 'Todos os dias, 06h às 22h'
+                                            StaticText, 0x111914a00, {{241.0, 771.3}, {162.0, 24.0}}, label: '0.3 km'
+                                              StaticText, 0x111914500, {{241.0, 771.3}, {162.0, 24.0}}, label: '0.3 km'
+                                            StaticText, 0x1119148c0, {{241.0, 799.3}, {162.0, 18.0}}, label: 'Próximo de você'
+                                              StaticText, 0x111914b40, {{241.0, 799.3}, {162.0, 18.0}}, label: 'Próximo de você'
+                                            StaticText, 0x111914780, {{37.0, 823.3}, {162.0, 18.0}}, label: 'Todos os dias, 06h às 22h'
+                                              StaticText, 0x111914c80, {{37.0, 823.3}, {162.0, 18.0}}, label: 'Todos os dias, 06h às 22h'
+                                            Other, 0x111914dc0, {{22.0, 870.3}, {396.0, 93.0}}
+                                            Other, 0x111915040, {{37.0, 891.0}, {52.0, 52.0}}
+                                            StaticText, 0x111fb3840, {{102.0, 885.3}, {301.0, 17.0}}, label: 'Horário sugerido no exemplo'
+                                              StaticText, 0x111fb35c0, {{102.0, 885.3}, {301.0, 17.0}}, label: 'Horário sugerido no exemplo'
+                                            Other, 0x111fb3700, {{51.0, 905.0}, {24.0, 24.0}}
+                                              Other, 0x111fb3340, {{51.9, 905.9}, {22.2, 22.2}}
+                                                Other, 0x111fb3480, {{51.9, 905.9}, {22.2, 22.2}}
+                                                Other, 0x111fb3200, {{61.9, 909.9}, {6.2, 8.2}}
+                                            StaticText, 0x111fb2f80, {{102.0, 905.3}, {301.0, 23.0}}, label: '07h às 09h ou 13h às 15h'
+                                              StaticText, 0x111fb30c0, {{102.0, 905.3}, {301.0, 23.0}}, label: '07h às 09h ou 13h às 15h'
+                                            StaticText, 0x111fb2bc0, {{102.0, 931.3}, {301.0, 17.0}}, label: 'Sem previsão de movimento em tempo real'
+                                              StaticText, 0x111fb2d00, {{102.0, 931.3}, {301.0, 17.0}}, label: 'Sem previsão de movimento em tempo real'
+                                            Other, 0x111fb2e40, {{22.0, 983.3}, {396.0, 223.7}}
+                                            StaticText, 0x111fb2a80, {{39.0, 1000.3}, {362.0, 21.7}}, label: 'Conectores do ponto'
+                                              StaticText, 0x111fb2800, {{39.0, 1000.3}, {362.0, 21.7}}, label: 'Conectores do ponto'
+                                            StaticText, 0x111fb2940, {{89.0, 1046.0}, {312.0, 20.3}}, label: 'CCS2'
+                                              StaticText, 0x111fb26c0, {{89.0, 1046.0}, {312.0, 20.3}}, label: 'CCS2'
+                                            Other, 0x111fb2440, {{39.0, 1055.7}, {38.0, 38.0}}
+                                            Other, 0x111fb2580, {{49.0, 1065.7}, {18.0, 18.0}}
+                                              Other, 0x111fb3e80, {{49.7, 1069.3}, {16.7, 10.7}}
+                                                Other, 0x111fb2300, {{49.7, 1069.3}, {5.4, 10.7}}
+                                                Other, 0x111fb3ac0, {{54.2, 1070.1}, {4.7, 9.2}}
+                                                Other, 0x111fb3c00, {{58.0, 1069.3}, {5.4, 10.7}}
+                                                Other, 0x111fb3d40, {{64.7, 1072.3}, {1.7, 4.7}}
+                                            StaticText, 0x111fb3980, {{89.0, 1069.3}, {312.0, 33.7}}, label: '150 kW · 3 carregadores cadastrados no exemplo. Recarga não confirmada.'
+                                              StaticText, 0x111fb1e00, {{89.0, 1069.3}, {312.0, 33.7}}, label: '150 kW · 3 carregadores cadastrados no exemplo. Recarga não confirmada.'
+                                            StaticText, 0x111fb1f40, {{89.0, 1123.0}, {312.0, 20.3}}, label: 'Type 2'
+                                              StaticText, 0x111fb0280, {{89.0, 1123.0}, {312.0, 20.3}}, label: 'Type 2'
+                                            Other, 0x111fb0000, {{39.0, 1132.7}, {38.0, 38.0}}
+                                            Other, 0x111fb0140, {{49.0, 1142.7}, {18.0, 18.0}}
+                                              Other, 0x111fb03c0, {{52.7, 1143.3}, {10.7, 16.7}}
+                                                Other, 0x111fb0500, {{52.7, 1147.8}, {10.7, 8.4}}
+                                                Other, 0x111fb0640, {{54.9, 1143.3}, {1.7, 6.2}}
+                                                Other, 0x111fb0a00, {{59.4, 1143.3}, {1.7, 6.2}}
+                                                Other, 0x111fb0780, {{57.2, 1154.6}, {1.7, 5.4}}
+                                            StaticText, 0x111fb0c80, {{89.0, 1146.3}, {312.0, 33.7}}, label: '22 kW · 2 carregadores cadastrados no exemplo. Recarga não confirmada.'
+                                              StaticText, 0x111fb08c0, {{89.0, 1146.3}, {312.0, 33.7}}, label: '22 kW · 2 carregadores cadastrados no exemplo. Recarga não confirmada.'
+                                            Other, 0x111fb0dc0, {{22.0, 1217.0}, {396.0, 226.7}}
+                                            StaticText, 0x111fb0f00, {{39.0, 1234.0}, {362.0, 21.7}}, label: 'Comodidades próximas'
+                                              StaticText, 0x111fb0b40, {{39.0, 1234.0}, {362.0, 21.7}}, label: 'Comodidades próximas'
+                                            Other, 0x111fb1040, {{97.0, 1269.7}, {42.0, 42.0}}
+                                            Other, 0x111fb1180, {{199.0, 1269.7}, {42.0, 42.0}}
+                                            Other, 0x111fb12c0, {{301.0, 1269.7}, {42.0, 42.0}}
+                                            Other, 0x111fb1400, {{109.0, 1281.7}, {18.0, 18.0}}
+                                              Other, 0x111fb1680, {{110.5, 1282.4}, {15.8, 15.8}}
+                                                Other, 0x111fb2080, {{110.5, 1286.9}, {15.8, 11.3}}
+                                                Other, 0x111fb1a40, {{112.7, 1282.4}, {1.6, 3.1}}
+                                                Other, 0x111fb1540, {{115.7, 1282.4}, {1.6, 3.1}}
+                                                Other, 0x111fb1900, {{118.7, 1282.4}, {1.6, 3.1}}
+                                            Other, 0x111fb1b80, {{211.0, 1281.7}, {18.0, 18.0}}
+                                              Other, 0x111fb17c0, {{212.5, 1282.4}, {15.1, 16.6}}
+                                                Other, 0x111fb1cc0, {{212.5, 1282.4}, {10.6, 13.6}}
+                                                Other, 0x109728000, {{213.9, 1289.9}, {13.6, 9.1}}
+                                            Other, 0x109728140, {{313.0, 1281.7}, {18.0, 18.0}}
+                                              Other, 0x109728280, {{313.7, 1282.4}, {16.6, 16.6}}
+                                                Other, 0x1097283c0, {{313.7, 1282.4}, {16.6, 16.6}}
+                                                Other, 0x109728500, {{319.0, 1286.1}, {6.8, 9.1}}
+                                            StaticText, 0x109728640, {{104.0, 1318.7}, {28.0, 14.3}}, label: 'Café'
+                                              StaticText, 0x109728780, {{104.0, 1318.7}, {28.0, 14.3}}, label: 'Café'
+                                            StaticText, 0x1097288c0, {{193.0, 1318.7}, {54.0, 14.3}}, label: 'Banheiro'
+                                              StaticText, 0x109728a00, {{193.0, 1318.7}, {54.0, 14.3}}, label: 'Banheiro'
+                                            StaticText, 0x109728b40, {{276.0, 1318.7}, {92.0, 28.7}}, label: 'Estacionamento'
+                                              StaticText, 0x109728c80, {{276.0, 1318.7}, {92.0, 28.7}}, label: 'Estacionamento'
+                                            Other, 0x109728dc0, {{148.0, 1363.3}, {42.0, 42.0}}
+                                            Other, 0x109728f00, {{250.0, 1363.3}, {42.0, 42.0}}
+                                            Other, 0x109729040, {{160.0, 1375.3}, {18.0, 18.0}}
+                                              Other, 0x109729180, {{160.7, 1378.3}, {16.6, 12.8}}
+                                                Other, 0x1097292c0, {{160.7, 1378.3}, {16.6, 4.4}}
+                                                Other, 0x109729400, {{163.0, 1382.0}, {12.1, 3.7}}
+                                                Other, 0x109729540, {{165.6, 1385.8}, {6.8, 2.6}}
+                                                Other, 0x109729680, {{168.2, 1389.5}, {1.6, 1.6}}
+                                            Other, 0x1097297c0, {{262.0, 1375.3}, {18.0, 18.0}}
+                                              Other, 0x109729900, {{264.2, 1376.0}, {13.6, 16.6}}
+                                                Other, 0x109729a40, {{264.2, 1376.0}, {13.6, 16.6}}
+                                                Other, 0x109729b80, {{268.0, 1382.0}, {6.1, 4.6}}
+                                            StaticText, 0x109729cc0, {{153.0, 1412.3}, {32.0, 14.3}}, label: 'Wi-Fi'
+                                              StaticText, 0x109729e00, {{153.0, 1412.3}, {32.0, 14.3}}, label: 'Wi-Fi'
+                                            StaticText, 0x109729f40, {{238.7, 1412.3}, {64.7, 14.3}}, label: 'Segurança'
+                                              StaticText, 0x10972a080, {{238.7, 1412.3}, {64.7, 14.3}}, label: 'Segurança'
+                                            Other, 0x10972a1c0, {{22.0, 1453.7}, {396.0, 539.0}}
+                                            StaticText, 0x10972a300, {{39.0, 1470.7}, {362.0, 21.7}}, label: 'Avaliações de usuários'
+                                              StaticText, 0x10972a440, {{39.0, 1470.7}, {362.0, 21.7}}, label: 'Avaliações de usuários'
+                                            StaticText, 0x10972a580, {{56.3, 1516.7}, {75.0, 53.0}}, label: '4.8'
+                                              StaticText, 0x10972a6c0, {{56.3, 1516.7}, {75.0, 53.0}}, label: '4.8'
+                                            StaticText, 0x10972a800, {{149.0, 1513.3}, {32.0, 14.3}}, label: '5 ★'
+                                              StaticText, 0x10972a940, {{149.0, 1513.3}, {32.0, 14.3}}, label: '5 ★'
+                                            StaticText, 0x10972aa80, {{373.0, 1506.3}, {28.0, 28.7}}, label: '85%'
+                                              StaticText, 0x10972abc0, {{373.0, 1506.3}, {28.0, 28.7}}, label: '85%'
+                                            Other, 0x10972ad00, {{189.0, 1518.3}, {176.0, 5.0}}
+                                              Other, 0x10972ae40, {{189.0, 1518.3}, {149.7, 5.0}}
+                                            StaticText, 0x10972af80, {{149.0, 1541.0}, {32.0, 14.3}}, label: '4 ★'
+                                              StaticText, 0x10972b0c0, {{149.0, 1541.0}, {32.0, 14.3}}, label: '4 ★'
+                                            Other, 0x10972b200, {{189.0, 1545.7}, {176.0, 5.0}}
+                                              Other, 0x10972b340, {{189.0, 1545.7}, {17.7, 5.0}}
+                                            StaticText, 0x10972b480, {{373.0, 1541.0}, {28.0, 14.3}}, label: '10%'
+                                              StaticText, 0x10972b5c0, {{373.0, 1541.0}, {28.0, 14.3}}, label: '10%'
+                                            StaticText, 0x10972b700, {{149.0, 1561.3}, {32.0, 14.3}}, label: '3 ★'
+                                              StaticText, 0x10972b840, {{149.0, 1561.3}, {32.0, 14.3}}, label: '3 ★'
+                                            StaticText, 0x10972b980, {{48.3, 1572.7}, {91.0, 18.0}}, label: '★ ★ ★ ★ ★'
+                                              StaticText, 0x10972bac0, {{48.3, 1572.7}, {91.0, 18.0}}, label: '★ ★ ★ ★ ★'
+                                            Other, 0x10972bc00, {{189.0, 1566.0}, {176.0, 5.0}}
+                                              Other, 0x10972bd40, {{189.0, 1566.0}, {5.3, 5.0}}
+                                            StaticText, 0x10972be80, {{373.0, 1561.3}, {28.0, 14.3}}, label: '3%'
+                                              StaticText, 0x11190c000, {{373.0, 1561.3}, {28.0, 14.3}}, label: '3%'
+                                            StaticText, 0x11190c140, {{149.0, 1581.7}, {32.0, 14.3}}, label: '2 ★'
+                                              StaticText, 0x11190c280, {{149.0, 1581.7}, {32.0, 14.3}}, label: '2 ★'
+                                            Other, 0x11190c3c0, {{189.0, 1586.3}, {176.0, 5.0}}
+                                              Other, 0x11190c500, {{189.0, 1586.3}, {1.7, 5.0}}
+                                            StaticText, 0x11190c640, {{373.0, 1581.7}, {28.0, 14.3}}, label: '1%'
+                                              StaticText, 0x11190c780, {{373.0, 1581.7}, {28.0, 14.3}}, label: '1%'
+                                            StaticText, 0x11190c8c0, {{49.7, 1596.7}, {88.7, 15.7}}, label: '132 avaliações'
+                                              StaticText, 0x11190ca00, {{49.7, 1596.7}, {88.7, 15.7}}, label: '132 avaliações'
+                                            StaticText, 0x11190cb40, {{149.0, 1602.0}, {32.0, 14.3}}, label: '1 ★'
+                                              StaticText, 0x11190cc80, {{149.0, 1602.0}, {32.0, 14.3}}, label: '1 ★'
+                                            Other, 0x11190cdc0, {{189.0, 1606.7}, {176.0, 5.0}}
+                                              Other, 0x11190cf00, {{189.0, 1606.7}, {1.7, 5.0}}
+                                            StaticText, 0x11190d040, {{373.0, 1602.0}, {28.0, 14.3}}, label: '1%'
+                                              StaticText, 0x11190d180, {{373.0, 1602.0}, {28.0, 14.3}}, label: '1%'
+                                            Button, 0x11190d2c0, {{39.0, 1636.3}, {362.0, 48.0}}, label: 'Avaliar este ponto'
+                                            Other, 0x11190d400, {{39.0, 1702.3}, {362.0, 130.7}}
+                                            Other, 0x11190d540, {{54.0, 1717.3}, {44.0, 44.0}}
+                                            StaticText, 0x11190d680, {{110.0, 1717.3}, {276.0, 18.0}}, label: 'Marina Polverari'
+                                              StaticText, 0x11190d7c0, {{110.0, 1717.3}, {276.0, 18.0}}, label: 'Marina Polverari'
+                                            StaticText, 0x11190d900, {{64.0, 1730.3}, {24.0, 18.0}}, label: 'MP'
+                                              StaticText, 0x11190da40, {{64.0, 1730.3}, {24.0, 18.0}}, label: 'MP'
+                                            StaticText, 0x11190db80, {{110.0, 1737.3}, {276.0, 15.7}}, label: '★ ★ ★ ★ ★'
+                                              StaticText, 0x11190dcc0, {{110.0, 1737.3}, {276.0, 15.7}}, label: '★ ★ ★ ★ ★'
+                                            StaticText, 0x11190de00, {{110.0, 1758.0}, {276.0, 60.0}}, label: 'Muito bom para a rotina perto da Lins, com carregamento rápido e estrutura completa.'
+                                              StaticText, 0x11190df40, {{110.0, 1758.0}, {276.0, 60.0}}, label: 'Muito bom para a rotina perto da Lins, com carregamento rápido e estrutura completa.'
+                                            Other, 0x11190e080, {{39.0, 1845.0}, {362.0, 130.7}}
+                                            Other, 0x11190e1c0, {{54.0, 1860.0}, {44.0, 44.0}}
+                                            StaticText, 0x11190e300, {{110.0, 1860.0}, {276.0, 18.0}}, label: 'Joseffe Barroso'
+                                              StaticText, 0x11190e440, {{110.0, 1860.0}, {276.0, 18.0}}, label: 'Joseffe Barroso'
+                                            StaticText, 0x11190e580, {{66.0, 1873.0}, {20.0, 18.0}}, label: 'JB'
+                                              StaticText, 0x11190e6c0, {{66.0, 1873.0}, {20.0, 18.0}}, label: 'JB'
+                                            StaticText, 0x11190e800, {{110.0, 1880.0}, {276.0, 15.7}}, label: '★ ★ ★ ★ ★'
+                                              StaticText, 0x11190e940, {{110.0, 1880.0}, {276.0, 15.7}}, label: '★ ★ ★ ★ ★'
+                                            StaticText, 0x11190ea80, {{110.0, 1900.7}, {276.0, 60.0}}, label: 'A sinalização facilita a chegada e as comodidades tornam a espera bem tranquila.'
+                                              StaticText, 0x11190ebc0, {{110.0, 1900.7}, {276.0, 60.0}}, label: 'A sinalização facilita a chegada e as comodidades tornam a espera bem tranquila.'
+                                        Other, 0x11190ed00, {{62.0, 923.0}, {316.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                          Other, 0x11190ee40, {{65.0, 950.0}, {310.0, 3.0}}
+                                        Other, 0x11190ef80, {{62.0, 923.0}, {316.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                          Other, 0x11190f0c0, {{65.0, 950.0}, {310.0, 3.0}}
+                                    Other, 0x11190f200, {{0.0, 847.0}, {440.0, 109.0}}
+                                      Button, 0x11190f340, {{22.0, 860.0}, {193.7, 52.0}}, label: 'Ver mapa'
+                                      Button, 0x11190f480, {{227.7, 860.0}, {190.3, 52.0}}, label: 'Iniciar rota para Flui Vila Mariana Lins'
+                          Toolbar, 0x11190f5c0, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x11190f700, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x11190f840, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x11190f980, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x11190fac0, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x1126bf700, pid: 37805, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x11190fc00, pid: 37805, label: 'Expo Go'
+  }
+
+    t =    85.60s Find the Application 'host.exp.Exponent'
+    t =    86.12s Added attachment named 'UX corrigida — ficha fechada automaticamente, sem interação durante a transição'
+FLUI_CLOCK RESTAURAR
+    t =    88.12s Tap Button (First Match)
+    t =    88.12s     Wait for host.exp.Exponent to idle
+    t =    88.17s     Find the Button (First Match)
+    t =    88.56s     Check for interrupting elements affecting "Voltar ao mapa" Button
+    t =    88.76s     Synthesize event
+    t =    88.83s         Scroll element to visible
+    t =    88.86s         Find the "Voltar ao mapa" Button
+    t =    89.20s         Computed hit point {44, 64} after scrolling to visible
+    t =    89.54s     Wait for host.exp.Exponent to idle
+    t =    89.58s Tear Down
+Test Case '-[FluiValidacao.FluiValidacao testFichaUxAutonomiaERecarga]' passed (92.263 seconds).
+Test Suite 'FluiValidacao' passed at 2026-10-16 10:15:42.933.
+	 Executed 1 test, with 0 failures (0 unexpected) in 92.263 (92.595) seconds
+Test Suite 'FluiValidacao.xctest' passed at 2026-10-16 10:15:42.954.
+	 Executed 1 test, with 0 failures (0 unexpected) in 92.263 (92.618) seconds
+Test Suite 'All tests' passed at 2026-10-16 10:15:43.198.
+	 Executed 1 test, with 0 failures (0 unexpected) in 92.263 (92.866) seconds
+2026-10-16 10:15:44.809 xcodebuild[37924:3932319] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 10:15:44.834 xcodebuild[37924:3932319] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 10:15:44.882 xcodebuild[37924:3932319] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 10:15:45.474 xcodebuild[37924:3932319] [MT] IDETestOperationsObserverDebug: 189.584 elapsed -- Testing started completed.
+2026-10-16 10:15:45.474 xcodebuild[37924:3932319] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-16 10:15:45.474 xcodebuild[37924:3932319] [MT] IDETestOperationsObserverDebug: 189.584 sec, +189.584 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/flui-ux-ficha/Resultado.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

@@ -1,3 +1,4 @@
+import { normalizeBatteryData } from "../utils/batteryData";
 import { defaultFilters } from "../data/filterOptions";
 import {
   CreateLocalReviewInput,
@@ -56,7 +57,7 @@ function createDefaultUserPreferences(): UserPreferences {
     appearanceMode: "light",
     fontSize: "default",
     vehicleRangeKm: 400,
-    batteryPercent: 70,
+    ...normalizeBatteryData(),
   };
 }
 
@@ -109,13 +110,11 @@ function normalizeUserPreferences(
       : base.fontSize,
     vehicleRangeKm:
       typeof preferences.vehicleRangeKm === "number" &&
+      Number.isFinite(preferences.vehicleRangeKm) &&
       preferences.vehicleRangeKm > 0
         ? preferences.vehicleRangeKm
         : base.vehicleRangeKm,
-    batteryPercent:
-      typeof preferences.batteryPercent === "number"
-        ? Math.min(100, Math.max(0, preferences.batteryPercent))
-        : base.batteryPercent,
+    ...normalizeBatteryData(preferences),
     savedFilters: {
       ...base.savedFilters,
       ...(savedFilters ?? {}),

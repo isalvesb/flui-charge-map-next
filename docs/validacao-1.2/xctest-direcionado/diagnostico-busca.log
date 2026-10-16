@@ -1,0 +1,205 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -xctestrun /tmp/flui-xctest-12/DerivedData/Build/Products/FluiValidacao_iphonesimulator27.1-arm64-x86_64.xctestrun -destination "platform=iOS Simulator,id=4A2C862B-D6FC-4E88-8FB5-88164A5C5A2E" -destination-timeout 25 -parallel-testing-enabled NO -collect-test-diagnostics never -test-timeouts-enabled YES -default-test-execution-time-allowance 120 -maximum-test-execution-time-allowance 120 -resultBundlePath /tmp/flui-xctest-12/BuscaDiagnostico.xcresult
+
+Writing result bundle at path:
+	/tmp/flui-xctest-12/BuscaDiagnostico.xcresult
+
+2026-10-16 08:54:08.550 xcodebuild[33690:3839200] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 08:54:49.894936-0300 FluiValidacao-Runner[33879:3841106] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'All tests' started at 2026-10-16 08:55:16.616.
+Test Suite 'FluiValidacao.xctest' started at 2026-10-16 08:55:16.627.
+Test Suite 'FluiValidacao' started at 2026-10-16 08:55:16.627.
+Test Case '-[FluiValidacao.FluiValidacao testDiagnosticoDaBusca]' started.
+    t =     0.03s Start Test at 2026-10-16 08:55:16.659
+    t =     0.57s Set Up
+    t =     0.57s Open host.exp.Exponent
+    t =     0.58s     Launch host.exp.Exponent
+    t =     0.76s         Setting up automation session
+objc[33879]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x104aa4398) and /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x104b98310). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =     6.90s         Wait for host.exp.Exponent to idle
+    t =     9.50s Waiting 3.0s for Button (First Match) to exist
+    t =    10.53s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    10.53s         Checking existence of `Button (First Match)`
+    t =    12.76s         Capturing element debug description
+    t =    12.76s     Checking existence of `Button (First Match)`
+    t =    14.34s Collecting debug information to assist test failure triage
+    t =    14.34s     Requesting snapshot of accessibility hierarchy for app with pid 33960
+    t =    14.43s Waiting 8.0s for Button (First Match) to exist
+    t =    15.49s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    15.49s         Checking existence of `Button (First Match)`
+    t =    15.79s Tap Button (First Match)
+    t =    15.79s     Wait for host.exp.Exponent to idle
+    t =    15.83s     Find the Button (First Match)
+    t =    15.97s     Check for interrupting elements affecting "flui-charge-map" Button
+    t =    16.04s     Synthesize event
+    t =    16.62s     Wait for host.exp.Exponent to idle
+    t =    16.98s Waiting 45.0s for Button (First Match) to exist
+    t =    18.05s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    18.05s         Checking existence of `Button (First Match)`
+    t =    18.07s         Capturing element debug description
+    t =    19.02s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    19.02s         Checking existence of `Button (First Match)`
+    t =    19.03s         Capturing element debug description
+    t =    19.99s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    19.99s         Checking existence of `Button (First Match)`
+    t =    20.01s         Capturing element debug description
+    t =    21.05s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    21.05s         Checking existence of `Button (First Match)`
+    t =    21.07s         Capturing element debug description
+    t =    22.08s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    22.08s         Checking existence of `Button (First Match)`
+    t =    26.36s         Capturing element debug description
+    t =    26.99s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    26.99s         Checking existence of `Button (First Match)`
+    t =    27.03s         Capturing element debug description
+    t =    28.07s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    28.07s         Checking existence of `Button (First Match)`
+    t =    28.10s         Capturing element debug description
+    t =    29.01s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    29.01s         Checking existence of `Button (First Match)`
+    t =    29.24s         Capturing element debug description
+    t =    30.04s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    30.04s         Checking existence of `Button (First Match)`
+    t =    30.08s         Capturing element debug description
+    t =    30.99s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    30.99s         Checking existence of `Button (First Match)`
+    t =    31.03s         Capturing element debug description
+    t =    32.05s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    32.08s         Checking existence of `Button (First Match)`
+    t =    33.00s Find the TextField (First Match)
+FLUI_BUSCA_ANTES Optional(Buscar endereço, bairro ou ponto)
+    t =    34.05s Tap "Buscar endereço, bairro ou ponto" TextField
+    t =    34.05s     Wait for host.exp.Exponent to idle
+    t =    34.65s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    35.60s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    37.80s     Synthesize event
+    t =    40.00s     Wait for host.exp.Exponent to idle
+    t =    42.90s Type 'Higienópolis Prime...' into "Buscar endereço, bairro ou ponto" TextField
+    t =    42.91s     Wait for host.exp.Exponent to idle
+    t =    43.06s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    43.42s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    44.09s     Synthesize event
+    t =    45.16s     Wait for host.exp.Exponent to idle
+    t =    45.49s Find the "Buscar endereço, bairro ou ponto" TextField
+FLUI_BUSCA_DEPOIS Optional(Hópolis Prime Charge)
+    t =    45.56s Requesting snapshot of accessibility hierarchy for app with pid 33960
+    t =    49.36s Requesting snapshot of accessibility hierarchy for app with pid 33960
+FLUI_EVIDENCIA Valor real da busca após typeText do XCTest
+Attributes: Application, 0x1091cb0c0, pid: 33960, label: 'Expo Go'
+Element subtree:
+ →Application, 0x1091cb0c0, pid: 33960, label: 'Expo Go'
+    Window (Main), 0x1091c9680, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x1091c97c0, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x1091c9900, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x1091c9a40, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x1091c9b80, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x1091c9cc0, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x1091c9e00, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x1091c9f40, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1091ca080, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1091ca1c0, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1091ca300, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x1091ca440, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x1091ca580, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x1091ca6c0, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x1091ca800, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x1091ca940, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x1091caa80, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Other, 0x1091cabc0, {{0.0, 62.0}, {440.0, 162.0}}
+                                        Other, 0x1091cad00, {{20.0, 76.0}, {76.0, 36.0}}
+                                          Other, 0x1091cae40, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x1091caf80, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x1091c8500, {{89.2, 82.8}, {6.7, 6.7}}
+                                        Button, 0x1091c8640, {{191.7, 71.0}, {180.3, 46.0}}, label: 'Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 180 quilômetros estimados'
+                                        Button, 0x1091c8780, {{374.0, 71.0}, {46.0, 46.0}}, label: 'Abrir perfil'
+                                        Other, 0x104dd3840, {{20.0, 132.0}, {400.0, 58.0}}
+                                          Other, 0x104fff200, {{39.0, 150.7}, {21.0, 21.0}}
+                                            Other, 0x104fff480, {{40.8, 152.4}, {17.5, 17.5}}
+                                              Other, 0x104ffd040, {{40.8, 152.4}, {15.8, 15.8}}
+                                              Other, 0x104fff340, {{52.7, 164.4}, {5.5, 5.5}}
+                                          Other, 0x104fff5c0, {{73.0, 150.7}, {277.0, 20.3}}
+                                            TextField, 0x104fff700, {{73.0, 150.7}, {277.0, 20.3}}, label: 'Buscar no mapa', placeholderValue: 'Buscar endereço, bairro ou ponto', value: Hópolis Prime Charge
+                                          Other, 0x104fff980, {{358.0, 146.0}, {1.0, 30.0}}
+                                          Button, 0x104fff840, {{367.0, 140.0}, {42.0, 42.0}}, label: 'Abrir busca e filtros'
+                                        Button, 0x104fffac0, {{20.0, 194.0}, {400.0, 16.0}}, label: 'Mostrar atalhos de filtro'
+                                      Other, 0x104fffc00, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x104fffe80, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                          Other, 0x104fffd40, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x104ffc640, {{0.0, 224.0}, {72.0, 72.0}}
+                                            Other, 0x104ffc500, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                              Other, 0x104fff0c0, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x104ffcf00, {{0.0, 224.0}, {440.0, 698.0}}
+                                              Other, 0x104ffd2c0, {{0.0, 224.0}, {440.0, 698.0}}
+                                                Button, 0x104ffd400, {{5.0, 895.0}, {60.0, 22.0}}, label: 'Google Maps'
+                                            Other, 0x104ffd180, {{1912.0, 2136.0}, {74.0, 74.0}}
+                                              Other, 0x104ffd540, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                Other, 0x104ffda40, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                  Other, 0x104ffdb80, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                    Other, 0x104ffdf40, {{1926.8, 2150.8}, {42.4, 42.4}}
+                                                    Other, 0x104ffde00, {{1936.0, 2160.0}, {24.0, 24.0}}
+                                        Other, 0x104ffe080, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x104ffe1c0, {{372.0, 242.0}, {52.0, 166.0}}
+                                          Other, 0x104ffe580, {{372.0, 242.0}, {52.0, 104.0}}
+                                            Button, 0x104ffe300, {{372.0, 243.0}, {52.0, 51.0}}, label: 'Aumentar zoom do mapa'
+                                            Button, 0x104ffe6c0, {{372.0, 295.0}, {52.0, 51.0}}, label: 'Diminuir zoom do mapa'
+                                            Other, 0x104ffe440, {{384.0, 294.0}, {28.0, 1.0}}
+                                          Button, 0x104ffea80, {{372.0, 356.0}, {52.0, 52.0}}, label: 'Centralizar localização na FIAP'
+                                        Other, 0x104ffe940, {{372.0, 611.3}, {52.0, 52.0}}
+                                          Other, 0x104ffebc0, {{372.0, 611.3}, {52.0, 52.0}}
+                                            Button, 0x104ffed00, {{372.0, 611.3}, {52.0, 52.0}}, label: 'Abrir assistente Flui IA'
+                                        Other, 0x104ffef80, {{16.0, 667.3}, {408.0, 254.7}}
+                                          Other, 0x104ffee40, {{16.0, 667.3}, {408.0, 254.7}}
+                                            Button, 0x1091d0000, {{35.0, 686.3}, {370.0, 12.0}}, label: 'Minimizar opções demonstrativas para ver o mapa inteiro'
+                                            StaticText, 0x1091d0140, {{35.0, 698.3}, {370.0, 27.7}}, label: 'Nenhum ponto disponível'
+                                              StaticText, 0x1091d0280, {{35.0, 698.3}, {370.0, 27.7}}, label: 'Nenhum ponto disponível'
+                                            Other, 0x1091d03c0, {{35.0, 744.0}, {370.0, 176.0}}
+                                            StaticText, 0x1091d0500, {{52.0, 761.0}, {336.0, 44.0}}, label: 'Não encontramos pontos com esses critérios.'
+                                              StaticText, 0x1091d0640, {{52.0, 761.0}, {336.0, 44.0}}, label: 'Não encontramos pontos com esses critérios.'
+                                            StaticText, 0x1091d0780, {{52.0, 811.0}, {336.0, 40.0}}, label: 'Tente limpar alguns filtros ou buscar por outro endereço.'
+                                              StaticText, 0x1091d08c0, {{52.0, 811.0}, {336.0, 40.0}}, label: 'Tente limpar alguns filtros ou buscar por outro endereço.'
+                                            Button, 0x1091d0a00, {{52.0, 851.0}, {336.0, 52.0}}, label: 'Ajustar busca'
+                          Toolbar, 0x1091d0b40, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x1091d0c80, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1091d0dc0, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1091d0f00, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1091d1040, {{0.0, 0.0}, {440.0, 956.0}}
+    Window, 0x1091d1180, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x1091d12c0, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x1091d1400, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x1091cb0c0, pid: 33960, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x1091d1540, pid: 33960, label: 'Expo Go'
+  }
+
+    t =    49.63s Find the Application 'host.exp.Exponent'
+    t =    50.06s Added attachment named 'Valor real da busca após typeText do XCTest'
+    t =    50.12s Find the "Buscar endereço, bairro ou ponto" TextField
+/tmp/flui-xctest-12/FluiValidacao.swift:22: error: -[FluiValidacao.FluiValidacao testDiagnosticoDaBusca] : XCTAssertEqual failed: ("Optional("Hópolis Prime Charge")") is not equal to ("Optional("Higienópolis Prime Charge")") - A entrada do teste divergiu do texto pedido
+    t =    51.51s Tear Down
+Test Case '-[FluiValidacao.FluiValidacao testDiagnosticoDaBusca]' failed (51.995 seconds).
+Test Suite 'FluiValidacao' failed at 2026-10-16 08:56:08.655.
+	 Executed 1 test, with 1 failure (0 unexpected) in 51.995 (52.028) seconds
+Test Suite 'FluiValidacao.xctest' failed at 2026-10-16 08:56:08.659.
+	 Executed 1 test, with 1 failure (0 unexpected) in 51.995 (52.032) seconds
+Test Suite 'All tests' failed at 2026-10-16 08:56:08.660.
+	 Executed 1 test, with 1 failure (0 unexpected) in 51.995 (52.044) seconds
+2026-10-16 08:56:08.985 xcodebuild[33690:3839200] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 08:56:09.012 xcodebuild[33690:3839200] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 08:56:09.066 xcodebuild[33690:3839200] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 08:56:09.405 xcodebuild[33690:3839200] [MT] IDETestOperationsObserverDebug: 129.084 elapsed -- Testing started completed.
+2026-10-16 08:56:09.405 xcodebuild[33690:3839200] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-16 08:56:09.405 xcodebuild[33690:3839200] [MT] IDETestOperationsObserverDebug: 129.084 sec, +129.084 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/flui-xctest-12/BuscaDiagnostico.xcresult
+
+Failing tests:
+	FluiValidacao.testDiagnosticoDaBusca()
+
+** TEST EXECUTE FAILED **
+
+Testing started

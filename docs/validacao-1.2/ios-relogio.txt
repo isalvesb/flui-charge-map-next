@@ -1,0 +1,36 @@
+
+Aproximação do fechamento — 2026-10-16T09:39:00.926Z
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-1","urls":[]}
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-2","urls":["http://127.0.0.1:8084/node_modules/expo-router/entry.bundle//&platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=app&transform.reactCompiler=true&unstable_transformProfile=hermes-stable"]}
+{"clock":{"result":{"className":"Object","description":"Object","type":"object","value":{"real":"2026-10-16T09:39:00.913Z","simulated":"2026-10-16T22:59:50.000Z"}}}}
+
+
+Preparação da ficha — 2026-10-16T09:40:40.982Z
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-1","urls":[]}
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-2","urls":["http://127.0.0.1:8084/node_modules/expo-router/entry.bundle//&platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=app&transform.reactCompiler=true&unstable_transformProfile=hermes-stable"]}
+{"clock":{"result":{"className":"Object","description":"Object","type":"object","value":{"real":"2026-10-16T09:40:40.942Z","simulated":"2026-10-16T22:58:00.000Z"}}}}
+
+
+Fechamento no mapa — 2026-10-16T09:41:47.150Z
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-1","urls":[]}
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-2","urls":["http://127.0.0.1:8084/node_modules/expo-router/entry.bundle//&platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=app&transform.reactCompiler=true&unstable_transformProfile=hermes-stable"]}
+{"clock":{"result":{"className":"Object","description":"Object","type":"object","value":{"real":"2026-10-16T09:41:47.135Z","simulated":"2026-10-16T22:59:50.000Z"}}}}
+
+
+Preparar ficha aberta 2026-10-16T09:46:16.709Z
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-1","urls":[]}
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-2","urls":["http://127.0.0.1:8084/node_modules/expo-router/entry.bundle//&platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=app&transform.reactCompiler=true&unstable_transformProfile=hermes-stable"]}
+{"clock":{"result":{"className":"Object","description":"Object","type":"object","value":{"real":"2026-10-16T09:46:16.668Z","simulated":"2026-10-16T22:58:00.000Z"}}}}
+
+
+Transição na ficha 2026-10-16T09:47:00.487Z
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-1","urls":[]}
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-2","urls":["http://127.0.0.1:8084/node_modules/expo-router/entry.bundle//&platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=app&transform.reactCompiler=true&unstable_transformProfile=hermes-stable"]}
+{"clock":{"result":{"className":"Object","description":"Object","type":"object","value":{"real":"2026-10-16T09:47:00.482Z","simulated":"2026-10-16T22:59:50.000Z"}}}}
+
+
+Restaurar relógio real 2026-10-16T09:47:52.181Z
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-1","urls":[]}
+{"id":"6b3ac7ed52bbbc4d940b6f5fdc87f36b55575d56-2","urls":["http://127.0.0.1:8084/node_modules/expo-router/entry.bundle//&platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=app&transform.reactCompiler=true&unstable_transformProfile=hermes-stable"]}
+{"clock":{"result":{"className":"Object","description":"Object","type":"object","value":{"now":"2026-10-16T09:47:52.176Z","restored":true}}}}
+
