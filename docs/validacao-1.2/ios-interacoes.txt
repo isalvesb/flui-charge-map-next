@@ -1,0 +1,821 @@
+Validação prática via Device Hub — iPhone 18 Pro Max / iOS 27.0
+PR #1, commit 98371f5, Expo Go, servidor local 8084.
+Trechos da árvore de acessibilidade após ações reais; não são resultados de testes de domínio.
+## Marcador Garagem Verde Brigadeiro abriu ficha em manutenção | 2026-10-16T04:32:47.731Z
+					14 button Description: Voltar ao mapa, Secondary Actions: Cancel
+					15 button Description: Adicionar aos favoritos, Secondary Actions: Cancel
+					16 text Description: Garagem Verde Brigadeiro, Secondary Actions: Cancel
+					17 text Description: Av. Brigadeiro Luís Antônio, 2500, Jardim Paulista, São Paulo, SP, Secondary Actions: Cancel
+					18 text Description: 3.9, Secondary Actions: Cancel
+					19 text Description: (34 avaliações), Secondary Actions: Cancel
+					20 text Description: Em manutenção, Secondary Actions: Cancel
+					21 text Description: 0 de 3 carregadores livres no exemplo, Secondary Actions: Cancel
+					22 text Description: GUIA DO PONTO, Secondary Actions: Cancel
+					23 text Description: Evite este ponto por enquanto, Secondary Actions: Cancel
+					24 text Secondary Actions: Cancel, Description: Dados demonstrativos, sem disponibilidade em tempo real. Distância, autonomia e tempo de carga são estimativas simplificadas; confirme o funcionamento e a compatibilidade do veículo antes de ir.
+					25 text Description: Tempo estimado, Secondary Actions: Cancel
+					26 text Description: Espera simulada, Secondary Actions: Cancel
+					27 text Description: Perfil, Secondary Actions: Cancel
+					28 text Description: 1h30 ou mais, Secondary Actions: Cancel
+					29 text Description: Recarga essencial, Secondary Actions: Cancel
+					30 text Description: Indisponível, Secondary Actions: Cancel
+					31 text Description: Autonomia confortável — chegada estimada com 45% de bateria, Secondary Actions: Cancel
+					32 text Description: Potência, Secondary Actions: Cancel
+					33 text Description: Conectores, Secondary Actions: Cancel
+					34 text Description: 22 kW, Secondary Actions: Cancel
+					35 text Description: Type 2, Secondary Actions: Cancel
+					36 text Description: Velocidade de carga, Secondary Actions: Cancel
+					37 text Description: Tipos compatíveis, Secondary Actions: Cancel
+					38 text Description: Funcionamento, Secondary Actions: Cancel
+					39 text Description: Distância, Secondary Actions: Cancel
+					40 text Description: Indisponível temporariamente, Secondary Actions: Cancel
+					41 text Description: 1.8 km, Secondary Actions: Cancel
+					42 text Description: Próximo de você, Secondary Actions: Cancel
+					43 text Description: Ponto temporariamente indisponível, Secondary Actions: Cancel
+					44 text Description: Horário sugerido no exemplo, Secondary Actions: Cancel
+					45 text Description: Sem previsão de menor movimento, Secondary Actions: Cancel
+					46 text Description: Sem previsão de movimento em tempo real, Secondary Actions: Cancel
+					47 text Description: Conectores do ponto, Secondary Actions: Cancel
+					48 text Description: Type 2, Secondary Actions: Cancel
+					49 text Description: 22 kW · 0 de 3 disponíveis, Secondary Actions: Cancel
+					50 text Description: Comodidades próximas, Secondary Actions: Cancel
+					51 text Description: Estacionamento, Secondary Actions: Cancel
+					52 text Description: Área coberta, Secondary Actions: Cancel
+					53 text Description: Segurança, Secondary Actions: Cancel
+					54 text Description: Avaliações de usuários, Secondary Actions: Cancel
+					55 text Description: 3.9, Secondary Actions: Cancel
+					56 text Description: 5 ★, Secondary Actions: Cancel
+					57 text Description: 85%, Secondary Actions: Cancel
+					58 text Description: 4 ★, Secondary Actions: Cancel
+					59 text Description: 10%, Secondary Actions: Cancel
+					60 text Description: 3 ★, Secondary Actions: Cancel
+					61 text Description: 3%, Secondary Actions: Cancel
+					62 text Description: ★ ★ ★ ★ ☆, Secondary Actions: Cancel
+					63 text Description: 2 ★, Secondary Actions: Cancel
+					64 text Description: 1%, Secondary Actions: Cancel
+					65 text Description: 34 avaliações, Secondary Actions: Cancel
+					66 text Description: 1 ★, Secondary Actions: Cancel
+					67 text Description: 1%, Secondary Actions: Cancel
+					68 button Description: Avaliar este ponto, Help: Abre a tela de avaliação do ponto de recarga., Secondary Actions: Cancel
+					69 text Description: Leonardo Bragatti, Secondary Actions: Cancel
+					70 text Description: LB, Secondary Actions: Cancel
+					71 text Description: ★ ★ ★ ★ ☆, Secondary Actions: Cancel
+					72 text Description: A localização é boa para Brigadeiro, mas a manutenção precisa ter previsão clara., Secondary Actions: Cancel
+					73 text Description: Joseffe Barroso, Secondary Actions: Cancel
+					74 text Description: JB, Secondary Actions: Cancel
+					75 text Description: ★ ★ ★ ★ ☆, Secondary Actions: Cancel
+					76 text Description: Estacionamento e cobertura contam pontos, mesmo com operação temporariamente suspensa., Secondary Actions: Cancel
+					77 text Description: John Paul, Secondary Actions: Cancel
+					78 text Description: JP, Secondary Actions: Cancel
+					79 text Description: ★ ★ ★ ☆ ☆, Secondary Actions: Cancel
+					80 text Description: Para voltar à lista de favoritos, falta informar melhor quando o carregador retorna., Secondary Actions: Cancel
+					81 button Description: Ver mapa, Secondary Actions: Cancel
+					82 button Description: Iniciar rota para Garagem Verde Brigadeiro, Help: Mostra o aviso de funcionamento antes de escolher Google Maps ou Waze., Secondary Actions: Cancel
+## Aviso nativo antes da rota — manutenção | 2026-10-16T04:32:49.036Z
+					14 heading Description: Antes de iniciar a rota, Secondary Actions: Cancel
+					15 text Description: Garagem Verde Brigadeiro, Secondary Actions: Cancel
+					16 text Secondary Actions: Cancel, Description: Nos dados demonstrativos: Em manutenção. Ponto temporariamente indisponível. A recarga não está confirmada neste ponto. Abrir a rota não garante atendimento; confirme o funcionamento e a compatibilidade antes de ir.
+					17 button Description: Abrir Google Maps, Secondary Actions: Cancel
+					18 button Description: Abrir Waze, Secondary Actions: Cancel
+					19 button Description: Cancelar, Secondary Actions: Cancel
+## Mapa nativo com zoom afastado e marcadores | 2026-10-16T04:34:19.466Z
+					14 button Help: Toque para ajustar o nível de bateria e ver o alcance nos pontos., Secondary Actions: Cancel, Description: Bateria para estimativa: 45 por cento. Origem não registrada. Sem telemetria. Cerca de 180 quilômetros estimados
+					15 button Description: Abrir perfil, Secondary Actions: Cancel
+					16 button Description: Abrir busca e filtros, Secondary Actions: Cancel
+					17 text field (settable) Description: Buscar no mapa, Help: Digite endereço, bairro ou nome do ponto de recarga., Value: Buscar endereço, bairro ou ponto, Secondary Actions: Cancel
+					18 button Description: Mostrar atalhos de filtro, Help: Toque para abrir ou recolher os filtros rápidos do mapa., Secondary Actions: Cancel
+					19 element Secondary Actions: Cancel
+					20 button Description: Você na FIAP, ID: AIRGMSMarker_0x1193e35c0, Secondary Actions: Cancel
+					21 button Description: Higienópolis Prime Charge, ID: AIRGMSMarker_0x10cbe2800, Secondary Actions: Cancel
+					22 button Description: Flui Express MASP, ID: AIRGMSMarker_0x129cb7e80, Secondary Actions: Cancel
+					23 button Description: Plug & Café Consolação, ID: AIRGMSMarker_0x129cb48c0, Secondary Actions: Cancel
+					24 button Description: Charge City Jardins, ID: AIRGMSMarker_0x109e86580, Secondary Actions: Cancel
+					25 button Description: Estação Jardins Pamplona, ID: AIRGMSMarker_0x109e875c0, Secondary Actions: Cancel
+					26 button Description: Hub Paraíso Vergueiro, ID: AIRGMSMarker_0x12a350f00, Secondary Actions: Cancel
+					27 button Description: Garagem Liberdade Solar, ID: AIRGMSMarker_0x12a352440, Secondary Actions: Cancel
+					28 button Description: Fast Point Ana Rosa, ID: AIRGMSMarker_0x12a352800, Secondary Actions: Cancel
+					29 button Description: Garagem Verde Brigadeiro, ID: AIRGMSMarker_0x12a3512c0, Secondary Actions: Cancel
+					30 slider (settable, unknown) Description: Mapa com pontos de recarga próximos, Secondary Actions: Cancel
+					31 button Description: Google Maps, Secondary Actions: Cancel
+					32 button Description: Aumentar zoom do mapa, Help: Aproxima a visualização do mapa., Secondary Actions: Cancel
+					33 button Description: Diminuir zoom do mapa, Help: Afasta a visualização do mapa., Secondary Actions: Cancel
+					34 button Description: Centralizar localização na FIAP, Help: Centraliza o mapa em uma localização próxima à FIAP., Secondary Actions: Cancel
+					35 button Description: Mostrar opções demonstrativas, Help: Traz de volta a lista de pontos recomendados., Secondary Actions: Cancel
+					36 button Description: Abrir assistente Flui IA, Help: Abre opções de recomendação simulada para encontrar um ponto de recarga., Secondary Actions: Cancel
+## Tentativa inicial inconclusiva no marcador Higienópolis Prime Charge | 2026-10-16T04:34:45.818Z
+					14 button Help: Toque para ajustar o nível de bateria e ver o alcance nos pontos., Secondary Actions: Cancel, Description: Bateria para estimativa: 45 por cento. Origem não registrada. Sem telemetria. Cerca de 180 quilômetros estimados
+					15 button Description: Abrir perfil, Secondary Actions: Cancel
+					16 button Description: Abrir busca e filtros, Secondary Actions: Cancel
+					17 text field (settable) Description: Buscar no mapa, Help: Digite endereço, bairro ou nome do ponto de recarga., Value: Buscar endereço, bairro ou ponto, Secondary Actions: Cancel
+					18 button Description: Mostrar atalhos de filtro, Help: Toque para abrir ou recolher os filtros rápidos do mapa., Secondary Actions: Cancel
+					19 element Secondary Actions: Cancel
+					20 button Description: Você na FIAP, ID: AIRGMSMarker_0x1193e35c0, Secondary Actions: Cancel
+					21 button Description: Flui Express MASP, ID: AIRGMSMarker_0x129cb7e80, Secondary Actions: Cancel
+					22 button Description: Plug & Café Consolação, ID: AIRGMSMarker_0x129cb48c0, Secondary Actions: Cancel
+					23 button Description: Estação Jardins Pamplona, ID: AIRGMSMarker_0x109e875c0, Secondary Actions: Cancel
+					24 button Description: Garagem Verde Brigadeiro, ID: AIRGMSMarker_0x12a3512c0, Secondary Actions: Cancel
+					25 slider (settable, unknown) Description: Mapa com pontos de recarga próximos, Secondary Actions: Cancel
+					26 button Description: Google Maps, Secondary Actions: Cancel
+					27 button Description: Aumentar zoom do mapa, Help: Aproxima a visualização do mapa., Secondary Actions: Cancel
+					28 button Description: Diminuir zoom do mapa, Help: Afasta a visualização do mapa., Secondary Actions: Cancel
+					29 button Description: Centralizar localização na FIAP, Help: Centraliza o mapa em uma localização próxima à FIAP., Secondary Actions: Cancel
+					30 button Description: Mostrar opções demonstrativas, Help: Traz de volta a lista de pontos recomendados., Secondary Actions: Cancel
+					31 button Description: Abrir assistente Flui IA, Help: Abre opções de recomendação simulada para encontrar um ponto de recarga., Secondary Actions: Cancel
+## FluIA nativa — carga rápida com bateria 45% | 2026-10-16T04:37:32.828Z
+					14 button Help: Toque para ajustar o nível de bateria e ver o alcance nos pontos., Secondary Actions: Cancel, Description: Bateria para estimativa: 45 por cento. Origem não registrada. Sem telemetria. Cerca de 180 quilômetros estimados
+					15 button Description: Abrir perfil, Secondary Actions: Cancel
+					16 button Description: Abrir busca e filtros, Secondary Actions: Cancel
+					17 text field (settable) Description: Buscar no mapa, Help: Digite endereço, bairro ou nome do ponto de recarga., Value: Buscar endereço, bairro ou ponto, Secondary Actions: Cancel
+					18 button Description: Mostrar atalhos de filtro, Help: Toque para abrir ou recolher os filtros rápidos do mapa., Secondary Actions: Cancel
+					19 element Secondary Actions: Cancel
+					20 button Description: Você na FIAP, ID: AIRGMSMarker_0x1193e35c0, Secondary Actions: Cancel
+					21 button Description: Flui Express MASP, ID: AIRGMSMarker_0x129cb7e80, Secondary Actions: Cancel
+					22 button Description: Plug & Café Consolação, ID: AIRGMSMarker_0x129cb48c0, Secondary Actions: Cancel
+					23 button Description: Estação Jardins Pamplona, ID: AIRGMSMarker_0x109e875c0, Secondary Actions: Cancel
+					24 button Description: Garagem Verde Brigadeiro, ID: AIRGMSMarker_0x12a3512c0, Secondary Actions: Cancel
+					25 slider (settable, unknown) Description: Mapa com pontos de recarga próximos, Secondary Actions: Cancel
+					26 button Description: Google Maps, Secondary Actions: Cancel
+					27 button Description: Aumentar zoom do mapa, Help: Aproxima a visualização do mapa., Secondary Actions: Cancel
+					28 button Description: Diminuir zoom do mapa, Help: Afasta a visualização do mapa., Secondary Actions: Cancel
+					29 button Description: Centralizar localização na FIAP, Help: Centraliza o mapa em uma localização próxima à FIAP., Secondary Actions: Cancel
+					30 button Description: Mostrar opções demonstrativas, Help: Traz de volta a lista de pontos recomendados., Secondary Actions: Cancel
+					31 button Description: Abrir assistente Flui IA, Help: Abre opções de recomendação simulada para encontrar um ponto de recarga., Secondary Actions: Cancel
+## Resultado da FluIA — carga rápida | 2026-10-16T04:37:56.042Z
+					14 button Description: Fechar assistente Flui IA, Secondary Actions: Cancel
+					15 text Description: Flui IA, Secondary Actions: Cancel
+					16 button Description: Fechar assistente, Secondary Actions: Cancel
+					17 text Description: Recomendação simulada com os dados do protótipo., Secondary Actions: Cancel
+					18 text Description: Sugestão demonstrativa, Secondary Actions: Cancel
+					19 text Description: Higienópolis Prime Charge, Secondary Actions: Cancel
+					20 text Description: Rua Alagoas, 974, Secondary Actions: Cancel
+					21 text Description: Chegada ≈44%, Secondary Actions: Cancel
+					22 text Description: 150 kW, Secondary Actions: Cancel
+					23 text Description: 4 livres, Secondary Actions: Cancel
+					24 text Description: 2,4 km, Secondary Actions: Cancel
+					25 text Description: Por que essa escolha?, Secondary Actions: Cancel
+					26 text Secondary Actions: Cancel, Description: Oferece até 150 kW nos conectores utilizáveis e 4 carregadores livres nos dados demonstrativos.
+					27 button Description: Ver Higienópolis Prime Charge no mapa, Help: Abre a ficha detalhada do ponto recomendado., Secondary Actions: Cancel
+					28 button Description: Escolher outra necessidade, Secondary Actions: Cancel
+## Ficha disponível aberta pela recomendação da FluIA | 2026-10-16T04:39:39.636Z
+					14 button Description: Voltar ao mapa, Secondary Actions: Cancel
+					15 button Description: Adicionar aos favoritos, Secondary Actions: Cancel
+					16 text Description: Higienópolis Prime Charge, Secondary Actions: Cancel
+					17 text Description: Rua Alagoas, 974, Higienópolis, São Paulo, SP, Secondary Actions: Cancel
+					18 text Description: 4.9, Secondary Actions: Cancel
+					19 text Description: (184 avaliações), Secondary Actions: Cancel
+					20 text Description: Aberto agora, Secondary Actions: Cancel
+					21 text Description: 4 de 6 carregadores livres no exemplo, Secondary Actions: Cancel
+					22 text Description: GUIA DO PONTO, Secondary Actions: Cancel
+					23 text Description: Opção com conector rápido no exemplo, Secondary Actions: Cancel
+					24 text Secondary Actions: Cancel, Description: Dados demonstrativos, sem disponibilidade em tempo real. Distância, autonomia e tempo de carga são estimativas simplificadas; confirme o funcionamento e a compatibilidade do veículo antes de ir.
+					25 text Description: Espera simulada, Secondary Actions: Cancel
+					26 text Description: Tempo estimado, Secondary Actions: Cancel
+					27 text Description: Perfil, Secondary Actions: Cancel
+					28 text Description: Baixa, Secondary Actions: Cancel
+					29 text Description: 20 a 35 min, Secondary Actions: Cancel
+					30 text Description: Carga rápida, Secondary Actions: Cancel
+					31 text Description: Autonomia confortável — chegada estimada com 44% de bateria, Secondary Actions: Cancel
+					32 text Description: Potência, Secondary Actions: Cancel
+					33 text Description: Conectores, Secondary Actions: Cancel
+					34 text Description: 150 kW, Secondary Actions: Cancel
+					35 text Description: CCS2, Type 2, Secondary Actions: Cancel
+					36 text Description: Velocidade de carga, Secondary Actions: Cancel
+					37 text Description: Tipos compatíveis, Secondary Actions: Cancel
+					38 text Description: Funcionamento, Secondary Actions: Cancel
+					39 text Description: Distância, Secondary Actions: Cancel
+					40 text Description: 24 horas, todos os dias, Secondary Actions: Cancel
+					41 text Description: 2.4 km, Secondary Actions: Cancel
+					42 text Description: Próximo de você, Secondary Actions: Cancel
+					43 text Description: Disponibilidade demonstrativa de carregadores, Secondary Actions: Cancel
+					44 text Description: Horário sugerido no exemplo, Secondary Actions: Cancel
+					45 text Description: 06h às 08h ou 13h às 15h ou 22h às 00h, Secondary Actions: Cancel
+					46 text Description: Sem previsão de movimento em tempo real, Secondary Actions: Cancel
+					47 text Description: Conectores do ponto, Secondary Actions: Cancel
+					48 text Description: CCS2, Secondary Actions: Cancel
+					49 text Description: 150 kW · 2 de 4 disponíveis, Secondary Actions: Cancel
+					50 text Description: Type 2, Secondary Actions: Cancel
+					51 text Description: 22 kW · 2 de 2 disponíveis, Secondary Actions: Cancel
+					52 text Description: Comodidades próximas, Secondary Actions: Cancel
+					53 text Description: Estacionamento, Secondary Actions: Cancel
+					54 text Description: Área coberta, Secondary Actions: Cancel
+					55 text Description: Banheiro, Secondary Actions: Cancel
+					56 text Description: Café, Secondary Actions: Cancel
+					57 text Description: Wi-Fi, Secondary Actions: Cancel
+					58 text Description: Segurança, Secondary Actions: Cancel
+					59 text Description: Avaliações de usuários, Secondary Actions: Cancel
+					60 text Description: 4.9, Secondary Actions: Cancel
+					61 text Description: 5 ★, Secondary Actions: Cancel
+					62 text Description: 85%, Secondary Actions: Cancel
+					63 text Description: 4 ★, Secondary Actions: Cancel
+					64 text Description: 10%, Secondary Actions: Cancel
+					65 text Description: 3 ★, Secondary Actions: Cancel
+					66 text Description: 3%, Secondary Actions: Cancel
+					67 text Description: ★ ★ ★ ★ ★, Secondary Actions: Cancel
+					68 text Description: 2 ★, Secondary Actions: Cancel
+					69 text Description: 1%, Secondary Actions: Cancel
+					70 text Description: 184 avaliações, Secondary Actions: Cancel
+					71 text Description: 1 ★, Secondary Actions: Cancel
+					72 text Description: 1%, Secondary Actions: Cancel
+					73 button Description: Editar minha avaliação deste ponto, Help: Abre a tela de avaliação do ponto de recarga., Secondary Actions: Cancel
+					74 text Description: Leonardo Bragatti, Secondary Actions: Cancel
+					75 text Description: LB, Secondary Actions: Cancel
+					76 text Description: ★ ★ ★ ★ ★, Secondary Actions: Cancel
+					77 text Description: Cobertura, banheiro e café deixam a parada bem confortável para uma recarga rápida., Secondary Actions: Cancel
+					78 text Description: Marina Polverari, Secondary Actions: Cancel
+					79 text Description: MP, Secondary Actions: Cancel
+					80 text Description: ★ ★ ★ ★ ★, Secondary Actions: Cancel
+					81 text Description: Boa sinalização, ambiente limpo e conexão estável no CCS2 durante a recarga., Secondary Actions: Cancel
+					82 text Description: John Paul, Secondary Actions: Cancel
+					83 text Description: JP, Secondary Actions: Cancel
+					84 text Description: ★ ★ ★ ★ ★, Secondary Actions: Cancel
+					85 text Description: Ponto completo para quem precisa carregar sem abrir mão de segurança e Wi-Fi., Secondary Actions: Cancel
+					86 button Description: Ver mapa, Secondary Actions: Cancel
+					87 button Description: Iniciar rota para Higienópolis Prime Charge, Help: Mostra o aviso de funcionamento antes de escolher Google Maps ou Waze., Secondary Actions: Cancel
+## Bateria manual 0% aplicada no iOS | 2026-10-16T04:42:07.588Z
+					14 button Help: Toque para ajustar o nível de bateria e ver o alcance nos pontos., Secondary Actions: Cancel, Description: Bateria para estimativa: 45 por cento. Origem não registrada. Sem telemetria. Cerca de 180 quilômetros estimados
+					15 button Description: Abrir perfil, Secondary Actions: Cancel
+					16 button Description: Abrir busca e filtros, Secondary Actions: Cancel
+					17 text field (settable) Description: Buscar no mapa, Help: Digite endereço, bairro ou nome do ponto de recarga., Value: Buscar endereço, bairro ou ponto, Secondary Actions: Cancel
+					18 button Description: Mostrar atalhos de filtro, Help: Toque para abrir ou recolher os filtros rápidos do mapa., Secondary Actions: Cancel
+					19 button Description: Fechar seletor de bateria, Secondary Actions: Cancel
+					20 text Description: Bateria para estimativa, Secondary Actions: Cancel
+					21 button Description: Fechar sem definir a carga, Help: Descarta a carga selecionada e fecha este painel., Secondary Actions: Cancel
+					22 text Description: ≈0 km estimados · sem telemetria, Secondary Actions: Cancel
+					23 button (disabled) Description: Diminuir bateria em 5 por cento, Secondary Actions: Cancel
+					24 text Description: 0%, Secondary Actions: Cancel
+					25 button Description: Aumentar bateria em 5 por cento, Secondary Actions: Cancel
+					26 text Description: ≈0 km, Secondary Actions: Cancel
+					27 text Description: Ajuste manualmente apenas com o veículo parado., Secondary Actions: Cancel
+					28 button Description: Definir carga da bateria, Secondary Actions: Cancel
+					29 element Secondary Actions: Cancel
+					30 button Description: Você na FIAP, ID: AIRGMSMarker_0x1338bf700, Secondary Actions: Cancel
+					31 button Description: Flui Express MASP, ID: AIRGMSMarker_0x1338bfac0, Secondary Actions: Cancel
+					32 button Description: Estação Jardins Pamplona, ID: AIRGMSMarker_0x1338bfc00, Secondary Actions: Cancel
+					33 button Description: Garagem Verde Brigadeiro, ID: AIRGMSMarker_0x1338f3340, Secondary Actions: Cancel
+					34 slider (settable, unknown) Description: Mapa com pontos de recarga próximos, Secondary Actions: Cancel
+					35 button Description: Google Maps, Secondary Actions: Cancel
+					36 button Description: Aumentar zoom do mapa, Help: Aproxima a visualização do mapa., Secondary Actions: Cancel
+					37 button Description: Diminuir zoom do mapa, Help: Afasta a visualização do mapa., Secondary Actions: Cancel
+					38 button Description: Centralizar localização na FIAP, Help: Centraliza o mapa em uma localização próxima à FIAP., Secondary Actions: Cancel
+					39 button Description: Abrir assistente Flui IA, Help: Abre opções de recomendação simulada para encontrar um ponto de recarga., Secondary Actions: Cancel
+					40 button Description: Minimizar opções demonstrativas para ver o mapa inteiro, Help: Esconde completamente o painel, deixando só um atalho para trazê-lo de volta., Secondary Actions: Cancel
+					41 text Description: Opções demonstrativas, Secondary Actions: Cancel
+					42 button Help: Abre a ficha detalhada do ponto de recarga., Secondary Actions: Cancel, Description: Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. Chegada estimada com 44% de bateria.
+## FluIA recusou carga rápida com bateria manual em 0% | 2026-10-16T04:43:04.657Z
+					14 button Description: Fechar assistente Flui IA, Secondary Actions: Cancel
+					15 text Description: Flui IA, Secondary Actions: Cancel
+					16 button Description: Fechar assistente, Secondary Actions: Cancel
+					17 text Description: Recomendação simulada com os dados do protótipo., Secondary Actions: Cancel
+					18 text Description: Nenhuma opção viável confirmada, Secondary Actions: Cancel
+					19 text Secondary Actions: Cancel, Description: Os dados disponíveis não confirmam uma opção com alcance, horário, carregador livre e comodidades solicitadas. Revise os filtros e os dados informados. Não há indicação segura neste cenário.
+## Busca aplicada: Plug & Café fechado, antes de ativar filtro rápido | 2026-10-16T09:36:51.963Z
+					14 button Help: Toque para ajustar o nível de bateria e ver o alcance nos pontos., Secondary Actions: Cancel, Description: Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 180 quilômetros estimados
+					15 button Description: Abrir perfil, Secondary Actions: Cancel
+					16 button Description: Abrir busca e filtros, Secondary Actions: Cancel
+					17 text field (settable) Description: Buscar no mapa, Help: Digite endereço, bairro ou nome do ponto de recarga., Value: Plug & Café Consolação, Placeholder: Buscar endereço, bairro ou ponto, Secondary Actions: Cancel
+					18 button Description: Mostrar atalhos de filtro, Help: Toque para abrir ou recolher os filtros rápidos do mapa., Secondary Actions: Cancel
+					19 element Secondary Actions: Cancel
+					20 button Description: Você na FIAP, ID: AIRGMSMarker_0x13e180f00, Secondary Actions: Cancel
+					21 button Description: Plug & Café Consolação, ID: AIRGMSMarker_0x13e1826c0, Secondary Actions: Cancel
+					22 slider (settable, unknown) Description: Mapa com pontos de recarga próximos, Secondary Actions: Cancel
+					23 button Description: Google Maps, Secondary Actions: Cancel
+					24 button Description: Aumentar zoom do mapa, Help: Aproxima a visualização do mapa., Secondary Actions: Cancel
+					25 button Description: Diminuir zoom do mapa, Help: Afasta a visualização do mapa., Secondary Actions: Cancel
+					26 button Description: Centralizar localização na FIAP, Help: Centraliza o mapa em uma localização próxima à FIAP., Secondary Actions: Cancel
+					27 button Description: Abrir assistente Flui IA, Help: Abre opções de recomendação simulada para encontrar um ponto de recarga., Secondary Actions: Cancel
+					28 button Description: Minimizar opções demonstrativas para ver o mapa inteiro, Help: Esconde completamente o painel, deixando só um atalho para trazê-lo de volta., Secondary Actions: Cancel
+					29 text Description: Nenhum ponto disponível, Secondary Actions: Cancel
+					30 text Description: Não encontramos pontos com esses critérios., Secondary Actions: Cancel
+					31 text Description: Tente limpar alguns filtros ou buscar por outro endereço., Secondary Actions: Cancel
+					32 button Description: Ajustar busca, Secondary Actions: Cancel
+## Filtro rápido Aberto agora excluiu o marcador de Plug & Café fechado | 2026-10-16T09:37:29.024Z
+					14 button Help: Toque para ajustar o nível de bateria e ver o alcance nos pontos., Secondary Actions: Cancel, Description: Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 180 quilômetros estimados
+					15 button Description: Abrir perfil, Secondary Actions: Cancel
+					16 button Description: Abrir busca e filtros, Secondary Actions: Cancel
+					17 text field (settable) Description: Buscar no mapa, Help: Digite endereço, bairro ou nome do ponto de recarga., Value: Plug & Café Consolação, Placeholder: Buscar endereço, bairro ou ponto, Secondary Actions: Cancel
+					18 button (selected) Description: Aberto agora, filtro ativo, Help: Filtra os pontos do mapa em tempo real., Secondary Actions: Cancel
+					19 button Description: CCS2, Help: Filtra os pontos do mapa em tempo real., Secondary Actions: Cancel
+					20 button Description: Rápido, Help: Filtra os pontos do mapa em tempo real., Secondary Actions: Cancel
+					21 button Description: Banheiro, Help: Filtra os pontos do mapa em tempo real., Secondary Actions: Cancel
+					22 button Description: Recolher atalhos de filtro, Help: Toque para abrir ou recolher os filtros rápidos do mapa., Value: expanded, Secondary Actions: Cancel
+					23 element Secondary Actions: Cancel
+					24 slider (settable, unknown) Description: Mapa com pontos de recarga próximos, Secondary Actions: Cancel
+					25 button Description: Google Maps, Secondary Actions: Cancel
+					26 button Description: Aumentar zoom do mapa, Help: Aproxima a visualização do mapa., Secondary Actions: Cancel
+					27 button Description: Diminuir zoom do mapa, Help: Afasta a visualização do mapa., Secondary Actions: Cancel
+					28 button Description: Centralizar localização na FIAP, Help: Centraliza o mapa em uma localização próxima à FIAP., Secondary Actions: Cancel
+					29 button Description: Abrir assistente Flui IA, Help: Abre opções de recomendação simulada para encontrar um ponto de recarga., Secondary Actions: Cancel
+					30 button Description: Minimizar opções demonstrativas para ver o mapa inteiro, Help: Esconde completamente o painel, deixando só um atalho para trazê-lo de volta., Secondary Actions: Cancel
+					31 text Description: Nenhum ponto disponível, Secondary Actions: Cancel
+					32 text Description: Não encontramos pontos com esses critérios., Secondary Actions: Cancel
+					33 text Description: Tente limpar alguns filtros ou buscar por outro endereço., Secondary Actions: Cancel
+					34 button Description: Ajustar busca, Secondary Actions: Cancel
+## Antes das 20h simuladas — FluIA recomenda Plug & Café sob filtro Aberto agora | 2026-10-16T09:38:53.516Z
+					14 button Description: Fechar assistente Flui IA, Secondary Actions: Cancel
+					15 text Description: Flui IA, Secondary Actions: Cancel
+					16 button Description: Fechar assistente, Secondary Actions: Cancel
+					17 text Description: Recomendação simulada com os dados do protótipo., Secondary Actions: Cancel
+					18 text Description: Sugestão demonstrativa, Secondary Actions: Cancel
+					19 text Description: Plug & Café Consolação, Secondary Actions: Cancel
+					20 text Description: R. da Consolação, 2302, Secondary Actions: Cancel
+					21 text Description: Chegada ≈44%, Secondary Actions: Cancel
+					22 text Description: 50 kW, Secondary Actions: Cancel
+					23 text Description: 3 livres, Secondary Actions: Cancel
+					24 text Description: 1,1 km, Secondary Actions: Cancel
+					25 text Description: Por que essa escolha?, Secondary Actions: Cancel
+					26 text Secondary Actions: Cancel, Description: Oferece até 50 kW nos conectores utilizáveis e 3 carregadores livres nos dados demonstrativos.
+					27 button Description: Ver Plug & Café Consolação no mapa, Help: Abre a ficha detalhada do ponto recomendado., Secondary Actions: Cancel
+					28 button Description: Escolher outra necessidade, Secondary Actions: Cancel
+## Após as 20h simuladas — atualização automática da FluIA sem navegação/reload | 2026-10-16T09:39:35.127Z
+					14 button Description: Fechar assistente Flui IA, Secondary Actions: Cancel
+					15 text Description: Flui IA, Secondary Actions: Cancel
+					16 button Description: Fechar assistente, Secondary Actions: Cancel
+					17 text Description: Recomendação simulada com os dados do protótipo., Secondary Actions: Cancel
+					18 text Description: Nenhuma opção viável confirmada, Secondary Actions: Cancel
+					19 text Secondary Actions: Cancel, Description: Os dados disponíveis não confirmam uma opção com alcance, horário, carregador livre e comodidades solicitadas. Revise os filtros e os dados informados. Não há indicação segura neste cenário.
+## Mapa às 19h58 simuladas com filtro Aberto agora ativo | 2026-10-16T09:41:05.386Z
+					14 button Help: Toque para ajustar o nível de bateria e ver o alcance nos pontos., Secondary Actions: Cancel, Description: Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 180 quilômetros estimados
+					15 button Description: Abrir perfil, Secondary Actions: Cancel
+					16 button Description: Abrir busca e filtros, Secondary Actions: Cancel
+					17 text field (settable) Description: Buscar no mapa, Help: Digite endereço, bairro ou nome do ponto de recarga., Value: Plug & Café Consolação, Placeholder: Buscar endereço, bairro ou ponto, Secondary Actions: Cancel
+					18 button (selected) Description: Aberto agora, filtro ativo, Help: Filtra os pontos do mapa em tempo real., Secondary Actions: Cancel
+					19 button Description: CCS2, Help: Filtra os pontos do mapa em tempo real., Secondary Actions: Cancel
+					20 button Description: Rápido, Help: Filtra os pontos do mapa em tempo real., Secondary Actions: Cancel
+					21 button Description: Banheiro, Help: Filtra os pontos do mapa em tempo real., Secondary Actions: Cancel
+					22 button Description: Recolher atalhos de filtro, Help: Toque para abrir ou recolher os filtros rápidos do mapa., Value: expanded, Secondary Actions: Cancel
+					23 element Secondary Actions: Cancel
+					24 button Description: Você na FIAP, ID: AIRGMSMarker_0x13e180f00, Secondary Actions: Cancel
+					25 button Description: Plug & Café Consolação, ID: AIRGMSMarker_0x13e175900, Secondary Actions: Cancel
+					26 slider (settable, unknown) Description: Mapa com pontos de recarga próximos, Secondary Actions: Cancel
+					27 button Description: Google Maps, Secondary Actions: Cancel
+					28 button Description: Aumentar zoom do mapa, Help: Aproxima a visualização do mapa., Secondary Actions: Cancel
+					29 button Description: Diminuir zoom do mapa, Help: Afasta a visualização do mapa., Secondary Actions: Cancel
+					30 button Description: Centralizar localização na FIAP, Help: Centraliza o mapa em uma localização próxima à FIAP., Secondary Actions: Cancel
+					31 button Description: Abrir assistente Flui IA, Help: Abre opções de recomendação simulada para encontrar um ponto de recarga., Secondary Actions: Cancel
+					32 button Description: Minimizar opções demonstrativas para ver o mapa inteiro, Help: Esconde completamente o painel, deixando só um atalho para trazê-lo de volta., Secondary Actions: Cancel
+					33 text Description: Opções demonstrativas, Secondary Actions: Cancel
+					34 button Help: Abre a ficha detalhada do ponto de recarga., Secondary Actions: Cancel, Description: Plug & Café Consolação. Opção demonstrativa. R. da Consolação, 2302. Aberto agora. Nota 4,3. 50 kW. Chegada estimada com 45% de bateria.
+## Mapa após passar das 20h sem interação: marcador e cartão removidos | 2026-10-16T09:43:37.331Z
+					14 button Help: Toque para ajustar o nível de bateria e ver o alcance nos pontos., Secondary Actions: Cancel, Description: Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 180 quilômetros estimados
+					15 button Description: Abrir perfil, Secondary Actions: Cancel
+					16 button Description: Abrir busca e filtros, Secondary Actions: Cancel
+					17 text field (settable) Description: Buscar no mapa, Help: Digite endereço, bairro ou nome do ponto de recarga., Value: Plug & Café Consolação, Placeholder: Buscar endereço, bairro ou ponto, Secondary Actions: Cancel
+					18 button (selected) Description: Aberto agora, filtro ativo, Help: Filtra os pontos do mapa em tempo real., Secondary Actions: Cancel
+					19 button Description: CCS2, Help: Filtra os pontos do mapa em tempo real., Secondary Actions: Cancel
+					20 button Description: Rápido, Help: Filtra os pontos do mapa em tempo real., Secondary Actions: Cancel
+					21 button Description: Banheiro, Help: Filtra os pontos do mapa em tempo real., Secondary Actions: Cancel
+					22 button Description: Recolher atalhos de filtro, Help: Toque para abrir ou recolher os filtros rápidos do mapa., Value: expanded, Secondary Actions: Cancel
+					23 element Secondary Actions: Cancel
+					24 slider (settable, unknown) Description: Mapa com pontos de recarga próximos, Secondary Actions: Cancel
+					25 button Description: Google Maps, Secondary Actions: Cancel
+					26 button Description: Aumentar zoom do mapa, Help: Aproxima a visualização do mapa., Secondary Actions: Cancel
+					27 button Description: Diminuir zoom do mapa, Help: Afasta a visualização do mapa., Secondary Actions: Cancel
+					28 button Description: Centralizar localização na FIAP, Help: Centraliza o mapa em uma localização próxima à FIAP., Secondary Actions: Cancel
+					29 button Description: Abrir assistente Flui IA, Help: Abre opções de recomendação simulada para encontrar um ponto de recarga., Secondary Actions: Cancel
+					30 button Description: Minimizar opções demonstrativas para ver o mapa inteiro, Help: Esconde completamente o painel, deixando só um atalho para trazê-lo de volta., Secondary Actions: Cancel
+					31 text Description: Nenhum ponto disponível, Secondary Actions: Cancel
+					32 text Description: Não encontramos pontos com esses critérios., Secondary Actions: Cancel
+					33 text Description: Tente limpar alguns filtros ou buscar por outro endereço., Secondary Actions: Cancel
+					34 button Description: Ajustar busca, Secondary Actions: Cancel
+## Resultado estabilizado do toque no marcador Plug & Café | 2026-10-16T09:46:53.538Z
+					14 button Description: Voltar ao mapa, Secondary Actions: Cancel
+					15 button Description: Adicionar aos favoritos, Secondary Actions: Cancel
+					16 text Description: Plug & Café Consolação, Secondary Actions: Cancel
+					17 text Description: R. da Consolação, 2302, Consolação, São Paulo, SP, Secondary Actions: Cancel
+					18 text Description: 4.3, Secondary Actions: Cancel
+					19 text Description: (72 avaliações), Secondary Actions: Cancel
+					20 text Description: Aberto agora, Secondary Actions: Cancel
+					21 text Description: 3 de 4 carregadores livres no exemplo, Secondary Actions: Cancel
+					22 text Description: GUIA DO PONTO, Secondary Actions: Cancel
+					23 text Description: Opção de recarga nos dados demonstrativos, Secondary Actions: Cancel
+					24 text Secondary Actions: Cancel, Description: Dados demonstrativos, sem disponibilidade em tempo real. Distância, autonomia e tempo de carga são estimativas simplificadas; confirme o funcionamento e a compatibilidade do veículo antes de ir.
+					25 text Description: Espera simulada, Secondary Actions: Cancel
+					26 text Description: Tempo estimado, Secondary Actions: Cancel
+					27 text Description: Perfil, Secondary Actions: Cancel
+					28 text Description: Parada confortável, Secondary Actions: Cancel
+					29 text Description: Baixa, Secondary Actions: Cancel
+					30 text Description: 40 a 60 min, Secondary Actions: Cancel
+					31 text Description: Autonomia confortável — chegada estimada com 45% de bateria, Secondary Actions: Cancel
+					32 text Description: Potência, Secondary Actions: Cancel
+					33 text Description: Conectores, Secondary Actions: Cancel
+					34 text Description: 50 kW, Secondary Actions: Cancel
+					35 text Description: CCS2, Type 2, Secondary Actions: Cancel
+					36 text Description: Velocidade de carga, Secondary Actions: Cancel
+					37 text Description: Tipos compatíveis, Secondary Actions: Cancel
+					38 text Description: Funcionamento, Secondary Actions: Cancel
+					39 text Description: Distância, Secondary Actions: Cancel
+					40 text Description: Segunda a sábado, 08h às 20h, Secondary Actions: Cancel
+					41 text Description: 1.1 km, Secondary Actions: Cancel
+					42 text Description: Próximo de você, Secondary Actions: Cancel
+					43 text Description: Disponibilidade demonstrativa de carregadores, Secondary Actions: Cancel
+					44 text Description: Horário sugerido no exemplo, Secondary Actions: Cancel
+					45 text Description: 08h às 10h ou 15h às 17h, Secondary Actions: Cancel
+					46 text Description: Sem previsão de movimento em tempo real, Secondary Actions: Cancel
+					47 text Description: Conectores do ponto, Secondary Actions: Cancel
+					48 text Description: CCS2, Secondary Actions: Cancel
+					49 text Description: 50 kW · 1 de 2 disponíveis, Secondary Actions: Cancel
+					50 text Description: Type 2, Secondary Actions: Cancel
+					51 text Description: 22 kW · 2 de 2 disponíveis, Secondary Actions: Cancel
+					52 text Description: Comodidades próximas, Secondary Actions: Cancel
+					53 text Description: Café, Secondary Actions: Cancel
+					54 text Description: Banheiro, Secondary Actions: Cancel
+					55 text Description: Wi-Fi, Secondary Actions: Cancel
+					56 text Description: Área coberta, Secondary Actions: Cancel
+					57 text Description: Avaliações de usuários, Secondary Actions: Cancel
+					58 text Description: 4.3, Secondary Actions: Cancel
+					59 text Description: 5 ★, Secondary Actions: Cancel
+					60 text Description: 85%, Secondary Actions: Cancel
+					61 text Description: 4 ★, Secondary Actions: Cancel
+					62 text Description: 10%, Secondary Actions: Cancel
+					63 text Description: 3 ★, Secondary Actions: Cancel
+					64 text Description: 3%, Secondary Actions: Cancel
+					65 text Description: ★ ★ ★ ★ ☆, Secondary Actions: Cancel
+					66 text Description: 2 ★, Secondary Actions: Cancel
+					67 text Description: 1%, Secondary Actions: Cancel
+					68 text Description: 72 avaliações, Secondary Actions: Cancel
+					69 text Description: 1 ★, Secondary Actions: Cancel
+					70 text Description: 1%, Secondary Actions: Cancel
+					71 button Description: Avaliar este ponto, Help: Abre a tela de avaliação do ponto de recarga., Secondary Actions: Cancel
+					72 text Description: Marina Polverari, Secondary Actions: Cancel
+					73 text Description: MP, Secondary Actions: Cancel
+					74 text Description: ★ ★ ★ ★ ☆, Secondary Actions: Cancel
+					75 text Description: Bom equilíbrio entre recarga e pausa curta, principalmente pela estrutura de café., Secondary Actions: Cancel
+					76 text Description: Wagner Sanchez, Secondary Actions: Cancel
+					77 text Description: WS, Secondary Actions: Cancel
+					78 text Description: ★ ★ ★ ★ ☆, Secondary Actions: Cancel
+					79 text Description: O Type 2 atende bem uma parada mais longa, com área coberta e Wi-Fi como apoio., Secondary Actions: Cancel
+					80 button Description: Ver mapa, Secondary Actions: Cancel
+					81 button Description: Iniciar rota para Plug & Café Consolação, Help: Mostra o aviso de funcionamento antes de escolher Google Maps ou Waze., Secondary Actions: Cancel
+## Ficha Plug & Café durante espera do próximo ciclo de atualização | 2026-10-16T09:47:12.688Z
+					14 button Description: Voltar ao mapa, Secondary Actions: Cancel
+					15 button Description: Adicionar aos favoritos, Secondary Actions: Cancel
+					16 text Description: Plug & Café Consolação, Secondary Actions: Cancel
+					17 text Description: R. da Consolação, 2302, Consolação, São Paulo, SP, Secondary Actions: Cancel
+					18 text Description: 4.3, Secondary Actions: Cancel
+					19 text Description: (72 avaliações), Secondary Actions: Cancel
+					20 text Description: Aberto agora, Secondary Actions: Cancel
+					21 text Description: 3 de 4 carregadores livres no exemplo, Secondary Actions: Cancel
+					22 text Description: GUIA DO PONTO, Secondary Actions: Cancel
+					23 text Description: Opção de recarga nos dados demonstrativos, Secondary Actions: Cancel
+					24 text Secondary Actions: Cancel, Description: Dados demonstrativos, sem disponibilidade em tempo real. Distância, autonomia e tempo de carga são estimativas simplificadas; confirme o funcionamento e a compatibilidade do veículo antes de ir.
+					25 text Description: Espera simulada, Secondary Actions: Cancel
+					26 text Description: Tempo estimado, Secondary Actions: Cancel
+					27 text Description: Perfil, Secondary Actions: Cancel
+					28 text Description: Parada confortável, Secondary Actions: Cancel
+					29 text Description: Baixa, Secondary Actions: Cancel
+					30 text Description: 40 a 60 min, Secondary Actions: Cancel
+					31 text Description: Autonomia confortável — chegada estimada com 45% de bateria, Secondary Actions: Cancel
+					32 text Description: Potência, Secondary Actions: Cancel
+					33 text Description: Conectores, Secondary Actions: Cancel
+					34 text Description: 50 kW, Secondary Actions: Cancel
+					35 text Description: CCS2, Type 2, Secondary Actions: Cancel
+					36 text Description: Velocidade de carga, Secondary Actions: Cancel
+					37 text Description: Tipos compatíveis, Secondary Actions: Cancel
+					38 text Description: Funcionamento, Secondary Actions: Cancel
+					39 text Description: Distância, Secondary Actions: Cancel
+					40 text Description: Segunda a sábado, 08h às 20h, Secondary Actions: Cancel
+					41 text Description: 1.1 km, Secondary Actions: Cancel
+					42 text Description: Próximo de você, Secondary Actions: Cancel
+					43 text Description: Disponibilidade demonstrativa de carregadores, Secondary Actions: Cancel
+					44 text Description: Horário sugerido no exemplo, Secondary Actions: Cancel
+					45 text Description: 08h às 10h ou 15h às 17h, Secondary Actions: Cancel
+					46 text Description: Sem previsão de movimento em tempo real, Secondary Actions: Cancel
+					47 text Description: Conectores do ponto, Secondary Actions: Cancel
+					48 text Description: CCS2, Secondary Actions: Cancel
+					49 text Description: 50 kW · 1 de 2 disponíveis, Secondary Actions: Cancel
+					50 text Description: Type 2, Secondary Actions: Cancel
+					51 text Description: 22 kW · 2 de 2 disponíveis, Secondary Actions: Cancel
+					52 text Description: Comodidades próximas, Secondary Actions: Cancel
+					53 text Description: Café, Secondary Actions: Cancel
+					54 text Description: Banheiro, Secondary Actions: Cancel
+					55 text Description: Wi-Fi, Secondary Actions: Cancel
+					56 text Description: Área coberta, Secondary Actions: Cancel
+					57 text Description: Avaliações de usuários, Secondary Actions: Cancel
+					58 text Description: 4.3, Secondary Actions: Cancel
+					59 text Description: 5 ★, Secondary Actions: Cancel
+					60 text Description: 85%, Secondary Actions: Cancel
+					61 text Description: 4 ★, Secondary Actions: Cancel
+					62 text Description: 10%, Secondary Actions: Cancel
+					63 text Description: 3 ★, Secondary Actions: Cancel
+					64 text Description: 3%, Secondary Actions: Cancel
+					65 text Description: ★ ★ ★ ★ ☆, Secondary Actions: Cancel
+					66 text Description: 2 ★, Secondary Actions: Cancel
+					67 text Description: 1%, Secondary Actions: Cancel
+					68 text Description: 72 avaliações, Secondary Actions: Cancel
+					69 text Description: 1 ★, Secondary Actions: Cancel
+					70 text Description: 1%, Secondary Actions: Cancel
+					71 button Description: Avaliar este ponto, Help: Abre a tela de avaliação do ponto de recarga., Secondary Actions: Cancel
+					72 text Description: Marina Polverari, Secondary Actions: Cancel
+					73 text Description: MP, Secondary Actions: Cancel
+					74 text Description: ★ ★ ★ ★ ☆, Secondary Actions: Cancel
+					75 text Description: Bom equilíbrio entre recarga e pausa curta, principalmente pela estrutura de café., Secondary Actions: Cancel
+					76 text Description: Wagner Sanchez, Secondary Actions: Cancel
+					77 text Description: WS, Secondary Actions: Cancel
+					78 text Description: ★ ★ ★ ★ ☆, Secondary Actions: Cancel
+					79 text Description: O Type 2 atende bem uma parada mais longa, com área coberta e Wi-Fi como apoio., Secondary Actions: Cancel
+					80 button Description: Ver mapa, Secondary Actions: Cancel
+					81 button Description: Iniciar rota para Plug & Café Consolação, Help: Mostra o aviso de funcionamento antes de escolher Google Maps ou Waze., Secondary Actions: Cancel
+## Ficha após ciclo real de atualização: fechamento às 20h | 2026-10-16T09:47:35.051Z
+					14 button Description: Voltar ao mapa, Secondary Actions: Cancel
+					15 button Description: Adicionar aos favoritos, Secondary Actions: Cancel
+					16 text Description: Plug & Café Consolação, Secondary Actions: Cancel
+					17 text Description: R. da Consolação, 2302, Consolação, São Paulo, SP, Secondary Actions: Cancel
+					18 text Description: 4.3, Secondary Actions: Cancel
+					19 text Description: (72 avaliações), Secondary Actions: Cancel
+					20 text Description: Fechado agora, Secondary Actions: Cancel
+					21 text Description: 3 de 4 carregadores livres no exemplo, Secondary Actions: Cancel
+					22 text Description: GUIA DO PONTO, Secondary Actions: Cancel
+					23 text Description: Recarga não confirmada neste ponto, Secondary Actions: Cancel
+					24 text Secondary Actions: Cancel, Description: Dados demonstrativos, sem disponibilidade em tempo real. Distância, autonomia e tempo de carga são estimativas simplificadas; confirme o funcionamento e a compatibilidade do veículo antes de ir.
+					25 text Description: Espera simulada, Secondary Actions: Cancel
+					26 text Description: Tempo estimado, Secondary Actions: Cancel
+					27 text Description: Perfil, Secondary Actions: Cancel
+					28 text Description: Parada confortável, Secondary Actions: Cancel
+					29 text Description: Indisponível, Secondary Actions: Cancel
+					30 text Description: 40 a 60 min, Secondary Actions: Cancel
+					31 text Description: Autonomia confortável — chegada estimada com 45% de bateria, Secondary Actions: Cancel
+					32 text Description: Potência, Secondary Actions: Cancel
+					33 text Description: Conectores, Secondary Actions: Cancel
+					34 text Description: 50 kW, Secondary Actions: Cancel
+					35 text Description: CCS2, Type 2, Secondary Actions: Cancel
+					36 text Description: Velocidade de carga, Secondary Actions: Cancel
+					37 text Description: Tipos compatíveis, Secondary Actions: Cancel
+					38 text Description: Funcionamento, Secondary Actions: Cancel
+					39 text Description: Distância, Secondary Actions: Cancel
+					40 text Description: Segunda a sábado, 08h às 20h, Secondary Actions: Cancel
+					41 text Description: 1.1 km, Secondary Actions: Cancel
+					42 text Description: Próximo de você, Secondary Actions: Cancel
+					43 text Description: Segunda a sábado, 08h às 20h, Secondary Actions: Cancel
+					44 text Description: Horário sugerido no exemplo, Secondary Actions: Cancel
+					45 text Description: 08h às 10h ou 15h às 17h, Secondary Actions: Cancel
+					46 text Description: Sem previsão de movimento em tempo real, Secondary Actions: Cancel
+					47 text Description: Conectores do ponto, Secondary Actions: Cancel
+					48 text Description: CCS2, Secondary Actions: Cancel
+					49 text Description: 50 kW · 1 de 2 disponíveis, Secondary Actions: Cancel
+					50 text Description: Type 2, Secondary Actions: Cancel
+					51 text Description: 22 kW · 2 de 2 disponíveis, Secondary Actions: Cancel
+					52 text Description: Comodidades próximas, Secondary Actions: Cancel
+					53 text Description: Café, Secondary Actions: Cancel
+					54 text Description: Banheiro, Secondary Actions: Cancel
+					55 text Description: Wi-Fi, Secondary Actions: Cancel
+					56 text Description: Área coberta, Secondary Actions: Cancel
+					57 text Description: Avaliações de usuários, Secondary Actions: Cancel
+					58 text Description: 4.3, Secondary Actions: Cancel
+					59 text Description: 5 ★, Secondary Actions: Cancel
+					60 text Description: 85%, Secondary Actions: Cancel
+					61 text Description: 4 ★, Secondary Actions: Cancel
+					62 text Description: 10%, Secondary Actions: Cancel
+					63 text Description: 3 ★, Secondary Actions: Cancel
+					64 text Description: 3%, Secondary Actions: Cancel
+					65 text Description: ★ ★ ★ ★ ☆, Secondary Actions: Cancel
+					66 text Description: 2 ★, Secondary Actions: Cancel
+					67 text Description: 1%, Secondary Actions: Cancel
+					68 text Description: 72 avaliações, Secondary Actions: Cancel
+					69 text Description: 1 ★, Secondary Actions: Cancel
+					70 text Description: 1%, Secondary Actions: Cancel
+					71 button Description: Avaliar este ponto, Help: Abre a tela de avaliação do ponto de recarga., Secondary Actions: Cancel
+					72 text Description: Marina Polverari, Secondary Actions: Cancel
+					73 text Description: MP, Secondary Actions: Cancel
+					74 text Description: ★ ★ ★ ★ ☆, Secondary Actions: Cancel
+					75 text Description: Bom equilíbrio entre recarga e pausa curta, principalmente pela estrutura de café., Secondary Actions: Cancel
+					76 text Description: Wagner Sanchez, Secondary Actions: Cancel
+					77 text Description: WS, Secondary Actions: Cancel
+					78 text Description: ★ ★ ★ ★ ☆, Secondary Actions: Cancel
+					79 text Description: O Type 2 atende bem uma parada mais longa, com área coberta e Wi-Fi como apoio., Secondary Actions: Cancel
+					80 button Description: Ver mapa, Secondary Actions: Cancel
+					81 button Description: Iniciar rota para Plug & Café Consolação, Help: Mostra o aviso de funcionamento antes de escolher Google Maps ou Waze., Secondary Actions: Cancel
+## Aviso nativo de rota para estação fechada | 2026-10-16T09:47:40.217Z
+					14 heading Description: Antes de iniciar a rota, Secondary Actions: Cancel
+					15 text Description: Plug & Café Consolação, Secondary Actions: Cancel
+					16 text Secondary Actions: Cancel, Description: Nos dados demonstrativos: Fechado agora. Segunda a sábado, 08h às 20h. A recarga não está confirmada neste ponto. Abrir a rota não garante atendimento; confirme o funcionamento e a compatibilidade antes de ir.
+					17 button Description: Abrir Google Maps, Secondary Actions: Cancel
+					18 button Description: Abrir Waze, Secondary Actions: Cancel
+					19 button Description: Cancelar, Secondary Actions: Cancel
+## Mapa logo após afastar zoom, sem filtros ou busca | 2026-10-16T09:48:19.082Z
+					14 button Help: Toque para ajustar o nível de bateria e ver o alcance nos pontos., Secondary Actions: Cancel, Description: Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 180 quilômetros estimados
+					15 button Description: Abrir perfil, Secondary Actions: Cancel
+					16 button Description: Abrir busca e filtros, Secondary Actions: Cancel
+					17 text field (settable) Description: Buscar no mapa, Help: Digite endereço, bairro ou nome do ponto de recarga., Value: Buscar endereço, bairro ou ponto, Secondary Actions: Cancel
+					18 button Description: Mostrar atalhos de filtro, Help: Toque para abrir ou recolher os filtros rápidos do mapa., Secondary Actions: Cancel
+					19 element Secondary Actions: Cancel
+					20 button Description: Você na FIAP, ID: AIRGMSMarker_0x139387840, Secondary Actions: Cancel
+					21 button Description: Flui Express MASP, ID: AIRGMSMarker_0x139384a00, Secondary Actions: Cancel
+					22 button Description: Plug & Café Consolação, ID: AIRGMSMarker_0x139384dc0, Secondary Actions: Cancel
+					23 button Description: Charge City Jardins, ID: AIRGMSMarker_0x139387e80, Secondary Actions: Cancel
+					24 button Description: Estação Jardins Pamplona, ID: AIRGMSMarker_0x139385cc0, Secondary Actions: Cancel
+					25 button Description: Garagem Verde Brigadeiro, ID: AIRGMSMarker_0x13e1748c0, Secondary Actions: Cancel
+					26 slider (settable, unknown) Description: Mapa com pontos de recarga próximos, Secondary Actions: Cancel
+					27 button Description: Google Maps, Secondary Actions: Cancel
+					28 button Description: Aumentar zoom do mapa, Help: Aproxima a visualização do mapa., Secondary Actions: Cancel
+					29 button Description: Diminuir zoom do mapa, Help: Afasta a visualização do mapa., Secondary Actions: Cancel
+					30 button Description: Centralizar localização na FIAP, Help: Centraliza o mapa em uma localização próxima à FIAP., Secondary Actions: Cancel
+					31 button Description: Abrir assistente Flui IA, Help: Abre opções de recomendação simulada para encontrar um ponto de recarga., Secondary Actions: Cancel
+					32 button Description: Minimizar opções demonstrativas para ver o mapa inteiro, Help: Esconde completamente o painel, deixando só um atalho para trazê-lo de volta., Secondary Actions: Cancel
+					33 text Description: Opções demonstrativas, Secondary Actions: Cancel
+					34 button Help: Abre a ficha detalhada do ponto de recarga., Secondary Actions: Cancel, Description: Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. Chegada estimada com 44% de bateria.
+					35 button Help: Abre a ficha detalhada do ponto de recarga., Secondary Actions: Cancel, Description: Charge City Jardins. Opção demonstrativa. Alameda Santos, 2159. Aberto agora. Nota 4,7. 120 kW. Chegada estimada com 45% de bateria.
+					36 button Help: Abre a ficha detalhada do ponto de recarga., Secondary Actions: Cancel, Description: Flui Vila Mariana Lins. Opção demonstrativa. Av. Lins de Vasconcelos, 1264. Aberto agora. Nota 4,8. 150 kW. Chegada estimada com 45% de bateria.
+					37 button Help: Abre a ficha detalhada do ponto de recarga., Secondary Actions: Cancel, Description: EcoCarga Parque Aclimação. Opção demonstrativa. R. Muniz de Sousa, 1119. Aberto agora. Nota 4,2. 22 kW. Chegada estimada com 45% de bateria.
+## Mapa após ciclo de 30s sem interação: comparação do enquadramento | 2026-10-16T09:48:45.617Z
+					14 button Help: Toque para ajustar o nível de bateria e ver o alcance nos pontos., Secondary Actions: Cancel, Description: Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 180 quilômetros estimados
+					15 button Description: Abrir perfil, Secondary Actions: Cancel
+					16 button Description: Abrir busca e filtros, Secondary Actions: Cancel
+					17 text field (settable) Description: Buscar no mapa, Help: Digite endereço, bairro ou nome do ponto de recarga., Value: Buscar endereço, bairro ou ponto, Secondary Actions: Cancel
+					18 button Description: Mostrar atalhos de filtro, Help: Toque para abrir ou recolher os filtros rápidos do mapa., Secondary Actions: Cancel
+					19 element Secondary Actions: Cancel
+					20 button Description: Você na FIAP, ID: AIRGMSMarker_0x139387840, Secondary Actions: Cancel
+					21 button Description: Flui Express MASP, ID: AIRGMSMarker_0x139384a00, Secondary Actions: Cancel
+					22 button Description: Estação Jardins Pamplona, ID: AIRGMSMarker_0x139385cc0, Secondary Actions: Cancel
+					23 button Description: Garagem Verde Brigadeiro, ID: AIRGMSMarker_0x13e1748c0, Secondary Actions: Cancel
+					24 slider (settable, unknown) Description: Mapa com pontos de recarga próximos, Secondary Actions: Cancel
+					25 button Description: Google Maps, Secondary Actions: Cancel
+					26 button Description: Aumentar zoom do mapa, Help: Aproxima a visualização do mapa., Secondary Actions: Cancel
+					27 button Description: Diminuir zoom do mapa, Help: Afasta a visualização do mapa., Secondary Actions: Cancel
+					28 button Description: Centralizar localização na FIAP, Help: Centraliza o mapa em uma localização próxima à FIAP., Secondary Actions: Cancel
+					29 button Description: Abrir assistente Flui IA, Help: Abre opções de recomendação simulada para encontrar um ponto de recarga., Secondary Actions: Cancel
+					30 button Description: Minimizar opções demonstrativas para ver o mapa inteiro, Help: Esconde completamente o painel, deixando só um atalho para trazê-lo de volta., Secondary Actions: Cancel
+					31 text Description: Opções demonstrativas, Secondary Actions: Cancel
+					32 button Help: Abre a ficha detalhada do ponto de recarga., Secondary Actions: Cancel, Description: Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. Chegada estimada com 44% de bateria.
+					33 button Help: Abre a ficha detalhada do ponto de recarga., Secondary Actions: Cancel, Description: Charge City Jardins. Opção demonstrativa. Alameda Santos, 2159. Aberto agora. Nota 4,7. 120 kW. Chegada estimada com 45% de bateria.
+					34 button Help: Abre a ficha detalhada do ponto de recarga., Secondary Actions: Cancel, Description: Flui Vila Mariana Lins. Opção demonstrativa. Av. Lins de Vasconcelos, 1264. Aberto agora. Nota 4,8. 150 kW. Chegada estimada com 45% de bateria.
+					35 button Help: Abre a ficha detalhada do ponto de recarga., Secondary Actions: Cancel, Description: EcoCarga Parque Aclimação. Opção demonstrativa. R. Muniz de Sousa, 1119. Aberto agora. Nota 4,2. 22 kW. Chegada estimada com 45% de bateria.
+## Marcador da estação indisponível antes do toque | 2026-10-16T09:49:19.004Z
+					14 button Help: Toque para ajustar o nível de bateria e ver o alcance nos pontos., Secondary Actions: Cancel, Description: Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 180 quilômetros estimados
+					15 button Description: Abrir perfil, Secondary Actions: Cancel
+					16 button Description: Abrir busca e filtros, Secondary Actions: Cancel
+					17 text field (settable) Description: Buscar no mapa, Help: Digite endereço, bairro ou nome do ponto de recarga., Value: Garagem Liberdade Solar, Placeholder: Buscar endereço, bairro ou ponto, Secondary Actions: Cancel
+					18 button Description: Mostrar atalhos de filtro, Help: Toque para abrir ou recolher os filtros rápidos do mapa., Secondary Actions: Cancel
+					19 element Secondary Actions: Cancel
+					20 button Description: Garagem Liberdade Solar, ID: AIRGMSMarker_0x13e2bea80, Secondary Actions: Cancel
+					21 slider Description: Mapa com pontos de recarga próximos, Secondary Actions: Increment, Decrement, Cancel
+					22 button Description: Google Maps, Secondary Actions: Cancel
+					23 button Description: Aumentar zoom do mapa, Help: Aproxima a visualização do mapa., Secondary Actions: Cancel
+					24 button Description: Diminuir zoom do mapa, Help: Afasta a visualização do mapa., Secondary Actions: Cancel
+					25 button Description: Centralizar localização na FIAP, Help: Centraliza o mapa em uma localização próxima à FIAP., Secondary Actions: Cancel
+					26 button Description: Mostrar opções demonstrativas, Help: Traz de volta a lista de pontos recomendados., Secondary Actions: Cancel
+					27 button Description: Abrir assistente Flui IA, Help: Abre opções de recomendação simulada para encontrar um ponto de recarga., Secondary Actions: Cancel
+## Ficha indisponível aberta pelo marcador Garagem Liberdade Solar | 2026-10-16T09:49:32.179Z
+					14 button Description: Voltar ao mapa, Secondary Actions: Cancel
+					15 button Description: Adicionar aos favoritos, Secondary Actions: Cancel
+					16 text Description: Garagem Liberdade Solar, Secondary Actions: Cancel
+					17 text Description: R. da Glória, 700, Liberdade, São Paulo, SP, Secondary Actions: Cancel
+					18 text Description: 3.6, Secondary Actions: Cancel
+					19 text Description: (28 avaliações), Secondary Actions: Cancel
+					20 text Description: Status indisponível, Secondary Actions: Cancel
+					21 text Description: 0 de 3 carregadores livres no exemplo, Secondary Actions: Cancel
+					22 text Description: GUIA DO PONTO, Secondary Actions: Cancel
+					23 text Description: Recarga não confirmada neste ponto, Secondary Actions: Cancel
+					24 text Secondary Actions: Cancel, Description: Dados demonstrativos, sem disponibilidade em tempo real. Distância, autonomia e tempo de carga são estimativas simplificadas; confirme o funcionamento e a compatibilidade do veículo antes de ir.
+					25 text Description: Espera simulada, Secondary Actions: Cancel
+					26 text Description: Tempo estimado, Secondary Actions: Cancel
+					27 text Description: Perfil, Secondary Actions: Cancel
+					28 text Description: Recarga essencial, Secondary Actions: Cancel
+					29 text Description: Indisponível, Secondary Actions: Cancel
+					30 text Description: 40 a 60 min, Secondary Actions: Cancel
+					31 text Description: Autonomia confortável — chegada estimada com 44% de bateria, Secondary Actions: Cancel
+					32 text Description: Potência, Secondary Actions: Cancel
+					33 text Description: Conectores, Secondary Actions: Cancel
+					34 text Description: 50 kW, Secondary Actions: Cancel
+					35 text Description: CCS2, GB/T, Secondary Actions: Cancel
+					36 text Description: Velocidade de carga, Secondary Actions: Cancel
+					37 text Description: Tipos compatíveis, Secondary Actions: Cancel
+					38 text Description: Funcionamento, Secondary Actions: Cancel
+					39 text Description: Distância, Secondary Actions: Cancel
+					40 text Description: Todos os dias, 08h às 18h, Secondary Actions: Cancel
+					41 text Description: 2.2 km, Secondary Actions: Cancel
+					42 text Description: Próximo de você, Secondary Actions: Cancel
+					43 text Description: Disponibilidade não confirmada nos dados demonstrativos, Secondary Actions: Cancel
+					44 text Description: Horário sugerido no exemplo, Secondary Actions: Cancel
+					45 text Description: 10h às 12h, Secondary Actions: Cancel
+					46 text Description: Sem previsão de movimento em tempo real, Secondary Actions: Cancel
+					47 text Description: Conectores do ponto, Secondary Actions: Cancel
+					48 text Description: CCS2, Secondary Actions: Cancel
+					49 text Description: 50 kW · 0 de 2 disponíveis, Secondary Actions: Cancel
+					50 text Description: GB/T, Secondary Actions: Cancel
+					51 text Description: 40 kW · 0 de 1 disponíveis, Secondary Actions: Cancel
+					52 text Description: Comodidades próximas, Secondary Actions: Cancel
+					53 text Description: Estacionamento, Secondary Actions: Cancel
+					54 text Description: Área coberta, Secondary Actions: Cancel
+					55 text Description: Segurança, Secondary Actions: Cancel
+					56 text Description: Avaliações de usuários, Secondary Actions: Cancel
+					57 text Description: 85%, Secondary Actions: Cancel
+					58 text Description: 3.6, Secondary Actions: Cancel
+					59 text Description: 5 ★, Secondary Actions: Cancel
+					60 text Description: 4 ★, Secondary Actions: Cancel
+					61 text Description: 10%, Secondary Actions: Cancel
+					62 text Description: 3 ★, Secondary Actions: Cancel
+					63 text Description: 3%, Secondary Actions: Cancel
+					64 text Description: ★ ★ ★ ★ ☆, Secondary Actions: Cancel
+					65 text Description: 2 ★, Secondary Actions: Cancel
+					66 text Description: 1%, Secondary Actions: Cancel
+					67 text Description: 28 avaliações, Secondary Actions: Cancel
+					68 text Description: 1 ★, Secondary Actions: Cancel
+					69 text Description: 1%, Secondary Actions: Cancel
+					70 button Description: Avaliar este ponto, Help: Abre a tela de avaliação do ponto de recarga., Secondary Actions: Cancel
+					71 text Description: Leonardo Bragatti, Secondary Actions: Cancel
+					72 text Description: LB, Secondary Actions: Cancel
+					73 text Description: ★ ★ ★ ☆ ☆, Secondary Actions: Cancel
+					74 text Description: A garagem é prática, mas o status indisponível precisa ser destacado antes da rota., Secondary Actions: Cancel
+					75 text Description: Joseffe Barroso, Secondary Actions: Cancel
+					76 text Description: JB, Secondary Actions: Cancel
+					77 text Description: ★ ★ ★ ★ ☆, Secondary Actions: Cancel
+					78 text Description: Boa alternativa quando estiver ativa, principalmente pela cobertura e segurança da garagem., Secondary Actions: Cancel
+					79 button Description: Ver mapa, Secondary Actions: Cancel
+					80 button Description: Iniciar rota para Garagem Liberdade Solar, Help: Mostra o aviso de funcionamento antes de escolher Google Maps ou Waze., Secondary Actions: Cancel
+## Aviso nativo de rota para estação indisponível | 2026-10-16T09:49:36.701Z
+					14 heading Description: Antes de iniciar a rota, Secondary Actions: Cancel
+					15 text Description: Garagem Liberdade Solar, Secondary Actions: Cancel
+					16 text Secondary Actions: Cancel, Description: Nos dados demonstrativos: Status indisponível. Disponibilidade não confirmada nos dados demonstrativos. A recarga não está confirmada neste ponto. Abrir a rota não garante atendimento; confirme o funcionamento e a compatibilidade antes de ir.
+					17 button Description: Abrir Google Maps, Secondary Actions: Cancel
+					18 button Description: Abrir Waze, Secondary Actions: Cancel
+					19 button Description: Cancelar, Secondary Actions: Cancel
+## Marcador disponível Higienópolis antes do toque | 2026-10-16T09:50:22.209Z
+					14 button Help: Toque para ajustar o nível de bateria e ver o alcance nos pontos., Secondary Actions: Cancel, Description: Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 180 quilômetros estimados
+					15 button Description: Abrir perfil, Secondary Actions: Cancel
+					16 button Description: Abrir busca e filtros, Secondary Actions: Cancel
+					17 text field (settable) Description: Buscar no mapa, Help: Digite endereço, bairro ou nome do ponto de recarga., Value: Higienópolis Prime Charge, Placeholder: Buscar endereço, bairro ou ponto, Secondary Actions: Cancel
+					18 button Description: Mostrar atalhos de filtro, Help: Toque para abrir ou recolher os filtros rápidos do mapa., Secondary Actions: Cancel
+					19 element Secondary Actions: Cancel
+					20 button Description: Higienópolis Prime Charge, ID: AIRGMSMarker_0x13e174b40, Secondary Actions: Cancel
+					21 slider Description: Mapa com pontos de recarga próximos, Secondary Actions: Increment, Decrement, Cancel
+					22 button Description: Google Maps, Secondary Actions: Cancel
+					23 button Description: Aumentar zoom do mapa, Help: Aproxima a visualização do mapa., Secondary Actions: Cancel
+					24 button Description: Diminuir zoom do mapa, Help: Afasta a visualização do mapa., Secondary Actions: Cancel
+					25 button Description: Centralizar localização na FIAP, Help: Centraliza o mapa em uma localização próxima à FIAP., Secondary Actions: Cancel
+					26 button Description: Mostrar opções demonstrativas, Help: Traz de volta a lista de pontos recomendados., Secondary Actions: Cancel
+					27 button Description: Abrir assistente Flui IA, Help: Abre opções de recomendação simulada para encontrar um ponto de recarga., Secondary Actions: Cancel
+## Ficha disponível Higienópolis aberta por toque no marcador | 2026-10-16T09:51:01.917Z
+					14 button Description: Voltar ao mapa, Secondary Actions: Cancel
+					15 button Description: Adicionar aos favoritos, Secondary Actions: Cancel
+					16 text Description: Higienópolis Prime Charge, Secondary Actions: Cancel
+					17 text Description: Rua Alagoas, 974, Higienópolis, São Paulo, SP, Secondary Actions: Cancel
+					18 text Description: 4.9, Secondary Actions: Cancel
+					19 text Description: (184 avaliações), Secondary Actions: Cancel
+					20 text Description: Aberto agora, Secondary Actions: Cancel
+					21 text Description: 4 de 6 carregadores livres no exemplo, Secondary Actions: Cancel
+					22 text Description: GUIA DO PONTO, Secondary Actions: Cancel
+					23 text Description: Opção com conector rápido no exemplo, Secondary Actions: Cancel
+					24 text Secondary Actions: Cancel, Description: Dados demonstrativos, sem disponibilidade em tempo real. Distância, autonomia e tempo de carga são estimativas simplificadas; confirme o funcionamento e a compatibilidade do veículo antes de ir.
+					25 text Description: Espera simulada, Secondary Actions: Cancel
+					26 text Description: Tempo estimado, Secondary Actions: Cancel
+					27 text Description: Perfil, Secondary Actions: Cancel
+					28 text Description: Baixa, Secondary Actions: Cancel
+					29 text Description: 20 a 35 min, Secondary Actions: Cancel
+					30 text Description: Carga rápida, Secondary Actions: Cancel
+					31 text Description: Autonomia confortável — chegada estimada com 44% de bateria, Secondary Actions: Cancel
+					32 text Description: Potência, Secondary Actions: Cancel
+					33 text Description: Conectores, Secondary Actions: Cancel
+					34 text Description: 150 kW, Secondary Actions: Cancel
+					35 text Description: CCS2, Type 2, Secondary Actions: Cancel
+					36 text Description: Velocidade de carga, Secondary Actions: Cancel
+					37 text Description: Tipos compatíveis, Secondary Actions: Cancel
+					38 text Description: Funcionamento, Secondary Actions: Cancel
+					39 text Description: Distância, Secondary Actions: Cancel
+					40 text Description: 24 horas, todos os dias, Secondary Actions: Cancel
+					41 text Description: 2.4 km, Secondary Actions: Cancel
+					42 text Description: Próximo de você, Secondary Actions: Cancel
+					43 text Description: Disponibilidade demonstrativa de carregadores, Secondary Actions: Cancel
+					44 text Description: Horário sugerido no exemplo, Secondary Actions: Cancel
+					45 text Description: 06h às 08h ou 13h às 15h ou 22h às 00h, Secondary Actions: Cancel
+					46 text Description: Sem previsão de movimento em tempo real, Secondary Actions: Cancel
+					47 text Description: Conectores do ponto, Secondary Actions: Cancel
+					48 text Description: CCS2, Secondary Actions: Cancel
+					49 text Description: 150 kW · 2 de 4 disponíveis, Secondary Actions: Cancel
+					50 text Description: Type 2, Secondary Actions: Cancel
+					51 text Description: 22 kW · 2 de 2 disponíveis, Secondary Actions: Cancel
+					52 text Description: Comodidades próximas, Secondary Actions: Cancel
+					53 text Description: Estacionamento, Secondary Actions: Cancel
+					54 text Description: Área coberta, Secondary Actions: Cancel
+					55 text Description: Banheiro, Secondary Actions: Cancel
+					56 text Description: Café, Secondary Actions: Cancel
+					57 text Description: Wi-Fi, Secondary Actions: Cancel
+					58 text Description: Segurança, Secondary Actions: Cancel
+					59 text Description: Avaliações de usuários, Secondary Actions: Cancel
+					60 text Description: 4.9, Secondary Actions: Cancel
+					61 text Description: 5 ★, Secondary Actions: Cancel
+					62 text Description: 85%, Secondary Actions: Cancel
+					63 text Description: 4 ★, Secondary Actions: Cancel
+					64 text Description: 10%, Secondary Actions: Cancel
+					65 text Description: 3 ★, Secondary Actions: Cancel
+					66 text Description: 3%, Secondary Actions: Cancel
+					67 text Description: ★ ★ ★ ★ ★, Secondary Actions: Cancel
+					68 text Description: 2 ★, Secondary Actions: Cancel
+					69 text Description: 1%, Secondary Actions: Cancel
+					70 text Description: 184 avaliações, Secondary Actions: Cancel
+					71 text Description: 1 ★, Secondary Actions: Cancel
+					72 text Description: 1%, Secondary Actions: Cancel
+					73 button Description: Editar minha avaliação deste ponto, Help: Abre a tela de avaliação do ponto de recarga., Secondary Actions: Cancel
+					74 text Description: Leonardo Bragatti, Secondary Actions: Cancel
+					75 text Description: LB, Secondary Actions: Cancel
+					76 text Description: ★ ★ ★ ★ ★, Secondary Actions: Cancel
+					77 text Description: Cobertura, banheiro e café deixam a parada bem confortável para uma recarga rápida., Secondary Actions: Cancel
+					78 text Description: Marina Polverari, Secondary Actions: Cancel
+					79 text Description: MP, Secondary Actions: Cancel
+					80 text Description: ★ ★ ★ ★ ★, Secondary Actions: Cancel
+					81 text Description: Boa sinalização, ambiente limpo e conexão estável no CCS2 durante a recarga., Secondary Actions: Cancel
+					82 text Description: John Paul, Secondary Actions: Cancel
+					83 text Description: JP, Secondary Actions: Cancel
+					84 text Description: ★ ★ ★ ★ ★, Secondary Actions: Cancel
+					85 text Description: Ponto completo para quem precisa carregar sem abrir mão de segurança e Wi-Fi., Secondary Actions: Cancel
+					86 button Description: Ver mapa, Secondary Actions: Cancel
+					87 button Description: Iniciar rota para Higienópolis Prime Charge, Help: Mostra o aviso de funcionamento antes de escolher Google Maps ou Waze., Secondary Actions: Cancel
