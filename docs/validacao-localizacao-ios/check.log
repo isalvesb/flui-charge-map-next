@@ -1,0 +1,95 @@
+
+> flui-charge-map@1.0.0 check
+> npm run typecheck && npm run lint && npm test
+
+
+> flui-charge-map@1.0.0 typecheck
+> tsc --noEmit
+
+
+> flui-charge-map@1.0.0 lint
+> expo lint
+
+
+> flui-charge-map@1.0.0 test
+> node --import tsx --test tests/*.test.ts
+
+✔ bateria padrão é demonstrativa e não inventa atualização (2.494166ms)
+✔ edição manual conserva valor, origem e data após serialização e leitura (222.099625ms)
+✔ preferências antigas não recebem uma origem fabricada (1.132625ms)
+✔ dados inválidos não preservam uma alegação manual nem valores não finitos (0.309209ms)
+✔ responde pergunta programada sem acento e em maiúsculas (5.982167ms)
+✔ pergunta sem resposta cai na mensagem padrão (0.494166ms)
+✔ pedido de recarga rápida sem estações gera alerta (0.416917ms)
+✔ bateria baixa usa o motor local e recusa bateria insuficiente (87.520125ms)
+✔ chat respeita o horário recebido da tela nas duas intenções (1.397125ms)
+✔ bateria baixa não atribui indisponibilidade exclusivamente ao alcance (0.319542ms)
+✔ preferências antigas recebem FIAP e veículo padrão sem perder autonomia e origem da bateria (1.489ms)
+✔ configuração demonstrativa conserva valores após serialização sem transformar bateria em telemetria (1.795208ms)
+✔ rejeita entradas inválidas e recupera padrões em dados locais inválidos (0.967708ms)
+✔ distância geográfica usa coordenadas em vez dos quilômetros estáticos do catálogo (1.662083ms)
+✔ origem atualiza os dados usados no raio de busca e na viabilidade da FluIA (142.329125ms)
+✔ mapa, ficha e FluIA exibem a mesma estimativa de chegada para toda origem (3.130625ms)
+✔ cortes de filtro e reserva mantêm precisão anterior ao arredondamento visual (3.7155ms)
+✔ prioriza uma estação próxima quando a bateria está baixa (127.85025ms)
+✔ considera potência e comodidades conforme a necessidade (0.9775ms)
+✔ nenhuma intenção recomenda posto fora da autonomia ou chegada sem reserva (2.8545ms)
+✔ exclui indisponibilidade, ocupação, ausência de carregadores e potência inválida (2.617417ms)
+✔ não inventa banheiro, café ou conforto em postos sem comodidades (0.575667ms)
+✔ rejeita dados energéticos inválidos sem fabricar autonomia (0.25175ms)
+✔ conta somente conectores compatíveis livres e usa sua potência na recomendação (1.697833ms)
+✔ compatibilidade ausente é explicitamente não confirmada (0.561084ms)
+✔ principal e alternativa obedecem às mesmas restrições, sem arredondar a reserva (1.026417ms)
+✔ FluIA fica habilitada por padrão e mantém sugestões locais (145.4595ms)
+✔ controle desabilitado bloqueia sugestões e todas as respostas do motor (1.253917ms)
+✔ falta de opção no exemplo não afirma indisponibilidade real (1.878125ms)
+✔ aplica filtros rápidos sem alterar o objeto original (4.489125ms)
+✔ detecta filtros rápidos ativos (0.377458ms)
+✔ prioriza estações aderentes e usa distância como desempate (0.617709ms)
+✔ permissão negada não solicita posição nem inventa origem (107.756042ms)
+✔ falha na solicitação de permissão é recuperável (15.839708ms)
+✔ GPS concedido mas indisponível não propaga a rejeição nativa (17.849417ms)
+✔ posição válida é devolvida integralmente e uma nova tentativa pode recuperar o GPS (1.011333ms)
+✔ coordenadas inválidas não são usadas como posição atual (12.550625ms)
+✔ GPS sem resposta tem limite e rejeição tardia continua tratada (74.337542ms)
+✔ aguarda canOpenURL e não abre um provedor indisponível (1.210292ms)
+✔ falhas de consulta e abertura externa retornam mensagens recuperáveis (1.142875ms)
+✔ destino inválido interrompe o fluxo antes de consultar ou abrir o navegador (0.291542ms)
+✔ Google Maps e Waze preservam URLs e não recebem origem demonstrativa no fallback (0.603083ms)
+✔ abertura externa pode ser repetida após falha (0.671625ms)
+✔ retorna filtros independentes quando o parâmetro é inválido (3.921ms)
+✔ descarta opções desconhecidas e impede valores negativos (0.992167ms)
+✔ filtra por busca, potência, distância e comodidades (2.727625ms)
+✔ respeita horários 24 horas e bloqueia manutenção (63.487ms)
+✔ considera período que atravessa a meia-noite (4.869875ms)
+✔ interpreta horário do catálogo no fuso da estação, incluindo domingo e limites (2.083958ms)
+✔ período noturno pertence ao dia da abertura, inclusive na virada da semana (1.757875ms)
+✔ não interpreta horas inválidas ou abertura igual ao fechamento como 24h (3.032958ms)
+✔ filtro, ficha e FluIA concordam nos horários reais do catálogo sem calendário estruturado (88.05375ms)
+✔ calendário estruturado prevalece sobre o texto e o filtro 24h usa a mesma fonte (2.113291ms)
+✔ horário ou fuso desconhecido não produz confirmação de abertura (1.6015ms)
+✔ filtro de carregadores livres exclui posto fechado ou com status incompatível (1.151875ms)
+✔ filtro 24h também rejeita fuso inválido (0.428792ms)
+✔ formata os dados apresentados pela ficha da estação (1.889916ms)
+✔ gera URLs seguras para os provedores suportados (0.527667ms)
+✔ avisa sobre recarga não confirmada antes de oferecer a rota (28.986167ms)
+✔ aviso da rota acompanha o limite de fechamento e não promete dados reais (1.9105ms)
+✔ resume status, recomendação e espera sem depender da tela (1.305167ms)
+✔ não promete parada rápida quando só o conector lento está utilizável (0.586208ms)
+✔ separa autonomia e recarga na ficha aberta com recarga demonstrativa (3.699833ms)
+✔ separa autonomia e recarga na ficha fechada (1.686792ms)
+✔ separa autonomia e recarga na ficha em manutenção (0.392625ms)
+✔ separa autonomia e recarga na ficha indisponível (0.469292ms)
+✔ separa autonomia e recarga na ficha com horário desconhecido (0.169458ms)
+✔ separa autonomia e recarga na ficha ocupada (0.49625ms)
+✔ separa autonomia e recarga na ficha aberta sem conector utilizável (0.5095ms)
+✔ preserva alertas de autonomia limitada e insuficiente mesmo sem recarga (0.602167ms)
+✔ a mesma ficha deixa de anunciar carregadores livres exatamente ao fechar (1.215042ms)
+ℹ tests 71
+ℹ suites 0
+ℹ pass 71
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2593.309292
