@@ -1,6 +1,6 @@
 # Flui NEXT 2026 | Lista de Tarefas (LDT)
 
-**Versão:** 2.0
+**Versão:** 2.1
 **Repositório:** `isalvesb/flui-charge-map-next`
 
 > Este documento organiza as tarefas do Flui NEXT 2026 em enunciados
@@ -18,17 +18,20 @@
 
 - Estruturar o repositório e estabelecer padrões para branches, commits e pull requests.
 - Garantir a organização, a rastreabilidade e a preservação do histórico das implementações.
+- [1.1.3](https://github.com/isalvesb/flui-charge-map-next/issues/74) | Documentar e consolidar as convenções de branches, commits e pull requests, para conferência da equipe.
 
 ### 1.2 | Auditar o aplicativo, corrigir problemas técnicos e validar as alterações realizadas.
 
 - Identificar e corrigir inconsistências técnicas e funcionais dentro do escopo aprovado.
 - Executar testes pertinentes e documentar evidências, resultados e limitações conhecidas.
+- [1.2.3](https://github.com/isalvesb/flui-charge-map-next/issues/75) | Concluir a validação complementar dos fluxos auditados em iOS e Android, com evidências e limitações.
 
 ### 1.3 | Configurar veículo, bateria, autonomia e origem para os dados demonstrativos do NEXT.
 
 - Configurar veículo, autonomia, nível de bateria e localização de origem para a demonstração.
 - Permitir a seleção de origens demonstrativas e a atualização dos parâmetros disponíveis.
 - Garantir coerência entre os dados configurados e as estimativas apresentadas nas diferentes interfaces.
+- [1.3.4](https://github.com/isalvesb/flui-charge-map-next/issues/76) | Validar configurações e estimativas demonstrativas em iOS e Android, incluindo persistência.
 
 ---
 
@@ -38,6 +41,7 @@
 
 - Distinguir dados demonstrativos, estimativas e registros locais, evitando apresentar informações simuladas como dados verificados em tempo real.
 - Centralizar os controles internos das funcionalidades experimentais, reutilizando a infraestrutura existente.
+- [2.1.3](https://github.com/isalvesb/flui-charge-map-next/issues/10) | Validar as alterações da Beta 2.1 em iOS e Android e registrar as evidências.
 
 ### 2.2 | Evoluir a FluIA com chat, recomendações de recarga e possibilidades de interação por voz.
 
@@ -129,7 +133,29 @@
 
 ---
 
-## 4. Orientações gerais de execução
+## 4. Acompanhamento e evidências | 16/10/2026
+
+> Registro do progresso conhecido nesta revisão. O [GitHub Projects](https://github.com/users/guicunhasou/projects/2/views/1) e as Issues são as referências para o estado corrente. Trabalho demonstrado, implementação integrada e validação concluída são fatos distintos. Não se atribui `Done` sem evidências e aprovação pertinentes.
+
+| Tarefa | Situação constatada | Pendência |
+| --- | --- | --- |
+| **Alfa 1.1** | Histórico preservado, branches e PRs em uso. A [PR #77](https://github.com/isalvesb/flui-charge-map-next/pull/77) propõe a documentação das convenções e segue aberta. | Revisão das convenções pela responsável; [1.1.1](https://github.com/isalvesb/flui-charge-map-next/issues/12) e [1.1.3](https://github.com/isalvesb/flui-charge-map-next/issues/74) continuam abertas. |
+| **Alfa 1.2** | Correções integradas; evidências web e iOS registradas em [auditoria-1.2.md](auditoria-1.2.md). A PR #77 reúne validações complementares e correções reproduzidas na base posterior, sem aprovação integral. | [1.2.3](https://github.com/isalvesb/flui-charge-map-next/issues/75): regressão complementar na versão atual, validação Android e revisão da equipe. |
+| **Alfa 1.3** | Configurações e estimativas implementadas, com validação web e evidências iOS documentadas em [alfa-1.3.md](alfa-1.3.md) e na PR #77. | [1.3.4](https://github.com/isalvesb/flui-charge-map-next/issues/76): completar validação iOS da versão atual e Android. |
+| **Beta 2.1** | [2.1.1](https://github.com/isalvesb/flui-charge-map-next/issues/8) e [2.1.2](https://github.com/isalvesb/flui-charge-map-next/issues/9) integradas à `main` pela [PR #4](https://github.com/isalvesb/flui-charge-map-next/pull/4). | [2.1.3](https://github.com/isalvesb/flui-charge-map-next/issues/10): validação iOS e Android; tarefa principal permanece aberta. |
+| **Beta 2.2** | Motor local de respostas integrado pela [PR #3](https://github.com/isalvesb/flui-charge-map-next/pull/3); [PR #6](https://github.com/isalvesb/flui-charge-map-next/pull/6) apresenta interface conversacional, mas segue aberta. Imagens compartilhadas pela equipe mostram chat com entrada/resposta e interface de recomendações. | [2.2.1](https://github.com/isalvesb/flui-charge-map-next/issues/22) em andamento; verificar recomendações contextualizadas no chat ([2.2.2](https://github.com/isalvesb/flui-charge-map-next/issues/23)) e avaliar voz ([2.2.3](https://github.com/isalvesb/flui-charge-map-next/issues/24)). |
+
+**Demonstrações compartilhadas pela equipe, ainda não arquivadas como evidências no repositório:**
+
+- Imagens da Isa exibem a interface da FluIA com opções de necessidades, conversa com campo de entrada e resposta, além de uma recomendação demonstrativa. Elas comprovam estados visuais capturados; não substituem testes de fluxo completo, testes de regressão ou a integração da PR #6.
+- Vídeo do Camilo demonstra a ação de iniciar rota e a abertura do Google Maps no ambiente apresentado. Isso acrescenta evidência ao fluxo de navegação externa observado, mas **não comprova** o planejamento de viagens com autonomia/paradas da **Beta 2.4**, nem funcionamento equivalente em todas as plataformas.
+- Na PR #77, Android segue impedido pela ausência do ambiente de SDK/emulador disponível; o iOS contém evidências históricas e testes dirigidos atuais com limites documentados. Nenhum desses impedimentos deve ser registrado como validação aprovada.
+
+As demais tarefas da Beta e as propostas da Gama mantêm seus escopos originais. Esta revisão não atesta nem descarta trabalho feito fora do repositório; o andamento deve ser confirmado com seus responsáveis antes de alterar os status.
+
+---
+
+## 5. Orientações gerais de execução
 
 1. Preservar as decisões aprovadas e a arquitetura existente.
 2. Priorizar soluções simples, eficientes e reutilizáveis.
@@ -143,7 +169,15 @@
 
 ---
 
-## 5. Histórico de versões
+## 6. Histórico de versões
+
+### v2.1 | 16/10/2026 (proposta de atualização)
+
+- Incorporação ao planejamento das subtarefas 1.1.3, 1.2.3, 1.3.4 e 2.1.3, já cadastradas nas Issues.
+- Registro de evidências e pendências verificadas da Alfa e das Betas 2.1 e 2.2, sem presumir conclusão a partir de capturas ou PRs abertas.
+- Inclusão do vídeo demonstrativo da abertura de rotas como evidência delimitada, sem confundi-la com o planejamento de viagens da Beta 2.4.
+- Manutenção das 19 tarefas principais e dos escopos provisórios da Gama; total atualizado para **49 subtarefas**.
+
 
 ### v2.0 | 16/10/2026
 
@@ -165,5 +199,5 @@
 ---
 
 **Projeto:** Flui NEXT 2026
-**Lista de Tarefas:** v2.0
-**Total:** 19 tarefas (3 Alfa, 10 Beta e 6 Gama)
+**Lista de Tarefas:** v2.1
+**Total:** 19 tarefas principais (3 Alfa, 10 Beta e 6 Gama) e 49 subtarefas
