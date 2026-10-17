@@ -9,6 +9,7 @@ const contexto = {
   stations: [createStation({ distanceKm: 1 })],
   batteryPercent: 70,
   vehicleRangeKm: 400,
+  now: new Date("2026-10-16T15:00:00Z"),
 };
 
 test("FluIA fica habilitada por padrão e mantém sugestões locais", () => {
@@ -24,7 +25,7 @@ test("controle desabilitado bloqueia sugestões e todas as respostas do motor", 
   try {
     funcionalidadesExperimentais.fluia = false;
     assert.equal(recommendStations({ ...contexto, intent: "fastCharge" }), null);
-    for (const pergunta of ["quero carregar rápido", "autonomia", "olá"]) {
+    for (const pergunta of ["quero carregar rápido", "tenho pouca bateria", "autonomia", "olá"]) {
       const resposta = answerMessage(pergunta, contexto);
       assert.equal(resposta.state, "aviso");
       assert.equal(resposta.recommendation, undefined);
