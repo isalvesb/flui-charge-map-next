@@ -1,0 +1,850 @@
+[
+  {
+    "name": "compacta",
+    "viewport": [
+      320,
+      568
+    ],
+    "overflow": false,
+    "buttons": [
+      {
+        "name": "BYD Dolphin Plus. Bateria para estimativa: 70 por cento. Bateria demonstrativa. Sem telemetria. Cerca de 280 quilômetros estimados",
+        "x": 80.203125,
+        "y": 9,
+        "w": 171.796875,
+        "h": 46,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir perfil",
+        "x": 254,
+        "y": 9,
+        "w": 46,
+        "h": 46,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir busca e filtros",
+        "x": 247,
+        "y": 78,
+        "w": 42,
+        "h": 42,
+        "tab": "0"
+      },
+      {
+        "name": "Mostrar atalhos de filtro",
+        "x": 20,
+        "y": 132,
+        "w": 280,
+        "h": 16,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Higienópolis Prime Charge",
+        "x": 82.390625,
+        "y": 442.4375,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Flui Express MASP",
+        "x": 127.1875,
+        "y": 458.671875,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Plug & Café Consolação",
+        "x": 223.1875,
+        "y": 227.25,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Charge City Jardins",
+        "x": 124,
+        "y": 381.53125,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Estação Jardins Pamplona",
+        "x": 40.796875,
+        "y": 454.609375,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Flui Vila Mariana Lins",
+        "x": 111.1875,
+        "y": 385.59375,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de EcoCarga Parque Aclimação",
+        "x": 24.796875,
+        "y": 361.234375,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Hub Paraíso Vergueiro",
+        "x": 114.390625,
+        "y": 316.578125,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Mercado Charge Cambuci",
+        "x": 175.1875,
+        "y": 458.671875,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Garagem Liberdade Solar",
+        "x": 239.1875,
+        "y": 470.859375,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Fast Point Ana Rosa",
+        "x": 79.1875,
+        "y": 426.1875,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Garagem Verde Brigadeiro",
+        "x": 143.1875,
+        "y": 340.9375,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Aumentar zoom do mapa",
+        "x": 252,
+        "y": 181,
+        "w": 52,
+        "h": 51,
+        "tab": "0"
+      },
+      {
+        "name": "Diminuir zoom do mapa",
+        "x": 252,
+        "y": 233,
+        "w": 52,
+        "h": 51,
+        "tab": "0"
+      },
+      {
+        "name": "Centralizar origem demonstrativa: FIAP",
+        "x": 252,
+        "y": 294,
+        "w": 52,
+        "h": 52,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir assistente Flui IA",
+        "x": 184,
+        "y": 90,
+        "w": 120,
+        "h": 52,
+        "tab": "0"
+      },
+      {
+        "name": "Minimizar opções demonstrativas para ver o mapa inteiro",
+        "x": 35,
+        "y": 165,
+        "w": 250,
+        "h": 12,
+        "tab": "0"
+      },
+      {
+        "name": "Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈2,1 km em linha reta. Chegada estimada com 69% de bateria.",
+        "x": 35,
+        "y": 304,
+        "w": 250,
+        "h": 177,
+        "tab": "0"
+      }
+    ],
+    "battery": [
+      {
+        "name": "BYD Dolphin Plus. Bateria para estimativa: 70 por cento. Bateria demonstrativa. Sem telemetria. Cerca de 280 quilômetros estimados",
+        "rect": "{\"x\":80.203125,\"y\":9,\"width\":171.796875,\"height\":46,\"top\":9,\"right\":252,\"bottom\":55,\"left\":80.203125}"
+      },
+      {
+        "name": "Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈2,1 km em linha reta. Chegada estimada com 69% de bateria.",
+        "rect": "{\"x\":35,\"y\":304,\"width\":250,\"height\":177,\"top\":304,\"right\":285,\"bottom\":481,\"left\":35}"
+      },
+      {
+        "name": "Fechar seletor de bateria",
+        "rect": "{\"x\":0,\"y\":0,\"width\":320,\"height\":568,\"top\":0,\"right\":320,\"bottom\":568,\"left\":0}"
+      },
+      {
+        "name": "Diminuir bateria em 5 por cento",
+        "rect": "{\"x\":28,\"y\":368,\"width\":64,\"height\":56,\"top\":368,\"right\":92,\"bottom\":424,\"left\":28}"
+      },
+      {
+        "name": "Aumentar bateria em 5 por cento",
+        "rect": "{\"x\":228,\"y\":368,\"width\":64,\"height\":56,\"top\":368,\"right\":292,\"bottom\":424,\"left\":228}"
+      },
+      {
+        "name": "Definir carga da bateria",
+        "rect": "{\"x\":22,\"y\":470,\"width\":276,\"height\":62,\"top\":470,\"right\":298,\"bottom\":532,\"left\":22}"
+      }
+    ]
+  },
+  {
+    "name": "horizontal",
+    "viewport": [
+      844,
+      390
+    ],
+    "overflow": false,
+    "buttons": [
+      {
+        "name": "BYD Dolphin Plus. Bateria para estimativa: 70 por cento. Bateria demonstrativa. Sem telemetria. Cerca de 280 quilômetros estimados",
+        "x": 482.203125,
+        "y": 9,
+        "w": 171.796875,
+        "h": 46,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir perfil",
+        "x": 656,
+        "y": 9,
+        "w": 46,
+        "h": 46,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir busca e filtros",
+        "x": 649,
+        "y": 78,
+        "w": 42,
+        "h": 42,
+        "tab": "0"
+      },
+      {
+        "name": "Mostrar atalhos de filtro",
+        "x": 142,
+        "y": 132,
+        "w": 560,
+        "h": 16,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Higienópolis Prime Charge",
+        "x": 250.078125,
+        "y": 310.71875,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Flui Express MASP",
+        "x": 368.234375,
+        "y": 319.828125,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Plug & Café Consolação",
+        "x": 621.4375,
+        "y": 189.875,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Charge City Jardins",
+        "x": 359.796875,
+        "y": 276.515625,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Estação Jardins Pamplona",
+        "x": 140.359375,
+        "y": 317.546875,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Flui Vila Mariana Lins",
+        "x": 326.03125,
+        "y": 278.796875,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de EcoCarga Parque Aclimação",
+        "x": 98.15625,
+        "y": 265.109375,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Hub Paraíso Vergueiro",
+        "x": 334.46875,
+        "y": 240.03125,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Mercado Charge Cambuci",
+        "x": 494.828125,
+        "y": 319.828125,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Garagem Liberdade Solar",
+        "x": 663.625,
+        "y": 326.671875,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Fast Point Ana Rosa",
+        "x": 241.625,
+        "y": 301.59375,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Garagem Verde Brigadeiro",
+        "x": 410.4375,
+        "y": 253.71875,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Aumentar zoom do mapa",
+        "x": 776,
+        "y": 181,
+        "w": 52,
+        "h": 51,
+        "tab": "0"
+      },
+      {
+        "name": "Diminuir zoom do mapa",
+        "x": 776,
+        "y": 233,
+        "w": 52,
+        "h": 51,
+        "tab": "0"
+      },
+      {
+        "name": "Centralizar origem demonstrativa: FIAP",
+        "x": 776,
+        "y": 294,
+        "w": 52,
+        "h": 52,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir assistente Flui IA",
+        "x": 582,
+        "y": -54,
+        "w": 120,
+        "h": 52,
+        "tab": "0"
+      },
+      {
+        "name": "Minimizar opções demonstrativas para ver o mapa inteiro",
+        "x": 161,
+        "y": 21,
+        "w": 522,
+        "h": 12,
+        "tab": "0"
+      },
+      {
+        "name": "Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈2,1 km em linha reta. Chegada estimada com 69% de bateria.",
+        "x": 161,
+        "y": 126,
+        "w": 522,
+        "h": 149,
+        "tab": "0"
+      }
+    ],
+    "battery": [
+      {
+        "name": "BYD Dolphin Plus. Bateria para estimativa: 70 por cento. Bateria demonstrativa. Sem telemetria. Cerca de 280 quilômetros estimados",
+        "rect": "{\"x\":482.203125,\"y\":9,\"width\":171.796875,\"height\":46,\"top\":9,\"right\":654,\"bottom\":55,\"left\":482.203125}"
+      },
+      {
+        "name": "Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈2,1 km em linha reta. Chegada estimada com 69% de bateria.",
+        "rect": "{\"x\":161,\"y\":126,\"width\":522,\"height\":149,\"top\":126,\"right\":683,\"bottom\":275,\"left\":161}"
+      },
+      {
+        "name": "Fechar seletor de bateria",
+        "rect": "{\"x\":0,\"y\":0,\"width\":844,\"height\":390,\"top\":0,\"right\":844,\"bottom\":390,\"left\":0}"
+      },
+      {
+        "name": "Diminuir bateria em 5 por cento",
+        "rect": "{\"x\":290,\"y\":206,\"width\":64,\"height\":56,\"top\":206,\"right\":354,\"bottom\":262,\"left\":290}"
+      },
+      {
+        "name": "Aumentar bateria em 5 por cento",
+        "rect": "{\"x\":490,\"y\":206,\"width\":64,\"height\":56,\"top\":206,\"right\":554,\"bottom\":262,\"left\":490}"
+      },
+      {
+        "name": "Definir carga da bateria",
+        "rect": "{\"x\":22,\"y\":292,\"width\":800,\"height\":62,\"top\":292,\"right\":822,\"bottom\":354,\"left\":22}"
+      }
+    ]
+  },
+  {
+    "name": "tablet",
+    "viewport": [
+      768,
+      1024
+    ],
+    "overflow": false,
+    "buttons": [
+      {
+        "name": "BYD Dolphin Plus. Bateria para estimativa: 70 por cento. Bateria demonstrativa. Sem telemetria. Cerca de 280 quilômetros estimados",
+        "x": 444.203125,
+        "y": 9,
+        "w": 171.796875,
+        "h": 46,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir perfil",
+        "x": 618,
+        "y": 9,
+        "w": 46,
+        "h": 46,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir busca e filtros",
+        "x": 611,
+        "y": 78,
+        "w": 42,
+        "h": 42,
+        "tab": "0"
+      },
+      {
+        "name": "Mostrar atalhos de filtro",
+        "x": 104,
+        "y": 132,
+        "w": 560,
+        "h": 16,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Higienópolis Prime Charge",
+        "x": 225.75,
+        "y": 779.875,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Flui Express MASP",
+        "x": 333.265625,
+        "y": 814.359375,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Plug & Café Consolação",
+        "x": 563.671875,
+        "y": 323.015625,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Charge City Jardins",
+        "x": 325.59375,
+        "y": 650.578125,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Estação Jardins Pamplona",
+        "x": 125.90625,
+        "y": 805.734375,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Flui Vila Mariana Lins",
+        "x": 294.875,
+        "y": 659.1875,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de EcoCarga Parque Aclimação",
+        "x": 87.515625,
+        "y": 607.46875,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Hub Paraíso Vergueiro",
+        "x": 302.546875,
+        "y": 512.65625,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Mercado Charge Cambuci",
+        "x": 448.46875,
+        "y": 814.359375,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Garagem Liberdade Solar",
+        "x": 602.078125,
+        "y": 840.21875,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Fast Point Ana Rosa",
+        "x": 218.078125,
+        "y": 745.390625,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Garagem Verde Brigadeiro",
+        "x": 371.671875,
+        "y": 564.375,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Aumentar zoom do mapa",
+        "x": 700,
+        "y": 181,
+        "w": 52,
+        "h": 51,
+        "tab": "0"
+      },
+      {
+        "name": "Diminuir zoom do mapa",
+        "x": 700,
+        "y": 233,
+        "w": 52,
+        "h": 51,
+        "tab": "0"
+      },
+      {
+        "name": "Centralizar origem demonstrativa: FIAP",
+        "x": 700,
+        "y": 294,
+        "w": 52,
+        "h": 52,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir assistente Flui IA",
+        "x": 544,
+        "y": 580,
+        "w": 120,
+        "h": 52,
+        "tab": "0"
+      },
+      {
+        "name": "Minimizar opções demonstrativas para ver o mapa inteiro",
+        "x": 123,
+        "y": 655,
+        "w": 522,
+        "h": 12,
+        "tab": "0"
+      },
+      {
+        "name": "Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈2,1 km em linha reta. Chegada estimada com 69% de bateria.",
+        "x": 123,
+        "y": 760,
+        "w": 522,
+        "h": 149,
+        "tab": "0"
+      }
+    ],
+    "battery": [
+      {
+        "name": "BYD Dolphin Plus. Bateria para estimativa: 70 por cento. Bateria demonstrativa. Sem telemetria. Cerca de 280 quilômetros estimados",
+        "rect": "{\"x\":444.203125,\"y\":9,\"width\":171.796875,\"height\":46,\"top\":9,\"right\":616,\"bottom\":55,\"left\":444.203125}"
+      },
+      {
+        "name": "Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈2,1 km em linha reta. Chegada estimada com 69% de bateria.",
+        "rect": "{\"x\":123,\"y\":760,\"width\":522,\"height\":149,\"top\":760,\"right\":645,\"bottom\":909,\"left\":123}"
+      },
+      {
+        "name": "Fechar seletor de bateria",
+        "rect": "{\"x\":0,\"y\":0,\"width\":768,\"height\":1024,\"top\":0,\"right\":768,\"bottom\":1024,\"left\":0}"
+      },
+      {
+        "name": "Diminuir bateria em 5 por cento",
+        "rect": "{\"x\":252,\"y\":840,\"width\":64,\"height\":56,\"top\":840,\"right\":316,\"bottom\":896,\"left\":252}"
+      },
+      {
+        "name": "Aumentar bateria em 5 por cento",
+        "rect": "{\"x\":452,\"y\":840,\"width\":64,\"height\":56,\"top\":840,\"right\":516,\"bottom\":896,\"left\":452}"
+      },
+      {
+        "name": "Definir carga da bateria",
+        "rect": "{\"x\":22,\"y\":926,\"width\":724,\"height\":62,\"top\":926,\"right\":746,\"bottom\":988,\"left\":22}"
+      }
+    ]
+  },
+  {
+    "name": "panoramica",
+    "viewport": [
+      1920,
+      480
+    ],
+    "overflow": false,
+    "buttons": [
+      {
+        "name": "BYD Dolphin Plus. Bateria para estimativa: 70 por cento. Bateria demonstrativa. Sem telemetria. Cerca de 280 quilômetros estimados",
+        "x": 1020.203125,
+        "y": 9,
+        "w": 171.796875,
+        "h": 46,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir perfil",
+        "x": 1194,
+        "y": 9,
+        "w": 46,
+        "h": 46,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir busca e filtros",
+        "x": 1187,
+        "y": 78,
+        "w": 42,
+        "h": 42,
+        "tab": "0"
+      },
+      {
+        "name": "Mostrar atalhos de filtro",
+        "x": 680,
+        "y": 132,
+        "w": 560,
+        "h": 16,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Higienópolis Prime Charge",
+        "x": 594.390625,
+        "y": 377.3125,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Flui Express MASP",
+        "x": 863.1875,
+        "y": 390.03125,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Plug & Café Consolação",
+        "x": 1439.1875,
+        "y": 208.765625,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Charge City Jardins",
+        "x": 844,
+        "y": 329.609375,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Estação Jardins Pamplona",
+        "x": 344.796875,
+        "y": 386.859375,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Flui Vila Mariana Lins",
+        "x": 767.1875,
+        "y": 332.796875,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de EcoCarga Parque Aclimação",
+        "x": 248.796875,
+        "y": 313.71875,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Hub Paraíso Vergueiro",
+        "x": 786.390625,
+        "y": 278.734375,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Mercado Charge Cambuci",
+        "x": 1151.1875,
+        "y": 390.03125,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Garagem Liberdade Solar",
+        "x": 1535.1875,
+        "y": 399.578125,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Fast Point Ana Rosa",
+        "x": 575.1875,
+        "y": 364.59375,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir ficha de Garagem Verde Brigadeiro",
+        "x": 959.1875,
+        "y": 297.8125,
+        "w": 44,
+        "h": 44,
+        "tab": "0"
+      },
+      {
+        "name": "Aumentar zoom do mapa",
+        "x": 1852,
+        "y": 181,
+        "w": 52,
+        "h": 51,
+        "tab": "0"
+      },
+      {
+        "name": "Diminuir zoom do mapa",
+        "x": 1852,
+        "y": 233,
+        "w": 52,
+        "h": 51,
+        "tab": "0"
+      },
+      {
+        "name": "Centralizar origem demonstrativa: FIAP",
+        "x": 1852,
+        "y": 294,
+        "w": 52,
+        "h": 52,
+        "tab": "0"
+      },
+      {
+        "name": "Abrir assistente Flui IA",
+        "x": 1120,
+        "y": 36,
+        "w": 120,
+        "h": 52,
+        "tab": "0"
+      },
+      {
+        "name": "Minimizar opções demonstrativas para ver o mapa inteiro",
+        "x": 699,
+        "y": 111,
+        "w": 522,
+        "h": 12,
+        "tab": "0"
+      },
+      {
+        "name": "Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈2,1 km em linha reta. Chegada estimada com 69% de bateria.",
+        "x": 699,
+        "y": 216,
+        "w": 522,
+        "h": 149,
+        "tab": "0"
+      }
+    ],
+    "battery": [
+      {
+        "name": "BYD Dolphin Plus. Bateria para estimativa: 70 por cento. Bateria demonstrativa. Sem telemetria. Cerca de 280 quilômetros estimados",
+        "rect": "{\"x\":1020.203125,\"y\":9,\"width\":171.796875,\"height\":46,\"top\":9,\"right\":1192,\"bottom\":55,\"left\":1020.203125}"
+      },
+      {
+        "name": "Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈2,1 km em linha reta. Chegada estimada com 69% de bateria.",
+        "rect": "{\"x\":699,\"y\":216,\"width\":522,\"height\":149,\"top\":216,\"right\":1221,\"bottom\":365,\"left\":699}"
+      },
+      {
+        "name": "Fechar seletor de bateria",
+        "rect": "{\"x\":0,\"y\":0,\"width\":1920,\"height\":480,\"top\":0,\"right\":1920,\"bottom\":480,\"left\":0}"
+      },
+      {
+        "name": "Diminuir bateria em 5 por cento",
+        "rect": "{\"x\":828,\"y\":296,\"width\":64,\"height\":56,\"top\":296,\"right\":892,\"bottom\":352,\"left\":828}"
+      },
+      {
+        "name": "Aumentar bateria em 5 por cento",
+        "rect": "{\"x\":1028,\"y\":296,\"width\":64,\"height\":56,\"top\":296,\"right\":1092,\"bottom\":352,\"left\":1028}"
+      },
+      {
+        "name": "Definir carga da bateria",
+        "rect": "{\"x\":22,\"y\":382,\"width\":1876,\"height\":62,\"top\":382,\"right\":1898,\"bottom\":444,\"left\":22}"
+      }
+    ]
+  }
+]

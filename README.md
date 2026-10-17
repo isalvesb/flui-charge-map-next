@@ -38,6 +38,7 @@ Projeto desenvolvido para o **Enterprise Challenge — Charge Map Cup**, parceri
 - [Lista de Tarefas (LDT v2.0)](docs/LDT.md) · referência de planejamento; propostas da Gama sujeitas à aprovação da equipe.
 - [Convenções de colaboração](docs/colaboracao.md) · proposta para revisão da responsável pela Alfa 1.1.
 - [Situação verificada das pendências da Alfa](docs/pendencias-alfa.md).
+- [Responsividade e acessibilidade básica — Beta 2.6](docs/beta-2.6.md).
 
 ---
 

@@ -8,6 +8,7 @@ import React, {
 import {
   Animated,
   Image,
+  Modal,
   Platform,
   Pressable,
   ScrollView,
@@ -66,6 +67,7 @@ import { useReducedMotion } from "../../hooks/useReducedMotion";
 import { useAppPreferences } from "../../context/PreferencesContext";
 import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
 import { identificacaoDados } from "../../data/identificacaoDados";
+import { getMapPanelLayout } from "./mapLayout";
 import { FluiAssistantSheet } from "../assistant/FluiAssistantSheet";
 import { FluiAiIcon } from "../assistant/FluiAiIcon";
 
@@ -178,6 +180,8 @@ type MapColorTokens = typeof baseColors & {
   successSoft?: string;
   dangerSoft?: string;
   warningLight?: string;
+  warningText?: string;
+  dangerText?: string;
 };
 
 const toRecord = (value: unknown): Record<string, unknown> => {
@@ -501,10 +505,10 @@ function obterCorDeBateriaAtual(percentual: number, colorSet: MapColorTokens) {
   }
 
   if (percentual >= 25) {
-    return colorSet.yellowDark;
+    return colorSet.warningText ?? colorSet.yellowDark;
   }
 
-  return colorSet.dangerBorder ?? colorSet.yellowDark;
+  return colorSet.dangerText ?? colorSet.dangerBorder ?? colorSet.yellowDark;
 }
 
 function obterCorDoAlcance(
@@ -516,10 +520,10 @@ function obterCorDoAlcance(
   }
 
   if (nivel === "apertado") {
-    return colorSet.yellowDark;
+    return colorSet.warningText ?? colorSet.yellowDark;
   }
 
-  return colorSet.dangerBorder ?? colorSet.yellowDark;
+  return colorSet.dangerText ?? colorSet.dangerBorder ?? colorSet.yellowDark;
 }
 
 function obterFundoDoAlcance(
@@ -675,7 +679,7 @@ const TABLET_BREAKPOINT = 700;
 const MAX_CONTENT_WIDTH = 560;
 
 export default function HomeMapScreen() {
-  const { styles, colors, isDarkMode } = useTelaComPreferencias(
+  const { styles, colors, isDarkMode, fontScale } = useTelaComPreferencias(
     baseStyles,
     baseColors,
   );
@@ -687,7 +691,7 @@ export default function HomeMapScreen() {
   const vehicleRangeKm = userPreferences.vehicleRangeKm;
   const [seletorBateriaAberto, setSeletorBateriaAberto] = useState(false);
   const [bateriaEmEdicao, setBateriaEmEdicao] = useState(batteryPercent);
-  const { width: larguraJanela, height: alturaJanela } =
+  const { width: larguraJanela, height: alturaJanela, fontScale: escalaFonteSistema } =
     useWindowDimensions();
   const isTelaLarga = larguraJanela >= TABLET_BREAKPOINT;
   const margemHorizontalConteudo = isTelaLarga
@@ -718,6 +722,8 @@ export default function HomeMapScreen() {
   const [painelTotalmenteOculto, setPainelTotalmenteOculto] = useState(false);
   const [sheetHeight, setSheetHeight] = useState(0);
   const [mapAreaHeight, setMapAreaHeight] = useState(0);
+  const layout = getMapPanelLayout(larguraJanela, alturaJanela, mapAreaHeight, fontScale * escalaFonteSistema, sheetHeight);
+  const cabecalhoCompacto = larguraJanela <= 360 || fontScale * escalaFonteSistema > 1.3;
   const [alturaCardPonto, setAlturaCardPonto] = useState<number | null>(null);
   const [atalhosRapidosAbertos, setAtalhosRapidosAbertos] = useState(false);
   const [hasInteractedWithQuickFilters, setHasInteractedWithQuickFilters] =
@@ -757,7 +763,7 @@ export default function HomeMapScreen() {
 
   const alturaAtalhosRapidos = quickFiltersProgress.interpolate({
     inputRange: [0, 1],
-    outputRange: [0, QUICK_FILTERS_CONTENT_HEIGHT],
+    outputRange: [0, Math.max(QUICK_FILTERS_CONTENT_HEIGHT, 48 * fontScale * escalaFonteSistema)],
   });
 
   const escalaPulsoLocalizacao = userLocationPulseProgress.interpolate({
@@ -1478,7 +1484,7 @@ export default function HomeMapScreen() {
 
                 <Image
                   source={imagemCarroUsuario}
-                  style={styles.vehicleImage}
+                  style={[styles.vehicleImage, cabecalhoCompacto && { display: "none" }]}
                   resizeMode="cover"
                 />
               </PressableScale>
@@ -1533,6 +1539,9 @@ export default function HomeMapScreen() {
 
             <Animated.View
               pointerEvents={atalhosRapidosAbertos ? "auto" : "none"}
+              aria-hidden={!atalhosRapidosAbertos}
+              accessibilityElementsHidden={!atalhosRapidosAbertos}
+              importantForAccessibility={atalhosRapidosAbertos ? "auto" : "no-hide-descendants"}
               style={[
                 styles.quickFiltersAnimatedContent,
                 {
@@ -1543,6 +1552,7 @@ export default function HomeMapScreen() {
             >
               <ScrollView
                 horizontal
+                tabIndex={-1}
                 scrollEnabled={atalhosRapidosAbertos}
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={styles.filtersContent}
@@ -1553,6 +1563,7 @@ export default function HomeMapScreen() {
                   return (
                     <PressableScale
                       key={filter.id}
+                      tabIndex={atalhosRapidosAbertos ? 0 : -1}
                       accessibilityRole="button"
                       accessibilityLabel={`${filter.label}${filter.active ? ", filtro ativo" : ""}`}
                       accessibilityHint="Filtra os pontos do mapa em tempo real."
@@ -1672,8 +1683,8 @@ export default function HomeMapScreen() {
             ]}
           />
 
-          <View pointerEvents="box-none" style={styles.fixedMapControls}>
-            <View style={styles.zoomPill}>
+          <View pointerEvents="box-none" style={[styles.fixedMapControls, layout.compactControls && styles.mapControlsCompact]}>
+            <View style={[styles.zoomPill, layout.compactControls && styles.zoomPillCompact]}>
               <PressableScale
                 accessibilityRole="button"
                 accessibilityLabel="Aumentar zoom do mapa"
@@ -1689,10 +1700,10 @@ export default function HomeMapScreen() {
                 onPressOut={() => setControleMapaAtivo(null)}
                 onPress={() => alterarZoomMapa("aproximar")}
               >
-                <Text style={styles.mapControlText}>+</Text>
+                <Text allowFontScaling={false} style={styles.mapControlText}>+</Text>
               </PressableScale>
 
-              <View style={styles.zoomPillDivider} />
+              <View style={[styles.zoomPillDivider, layout.compactControls && styles.zoomDividerCompact]} />
 
               <PressableScale
                 accessibilityRole="button"
@@ -1709,7 +1720,7 @@ export default function HomeMapScreen() {
                 onPressOut={() => setControleMapaAtivo(null)}
                 onPress={() => alterarZoomMapa("afastar")}
               >
-                <Text style={styles.mapControlText}>−</Text>
+                <Text allowFontScaling={false} style={styles.mapControlText}>−</Text>
               </PressableScale>
             </View>
 
@@ -1739,10 +1750,12 @@ export default function HomeMapScreen() {
             style={[
               styles.fluiAssistantFloating,
               {
-                right: margemHorizontalSheet,
-                bottom: sheetHeight + ASSISTANT_SHEET_GAP,
+                right: layout.horizontal ? 16 : layout.compactControls ? undefined : margemHorizontalSheet,
+                left: layout.compactControls && !layout.horizontal ? 16 : undefined,
+                top: layout.compactControls && !layout.horizontal ? 12 : undefined,
+                bottom: layout.compactControls ? (layout.horizontal ? 12 : undefined) : sheetHeight + ASSISTANT_SHEET_GAP,
                 transform: [
-                  { translateY: deslocamentoVerticalBotaoAssistente },
+                  { translateY: layout.compactControls ? 0 : deslocamentoVerticalBotaoAssistente },
                 ],
               },
             ]}
@@ -1750,7 +1763,7 @@ export default function HomeMapScreen() {
             <Animated.View
               style={[
                 styles.fluiAssistantAnimatedButton,
-                { width: larguraBotaoAssistente },
+                { width: layout.compactControls ? 52 : larguraBotaoAssistente },
               ]}
             >
               <PressableScale
@@ -1764,7 +1777,7 @@ export default function HomeMapScreen() {
                 <FluiAiIcon color={colors.white} size={21} />
                 <Animated.View
                   style={{
-                    width: larguraRotuloAssistente,
+                    width: layout.compactControls ? 0 : larguraRotuloAssistente,
                     opacity: assistantLabelProgress,
                     overflow: "hidden",
                   }}
@@ -1781,17 +1794,24 @@ export default function HomeMapScreen() {
           </Animated.View> : null}
 
           <Animated.View
+            aria-hidden={painelTotalmenteOculto}
+            accessibilityElementsHidden={painelTotalmenteOculto}
+            importantForAccessibility={painelTotalmenteOculto ? "no-hide-descendants" : "auto"}
             style={[
               styles.bottomSheet,
               {
-                left: margemHorizontalSheet,
-                right: margemHorizontalSheet,
+                left: layout.horizontal ? 16 : margemHorizontalSheet,
+                right: layout.horizontal ? undefined : margemHorizontalSheet,
+                width: layout.panelWidth,
                 transform: [{ translateY: sheetTranslateY }],
               },
             ]}
           >
-            <View
-              style={styles.bottomSheetCard}
+            <ScrollView
+              tabIndex={-1}
+              nestedScrollEnabled
+              style={[styles.bottomSheetCard, { maxHeight: layout.panelMaxHeight }]}
+              contentContainerStyle={styles.bottomSheetContent}
               onLayout={(event) => {
                 setSheetHeight(event.nativeEvent.layout.height);
               }}
@@ -1799,6 +1819,7 @@ export default function HomeMapScreen() {
               <PressableScale
                 accessibilityRole="button"
                 accessibilityLabel="Minimizar opções demonstrativas para ver o mapa inteiro"
+                tabIndex={painelTotalmenteOculto ? -1 : 0}
                 accessibilityHint="Esconde completamente o painel, deixando só um atalho para trazê-lo de volta."
                 hitSlop={{ top: 10, right: 44, bottom: 10, left: 44 }}
                 pressedScale={0.94}
@@ -1837,6 +1858,7 @@ export default function HomeMapScreen() {
                 <PressableScale
                   accessibilityRole="button"
                   accessibilityLabel="Ajustar busca"
+                  tabIndex={painelTotalmenteOculto ? -1 : 0}
                   style={styles.emptyButton}
                   onPress={abrirBusca}
                 >
@@ -1845,6 +1867,7 @@ export default function HomeMapScreen() {
               </View>
             ) : (
               <ScrollView
+                tabIndex={-1}
                 style={[
                   styles.pointsScroll,
                   { height: alturaListaComDoisCards },
@@ -1873,6 +1896,7 @@ export default function HomeMapScreen() {
                   return (
                     <PressableScale
                       key={`${point.id}-${point.stationId}`}
+                      tabIndex={painelTotalmenteOculto ? -1 : 0}
                       accessibilityRole="button"
                       accessibilityLabel={`${point.nomeEstacao}. ${point.criterioLabel}. ${point.address}. ${point.status}. Nota ${point.rating}. ${point.power}. ${point.distancia} em linha reta. ${legendaAlcance}.`}
                       accessibilityHint="Abre a ficha detalhada do ponto de recarga."
@@ -1935,7 +1959,7 @@ export default function HomeMapScreen() {
                         />
                       </View>
 
-                      <Text style={styles.pointStationName} numberOfLines={1}>
+                      <Text style={styles.pointStationName}>
                         {point.nomeEstacao}
                       </Text>
                       <Text style={styles.pointAddress} numberOfLines={1}>
@@ -1980,7 +2004,7 @@ export default function HomeMapScreen() {
                 })}
               </ScrollView>
               )}
-            </View>
+            </ScrollView>
           </Animated.View>
 
           {painelTotalmenteOculto ? (
@@ -2030,7 +2054,8 @@ export default function HomeMapScreen() {
         ) : null}
 
         {seletorBateriaAberto ? (
-          <View style={styles.batterySheetOverlay}>
+          <Modal transparent visible animationType={reduceMotionEnabled ? "none" : "slide"} onRequestClose={cancelarEdicaoDeBateria}>
+          <View style={styles.batterySheetOverlay} accessibilityViewIsModal>
             <Pressable
               accessibilityRole="button"
               accessibilityLabel="Fechar seletor de bateria"
@@ -2038,7 +2063,10 @@ export default function HomeMapScreen() {
               onPress={cancelarEdicaoDeBateria}
             />
 
-            <View style={styles.batterySheetCard}>
+            <ScrollView
+              style={[styles.batterySheetCard, { maxHeight: alturaJanela * 0.9 }]}
+              contentContainerStyle={styles.batterySheetContent}
+            >
               <View style={styles.batterySheetHeaderRow}>
                 <View
                   style={[
@@ -2142,8 +2170,9 @@ export default function HomeMapScreen() {
                   Definir carga
                 </Text>
               </PressableScale>
-            </View>
+            </ScrollView>
           </View>
+          </Modal>
         ) : null}
       </ScreenTransition>
     </SafeAreaView>

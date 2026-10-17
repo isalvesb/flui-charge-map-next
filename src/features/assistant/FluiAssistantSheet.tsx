@@ -468,7 +468,10 @@ function createStyles(
       backgroundColor: "rgba(7, 12, 18, 0.42)",
     },
     sheet: {
-      maxHeight: "76%",
+      maxHeight: "90%",
+      width: "100%",
+      maxWidth: 560,
+      alignSelf: "center",
       paddingHorizontal: 20,
       paddingTop: 10,
       paddingBottom: 24,
@@ -520,8 +523,8 @@ function createStyles(
       fontWeight: "600",
     },
     closeButton: {
-      width: 42,
-      height: 42,
+      width: 44,
+      height: 44,
       borderRadius: 21,
       alignItems: "center",
       justifyContent: "center",
