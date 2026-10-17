@@ -25,7 +25,7 @@ test("controle desabilitado bloqueia sugestões e todas as respostas do motor", 
   try {
     funcionalidadesExperimentais.fluia = false;
     assert.equal(recommendStations({ ...contexto, intent: "fastCharge" }), null);
-    for (const pergunta of ["quero carregar rápido", "tenho pouca bateria", "autonomia", "olá"]) {
+    for (const pergunta of ["quero carregar rápido", "tenho pouca bateria", "Esperar menos", "café", "conforto", "Quero uma recomendação", "autonomia", "olá"]) {
       const resposta = answerMessage(pergunta, contexto);
       assert.equal(resposta.state, "aviso");
       assert.equal(resposta.recommendation, undefined);
@@ -42,5 +42,5 @@ test("falta de opção no exemplo não afirma indisponibilidade real", () => {
   assert.equal(resposta.state, "alerta");
   assert.equal(resposta.recommendation, undefined);
   assert.match(resposta.text, /dados demonstrativos/);
-  assert.match(resposta.text, /não confirma a disponibilidade real/);
+  assert.match(resposta.text, /reserva mínima de 5%/);
 });

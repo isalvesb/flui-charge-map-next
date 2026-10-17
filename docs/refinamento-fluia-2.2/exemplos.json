@@ -1,0 +1,336 @@
+{
+  "base": "b89a71b",
+  "method": "Execução direta dos motores anterior e alterado; fixture controlada. Não é validação de interface.",
+  "scenarios": [
+    {
+      "question": "Quero uma recomendação",
+      "context": {
+        "batteryPercent": 70,
+        "stations": [
+          {
+            "id": "station-test",
+            "status": "available",
+            "distanceKm": 1,
+            "amenities": [
+              "coffee",
+              "restroom",
+              "wifi"
+            ]
+          }
+        ]
+      },
+      "before": {
+        "text": "Posso ajudar com recarga rápida, bateria baixa ou onde esperar menos. Qual delas você quer?",
+        "state": "respondendo"
+      },
+      "after": {
+        "text": "Para recomendar, preciso saber sua prioridade. Você quer preservar bateria, recarga rápida, esperar menos, café e banheiro ou esperar com conforto?",
+        "state": "respondendo"
+      }
+    },
+    {
+      "question": "Esperar menos",
+      "context": {
+        "batteryPercent": 70,
+        "stations": [
+          {
+            "id": "station-test",
+            "status": "available",
+            "distanceKm": 1,
+            "amenities": [
+              "coffee",
+              "restroom",
+              "wifi"
+            ]
+          }
+        ]
+      },
+      "before": {
+        "text": "Posso ajudar com recarga rápida, bateria baixa ou onde esperar menos. Qual delas você quer?",
+        "state": "respondendo"
+      },
+      "after": {
+        "text": "No exemplo, Ponto Completo: Combina disponibilidade cadastrada e distância; não há previsão de fila em tempo real.\nEstimativa em linha reta com reserva de 5%; compatibilidade não confirmada. Confirme o funcionamento antes de sair.",
+        "state": "respondendo",
+        "recommendation": {
+          "intent": "avoidQueues",
+          "arrivalBatteryPercent": 70,
+          "availableChargers": 1,
+          "powerKw": 120,
+          "compatibilityVerified": false,
+          "stationId": "station-test"
+        }
+      }
+    },
+    {
+      "question": "Onde posso tomar um café enquanto carrego?",
+      "context": {
+        "batteryPercent": 70,
+        "stations": [
+          {
+            "id": "station-test",
+            "status": "available",
+            "distanceKm": 1,
+            "amenities": [
+              "coffee",
+              "restroom",
+              "wifi"
+            ]
+          }
+        ]
+      },
+      "before": {
+        "text": "Posso ajudar com recarga rápida, bateria baixa ou onde esperar menos. Qual delas você quer?",
+        "state": "respondendo"
+      },
+      "after": {
+        "text": "No exemplo, Ponto Completo: Reúne banheiro e café cadastrados, considerando alcance estimado e disponibilidade demonstrativa.\nEstimativa em linha reta com reserva de 5%; compatibilidade não confirmada. Confirme o funcionamento antes de sair.",
+        "state": "respondendo",
+        "recommendation": {
+          "intent": "coffeeAndRestroom",
+          "arrivalBatteryPercent": 70,
+          "availableChargers": 1,
+          "powerKw": 120,
+          "compatibilityVerified": false,
+          "stationId": "station-test"
+        }
+      }
+    },
+    {
+      "question": "Quero esperar com conforto",
+      "context": {
+        "batteryPercent": 70,
+        "stations": [
+          {
+            "id": "station-test",
+            "status": "available",
+            "distanceKm": 1,
+            "amenities": [
+              "coffee",
+              "restroom",
+              "wifi"
+            ]
+          }
+        ]
+      },
+      "before": {
+        "text": "Posso ajudar com recarga rápida, bateria baixa ou onde esperar menos. Qual delas você quer?",
+        "state": "respondendo"
+      },
+      "after": {
+        "text": "No exemplo, Ponto Completo: Combina avaliação e 3 comodidade(s) cadastrada(s); a espera não é monitorada.\nEstimativa em linha reta com reserva de 5%; compatibilidade não confirmada. Confirme o funcionamento antes de sair.",
+        "state": "respondendo",
+        "recommendation": {
+          "intent": "comfortableWait",
+          "arrivalBatteryPercent": 70,
+          "availableChargers": 1,
+          "powerKw": 120,
+          "compatibilityVerified": false,
+          "stationId": "station-test"
+        }
+      }
+    },
+    {
+      "question": "Bateria baixa",
+      "context": {
+        "batteryPercent": 5,
+        "stations": [
+          {
+            "id": "station-test",
+            "status": "available",
+            "distanceKm": 1,
+            "amenities": [
+              "coffee",
+              "restroom",
+              "wifi"
+            ]
+          }
+        ]
+      },
+      "before": {
+        "text": "Não encontrei uma opção viável nos dados demonstrativos com a bateria, os horários e os carregadores disponíveis. Isso não confirma a disponibilidade real das estações.",
+        "state": "alerta"
+      },
+      "after": {
+        "text": "Não encontrei uma parada ao alcance com a reserva exigida nos dados demonstrativos. Com 5% de bateria, não há margem para deslocamento preservando a reserva mínima de 5% na chegada.",
+        "state": "alerta"
+      }
+    },
+    {
+      "question": "Recarga rápida",
+      "context": {
+        "batteryPercent": 5,
+        "stations": [
+          {
+            "id": "station-test",
+            "status": "available",
+            "distanceKm": 1,
+            "amenities": [
+              "coffee",
+              "restroom",
+              "wifi"
+            ]
+          }
+        ]
+      },
+      "before": {
+        "text": "Não encontrei uma opção viável nos dados demonstrativos. Isso não confirma a disponibilidade real das estações.",
+        "state": "alerta"
+      },
+      "after": {
+        "text": "Não encontrei uma opção viável para priorizar a potência de recarga nos dados demonstrativos. Com 5% de bateria, não há margem para deslocamento preservando a reserva mínima de 5% na chegada.",
+        "state": "alerta"
+      }
+    },
+    {
+      "question": "Quero evitar filas",
+      "context": {
+        "batteryPercent": 70,
+        "stations": []
+      },
+      "before": {
+        "text": "Posso ajudar com recarga rápida, bateria baixa ou onde esperar menos. Qual delas você quer?",
+        "state": "respondendo"
+      },
+      "after": {
+        "text": "Não encontrei uma opção viável para comparar a disponibilidade de carregadores nos dados demonstrativos. Não recebi estações para comparar nesta consulta.",
+        "state": "alerta"
+      }
+    },
+    {
+      "question": "Bateria baixa",
+      "context": {
+        "batteryPercent": 70,
+        "stations": [
+          {
+            "id": "station-test",
+            "status": "maintenance",
+            "distanceKm": 1,
+            "amenities": [
+              "coffee",
+              "restroom",
+              "wifi"
+            ]
+          }
+        ]
+      },
+      "before": {
+        "text": "Não encontrei uma opção viável nos dados demonstrativos com a bateria, os horários e os carregadores disponíveis. Isso não confirma a disponibilidade real das estações.",
+        "state": "alerta"
+      },
+      "after": {
+        "text": "Não encontrei uma parada ao alcance com a reserva exigida nos dados demonstrativos. Todas as estações recebidas estão em manutenção no cadastro.",
+        "state": "alerta"
+      }
+    },
+    {
+      "question": "Quero café",
+      "context": {
+        "batteryPercent": 70,
+        "stations": [
+          {
+            "id": "station-test",
+            "status": "available",
+            "distanceKm": 1,
+            "amenities": [
+              "parking"
+            ]
+          }
+        ]
+      },
+      "before": {
+        "text": "Posso ajudar com recarga rápida, bateria baixa ou onde esperar menos. Qual delas você quer?",
+        "state": "respondendo"
+      },
+      "after": {
+        "text": "Não encontrei uma opção viável com café e banheiro cadastrados nos dados demonstrativos. Há opção que atende ao alcance e à disponibilidade, mas nenhuma reúne café e banheiro, exigidos por esta opção. Você pode pedir outra prioridade.",
+        "state": "alerta"
+      }
+    },
+    {
+      "question": "O que é autonomia?",
+      "context": {
+        "batteryPercent": 70,
+        "stations": [
+          {
+            "id": "station-test",
+            "status": "available",
+            "distanceKm": 1,
+            "amenities": [
+              "coffee",
+              "restroom",
+              "wifi"
+            ]
+          }
+        ]
+      },
+      "before": {
+        "text": "Autonomia é a distância que o veículo consegue percorrer com a carga atual. A estimativa do app multiplica a autonomia configurada pela porcentagem de bateria. A chegada estimada também considera a distância em linha reta até a estação, sem telemetria. FluIA experimental · sugestões locais com dados demonstrativos, sem IA generativa ou disponibilidade em tempo real.",
+        "state": "respondendo"
+      },
+      "after": {
+        "text": "Autonomia é a distância que o veículo consegue percorrer com a carga atual. A estimativa do app multiplica a autonomia configurada pela porcentagem de bateria. A chegada estimada também considera a distância em linha reta até a estação, sem telemetria.",
+        "state": "respondendo"
+      }
+    }
+  ],
+  "baseContext": {
+    "stations": [
+      {
+        "id": "station-test",
+        "name": "Ponto Completo",
+        "address": "Avenida Teste, 100",
+        "neighborhood": "Centro",
+        "city": "São Paulo",
+        "state": "SP",
+        "latitude": -23.55,
+        "longitude": -46.63,
+        "distanceKm": 1,
+        "rating": 4.8,
+        "reviewCount": 10,
+        "status": "available",
+        "powerKw": 120,
+        "connectors": [
+          {
+            "id": "connector-test",
+            "type": "ccs2",
+            "label": "CCS2",
+            "powerKw": 120,
+            "totalChargers": 2,
+            "availableChargers": 1
+          }
+        ],
+        "amenities": [
+          "coffee",
+          "restroom",
+          "wifi"
+        ],
+        "openingHours": "24 horas",
+        "openingSchedule": {
+          "timeZone": "America/Sao_Paulo",
+          "periods": [
+            {
+              "days": [
+                "sun",
+                "mon",
+                "tue",
+                "wed",
+                "thu",
+                "fri",
+                "sat"
+              ],
+              "opensAt": "00:00",
+              "closesAt": "24:00"
+            }
+          ]
+        },
+        "lessBusyPeriods": [
+          "10h às 12h"
+        ]
+      }
+    ],
+    "vehicleRangeKm": 300,
+    "batteryPercent": 70,
+    "now": "2026-10-16T15:00:00.000Z"
+  }
+}
