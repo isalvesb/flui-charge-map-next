@@ -1,0 +1,105 @@
+Browser tab: 1, Title: "127.0.0.1:8776/map", URL: "http://127.0.0.1:8776/map".
+0 AXWebArea 127.0.0.1:8776/map
+	1 container
+		2 container
+			3 image
+			4 button BYD Dolphin Plus. Bateria para estimativa: 70 por cento. Bateria demonstrativa. Sem telemetria. Cerca de 280 quilômetros estimados
+				5 container
+					6 container
+						7 text 70 %
+					8 text Bateria demonstrativa
+					9 text Sem telemetria
+			10 button Abrir perfil
+		11 container
+			12 image
+			13 text field (settable) Buscar no mapa
+			14 button Abrir busca e filtros
+		15 container
+			16 button Mostrar atalhos de filtro
+			17 container
+				18 button Aberto agora
+					19 container
+						20 image
+						21 text Aberto agora
+				22 button CCS2
+					23 container
+						24 image
+						25 text CCS2
+				26 button Rápido
+					27 container
+						28 image
+						29 text Rápido
+				30 button Banheiro
+					31 container
+						32 image
+						33 text Banheiro
+		34 container Mapa com pontos de recarga próximos
+			35 container
+				36 text Prévia do mapa -23.568 ,  -46.653
+			37 button Abrir ficha de Higienópolis Prime Charge
+			38 button Abrir ficha de Flui Express MASP
+			39 button Abrir ficha de Plug & Café Consolação
+			40 button Abrir ficha de Charge City Jardins
+			41 button Abrir ficha de Estação Jardins Pamplona
+			42 button Abrir ficha de Flui Vila Mariana Lins
+			43 button Abrir ficha de EcoCarga Parque Aclimação
+			44 button Abrir ficha de Hub Paraíso Vergueiro
+			45 button Abrir ficha de Mercado Charge Cambuci
+			46 button Abrir ficha de Garagem Liberdade Solar
+			47 button Abrir ficha de Fast Point Ana Rosa
+			48 button Abrir ficha de Garagem Verde Brigadeiro
+		49 container
+			50 button Aumentar zoom do mapa
+				51 text +
+			52 button Diminuir zoom do mapa
+				53 text −
+			54 button Centralizar origem demonstrativa: FIAP
+		55 button Abrir assistente Flui IA
+			56 container
+				57 image
+				58 image
+				59 image
+				60 text Flui IA
+		61 container
+			62 button Minimizar opções demonstrativas para ver o mapa inteiro
+			63 text Opções demonstrativas
+			64 text Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo. Origem:  FIAP  · distâncias em linha reta, sem cálculo de percurso
+			65 button Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈2,1 km em linha reta. Chegada estimada com 69% de bateria.
+				66 container
+					67 container
+						68 image
+						69 text OPÇÃO DEMONSTRATIVA
+						70 image
+						71 text Confortável
+					72 image
+					73 text Higienópolis Prime Charge Rua Alagoas, 974 ≈2,1 km  em linha reta
+					74 container
+						75 text Aberto agora
+					76 container
+						77 image
+						78 text 4,9
+					79 container
+						80 image
+						81 text 150 kW
+	82 container
+		83 container
+			84 button Fechar assistente FluIA
+			85 container
+				86 text FluIA
+				87 text FluIA experimental · sugestões locais com dados demonstrativos, sem IA generativa ou disponibilidade em tempo real.
+				88 button Fechar assistente
+			115 container
+				116 text BYD Dolphin Plus  · origem demonstrativa:  FIAP .
+				120 container
+					121 text O que é autonomia?
+					122 text Autonomia é a distância que o veículo consegue percorrer com a carga atual. A estimativa do app multiplica a autonomia configurada pela porcentagem de bateria. A chegada estimada também considera a distância em linha reta até a estação, sem telemetria. FluIA experimental · sugestões locais com dados demonstrativos, sem IA generativa ou disponibilidade em tempo real.
+					123 text Tenho pouca bateria, consigo chegar?
+					124 text Está ao alcance estimado, fica a ≈2,1 km e tem 4 carregadores livres nos dados demonstrativos.
+Distância aproximada em linha reta, sem cálculo de percurso. Estimativa linear com reserva de 5%. Compatibilidade do veículo não confirmada; não há integração em tempo real.
+					125 button Ver ponto no mapa
+						126 text Ver ponto no mapa
+				117 text field (settable) Mensagem para a FluIA
+				118 button Enviar mensagem
+					119 text Enviar
+
+The focused UI element is 118 button Enviar mensagem

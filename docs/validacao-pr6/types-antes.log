@@ -1,0 +1,13 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> flui-charge-map@1.0.0 typecheck
+> tsc --noEmit
+
+src/features/assistant/chatEngine.ts(35,8): error TS2304: Cannot find name 'funcionalidadesExperimentais'.
+src/features/assistant/chatEngine.ts(44,44): error TS2304: Cannot find name 'identificacaoDados'.
+tests/funcionalidadesExperimentais.test.ts(17,59): error TS2345: Argument of type '{ stations: ChargingStation[]; batteryPercent: number; vehicleRangeKm: number; }' is not assignable to parameter of type 'AssistantContext'.
+  Property 'now' is missing in type '{ stations: ChargingStation[]; batteryPercent: number; vehicleRangeKm: number; }' but required in type 'AssistantContext'.
+tests/funcionalidadesExperimentais.test.ts(28,48): error TS2345: Argument of type '{ stations: ChargingStation[]; batteryPercent: number; vehicleRangeKm: number; }' is not assignable to parameter of type 'AssistantContext'.
+  Property 'now' is missing in type '{ stations: ChargingStation[]; batteryPercent: number; vehicleRangeKm: number; }' but required in type 'AssistantContext'.
+tests/funcionalidadesExperimentais.test.ts(40,53): error TS2345: Argument of type '{ batteryPercent: number; stations: ChargingStation[]; vehicleRangeKm: number; }' is not assignable to parameter of type 'AssistantContext'.
+  Property 'now' is missing in type '{ batteryPercent: number; stations: ChargingStation[]; vehicleRangeKm: number; }' but required in type 'AssistantContext'.

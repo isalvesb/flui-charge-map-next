@@ -77,3 +77,25 @@ Tamanho de texto restaurado para `large`, valor original. Relógio não modifica
 - Avisos de APIs antigas de estilo/props no Expo e aviso de identificação de SDK no XCTest já existiam no ambiente; não foram tratados como falhas desta entrega. Sem bloqueio técnico herdado da main atualizado identificado nesta rodada.
 
 Entrega pronta para revisão humana na PR em rascunho. Issues não encerradas automaticamente; nenhum merge realizado.
+
+## Atualização com a main após a PR #6 — 17/10/2026
+
+PR #6 confirmada como integrada na main `1cdb01555b4cba1696800d94ce3b519d06bce484`. A atualização ocorre somente na branch da **PR #79 existente**, preservando seu histórico e rascunho; não há integração desta PR na main nem criação de outra PR. Os resultados acima são da versão anterior `5fbbfef`; não se atribui sua prova iOS à interface combinada.
+
+**Resolução:** único conflito em `FluiAssistantSheet.tsx`, no tamanho do painel. Mantida a altura de 88% usada pelo chat da main, junto com o limite de 90%, largura de leitura de até 560 px, centralização e botão de fechar de 44 pontos da Beta 2.6. Todo o chat, mensagens, campo de entrada, envio por Enter/botão, atalhos, contexto demonstrativo, avisos, limpeza ao fechar e navegação para a ficha foram preservados. O motor `chatEngine.ts` e seus testes são idênticos aos da main incorporada. Os demais arquivos de produção da Beta 2.6 permanecem idênticos a `5fbbfef`.
+
+**Ajuste necessário da combinação:** com a altura mínima de 220 px do histórico, em 844×390 o envio ficava em `y=349,81`, altura 44, terminando fora da janela; os atalhos perdiam sua área rolável. [Antes](validacao-2.6/atualizacao-main-pr6/antes-horizontal.png) · [medidas](validacao-2.6/atualizacao-main-pr6/layout-combinado-antes.json). Reduzida somente essa altura mínima para 112 px; o histórico continua flexível/rolável e cresce quando há espaço. O botão de ficha dentro do chat passa de 40 para 44 pontos, e a rolagem automática respeita `reduceMotionEnabled`. Sem alterações de regras de recomendação, dependências ou arquitetura.
+
+**Nova validação web da experiência combinada:** exportação atual servida localmente em Chromium, sem relógio simulado. Executados novamente 320×568, 844×390, 768×1024 e 1920×480, com fonte maior; tema claro e, no tablet, escuro. Em cada resolução:
+
+- Campo de mensagem, envio e fechamento dentro da janela e com altura mínima de 44; controles do mapa da Beta preservados, sem overflow horizontal.
+- Cinco atalhos alcançáveis por rolagem; pergunta “O que é autonomia?” respondida pelo motor local, com envio por Enter e limpeza do campo.
+- Pedido de recarga rápida pelo chat gerou recomendação e botão de ficha com pelo menos 44 pontos; navegação abriu Higienópolis Prime Charge (`station-01`).
+- Retorno ao mapa e reabertura limparam conversa/rascunho; atalho de recarga rápida continuou recomendando e oferecendo acesso à ficha.
+- Foco permaneceu no modal e Escape fechou. Interface e avisos demonstrativos preservados.
+
+[Compacta/chat](validacao-2.6/atualizacao-main-pr6/compacta-chat.png) · [horizontal/entrada](validacao-2.6/atualizacao-main-pr6/horizontal-inicial.png) · [horizontal/chat](validacao-2.6/atualizacao-main-pr6/horizontal-chat.png) · [tablet/atalho](validacao-2.6/atualizacao-main-pr6/tablet-atalho.png) · [panorâmica/chat](validacao-2.6/atualizacao-main-pr6/panoramica-chat.png). Capturas inspecionadas visualmente. Em telas baixas, atalhos e histórico exigem rolagem, mantendo o envio acessível. [Resultados](validacao-2.6/atualizacao-main-pr6/web-resultados.json) · [fonte executada](validacao-2.6/atualizacao-main-pr6/WebCombinada.cjs) · [log](validacao-2.6/atualizacao-main-pr6/web.log).
+
+**Quality local:** TypeScript e lint aprovados; **63/63 testes** (60 da main atual e três da Beta 2.6). [Log](validacao-2.6/atualizacao-main-pr6/check.log). Exportação web atual aprovada com **11 rotas**: [log](validacao-2.6/atualizacao-main-pr6/exportacao-web.log). Código validado identificado por [hashes](validacao-2.6/atualizacao-main-pr6/codigo-validado.sha256). O resultado do Quality remoto é registrado na própria PR, separadamente.
+
+**Limites desta atualização:** validação nova exclusivamente web, conforme solicitado; iOS/Android, teclado virtual nativo e sessões VoiceOver/TalkBack não foram repetidos. Orientação portrait e demais limitações anteriores mantidas. Servidor local encerrado após a coleta.
