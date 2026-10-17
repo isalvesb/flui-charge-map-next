@@ -1,6 +1,6 @@
 # Flui NEXT 2026 | Lista de Tarefas (LDT)
 
-**Versão:** 2.1
+**Versão:** 2.2
 **Repositório:** `isalvesb/flui-charge-map-next`
 
 > Este documento organiza as tarefas do Flui NEXT 2026 em enunciados
@@ -24,14 +24,16 @@
 
 - Identificar e corrigir inconsistências técnicas e funcionais dentro do escopo aprovado.
 - Executar testes pertinentes e documentar evidências, resultados e limitações conhecidas.
-- [1.2.3](https://github.com/isalvesb/flui-charge-map-next/issues/75) | Concluir a validação complementar dos fluxos auditados em iOS e Android, com evidências e limitações.
+- [1.2.3](https://github.com/isalvesb/flui-charge-map-next/issues/75) | Concluir no iOS a validação complementar dos fluxos auditados, com evidências e limitações.
+- [1.2.4](https://github.com/isalvesb/flui-charge-map-next/issues/81) | Validar os fluxos auditados no Android, documentando evidências e impedimentos.
 
 ### 1.3 | Configurar veículo, bateria, autonomia e origem para os dados demonstrativos do NEXT.
 
 - Configurar veículo, autonomia, nível de bateria e localização de origem para a demonstração.
 - Permitir a seleção de origens demonstrativas e a atualização dos parâmetros disponíveis.
 - Garantir coerência entre os dados configurados e as estimativas apresentadas nas diferentes interfaces.
-- [1.3.4](https://github.com/isalvesb/flui-charge-map-next/issues/76) | Validar configurações e estimativas demonstrativas em iOS e Android, incluindo persistência.
+- [1.3.4](https://github.com/isalvesb/flui-charge-map-next/issues/76) | Validar no iOS configurações, persistência e coerência das estimativas demonstrativas.
+- [1.3.5](https://github.com/isalvesb/flui-charge-map-next/issues/82) | Validar no Android configurações, persistência e coerência das estimativas demonstrativas.
 
 ---
 
@@ -41,7 +43,8 @@
 
 - Distinguir dados demonstrativos, estimativas e registros locais, evitando apresentar informações simuladas como dados verificados em tempo real.
 - Centralizar os controles internos das funcionalidades experimentais, reutilizando a infraestrutura existente.
-- [2.1.3](https://github.com/isalvesb/flui-charge-map-next/issues/10) | Validar as alterações da Beta 2.1 em iOS e Android e registrar as evidências.
+- [2.1.3](https://github.com/isalvesb/flui-charge-map-next/issues/10) | Validar no iOS a identificação dos dados e os controles experimentais da Beta 2.1.
+- [2.1.4](https://github.com/isalvesb/flui-charge-map-next/issues/83) | Validar no Android a identificação dos dados e os controles experimentais da Beta 2.1.
 
 ### 2.2 | Evoluir a FluIA com chat, recomendações de recarga e possibilidades de interação por voz.
 
@@ -133,17 +136,17 @@
 
 ---
 
-## 4. Acompanhamento e evidências | atualização de 16/10/2026
+## 4. Acompanhamento e evidências | atualização de 17/10/2026
 
 > Registro do progresso conhecido nesta revisão. O [GitHub Projects](https://github.com/users/guicunhasou/projects/2/views/1) e as Issues são as referências para o estado corrente. Trabalho demonstrado, implementação integrada e validação concluída são fatos distintos. Não se atribui `Done` sem evidências e aprovação pertinentes.
 
 | Tarefa | Situação constatada | Pendência |
 | --- | --- | --- |
-| **Alfa 1.1** | Histórico preservado, branches e PRs em uso. A [PR #77](https://github.com/isalvesb/flui-charge-map-next/pull/77) foi integrada à `main`, incluindo [convenções de colaboração](colaboracao.md). | Revisão colaborativa e confirmação da conclusão pela equipe; [1.1.1](https://github.com/isalvesb/flui-charge-map-next/issues/12) e [1.1.3](https://github.com/isalvesb/flui-charge-map-next/issues/74) permanecem abertas. |
-| **Alfa 1.2** | Correções anteriores e complementares da [PR #77](https://github.com/isalvesb/flui-charge-map-next/pull/77) integradas; evidências web e iOS reunidas em [auditoria-1.2.md](auditoria-1.2.md) e [pendencias-alfa.md](pendencias-alfa.md), sem validação móvel integral. | [1.2.3](https://github.com/isalvesb/flui-charge-map-next/issues/75): regressão complementar na versão atual, Android não validado e revisão da equipe. |
-| **Alfa 1.3** | Configurações e estimativas implementadas; evidências web e iOS em [alfa-1.3.md](alfa-1.3.md) e [pendencias-alfa.md](pendencias-alfa.md), reunidas na PR #77 já integrada. | [1.3.4](https://github.com/isalvesb/flui-charge-map-next/issues/76): regressão complementar da versão atual e Android não validado. |
-| **Beta 2.1** | [2.1.1](https://github.com/isalvesb/flui-charge-map-next/issues/8) e [2.1.2](https://github.com/isalvesb/flui-charge-map-next/issues/9) integradas à `main` pela [PR #4](https://github.com/isalvesb/flui-charge-map-next/pull/4). | [2.1.3](https://github.com/isalvesb/flui-charge-map-next/issues/10): validação iOS e Android; tarefa principal permanece aberta. |
-| **Beta 2.2** | Motor local da [PR #3](https://github.com/isalvesb/flui-charge-map-next/pull/3) e interface conversacional da [PR #6](https://github.com/isalvesb/flui-charge-map-next/pull/6) integrados à `main`; chat e recomendação demonstrativa verificados na web, com Quality e 60 testes aprovados na PR #6. | [2.2.1](https://github.com/isalvesb/flui-charge-map-next/issues/22) e [2.2.2](https://github.com/isalvesb/flui-charge-map-next/issues/23) ainda abertas para conferência da versão integrada; validação nativa específica não registrada. Avaliar voz em [2.2.3](https://github.com/isalvesb/flui-charge-map-next/issues/24). |
+| **Alfa 1.1** | Concluída: histórico preservado, fluxo de branches/PRs em uso e convenções de revisão coletiva integradas pelas [PRs #77](https://github.com/isalvesb/flui-charge-map-next/pull/77) e [#80](https://github.com/isalvesb/flui-charge-map-next/pull/80). Quality aprovado. | [Tarefa principal #11](https://github.com/isalvesb/flui-charge-map-next/issues/11) e subtarefas #12, #13 e #74 fechadas, com evidências registradas. |
+| **Alfa 1.2** | Correções anteriores e complementares da [PR #77](https://github.com/isalvesb/flui-charge-map-next/pull/77) integradas; evidências web e iOS em [auditoria-1.2.md](auditoria-1.2.md) e [pendencias-alfa.md](pendencias-alfa.md), sem validação móvel integral. | [1.2.3 iOS](https://github.com/isalvesb/flui-charge-map-next/issues/75): regressão e conferência complementar; [1.2.4 Android](https://github.com/isalvesb/flui-charge-map-next/issues/81): validação não executada, sem ambiente disponível. |
+| **Alfa 1.3** | Configurações e estimativas implementadas; evidências web e iOS em [alfa-1.3.md](alfa-1.3.md) e [pendencias-alfa.md](pendencias-alfa.md), reunidas na PR #77. | [1.3.4 iOS](https://github.com/isalvesb/flui-charge-map-next/issues/76): regressão complementar da versão atual; [1.3.5 Android](https://github.com/isalvesb/flui-charge-map-next/issues/82): validação não executada. |
+| **Beta 2.1** | [2.1.1](https://github.com/isalvesb/flui-charge-map-next/issues/8) e [2.1.2](https://github.com/isalvesb/flui-charge-map-next/issues/9) concluídas na [PR #4](https://github.com/isalvesb/flui-charge-map-next/pull/4). | [2.1.3 iOS](https://github.com/isalvesb/flui-charge-map-next/issues/10): validação específica a executar; [2.1.4 Android](https://github.com/isalvesb/flui-charge-map-next/issues/83): validação não executada. Tarefa principal aberta. |
+| **Beta 2.2** | Motor local da [PR #3](https://github.com/isalvesb/flui-charge-map-next/pull/3) e chat da [PR #6](https://github.com/isalvesb/flui-charge-map-next/pull/6) integrados à `main`; chat e recomendações demonstrativas verificados na web com Quality aprovado. [2.2.1](https://github.com/isalvesb/flui-charge-map-next/issues/22) e [2.2.2](https://github.com/isalvesb/flui-charge-map-next/issues/23) foram concluídas. | Avaliação de voz em [2.2.3](https://github.com/isalvesb/flui-charge-map-next/issues/24) permanece pendente; testes nativos específicos não foram registrados para a interface integrada. |
 | **Beta 2.6** | A [PR #79](https://github.com/isalvesb/flui-charge-map-next/pull/79) implementa ajustes de responsividade e acessibilidade básica, com Quality aprovado, verificações web em quatro proporções e teste iOS dirigido; continua em rascunho, sem merge. | Reconciliar as mudanças da FluIA após o merge da PR #6 e revalidar a integração; Android, dispositivo físico e outras verificações nativas seguem sem comprovação. [2.6](https://github.com/isalvesb/flui-charge-map-next/issues/34) e subtarefas permanecem abertas. |
 
 **Demonstrações compartilhadas pela equipe, ainda não arquivadas como evidências no repositório:**
@@ -171,6 +174,12 @@ As demais tarefas da Beta e as propostas da Gama mantêm seus escopos originais.
 ---
 
 ## 6. Histórico de versões
+
+### v2.2 | 17/10/2026 (proposta de atualização)
+
+- Separação das validações móveis das Alfas 1.2 e 1.3 e da Beta 2.1 por plataforma: subtarefas existentes #75, #76 e #10 restritas a iOS; criadas #81, #82 e #83 para Android, sem assumir validação executada.
+- Registro do avanço da Alfa 1.1 após a PR #80 e do encerramento documentado de #22 e #23 na Beta 2.2.
+- Preservação das 19 tarefas principais e dos escopos existentes; total atualizado para **52 subtarefas**.
 
 ### v2.1 | 16/10/2026 (proposta de atualização)
 
@@ -200,5 +209,5 @@ As demais tarefas da Beta e as propostas da Gama mantêm seus escopos originais.
 ---
 
 **Projeto:** Flui NEXT 2026
-**Lista de Tarefas:** v2.1
-**Total:** 19 tarefas principais (3 Alfa, 10 Beta e 6 Gama) e 49 subtarefas
+**Lista de Tarefas:** v2.2
+**Total:** 19 tarefas principais (3 Alfa, 10 Beta e 6 Gama) e 52 subtarefas
