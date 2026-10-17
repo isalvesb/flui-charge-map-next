@@ -1,0 +1,106 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> flui-charge-map@1.0.0 check
+> npm run typecheck && npm run lint && npm test
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> flui-charge-map@1.0.0 typecheck
+> tsc --noEmit
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> flui-charge-map@1.0.0 lint
+> expo lint
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> flui-charge-map@1.0.0 test
+> node --import tsx --test tests/*.test.ts
+
+✔ bateria padrão é demonstrativa e não inventa atualização (4.368125ms)
+✔ edição manual conserva valor, origem e data após serialização e leitura (16.925333ms)
+✔ preferências antigas não recebem uma origem fabricada (0.134166ms)
+✔ dados inválidos não preservam uma alegação manual nem valores não finitos (0.189625ms)
+✔ responde pergunta programada sem acento e em maiúsculas (2.116375ms)
+✔ pergunta sem resposta cai na mensagem padrão (1.3945ms)
+✔ pedido de recarga rápida sem estações gera alerta (0.607792ms)
+✔ bateria baixa usa o motor local e recusa bateria insuficiente (16.126916ms)
+✔ chat respeita o horário recebido da tela nas duas intenções (0.821542ms)
+✔ bateria baixa não atribui indisponibilidade exclusivamente ao alcance (0.138459ms)
+✔ sinônimos de lowBattery encaminham ao motor sem alterar o resultado (1.81925ms)
+✔ sinônimos de fastCharge encaminham ao motor sem alterar o resultado (0.667834ms)
+✔ sinônimos de avoidQueues encaminham ao motor sem alterar o resultado (0.865042ms)
+✔ sinônimos de coffeeAndRestroom encaminham ao motor sem alterar o resultado (0.488166ms)
+✔ sinônimos de comfortableWait encaminham ao motor sem alterar o resultado (0.669542ms)
+✔ acentos, caixa, pontuação e espaços não mudam a intenção (0.177625ms)
+✔ as cinco intenções explicam necessidades diferentes mesmo para a mesma estação (0.420959ms)
+✔ pedido genérico pede prioridade e todas as opções oferecidas são reconhecidas (0.502208ms)
+✔ pedido com prioridades distintas pede esclarecimento sem ignorar requisitos (0.08075ms)
+✔ negações simples de comodidades ou rapidez não viram recomendações opostas (0.124291ms)
+✔ respostas programadas permanecem disponíveis sem anexar o aviso extenso (0.298458ms)
+✔ ausência de estações não inventa causa em filtros, bateria ou horários (0.218417ms)
+✔ explica reserva com 0%, 4% e 5% sem sugerir deslocamento em nenhuma intenção (2.001291ms)
+✔ chat preserva corte exato e não usa arredondamento para liberar a reserva (1.397667ms)
+✔ falta de comodidades só é afirmada entre as opções viáveis, sem relaxar a intenção (0.602834ms)
+✔ explicação de ausência usa disponibilidade e horários sem culpar a bateria (2.599875ms)
+✔ diagnóstico não apresenta dados inválidos como falta de bateria (0.71475ms)
+✔ preferências antigas recebem FIAP e veículo padrão sem perder autonomia e origem da bateria (0.704958ms)
+✔ configuração demonstrativa conserva valores após serialização sem transformar bateria em telemetria (0.589666ms)
+✔ rejeita entradas inválidas e recupera padrões em dados locais inválidos (0.24125ms)
+✔ distância geográfica usa coordenadas em vez dos quilômetros estáticos do catálogo (0.675375ms)
+✔ origem atualiza os dados usados no raio de busca e na viabilidade da FluIA (87.439583ms)
+✔ mapa, ficha e FluIA exibem a mesma estimativa de chegada para toda origem (1.173459ms)
+✔ cortes de filtro e reserva mantêm precisão anterior ao arredondamento visual (0.37425ms)
+✔ prioriza uma estação próxima quando a bateria está baixa (20.451042ms)
+✔ considera potência e comodidades conforme a necessidade (0.81325ms)
+✔ nenhuma intenção recomenda posto fora da autonomia ou chegada sem reserva (1.176541ms)
+✔ exclui indisponibilidade, ocupação, ausência de carregadores e potência inválida (1.26975ms)
+✔ não inventa banheiro, café ou conforto em postos sem comodidades (0.21625ms)
+✔ rejeita dados energéticos inválidos sem fabricar autonomia (0.121083ms)
+✔ conta somente conectores compatíveis livres e usa sua potência na recomendação (5.386708ms)
+✔ compatibilidade ausente é explicitamente não confirmada (0.724167ms)
+✔ principal e alternativa obedecem às mesmas restrições, sem arredondar a reserva (1.0155ms)
+✔ FluIA fica habilitada por padrão e mantém sugestões locais (18.116875ms)
+✔ controle desabilitado bloqueia sugestões e todas as respostas do motor (0.28625ms)
+✔ falta de opção no exemplo não afirma indisponibilidade real (1.325417ms)
+✔ aplica filtros rápidos sem alterar o objeto original (1.0455ms)
+✔ detecta filtros rápidos ativos (0.11225ms)
+✔ prioriza estações aderentes e usa distância como desempate (0.248208ms)
+✔ retorna filtros independentes quando o parâmetro é inválido (1.049125ms)
+✔ descarta opções desconhecidas e impede valores negativos (0.226708ms)
+✔ filtra por busca, potência, distância e comodidades (1.356125ms)
+✔ respeita horários 24 horas e bloqueia manutenção (31.064833ms)
+✔ considera período que atravessa a meia-noite (0.383917ms)
+✔ interpreta horário do catálogo no fuso da estação, incluindo domingo e limites (0.539334ms)
+✔ período noturno pertence ao dia da abertura, inclusive na virada da semana (0.343666ms)
+✔ não interpreta horas inválidas ou abertura igual ao fechamento como 24h (0.172375ms)
+✔ filtro, ficha e FluIA concordam nos horários reais do catálogo sem calendário estruturado (30.639708ms)
+✔ calendário estruturado prevalece sobre o texto e o filtro 24h usa a mesma fonte (0.408583ms)
+✔ horário ou fuso desconhecido não produz confirmação de abertura (0.510917ms)
+✔ filtro de carregadores livres exclui posto fechado ou com status incompatível (0.315583ms)
+✔ filtro 24h também rejeita fuso inválido (0.174084ms)
+✔ formata os dados apresentados pela ficha da estação (0.83775ms)
+✔ gera URLs seguras para os provedores suportados (0.227125ms)
+✔ avisa sobre recarga não confirmada antes de oferecer a rota (22.799333ms)
+✔ aviso da rota acompanha o limite de fechamento e não promete dados reais (0.602167ms)
+✔ resume status, recomendação e espera sem depender da tela (0.441541ms)
+✔ não promete parada rápida quando só o conector lento está utilizável (0.177292ms)
+✔ separa autonomia e recarga na ficha aberta com recarga demonstrativa (1.426916ms)
+✔ separa autonomia e recarga na ficha fechada (0.586875ms)
+✔ separa autonomia e recarga na ficha em manutenção (0.135208ms)
+✔ separa autonomia e recarga na ficha indisponível (0.1715ms)
+✔ separa autonomia e recarga na ficha com horário desconhecido (0.118792ms)
+✔ separa autonomia e recarga na ficha ocupada (0.223292ms)
+✔ separa autonomia e recarga na ficha aberta sem conector utilizável (0.390792ms)
+✔ preserva alertas de autonomia limitada e insuficiente mesmo sem recarga (0.147625ms)
+✔ a mesma ficha deixa de anunciar carregadores livres exatamente ao fechar (0.646917ms)
+ℹ tests 77
+ℹ suites 0
+ℹ pass 77
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 429.792417
