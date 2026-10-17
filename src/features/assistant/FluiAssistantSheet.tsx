@@ -44,6 +44,7 @@ import {
   recommendStations,
   type FluiAssistantIntent,
 } from "./fluiAssistant";
+import type { FluiaState } from "./fluiaState";
 
 type Props = {
   visible: boolean;
@@ -112,7 +113,9 @@ export function FluiAssistantSheet({
   const chatTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const nextMessageId = useRef(0);
   const chatScrollRef = useRef<ScrollView>(null);
+  const stateTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [voiceEnabled, setVoiceEnabled] = useState(true);
+  const [fluiaState, setFluiaState] = useState<FluiaState>("repouso");
 
   const recommendation = useMemo(() => {
     if (!funcionalidadesExperimentais.fluia || !selectedIntent || isAnalyzing)
@@ -137,6 +140,7 @@ export function FluiAssistantSheet({
     return () => {
       if (analysisTimeoutRef.current) clearTimeout(analysisTimeoutRef.current);
       if (chatTimeoutRef.current) clearTimeout(chatTimeoutRef.current);
+      if (stateTimeoutRef.current) clearTimeout(stateTimeoutRef.current);
       Speech.stop();
     };
   }, []);
@@ -168,6 +172,11 @@ export function FluiAssistantSheet({
 
   const closeAssistant = () => {
     Speech.stop();
+    if (stateTimeoutRef.current) {
+      clearTimeout(stateTimeoutRef.current);
+      stateTimeoutRef.current = null;
+    }
+    setFluiaState("repouso");
     if (analysisTimeoutRef.current) {
       clearTimeout(analysisTimeoutRef.current);
       analysisTimeoutRef.current = null;
@@ -199,6 +208,7 @@ export function FluiAssistantSheet({
   const sendMessage = () => {
     const text = draft.trim();
     if (!text || isChatThinking) return;
+    setFluiaState("pensando");
 
     setDraft("");
     setMessages((current) => [
@@ -228,6 +238,18 @@ export function FluiAssistantSheet({
         if (voiceEnabled) {
           Speech.stop();
           Speech.speak(response.text, { language: "pt-BR" });
+        }
+        const nextState: FluiaState =
+          response.state === "alerta" || response.state === "aviso"
+            ? response.state
+            : "respondendo";
+        setFluiaState(nextState);
+        if (stateTimeoutRef.current) clearTimeout(stateTimeoutRef.current);
+        if (nextState !== "alerta") {
+          stateTimeoutRef.current = setTimeout(
+            () => setFluiaState("repouso"),
+            nextState === "aviso" ? 5000 : 2500,
+          );
         }
         setIsChatThinking(false);
         chatTimeoutRef.current = null;
@@ -285,7 +307,7 @@ export function FluiAssistantSheet({
             <PressableScale
               accessibilityRole="button"
               accessibilityLabel={
-                voiceEnabled ? "Desativar voz da FluaIA" : "Ativar voz da FluIA"
+                voiceEnabled ? "Desativar voz da FluIA" : "Ativar voz da FluIA"
               }
               style={styles.closeButton}
               onPress={toggleVoice}
@@ -568,6 +590,12 @@ export function FluiAssistantSheet({
                 placeholderTextColor={theme.textMuted}
                 accessibilityLabel="Mensagem para a FluIA"
                 returnKeyType="send"
+                onFocus={() => setFluiaState("ouvindo")}
+                onBlur={() =>
+                  setFluiaState((current) =>
+                    current === "ouvindo" ? "repouso" : current,
+                  )
+                }
                 style={styles.input}
               />
               <PressableScale
