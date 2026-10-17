@@ -1,0 +1,339 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -xctestrun /tmp/flui-xctest-12/DerivedData/Build/Products/FluiValidacao_iphonesimulator27.1-arm64.xctestrun -destination "platform=iOS Simulator,id=4A2C862B-D6FC-4E88-8FB5-88164A5C5A2E" -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath output/pr79-ios-20261017/MapaFinal.xcresult
+
+Writing result bundle at path:
+	/Users/guicunha/.codex/.chatgpt-projects/g-p-69f512a9480481918bb9b34c4162ae65/output/pr79-ios-20261017/MapaFinal.xcresult
+
+2026-10-17 06:12:13.726 xcodebuild[69073:4900402] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-17 06:12:21.192177-0300 FluiValidacao-Runner[69083:4900820] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'All tests' started at 2026-10-17 06:12:37.931.
+Test Suite 'FluiValidacao.xctest' started at 2026-10-17 06:12:37.936.
+Test Suite 'FluiValidacao' started at 2026-10-17 06:12:37.937.
+Test Case '-[FluiValidacao.FluiValidacao testRetornoMapaSemSobreposicao]' started.
+    t =     0.01s Start Test at 2026-10-17 06:12:37.948
+    t =     0.15s Set Up
+    t =     0.17s Open host.exp.Exponent
+    t =     0.20s     Activate host.exp.Exponent
+    t =     0.30s         Wait for host.exp.Exponent to idle
+    t =     0.52s Waiting 30.0s for Button (First Match) to exist
+    t =     1.52s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     1.52s         Checking existence of `Button (First Match)`
+objc[69083]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x109fd0398) and /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x10a4cc310). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =     1.63s Find the Button (First Match)
+    t =     1.71s Find the Button (First Match)
+    t =     1.76s Find the "Aumentar zoom do mapa" Button
+    t =     1.82s Find the "Abrir assistente Flui IA" Button
+    t =     1.92s Find the "Aumentar zoom do mapa" Button
+FLUI79 CONTROLES mapa-controles-separados FluIA=(16.0, 264.0, 52.0, 52.0) controle=(259.0, 264.6666666865349, 52.0, 51.0)
+    t =     1.96s Find the Button (First Match)
+    t =     2.06s Find the "Abrir assistente Flui IA" Button
+    t =     2.13s Find the "Diminuir zoom do mapa" Button
+    t =     2.21s Find the "Abrir assistente Flui IA" Button
+    t =     2.28s Find the "Diminuir zoom do mapa" Button
+FLUI79 CONTROLES mapa-controles-separados FluIA=(16.0, 264.0, 52.0, 52.0) controle=(312.0, 264.6666666865349, 52.0, 51.0)
+    t =     2.36s Find the Button (First Match)
+    t =     2.44s Find the "Abrir assistente Flui IA" Button
+    t =     2.53s Find the "Centralizar origem demonstrativa: Vila Mariana" Button
+    t =     2.60s Find the "Abrir assistente Flui IA" Button
+    t =     2.68s Find the "Centralizar origem demonstrativa: Vila Mariana" Button
+FLUI79 CONTROLES mapa-controles-separados FluIA=(16.0, 264.0, 52.0, 52.0) controle=(372.0, 264.0, 52.0, 52.0)
+    t =     2.76s Find the "Abrir assistente Flui IA" Button
+    t =     2.84s Requesting snapshot of accessibility hierarchy for app with pid 69049
+    t =     4.23s Requesting snapshot of accessibility hierarchy for app with pid 69049
+FLUI79 mapa-controles-separados
+Attributes: Application, 0x10b6cfe80, pid: 69049, label: 'Expo Go'
+Element subtree:
+ →Application, 0x10b6cfe80, pid: 69049, label: 'Expo Go'
+    Window (Main), 0x10b6ce440, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x10b6ce580, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x10b6ce6c0, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x10b6ce800, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x10b6ce940, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x10b6cea80, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x10b6cebc0, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x10b6ced00, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x10b6cee40, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x10b6cef80, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x10b6cf0c0, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x10b6cf200, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x10b6cf340, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x10b6cf480, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x10b6cf5c0, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x10b6cf700, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x10b6cf840, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Other, 0x10b6cf980, {{0.0, 62.0}, {440.0, 190.0}}
+                                        Other, 0x10b6cfac0, {{20.0, 76.0}, {76.0, 36.0}}
+                                          Other, 0x10b6cfc00, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x10b6cfd40, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x10b6ccb40, {{89.2, 82.8}, {6.7, 6.7}}
+                                        Button, 0x10b6ccc80, {{196.0, 70.0}, {176.0, 48.0}}, label: 'Teste. Bateria para estimativa: 5 por cento. Informado manualmente. 17/10, 01:37. Cerca de 10 quilômetros estimados'
+                                        Button, 0x10b6ccdc0, {{374.0, 71.0}, {46.0, 46.0}}, label: 'Abrir perfil'
+                                        Other, 0x10b6ccf00, {{20.0, 132.0}, {400.0, 58.0}}
+                                          Other, 0x10b6cd040, {{39.0, 150.7}, {21.0, 21.0}}
+                                            Other, 0x10b6cd180, {{40.8, 152.4}, {17.5, 17.5}}
+                                              Other, 0x10b6cd2c0, {{40.8, 152.4}, {15.8, 15.8}}
+                                              Other, 0x10b6cd400, {{52.7, 164.4}, {5.5, 5.5}}
+                                          Other, 0x10b6cd540, {{73.0, 152.0}, {275.0, 18.0}}
+                                            TextField, 0x10b6cd680, {{73.0, 152.0}, {275.0, 18.0}}, label: 'Buscar no mapa', placeholderValue: 'Buscar endereço, bairro ou ponto'
+                                          Other, 0x10b6cd7c0, {{356.0, 146.0}, {1.0, 30.0}}
+                                          Button, 0x10b6cd900, {{365.0, 139.0}, {44.0, 44.0}}, label: 'Abrir busca e filtros'
+                                        Button, 0x10b6cda40, {{20.0, 194.0}, {400.0, 44.0}}, label: 'Mostrar atalhos de filtro'
+                                      Other, 0x10b6cdb80, {{0.0, 252.0}, {440.0, 670.0}}
+                                        Other, 0x10b6cdcc0, {{0.0, 252.0}, {440.0, 670.0}}, label: 'Mapa com pontos de recarga próximos'
+                                          Other, 0x10b6cde00, {{0.0, 252.0}, {440.0, 670.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x10b6cdf40, {{0.0, 252.0}, {72.0, 72.0}}
+                                            Other, 0x10b6ce080, {{0.0, 252.0}, {440.0, 670.0}}, label: 'Mapa com pontos de recarga próximos'
+                                              Button, 0x10b6ce1c0, {{184.0, 390.3}, {72.0, 72.0}}, identifier: 'AIRGMSMarker_0x108291040', label: 'Origem demonstrativa: Vila Mariana'
+                                              Button, 0x10a059b80, {{185.3, 366.0}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x108291180', label: 'Flui Vila Mariana Lins'
+                                              Button, 0x10a059cc0, {{25.0, 345.3}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x1082926c0', label: 'EcoCarga Parque Aclimação'
+                                              Button, 0x10a059f40, {{367.7, 187.7}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x1083ccc80', label: 'Mercado Charge Cambuci'
+                                              Other, 0x10a05a080, {{0.0, 252.0}, {440.0, 670.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x10a059e00, {{0.0, 252.0}, {440.0, 670.0}}
+                                              Other, 0x10a05a300, {{0.0, 252.0}, {440.0, 670.0}}
+                                                Button, 0x10a05a580, {{5.0, 895.0}, {60.0, 22.0}}, label: 'Google Maps'
+                                            Other, 0x10a05a1c0, {{1912.0, 2164.0}, {74.0, 74.0}}
+                                              Other, 0x10a05a440, {{1912.0, 2164.0}, {72.0, 72.0}}
+                                                Other, 0x10a05a800, {{1912.0, 2164.0}, {72.0, 72.0}}
+                                                  Other, 0x10a05aa80, {{1912.0, 2164.0}, {72.0, 72.0}}
+                                                    Other, 0x10a05abc0, {{1925.9, 2177.9}, {44.2, 44.2}}
+                                                    Other, 0x10a05a940, {{1936.0, 2188.0}, {24.0, 24.0}}
+                                        Other, 0x10a05bc00, {{0.0, 252.0}, {440.0, 670.0}}
+                                        Other, 0x10a05bd40, {{16.0, 264.0}, {52.0, 52.0}}
+                                          Other, 0x10a05be80, {{16.0, 264.0}, {52.0, 52.0}}
+                                            Button, 0x10a058500, {{16.0, 264.0}, {52.0, 52.0}}, label: 'Abrir assistente Flui IA'
+                                        Other, 0x10a058640, {{258.0, 264.0}, {166.0, 52.0}}
+                                          Other, 0x10a05ad00, {{258.0, 264.0}, {104.0, 52.0}}
+                                            Button, 0x10a058c80, {{259.0, 264.7}, {52.0, 51.0}}, label: 'Aumentar zoom do mapa'
+                                            Button, 0x10a059a40, {{312.0, 264.7}, {52.0, 51.0}}, label: 'Diminuir zoom do mapa'
+                                            Other, 0x10a059040, {{311.0, 276.0}, {1.0, 28.0}}
+                                          Button, 0x10a05af80, {{372.0, 264.0}, {52.0, 52.0}}, label: 'Centralizar origem demonstrativa: Vila Mariana'
+                                        Other, 0x10a05b0c0, {{16.0, 473.3}, {408.0, 448.7}}
+                                          Other, 0x10a05ae40, {{16.0, 473.3}, {408.0, 448.7}}
+                                            ScrollView, 0x10a059180, {{16.0, 473.3}, {408.0, 448.7}}
+                                              Other, 0x10a0592c0, {{16.0, 473.3}, {407.0, 448.7}}
+                                                Other, 0x10a058f00, {{17.0, 474.3}, {406.0, 447.7}}
+                                                  Button, 0x10a059900, {{35.0, 474.3}, {370.0, 44.0}}, label: 'Minimizar opções demonstrativas para ver o mapa inteiro'
+                                                  StaticText, 0x10a05b980, {{35.0, 518.3}, {370.0, 24.3}}, label: 'Opções demonstrativas'
+                                                    StaticText, 0x10a059400, {{35.0, 518.3}, {370.0, 24.3}}, label: 'Opções demonstrativas'
+                                                  StaticText, 0x10a05b200, {{35.0, 550.7}, {370.0, 67.3}}, label: 'Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo.
+Origem: Vila Mariana · distâncias em linha reta, sem cálculo de percurso'
+                                                    StaticText, 0x10a05b340, {{35.0, 550.7}, {370.0, 67.3}}, label: 'Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo.
+Origem: Vila Mariana · distâncias em linha reta, sem cálculo de percurso'
+                                                  Other, 0x10a05b5c0, {{35.0, 628.0}, {370.0, 262.0}}
+                                                    ScrollView, 0x10a05b480, {{35.0, 628.0}, {370.0, 262.0}}
+                                                      Other, 0x10a05b700, {{35.0, 628.0}, {370.0, 584.0}}
+                                                        Other, 0x10a05b840, {{35.0, 628.0}, {370.0, 584.0}}
+                                                          Button, 0x10a05bac0, {{35.0, 628.0}, {370.0, 146.0}}, label: 'Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈4,9 km em linha reta. Chegada estimada com 3% de bateria.'
+                                                          Button, 0x10b570000, {{35.0, 774.0}, {370.0, 146.0}}, label: 'Charge City Jardins. Opção demonstrativa. Alameda Santos, 2159. Aberto agora. Nota 4,7. 120 kW. ≈4,3 km em linha reta. Chegada estimada com 3% de bateria.'
+                                                          Button, 0x10b570140, {{35.0, 920.0}, {370.0, 146.0}}, label: 'Flui Vila Mariana Lins. Opção demonstrativa. Av. Lins de Vasconcelos, 1264. Aberto agora. Nota 4,8. 150 kW. ≈0 m em linha reta. Chegada estimada com 5% de bateria.'
+                                                          Button, 0x10b570280, {{35.0, 1066.0}, {370.0, 146.0}}, label: 'EcoCarga Parque Aclimação. Opção demonstrativa. R. Muniz de Sousa, 1119. Aberto agora. Nota 4,2. 22 kW. ≈524 m em linha reta. Chegada estimada com 5% de bateria.'
+                                                      Other, 0x10b5703c0, {{372.0, 628.0}, {30.0, 262.0}}, label: 'Vertical scroll bar, 3 pages', value: 0%
+                                                        Other, 0x10b570500, {{399.0, 631.0}, {3.0, 115.0}}
+                                                      Other, 0x10b570640, {{35.0, 857.0}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                        Other, 0x10b570780, {{38.0, 884.0}, {361.0, 3.0}}
+                                                      Other, 0x10b5708c0, {{372.0, 628.0}, {30.0, 262.0}}, label: 'Vertical scroll bar, 3 pages', value: 0%
+                                                        Other, 0x10b570a00, {{399.0, 631.0}, {3.0, 115.0}}
+                                                      Other, 0x10b570b40, {{35.0, 857.0}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                        Other, 0x10b570c80, {{38.0, 884.0}, {361.0, 3.0}}
+                                              Other, 0x10b570dc0, {{391.0, 473.3}, {30.0, 420.7}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                                Other, 0x10b570f00, {{418.0, 476.3}, {3.0, 414.7}}
+                                              Other, 0x10b571040, {{44.0, 889.0}, {352.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                Other, 0x10b571180, {{48.0, 916.0}, {345.0, 3.0}}
+                                              Other, 0x10b5712c0, {{391.0, 473.3}, {30.0, 420.7}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                                Other, 0x10b571400, {{418.0, 476.3}, {3.0, 414.7}}
+                                              Other, 0x10b571540, {{44.0, 889.0}, {352.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                Other, 0x10b571680, {{48.0, 916.0}, {345.0, 3.0}}
+                          Toolbar, 0x10b5717c0, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x10b571900, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x10b571a40, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x10b571b80, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x10b571cc0, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x10b6cfe80, pid: 69049, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x10b572300, pid: 69049, label: 'Expo Go'
+  }
+
+    t =     4.40s Find the Application 'host.exp.Exponent'
+    t =     4.86s Added attachment named 'mapa-controles-separados'
+    t =     4.88s Tap Button (First Match)
+    t =     4.88s     Wait for host.exp.Exponent to idle
+    t =     4.90s     Find the Button (First Match)
+    t =     4.96s     Check for interrupting elements affecting "Abrir assistente Flui IA" Button
+    t =     5.09s     Synthesize event
+    t =     5.46s     Wait for host.exp.Exponent to idle
+    t =     5.48s Waiting 8.0s for Button (First Match) to exist
+    t =     6.56s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     6.56s         Checking existence of `Button (First Match)`
+    t =     6.59s Tap Button (First Match)
+    t =     6.59s     Wait for host.exp.Exponent to idle
+    t =     6.60s     Find the Button (First Match)
+    t =     6.64s     Check for interrupting elements affecting "Fechar assistente" Button
+    t =     6.75s     Synthesize event
+    t =     7.11s     Wait for host.exp.Exponent to idle
+    t =     7.64s Waiting 8.0s for Button (First Match) to exist
+    t =     8.68s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     8.68s         Checking existence of `Button (First Match)`
+    t =     8.72s Find the Button (First Match)
+    t =     8.81s Find the Button (First Match)
+    t =     8.88s Find the "Aumentar zoom do mapa" Button
+    t =     8.94s Find the "Abrir assistente Flui IA" Button
+    t =     9.03s Find the "Aumentar zoom do mapa" Button
+FLUI79 CONTROLES retorno-mapa-controles-separados FluIA=(16.0, 264.0, 52.0, 52.0) controle=(259.0, 264.6666666865349, 52.0, 51.0)
+    t =     9.08s Find the Button (First Match)
+    t =     9.18s Find the "Abrir assistente Flui IA" Button
+    t =     9.26s Find the "Diminuir zoom do mapa" Button
+    t =     9.33s Find the "Abrir assistente Flui IA" Button
+    t =     9.42s Find the "Diminuir zoom do mapa" Button
+FLUI79 CONTROLES retorno-mapa-controles-separados FluIA=(16.0, 264.0, 52.0, 52.0) controle=(312.0, 264.6666666865349, 52.0, 51.0)
+    t =     9.48s Find the Button (First Match)
+    t =     9.56s Find the "Abrir assistente Flui IA" Button
+    t =     9.63s Find the "Centralizar origem demonstrativa: Vila Mariana" Button
+    t =     9.69s Find the "Abrir assistente Flui IA" Button
+    t =     9.78s Find the "Centralizar origem demonstrativa: Vila Mariana" Button
+FLUI79 CONTROLES retorno-mapa-controles-separados FluIA=(16.0, 264.0, 52.0, 52.0) controle=(372.0, 264.0, 52.0, 52.0)
+    t =     9.84s Find the "Abrir assistente Flui IA" Button
+    t =     9.93s Requesting snapshot of accessibility hierarchy for app with pid 69049
+    t =    10.95s Requesting snapshot of accessibility hierarchy for app with pid 69049
+FLUI79 retorno-mapa-controles-separados
+Attributes: Application, 0x10a05b340, pid: 69049, label: 'Expo Go'
+Element subtree:
+ →Application, 0x10a05b340, pid: 69049, label: 'Expo Go'
+    Window (Main), 0x10a05a440, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x10a05abc0, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x10a059e00, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x10a05b200, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x10a05a580, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x10a05a080, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x10a059f40, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x10a059cc0, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x10a059b80, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x10a0592c0, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x10a058f00, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x10a05b5c0, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x10a05b480, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x10a05b700, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x10a05b840, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x107217340, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x107217480, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Other, 0x107217840, {{0.0, 62.0}, {440.0, 190.0}}
+                                        Other, 0x107217ac0, {{20.0, 76.0}, {76.0, 36.0}}
+                                          Other, 0x107217c00, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x107217980, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x1072152c0, {{89.2, 82.8}, {6.7, 6.7}}
+                                        Button, 0x107215400, {{196.0, 70.0}, {176.0, 48.0}}, label: 'Teste. Bateria para estimativa: 5 por cento. Informado manualmente. 17/10, 01:37. Cerca de 10 quilômetros estimados'
+                                        Button, 0x107217700, {{374.0, 71.0}, {46.0, 46.0}}, label: 'Abrir perfil'
+                                        Other, 0x107217200, {{20.0, 132.0}, {400.0, 58.0}}
+                                          Other, 0x1072170c0, {{39.0, 150.7}, {21.0, 21.0}}
+                                            Other, 0x107216f80, {{40.8, 152.4}, {17.5, 17.5}}
+                                              Other, 0x10b570640, {{40.8, 152.4}, {15.8, 15.8}}
+                                              Other, 0x10b570780, {{52.7, 164.4}, {5.5, 5.5}}
+                                          Other, 0x10b5703c0, {{73.0, 152.0}, {275.0, 18.0}}
+                                            TextField, 0x10b570500, {{73.0, 152.0}, {275.0, 18.0}}, label: 'Buscar no mapa', placeholderValue: 'Buscar endereço, bairro ou ponto'
+                                          Other, 0x10b570280, {{356.0, 146.0}, {1.0, 30.0}}
+                                          Button, 0x10b570140, {{365.0, 139.0}, {44.0, 44.0}}, label: 'Abrir busca e filtros'
+                                        Button, 0x10b571180, {{20.0, 194.0}, {400.0, 44.0}}, label: 'Mostrar atalhos de filtro'
+                                      Other, 0x10b570dc0, {{0.0, 252.0}, {440.0, 670.0}}
+                                        Other, 0x10b570f00, {{0.0, 252.0}, {440.0, 670.0}}, label: 'Mapa com pontos de recarga próximos'
+                                          Other, 0x10b570b40, {{0.0, 252.0}, {440.0, 670.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x10b570c80, {{0.0, 252.0}, {72.0, 72.0}}
+                                            Other, 0x10b5708c0, {{0.0, 252.0}, {440.0, 670.0}}, label: 'Mapa com pontos de recarga próximos'
+                                              Button, 0x10b573d40, {{184.0, 390.3}, {72.0, 72.0}}, identifier: 'AIRGMSMarker_0x108291040', label: 'Origem demonstrativa: Vila Mariana'
+                                              Button, 0x10b572440, {{185.3, 366.0}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x108291180', label: 'Flui Vila Mariana Lins'
+                                              Button, 0x10b572580, {{25.0, 345.3}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x1082926c0', label: 'EcoCarga Parque Aclimação'
+                                              Button, 0x10b5726c0, {{367.7, 187.7}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x1083ccc80', label: 'Mercado Charge Cambuci'
+                                              Other, 0x10b572800, {{0.0, 252.0}, {440.0, 670.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x10b572940, {{0.0, 252.0}, {440.0, 670.0}}
+                                              Other, 0x10b572a80, {{0.0, 252.0}, {440.0, 670.0}}
+                                                Button, 0x10b572bc0, {{5.0, 895.0}, {60.0, 22.0}}, label: 'Google Maps'
+                                            Other, 0x10b572d00, {{1912.0, 2164.0}, {74.0, 74.0}}
+                                              Other, 0x10b572e40, {{1912.0, 2164.0}, {72.0, 72.0}}
+                                                Other, 0x10b572f80, {{1912.0, 2164.0}, {72.0, 72.0}}
+                                                  Other, 0x10b5730c0, {{1912.0, 2164.0}, {72.0, 72.0}}
+                                                    Other, 0x10b573200, {{1917.8, 2169.8}, {60.3, 60.3}}
+                                                    Other, 0x10b573340, {{1936.0, 2188.0}, {24.0, 24.0}}
+                                        Other, 0x10b573480, {{0.0, 252.0}, {440.0, 670.0}}
+                                        Other, 0x10b5735c0, {{16.0, 264.0}, {52.0, 52.0}}
+                                          Other, 0x10b571040, {{16.0, 264.0}, {52.0, 52.0}}
+                                            Button, 0x10b570a00, {{16.0, 264.0}, {52.0, 52.0}}, label: 'Abrir assistente Flui IA'
+                                        Other, 0x10b573700, {{258.0, 264.0}, {166.0, 52.0}}
+                                          Other, 0x10b573840, {{258.0, 264.0}, {104.0, 52.0}}
+                                            Button, 0x10b573980, {{259.0, 264.7}, {52.0, 51.0}}, label: 'Aumentar zoom do mapa'
+                                            Button, 0x10b573ac0, {{312.0, 264.7}, {52.0, 51.0}}, label: 'Diminuir zoom do mapa'
+                                            Other, 0x10b573c00, {{311.0, 276.0}, {1.0, 28.0}}
+                                          Button, 0x10b573e80, {{372.0, 264.0}, {52.0, 52.0}}, label: 'Centralizar origem demonstrativa: Vila Mariana'
+                                        Other, 0x10b570000, {{16.0, 473.3}, {408.0, 448.7}}
+                                          Other, 0x10b571cc0, {{16.0, 473.3}, {408.0, 448.7}}
+                                            ScrollView, 0x10b5717c0, {{16.0, 473.3}, {408.0, 448.7}}
+                                              Other, 0x10b571900, {{16.0, 473.3}, {407.0, 448.7}}
+                                                Other, 0x10b571540, {{17.0, 474.3}, {406.0, 447.7}}
+                                                  Button, 0x10b571680, {{35.0, 474.3}, {370.0, 44.0}}, label: 'Minimizar opções demonstrativas para ver o mapa inteiro'
+                                                  StaticText, 0x10b5712c0, {{35.0, 518.3}, {370.0, 24.3}}, label: 'Opções demonstrativas'
+                                                    StaticText, 0x10b571400, {{35.0, 518.3}, {370.0, 24.3}}, label: 'Opções demonstrativas'
+                                                  StaticText, 0x10b6cc000, {{35.0, 550.7}, {370.0, 67.3}}, label: 'Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo.
+Origem: Vila Mariana · distâncias em linha reta, sem cálculo de percurso'
+                                                    StaticText, 0x10b6cc140, {{35.0, 550.7}, {370.0, 67.3}}, label: 'Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo.
+Origem: Vila Mariana · distâncias em linha reta, sem cálculo de percurso'
+                                                  Other, 0x10b6cc280, {{35.0, 628.0}, {370.0, 262.0}}
+                                                    ScrollView, 0x10b6cc3c0, {{35.0, 628.0}, {370.0, 262.0}}
+                                                      Other, 0x10b6cc500, {{35.0, 628.0}, {370.0, 584.0}}
+                                                        Other, 0x10b6cc640, {{35.0, 628.0}, {370.0, 584.0}}
+                                                          Button, 0x10b6cc780, {{35.0, 628.0}, {370.0, 146.0}}, label: 'Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈4,9 km em linha reta. Chegada estimada com 3% de bateria.'
+                                                          Button, 0x10b6cc8c0, {{35.0, 774.0}, {370.0, 146.0}}, label: 'Charge City Jardins. Opção demonstrativa. Alameda Santos, 2159. Aberto agora. Nota 4,7. 120 kW. ≈4,3 km em linha reta. Chegada estimada com 3% de bateria.'
+                                                          Button, 0x10b6cca00, {{35.0, 920.0}, {370.0, 146.0}}, label: 'Flui Vila Mariana Lins. Opção demonstrativa. Av. Lins de Vasconcelos, 1264. Aberto agora. Nota 4,8. 150 kW. ≈0 m em linha reta. Chegada estimada com 5% de bateria.'
+                                                          Button, 0x10b6ccb40, {{35.0, 1066.0}, {370.0, 146.0}}, label: 'EcoCarga Parque Aclimação. Opção demonstrativa. R. Muniz de Sousa, 1119. Aberto agora. Nota 4,2. 22 kW. ≈524 m em linha reta. Chegada estimada com 5% de bateria.'
+                                                      Other, 0x10b6ccc80, {{372.0, 628.0}, {30.0, 262.0}}, label: 'Vertical scroll bar, 3 pages', value: 0%
+                                                        Other, 0x10b6ccdc0, {{399.0, 631.0}, {3.0, 115.0}}
+                                                      Other, 0x10b6ccf00, {{35.0, 857.0}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                        Other, 0x10b6cd040, {{38.0, 884.0}, {361.0, 3.0}}
+                                                      Other, 0x10b6cd180, {{372.0, 628.0}, {30.0, 262.0}}, label: 'Vertical scroll bar, 3 pages', value: 0%
+                                                        Other, 0x10b6cd2c0, {{399.0, 631.0}, {3.0, 115.0}}
+                                                      Other, 0x10b6cd400, {{35.0, 857.0}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                        Other, 0x10b6cd540, {{38.0, 884.0}, {361.0, 3.0}}
+                                              Other, 0x10b6cd680, {{391.0, 473.3}, {30.0, 420.7}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                                Other, 0x10b6cd7c0, {{418.0, 476.3}, {3.0, 414.7}}
+                                              Other, 0x10b6cd900, {{44.0, 889.0}, {352.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                Other, 0x10b6cda40, {{48.0, 916.0}, {345.0, 3.0}}
+                                              Other, 0x10b6cdb80, {{391.0, 473.3}, {30.0, 420.7}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                                Other, 0x10b6cdcc0, {{418.0, 476.3}, {3.0, 414.7}}
+                                              Other, 0x10b6cde00, {{44.0, 889.0}, {352.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                Other, 0x10b6cdf40, {{48.0, 916.0}, {345.0, 3.0}}
+                          Toolbar, 0x10b6ce080, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x10b6ce1c0, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x10b6ce300, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x10b6ce440, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x10b6ce580, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x10a05b340, pid: 69049, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x10b6ce6c0, pid: 69049, label: 'Expo Go'
+  }
+
+    t =    11.05s Find the Application 'host.exp.Exponent'
+    t =    11.35s Added attachment named 'retorno-mapa-controles-separados'
+    t =    11.36s Tear Down
+Test Case '-[FluiValidacao.FluiValidacao testRetornoMapaSemSobreposicao]' passed (11.586 seconds).
+Test Suite 'FluiValidacao' passed at 2026-10-17 06:12:49.534.
+	 Executed 1 test, with 0 failures (0 unexpected) in 11.586 (11.597) seconds
+Test Suite 'FluiValidacao.xctest' passed at 2026-10-17 06:12:49.537.
+	 Executed 1 test, with 0 failures (0 unexpected) in 11.586 (11.601) seconds
+Test Suite 'All tests' passed at 2026-10-17 06:12:49.538.
+	 Executed 1 test, with 0 failures (0 unexpected) in 11.586 (11.607) seconds
+2026-10-17 06:12:49.652 xcodebuild[69073:4900402] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-17 06:12:49.654 xcodebuild[69073:4900402] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-17 06:12:49.663 xcodebuild[69073:4900402] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-17 06:12:49.943 xcodebuild[69073:4900402] [MT] IDETestOperationsObserverDebug: 36.535 elapsed -- Testing started completed.
+2026-10-17 06:12:49.943 xcodebuild[69073:4900402] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-17 06:12:49.943 xcodebuild[69073:4900402] [MT] IDETestOperationsObserverDebug: 36.535 sec, +36.535 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/guicunha/.codex/.chatgpt-projects/g-p-69f512a9480481918bb9b34c4162ae65/output/pr79-ios-20261017/MapaFinal.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

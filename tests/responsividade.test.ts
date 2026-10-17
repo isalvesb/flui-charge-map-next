@@ -11,6 +11,9 @@ test("painel deixa espaço para controles em tela compacta e respeita a área do
   assert.equal(layout.panelWidth, undefined);
   assert.equal(getMapPanelLayout(440, 956, 700, 2).compactControls, true);
   assert.equal(getMapPanelLayout(440, 956, 700, 1, 600).compactControls, true);
+  assert.equal(getMapPanelLayout(440, 956, 670, 1, 448.7).compactControls, true);
+  assert.equal(getMapPanelLayout(440, 956, 700, 1, 451).compactControls, true);
+  assert.equal(getMapPanelLayout(440, 956, 700, 1, 450).compactControls, false);
 });
 
 test("painel horizontal e panorâmico preserva espaço lateral e limita a largura de leitura", () => {
