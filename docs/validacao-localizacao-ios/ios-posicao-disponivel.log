@@ -1,0 +1,1076 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -xctestrun /tmp/flui-xctest-12/DerivedData/Build/Products/FluiValidacao_iphonesimulator27.1-arm64.xctestrun -destination "platform=iOS Simulator,id=4A2C862B-D6FC-4E88-8FB5-88164A5C5A2E" "-only-testing:FluiValidacao/FluiValidacao/testPosicaoDisponivelEMapas" -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath output/correcao-localizacao-20261017/PosicaoDisponivel.xcresult
+
+Writing result bundle at path:
+	/Users/guicunha/.codex/.chatgpt-projects/g-p-69f512a9480481918bb9b34c4162ae65/output/correcao-localizacao-20261017/PosicaoDisponivel.xcresult
+
+2026-10-17 06:55:42.336 xcodebuild[72492:4946804] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-17 06:55:44.678847-0300 FluiValidacao-Runner[72493:4947006] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-10-17 06:55:48.974.
+Test Suite 'FluiValidacao.xctest' started at 2026-10-17 06:55:48.975.
+Test Suite 'FluiValidacao' started at 2026-10-17 06:55:48.975.
+Test Case '-[FluiValidacao.FluiValidacao testPosicaoDisponivelEMapas]' started.
+    t =     0.01s Start Test at 2026-10-17 06:55:48.984
+    t =     0.04s Set Up
+    t =     0.04s Open host.exp.Exponent
+    t =     0.04s     Activate host.exp.Exponent
+    t =     0.07s         Wait for host.exp.Exponent to idle
+    t =     0.15s Checking existence of `Button (First Match)`
+    t =     0.17s Tap Button (First Match)
+    t =     0.17s     Wait for host.exp.Exponent to idle
+    t =     0.17s     Find the Button (First Match)
+    t =     0.19s     Check for interrupting elements affecting "Cancelar" Button
+    t =     0.31s     Synthesize event
+objc[72493]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x109ef4398) and /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x10a828310). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =     0.61s     Wait for host.exp.Exponent to idle
+    t =     0.96s Open host.exp.Exponent
+    t =     0.97s     Activate host.exp.Exponent
+    t =     0.98s         Wait for host.exp.Exponent to idle
+    t =     0.98s Waiting 45.0s for Button (First Match) to exist
+    t =     1.99s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     1.99s         Checking existence of `Button (First Match)`
+    t =     2.00s Tap Button (First Match)
+    t =     2.00s     Wait for host.exp.Exponent to idle
+    t =     2.00s     Find the Button (First Match)
+    t =     2.02s     Check for interrupting elements affecting "Iniciar rota para Higienópolis Prime Charge" Button
+    t =     2.12s     Synthesize event
+    t =     2.41s     Wait for host.exp.Exponent to idle
+    t =     2.74s Waiting 8.0s for Button (First Match) to exist
+    t =     3.82s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     3.82s         Checking existence of `Button (First Match)`
+    t =     3.83s Checking existence of `Button (First Match)`
+    t =     3.84s Tap Button (First Match)
+    t =     3.84s     Wait for host.exp.Exponent to idle
+    t =     3.85s     Find the Button (First Match)
+    t =     3.86s     Check for interrupting elements affecting "Continuar" Button
+    t =     3.96s     Synthesize event
+    t =     4.26s     Wait for host.exp.Exponent to idle
+    t =     4.27s Waiting 22.0s for Button (First Match) to exist
+    t =     5.34s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     5.35s         Checking existence of `Button (First Match)`
+    t =     5.37s Checking existence of `StaticText (First Match)`
+    t =     5.52s Requesting snapshot of accessibility hierarchy for app with pid 71943
+    t =     6.25s Requesting snapshot of accessibility hierarchy for app with pid 71943
+FLUI75 02-posicao-disponivel-provedores
+Attributes: Application, 0x1073ac500, pid: 71943, label: 'Expo Go'
+Element subtree:
+ →Application, 0x1073ac500, pid: 71943, label: 'Expo Go'
+    Window (Main), 0x1073ad900, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x1073acb40, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x1073acc80, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x1073ad040, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x1073acf00, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x1073ad180, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x1073acdc0, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x1073ad2c0, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1073ad7c0, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1073adb80, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1073adcc0, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x1073ada40, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x1073ade00, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x1073adf40, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x1073ae300, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x1073ae1c0, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x1073ae440, {{0.0, 0.0}, {440.0, 956.0}}
+                                      ScrollView, 0x1073ae080, {{0.0, 0.0}, {440.0, 956.0}}
+                                        Other, 0x1073ae800, {{0.0, 0.0}, {440.0, 2586.0}}
+                                          Other, 0x1073ae6c0, {{0.0, 0.0}, {440.0, 2586.0}}
+                                            Other, 0x1073ae940, {{0.0, 0.0}, {440.0, 290.0}}
+                                              Other, 0x1073aea80, {{0.0, 0.0}, {440.0, 290.0}}
+                                                Other, 0x1073aed00, {{0.0, 0.0}, {440.0, 290.0}}
+                                                Other, 0x1073aebc0, {{0.0, 0.0}, {440.0, 290.0}}
+                                              Other, 0x1073aee40, {{20.0, 0.0}, {400.0, 110.0}}
+                                                Button, 0x1073aef80, {{20.0, 62.0}, {48.0, 48.0}}, label: 'Voltar ao mapa'
+                                                Button, 0x1073af200, {{372.0, 62.0}, {48.0, 48.0}}, label: 'Adicionar aos favoritos'
+                                            Other, 0x1073af0c0, {{0.0, 256.0}, {440.0, 2210.0}}
+                                            StaticText, 0x1073af340, {{22.0, 284.0}, {396.0, 34.0}}, label: 'Higienópolis Prime Charge'
+                                              StaticText, 0x1073af480, {{22.0, 284.0}, {396.0, 34.0}}, label: 'Higienópolis Prime Charge'
+                                            StaticText, 0x1073af700, {{22.0, 326.0}, {396.0, 19.7}}, label: 'Rua Alagoas, 974, Higienópolis, São Paulo, SP'
+                                              StaticText, 0x1073af5c0, {{22.0, 326.0}, {396.0, 19.7}}, label: 'Rua Alagoas, 974, Higienópolis, São Paulo, SP'
+                                            Other, 0x1073af840, {{22.0, 359.7}, {19.0, 19.0}}
+                                              Other, 0x1073af980, {{22.8, 360.5}, {17.4, 16.7}}
+                                                Other, 0x1073afac0, {{22.8, 360.5}, {17.4, 16.7}}
+                                            StaticText, 0x1073afd40, {{48.0, 359.7}, {25.7, 19.0}}, label: '4.9'
+                                              StaticText, 0x1073afe80, {{48.0, 359.7}, {25.7, 19.0}}, label: '4.9'
+                                            StaticText, 0x1073afc00, {{78.7, 361.0}, {198.7, 16.0}}, label: '(184 avaliações demonstrativas)'
+                                              StaticText, 0x1073ac140, {{78.7, 361.0}, {198.7, 16.0}}, label: '(184 avaliações demonstrativas)'
+                                            Other, 0x1073ac640, {{315.7, 365.0}, {9.0, 9.0}}
+                                            StaticText, 0x10723f480, {{331.7, 361.3}, {86.3, 16.0}}, label: 'Aberto agora'
+                                              StaticText, 0x10723f5c0, {{331.7, 361.3}, {86.3, 16.0}}, label: 'Aberto agora'
+                                            Other, 0x10723f840, {{22.0, 394.7}, {32.0, 32.0}}
+                                            Other, 0x10723f980, {{29.7, 402.3}, {17.0, 17.0}}
+                                              Other, 0x10723f700, {{31.0, 403.0}, {14.3, 15.7}}
+                                                Other, 0x10723c8c0, {{31.0, 403.0}, {14.3, 15.7}}
+                                            StaticText, 0x10723d040, {{64.0, 401.0}, {354.0, 19.0}}, label: '4 de 6 carregadores livres no exemplo'
+                                              StaticText, 0x10a50c000, {{64.0, 401.0}, {354.0, 19.0}}, label: '4 de 6 carregadores livres no exemplo'
+                                            Other, 0x10a50c140, {{22.0, 444.7}, {396.0, 309.0}}
+                                            StaticText, 0x10a50c280, {{39.0, 461.7}, {362.0, 14.0}}, label: 'GUIA DO PONTO'
+                                              StaticText, 0x10a50c3c0, {{39.0, 461.7}, {362.0, 14.0}}, label: 'GUIA DO PONTO'
+                                            StaticText, 0x10a50c500, {{39.0, 481.7}, {362.0, 49.7}}, label: 'Opção com conector rápido no exemplo'
+                                              StaticText, 0x10a50c640, {{39.0, 481.7}, {362.0, 49.7}}, label: 'Opção com conector rápido no exemplo'
+                                            StaticText, 0x10a50c780, {{39.0, 537.3}, {362.0, 111.3}}, label: 'Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo. Distância em linha reta, autonomia e tempo de carga são estimativas simplificadas, sem telemetria ou cálculo de percurso. Confirme o funcionamento e a compatibilidade do veículo antes de ir.'
+                                              StaticText, 0x10a50c8c0, {{39.0, 537.3}, {362.0, 111.3}}, label: 'Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo. Distância em linha reta, autonomia e tempo de carga são estimativas simplificadas, sem telemetria ou cálculo de percurso. Confirme o funcionamento e a compatibilidade do veículo antes de ir.'
+                                            Other, 0x10a50ca00, {{39.0, 662.7}, {114.0, 74.0}}
+                                            Other, 0x10a50cb40, {{163.0, 662.7}, {114.0, 74.0}}
+                                            Other, 0x10a50cc80, {{287.0, 662.7}, {114.0, 74.0}}
+                                            Other, 0x10a50cdc0, {{50.0, 682.7}, {12.0, 12.0}}
+                                              Other, 0x10a50cf00, {{51.4, 683.1}, {9.2, 11.2}}
+                                                Other, 0x10a50d040, {{51.4, 685.1}, {9.2, 9.2}}
+                                                Other, 0x10a50d180, {{54.4, 683.1}, {3.2, 1.2}}
+                                                Other, 0x10a50d2c0, {{55.4, 687.6}, {2.7, 2.7}}
+                                            StaticText, 0x10a50d400, {{66.0, 682.3}, {88.7, 12.7}}, label: 'Espera simulada'
+                                              StaticText, 0x10a50d540, {{66.0, 682.3}, {88.7, 12.7}}, label: 'Espera simulada'
+                                            Other, 0x10a50d680, {{174.0, 682.7}, {12.0, 12.0}}
+                                              Other, 0x10a50d7c0, {{174.4, 685.1}, {11.1, 7.2}}
+                                                Other, 0x10a50d900, {{174.4, 685.1}, {3.6, 7.2}}
+                                                Other, 0x10a50da40, {{177.4, 685.6}, {3.2, 6.2}}
+                                                Other, 0x10a50db80, {{180.0, 685.1}, {3.6, 7.2}}
+                                                Other, 0x10a50dcc0, {{184.4, 687.1}, {1.1, 3.2}}
+                                            StaticText, 0x10a50de00, {{190.0, 682.3}, {89.0, 12.7}}, label: 'Tempo estimado'
+                                              StaticText, 0x10a50df40, {{190.0, 682.3}, {89.0, 12.7}}, label: 'Tempo estimado'
+                                            Other, 0x10a50e080, {{298.0, 682.7}, {12.0, 12.0}}
+                                              Other, 0x10a50e1c0, {{298.4, 683.1}, {11.1, 11.1}}
+                                                Other, 0x10a50e300, {{298.4, 683.1}, {11.1, 11.1}}
+                                                Other, 0x10a50e440, {{300.9, 685.6}, {1.6, 1.7}}
+                                            StaticText, 0x10a50e580, {{314.0, 682.3}, {29.3, 12.7}}, label: 'Perfil'
+                                              StaticText, 0x10a50e6c0, {{314.0, 682.3}, {29.3, 12.7}}, label: 'Perfil'
+                                            StaticText, 0x10a50e800, {{50.0, 700.0}, {92.0, 17.0}}, label: 'Baixa'
+                                              StaticText, 0x10a50e940, {{50.0, 700.0}, {92.0, 17.0}}, label: 'Baixa'
+                                            StaticText, 0x10a50ea80, {{174.0, 700.0}, {92.0, 17.0}}, label: '20 a 35 min'
+                                              StaticText, 0x10a50ebc0, {{174.0, 700.0}, {92.0, 17.0}}, label: '20 a 35 min'
+                                            StaticText, 0x10a50ed00, {{298.0, 700.0}, {92.0, 17.0}}, label: 'Carga rápida'
+                                              StaticText, 0x10a50ee40, {{298.0, 700.0}, {92.0, 17.0}}, label: 'Carga rápida'
+                                            Other, 0x10a50ef80, {{22.0, 765.7}, {396.0, 85.3}}, label: 'Autonomia para chegar ao local
+Autonomia limitada — Chegada estimada com 3% de bateria.
+Não garante recarga no local.'
+                                            Other, 0x10a50f0c0, {{22.0, 863.0}, {192.0, 140.3}}
+                                            Other, 0x10a50f200, {{226.0, 863.0}, {192.0, 140.3}}
+                                            Other, 0x10a50f340, {{37.0, 878.0}, {40.0, 40.0}}
+                                            Other, 0x10a50f480, {{241.0, 878.0}, {40.0, 40.0}}
+                                            Other, 0x10a50f5c0, {{47.0, 888.0}, {20.0, 20.0}}
+                                              Other, 0x10a50f700, {{47.7, 890.4}, {18.5, 14.3}}
+                                                Other, 0x10a50f840, {{47.7, 890.4}, {18.5, 14.3}}
+                                                Other, 0x10a50f980, {{56.1, 895.4}, {5.2, 5.2}}
+                                            Other, 0x10a50fac0, {{251.0, 888.0}, {20.0, 20.0}}
+                                              Other, 0x10a50fc00, {{255.1, 888.8}, {11.8, 18.5}}
+                                                Other, 0x10a50fd40, {{255.1, 893.8}, {11.8, 9.3}}
+                                                Other, 0x10a50fe80, {{257.6, 888.8}, {1.8, 6.8}}
+                                                Other, 0x10a524000, {{262.6, 888.8}, {1.8, 6.8}}
+                                                Other, 0x10a524140, {{260.1, 901.2}, {1.8, 6.0}}
+                                            StaticText, 0x10a524280, {{37.0, 928.0}, {162.0, 14.0}}, label: 'Potência'
+                                              StaticText, 0x10a5243c0, {{37.0, 928.0}, {162.0, 14.0}}, label: 'Potência'
+                                            StaticText, 0x10a524500, {{241.0, 928.0}, {162.0, 14.0}}, label: 'Conectores'
+                                              StaticText, 0x10a524640, {{241.0, 928.0}, {162.0, 14.0}}, label: 'Conectores'
+                                            StaticText, 0x10a524780, {{37.0, 947.0}, {162.0, 21.3}}, label: '150 kW'
+                                              StaticText, 0x10a5248c0, {{37.0, 947.0}, {162.0, 21.3}}, label: '150 kW'
+                                            StaticText, 0x10a524a00, {{241.0, 947.0}, {162.0, 21.3}}, label: 'CCS2, Type 2'
+                                              StaticText, 0x10a524b40, {{241.0, 947.0}, {162.0, 21.3}}, label: 'CCS2, Type 2'
+                                            StaticText, 0x10a524c80, {{37.0, 972.3}, {162.0, 16.0}}, label: 'Velocidade de carga'
+                                              StaticText, 0x10a524dc0, {{37.0, 972.3}, {162.0, 16.0}}, label: 'Velocidade de carga'
+                                            StaticText, 0x10a524f00, {{241.0, 972.3}, {162.0, 16.0}}, label: 'Tipos compatíveis'
+                                              StaticText, 0x10a525040, {{241.0, 972.3}, {162.0, 16.0}}, label: 'Tipos compatíveis'
+                                            Other, 0x10a525180, {{22.0, 1017.3}, {192.0, 193.3}}
+                                            Other, 0x10a5252c0, {{226.0, 1017.3}, {192.0, 193.3}}
+                                            Other, 0x10a525400, {{37.0, 1032.3}, {40.0, 40.0}}
+                                            Other, 0x10a525540, {{241.0, 1032.3}, {40.0, 40.0}}
+                                            Other, 0x10a525680, {{47.0, 1042.3}, {20.0, 20.0}}
+                                              Other, 0x10a5257c0, {{47.8, 1043.9}, {18.5, 16.8}}
+                                                Other, 0x10a525900, {{47.8, 1043.9}, {4.3, 4.3}}
+                                                Other, 0x10a525a40, {{49.4, 1045.6}, {15.2, 15.2}}
+                                                Other, 0x10a525b80, {{56.1, 1048.9}, {3.5, 6.8}}
+                                                Other, 0x10a525cc0, {{61.9, 1043.9}, {4.3, 4.3}}
+                                                Other, 0x10a525e00, {{49.4, 1057.0}, {3.8, 3.8}}
+                                                Other, 0x10a525f40, {{60.8, 1057.0}, {3.8, 3.8}}
+                                            Other, 0x10a526080, {{251.0, 1042.3}, {20.0, 20.0}}
+                                              Other, 0x10a5261c0, {{254.2, 1043.1}, {13.5, 17.7}}
+                                                Other, 0x10a526300, {{254.2, 1043.1}, {13.5, 17.7}}
+                                            StaticText, 0x10a526440, {{37.0, 1082.3}, {162.0, 14.0}}, label: 'Funcionamento'
+                                              StaticText, 0x10a526580, {{37.0, 1082.3}, {162.0, 14.0}}, label: 'Funcionamento'
+                                            StaticText, 0x10a5266c0, {{241.0, 1082.3}, {162.0, 14.0}}, label: 'Distância aproximada'
+                                              StaticText, 0x10a526800, {{241.0, 1082.3}, {162.0, 14.0}}, label: 'Distância aproximada'
+                                            StaticText, 0x10a526940, {{37.0, 1101.3}, {162.0, 42.7}}, label: '24 horas, todos os dias'
+                                              StaticText, 0x10a526a80, {{37.0, 1101.3}, {162.0, 42.7}}, label: '24 horas, todos os dias'
+                                            StaticText, 0x10a526bc0, {{241.0, 1101.3}, {162.0, 21.3}}, label: '≈4,9 km'
+                                              StaticText, 0x10a526d00, {{241.0, 1101.3}, {162.0, 21.3}}, label: '≈4,9 km'
+                                            StaticText, 0x10a526e40, {{241.0, 1126.7}, {162.0, 47.7}}, label: 'Em linha reta desde Vila Mariana. Não é distância de percurso.'
+                                              StaticText, 0x10a526f80, {{241.0, 1126.7}, {162.0, 47.7}}, label: 'Em linha reta desde Vila Mariana. Não é distância de percurso.'
+                                            StaticText, 0x10a5270c0, {{37.0, 1148.0}, {162.0, 47.7}}, label: 'Disponibilidade demonstrativa de carregadores'
+                                              StaticText, 0x10a527200, {{37.0, 1148.0}, {162.0, 47.7}}, label: 'Disponibilidade demonstrativa de carregadores'
+                                            Other, 0x10a527340, {{22.0, 1224.7}, {396.0, 106.0}}
+                                            StaticText, 0x10a527480, {{102.0, 1239.7}, {301.0, 15.0}}, label: 'Horário sugerido no exemplo'
+                                              StaticText, 0x10a5275c0, {{102.0, 1239.7}, {301.0, 15.0}}, label: 'Horário sugerido no exemplo'
+                                            Other, 0x10a527700, {{37.0, 1251.7}, {52.0, 52.0}}
+                                            StaticText, 0x10a527840, {{102.0, 1257.7}, {301.0, 40.0}}, label: '06h às 08h ou 13h às 15h ou 22h às 00h'
+                                              StaticText, 0x10a527980, {{102.0, 1257.7}, {301.0, 40.0}}, label: '06h às 08h ou 13h às 15h ou 22h às 00h'
+                                            Other, 0x10a527ac0, {{51.0, 1265.7}, {24.0, 24.0}}
+                                              Other, 0x10a527c00, {{51.9, 1266.6}, {22.2, 22.2}}
+                                                Other, 0x10a527d40, {{51.9, 1266.6}, {22.2, 22.2}}
+                                                Other, 0x10a527e80, {{61.9, 1270.6}, {6.2, 8.2}}
+                                            StaticText, 0x10a528000, {{102.0, 1300.7}, {301.0, 15.0}}, label: 'Sem previsão de movimento em tempo real'
+                                              StaticText, 0x10a528140, {{102.0, 1300.7}, {301.0, 15.0}}, label: 'Sem previsão de movimento em tempo real'
+                                            Other, 0x10a528280, {{22.0, 1350.7}, {396.0, 183.0}}
+                                            StaticText, 0x10a5283c0, {{39.0, 1367.7}, {362.0, 19.0}}, label: 'Conectores do ponto'
+                                              StaticText, 0x10a528500, {{39.0, 1367.7}, {362.0, 19.0}}, label: 'Conectores do ponto'
+                                            Other, 0x10a528640, {{39.0, 1410.7}, {38.0, 38.0}}
+                                            StaticText, 0x10a528780, {{89.0, 1411.7}, {312.0, 18.0}}, label: 'CCS2'
+                                              StaticText, 0x10a5288c0, {{89.0, 1411.7}, {312.0, 18.0}}, label: 'CCS2'
+                                            Other, 0x10a528a00, {{49.0, 1420.7}, {18.0, 18.0}}
+                                              Other, 0x10a528b40, {{49.7, 1424.3}, {16.7, 10.7}}
+                                                Other, 0x10a528c80, {{49.7, 1424.3}, {5.4, 10.7}}
+                                                Other, 0x10a528dc0, {{54.2, 1425.1}, {4.7, 9.2}}
+                                                Other, 0x10a528f00, {{58.0, 1424.3}, {5.4, 10.7}}
+                                                Other, 0x10a529040, {{64.7, 1427.3}, {1.7, 4.7}}
+                                            StaticText, 0x10a529180, {{89.0, 1432.7}, {312.0, 15.0}}, label: '150 kW · 2 de 4 carregadores livres no exemplo'
+                                              StaticText, 0x10a5292c0, {{89.0, 1432.7}, {312.0, 15.0}}, label: '150 kW · 2 de 4 carregadores livres no exemplo'
+                                            Other, 0x10a529400, {{39.0, 1468.7}, {38.0, 38.0}}
+                                            StaticText, 0x10a529540, {{89.0, 1469.7}, {312.0, 18.0}}, label: 'Type 2'
+                                              StaticText, 0x10a529680, {{89.0, 1469.7}, {312.0, 18.0}}, label: 'Type 2'
+                                            Other, 0x10a5297c0, {{49.0, 1478.7}, {18.0, 18.0}}
+                                              Other, 0x10a529900, {{52.7, 1479.3}, {10.7, 16.7}}
+                                                Other, 0x10a529a40, {{52.7, 1483.8}, {10.7, 8.4}}
+                                                Other, 0x10a529b80, {{54.9, 1479.3}, {1.7, 6.2}}
+                                                Other, 0x10a529cc0, {{59.4, 1479.3}, {1.7, 6.2}}
+                                                Other, 0x10a529e00, {{57.2, 1490.6}, {1.7, 5.4}}
+                                            StaticText, 0x10a529f40, {{89.0, 1490.7}, {312.0, 15.0}}, label: '22 kW · 2 de 2 carregadores livres no exemplo'
+                                              StaticText, 0x10a52a080, {{89.0, 1490.7}, {312.0, 15.0}}, label: '22 kW · 2 de 2 carregadores livres no exemplo'
+                                            Other, 0x10a52a1c0, {{22.0, 1543.7}, {396.0, 206.3}}
+                                            StaticText, 0x10a52a300, {{39.0, 1560.7}, {362.0, 19.0}}, label: 'Comodidades próximas'
+                                              StaticText, 0x10a52a440, {{39.0, 1560.7}, {362.0, 19.0}}, label: 'Comodidades próximas'
+                                            Other, 0x10a52a580, {{97.0, 1593.7}, {42.0, 42.0}}
+                                            Other, 0x10a52a6c0, {{199.0, 1593.7}, {42.0, 42.0}}
+                                            Other, 0x10a52a800, {{301.0, 1593.7}, {42.0, 42.0}}
+                                            Other, 0x10a52a940, {{109.0, 1605.7}, {18.0, 18.0}}
+                                              Other, 0x10a52aa80, {{109.7, 1606.4}, {16.6, 16.6}}
+                                                Other, 0x10a52abc0, {{109.7, 1606.4}, {16.6, 16.6}}
+                                                Other, 0x10a52ad00, {{115.0, 1610.1}, {6.8, 9.1}}
+                                            Other, 0x10a52ae40, {{211.0, 1605.7}, {18.0, 18.0}}
+                                              Other, 0x10a52af80, {{211.7, 1606.4}, {16.6, 15.8}}
+                                                Other, 0x10a52b0c0, {{211.7, 1606.4}, {16.6, 15.8}}
+                                                Other, 0x10a52b200, {{214.7, 1611.6}, {10.6, 10.6}}
+                                                Other, 0x10a52b340, {{214.7, 1614.6}, {10.6, 1.6}}
+                                                Other, 0x10a52b480, {{214.7, 1617.6}, {10.6, 1.6}}
+                                            Other, 0x10a52b5c0, {{313.0, 1605.7}, {18.0, 18.0}}
+                                              Other, 0x10a52b700, {{314.5, 1606.4}, {15.1, 16.6}}
+                                                Other, 0x10a52b840, {{314.5, 1606.4}, {10.6, 13.6}}
+                                                Other, 0x10a52b980, {{315.9, 1613.9}, {13.6, 9.1}}
+                                            StaticText, 0x10a52bac0, {{74.3, 1642.7}, {87.0, 12.7}}, label: 'Estacionamento'
+                                              StaticText, 0x10a52bc00, {{74.3, 1642.7}, {87.0, 12.7}}, label: 'Estacionamento'
+                                            StaticText, 0x10a52bd40, {{185.0, 1642.7}, {70.0, 12.7}}, label: 'Área coberta'
+                                              StaticText, 0x10a52be80, {{185.0, 1642.7}, {70.0, 12.7}}, label: 'Área coberta'
+                                            StaticText, 0x10a530000, {{297.7, 1642.7}, {48.3, 12.7}}, label: 'Banheiro'
+                                              StaticText, 0x10a530140, {{297.7, 1642.7}, {48.3, 12.7}}, label: 'Banheiro'
+                                            Other, 0x10a530280, {{97.0, 1671.3}, {42.0, 42.0}}
+                                            Other, 0x10a5303c0, {{199.0, 1671.3}, {42.0, 42.0}}
+                                            Other, 0x10a530500, {{301.0, 1671.3}, {42.0, 42.0}}
+                                            Other, 0x10a530640, {{109.0, 1683.3}, {18.0, 18.0}}
+                                              Other, 0x10a530780, {{110.5, 1684.0}, {15.8, 15.8}}
+                                                Other, 0x10a5308c0, {{110.5, 1688.5}, {15.8, 11.3}}
+                                                Other, 0x10a530a00, {{112.7, 1684.0}, {1.6, 3.1}}
+                                                Other, 0x10a530b40, {{115.7, 1684.0}, {1.6, 3.1}}
+                                                Other, 0x10a530c80, {{118.7, 1684.0}, {1.6, 3.1}}
+                                            Other, 0x10a530dc0, {{211.0, 1683.3}, {18.0, 18.0}}
+                                              Other, 0x10a530f00, {{211.7, 1686.3}, {16.6, 12.8}}
+                                                Other, 0x10a531040, {{211.7, 1686.3}, {16.6, 4.4}}
+                                                Other, 0x10a531180, {{214.0, 1690.0}, {12.1, 3.7}}
+                                                Other, 0x10a5312c0, {{216.6, 1693.8}, {6.8, 2.6}}
+                                                Other, 0x10a531400, {{219.2, 1697.5}, {1.6, 1.6}}
+                                            Other, 0x10a531540, {{313.0, 1683.3}, {18.0, 18.0}}
+                                              Other, 0x10a531680, {{315.2, 1684.0}, {13.6, 16.6}}
+                                                Other, 0x10a5317c0, {{315.2, 1684.0}, {13.6, 16.6}}
+                                                Other, 0x10a531900, {{319.0, 1690.0}, {6.1, 4.6}}
+                                            StaticText, 0x10a531a40, {{105.3, 1720.3}, {25.0, 12.7}}, label: 'Café'
+                                              StaticText, 0x10a531b80, {{105.3, 1720.3}, {25.0, 12.7}}, label: 'Café'
+                                            StaticText, 0x10a531cc0, {{205.7, 1720.3}, {28.7, 12.7}}, label: 'Wi-Fi'
+                                              StaticText, 0x10a531e00, {{205.7, 1720.3}, {28.7, 12.7}}, label: 'Wi-Fi'
+                                            StaticText, 0x10a531f40, {{293.0, 1720.3}, {57.7, 12.7}}, label: 'Segurança'
+                                              StaticText, 0x10a532080, {{293.0, 1720.3}, {57.7, 12.7}}, label: 'Segurança'
+                                            Other, 0x10a5321c0, {{22.0, 1760.0}, {396.0, 682.0}}
+                                            StaticText, 0x10a532300, {{39.0, 1777.0}, {362.0, 19.0}}, label: 'Avaliações'
+                                              StaticText, 0x10a532440, {{39.0, 1777.0}, {362.0, 19.0}}, label: 'Avaliações'
+                                            StaticText, 0x10a532580, {{39.0, 1810.0}, {362.0, 37.3}}, label: 'Notas, totais, distribuição e comentários do catálogo são exemplos. Sua avaliação local não altera esses números.'
+                                              StaticText, 0x10a5326c0, {{39.0, 1810.0}, {362.0, 37.3}}, label: 'Notas, totais, distribuição e comentários do catálogo são exemplos. Sua avaliação local não altera esses números.'
+                                            StaticText, 0x10a532800, {{61.3, 1861.3}, {65.3, 47.0}}, label: '4.9'
+                                              StaticText, 0x10a532940, {{61.3, 1861.3}, {65.3, 47.0}}, label: '4.9'
+                                            StaticText, 0x10a532a80, {{149.0, 1864.7}, {32.0, 12.7}}, label: '5 ★'
+                                              StaticText, 0x10a532bc0, {{149.0, 1864.7}, {32.0, 12.7}}, label: '5 ★'
+                                            Other, 0x10a532d00, {{189.0, 1868.7}, {176.0, 5.0}}
+                                              Other, 0x10a532e40, {{189.0, 1868.7}, {149.7, 5.0}}
+                                            StaticText, 0x10a532f80, {{373.0, 1864.7}, {28.0, 12.7}}, label: '85%'
+                                              StaticText, 0x10a5330c0, {{373.0, 1864.7}, {28.0, 12.7}}, label: '85%'
+                                            StaticText, 0x10a533200, {{149.0, 1883.3}, {32.0, 12.7}}, label: '4 ★'
+                                              StaticText, 0x10a533340, {{149.0, 1883.3}, {32.0, 12.7}}, label: '4 ★'
+                                            Other, 0x10a533480, {{189.0, 1887.3}, {176.0, 5.0}}
+                                              Other, 0x10a5335c0, {{189.0, 1887.3}, {17.7, 5.0}}
+                                            StaticText, 0x10a533700, {{373.0, 1883.3}, {28.0, 12.7}}, label: '10%'
+                                              StaticText, 0x10a533840, {{373.0, 1883.3}, {28.0, 12.7}}, label: '10%'
+                                            StaticText, 0x10a533980, {{149.0, 1902.0}, {32.0, 12.7}}, label: '3 ★'
+                                              StaticText, 0x10a533ac0, {{149.0, 1902.0}, {32.0, 12.7}}, label: '3 ★'
+                                            StaticText, 0x10a533c00, {{53.3, 1911.3}, {81.3, 16.0}}, label: '★ ★ ★ ★ ★'
+                                              StaticText, 0x10a533d40, {{53.3, 1911.3}, {81.3, 16.0}}, label: '★ ★ ★ ★ ★'
+                                            Other, 0x10a533e80, {{189.0, 1906.0}, {176.0, 5.0}}
+                                              Other, 0x10a53c000, {{189.0, 1906.0}, {5.3, 5.0}}
+                                            StaticText, 0x10a53c140, {{373.0, 1902.0}, {28.0, 12.7}}, label: '3%'
+                                              StaticText, 0x10a53c280, {{373.0, 1902.0}, {28.0, 12.7}}, label: '3%'
+                                            StaticText, 0x10a53c3c0, {{149.0, 1920.7}, {32.0, 12.7}}, label: '2 ★'
+                                              StaticText, 0x10a53c500, {{149.0, 1920.7}, {32.0, 12.7}}, label: '2 ★'
+                                            Other, 0x10a53c640, {{189.0, 1924.7}, {176.0, 5.0}}
+                                              Other, 0x10a53c780, {{189.0, 1924.7}, {1.7, 5.0}}
+                                            StaticText, 0x10a53c8c0, {{373.0, 1920.7}, {28.0, 12.7}}, label: '1%'
+                                              StaticText, 0x10a53ca00, {{373.0, 1920.7}, {28.0, 12.7}}, label: '1%'
+                                            StaticText, 0x10a53cb40, {{39.0, 1933.3}, {110.0, 27.7}}, label: '184 avaliações demonstrativas'
+                                              StaticText, 0x10a53cc80, {{39.0, 1933.3}, {110.0, 27.7}}, label: '184 avaliações demonstrativas'
+                                            StaticText, 0x10a53cdc0, {{149.0, 1939.3}, {32.0, 12.7}}, label: '1 ★'
+                                              StaticText, 0x10a53cf00, {{149.0, 1939.3}, {32.0, 12.7}}, label: '1 ★'
+                                            Other, 0x10a53d040, {{189.0, 1943.3}, {176.0, 5.0}}
+                                              Other, 0x10a53d180, {{189.0, 1943.3}, {1.7, 5.0}}
+                                            StaticText, 0x10a53d2c0, {{373.0, 1939.3}, {28.0, 12.7}}, label: '1%'
+                                              StaticText, 0x10a53d400, {{373.0, 1939.3}, {28.0, 12.7}}, label: '1%'
+                                            Button, 0x10a53d540, {{39.0, 1975.0}, {362.0, 48.0}}, label: 'Editar minha avaliação deste ponto'
+                                            Other, 0x10a53d680, {{39.0, 2041.0}, {362.0, 120.0}}
+                                            Other, 0x10a53d7c0, {{54.0, 2056.0}, {44.0, 44.0}}
+                                            StaticText, 0x10a53d900, {{110.0, 2056.0}, {276.0, 16.0}}, label: 'Leonardo Bragatti'
+                                              StaticText, 0x10a53da40, {{110.0, 2056.0}, {276.0, 16.0}}, label: 'Leonardo Bragatti'
+                                            StaticText, 0x10a53db80, {{67.3, 2070.0}, {17.3, 16.0}}, label: 'LB'
+                                              StaticText, 0x10a53dcc0, {{67.3, 2070.0}, {17.3, 16.0}}, label: 'LB'
+                                            StaticText, 0x10a53de00, {{110.0, 2074.0}, {276.0, 17.7}}, label: 'Avaliação demonstrativa'
+                                              StaticText, 0x10a53df40, {{110.0, 2074.0}, {276.0, 17.7}}, label: 'Avaliação demonstrativa'
+                                            StaticText, 0x10a53e080, {{110.0, 2091.7}, {276.0, 14.0}}, label: '★ ★ ★ ★ ★'
+                                              StaticText, 0x10a53e1c0, {{110.0, 2091.7}, {276.0, 14.0}}, label: '★ ★ ★ ★ ★'
+                                            StaticText, 0x10a53e300, {{110.0, 2110.7}, {276.0, 35.3}}, label: 'Cobertura, banheiro e café deixam a parada bem confortável para uma recarga rápida.'
+                                              StaticText, 0x10a53e440, {{110.0, 2110.7}, {276.0, 35.3}}, label: 'Cobertura, banheiro e café deixam a parada bem confortável para uma recarga rápida.'
+                                            Other, 0x10a53e580, {{39.0, 2173.0}, {362.0, 120.0}}
+                                            Other, 0x10a53e6c0, {{54.0, 2188.0}, {44.0, 44.0}}
+                                            StaticText, 0x10a53e800, {{110.0, 2188.0}, {276.0, 16.0}}, label: 'Marina Polverari'
+                                              StaticText, 0x10a53e940, {{110.0, 2188.0}, {276.0, 16.0}}, label: 'Marina Polverari'
+                                            StaticText, 0x10a53ea80, {{65.3, 2202.0}, {21.3, 16.0}}, label: 'MP'
+                                              StaticText, 0x10a53ebc0, {{65.3, 2202.0}, {21.3, 16.0}}, label: 'MP'
+                                            StaticText, 0x10a53ed00, {{110.0, 2206.0}, {276.0, 17.7}}, label: 'Avaliação demonstrativa'
+                                              StaticText, 0x10a53ee40, {{110.0, 2206.0}, {276.0, 17.7}}, label: 'Avaliação demonstrativa'
+                                            StaticText, 0x10a53ef80, {{110.0, 2223.7}, {276.0, 14.0}}, label: '★ ★ ★ ★ ★'
+                                              StaticText, 0x10a53f0c0, {{110.0, 2223.7}, {276.0, 14.0}}, label: '★ ★ ★ ★ ★'
+                                            StaticText, 0x10a53f200, {{110.0, 2242.7}, {276.0, 35.3}}, label: 'Boa sinalização, ambiente limpo e conexão estável no CCS2 durante a recarga.'
+                                              StaticText, 0x10a53f340, {{110.0, 2242.7}, {276.0, 35.3}}, label: 'Boa sinalização, ambiente limpo e conexão estável no CCS2 durante a recarga.'
+                                            Other, 0x10a53f480, {{39.0, 2305.0}, {362.0, 120.0}}
+                                            Other, 0x10a53f5c0, {{54.0, 2320.0}, {44.0, 44.0}}
+                                            StaticText, 0x10a53f700, {{110.0, 2320.0}, {276.0, 16.0}}, label: 'John Paul'
+                                              StaticText, 0x10a53f840, {{110.0, 2320.0}, {276.0, 16.0}}, label: 'John Paul'
+                                            StaticText, 0x10a53f980, {{67.0, 2334.0}, {17.7, 16.0}}, label: 'JP'
+                                              StaticText, 0x10a53fac0, {{67.0, 2334.0}, {17.7, 16.0}}, label: 'JP'
+                                            StaticText, 0x10a53fc00, {{110.0, 2338.0}, {276.0, 17.7}}, label: 'Avaliação demonstrativa'
+                                              StaticText, 0x10a53fd40, {{110.0, 2338.0}, {276.0, 17.7}}, label: 'Avaliação demonstrativa'
+                                            StaticText, 0x10a53fe80, {{110.0, 2355.7}, {276.0, 14.0}}, label: '★ ★ ★ ★ ★'
+                                              StaticText, 0x10a544000, {{110.0, 2355.7}, {276.0, 14.0}}, label: '★ ★ ★ ★ ★'
+                                            StaticText, 0x10a544140, {{110.0, 2374.7}, {276.0, 35.3}}, label: 'Ponto completo para quem precisa carregar sem abrir mão de segurança e Wi-Fi.'
+                                              StaticText, 0x10a544280, {{110.0, 2374.7}, {276.0, 35.3}}, label: 'Ponto completo para quem precisa carregar sem abrir mão de segurança e Wi-Fi.'
+                                        Other, 0x10a5443c0, {{62.0, 923.0}, {316.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                          Other, 0x10a544500, {{65.0, 950.0}, {310.0, 3.0}}
+                                        Other, 0x10a544640, {{62.0, 923.0}, {316.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                          Other, 0x10a544780, {{65.0, 950.0}, {310.0, 3.0}}
+                                    Other, 0x10a5448c0, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x10a544a00, {{0.0, 847.0}, {440.0, 109.0}}
+                                      Button, 0x10a544b40, {{22.0, 860.0}, {193.7, 52.0}}, label: 'Ver mapa'
+                                      Button, 0x10a544c80, {{227.7, 860.0}, {190.3, 52.0}}, label: 'Iniciar rota para Higienópolis Prime Charge'
+                          Toolbar, 0x10a544dc0, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x10a544f00, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x10a545040, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x10a545180, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x10a5452c0, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x10a545400, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x10a545540, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x10a545680, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x10a5457c0, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x10a545900, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x10a545a40, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x10a545b80, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x10a545cc0, {{20.0, 270.7}, {400.0, 414.7}}
+              StaticText, 0x10a545e00, {{44.0, 294.7}, {352.0, 23.3}}, label: 'Antes de iniciar a rota'
+                StaticText, 0x10a545f40, {{44.0, 294.7}, {352.0, 23.3}}, label: 'Antes de iniciar a rota'
+              StaticText, 0x10a546080, {{44.0, 330.0}, {352.0, 21.3}}, label: 'Higienópolis Prime Charge'
+                StaticText, 0x10a5461c0, {{44.0, 330.0}, {352.0, 21.3}}, label: 'Higienópolis Prime Charge'
+              StaticText, 0x10a546300, {{44.0, 363.3}, {352.0, 106.0}}, label: 'Nos dados demonstrativos: Aberto agora. A abertura e os carregadores livres são demonstrativos. Abrir a rota não garante atendimento; confirme o funcionamento e a compatibilidade antes de ir.'
+                StaticText, 0x10a546440, {{44.0, 363.3}, {352.0, 106.0}}, label: 'Nos dados demonstrativos: Aberto agora. A abertura e os carregadores livres são demonstrativos. Abrir a rota não garante atendimento; confirme o funcionamento e a compatibilidade antes de ir.'
+              Button, 0x10a546580, {{44.0, 481.3}, {352.0, 52.0}}, label: 'Abrir Google Maps'
+              Button, 0x10a5466c0, {{44.0, 545.3}, {352.0, 52.0}}, label: 'Abrir Waze'
+              Button, 0x10a546800, {{44.0, 609.3}, {352.0, 52.0}}, label: 'Cancelar'
+Path to element:
+ →Application, 0x1073ac500, pid: 71943, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x10a546940, pid: 71943, label: 'Expo Go'
+  }
+
+    t =     6.42s Find the Application 'host.exp.Exponent'
+    t =     6.81s Added attachment named '02-posicao-disponivel-provedores'
+    t =     6.81s Tap Button (First Match)
+    t =     6.81s     Wait for host.exp.Exponent to idle
+    t =     6.82s     Find the Button (First Match)
+    t =     6.83s     Check for interrupting elements affecting "Abrir Google Maps" Button
+    t =     6.97s     Synthesize event
+    t =     7.27s     Wait for host.exp.Exponent to idle
+    t =     7.27s Wait for com.apple.mobilesafari to become Running Foreground
+    t =     8.39s Requesting snapshot of accessibility hierarchy for app with pid 64191
+    t =    17.84s Requesting snapshot of accessibility hierarchy for app with pid 64191
+FLUI75 03-google-maps-aberto
+Attributes: Application, 0x10a545540, pid: 64191, label: 'Safari'
+Element subtree:
+ →Application, 0x10a545540, pid: 64191, label: 'Safari'
+    Window (Main), 0x10a545680, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x10a545cc0, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x10a546800, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x10a5466c0, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'SafariWindow?View=Narrow&BarsKeptMinimized=false&UUID=EEC2DB30-CF4F-460D-9A8F-217B81F9203F&UsingLoweredBar=true&IsSecure=false&IsTabBarAvailable=true'
+            Other, 0x10a546580, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x10a546300, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x10a546440, {{0.0, 0.0}, {440.0, 49.0}}
+                  Other, 0x10a546080, {{0.0, 0.0}, {440.0, 49.0}}
+                  Other, 0x10a5461c0, {{0.0, 0.0}, {440.0, 49.0}}
+                Other, 0x10a545e00, {{0.0, 0.0}, {440.0, 62.0}}
+                ScrollView, 0x10a545f40, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x10a545900, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x10a545a40, {{0.0, 0.0}, {440.0, 102.0}}
+                  Other, 0x10a545b80, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'TabDocument?IsLoadedUsingDesktopUserAgent=false&InReaderMode=false&UUID=0A50294A-8DA8-4E8A-A337-ABA1B0674FF0&IsPrivate=false&IsPageLoaded=true&WebViewProcessID=64197'
+                    WebView, 0x10a5457c0, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'WebView'
+                      WebView, 0x10a545040, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x10a545180, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x10a5452c0, {{0.0, 0.0}, {440.0, 89.0}}
+                          Other, 0x10a544dc0, {{0.0, 818.0}, {440.0, 138.0}}
+                        Other, 0x10a544f00, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x10a544a00, {{0.0, 0.0}, {440.0, 89.0}}
+                        WebView, 0x10a544c80, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x10a544b40, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x10a5448c0, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x10a544640, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x10a544780, {{0.0, 0.0}, {440.0, 796.0}}, label: 'Como chegar - De -23.5614000, -46.6559000 para -23.5472000, -46.6618000 - Google Maps', Focused
+                                  Button, 0x10a5443c0, {{8.0, 4.0}, {48.0, 48.0}}, label: 'Voltar', Focused
+                                  Button, 0x10a544500, {{64.0, 12.0}, {312.0, 50.0}}, label: '-23.5614000, -46.6559000 para -23.5472000, -46.6618000', Focused
+                                  Other, 0x10a544140, {{384.0, 4.0}, {48.0, 48.0}}, label: 'Mais opções', Focused
+                                  Other, 0x10a544280, {{0.0, 62.0}, {538.0, 48.0}}, label: 'formulário', Focused
+                                    Other, 0x10a544000, {{8.0, 62.0}, {106.0, 48.0}}, Focused
+                                      Other, 0x10a546a80, {{8.0, 62.0}, {106.0, 48.0}}, label: 'Modo carro 13 min', value: 1, Focused
+                                    Other, 0x10a546bc0, {{114.0, 62.0}, {106.0, 48.0}}, Focused
+                                      Other, 0x10a546d00, {{114.0, 62.0}, {106.0, 48.0}}, label: 'Modo motocicleta 11 min', value: 0, Focused
+                                    Other, 0x10a546e40, {{220.0, 62.0}, {106.0, 48.0}}, Focused
+                                      Other, 0x10a546f80, {{220.0, 62.0}, {106.0, 48.0}}, label: 'Transporte público 16 min', value: 0, Focused
+                                    Other, 0x10a5470c0, {{326.0, 62.0}, {106.0, 48.0}}, Focused
+                                      Other, 0x10a547200, {{326.0, 62.0}, {106.0, 48.0}}, label: 'Modo A pé 29 min', value: 0, Focused
+                                    Other, 0x10a547340, {{432.0, 62.0}, {106.0, 48.0}}, Focused
+                                      Other, 0x10a547480, {{432.0, 62.0}, {106.0, 48.0}}, label: 'Modo Bicicleta 18 min', value: 0, Focused
+                                  Other, 0x10a5475c0, {{0.0, 110.0}, {440.0, 424.0}}, Focused
+                                    Other, 0x10a547700, {{0.0, 110.0}, {440.0, 10.0}}, Focused
+                                      Other, 0x10a547840, {{0.0, 110.0}, {440.0, 10.0}}, Focused
+                                        Other, 0x10a547980, {{0.0, 110.0}, {440.0, 10.0}}, Focused
+                                          Other, 0x10a547ac0, {{0.0, 110.0}, {440.0, 10.0}}, Focused
+                                            Other, 0x10a547c00, {{176.0, 358.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x10a547d40, {{176.0, 358.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x10a547e80, {{176.0, 358.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x10723d040, {{176.0, 358.0}, {256.0, 256.0}}, Focused
+                                            Other, 0x10723f980, {{0.0, 358.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x10723f700, {{0.0, 358.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x10723c8c0, {{0.0, 358.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x10723f840, {{0.0, 358.0}, {256.0, 256.0}}, Focused
+                                            Other, 0x10723f480, {{0.0, 102.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x10723f5c0, {{0.0, 102.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073ac500, {{0.0, 102.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073ad900, {{0.0, 102.0}, {256.0, 256.0}}, Focused
+                                            Other, 0x1073acb40, {{176.0, 102.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073acc80, {{176.0, 102.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073ad040, {{176.0, 102.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073acf00, {{176.0, 102.0}, {256.0, 256.0}}, Focused
+                                            Other, 0x1073ad180, {{432.0, 102.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073acdc0, {{432.0, 102.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073ad2c0, {{432.0, 102.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073ad7c0, {{432.0, 102.0}, {256.0, 256.0}}, Focused
+                                            Other, 0x1073adb80, {{432.0, 358.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073adcc0, {{432.0, 358.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073ada40, {{432.0, 358.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073ade00, {{432.0, 358.0}, {256.0, 256.0}}, Focused
+                                            Other, 0x1073adf40, {{432.0, 614.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073ae300, {{432.0, 614.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073ae1c0, {{432.0, 614.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073ae440, {{432.0, 614.0}, {256.0, 256.0}}, Focused
+                                            Other, 0x1073ae080, {{176.0, 614.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073ae800, {{176.0, 614.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073ae6c0, {{176.0, 614.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073ac640, {{176.0, 614.0}, {256.0, 256.0}}, Focused
+                                            Other, 0x1073afc00, {{0.0, -154.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073ac140, {{0.0, -154.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073afd40, {{0.0, -154.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073afe80, {{0.0, -154.0}, {256.0, 256.0}}, Focused
+                                            Other, 0x1073af840, {{0.0, 614.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073af980, {{0.0, 614.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073afac0, {{0.0, 614.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073af700, {{0.0, 614.0}, {256.0, 256.0}}, Focused
+                                            Other, 0x1073af5c0, {{176.0, -154.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073af340, {{176.0, -154.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073af480, {{176.0, -154.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073af0c0, {{176.0, -154.0}, {256.0, 256.0}}, Focused
+                                            Other, 0x1073ae940, {{432.0, -154.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073aee40, {{432.0, -154.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073af200, {{432.0, -154.0}, {256.0, 256.0}}, Focused
+                                              Other, 0x1073aef80, {{432.0, -154.0}, {256.0, 256.0}}, Focused
+                                      Other, 0x1073aea80, {{0.0, 110.0}, {440.0, 10.0}}, Focused
+                                      Other, 0x1073aebc0, {{0.0, 110.0}, {440.0, 10.0}}, Focused
+                                      Other, 0x1073aed00, {{0.0, 110.0}, {440.0, 10.0}}, Focused
+                                      Other, 0x1138c0000, {{0.0, 110.0}, {440.0, 10.0}}, Focused
+                                    Other, 0x1138c0140, {{0.0, 110.0}, {440.0, 424.0}}, Focused
+                                    Other, 0x1138c0280, {{0.0, 110.0}, {440.0, 10.0}}, Focused
+                                  Other, 0x1138c03c0, {{154.0, -550.0}, {132.0, 718.0}}, Focused
+                                    Button, 0x1138c0500, {{154.0, -550.0}, {132.0, 718.0}}, label: 'Abrir no app', Focused
+                                  Button, 0x1138c0640, {{368.0, 154.0}, {56.0, 367.0}}, label: 'Recentralizar o mapa no seu local', Focused
+                                  Button, 0x1138c0780, {{16.0, 126.0}, {122.0, 451.0}}, label: 'Abre a visão em 360º', Focused
+                                  Other, 0x1138c08c0, {{0.0, 552.0}, {440.0, 28.0}}, label: '13 min 6.2 km', value: 1, Focused
+                                    StaticText, 0x1138c0a00, {{16.0, 552.0}, {154.0, 28.0}}, label: '13 min (6.2 km)', value: 13 min (6.2 km), Focused
+                                    Other, 0x1138c0b40, {{88.0, 552.0}, {82.0, 28.0}}, label: '6.2 km', value: 1, Focused
+                                  Other, 0x1138c0c80, {{18.0, 580.0}, {362.0, 36.0}}, Focused
+                                    StaticText, 0x1138c0dc0, {{18.0, 588.0}, {99.0, 18.0}}, label: 'Chegada: 02:03', value: Chegada: 02:03, Focused
+                                  Image, 0x1138c0f00, {{89.0, 616.0}, {262.0, 74.0}}, label: 'Driving promo', Focused
+                                  Other, 0x1138c1040, {{0.0, 695.0}, {440.0, 44.0}}, Focused
+                                    StaticText, 0x1138c1180, {{57.0, 695.0}, {326.0, 38.0}}, label: 'Para ver o trânsito em tempo real e rotas com navegação guiada, mude para o app', value: Para ver o trânsit..., Focused
+                                  Button, 0x1138c12c0, {{0.0, 604.0}, {440.0, 10.0}}, label: 'Mais trajetos', Focused
+                                  Other, 0x1138c1400, {{13.0, 739.0}, {414.0, 48.0}}, Focused
+                                    Button, 0x1138c1540, {{13.0, 739.0}, {414.0, 48.0}}, label: 'Iniciar', Focused
+                        Other, 0x1138c1680, {{407.0, 62.0}, {30.0, 832.0}}, label: 'Barra de rolagem vertical, 1 página', value: 0%
+                          Other, 0x1138c17c0, {{434.0, 65.0}, {3.0, 826.0}}
+                        Other, 0x1138c1900, {{62.0, 923.0}, {316.0, 30.0}}, label: 'Barra de rolagem horizontal, 1 página', value: 0%
+                          Other, 0x1138c1a40, {{65.0, 950.0}, {310.0, 3.0}}
+                        Other, 0x1138c1b80, {{407.0, 62.0}, {30.0, 832.0}}, label: 'Barra de rolagem vertical, 1 página', value: 0%
+                          Other, 0x1138c1cc0, {{434.0, 65.0}, {3.0, 826.0}}
+                        Other, 0x1138c1e00, {{62.0, 923.0}, {316.0, 30.0}}, label: 'Barra de rolagem horizontal, 1 página', value: 0%
+                          Other, 0x1138c1f40, {{65.0, 950.0}, {310.0, 3.0}}
+                  Other, 0x1138c2080, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x1138c21c0, {{62.0, 923.0}, {316.0, 30.0}}, label: 'Barra de rolagem horizontal, 1 página', value: 0%
+                    Other, 0x1138c2300, {{65.0, 950.0}, {310.0, 3.0}}
+                  Other, 0x1138c2440, {{62.0, 923.0}, {316.0, 30.0}}, label: 'Barra de rolagem horizontal, 1 página', value: 0%
+                    Other, 0x1138c2580, {{65.0, 950.0}, {310.0, 3.0}}
+            Other, 0x1138c26c0, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'CapsuleViewController'
+              Other, 0x1138c2800, {{0.0, 858.0}, {440.0, 98.0}}
+                Other, 0x1138c2940, {{0.0, 858.0}, {440.0, 98.0}}
+                  Other, 0x1138c2a80, {{0.0, 858.0}, {440.0, 98.0}}
+                    Other, 0x1138c2bc0, {{0.0, 858.0}, {440.0, 98.0}}
+                      Other, 0x1138c2d00, {{0.0, 858.0}, {440.0, 98.0}}
+                        Other, 0x1138c2e40, {{0.0, 858.0}, {440.0, 98.0}}
+                          Other, 0x1138c2f80, {{0.0, 858.0}, {440.0, 98.0}}
+                      Other, 0x1138c30c0, {{0.0, 858.0}, {440.0, 98.0}}
+                        Other, 0x1138c3200, {{0.0, 858.0}, {440.0, 98.0}}
+                Other, 0x1138c3340, {{34.0, 874.0}, {48.0, 48.0}}
+                  Other, 0x1138c3480, {{34.0, 874.0}, {48.0, 48.0}}
+                    Button, 0x1138c35c0, {{34.0, 874.0}, {48.0, 48.0}}, identifier: 'BackButton', label: 'Voltar'
+                Other, 0x1138c3700, {{90.0, 874.0}, {260.0, 48.0}}
+                  Other, 0x1138c3840, {{90.0, 874.0}, {260.0, 48.0}}
+                    Other, 0x1138c3980, {{90.0, 874.0}, {260.0, 48.0}}
+                      Other, 0x1138c3ac0, {{90.0, 874.0}, {260.0, 48.0}}, identifier: 'CapsuleNavigationBar?isSelected=true&isDistractionControlOverlayUp=false', Selected
+                        Button, 0x1138c3c00, {{90.0, 874.0}, {48.0, 48.0}}, identifier: 'MoreMenuButton', label: 'Menu da Página'
+                          StaticText, 0x1138c3d40, {{90.0, 874.0}, {0.0, 0.0}}
+                        TextField, 0x1138c3e80, {{178.7, 889.0}, {82.7, 18.0}}, identifier: 'TabBarItemTitle', label: 'Endereço', value: ‎google.com
+                        Button, 0x1138c4000, {{319.3, 888.0}, {17.7, 20.3}}, identifier: 'StopButton', label: 'Fechar'
+                Other, 0x1138c4140, {{358.0, 874.0}, {48.0, 48.0}}
+                  Other, 0x1138c4280, {{358.0, 874.0}, {48.0, 48.0}}
+                    Button, 0x1138c43c0, {{358.0, 874.0}, {48.0, 48.0}}, identifier: 'TabOverviewButton', label: 'Abas'
+    Window, 0x1138c4500, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x1138c4640, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x1138c4780, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x10a545540, pid: 64191, label: 'Safari'
+Query chain:
+ →Find: Application 'com.apple.mobilesafari'
+  Output: {
+    Application, 0x1138c48c0, pid: 64191, label: 'Safari'
+  }
+
+    t =    18.24s Find the Application 'com.apple.mobilesafari'
+    t =    18.62s Added attachment named '03-google-maps-aberto'
+    t =    18.62s Open host.exp.Exponent
+    t =    18.62s     Activate host.exp.Exponent
+    t =    18.75s         Wait for host.exp.Exponent to idle
+    t =    19.01s Waiting 8.0s for Button (First Match) to exist
+    t =    20.09s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    20.10s         Checking existence of `Button (First Match)`
+    t =    20.12s Tap Button (First Match)
+    t =    20.12s     Wait for host.exp.Exponent to idle
+    t =    20.13s     Find the Button (First Match)
+    t =    20.15s     Check for interrupting elements affecting "Abrir Waze" Button
+    t =    20.31s     Synthesize event
+    t =    20.62s     Wait for host.exp.Exponent to idle
+    t =    20.62s Wait for com.apple.mobilesafari to become Running Foreground
+    t =    21.35s Requesting snapshot of accessibility hierarchy for app with pid 64191
+    t =    22.82s Requesting snapshot of accessibility hierarchy for app with pid 64191
+FLUI75 04-waze-aberto
+Attributes: Application, 0x1138c92c0, pid: 64191, label: 'Safari'
+Element subtree:
+ →Application, 0x1138c92c0, pid: 64191, label: 'Safari'
+    Window (Main), 0x1138c9400, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x1138c9540, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x1138c9680, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x1138c97c0, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'SafariWindow?View=Narrow&BarsKeptMinimized=false&UUID=EEC2DB30-CF4F-460D-9A8F-217B81F9203F&UsingLoweredBar=true&IsSecure=false&IsTabBarAvailable=true'
+            Other, 0x1138c9900, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x1138c9a40, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x1138c9b80, {{0.0, 0.0}, {440.0, 49.0}}
+                  Other, 0x1138c9cc0, {{0.0, 0.0}, {440.0, 49.0}}
+                  Other, 0x1138c9e00, {{0.0, 0.0}, {440.0, 49.0}}
+                Other, 0x1138c9f40, {{0.0, 0.0}, {440.0, 62.0}}
+                ScrollView, 0x1138ca080, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x1138ca1c0, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1138ca300, {{0.0, 0.0}, {440.0, 102.0}}
+                  Other, 0x1138ca440, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x1138ca580, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'TabDocument?IsLoadedUsingDesktopUserAgent=false&InReaderMode=false&UUID=235F4DA8-A4CB-49E7-A289-7D856B6F775F&IsPrivate=false&IsPageLoaded=true&WebViewProcessID=64221'
+                    WebView, 0x1138ca6c0, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'WebView'
+                      WebView, 0x1138ca800, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1138ca940, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x1138caa80, {{0.0, 0.0}, {440.0, 89.0}}
+                          Other, 0x1138cabc0, {{0.0, 818.0}, {440.0, 138.0}}
+                        WebView, 0x1138cad00, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x1138cae40, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x1138caf80, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x1138cb0c0, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x1138cb200, {{0.0, 0.0}, {980.0, 2129.0}}, Focused
+                        Other, 0x1138cb340, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x1138cb480, {{0.0, 0.0}, {440.0, 89.0}}
+                        Other, 0x1138cb5c0, {{407.0, 62.0}, {30.0, 832.0}}, label: 'Barra de rolagem vertical, 1 página', value: 0%
+                          Other, 0x1138cb700, {{434.0, 861.0}, {3.0, 30.0}}
+                        Other, 0x1138cb840, {{62.0, 923.0}, {316.0, 30.0}}, label: 'Barra de rolagem horizontal, 1 página', value: 0%
+                          Other, 0x1138cb980, {{368.0, 950.0}, {7.0, 3.0}}
+                        Other, 0x1138cbac0, {{407.0, 62.0}, {30.0, 832.0}}, label: 'Barra de rolagem vertical, 1 página', value: 0%
+                          Other, 0x1138cbc00, {{434.0, 861.0}, {3.0, 30.0}}
+                        Other, 0x1138cbd40, {{62.0, 923.0}, {316.0, 30.0}}, label: 'Barra de rolagem horizontal, 1 página', value: 0%
+                          Other, 0x1138cbe80, {{368.0, 950.0}, {7.0, 3.0}}
+                  Other, 0x1138d4500, {{62.0, 923.0}, {316.0, 30.0}}, label: 'Barra de rolagem horizontal, 1 página', value: 0%
+                    Other, 0x1138c4500, {{65.0, 950.0}, {310.0, 3.0}}
+                  Other, 0x1138c4640, {{62.0, 923.0}, {316.0, 30.0}}, label: 'Barra de rolagem horizontal, 1 página', value: 0%
+                    Other, 0x1138c4780, {{65.0, 950.0}, {310.0, 3.0}}
+            Other, 0x1138c4140, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'CapsuleViewController'
+              Other, 0x1138c4280, {{0.0, 858.0}, {440.0, 98.0}}
+                Other, 0x1138c43c0, {{0.0, 858.0}, {440.0, 98.0}}
+                  Other, 0x1138c4000, {{0.0, 858.0}, {440.0, 98.0}}
+                    Other, 0x1073aed00, {{0.0, 858.0}, {440.0, 98.0}}
+                      Other, 0x1073aebc0, {{0.0, 858.0}, {440.0, 98.0}}
+                        Other, 0x1073aea80, {{0.0, 858.0}, {440.0, 98.0}}
+                          Other, 0x1073ae940, {{0.0, 858.0}, {440.0, 98.0}}
+                      Other, 0x1073aef80, {{0.0, 858.0}, {440.0, 98.0}}
+                        Other, 0x1073af200, {{0.0, 858.0}, {440.0, 98.0}}
+                Other, 0x1073aee40, {{34.0, 874.0}, {48.0, 48.0}}
+                  Other, 0x1073af5c0, {{34.0, 874.0}, {48.0, 48.0}}
+                    Button, 0x1073af0c0, {{34.0, 874.0}, {48.0, 48.0}}, identifier: 'BackButton', label: 'Voltar', Disabled
+                Other, 0x1073af480, {{90.0, 874.0}, {260.0, 48.0}}
+                  Other, 0x1073af340, {{90.0, 874.0}, {260.0, 48.0}}
+                    Other, 0x1073af840, {{90.0, 874.0}, {260.0, 48.0}}
+                      Other, 0x1073af700, {{90.0, 874.0}, {260.0, 48.0}}, identifier: 'CapsuleNavigationBar?isSelected=true&isDistractionControlOverlayUp=false', Selected
+                        Button, 0x1073afac0, {{90.0, 874.0}, {48.0, 48.0}}, identifier: 'MoreMenuButton', label: 'Menu da Página'
+                          StaticText, 0x1073af980, {{90.0, 874.0}, {0.0, 0.0}}
+                        TextField, 0x1073afc00, {{184.7, 889.0}, {70.7, 18.0}}, identifier: 'TabBarItemTitle', label: 'Endereço', value: ‎waze.com
+                        Button, 0x1073afe80, {{319.3, 888.0}, {17.7, 20.3}}, identifier: 'StopButton', label: 'Fechar'
+                Other, 0x1073afd40, {{358.0, 874.0}, {48.0, 48.0}}
+                  Other, 0x1073ac140, {{358.0, 874.0}, {48.0, 48.0}}
+                    Button, 0x1073ae080, {{358.0, 874.0}, {48.0, 48.0}}, identifier: 'TabOverviewButton', label: 'Abas'
+    Window, 0x1073ac640, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x1073ae6c0, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x1073ae800, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x1138c92c0, pid: 64191, label: 'Safari'
+Query chain:
+ →Find: Application 'com.apple.mobilesafari'
+  Output: {
+    Application, 0x1073adf40, pid: 64191, label: 'Safari'
+  }
+
+    t =    22.90s Find the Application 'com.apple.mobilesafari'
+    t =    23.18s Added attachment named '04-waze-aberto'
+    t =    23.18s Open host.exp.Exponent
+    t =    23.19s     Activate host.exp.Exponent
+    t =    23.35s         Wait for host.exp.Exponent to idle
+    t =    23.37s Tap Button (First Match)
+    t =    23.38s     Wait for host.exp.Exponent to idle
+    t =    23.40s     Find the Button (First Match)
+    t =    23.46s     Check for interrupting elements affecting "Cancelar" Button
+    t =    23.99s         Wait for com.apple.mobilesafari to idle
+    t =    24.09s     Synthesize event
+    t =    24.78s     Wait for host.exp.Exponent to idle
+    t =    25.04s Waiting 8.0s for Button (First Match) to exist
+    t =    26.11s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    26.11s         Checking existence of `Button (First Match)`
+    t =    26.12s Tap Button (First Match)
+    t =    26.12s     Wait for host.exp.Exponent to idle
+    t =    26.13s     Find the Button (First Match)
+    t =    26.14s     Check for interrupting elements affecting "Iniciar rota para Higienópolis Prime Charge" Button
+    t =    26.24s     Synthesize event
+    t =    26.54s     Wait for host.exp.Exponent to idle
+    t =    26.89s Waiting 8.0s for Button (First Match) to exist
+    t =    27.95s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    27.95s         Checking existence of `Button (First Match)`
+    t =    27.98s Requesting snapshot of accessibility hierarchy for app with pid 71943
+    t =    29.32s Requesting snapshot of accessibility hierarchy for app with pid 71943
+FLUI75 05-nova-rota-solicita-posicao-atual
+Attributes: Application, 0x1138c7c00, pid: 71943, label: 'Expo Go'
+Element subtree:
+ →Application, 0x1138c7c00, pid: 71943, label: 'Expo Go'
+    Window (Main), 0x1138c4140, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x1138c4280, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x1138c43c0, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x1138c4000, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x1138c4640, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x1138c4780, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x1138c4500, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x1138c75c0, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1138c7480, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1138c6d00, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1138c61c0, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x1138c6a80, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x1138c6f80, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x1138c7340, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x1138c6bc0, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x1138c7200, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x1138c70c0, {{0.0, 0.0}, {440.0, 956.0}}
+                                      ScrollView, 0x1138c5f40, {{0.0, 0.0}, {440.0, 956.0}}
+                                        Other, 0x1138c6080, {{0.0, 0.0}, {440.0, 2586.0}}
+                                          Other, 0x1138c57c0, {{0.0, 0.0}, {440.0, 2586.0}}
+                                            Other, 0x1138c5540, {{0.0, 0.0}, {440.0, 290.0}}
+                                              Other, 0x1138c5180, {{0.0, 0.0}, {440.0, 290.0}}
+                                                Other, 0x1138c5400, {{0.0, 0.0}, {440.0, 290.0}}
+                                                Other, 0x1138c5900, {{0.0, 0.0}, {440.0, 290.0}}
+                                              Other, 0x1138c52c0, {{20.0, 0.0}, {400.0, 110.0}}
+                                                Button, 0x1138c5b80, {{20.0, 62.0}, {48.0, 48.0}}, label: 'Voltar ao mapa'
+                                                Button, 0x1138c5a40, {{372.0, 62.0}, {48.0, 48.0}}, label: 'Adicionar aos favoritos'
+                                            Other, 0x1138c5680, {{0.0, 256.0}, {440.0, 2210.0}}
+                                            StaticText, 0x1138c4b40, {{22.0, 284.0}, {396.0, 34.0}}, label: 'Higienópolis Prime Charge'
+                                              StaticText, 0x1138c4f00, {{22.0, 284.0}, {396.0, 34.0}}, label: 'Higienópolis Prime Charge'
+                                            StaticText, 0x1138c4dc0, {{22.0, 326.0}, {396.0, 19.7}}, label: 'Rua Alagoas, 974, Higienópolis, São Paulo, SP'
+                                              StaticText, 0x1138c4c80, {{22.0, 326.0}, {396.0, 19.7}}, label: 'Rua Alagoas, 974, Higienópolis, São Paulo, SP'
+                                            Other, 0x1138c4a00, {{22.0, 359.7}, {19.0, 19.0}}
+                                              Other, 0x1138c48c0, {{22.8, 360.5}, {17.4, 16.7}}
+                                                Other, 0x1073ac640, {{22.8, 360.5}, {17.4, 16.7}}
+                                            StaticText, 0x1073ae6c0, {{48.0, 359.7}, {25.7, 19.0}}, label: '4.9'
+                                              StaticText, 0x1073ae800, {{48.0, 359.7}, {25.7, 19.0}}, label: '4.9'
+                                            StaticText, 0x1073afd40, {{78.7, 361.0}, {198.7, 16.0}}, label: '(184 avaliações demonstrativas)'
+                                              StaticText, 0x1073ac140, {{78.7, 361.0}, {198.7, 16.0}}, label: '(184 avaliações demonstrativas)'
+                                            Other, 0x1073ae080, {{315.7, 365.0}, {9.0, 9.0}}
+                                            StaticText, 0x1073af480, {{331.7, 361.3}, {86.3, 16.0}}, label: 'Aberto agora'
+                                              StaticText, 0x1073af340, {{331.7, 361.3}, {86.3, 16.0}}, label: 'Aberto agora'
+                                            Other, 0x1073af840, {{22.0, 394.7}, {32.0, 32.0}}
+                                            Other, 0x1073af700, {{29.7, 402.3}, {17.0, 17.0}}
+                                              Other, 0x1073afe80, {{31.0, 403.0}, {14.3, 15.7}}
+                                                Other, 0x1073afc00, {{31.0, 403.0}, {14.3, 15.7}}
+                                            StaticText, 0x1073afac0, {{64.0, 401.0}, {354.0, 19.0}}, label: '4 de 6 carregadores livres no exemplo'
+                                              StaticText, 0x1073af980, {{64.0, 401.0}, {354.0, 19.0}}, label: '4 de 6 carregadores livres no exemplo'
+                                            Other, 0x1073aee40, {{22.0, 444.7}, {396.0, 309.0}}
+                                            StaticText, 0x1073af5c0, {{39.0, 461.7}, {362.0, 14.0}}, label: 'GUIA DO PONTO'
+                                              StaticText, 0x1073af0c0, {{39.0, 461.7}, {362.0, 14.0}}, label: 'GUIA DO PONTO'
+                                            StaticText, 0x1073aed00, {{39.0, 481.7}, {362.0, 49.7}}, label: 'Opção com conector rápido no exemplo'
+                                              StaticText, 0x1073aef80, {{39.0, 481.7}, {362.0, 49.7}}, label: 'Opção com conector rápido no exemplo'
+                                            StaticText, 0x1073af200, {{39.0, 537.3}, {362.0, 111.3}}, label: 'Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo. Distância em linha reta, autonomia e tempo de carga são estimativas simplificadas, sem telemetria ou cálculo de percurso. Confirme o funcionamento e a compatibilidade do veículo antes de ir.'
+                                              StaticText, 0x1073aebc0, {{39.0, 537.3}, {362.0, 111.3}}, label: 'Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo. Distância em linha reta, autonomia e tempo de carga são estimativas simplificadas, sem telemetria ou cálculo de percurso. Confirme o funcionamento e a compatibilidade do veículo antes de ir.'
+                                            Other, 0x1073aea80, {{39.0, 662.7}, {114.0, 74.0}}
+                                            Other, 0x1073ae940, {{163.0, 662.7}, {114.0, 74.0}}
+                                            Other, 0x1073adf40, {{287.0, 662.7}, {114.0, 74.0}}
+                                            Other, 0x1073ae440, {{50.0, 682.7}, {12.0, 12.0}}
+                                              Other, 0x1073ae1c0, {{51.4, 683.1}, {9.2, 11.2}}
+                                                Other, 0x1073ae300, {{51.4, 685.1}, {9.2, 9.2}}
+                                                Other, 0x1073adb80, {{54.4, 683.1}, {3.2, 1.2}}
+                                                Other, 0x1073ade00, {{55.4, 687.6}, {2.7, 2.7}}
+                                            StaticText, 0x1073ada40, {{66.0, 682.3}, {88.7, 12.7}}, label: 'Espera simulada'
+                                              StaticText, 0x1073acdc0, {{66.0, 682.3}, {88.7, 12.7}}, label: 'Espera simulada'
+                                            Other, 0x1073acc80, {{174.0, 682.7}, {12.0, 12.0}}
+                                              Other, 0x1073ad900, {{174.4, 685.1}, {11.1, 7.2}}
+                                                Other, 0x1073ac500, {{174.4, 685.1}, {3.6, 7.2}}
+                                                Other, 0x1073ad040, {{177.4, 685.6}, {3.2, 6.2}}
+                                                Other, 0x1073acb40, {{180.0, 685.1}, {3.6, 7.2}}
+                                                Other, 0x1073acf00, {{184.4, 687.1}, {1.1, 3.2}}
+                                            StaticText, 0x1073ad2c0, {{190.0, 682.3}, {89.0, 12.7}}, label: 'Tempo estimado'
+                                              StaticText, 0x1073adcc0, {{190.0, 682.3}, {89.0, 12.7}}, label: 'Tempo estimado'
+                                            Other, 0x1073ad7c0, {{298.0, 682.7}, {12.0, 12.0}}
+                                              Other, 0x1073ad180, {{298.4, 683.1}, {11.1, 11.1}}
+                                                Other, 0x1138d4500, {{298.4, 683.1}, {11.1, 11.1}}
+                                                Other, 0x1138d4c80, {{300.9, 685.6}, {1.6, 1.7}}
+                                            StaticText, 0x1138d4dc0, {{314.0, 682.3}, {29.3, 12.7}}, label: 'Perfil'
+                                              StaticText, 0x1138d4f00, {{314.0, 682.3}, {29.3, 12.7}}, label: 'Perfil'
+                                            StaticText, 0x1138d48c0, {{50.0, 700.0}, {92.0, 17.0}}, label: 'Baixa'
+                                              StaticText, 0x1138d4a00, {{50.0, 700.0}, {92.0, 17.0}}, label: 'Baixa'
+                                            StaticText, 0x1138d4b40, {{174.0, 700.0}, {92.0, 17.0}}, label: '20 a 35 min'
+                                              StaticText, 0x1138d4000, {{174.0, 700.0}, {92.0, 17.0}}, label: '20 a 35 min'
+                                            StaticText, 0x1138d4140, {{298.0, 700.0}, {92.0, 17.0}}, label: 'Carga rápida'
+                                              StaticText, 0x1138d4280, {{298.0, 700.0}, {92.0, 17.0}}, label: 'Carga rápida'
+                                            Other, 0x1138d4780, {{22.0, 765.7}, {396.0, 85.3}}, label: 'Autonomia para chegar ao local
+Autonomia limitada — Chegada estimada com 3% de bateria.
+Não garante recarga no local.'
+                                            Other, 0x1138d4640, {{22.0, 863.0}, {192.0, 140.3}}
+                                            Other, 0x1138d43c0, {{226.0, 863.0}, {192.0, 140.3}}
+                                            Other, 0x1138d5180, {{37.0, 878.0}, {40.0, 40.0}}
+                                            Other, 0x1138d52c0, {{241.0, 878.0}, {40.0, 40.0}}
+                                            Other, 0x1138d5400, {{47.0, 888.0}, {20.0, 20.0}}
+                                              Other, 0x1138d5540, {{47.7, 890.4}, {18.5, 14.3}}
+                                                Other, 0x1138d6800, {{47.7, 890.4}, {18.5, 14.3}}
+                                                Other, 0x1138d6940, {{56.1, 895.4}, {5.2, 5.2}}
+                                            Other, 0x1138d6a80, {{251.0, 888.0}, {20.0, 20.0}}
+                                              Other, 0x1138d6bc0, {{255.1, 888.8}, {11.8, 18.5}}
+                                                Other, 0x1138d6d00, {{255.1, 893.8}, {11.8, 9.3}}
+                                                Other, 0x1138d7d40, {{257.6, 888.8}, {1.8, 6.8}}
+                                                Other, 0x1138d7e80, {{262.6, 888.8}, {1.8, 6.8}}
+                                                Other, 0x1138d7840, {{260.1, 901.2}, {1.8, 6.0}}
+                                            StaticText, 0x1138d7c00, {{37.0, 928.0}, {162.0, 14.0}}, label: 'Potência'
+                                              StaticText, 0x1138d7ac0, {{37.0, 928.0}, {162.0, 14.0}}, label: 'Potência'
+                                            StaticText, 0x1138d7980, {{241.0, 928.0}, {162.0, 14.0}}, label: 'Conectores'
+                                              StaticText, 0x1138d7340, {{241.0, 928.0}, {162.0, 14.0}}, label: 'Conectores'
+                                            StaticText, 0x1138d7700, {{37.0, 947.0}, {162.0, 21.3}}, label: '150 kW'
+                                              StaticText, 0x1138d75c0, {{37.0, 947.0}, {162.0, 21.3}}, label: '150 kW'
+                                            StaticText, 0x1138d7480, {{241.0, 947.0}, {162.0, 21.3}}, label: 'CCS2, Type 2'
+                                              StaticText, 0x1138d6e40, {{241.0, 947.0}, {162.0, 21.3}}, label: 'CCS2, Type 2'
+                                            StaticText, 0x1138d7200, {{37.0, 972.3}, {162.0, 16.0}}, label: 'Velocidade de carga'
+                                              StaticText, 0x1138d70c0, {{37.0, 972.3}, {162.0, 16.0}}, label: 'Velocidade de carga'
+                                            StaticText, 0x1138d6f80, {{241.0, 972.3}, {162.0, 16.0}}, label: 'Tipos compatíveis'
+                                              StaticText, 0x1138d5a40, {{241.0, 972.3}, {162.0, 16.0}}, label: 'Tipos compatíveis'
+                                            Other, 0x1138d6580, {{22.0, 1017.3}, {192.0, 193.3}}
+                                            Other, 0x1138d66c0, {{226.0, 1017.3}, {192.0, 193.3}}
+                                            Other, 0x1138d6300, {{37.0, 1032.3}, {40.0, 40.0}}
+                                            Other, 0x1138d6440, {{241.0, 1032.3}, {40.0, 40.0}}
+                                            Other, 0x1138d6080, {{47.0, 1042.3}, {20.0, 20.0}}
+                                              Other, 0x1138d61c0, {{47.8, 1043.9}, {18.5, 16.8}}
+                                                Other, 0x1138d5e00, {{47.8, 1043.9}, {4.3, 4.3}}
+                                                Other, 0x1138d5f40, {{49.4, 1045.6}, {15.2, 15.2}}
+                                                Other, 0x1138d5b80, {{56.1, 1048.9}, {3.5, 6.8}}
+                                                Other, 0x1138d5cc0, {{61.9, 1043.9}, {4.3, 4.3}}
+                                                Other, 0x1138d5900, {{49.4, 1057.0}, {3.8, 3.8}}
+                                                Other, 0x1138d57c0, {{60.8, 1057.0}, {3.8, 3.8}}
+                                            Other, 0x1138d5680, {{251.0, 1042.3}, {20.0, 20.0}}
+                                              Other, 0x10723f480, {{254.2, 1043.1}, {13.5, 17.7}}
+                                                Other, 0x10723f5c0, {{254.2, 1043.1}, {13.5, 17.7}}
+                                            StaticText, 0x10723f980, {{37.0, 1082.3}, {162.0, 14.0}}, label: 'Funcionamento'
+                                              StaticText, 0x10723f840, {{37.0, 1082.3}, {162.0, 14.0}}, label: 'Funcionamento'
+                                            StaticText, 0x10723c8c0, {{241.0, 1082.3}, {162.0, 14.0}}, label: 'Distância aproximada'
+                                              StaticText, 0x10723f700, {{241.0, 1082.3}, {162.0, 14.0}}, label: 'Distância aproximada'
+                                            StaticText, 0x10723d040, {{37.0, 1101.3}, {162.0, 42.7}}, label: '24 horas, todos os dias'
+                                              StaticText, 0x10a545540, {{37.0, 1101.3}, {162.0, 42.7}}, label: '24 horas, todos os dias'
+                                            StaticText, 0x10a545680, {{241.0, 1101.3}, {162.0, 21.3}}, label: '≈4,9 km'
+                                              StaticText, 0x10a545cc0, {{241.0, 1101.3}, {162.0, 21.3}}, label: '≈4,9 km'
+                                            StaticText, 0x10a546800, {{241.0, 1126.7}, {162.0, 47.7}}, label: 'Em linha reta desde Vila Mariana. Não é distância de percurso.'
+                                              StaticText, 0x10a5466c0, {{241.0, 1126.7}, {162.0, 47.7}}, label: 'Em linha reta desde Vila Mariana. Não é distância de percurso.'
+                                            StaticText, 0x10a546580, {{37.0, 1148.0}, {162.0, 47.7}}, label: 'Disponibilidade demonstrativa de carregadores'
+                                              StaticText, 0x10a546300, {{37.0, 1148.0}, {162.0, 47.7}}, label: 'Disponibilidade demonstrativa de carregadores'
+                                            Other, 0x10a545f40, {{22.0, 1224.7}, {396.0, 106.0}}
+                                            StaticText, 0x10a545b80, {{102.0, 1239.7}, {301.0, 15.0}}, label: 'Horário sugerido no exemplo'
+                                              StaticText, 0x10a5457c0, {{102.0, 1239.7}, {301.0, 15.0}}, label: 'Horário sugerido no exemplo'
+                                            Other, 0x10a545040, {{37.0, 1251.7}, {52.0, 52.0}}
+                                            StaticText, 0x10a544c80, {{102.0, 1257.7}, {301.0, 40.0}}, label: '06h às 08h ou 13h às 15h ou 22h às 00h'
+                                              StaticText, 0x10a544b40, {{102.0, 1257.7}, {301.0, 40.0}}, label: '06h às 08h ou 13h às 15h ou 22h às 00h'
+                                            Other, 0x10a5448c0, {{51.0, 1265.7}, {24.0, 24.0}}
+                                              Other, 0x10a544640, {{51.9, 1266.6}, {22.2, 22.2}}
+                                                Other, 0x10a544780, {{51.9, 1266.6}, {22.2, 22.2}}
+                                                Other, 0x10a5475c0, {{61.9, 1270.6}, {6.2, 8.2}}
+                                            StaticText, 0x10a547700, {{102.0, 1300.7}, {301.0, 15.0}}, label: 'Sem previsão de movimento em tempo real'
+                                              StaticText, 0x10a547840, {{102.0, 1300.7}, {301.0, 15.0}}, label: 'Sem previsão de movimento em tempo real'
+                                            Other, 0x10a547980, {{22.0, 1350.7}, {396.0, 183.0}}
+                                            StaticText, 0x10a547ac0, {{39.0, 1367.7}, {362.0, 19.0}}, label: 'Conectores do ponto'
+                                              StaticText, 0x10a547c00, {{39.0, 1367.7}, {362.0, 19.0}}, label: 'Conectores do ponto'
+                                            Other, 0x10a547e80, {{39.0, 1410.7}, {38.0, 38.0}}
+                                            StaticText, 0x10a547d40, {{89.0, 1411.7}, {312.0, 18.0}}, label: 'CCS2'
+                                              StaticText, 0x10a544280, {{89.0, 1411.7}, {312.0, 18.0}}, label: 'CCS2'
+                                            Other, 0x10a547340, {{49.0, 1420.7}, {18.0, 18.0}}
+                                              Other, 0x10a547480, {{49.7, 1424.3}, {16.7, 10.7}}
+                                                Other, 0x10a5470c0, {{49.7, 1424.3}, {5.4, 10.7}}
+                                                Other, 0x10a547200, {{54.2, 1425.1}, {4.7, 9.2}}
+                                                Other, 0x10a546e40, {{58.0, 1424.3}, {5.4, 10.7}}
+                                                Other, 0x10a546f80, {{64.7, 1427.3}, {1.7, 4.7}}
+                                            StaticText, 0x10a546bc0, {{89.0, 1432.7}, {312.0, 15.0}}, label: '150 kW · 2 de 4 carregadores livres no exemplo'
+                                              StaticText, 0x10a546d00, {{89.0, 1432.7}, {312.0, 15.0}}, label: '150 kW · 2 de 4 carregadores livres no exemplo'
+                                            Other, 0x10a544000, {{39.0, 1468.7}, {38.0, 38.0}}
+                                            StaticText, 0x10a546a80, {{89.0, 1469.7}, {312.0, 18.0}}, label: 'Type 2'
+                                              StaticText, 0x10a544140, {{89.0, 1469.7}, {312.0, 18.0}}, label: 'Type 2'
+                                            Other, 0x10a544500, {{49.0, 1478.7}, {18.0, 18.0}}
+                                              Other, 0x10a5443c0, {{52.7, 1479.3}, {10.7, 16.7}}
+                                                Other, 0x10a544f00, {{52.7, 1483.8}, {10.7, 8.4}}
+                                                Other, 0x10a544a00, {{54.9, 1479.3}, {1.7, 6.2}}
+                                                Other, 0x10a545180, {{59.4, 1479.3}, {1.7, 6.2}}
+                                                Other, 0x10a544dc0, {{57.2, 1490.6}, {1.7, 5.4}}
+                                            StaticText, 0x10a5452c0, {{89.0, 1490.7}, {312.0, 15.0}}, label: '22 kW · 2 de 2 carregadores livres no exemplo'
+                                              StaticText, 0x10a545900, {{89.0, 1490.7}, {312.0, 15.0}}, label: '22 kW · 2 de 2 carregadores livres no exemplo'
+                                            Other, 0x10a545a40, {{22.0, 1543.7}, {396.0, 206.3}}
+                                            StaticText, 0x10a545e00, {{39.0, 1560.7}, {362.0, 19.0}}, label: 'Comodidades próximas'
+                                              StaticText, 0x10a546440, {{39.0, 1560.7}, {362.0, 19.0}}, label: 'Comodidades próximas'
+                                            Other, 0x10a5461c0, {{97.0, 1593.7}, {42.0, 42.0}}
+                                            Other, 0x10a546080, {{199.0, 1593.7}, {42.0, 42.0}}
+                                            Other, 0x1138c8000, {{301.0, 1593.7}, {42.0, 42.0}}
+                                            Other, 0x1138c8140, {{109.0, 1605.7}, {18.0, 18.0}}
+                                              Other, 0x1138c8280, {{109.7, 1606.4}, {16.6, 16.6}}
+                                                Other, 0x1138c83c0, {{109.7, 1606.4}, {16.6, 16.6}}
+                                                Other, 0x1138c8500, {{115.0, 1610.1}, {6.8, 9.1}}
+                                            Other, 0x1138c8640, {{211.0, 1605.7}, {18.0, 18.0}}
+                                              Other, 0x1138c8780, {{211.7, 1606.4}, {16.6, 15.8}}
+                                                Other, 0x1138c88c0, {{211.7, 1606.4}, {16.6, 15.8}}
+                                                Other, 0x1138c8a00, {{214.7, 1611.6}, {10.6, 10.6}}
+                                                Other, 0x1138c8b40, {{214.7, 1614.6}, {10.6, 1.6}}
+                                                Other, 0x1138c8c80, {{214.7, 1617.6}, {10.6, 1.6}}
+                                            Other, 0x1138c8dc0, {{313.0, 1605.7}, {18.0, 18.0}}
+                                              Other, 0x1138c8f00, {{314.5, 1606.4}, {15.1, 16.6}}
+                                                Other, 0x1138c9040, {{314.5, 1606.4}, {10.6, 13.6}}
+                                                Other, 0x1138c9180, {{315.9, 1613.9}, {13.6, 9.1}}
+                                            StaticText, 0x1138c92c0, {{74.3, 1642.7}, {87.0, 12.7}}, label: 'Estacionamento'
+                                              StaticText, 0x1138c9400, {{74.3, 1642.7}, {87.0, 12.7}}, label: 'Estacionamento'
+                                            StaticText, 0x1138c9540, {{185.0, 1642.7}, {70.0, 12.7}}, label: 'Área coberta'
+                                              StaticText, 0x1138c9680, {{185.0, 1642.7}, {70.0, 12.7}}, label: 'Área coberta'
+                                            StaticText, 0x1138c97c0, {{297.7, 1642.7}, {48.3, 12.7}}, label: 'Banheiro'
+                                              StaticText, 0x1138c9900, {{297.7, 1642.7}, {48.3, 12.7}}, label: 'Banheiro'
+                                            Other, 0x1138c9a40, {{97.0, 1671.3}, {42.0, 42.0}}
+                                            Other, 0x1138c9b80, {{199.0, 1671.3}, {42.0, 42.0}}
+                                            Other, 0x1138c9cc0, {{301.0, 1671.3}, {42.0, 42.0}}
+                                            Other, 0x1138c9e00, {{109.0, 1683.3}, {18.0, 18.0}}
+                                              Other, 0x1138c9f40, {{110.5, 1684.0}, {15.8, 15.8}}
+                                                Other, 0x1138ca080, {{110.5, 1688.5}, {15.8, 11.3}}
+                                                Other, 0x1138ca1c0, {{112.7, 1684.0}, {1.6, 3.1}}
+                                                Other, 0x1138ca300, {{115.7, 1684.0}, {1.6, 3.1}}
+                                                Other, 0x1138ca440, {{118.7, 1684.0}, {1.6, 3.1}}
+                                            Other, 0x1138ca580, {{211.0, 1683.3}, {18.0, 18.0}}
+                                              Other, 0x1138ca6c0, {{211.7, 1686.3}, {16.6, 12.8}}
+                                                Other, 0x1138ca800, {{211.7, 1686.3}, {16.6, 4.4}}
+                                                Other, 0x1138ca940, {{214.0, 1690.0}, {12.1, 3.7}}
+                                                Other, 0x1138caa80, {{216.6, 1693.8}, {6.8, 2.6}}
+                                                Other, 0x1138cabc0, {{219.2, 1697.5}, {1.6, 1.6}}
+                                            Other, 0x1138cad00, {{313.0, 1683.3}, {18.0, 18.0}}
+                                              Other, 0x1138cae40, {{315.2, 1684.0}, {13.6, 16.6}}
+                                                Other, 0x1138caf80, {{315.2, 1684.0}, {13.6, 16.6}}
+                                                Other, 0x1138cb0c0, {{319.0, 1690.0}, {6.1, 4.6}}
+                                            StaticText, 0x1138cb200, {{105.3, 1720.3}, {25.0, 12.7}}, label: 'Café'
+                                              StaticText, 0x1138cb340, {{105.3, 1720.3}, {25.0, 12.7}}, label: 'Café'
+                                            StaticText, 0x1138cb480, {{205.7, 1720.3}, {28.7, 12.7}}, label: 'Wi-Fi'
+                                              StaticText, 0x1138cb5c0, {{205.7, 1720.3}, {28.7, 12.7}}, label: 'Wi-Fi'
+                                            StaticText, 0x1138cb700, {{293.0, 1720.3}, {57.7, 12.7}}, label: 'Segurança'
+                                              StaticText, 0x1138cb840, {{293.0, 1720.3}, {57.7, 12.7}}, label: 'Segurança'
+                                            Other, 0x1138cb980, {{22.0, 1760.0}, {396.0, 682.0}}
+                                            StaticText, 0x1138cbac0, {{39.0, 1777.0}, {362.0, 19.0}}, label: 'Avaliações'
+                                              StaticText, 0x1138cbc00, {{39.0, 1777.0}, {362.0, 19.0}}, label: 'Avaliações'
+                                            StaticText, 0x1138cbd40, {{39.0, 1810.0}, {362.0, 37.3}}, label: 'Notas, totais, distribuição e comentários do catálogo são exemplos. Sua avaliação local não altera esses números.'
+                                              StaticText, 0x1138cbe80, {{39.0, 1810.0}, {362.0, 37.3}}, label: 'Notas, totais, distribuição e comentários do catálogo são exemplos. Sua avaliação local não altera esses números.'
+                                            StaticText, 0x1138c0000, {{61.3, 1861.3}, {65.3, 47.0}}, label: '4.9'
+                                              StaticText, 0x1138c0140, {{61.3, 1861.3}, {65.3, 47.0}}, label: '4.9'
+                                            StaticText, 0x1138c0280, {{149.0, 1864.7}, {32.0, 12.7}}, label: '5 ★'
+                                              StaticText, 0x1138c03c0, {{149.0, 1864.7}, {32.0, 12.7}}, label: '5 ★'
+                                            Other, 0x1138c0500, {{189.0, 1868.7}, {176.0, 5.0}}
+                                              Other, 0x1138c0640, {{189.0, 1868.7}, {149.7, 5.0}}
+                                            StaticText, 0x1138c0780, {{373.0, 1864.7}, {28.0, 12.7}}, label: '85%'
+                                              StaticText, 0x1138c08c0, {{373.0, 1864.7}, {28.0, 12.7}}, label: '85%'
+                                            StaticText, 0x1138c0a00, {{149.0, 1883.3}, {32.0, 12.7}}, label: '4 ★'
+                                              StaticText, 0x1138c0b40, {{149.0, 1883.3}, {32.0, 12.7}}, label: '4 ★'
+                                            Other, 0x1138c0c80, {{189.0, 1887.3}, {176.0, 5.0}}
+                                              Other, 0x1138c0dc0, {{189.0, 1887.3}, {17.7, 5.0}}
+                                            StaticText, 0x1138c0f00, {{373.0, 1883.3}, {28.0, 12.7}}, label: '10%'
+                                              StaticText, 0x1138c1040, {{373.0, 1883.3}, {28.0, 12.7}}, label: '10%'
+                                            StaticText, 0x1138c1180, {{149.0, 1902.0}, {32.0, 12.7}}, label: '3 ★'
+                                              StaticText, 0x1138c12c0, {{149.0, 1902.0}, {32.0, 12.7}}, label: '3 ★'
+                                            StaticText, 0x1138c1400, {{53.3, 1911.3}, {81.3, 16.0}}, label: '★ ★ ★ ★ ★'
+                                              StaticText, 0x1138c1540, {{53.3, 1911.3}, {81.3, 16.0}}, label: '★ ★ ★ ★ ★'
+                                            Other, 0x1138c1680, {{189.0, 1906.0}, {176.0, 5.0}}
+                                              Other, 0x1138c17c0, {{189.0, 1906.0}, {5.3, 5.0}}
+                                            StaticText, 0x1138c1900, {{373.0, 1902.0}, {28.0, 12.7}}, label: '3%'
+                                              StaticText, 0x1138c1a40, {{373.0, 1902.0}, {28.0, 12.7}}, label: '3%'
+                                            StaticText, 0x1138c1b80, {{149.0, 1920.7}, {32.0, 12.7}}, label: '2 ★'
+                                              StaticText, 0x1138c1cc0, {{149.0, 1920.7}, {32.0, 12.7}}, label: '2 ★'
+                                            Other, 0x1138c1e00, {{189.0, 1924.7}, {176.0, 5.0}}
+                                              Other, 0x1138c1f40, {{189.0, 1924.7}, {1.7, 5.0}}
+                                            StaticText, 0x1138c2080, {{373.0, 1920.7}, {28.0, 12.7}}, label: '1%'
+                                              StaticText, 0x1138c21c0, {{373.0, 1920.7}, {28.0, 12.7}}, label: '1%'
+                                            StaticText, 0x1138c2300, {{39.0, 1933.3}, {110.0, 27.7}}, label: '184 avaliações demonstrativas'
+                                              StaticText, 0x1138c2440, {{39.0, 1933.3}, {110.0, 27.7}}, label: '184 avaliações demonstrativas'
+                                            StaticText, 0x1138c2580, {{149.0, 1939.3}, {32.0, 12.7}}, label: '1 ★'
+                                              StaticText, 0x1138c26c0, {{149.0, 1939.3}, {32.0, 12.7}}, label: '1 ★'
+                                            Other, 0x1138c2800, {{189.0, 1943.3}, {176.0, 5.0}}
+                                              Other, 0x1138c2940, {{189.0, 1943.3}, {1.7, 5.0}}
+                                            StaticText, 0x1138c2a80, {{373.0, 1939.3}, {28.0, 12.7}}, label: '1%'
+                                              StaticText, 0x1138c2bc0, {{373.0, 1939.3}, {28.0, 12.7}}, label: '1%'
+                                            Button, 0x1138c2d00, {{39.0, 1975.0}, {362.0, 48.0}}, label: 'Editar minha avaliação deste ponto'
+                                            Other, 0x1138c2e40, {{39.0, 2041.0}, {362.0, 120.0}}
+                                            Other, 0x1138c2f80, {{54.0, 2056.0}, {44.0, 44.0}}
+                                            StaticText, 0x1138c30c0, {{110.0, 2056.0}, {276.0, 16.0}}, label: 'Leonardo Bragatti'
+                                              StaticText, 0x1138c3200, {{110.0, 2056.0}, {276.0, 16.0}}, label: 'Leonardo Bragatti'
+                                            StaticText, 0x1138c3340, {{67.3, 2070.0}, {17.3, 16.0}}, label: 'LB'
+                                              StaticText, 0x1138c3480, {{67.3, 2070.0}, {17.3, 16.0}}, label: 'LB'
+                                            StaticText, 0x1138c35c0, {{110.0, 2074.0}, {276.0, 17.7}}, label: 'Avaliação demonstrativa'
+                                              StaticText, 0x1138c3700, {{110.0, 2074.0}, {276.0, 17.7}}, label: 'Avaliação demonstrativa'
+                                            StaticText, 0x1138c3840, {{110.0, 2091.7}, {276.0, 14.0}}, label: '★ ★ ★ ★ ★'
+                                              StaticText, 0x1138c3980, {{110.0, 2091.7}, {276.0, 14.0}}, label: '★ ★ ★ ★ ★'
+                                            StaticText, 0x1138c3ac0, {{110.0, 2110.7}, {276.0, 35.3}}, label: 'Cobertura, banheiro e café deixam a parada bem confortável para uma recarga rápida.'
+                                              StaticText, 0x1138c3c00, {{110.0, 2110.7}, {276.0, 35.3}}, label: 'Cobertura, banheiro e café deixam a parada bem confortável para uma recarga rápida.'
+                                            Other, 0x1138c3d40, {{39.0, 2173.0}, {362.0, 120.0}}
+                                            Other, 0x1138c3e80, {{54.0, 2188.0}, {44.0, 44.0}}
+                                            StaticText, 0x1138d0000, {{110.0, 2188.0}, {276.0, 16.0}}, label: 'Marina Polverari'
+                                              StaticText, 0x1138d0140, {{110.0, 2188.0}, {276.0, 16.0}}, label: 'Marina Polverari'
+                                            StaticText, 0x1138d0280, {{65.3, 2202.0}, {21.3, 16.0}}, label: 'MP'
+                                              StaticText, 0x1138d03c0, {{65.3, 2202.0}, {21.3, 16.0}}, label: 'MP'
+                                            StaticText, 0x1138d0500, {{110.0, 2206.0}, {276.0, 17.7}}, label: 'Avaliação demonstrativa'
+                                              StaticText, 0x1138d0640, {{110.0, 2206.0}, {276.0, 17.7}}, label: 'Avaliação demonstrativa'
+                                            StaticText, 0x1138d0780, {{110.0, 2223.7}, {276.0, 14.0}}, label: '★ ★ ★ ★ ★'
+                                              StaticText, 0x1138d08c0, {{110.0, 2223.7}, {276.0, 14.0}}, label: '★ ★ ★ ★ ★'
+                                            StaticText, 0x1138d0a00, {{110.0, 2242.7}, {276.0, 35.3}}, label: 'Boa sinalização, ambiente limpo e conexão estável no CCS2 durante a recarga.'
+                                              StaticText, 0x1138d0b40, {{110.0, 2242.7}, {276.0, 35.3}}, label: 'Boa sinalização, ambiente limpo e conexão estável no CCS2 durante a recarga.'
+                                            Other, 0x1138d0c80, {{39.0, 2305.0}, {362.0, 120.0}}
+                                            Other, 0x1138d0dc0, {{54.0, 2320.0}, {44.0, 44.0}}
+                                            StaticText, 0x1138d0f00, {{110.0, 2320.0}, {276.0, 16.0}}, label: 'John Paul'
+                                              StaticText, 0x1138d1040, {{110.0, 2320.0}, {276.0, 16.0}}, label: 'John Paul'
+                                            StaticText, 0x1138d1180, {{67.0, 2334.0}, {17.7, 16.0}}, label: 'JP'
+                                              StaticText, 0x1138d12c0, {{67.0, 2334.0}, {17.7, 16.0}}, label: 'JP'
+                                            StaticText, 0x1138d1400, {{110.0, 2338.0}, {276.0, 17.7}}, label: 'Avaliação demonstrativa'
+                                              StaticText, 0x1138d1540, {{110.0, 2338.0}, {276.0, 17.7}}, label: 'Avaliação demonstrativa'
+                                            StaticText, 0x1138d1680, {{110.0, 2355.7}, {276.0, 14.0}}, label: '★ ★ ★ ★ ★'
+                                              StaticText, 0x1138d17c0, {{110.0, 2355.7}, {276.0, 14.0}}, label: '★ ★ ★ ★ ★'
+                                            StaticText, 0x1138d1900, {{110.0, 2374.7}, {276.0, 35.3}}, label: 'Ponto completo para quem precisa carregar sem abrir mão de segurança e Wi-Fi.'
+                                              StaticText, 0x1138d1a40, {{110.0, 2374.7}, {276.0, 35.3}}, label: 'Ponto completo para quem precisa carregar sem abrir mão de segurança e Wi-Fi.'
+                                        Other, 0x1138d1b80, {{62.0, 923.0}, {316.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                          Other, 0x1138d1cc0, {{65.0, 950.0}, {310.0, 3.0}}
+                                        Other, 0x1138d1e00, {{62.0, 923.0}, {316.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                          Other, 0x1138d1f40, {{65.0, 950.0}, {310.0, 3.0}}
+                                    Other, 0x1138d2080, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x1138d21c0, {{0.0, 847.0}, {440.0, 109.0}}
+                                      Button, 0x1138d2300, {{22.0, 860.0}, {193.7, 52.0}}, label: 'Ver mapa'
+                                      Button, 0x1138d2440, {{227.7, 860.0}, {190.3, 52.0}}, label: 'Iniciar rota para Higienópolis Prime Charge'
+                          Toolbar, 0x1138d2580, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x1138d26c0, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1138d2800, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1138d2940, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1138d2a80, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x1138d2bc0, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x1138d2d00, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x1138d2e40, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x1138d2f80, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x1138d30c0, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x1138d3200, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x1138d3340, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x1138d3480, {{20.0, 339.7}, {400.0, 277.0}}
+              StaticText, 0x1138d35c0, {{44.0, 363.7}, {352.0, 46.3}}, label: 'Deseja compartilhar sua localização?'
+                StaticText, 0x1138d3700, {{44.0, 363.7}, {352.0, 46.3}}, label: 'Deseja compartilhar sua localização?'
+              StaticText, 0x1138d3840, {{44.0, 422.0}, {352.0, 42.7}}, label: 'Podemos usar a localização atual do dispositivo como origem no aplicativo de navegação.'
+                StaticText, 0x1138d3980, {{44.0, 422.0}, {352.0, 42.7}}, label: 'Podemos usar a localização atual do dispositivo como origem no aplicativo de navegação.'
+              Button, 0x1138d3ac0, {{44.0, 476.7}, {352.0, 52.0}}, label: 'Continuar'
+              Button, 0x1138d3c00, {{44.0, 540.7}, {352.0, 52.0}}, label: 'Cancelar'
+Path to element:
+ →Application, 0x1138c7c00, pid: 71943, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x1138d3d40, pid: 71943, label: 'Expo Go'
+  }
+
+    t =    29.57s Find the Application 'host.exp.Exponent'
+    t =    29.92s Added attachment named '05-nova-rota-solicita-posicao-atual'
+    t =    29.92s Tap Button (First Match)
+    t =    29.92s     Wait for host.exp.Exponent to idle
+    t =    29.92s     Find the Button (First Match)
+    t =    29.93s     Check for interrupting elements affecting "Cancelar" Button
+    t =    30.11s     Synthesize event
+    t =    30.41s     Wait for host.exp.Exponent to idle
+    t =    30.73s Tear Down
+Test Case '-[FluiValidacao.FluiValidacao testPosicaoDisponivelEMapas]' passed (30.972 seconds).
+Test Suite 'FluiValidacao' passed at 2026-10-17 06:56:19.956.
+	 Executed 1 test, with 0 failures (0 unexpected) in 30.972 (30.981) seconds
+Test Suite 'FluiValidacao.xctest' passed at 2026-10-17 06:56:19.958.
+	 Executed 1 test, with 0 failures (0 unexpected) in 30.972 (30.984) seconds
+Test Suite 'Selected tests' passed at 2026-10-17 06:56:19.959.
+	 Executed 1 test, with 0 failures (0 unexpected) in 30.972 (30.985) seconds
+2026-10-17 06:56:20.027 xcodebuild[72492:4946804] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-17 06:56:20.028 xcodebuild[72492:4946804] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-17 06:56:20.031 xcodebuild[72492:4946804] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-17 06:56:20.314 xcodebuild[72492:4946804] [MT] IDETestOperationsObserverDebug: 38.031 elapsed -- Testing started completed.
+2026-10-17 06:56:20.314 xcodebuild[72492:4946804] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-17 06:56:20.314 xcodebuild[72492:4946804] [MT] IDETestOperationsObserverDebug: 38.031 sec, +38.031 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/guicunha/.codex/.chatgpt-projects/g-p-69f512a9480481918bb9b34c4162ae65/output/correcao-localizacao-20261017/PosicaoDisponivel.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

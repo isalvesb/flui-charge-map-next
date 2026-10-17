@@ -72,7 +72,7 @@ import {
   getStationStatusInfo,
   getWaitingLevel,
 } from "./stationPresentation";
-import { useLocationContext } from "@/src/context/LocationContext";
+import type { LocationObject } from "expo-location";
 
 const imagemPerfilUsuario = require("../../assets/user/profile1.webp");
 
@@ -191,7 +191,6 @@ function obterIconeDeAlcance(
 
 export default function PointDetailsScreen() {
   const now = useCurrentTime();
-  const { location } = useLocationContext();
   const { styles, colors, isDarkMode } = useTelaComPreferencias(baseStyles);
   const { userPreferences, demoStations, demoOrigin } = useAppPreferences();
   const { stationId } = useLocalSearchParams<{
@@ -214,10 +213,8 @@ export default function PointDetailsScreen() {
 
   const [isLoadingAction, setIsLoadingAction] = useState(false);
   const [isRouteDialogOpen, setIsRouteDialogOpen] = useState(false);
-  const [routeError, setRouteError] = useState<string | null>(null);
-  const [modalStep, setModalStep] = useState<"confirmation" | "redirect">(() =>
-    location?.coords ? "redirect" : "confirmation",
-  );
+  const [routeLocation, setRouteLocation] = useState<LocationObject | null>(null);
+  const [modalStep, setModalStep] = useState<"confirmation" | "redirect">("confirmation");
 
   useFocusEffect(
     useCallback(() => {
@@ -225,7 +222,8 @@ export default function PointDetailsScreen() {
     }, [reloadStorage]),
   );
 
-  const handleNext = () => {
+  const handleNext = (location: LocationObject | null) => {
+    setRouteLocation(location);
     setModalStep("redirect");
   };
 
@@ -272,7 +270,8 @@ export default function PointDetailsScreen() {
       return;
     }
 
-    setRouteError(null);
+    setRouteLocation(null);
+    setModalStep("confirmation");
     setIsRouteDialogOpen(true);
   }
 
@@ -930,12 +929,11 @@ export default function PointDetailsScreen() {
         onRequestClose={() => !isLoadingAction && setIsRouteDialogOpen(false)}
       >
         {modalStep === "confirmation" ? (
-          <RoutingModalPermission next={handleNext} />
+          <RoutingModalPermission next={handleNext} onCancel={() => setIsRouteDialogOpen(false)} />
         ) : (
           <RoutingModalRoutes
             station={station}
-            isLoadingAction={isLoadingAction}
-            routeError={routeError}
+            origin={routeLocation?.coords}
             openDialog={setIsRouteDialogOpen}
           />
         )}
