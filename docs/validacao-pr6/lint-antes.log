@@ -1,0 +1,14 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> flui-charge-map@1.0.0 lint
+> expo lint
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+/Users/guicunha/.codex/.chatgpt-projects/g-p-69f512a9480481918bb9b34c4162ae65/flui-charge-map-next/src/features/assistant/FluiAssistantSheet.tsx
+  41:10  warning  'identificacaoDados' is defined but never used        @typescript-eslint/no-unused-vars
+  94:45  warning  'demoOrigin' is assigned a value but never used       @typescript-eslint/no-unused-vars
+  94:57  warning  'userPreferences' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+✖ 3 problems (0 errors, 3 warnings)
+

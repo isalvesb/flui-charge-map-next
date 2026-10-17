@@ -1,3 +1,5 @@
+import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
+import { identificacaoDados } from "../../data/identificacaoDados";
 import { programmedAnswers } from "./programmedAnswers";
 import type { ChargingStation } from "../../types";
 import {
@@ -13,7 +15,7 @@ export type AssistantContext = {
 };
 
 export const RECOMMENDATION_DISCLAIMER =
-  "Estimativa linear com reserva de 5%. Compatibilidade do veículo não confirmada; não há integração em tempo real.";
+  "Distância aproximada em linha reta, sem cálculo de percurso. Estimativa linear com reserva de 5%. Compatibilidade do veículo não confirmada; não há integração em tempo real.";
 
 export type ChatResponse = {
   text: string;
@@ -78,7 +80,7 @@ export function answerMessage(
 
     if (!recommendation) {
       return {
-        text: "Não encontrei um posto alcançável com a bateria atual.",
+        text: "Não encontrei uma opção viável nos dados demonstrativos com a bateria, os horários e os carregadores disponíveis. Isso não confirma a disponibilidade real das estações.",
         state: "alerta",
       };
     }

@@ -262,9 +262,7 @@ export function FluiAssistantSheet({
               <Text style={styles.subtitle}>
                 {selectedIntent
                   ? "Recomendação simulada com os dados do protótipo."
-                  : messages.length > 0
-                    ? "Pergunte o que quiser sobre recarga."
-                    : "Como posso ajudar?\nEscolha uma necessidade."}
+                  : identificacaoDados.fluia.aviso}
               </Text>
             </View>
             <PressableScale
@@ -394,6 +392,8 @@ export function FluiAssistantSheet({
                 <Text style={styles.explanationText}>
                   {recommendation.explanation}
                   {"\n"}
+                  {userPreferences.vehicleName} · origem demonstrativa: {demoOrigin.nome}.
+                  {"\n"}
                   {RECOMMENDATION_DISCLAIMER}
                 </Text>
               </View>
@@ -487,6 +487,9 @@ export function FluiAssistantSheet({
             </ScrollView>
           ) : null}
           <View style={styles.chatBox}>
+            <Text style={styles.subtitle}>
+              {userPreferences.vehicleName} · origem demonstrativa: {demoOrigin.nome}.
+            </Text>
             <ScrollView
               ref={chatScrollRef}
               style={styles.chatMessages}
