@@ -1,6 +1,6 @@
 # Colaboração no Flui NEXT
 
-Convenções propostas para revisão da **isalvesb**, responsável pela Alfa 1.1 (#11). Este documento consolida o fluxo observado; não representa sua aprovação nem cria novas etapas obrigatórias.
+Estas convenções consolidam o fluxo colaborativo do Flui NEXT. A revisão e a integração das mudanças são responsabilidades compartilhadas pela equipe, sem aprovador fixo ou exclusivo. O documento não cria etapas burocráticas obrigatórias.
 
 ## Branches
 
@@ -18,8 +18,8 @@ Escrever assunto curto, com verbo e mudança concreta: `documenta convenções d
 1. Abrir PR da branch de trabalho para `main`, inicialmente em rascunho enquanto houver preparo ou validação pendente.
 2. Usar título com escopo e resultado. Descrever problema, mudanças, Issues relacionadas, verificações executadas e limitações. Distinguir teste local, CI, interface web e observação nativa; uma não comprova automaticamente a outra.
 3. Executar `npm run check` nas mudanças de código e as verificações proporcionais ao impacto. Reutilizar evidências anteriores com seu commit; repetir somente o que mudou ou ficou sem comprovação. A workflow Quality existente verifica tipos, lint, testes e exportação web.
-4. Encaminhar à responsável pelo trabalho. Na Alfa 1.1, a revisão/aprovação é da isalvesb. Conflitos, falhas de CI e limitações relevantes devem estar explícitos antes da decisão de integração.
-5. O responsável humano decide aprovação e merge; não presumir aprovação por uma PR aberta ou testes aprovados. Preservar a estratégia de merge utilizada pela equipe, sem impor outra.
+4. Compartilhar a PR com a equipe para revisão colaborativa, sem atribuir aprovação exclusiva a qualquer integrante. Conflitos, falhas de CI e limitações relevantes devem estar explícitos antes da decisão de integração.
+5. A decisão humana sobre aprovação e merge respeita os acordos coletivos da equipe e as permissões do repositório. Não presumir aprovação por uma PR aberta ou testes aprovados. Preservar a estratégia de merge utilizada pela equipe, sem impor outra.
 
 ## Acompanhamento e evidências
 
