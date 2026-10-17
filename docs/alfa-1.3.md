@@ -46,3 +46,9 @@ A validação prática desta PR foi **web**. Não foram executados testes de int
 Alcance e chegada continuam estimativas lineares, sem considerar vias, relevo, trânsito, clima, consumo real ou capacidade de bateria. Tempos de carga continuam estimativas genéricas existentes. O nome do veículo não cadastra especificações ou conectores automaticamente; a ilustração permanece identificada como tal. Rotas externas existentes continuam independentes da origem demonstrativa; nenhuma navegação externa foi testada.
 
 Revisão e aprovação da Alfa 1.3 ficam com a equipe; nenhum backlog foi marcado como aprovado.
+
+## Complemento de evidências nativas — 16/10/2026
+
+A limitação web descrita acima refere-se à execução original. A validação iOS posterior de `d14b85b` comprovou configuração/persistência, nova bateria manual, consistência mapa/ficha/FluIA e centralização/estabilidade. [Configuração](validacao-1.3/ios-config-d14b85b/RELATORIO.md) · [finalização dos três cenários](validacao-1.3/ios-final-d14b85b/RESUMO.md). Fontes, logs, capturas e falhas das sondas foram preservados com proveniência, sem atribuir esses resultados históricos à main atual.
+
+A [situação atual das pendências](pendencias-alfa.md) identifica os testes desta branch e o impedimento Android da Issue #76. Nenhuma aprovação humana ou conclusão integral multiplataforma é presumida.

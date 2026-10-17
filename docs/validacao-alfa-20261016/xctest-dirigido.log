@@ -1,0 +1,938 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -xctestrun /tmp/flui-xctest-12/DerivedData/Build/Products/FluiValidacao_iphonesimulator27.1-arm64.xctestrun -destination "platform=iOS Simulator,id=4A2C862B-D6FC-4E88-8FB5-88164A5C5A2E" -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath /tmp/flui-alfa-dirigido.xcresult
+
+Writing result bundle at path:
+	/tmp/flui-alfa-dirigido.xcresult
+
+2026-10-16 22:27:39.392 xcodebuild[55259:4581928] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 22:27:44.498174-0300 FluiValidacao-Runner[55272:4582278] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'All tests' started at 2026-10-16 22:27:52.787.
+Test Suite 'FluiValidacao.xctest' started at 2026-10-16 22:27:52.789.
+Test Suite 'FluiValidacao' started at 2026-10-16 22:27:52.789.
+Test Case '-[FluiValidacao.FluiValidacao testPaulistaFiltrosEFichaAtual]' started.
+    t =     0.01s Start Test at 2026-10-16 22:27:52.798
+    t =     0.10s Set Up
+    t =     0.10s Open host.exp.Exponent
+    t =     0.10s     Activate host.exp.Exponent
+    t =     0.19s         Wait for host.exp.Exponent to idle
+    t =     0.23s Waiting 3.0s for Button (First Match) to exist
+objc[55272]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x10969c398) and /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x109790310). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =     1.31s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     1.31s         Checking existence of `Button (First Match)`
+    t =     1.35s Waiting 45.0s for Button (First Match) to exist
+    t =     2.38s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     2.38s         Checking existence of `Button (First Match)`
+    t =     2.40s Waiting 8.0s for Button (First Match) to exist
+    t =     3.42s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     3.42s         Checking existence of `Button (First Match)`
+    t =     3.43s Tap Button (First Match)
+    t =     3.43s     Wait for host.exp.Exponent to idle
+    t =     3.44s     Find the Button (First Match)
+    t =     3.46s     Check for interrupting elements affecting "Abrir busca e filtros" Button
+    t =     3.55s     Synthesize event
+    t =     3.90s     Wait for host.exp.Exponent to idle
+    t =     4.13s Waiting 8.0s for Button (First Match) to exist
+    t =     5.16s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     5.16s         Checking existence of `Button (First Match)`
+    t =     5.17s Tap Button (First Match)
+    t =     5.17s     Wait for host.exp.Exponent to idle
+    t =     5.18s     Find the Button (First Match)
+    t =     5.19s     Check for interrupting elements affecting "Limpar busca e filtros" Button
+    t =     5.24s     Synthesize event
+    t =     5.53s     Wait for host.exp.Exponent to idle
+    t =     5.54s Tap Button (First Match)
+    t =     5.54s     Wait for host.exp.Exponent to idle
+    t =     5.54s     Find the Button (First Match)
+    t =     5.55s     Check for interrupting elements affecting "Ver pontos encontrados no mapa" Button
+    t =     5.59s     Synthesize event
+    t =     5.88s     Wait for host.exp.Exponent to idle
+    t =     5.89s Waiting 10.0s for Button (First Match) to exist
+    t =     6.92s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     6.92s         Checking existence of `Button (First Match)`
+    t =     6.94s Find the Button (First Match)
+    t =     6.95s Tap Button (First Match)
+    t =     6.95s     Wait for host.exp.Exponent to idle
+    t =     6.95s     Find the Button (First Match)
+    t =     6.97s     Check for interrupting elements affecting "Abrir perfil" Button
+    t =     7.00s     Synthesize event
+    t =     7.29s     Wait for host.exp.Exponent to idle
+    t =     7.70s Waiting 10.0s for Button (First Match) to exist
+    t =     8.71s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     8.71s         Checking existence of `Button (First Match)`
+    t =     8.75s Tap Button (First Match)
+    t =     8.75s     Wait for host.exp.Exponent to idle
+    t =     8.75s     Find the Button (First Match)
+    t =     8.77s     Check for interrupting elements affecting "Abrir configurações" Button
+    t =     8.80s     Synthesize event
+    t =     9.09s     Wait for host.exp.Exponent to idle
+    t =     9.52s Waiting 10.0s for TextField (First Match) to exist
+    t =    10.55s     Checking `Expect predicate `existsNoRetry == 1` for object TextField (First Match)`
+    t =    10.55s         Checking existence of `TextField (First Match)`
+    t =    11.61s Find the TextField (First Match)
+    t =    11.65s Find the Button (First Match)
+    t =    11.68s Tap "Selecionar origem Paulista" Button
+    t =    11.68s     Wait for host.exp.Exponent to idle
+    t =    11.68s     Find the "Selecionar origem Paulista" Button
+    t =    11.70s     Check for interrupting elements affecting "Selecionar origem Paulista" Button
+    t =    11.73s     Synthesize event
+    t =    12.02s     Wait for host.exp.Exponent to idle
+    t =    12.03s Find the "Selecionar origem Paulista" Button
+    t =    12.05s Find the Button (First Match)
+    t =    12.08s Tap Button (First Match)
+    t =    12.08s     Wait for host.exp.Exponent to idle
+    t =    12.08s     Find the Button (First Match)
+    t =    12.10s     Check for interrupting elements affecting "Salvar demonstração" Button
+    t =    12.13s     Synthesize event
+    t =    12.42s     Wait for host.exp.Exponent to idle
+    t =    12.43s Waiting 8.0s for StaticText (First Match) to exist
+    t =    13.46s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    13.46s         Checking existence of `StaticText (First Match)`
+    t =    13.49s Find the Button (First Match)
+    t =    13.53s Tap Button (First Match)
+    t =    13.53s     Wait for host.exp.Exponent to idle
+    t =    13.53s     Find the Button (First Match)
+    t =    13.56s     Check for interrupting elements affecting "Abrir mapa para editar bateria" Button
+    t =    13.59s     Synthesize event
+    t =    13.88s     Wait for host.exp.Exponent to idle
+    t =    14.43s Waiting 10.0s for Button (First Match) to exist
+    t =    15.46s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    15.46s         Checking existence of `Button (First Match)`
+    t =    15.49s Find the Button (First Match)
+    t =    15.52s Checking existence of `Button (First Match)`
+    t =    15.56s Tap Button (First Match)
+    t =    15.56s     Wait for host.exp.Exponent to idle
+    t =    15.57s     Find the Button (First Match)
+    t =    15.61s     Check for interrupting elements affecting "Minimizar opções demonstrativas para ver o mapa inteiro" Button
+    t =    15.65s     Synthesize event
+    t =    15.95s     Wait for host.exp.Exponent to idle
+    t =    15.96s Tap Button (First Match)
+    t =    15.96s     Wait for host.exp.Exponent to idle
+    t =    15.97s     Find the Button (First Match)
+    t =    15.99s     Check for interrupting elements affecting "Centralizar origem demonstrativa: Paulista" Button
+    t =    16.02s     Synthesize event
+    t =    16.31s     Wait for host.exp.Exponent to idle
+    t =    17.32s Waiting 8.0s for Button (First Match) to exist
+    t =    18.35s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    18.35s         Checking existence of `Button (First Match)`
+    t =    18.38s Requesting snapshot of accessibility hierarchy for app with pid 54060
+    t =    18.63s Requesting snapshot of accessibility hierarchy for app with pid 54060
+FLUI_13 EVIDENCIA 10-paulista-centralizada
+Attributes: Application, 0x106a348c0, pid: 54060, label: 'Expo Go'
+Element subtree:
+ →Application, 0x106a348c0, pid: 54060, label: 'Expo Go'
+    Window (Main), 0x10a1e8000, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x10a1e8140, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x10a1e8280, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x10a1e83c0, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x10a1e8500, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x10a1e8640, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x10a1e8780, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x10a1e88c0, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x10a1e8a00, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x10a1e8b40, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x10a1e8c80, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x10a1e8dc0, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x10a1e8f00, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x10a1e9040, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x10a1e9180, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x10a1e92c0, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x10a1e9400, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Other, 0x10a1e9540, {{0.0, 62.0}, {440.0, 162.0}}
+                                        Other, 0x10a1e9680, {{20.0, 76.0}, {76.0, 36.0}}
+                                          Other, 0x10a1e97c0, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x10a1e9900, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x10a1e9a40, {{89.2, 82.8}, {6.7, 6.7}}
+                                        Button, 0x10a1e9b80, {{191.7, 71.0}, {180.3, 46.0}}, label: 'Flui iOS NEXT. Bateria para estimativa: 40 por cento. Informado manualmente. 16/10, 14:06. Cerca de 120 quilômetros estimados'
+                                        Button, 0x10a1e9cc0, {{374.0, 71.0}, {46.0, 46.0}}, label: 'Abrir perfil'
+                                        Other, 0x10a1e9e00, {{20.0, 132.0}, {400.0, 58.0}}
+                                          Other, 0x10a1e9f40, {{39.0, 150.7}, {21.0, 21.0}}
+                                            Other, 0x10a1ea080, {{40.8, 152.4}, {17.5, 17.5}}
+                                              Other, 0x10a1ea1c0, {{40.8, 152.4}, {15.8, 15.8}}
+                                              Other, 0x10a1ea300, {{52.7, 164.4}, {5.5, 5.5}}
+                                          Other, 0x10a1ea440, {{73.0, 150.7}, {277.0, 20.3}}
+                                            TextField, 0x10a1ea580, {{73.0, 150.7}, {277.0, 20.3}}, label: 'Buscar no mapa', placeholderValue: 'Buscar endereço, bairro ou ponto'
+                                          Other, 0x10a1ea6c0, {{358.0, 146.0}, {1.0, 30.0}}
+                                          Button, 0x10a1ea800, {{367.0, 140.0}, {42.0, 42.0}}, label: 'Abrir busca e filtros'
+                                        Button, 0x10a1ea940, {{20.0, 194.0}, {400.0, 16.0}}, label: 'Mostrar atalhos de filtro'
+                                      Other, 0x10a1eaa80, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x10a1eabc0, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                          Other, 0x10a1ead00, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x10a1eae40, {{0.0, 224.0}, {72.0, 72.0}}
+                                            Other, 0x10a1eaf80, {{0.0, 224.0}, {440.0, 692.2}}
+                                              Other, 0x10a1eb0c0, {{0.0, 224.0}, {440.0, 692.2}}
+                                                Button, 0x10a1eb200, {{5.0, 889.0}, {60.0, 22.0}}, label: 'Google Maps'
+                                            Other, 0x10a1eb340, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                              Button, 0x10a1eb480, {{184.0, 534.0}, {72.0, 72.0}}, identifier: 'AIRGMSMarker_0x134994c80', label: 'Origem demonstrativa: Paulista'
+                                              Button, 0x10a1eb5c0, {{185.3, 509.7}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x1351f5cc0', label: 'Flui Express MASP'
+                                              Button, 0x10a1eb700, {{91.0, 314.3}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x13c96ebc0', label: 'Plug & Café Consolação'
+                                              Button, 0x10a1eb840, {{-56.7, 444.7}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x13c96e6c0', label: 'Charge City Jardins'
+                                              Button, 0x10a1eb980, {{270.3, 746.3}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x13c96f480', label: 'Estação Jardins Pamplona'
+                                              Button, 0x10a1ebac0, {{414.7, 890.3}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x13c96f5c0', label: 'Garagem Verde Brigadeiro'
+                                              Other, 0x10a1ebc00, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x10a1ebd40, {{1912.0, 2136.0}, {74.0, 74.0}}
+                                              Other, 0x10a1ebe80, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                Other, 0x10a248000, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                  Other, 0x10a248140, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                    Other, 0x10a248280, {{1917.3, 2141.3}, {61.4, 61.4}}
+                                                    Other, 0x10a2483c0, {{1936.0, 2160.0}, {24.0, 24.0}}
+                                        Other, 0x10a248500, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x10a248640, {{372.0, 242.0}, {52.0, 166.0}}
+                                          Other, 0x10a248780, {{372.0, 242.0}, {52.0, 104.0}}
+                                            Button, 0x10a2488c0, {{372.0, 243.0}, {52.0, 51.0}}, label: 'Aumentar zoom do mapa'
+                                            Button, 0x10a248a00, {{372.0, 295.0}, {52.0, 51.0}}, label: 'Diminuir zoom do mapa'
+                                            Other, 0x10a248b40, {{384.0, 294.0}, {28.0, 1.0}}
+                                          Button, 0x10a248c80, {{372.0, 356.0}, {52.0, 52.0}}, label: 'Centralizar origem demonstrativa: Paulista'
+                                        Other, 0x10a248dc0, {{304.0, 401.3}, {120.0, 52.0}}
+                                          Other, 0x10a248f00, {{304.0, 401.3}, {120.0, 52.0}}
+                                            Button, 0x10a249040, {{304.0, 401.3}, {120.0, 52.0}}, label: 'Abrir assistente Flui IA'
+                                        Other, 0x10a249180, {{16.0, 457.3}, {408.0, 464.7}}
+                                          Other, 0x10a2492c0, {{16.0, 457.3}, {408.0, 464.7}}
+                                            Button, 0x10a249400, {{35.0, 476.3}, {370.0, 12.0}}, label: 'Minimizar opções demonstrativas para ver o mapa inteiro'
+                                            StaticText, 0x10a249540, {{35.0, 488.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                              StaticText, 0x10a249680, {{35.0, 488.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                            StaticText, 0x10a2497c0, {{35.0, 524.0}, {370.0, 76.0}}, label: 'Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo.
+Origem: Paulista · distâncias em linha reta, sem cálculo de percurso'
+                                              StaticText, 0x10a249900, {{35.0, 524.0}, {370.0, 76.0}}, label: 'Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo.
+Origem: Paulista · distâncias em linha reta, sem cálculo de percurso'
+                                            Other, 0x10a249a40, {{35.0, 610.0}, {370.0, 262.0}}
+                                              ScrollView, 0x10a249b80, {{35.0, 610.0}, {370.0, 262.0}}
+                                                Other, 0x10a249cc0, {{35.0, 610.0}, {370.0, 309.3}}
+                                                  Other, 0x10a249e00, {{35.0, 610.0}, {370.0, 309.3}}
+                                                    Button, 0x10a249f40, {{35.0, 610.0}, {370.0, 154.7}}, label: 'Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈1,7 km em linha reta. Chegada estimada com 39% de bateria.'
+                                                    Button, 0x10a24a080, {{35.0, 764.7}, {370.0, 154.7}}, label: 'Charge City Jardins. Opção demonstrativa. Alameda Santos, 2159. Aberto agora. Nota 4,7. 120 kW. ≈813 m em linha reta. Chegada estimada com 40% de bateria.'
+                                                Other, 0x10a24a1c0, {{35.0, 839.0}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x10a24a300, {{65.0, 866.0}, {310.0, 3.0}}
+                                                Other, 0x10a24a440, {{35.0, 839.0}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x10a24a580, {{65.0, 866.0}, {310.0, 3.0}}
+                          Toolbar, 0x10a24a6c0, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x10a24a800, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x10a24a940, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x10a24aa80, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x10a24abc0, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x106a348c0, pid: 54060, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x10a24ad00, pid: 54060, label: 'Expo Go'
+  }
+
+    t =    18.68s Find the Application 'host.exp.Exponent'
+    t =    18.96s Added attachment named '10-paulista-centralizada'
+    t =    18.96s Find the Button (First Match)
+    t =    19.03s Find the Other (First Match)
+FLUI_13 CENTRALIZACAO origem=(184.0, 534.0, 72.0, 72.0) mapa=(0.0, 224.0, 440.0, 698.0)
+    t =    19.05s Find the "AIRGMSMarker_0x134994c80" Button
+    t =    19.09s Find the "Mapa com pontos de recarga próximos" Other
+    t =    19.11s Find the "AIRGMSMarker_0x134994c80" Button
+    t =    19.15s Find the "Mapa com pontos de recarga próximos" Other
+    t =    19.17s Requesting snapshot of accessibility hierarchy for app with pid 54060
+    t =    19.37s Requesting snapshot of accessibility hierarchy for app with pid 54060
+FLUI_13 EVIDENCIA 10-paulista-centralizada
+Attributes: Application, 0x106bc21c0, pid: 54060, label: 'Expo Go'
+Element subtree:
+ →Application, 0x106bc21c0, pid: 54060, label: 'Expo Go'
+    Window (Main), 0x106bc2800, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x106bc26c0, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x106bc2940, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x106bc2a80, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x106bc17c0, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x106bc1900, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x106bc1cc0, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x106bc1b80, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x106bc1e00, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x106bc1f40, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x106bc2300, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x106bc2080, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x10a249e00, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x10a248f00, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x10a24aa80, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x10a24abc0, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x10a24a6c0, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Other, 0x10a24a800, {{0.0, 62.0}, {440.0, 162.0}}
+                                        Other, 0x10a249180, {{20.0, 76.0}, {76.0, 36.0}}
+                                          Other, 0x10a2492c0, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x10a249a40, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x10a249b80, {{89.2, 82.8}, {6.7, 6.7}}
+                                        Button, 0x10a24a440, {{191.7, 71.0}, {180.3, 46.0}}, label: 'Flui iOS NEXT. Bateria para estimativa: 40 por cento. Informado manualmente. 16/10, 14:06. Cerca de 120 quilômetros estimados'
+                                        Button, 0x10a24a580, {{374.0, 71.0}, {46.0, 46.0}}, label: 'Abrir perfil'
+                                        Other, 0x10a24a1c0, {{20.0, 132.0}, {400.0, 58.0}}
+                                          Other, 0x10a24a300, {{39.0, 150.7}, {21.0, 21.0}}
+                                            Other, 0x10a249cc0, {{40.8, 152.4}, {17.5, 17.5}}
+                                              Other, 0x106a37840, {{40.8, 152.4}, {15.8, 15.8}}
+                                              Other, 0x106a348c0, {{52.7, 164.4}, {5.5, 5.5}}
+                                          Other, 0x1129fc000, {{73.0, 150.7}, {277.0, 20.3}}
+                                            TextField, 0x1129fc140, {{73.0, 150.7}, {277.0, 20.3}}, label: 'Buscar no mapa', placeholderValue: 'Buscar endereço, bairro ou ponto'
+                                          Other, 0x1129fc280, {{358.0, 146.0}, {1.0, 30.0}}
+                                          Button, 0x1129fc3c0, {{367.0, 140.0}, {42.0, 42.0}}, label: 'Abrir busca e filtros'
+                                        Button, 0x1129fc500, {{20.0, 194.0}, {400.0, 16.0}}, label: 'Mostrar atalhos de filtro'
+                                      Other, 0x1129fc640, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x1129fc780, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                          Other, 0x1129fc8c0, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x1129fca00, {{0.0, 224.0}, {72.0, 72.0}}
+                                            Other, 0x1129fcb40, {{0.0, 224.0}, {440.0, 692.2}}
+                                              Other, 0x1129fcc80, {{0.0, 224.0}, {440.0, 692.2}}
+                                                Button, 0x1129fcdc0, {{5.0, 889.0}, {60.0, 22.0}}, label: 'Google Maps'
+                                            Other, 0x1129fcf00, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                              Button, 0x1129fd040, {{184.0, 534.0}, {72.0, 72.0}}, identifier: 'AIRGMSMarker_0x134994c80', label: 'Origem demonstrativa: Paulista'
+                                              Button, 0x1129fd180, {{185.3, 509.7}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x1351f5cc0', label: 'Flui Express MASP'
+                                              Button, 0x1129fd2c0, {{91.0, 314.3}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x13c96ebc0', label: 'Plug & Café Consolação'
+                                              Button, 0x1129fd400, {{-56.7, 444.7}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x13c96e6c0', label: 'Charge City Jardins'
+                                              Button, 0x1129fd540, {{270.3, 746.3}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x13c96f480', label: 'Estação Jardins Pamplona'
+                                              Button, 0x1129fd680, {{414.7, 890.3}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x13c96f5c0', label: 'Garagem Verde Brigadeiro'
+                                              Other, 0x1129fd7c0, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x1129fd900, {{1912.0, 2136.0}, {74.0, 74.0}}
+                                              Other, 0x1129fda40, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                Other, 0x1129fdb80, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                  Other, 0x1129fdcc0, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                    Other, 0x1129fde00, {{1925.6, 2149.6}, {44.7, 44.7}}
+                                                    Other, 0x1129fdf40, {{1936.0, 2160.0}, {24.0, 24.0}}
+                                        Other, 0x1129fe080, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x1129fe1c0, {{372.0, 242.0}, {52.0, 166.0}}
+                                          Other, 0x1129fe300, {{372.0, 242.0}, {52.0, 104.0}}
+                                            Button, 0x1129fe440, {{372.0, 243.0}, {52.0, 51.0}}, label: 'Aumentar zoom do mapa'
+                                            Button, 0x1129fe580, {{372.0, 295.0}, {52.0, 51.0}}, label: 'Diminuir zoom do mapa'
+                                            Other, 0x1129fe6c0, {{384.0, 294.0}, {28.0, 1.0}}
+                                          Button, 0x1129fe800, {{372.0, 356.0}, {52.0, 52.0}}, label: 'Centralizar origem demonstrativa: Paulista'
+                                        Other, 0x1129fe940, {{372.0, 401.3}, {52.0, 52.0}}
+                                          Other, 0x1129fea80, {{372.0, 401.3}, {52.0, 52.0}}
+                                            Button, 0x1129febc0, {{372.0, 401.3}, {52.0, 52.0}}, label: 'Abrir assistente Flui IA'
+                                        Other, 0x1129fed00, {{16.0, 457.3}, {408.0, 464.7}}
+                                          Other, 0x1129fee40, {{16.0, 457.3}, {408.0, 464.7}}
+                                            Button, 0x1129fef80, {{35.0, 476.3}, {370.0, 12.0}}, label: 'Minimizar opções demonstrativas para ver o mapa inteiro'
+                                            StaticText, 0x1129ff0c0, {{35.0, 488.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                              StaticText, 0x1129ff200, {{35.0, 488.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                            StaticText, 0x1129ff340, {{35.0, 524.0}, {370.0, 76.0}}, label: 'Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo.
+Origem: Paulista · distâncias em linha reta, sem cálculo de percurso'
+                                              StaticText, 0x1129ff480, {{35.0, 524.0}, {370.0, 76.0}}, label: 'Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo.
+Origem: Paulista · distâncias em linha reta, sem cálculo de percurso'
+                                            Other, 0x1129ff5c0, {{35.0, 610.0}, {370.0, 262.0}}
+                                              ScrollView, 0x1129ff700, {{35.0, 610.0}, {370.0, 262.0}}
+                                                Other, 0x1129ff840, {{35.0, 610.0}, {370.0, 309.3}}
+                                                  Other, 0x1129ff980, {{35.0, 610.0}, {370.0, 309.3}}
+                                                    Button, 0x1129ffac0, {{35.0, 610.0}, {370.0, 154.7}}, label: 'Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈1,7 km em linha reta. Chegada estimada com 39% de bateria.'
+                                                    Button, 0x1129ffc00, {{35.0, 764.7}, {370.0, 154.7}}, label: 'Charge City Jardins. Opção demonstrativa. Alameda Santos, 2159. Aberto agora. Nota 4,7. 120 kW. ≈813 m em linha reta. Chegada estimada com 40% de bateria.'
+                                                Other, 0x1129ffd40, {{35.0, 839.0}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x1129ffe80, {{65.0, 866.0}, {310.0, 3.0}}
+                                                Other, 0x10a1e8000, {{35.0, 839.0}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x10a1e8140, {{65.0, 866.0}, {310.0, 3.0}}
+                          Toolbar, 0x10a1e8280, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x10a1e83c0, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x10a1e8500, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x10a1e8640, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x10a1e8780, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x106bc21c0, pid: 54060, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x10a1e88c0, pid: 54060, label: 'Expo Go'
+  }
+
+    t =    19.43s Find the Application 'host.exp.Exponent'
+    t =    19.63s Added attachment named '10-paulista-centralizada'
+FLUI_13 REINICIAR_APP terminate/launch, sem editar armazenamento
+    t =    19.63s Terminate host.exp.Exponent:54060
+    t =    20.65s Open host.exp.Exponent
+    t =    20.65s     Launch host.exp.Exponent
+    t =    20.70s         Setting up automation session
+    t =    24.99s         Wait for host.exp.Exponent to idle
+    t =    27.17s Open host.exp.Exponent
+    t =    27.17s     Activate host.exp.Exponent
+    t =    27.19s         Wait for host.exp.Exponent to idle
+    t =    30.27s Waiting 3.0s for Button (First Match) to exist
+    t =    31.29s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    31.29s         Checking existence of `Button (First Match)`
+    t =    31.38s         Capturing element debug description
+    t =    32.29s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    32.30s         Checking existence of `Button (First Match)`
+    t =    32.34s         Capturing element debug description
+    t =    33.27s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    33.28s         Checking existence of `Button (First Match)`
+    t =    33.33s         Capturing element debug description
+    t =    33.33s     Checking existence of `Button (First Match)`
+    t =    33.37s Collecting debug information to assist test failure triage
+    t =    33.37s     Requesting snapshot of accessibility hierarchy for app with pid 55313
+    t =    33.48s Waiting 10.0s for Button (First Match) to exist
+    t =    34.49s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    34.49s         Checking existence of `Button (First Match)`
+    t =    34.54s Tap Button (First Match)
+    t =    34.54s     Wait for host.exp.Exponent to idle
+    t =    34.54s     Find the Button (First Match)
+    t =    34.58s     Check for interrupting elements affecting "flui-charge-map" Button
+    t =    34.61s     Synthesize event
+    t =    34.96s     Wait for host.exp.Exponent to idle
+    t =    35.15s Waiting 45.0s for Button (First Match) to exist
+    t =    36.17s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    36.17s         Checking existence of `Button (First Match)`
+    t =    37.80s         Capturing element debug description
+    t =    38.21s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    38.21s         Checking existence of `Button (First Match)`
+    t =    38.22s         Capturing element debug description
+    t =    39.25s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    39.25s         Checking existence of `Button (First Match)`
+    t =    39.26s         Capturing element debug description
+    t =    40.19s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    40.19s         Checking existence of `Button (First Match)`
+    t =    40.20s         Capturing element debug description
+    t =    41.15s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    41.16s         Checking existence of `Button (First Match)`
+    t =    41.18s         Capturing element debug description
+    t =    42.20s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    42.20s         Checking existence of `Button (First Match)`
+    t =    42.28s         Capturing element debug description
+    t =    43.20s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    43.20s         Checking existence of `Button (First Match)`
+    t =    43.22s Waiting 8.0s for Button (First Match) to exist
+    t =    44.24s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    44.24s         Checking existence of `Button (First Match)`
+    t =    44.25s Checking existence of `Button (First Match)`
+    t =    44.27s Find the Button (First Match)
+    t =    44.28s Tap Button (First Match)
+    t =    44.28s     Wait for host.exp.Exponent to idle
+    t =    44.28s     Find the Button (First Match)
+    t =    44.30s     Check for interrupting elements affecting "Abrir busca e filtros" Button
+    t =    44.34s     Synthesize event
+    t =    44.66s     Wait for host.exp.Exponent to idle
+    t =    45.16s Waiting 8.0s for Button (First Match) to exist
+    t =    46.19s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    46.19s         Checking existence of `Button (First Match)`
+    t =    46.20s Find the Button (First Match)
+    t =    46.25s Swipe up ScrollView (First Match)
+    t =    46.25s     Wait for host.exp.Exponent to idle
+    t =    46.25s     Find the ScrollView (First Match)
+    t =    46.27s     Check for interrupting elements affecting ScrollView
+    t =    46.31s     Synthesize event
+    t =    46.80s     Wait for host.exp.Exponent to idle
+    t =    48.91s Find the "500 m" Button
+    t =    48.98s Swipe up ScrollView (First Match)
+    t =    48.98s     Wait for host.exp.Exponent to idle
+    t =    48.99s     Find the ScrollView (First Match)
+    t =    49.00s     Check for interrupting elements affecting ScrollView
+    t =    49.07s     Synthesize event
+    t =    49.67s     Wait for host.exp.Exponent to idle
+    t =    50.19s Find the "500 m" Button
+    t =    50.24s Tap "500 m" Button
+    t =    50.24s     Wait for host.exp.Exponent to idle
+    t =    50.25s     Find the "500 m" Button
+    t =    50.28s     Check for interrupting elements affecting "500 m" Button
+    t =    50.32s     Synthesize event
+    t =    50.62s     Wait for host.exp.Exponent to idle
+    t =    50.63s Checking existence of `Button (First Match)`
+    t =    50.67s Checking existence of `Any (First Match)`
+    t =    50.71s Requesting snapshot of accessibility hierarchy for app with pid 55313
+    t =    50.89s Requesting snapshot of accessibility hierarchy for app with pid 55313
+FLUI_13 EVIDENCIA 11-paulista-raio-500m
+Attributes: Application, 0x112a03ac0, pid: 55313, label: 'Expo Go'
+Element subtree:
+ →Application, 0x112a03ac0, pid: 55313, label: 'Expo Go'
+    Window (Main), 0x112a01400, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x112a00000, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x112a00140, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x112a00280, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x112a003c0, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x112a00500, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x112a00640, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x112a00780, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x112a008c0, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x112a00a00, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x112a00b40, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x112a00c80, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x112a00dc0, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x112a00f00, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x112a01040, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x112a01180, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x112a012c0, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Button, 0x112a03340, {{20.0, 70.0}, {44.0, 44.0}}, label: 'Voltar ao mapa'
+                                      StaticText, 0x112a03480, {{155.0, 80.0}, {129.7, 24.0}}, label: 'Busca e filtros'
+                                        StaticText, 0x112a035c0, {{155.0, 80.0}, {129.7, 24.0}}, label: 'Busca e filtros'
+                                      Other, 0x112a03700, {{0.0, 122.0}, {440.0, 800.0}}
+                                        ScrollView, 0x112a03840, {{0.0, 122.0}, {440.0, 800.0}}
+                                          Other, 0x112a03980, {{0.0, -775.0}, {440.0, 1697.0}}
+                                            Other, 0x112a03c00, {{0.0, -775.0}, {440.0, 1697.0}}
+                                              Other, 0x112a03d40, {{20.0, -775.0}, {400.0, 183.0}}
+                                                Other, 0x112a03e80, {{41.0, -754.0}, {358.0, 56.0}}
+                                                Other, 0x10a24aa80, {{91.0, -748.3}, {291.0, 44.3}}
+                                                  TextField, 0x10a24ad00, {{91.0, -748.3}, {291.0, 44.3}}, label: 'Campo de busca de pontos de recarga', placeholderValue: 'Buscar por bairro, estação ou conector'
+                                                Other, 0x1129ff980, {{58.0, -736.3}, {21.0, 21.0}}
+                                                  Other, 0x1129ffc00, {{59.6, -734.8}, {17.8, 17.8}}
+                                                    Other, 0x1129ffd40, {{59.6, -734.8}, {16.1, 16.1}}
+                                                    Other, 0x1129ffe80, {{71.5, -722.8}, {5.9, 5.9}}
+                                                StaticText, 0x1129ffac0, {{41.0, -682.0}, {358.0, 17.0}}, label: 'Sugestões rápidas'
+                                                  StaticText, 0x112be4000, {{41.0, -682.0}, {358.0, 17.0}}, label: 'Sugestões rápidas'
+                                                Other, 0x112be4140, {{41.0, -653.0}, {358.0, 40.0}}
+                                                  ScrollView, 0x112be4280, {{41.0, -653.0}, {358.0, 40.0}}
+                                                    Other, 0x112be43c0, {{41.0, -653.0}, {677.3, 40.0}}
+                                                      Other, 0x112be4500, {{41.0, -653.0}, {677.3, 40.0}}
+                                                        Button, 0x112be4640, {{41.0, -653.0}, {87.7, 40.0}}, label: 'Buscar por Paulista'
+                                                        Button, 0x112be4780, {{140.7, -653.0}, {116.7, 40.0}}, label: 'Buscar por Vila Mariana'
+                                                        Button, 0x112be48c0, {{269.3, -653.0}, {117.7, 40.0}}, label: 'Buscar por Higienópolis'
+                                                        Button, 0x112be4a00, {{399.0, -653.0}, {84.0, 40.0}}, label: 'Buscar por Jardins'
+                                                        Button, 0x112be4b40, {{495.0, -653.0}, {101.7, 40.0}}, label: 'Buscar por Liberdade'
+                                                        Button, 0x112be4c80, {{608.7, -653.0}, {93.7, 40.0}}, label: 'Buscar por Cambuci'
+                                                    Other, 0x112be4dc0, {{366.0, -653.0}, {30.0, 40.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                                                      Other, 0x112be4f00, {{393.0, -652.0}, {3.0, 36.0}}
+                                                    Other, 0x112be5040, {{366.0, -653.0}, {30.0, 40.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                                                      Other, 0x112be5180, {{393.0, -652.0}, {3.0, 36.0}}
+                                              Other, 0x112be52c0, {{20.0, -576.0}, {400.0, 206.0}}
+                                                Other, 0x112be5400, {{41.0, -555.0}, {32.0, 32.0}}
+                                                Other, 0x112be5540, {{48.0, -548.0}, {18.0, 18.0}}
+                                                  Other, 0x112be5680, {{51.6, -547.4}, {10.8, 16.8}}
+                                                    Other, 0x112be57c0, {{51.6, -542.9}, {10.8, 8.5}}
+                                                    Other, 0x112be5900, {{53.9, -547.4}, {1.8, 6.3}}
+                                                    Other, 0x112be5a40, {{58.4, -547.4}, {1.8, 6.3}}
+                                                    Other, 0x112be5b80, {{56.1, -536.1}, {1.8, 5.5}}
+                                                StaticText, 0x112be5cc0, {{85.0, -551.0}, {158.3, 24.0}}, label: 'Tipo de conector'
+                                                  StaticText, 0x112be5e00, {{85.0, -551.0}, {158.3, 24.0}}, label: 'Tipo de conector'
+                                                Button, 0x112be5f40, {{41.0, -507.0}, {173.0, 52.0}}, label: 'CCS2'
+                                                Button, 0x112be6080, {{226.0, -507.0}, {173.0, 52.0}}, label: 'Tipo 2'
+                                                Button, 0x112be61c0, {{41.0, -443.0}, {173.0, 52.0}}, label: 'CHAdeMO'
+                                                Button, 0x112be6300, {{226.0, -443.0}, {173.0, 52.0}}, label: 'GB/T'
+                                              Other, 0x112be6440, {{20.0, -354.0}, {400.0, 206.0}}
+                                                Other, 0x112be6580, {{41.0, -333.0}, {32.0, 32.0}}
+                                                Other, 0x112be66c0, {{48.0, -326.0}, {18.0, 18.0}}
+                                                  Other, 0x112be6800, {{49.3, -325.4}, {15.3, 16.8}}
+                                                    Other, 0x112be6940, {{49.3, -325.4}, {15.3, 16.8}}
+                                                StaticText, 0x112be6a80, {{85.0, -329.0}, {155.7, 24.0}}, label: 'Potência mínima'
+                                                  StaticText, 0x112be6bc0, {{85.0, -329.0}, {155.7, 24.0}}, label: 'Potência mínima'
+                                                Button, 0x112be6d00, {{41.0, -285.0}, {111.3, 52.0}}, label: '22 kW'
+                                                Button, 0x112be6e40, {{164.3, -285.0}, {111.3, 52.0}}, label: '50 kW'
+                                                Button, 0x112be6f80, {{287.7, -285.0}, {111.3, 52.0}}, label: '100 kW'
+                                                Button, 0x112be70c0, {{41.0, -221.0}, {173.0, 52.0}}, label: '150 kW'
+                                                Button, 0x112be7200, {{226.0, -221.0}, {173.0, 52.0}}, label: '250 kW'
+                                              Other, 0x112be7340, {{20.0, -132.0}, {400.0, 270.0}}
+                                                Other, 0x112be7480, {{41.0, -111.0}, {32.0, 32.0}}
+                                                Other, 0x112be75c0, {{48.0, -104.0}, {18.0, 18.0}}
+                                                  Other, 0x112be7700, {{48.6, -103.4}, {16.8, 16.8}}
+                                                    Other, 0x112be7840, {{48.6, -103.4}, {16.8, 16.8}}
+                                                    Other, 0x112be7980, {{56.1, -100.4}, {4.8, 6.3}}
+                                                StaticText, 0x112be7ac0, {{85.0, -107.0}, {145.7, 24.0}}, label: 'Disponibilidade'
+                                                  StaticText, 0x112be7c00, {{85.0, -107.0}, {145.7, 24.0}}, label: 'Disponibilidade'
+                                                Button, 0x112be7d40, {{41.0, -63.0}, {358.0, 52.0}}, label: 'Aberto agora'
+                                                Button, 0x112be7e80, {{41.0, 1.0}, {358.0, 52.0}}, label: 'Carregadores livres'
+                                                Button, 0x112bf8000, {{41.0, 65.0}, {358.0, 52.0}}, label: 'Aberto 24h'
+                                              Other, 0x112bf8140, {{20.0, 154.0}, {400.0, 270.0}}
+                                                Other, 0x112bf8280, {{41.0, 175.0}, {32.0, 32.0}}
+                                                Other, 0x112bf83c0, {{48.0, 182.0}, {18.0, 18.0}}
+                                                  Other, 0x112bf8500, {{49.4, 182.6}, {16.1, 16.1}}
+                                                    Other, 0x112bf8640, {{49.3, 187.1}, {16.0, 11.5}}
+                                                    Other, 0x112bf8780, {{51.6, 182.6}, {1.8, 3.3}}
+                                                    Other, 0x112bf88c0, {{54.6, 182.6}, {1.8, 3.3}}
+                                                    Other, 0x112bf8a00, {{57.6, 182.6}, {1.8, 3.3}}
+                                                StaticText, 0x112bf8b40, {{85.0, 179.0}, {131.0, 24.0}}, label: 'Comodidades'
+                                                  StaticText, 0x112bf8c80, {{85.0, 179.0}, {131.0, 24.0}}, label: 'Comodidades'
+                                                Button, 0x112bf8dc0, {{41.0, 223.0}, {173.0, 52.0}}, label: 'Restaurante'
+                                                Button, 0x112bf8f00, {{226.0, 223.0}, {173.0, 52.0}}, label: 'Café'
+                                                Button, 0x112bf9040, {{41.0, 287.0}, {173.0, 52.0}}, label: 'Banheiro'
+                                                Button, 0x112bf9180, {{226.0, 287.0}, {173.0, 52.0}}, label: 'Estacionamento'
+                                                Button, 0x112bf92c0, {{41.0, 351.0}, {173.0, 52.0}}, label: 'Área coberta'
+                                                Button, 0x112bf9400, {{226.0, 351.0}, {173.0, 52.0}}, label: 'Wi-Fi'
+                                              Other, 0x112bf9540, {{20.0, 440.0}, {400.0, 142.0}}
+                                                Other, 0x112bf9680, {{41.0, 461.0}, {32.0, 32.0}}
+                                                Other, 0x112bf97c0, {{48.0, 468.0}, {18.0, 18.0}}
+                                                  Other, 0x112bf9900, {{48.6, 468.6}, {16.8, 16.1}}
+                                                    Other, 0x112bf9a40, {{48.6, 468.6}, {16.8, 16.1}}
+                                                StaticText, 0x112bf9b80, {{85.0, 465.0}, {163.3, 24.0}}, label: 'Avaliação mínima'
+                                                  StaticText, 0x112bf9cc0, {{85.0, 465.0}, {163.3, 24.0}}, label: 'Avaliação mínima'
+                                                Button, 0x112bf9e00, {{41.0, 509.0}, {173.0, 52.0}}, label: '4,0+'
+                                                Button, 0x112bf9f40, {{226.0, 509.0}, {173.0, 52.0}}, label: '4,5+'
+                                              Other, 0x112bfa080, {{20.0, 598.0}, {400.0, 196.0}}
+                                                Other, 0x112bfa1c0, {{41.0, 619.0}, {32.0, 32.0}}
+                                                Other, 0x112bfa300, {{48.0, 626.0}, {18.0, 18.0}}
+                                                  Other, 0x112bfa440, {{50.1, 626.6}, {13.8, 16.8}}
+                                                    Other, 0x112bfa580, {{50.1, 626.6}, {13.8, 16.8}}
+                                                    Other, 0x112bfa6c0, {{53.9, 630.3}, {6.3, 6.3}}
+                                                StaticText, 0x112bfa800, {{85.0, 623.0}, {130.7, 24.0}}, label: 'Raio de busca'
+                                                  StaticText, 0x112bfa940, {{85.0, 623.0}, {130.7, 24.0}}, label: 'Raio de busca'
+                                                StaticText, 0x112bfaa80, {{41.0, 667.0}, {358.0, 42.0}}, label: 'Em linha reta desde Paulista, origem demonstrativa. Sem cálculo de percurso.'
+                                                  StaticText, 0x112bfabc0, {{41.0, 667.0}, {358.0, 42.0}}, label: 'Em linha reta desde Paulista, origem demonstrativa. Sem cálculo de percurso.'
+                                                Button, 0x112bfad00, {{41.0, 721.0}, {111.3, 52.0}}, label: '500 m, selecionado', Selected
+                                                Button, 0x112bfae40, {{164.3, 721.0}, {111.3, 52.0}}, label: '1 km'
+                                                Button, 0x112bfaf80, {{287.7, 721.0}, {111.3, 52.0}}, label: '5 km'
+                                          Other, 0x112bfb0c0, {{28.0, 889.0}, {384.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                            Other, 0x112bfb200, {{31.0, 916.0}, {378.0, 3.0}}
+                                          Other, 0x112bfb340, {{28.0, 889.0}, {384.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                            Other, 0x112bfb480, {{31.0, 916.0}, {378.0, 3.0}}
+                                      Other, 0x112bfb5c0, {{0.0, 811.0}, {440.0, 111.0}}
+                                        Button, 0x112bfb700, {{20.0, 825.0}, {125.0, 54.0}}, label: 'Limpar busca e filtros'
+                                        Button, 0x112bfb840, {{161.0, 824.0}, {259.0, 56.0}}, label: 'Ver pontos encontrados no mapa'
+                          Toolbar, 0x112bfb980, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x112bfbac0, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x112bfbc00, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x112bfbd40, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x112bfbe80, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x112a03ac0, pid: 55313, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x1129fd400, pid: 55313, label: 'Expo Go'
+  }
+
+    t =    50.96s Find the Application 'host.exp.Exponent'
+    t =    51.14s Added attachment named '11-paulista-raio-500m'
+    t =    51.15s Tap Button (First Match)
+    t =    51.15s     Wait for host.exp.Exponent to idle
+    t =    51.15s     Find the Button (First Match)
+    t =    51.16s     Check for interrupting elements affecting "Ver pontos encontrados no mapa" Button
+    t =    51.21s     Synthesize event
+    t =    51.51s     Wait for host.exp.Exponent to idle
+    t =    51.55s Waiting 8.0s for Button (First Match) to exist
+    t =    52.58s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    52.58s         Checking existence of `Button (First Match)`
+    t =    52.60s Requesting snapshot of accessibility hierarchy for app with pid 55313
+    t =    53.07s Requesting snapshot of accessibility hierarchy for app with pid 55313
+FLUI_13 EVIDENCIA 12-paulista-mapa-filtrado
+Attributes: Application, 0x112a03ac0, pid: 55313, label: 'Expo Go'
+Element subtree:
+ →Application, 0x112a03ac0, pid: 55313, label: 'Expo Go'
+    Window (Main), 0x112a01400, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x112a00000, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x112a00140, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x112a00280, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x112a003c0, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x112a00500, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x112a00640, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x112a00780, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x112a008c0, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x112a00a00, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x112a00b40, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x112a00c80, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x112a00dc0, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x112a00f00, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x112a01040, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x112a01180, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x112a012c0, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Other, 0x112a03700, {{0.0, 62.0}, {440.0, 162.0}}
+                                        Other, 0x112a03840, {{20.0, 76.0}, {76.0, 36.0}}
+                                          Other, 0x112a03980, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x112a03c00, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x112a03d40, {{89.2, 82.8}, {6.7, 6.7}}
+                                        Button, 0x112a03e80, {{191.7, 71.0}, {180.3, 46.0}}, label: 'Flui iOS NEXT. Bateria para estimativa: 40 por cento. Informado manualmente. 16/10, 14:06. Cerca de 120 quilômetros estimados'
+                                        Button, 0x112a03480, {{374.0, 71.0}, {46.0, 46.0}}, label: 'Abrir perfil'
+                                        Other, 0x112a035c0, {{20.0, 132.0}, {400.0, 58.0}}
+                                          Other, 0x112a03340, {{39.0, 150.7}, {21.0, 21.0}}
+                                            Other, 0x10a24aa80, {{40.8, 152.4}, {17.5, 17.5}}
+                                              Other, 0x10a24ad00, {{40.8, 152.4}, {15.8, 15.8}}
+                                              Other, 0x10a249180, {{52.7, 164.4}, {5.5, 5.5}}
+                                          Other, 0x10a249b80, {{73.0, 150.7}, {277.0, 20.3}}
+                                            TextField, 0x10a249a40, {{73.0, 150.7}, {277.0, 20.3}}, label: 'Buscar no mapa', placeholderValue: 'Buscar endereço, bairro ou ponto'
+                                          Other, 0x10a2492c0, {{358.0, 146.0}, {1.0, 30.0}}
+                                          Button, 0x10a24a580, {{367.0, 140.0}, {42.0, 42.0}}, label: 'Abrir busca e filtros'
+                                        Button, 0x10a24a440, {{20.0, 194.0}, {400.0, 16.0}}, label: 'Mostrar atalhos de filtro'
+                                      Other, 0x10a24a1c0, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x10a24a300, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                          Other, 0x10a249cc0, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x10a24a800, {{0.0, 224.0}, {72.0, 72.0}}
+                                            Other, 0x10a24abc0, {{0.0, 224.0}, {440.0, 693.0}}
+                                              Other, 0x10a248f00, {{0.0, 224.0}, {440.0, 693.0}}
+                                                Button, 0x106bc2800, {{5.0, 889.7}, {60.0, 22.0}}, label: 'Google Maps'
+                                            Other, 0x106bc2a80, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                              Button, 0x106bc1b80, {{184.0, 534.3}, {72.0, 72.0}}, identifier: 'AIRGMSMarker_0x12c519e00', label: 'Origem demonstrativa: Paulista'
+                                              Button, 0x106bc2300, {{185.3, 510.0}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x12c51bc00', label: 'Flui Express MASP'
+                                              Other, 0x106bc2080, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x106bc2940, {{1912.0, 2136.0}, {74.0, 74.0}}
+                                              Other, 0x106bc17c0, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                Other, 0x106bc1f40, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                  Other, 0x106bc1e00, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                    Other, 0x106bc1cc0, {{1920.7, 2144.7}, {54.6, 54.6}}
+                                                    Other, 0x106bc1900, {{1936.0, 2160.0}, {24.0, 24.0}}
+                                        Other, 0x106bc26c0, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x106bc21c0, {{372.0, 242.0}, {52.0, 166.0}}
+                                          Other, 0x106a348c0, {{372.0, 242.0}, {52.0, 104.0}}
+                                            Button, 0x106a37840, {{372.0, 243.0}, {52.0, 51.0}}, label: 'Aumentar zoom do mapa'
+                                            Button, 0x1129fc000, {{372.0, 295.0}, {52.0, 51.0}}, label: 'Diminuir zoom do mapa'
+                                            Other, 0x1129fc140, {{384.0, 294.0}, {28.0, 1.0}}
+                                          Button, 0x1129fc280, {{372.0, 356.0}, {52.0, 52.0}}, label: 'Centralizar origem demonstrativa: Paulista'
+                                        Other, 0x1129fc3c0, {{304.0, 525.3}, {120.0, 52.0}}
+                                          Other, 0x1129fc500, {{304.0, 525.3}, {120.0, 52.0}}
+                                            Button, 0x1129fc640, {{304.0, 525.3}, {120.0, 52.0}}, label: 'Abrir assistente Flui IA'
+                                        Other, 0x1129fc780, {{16.0, 581.3}, {408.0, 340.7}}
+                                          Other, 0x1129fc8c0, {{16.0, 581.3}, {408.0, 340.7}}
+                                            Button, 0x1129fca00, {{35.0, 600.3}, {370.0, 12.0}}, label: 'Minimizar opções demonstrativas para ver o mapa inteiro'
+                                            StaticText, 0x1129fcb40, {{35.0, 612.3}, {370.0, 27.7}}, label: 'Nenhum ponto disponível'
+                                              StaticText, 0x1129fcc80, {{35.0, 612.3}, {370.0, 27.7}}, label: 'Nenhum ponto disponível'
+                                            StaticText, 0x1129fcdc0, {{35.0, 648.0}, {370.0, 76.0}}, label: 'Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo.
+Origem: Paulista · distâncias em linha reta, sem cálculo de percurso'
+                                              StaticText, 0x1129fcf00, {{35.0, 648.0}, {370.0, 76.0}}, label: 'Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo.
+Origem: Paulista · distâncias em linha reta, sem cálculo de percurso'
+                                            Other, 0x1129fd040, {{35.0, 744.0}, {370.0, 176.0}}
+                                            StaticText, 0x1129fd180, {{52.0, 761.0}, {336.0, 44.0}}, label: 'Não encontramos pontos com esses critérios.'
+                                              StaticText, 0x1129fd2c0, {{52.0, 761.0}, {336.0, 44.0}}, label: 'Não encontramos pontos com esses critérios.'
+                                            StaticText, 0x1129fd400, {{52.0, 811.0}, {336.0, 40.0}}, label: 'Tente limpar alguns filtros ou buscar por outro endereço.'
+                                              StaticText, 0x1129fd540, {{52.0, 811.0}, {336.0, 40.0}}, label: 'Tente limpar alguns filtros ou buscar por outro endereço.'
+                                            Button, 0x1129fd680, {{52.0, 851.0}, {336.0, 52.0}}, label: 'Ajustar busca'
+                          Toolbar, 0x1129fd7c0, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x1129fd900, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1129fda40, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1129fdb80, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1129fdcc0, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x112a03ac0, pid: 55313, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x1129fde00, pid: 55313, label: 'Expo Go'
+  }
+
+    t =    53.15s Find the Application 'host.exp.Exponent'
+    t =    53.51s Added attachment named '12-paulista-mapa-filtrado'
+FLUI_13 REINICIAR_APP terminate/launch, sem editar armazenamento
+    t =    53.52s Terminate host.exp.Exponent:55313
+    t =    54.53s Open host.exp.Exponent
+    t =    54.53s     Launch host.exp.Exponent
+    t =    54.58s         Setting up automation session
+    t =    59.97s         Wait for host.exp.Exponent to idle
+    t =    61.71s Open host.exp.Exponent
+    t =    61.72s     Activate host.exp.Exponent
+    t =    61.73s         Wait for host.exp.Exponent to idle
+    t =    65.06s Waiting 3.0s for Button (First Match) to exist
+    t =    66.09s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    66.09s         Checking existence of `Button (First Match)`
+    t =    66.19s         Capturing element debug description
+    t =    67.10s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    67.10s         Checking existence of `Button (First Match)`
+    t =    67.15s         Capturing element debug description
+    t =    68.06s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    68.06s         Checking existence of `Button (First Match)`
+    t =    68.10s         Capturing element debug description
+    t =    68.11s     Checking existence of `Button (First Match)`
+    t =    68.14s Collecting debug information to assist test failure triage
+    t =    68.14s     Requesting snapshot of accessibility hierarchy for app with pid 55342
+    t =    68.24s Waiting 10.0s for Button (First Match) to exist
+    t =    69.25s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    69.25s         Checking existence of `Button (First Match)`
+    t =    69.30s Tap Button (First Match)
+    t =    69.30s     Wait for host.exp.Exponent to idle
+    t =    69.30s     Find the Button (First Match)
+    t =    69.34s     Check for interrupting elements affecting "flui-charge-map" Button
+    t =    69.38s     Synthesize event
+    t =    69.72s     Wait for host.exp.Exponent to idle
+    t =    69.95s Waiting 45.0s for Button (First Match) to exist
+    t =    70.96s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    70.97s         Checking existence of `Button (First Match)`
+    t =    73.32s         Capturing element debug description
+    t =    74.04s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    74.04s         Checking existence of `Button (First Match)`
+    t =    74.06s         Capturing element debug description
+    t =    74.97s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    74.97s         Checking existence of `Button (First Match)`
+    t =    74.99s         Capturing element debug description
+    t =    76.02s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    76.02s         Checking existence of `Button (First Match)`
+    t =    76.04s         Capturing element debug description
+    t =    76.95s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    76.95s         Checking existence of `Button (First Match)`
+    t =    76.96s         Capturing element debug description
+    t =    77.99s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    77.99s         Checking existence of `Button (First Match)`
+    t =    78.15s Waiting 8.0s for Button (First Match) to exist
+    t =    79.32s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    79.34s         Checking existence of `Button (First Match)`
+    t =    79.39s Tap Button (First Match)
+    t =    79.39s     Wait for host.exp.Exponent to idle
+    t =    79.44s     Find the Button (First Match)
+    t =    79.50s     Check for interrupting elements affecting "Abrir busca e filtros" Button
+    t =    79.59s     Synthesize event
+    t =    79.95s     Wait for host.exp.Exponent to idle
+    t =    79.96s Waiting 8.0s for Button (First Match) to exist
+    t =    81.01s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    81.01s         Checking existence of `Button (First Match)`
+    t =    81.22s         Capturing element debug description
+    t =    82.05s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    82.06s         Checking existence of `Button (First Match)`
+    t =    82.27s         Capturing element debug description
+    t =    82.99s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    82.99s         Checking existence of `Button (First Match)`
+    t =    83.13s         Capturing element debug description
+    t =    84.04s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    84.04s         Checking existence of `Button (First Match)`
+    t =    84.33s         Capturing element debug description
+    t =    85.04s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    85.04s         Checking existence of `Button (First Match)`
+    t =    85.11s         Capturing element debug description
+    t =    86.03s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    86.03s         Checking existence of `Button (First Match)`
+    t =    86.09s         Capturing element debug description
+    t =    87.02s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    87.02s         Checking existence of `Button (First Match)`
+    t =    87.08s         Capturing element debug description
+    t =    87.97s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    87.97s         Checking existence of `Button (First Match)`
+    t =    88.02s         Capturing element debug description
+    t =    88.02s     Checking existence of `Button (First Match)`
+    t =    88.07s Collecting debug information to assist test failure triage
+    t =    88.07s     Requesting snapshot of accessibility hierarchy for app with pid 55342
+    t =    88.16s Requesting snapshot of accessibility hierarchy for app with pid 55342
+    t =    88.40s Requesting snapshot of accessibility hierarchy for app with pid 55342
+/tmp/flui-xctest-12/FluiValidacao.swift:92: error: -[FluiValidacao.FluiValidacao testPaulistaFiltrosEFichaAtual] : XCTAssertTrue failed - Attributes: Application, 0x112ca0280, pid: 55342, label: 'Expo Go'
+Element subtree:
+ →Application, 0x112ca0280, pid: 55342, label: 'Expo Go'
+    Window (Main), 0x112ca03c0, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x112ca0500, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x112ca0640, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x112ca0780, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x112ca08c0, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x112ca0a00, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x112ca0b40, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x112ca0c80, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x112ca0dc0, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x112ca0f00, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x112ca1040, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x112ca1180, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x112ca12c0, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x112ca1400, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x112ca1540, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x112ca1680, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x112ca17c0, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Button, 0x112ca1900, {{20.0, 70.0}, {44.0, 44.0}}, label: 'Voltar ao mapa'
+                                      StaticText, 0x112ca1a40, {{155.0, 80.0}, {129.7, 24.0}}, label: 'Busca e filtros'
+                                        StaticText, 0x112ca1b80, {{155.0, 80.0}, {129.7, 24.0}}, label: 'Busca e filtros'
+                                      Other, 0x112ca1cc0, {{0.0, 122.0}, {440.0, 800.0}}
+                                        ScrollView, 0x112ca1e00, {{0.0, 122.0}, {440.0, 800.0}}
+                                          Other, 0x112ca1f40, {{0.0, 122.0}, {440.0, 1697.0}}
+                                            Other, 0x112ca2080, {{0.0, 122.0}, {440.0, 1697.0}}
+                                              Other, 0x112ca21c0, {{20.0, 122.0}, {400.0, 183.0}}
+                                                Other, 0x112ca2300, {{41.0, 143.0}, {358.0, 56.0}}
+                                                Other, 0x112ca2440, {{91.0, 148.7}, {291.0, 44.3}}
+                                                  TextField, 0x112ca2580, {{91.0, 148.7}, {291.0, 44.3}}, label: 'Campo de busca de pontos de recarga', placeholderValue: 'Buscar por bairro, estação ou conector'
+                                                Other, 0x112ca26c0, {{58.0, 160.7}, {21.0, 21.0}}
+                                                  Other, 0x112ca2800, {{59.6, 162.2}, {17.8, 17.9}}
+                                                    Other, 0x112ca2940, {{59.6, 162.2}, {16.1, 16.1}}
+                                                    Other, 0x112ca2a80, {{71.5, 174.2}, {5.9, 5.9}}
+                                                StaticText, 0x112ca2bc0, {{41.0, 215.0}, {358.0, 17.0}}, label: 'Sugestões rápidas'
+                                                  StaticText, 0x112ca2d00, {{41.0, 215.0}, {358.0, 17.0}}, label: 'Sugestões rápidas'
+                                                Other, 0x112ca2e40, {{41.0, 244.0}, {358.0, 40.0}}
+                                                  ScrollView, 0x112ca2f80, {{41.0, 244.0}, {358.0, 40.0}}
+                                                    Other, 0x112ca30c0, {{41.0, 244.0}, {677.3, 40.0}}
+                                                      Other, 0x112ca3200, {{41.0, 244.0}, {677.3, 40.0}}
+                                                        Button, 0x112ca3340, {{41.0, 244.0}, {87.7, 40.0}}, label: 'Buscar por Paulista'
+                                                        Button, 0x112ca3480, {{140.7, 244.0}, {116.7, 40.0}}, label: 'Buscar por Vila Mariana'
+                                                        Button, 0x112ca35c0, {{269.3, 244.0}, {117.7, 40.0}}, label: 'Buscar por Higienópolis'
+                                                        Button, 0x112ca3700, {{399.0, 244.0}, {84.0, 40.0}}, label: 'Buscar por Jardins'
+                                                        Button, 0x112ca3840, {{495.0, 244.0}, {101.7, 40.0}}, label: 'Buscar por Liberdade'
+                                                        Button, 0x112ca3980, {{608.7, 244.0}, {93.7, 40.0}}, label: 'Buscar por Cambuci'
+                                                    Other, 0x112ca3ac0, {{366.0, 244.0}, {30.0, 40.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                                                      Other, 0x112ca3c00, {{393.0, 245.0}, {3.0, 36.0}}
+                                                    Other, 0x112ca3d40, {{366.0, 244.0}, {30.0, 40.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                                                      Other, 0x112ca3e80, {{393.0, 245.0}, {3.0, 36.0}}
+                                              Other, 0x112be5a40, {{20.0, 321.0}, {400.0, 206.0}}
+                                                Other, 0x112be4f00, {{41.0, 342.0}, {32.0, 32.0}}
+                                                Other, 0x112be5040, {{48.0, 349.0}, {18.0, 18.0}}
+                                                  Other, 0x112be5180, {{51.6, 349.6}, {10.8, 16.8}}
+                                                    Other, 0x112be5680, {{51.6, 354.1}, {10.8, 8.5}}
+                                                    Other, 0x112be57c0, {{53.9, 349.6}, {1.8, 6.3}}
+                                                    Other, 0x112be52c0, {{58.4, 349.6}, {1.8, 6.3}}
+                                                    Other, 0x112be5400, {{56.1, 360.9}, {1.8, 5.5}}
+                                                StaticText, 0x112be5540, {{85.0, 346.0}, {158.3, 24.0}}, label: 'Tipo de conector'
+                                                  StaticText, 0x112be43c0, {{85.0, 346.0}, {158.3, 24.0}}, label: 'Tipo de conector'
+                                                Button, 0x112be4500, {{41.0, 390.0}, {173.0, 52.0}}, label: 'CCS2'
+                                                Button, 0x112be4780, {{226.0, 390.0}, {173.0, 52.0}}, label: 'Tipo 2'
+                                                Button, 0x112be4dc0, {{41.0, 454.0}, {173.0, 52.0}}, label: 'CHAdeMO'
+                                                Button, 0x112be48c0, {{226.0, 454.0}, {173.0, 52.0}}, label: 'GB/T'
+                                              Other, 0x112be4c80, {{20.0, 543.0}, {400.0, 206.0}}
+                                                Other, 0x112be4a00, {{41.0, 564.0}, {32.0, 32.0}}
+                                                Other, 0x112be4b40, {{48.0, 571.0}, {18.0, 18.0}}
+                                                  Other, 0x112be4640, {{49.3, 571.6}, {15.3, 16.8}}
+                                                    Other, 0x112be4280, {{49.3, 571.6}, {15.3, 16.8}}
+                                                StaticText, 0x112be4000, {{85.0, 568.0}, {155.7, 24.0}}, label: 'Potência mínima'
+                                                  StaticText, 0x112be4140, {{85.0, 568.0}, {155.7, 24.0}}, label: 'Potência mínima'
+                                                Button, 0x112a03ac0, {{41.0, 612.0}, {111.3, 52.0}}, label: '22 kW'
+                                                Button, 0x112a01400, {{164.3, 612.0}, {111.3, 52.0}}, label: '50 kW'
+                                                Button, 0x112a00000, {{287.7, 612.0}, {111.3, 52.0}}, label: '100 kW'
+                                                Button, 0x112a00140, {{41.0, 676.0}, {173.0, 52.0}}, label: '150 kW'
+                                                Button, 0x112a00280, {{226.0, 676.0}, {173.0, 52.0}}, label: '250 kW'
+                                              Other, 0x112a003c0, {{20.0, 765.0}, {400.0, 270.0}}
+                                                Other, 0x112a00500, {{41.0, 786.0}, {32.0, 32.0}}
+                                                Other, 0x112a00640, {{48.0, 793.0}, {18.0, 18.0}}
+                                                  Other, 0x112a008c0, {{48.6, 793.6}, {16.8, 16.8}}
+                                                    Other, 0x112a00a00, {{48.6, 793.6}, {16.8, 16.8}}
+                                                    Other, 0x112a00b40, {{56.1, 796.6}, {4.8, 6.3}}
+                                                StaticText, 0x112a00c80, {{85.0, 790.0}, {145.7, 24.0}}, label: 'Disponibilidade'
+                                                  StaticText, 0x112a00dc0, {{85.0, 790.0}, {145.7, 24.0}}, label: 'Disponibilidade'
+                                                Button, 0x112a00f00, {{41.0, 834.0}, {358.0, 52.0}}, label: 'Aberto agora'
+                                                Button, 0x112a01040, {{41.0, 898.0}, {358.0, 52.0}}, label: 'Carregadores livres'
+                                                Button, 0x112a03c00, {{41.0, 962.0}, {358.0, 52.0}}, label: 'Aberto 24h'
+                                              Other, 0x112a03980, {{20.0, 1051.0}, {400.0, 270.0}}
+                                                Other, 0x112a03d40, {{41.0, 1072.0}, {32.0, 32.0}}
+                                                Other, 0x112a03480, {{48.0, 1079.0}, {18.0, 18.0}}
+                                                  Other, 0x112a03e80, {{49.4, 1079.6}, {16.1, 16.1}}
+                                                    Other, 0x112a03840, {{49.3, 1084.1}, {16.0, 11.5}}
+                                                    Other, 0x112a03700, {{51.6, 1079.6}, {1.8, 3.3}}
+                                                    Other, 0x112a035c0, {{54.6, 1079.6}, {1.8, 3.3}}
+                                                    Other, 0x112a03340, {{57.6, 1079.6}, {1.8, 3.3}}
+                                                StaticText, 0x112a012c0, {{85.0, 1076.0}, {131.0, 24.0}}, label: 'Comodidades'
+                                                  StaticText, 0x112a01180, {{85.0, 1076.0}, {131.0, 24.0}}, label: 'Comodidades'
+                                                Button, 0x112a00780, {{41.0, 1120.0}, {173.0, 52.0}}, label: 'Restaurante'
+                                                Button, 0x106bc21c0, {{226.0, 1120.0}, {173.0, 52.0}}, label: 'Café'
+                                                Button, 0x106bc26c0, {{41.0, 1184.0}, {173.0, 52.0}}, label: 'Banheiro'
+                                                Button, 0x106bc2940, {{226.0, 1184.0}, {173.0, 52.0}}, label: 'Estacionamento'
+                                                Button, 0x106bc1f40, {{41.0, 1248.0}, {173.0, 52.0}}, label: 'Área coberta'
+                                                Button, 0x106bc1e00, {{226.0, 1248.0}, {173.0, 52.0}}, label: 'Wi-Fi'
+                                              Other, 0x106bc1900, {{20.0, 1337.0}, {400.0, 142.0}}
+                                                Other, 0x106bc2a80, {{41.0, 1358.0}, {32.0, 32.0}}
+                                                Other, 0x106bc2080, {{48.0, 1365.0}, {18.0, 18.0}}
+                                                  Other, 0x106bc2300, {{48.6, 1365.6}, {16.8, 16.1}}
+                                                    Other, 0x106bc1b80, {{48.6, 1365.6}, {16.8, 16.1}}
+                                                StaticText, 0x106bc2800, {{85.0, 1362.0}, {163.3, 24.0}}, label: 'Avaliação mínima'
+                                                  StaticText, 0x106bc1cc0, {{85.0, 1362.0}, {163.3, 24.0}}, label: 'Avaliação mínima'
+                                                Button, 0x106bc17c0, {{41.0, 1406.0}, {173.0, 52.0}}, label: '4,0+'
+                                                Button, 0x106a37840, {{226.0, 1406.0}, {173.0, 52.0}}, label: '4,5+'
+                                              Other, 0x106a348c0, {{20.0, 1495.0}, {400.0, 196.0}}
+                                                Other, 0x10a24a300, {{41.0, 1516.0}, {32.0, 32.0}}
+                                                Other, 0x10a24abc0, {{48.0, 1523.0}, {18.0, 18.0}}
+                                                  Other, 0x10a248f00, {{50.1, 1523.6}, {13.8, 16.8}}
+                                                    Other, 0x10a24a800, {{50.1, 1523.6}, {13.8, 16.8}}
+                                                    Other, 0x10a24a440, {{53.9, 1527.3}, {6.3, 6.3}}
+                                                StaticText, 0x10a24a580, {{85.0, 1520.0}, {130.7, 24.0}}, label: 'Raio de busca'
+                                                  StaticText, 0x10a2492c0, {{85.0, 1520.0}, {130.7, 24.0}}, label: 'Raio de busca'
+                                                StaticText, 0x10a249b80, {{41.0, 1564.0}, {358.0, 42.0}}, label: 'Em linha reta desde Paulista, origem demonstrativa. Sem cálculo de percurso.'
+                                                  StaticText, 0x10a249a40, {{41.0, 1564.0}, {358.0, 42.0}}, label: 'Em linha reta desde Paulista, origem demonstrativa. Sem cálculo de percurso.'
+                                                Button, 0x10a249180, {{41.0, 1618.0}, {111.3, 52.0}}, label: '500 m'
+                                                Button, 0x10a24ad00, {{164.3, 1618.0}, {111.3, 52.0}}, label: '1 km'
+                                                Button, 0x10a24aa80, {{287.7, 1618.0}, {111.3, 52.0}}, label: '5 km'
+                                          Other, 0x1129fc000, {{28.0, 889.0}, {384.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                            Other, 0x1129fc140, {{36.9, 916.0}, {366.0, 3.0}}
+                                          Other, 0x1129fc280, {{28.0, 889.0}, {384.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                            Other, 0x1129fc3c0, {{36.9, 916.0}, {366.0, 3.0}}
+                                      Other, 0x1129fc500, {{0.0, 811.0}, {440.0, 111.0}}
+                                        Button, 0x1129fc640, {{20.0, 825.0}, {125.0, 54.0}}, label: 'Limpar busca e filtros'
+                                        Button, 0x1129fc780, {{161.0, 824.0}, {259.0, 56.0}}, label: 'Ver pontos encontrados no mapa'
+                          Toolbar, 0x1129fc8c0, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x1129fca00, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1129fcb40, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1129fcc80, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1129fcdc0, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x112ca0280, pid: 55342, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x1129fcf00, pid: 55342, label: 'Expo Go'
+  }
+
+    t =    88.62s Tear Down
+Test Case '-[FluiValidacao.FluiValidacao testPaulistaFiltrosEFichaAtual]' failed (89.278 seconds).
+Test Suite 'FluiValidacao' failed at 2026-10-16 22:29:22.076.
+	 Executed 1 test, with 1 failure (0 unexpected) in 89.278 (89.286) seconds
+Test Suite 'FluiValidacao.xctest' failed at 2026-10-16 22:29:22.083.
+	 Executed 1 test, with 1 failure (0 unexpected) in 89.278 (89.294) seconds
+Test Suite 'All tests' failed at 2026-10-16 22:29:22.084.
+	 Executed 1 test, with 1 failure (0 unexpected) in 89.278 (89.297) seconds
+2026-10-16 22:29:22.206 xcodebuild[55259:4581928] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 22:29:22.213 xcodebuild[55259:4581928] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 22:29:22.226 xcodebuild[55259:4581928] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 22:29:22.707 xcodebuild[55259:4581928] [MT] IDETestOperationsObserverDebug: 103.457 elapsed -- Testing started completed.
+2026-10-16 22:29:22.707 xcodebuild[55259:4581928] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-16 22:29:22.707 xcodebuild[55259:4581928] [MT] IDETestOperationsObserverDebug: 103.457 sec, +103.457 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/flui-alfa-dirigido.xcresult
+
+Failing tests:
+	FluiValidacao.testPaulistaFiltrosEFichaAtual()
+
+** TEST EXECUTE FAILED **
+
+Testing started

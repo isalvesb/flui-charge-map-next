@@ -1,0 +1,5 @@
+
+> flui-charge-map@1.0.0 typecheck
+> tsc --noEmit
+
+tests/stationPresentation.test.ts(10,3): error TS2305: Module '"../src/features/stations/stationPresentation"' has no exported member 'getStationRouteUrl'.

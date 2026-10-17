@@ -36,6 +36,10 @@ test("gera URLs seguras para os provedores suportados", () => {
 
   assert.match(getStationRouteUrl(station, "google"), /destination=-23\.55,-46\.63/);
   assert.match(getStationRouteUrl(station, "waze"), /ll=-23\.55,-46\.63/);
+  const origin = { latitude: -23.5616, longitude: -46.6554 };
+  assert.match(getStationRouteUrl(station, "google", origin), /origin=-23\.5616,-46\.6554&destination=-23\.55,-46\.63/);
+  assert.doesNotMatch(getStationRouteUrl(station, "google"), /&origin=/);
+  assert.equal(getStationRouteUrl(station, "waze", origin), getStationRouteUrl(station, "waze"));
 });
 
 test("avisa sobre recarga não confirmada antes de oferecer a rota", () => {

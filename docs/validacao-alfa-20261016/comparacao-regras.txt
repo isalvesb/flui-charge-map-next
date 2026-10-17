@@ -1,0 +1,12 @@
+Comparação somente leitura: git diff d14b85b 45c65fa --
+  src/context/PreferencesContext.tsx
+  src/storage/fluiStorage.ts
+  src/utils/demonstracao.ts
+  src/utils/stationHours.ts
+  src/utils/stationAvailability.ts
+  src/features/search/SearchFiltersScreen.tsx
+  src/hooks/useCurrentTime.ts
+Resultado: diff vazio, nenhuma mudança nesses arquivos.
+Catálogo: somente dois comentários novos identificando os dados demonstrativos.
+FluIA: recebeu controle experimental, habilitado por padrão; não se presume identidade integral da interface.
+Ficha e fluxo de rotas: alterados na main posterior; regressão dirigida atual registrada separadamente.

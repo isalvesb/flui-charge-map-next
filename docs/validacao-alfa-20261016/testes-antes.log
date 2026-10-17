@@ -1,0 +1,36 @@
+✔ formata os dados apresentados pela ficha da estação (1.050625ms)
+✖ gera URLs seguras para os provedores suportados (0.14425ms)
+✔ avisa sobre recarga não confirmada antes de oferecer a rota (42.978708ms)
+✔ aviso da rota acompanha o limite de fechamento e não promete dados reais (0.623625ms)
+✔ resume status, recomendação e espera sem depender da tela (0.420583ms)
+✔ não promete parada rápida quando só o conector lento está utilizável (0.17375ms)
+✔ separa autonomia e recarga na ficha aberta com recarga demonstrativa (1.529708ms)
+✔ separa autonomia e recarga na ficha fechada (0.688208ms)
+✔ separa autonomia e recarga na ficha em manutenção (0.127708ms)
+✔ separa autonomia e recarga na ficha indisponível (0.158292ms)
+✔ separa autonomia e recarga na ficha com horário desconhecido (0.19525ms)
+✔ separa autonomia e recarga na ficha ocupada (0.313542ms)
+✔ separa autonomia e recarga na ficha aberta sem conector utilizável (0.383792ms)
+✔ preserva alertas de autonomia limitada e insuficiente mesmo sem recarga (0.155875ms)
+✔ a mesma ficha deixa de anunciar carregadores livres exatamente ao fechar (0.419083ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 14
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1023.368708
+
+✖ failing tests:
+
+test at tests/stationPresentation.test.ts:2:1790
+✖ gera URLs seguras para os provedores suportados (0.14425ms)
+  TypeError: (0 , import_stationPresentation.getStationRouteUrl) is not a function
+      at TestContext.<anonymous> (/Users/guicunha/.codex/.chatgpt-projects/g-p-69f512a9480481918bb9b34c4162ae65/flui-charge-map-next-alfa/tests/stationPresentation.test.ts:37:16)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1103:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:785:18)
+      at Test.postRun (node:internal/test_runner/test:1232:19)
+      at Test.run (node:internal/test_runner/test:1160:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)

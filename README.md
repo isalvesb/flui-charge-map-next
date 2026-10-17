@@ -36,6 +36,8 @@ Projeto desenvolvido para o **Enterprise Challenge — Charge Map Cup**, parceri
 ## 📋 Planejamento NEXT 2026
 
 - [Lista de Tarefas (LDT v2.0)](docs/LDT.md) · referência de planejamento; propostas da Gama sujeitas à aprovação da equipe.
+- [Convenções de colaboração](docs/colaboracao.md) · proposta para revisão da responsável pela Alfa 1.1.
+- [Situação verificada das pendências da Alfa](docs/pendencias-alfa.md).
 
 ---
 

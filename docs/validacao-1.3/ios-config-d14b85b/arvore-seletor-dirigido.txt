@@ -1,0 +1,118 @@
+Application, 0x10a9ae300, pid: 42784, label: 'Expo Go' <App element pid: 42784>
+  Window (Main), 0x10a9ae440, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 42784, elementOrHash.elementID: 4494884864.4>
+    Other, 0x10a9ae580, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 42784, elementOrHash.elementID: 4541313024.5>
+      Other, 0x10a9ae6c0, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 42784, elementOrHash.elementID: 4538808064.6>
+        Other, 0x10a9ae800, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 42784, elementOrHash.elementID: 4496052160.7>
+          Other, 0x10a9ae940, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 42784, elementOrHash.elementID: 4765717760.128>
+            Other, 0x10a9aea80, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 42784, elementOrHash.elementID: 4767163776.129>
+              Other, 0x10a9aebc0, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 42784, elementOrHash.elementID: 4765720896.131>
+                Other, 0x10a9aed00, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 42784, elementOrHash.elementID: 4766646272.132>
+                  Other, 0x10a9aee40, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 42784, elementOrHash.elementID: 4766652544.133>
+                    Other, 0x10a9aef80, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 42784, elementOrHash.elementID: 4766653440.135>
+                      Other, 0x10a9af0c0, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 42784, elementOrHash.elementID: 4781251072.137>
+                        Other, 0x10a9af200, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 42784, elementOrHash.elementID: 4765725824.139>
+                          Other, 0x10a9af340, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 42784, elementOrHash.elementID: 4496180992.142>
+                            Other, 0x10a9af480, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 42784, elementOrHash.elementID: 5149884416.353>
+                              Other, 0x10a9af5c0, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 42784, elementOrHash.elementID: 5038366592.231>
+                                Other, 0x10a9af700, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 42784, elementOrHash.elementID: 5038367488.232>
+                                  Other, 0x10a9af840, {{0.0, 62.0}, {440.0, 860.0}} <AX element pid: 42784, elementOrHash.elementID: 5039275008.233>
+                                    Other, 0x10a9af980, {{0.0, 62.0}, {440.0, 162.0}} <AX element pid: 42784, elementOrHash.elementID: 5039271168.234>
+                                      Other, 0x10a9afac0, {{20.0, 76.0}, {76.0, 36.0}} <AX element pid: 42784, elementOrHash.elementID: 5160225280.355>
+                                        Other, 0x10a9afc00, {{20.0, 76.4}, {76.0, 35.2}} <AX element pid: 42784, elementOrHash.elementID: 5160473088.365>
+                                          Other, 0x10a9afd40, {{20.0, 76.4}, {76.0, 35.2}} <AX element pid: 42784, elementOrHash.elementID: 5148100096.370>
+                                          Other, 0x10a9afe80, {{89.2, 82.8}, {6.7, 6.7}} <AX element pid: 42784, elementOrHash.elementID: 5148098560.371>
+                                      Button, 0x10a9ae1c0, {{191.7, 71.0}, {180.3, 46.0}}, label: 'Flui iOS NEXT. Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 135 quilômetros estimados' <AX element pid: 42784, elementOrHash.elementID: 5160503552.356>
+                                      Button, 0x1069cae40, {{374.0, 71.0}, {46.0, 46.0}}, label: 'Abrir perfil' <AX element pid: 42784, elementOrHash.elementID: 5160504320.357>
+                                      Other, 0x10aa55900, {{20.0, 132.0}, {400.0, 58.0}} <AX element pid: 42784, elementOrHash.elementID: 5160505088.358>
+                                        Other, 0x10aa55a40, {{39.0, 150.7}, {21.0, 21.0}} <AX element pid: 42784, elementOrHash.elementID: 5160222720.366>
+                                          Other, 0x10aa55b80, {{40.8, 152.4}, {17.5, 17.5}} <AX element pid: 42784, elementOrHash.elementID: 5160476160.372>
+                                            Other, 0x10aa55cc0, {{40.8, 152.4}, {15.8, 15.8}} <AX element pid: 42784, elementOrHash.elementID: 5148489216.379>
+                                            Other, 0x10aa55e00, {{52.7, 164.4}, {5.5, 5.5}} <AX element pid: 42784, elementOrHash.elementID: 5148061696.380>
+                                        Other, 0x10aa55f40, {{73.0, 150.7}, {277.0, 20.3}} <AX element pid: 42784, elementOrHash.elementID: 5038364800.254>
+                                          TextField, 0x10aa56080, {{73.0, 150.7}, {277.0, 20.3}}, label: 'Buscar no mapa', placeholderValue: 'Buscar endereço, bairro ou ponto' <AX element pid: 42784, elementOrHash.elementID: 5039806720.300>
+                                        Other, 0x10aa561c0, {{358.0, 146.0}, {1.0, 30.0}} <AX element pid: 42784, elementOrHash.elementID: 5160514304.367>
+                                        Button, 0x10aa56300, {{367.0, 140.0}, {42.0, 42.0}}, label: 'Abrir busca e filtros' <AX element pid: 42784, elementOrHash.elementID: 5160515072.368>
+                                      Button, 0x10aa56440, {{20.0, 194.0}, {400.0, 16.0}}, label: 'Mostrar atalhos de filtro' <AX element pid: 42784, elementOrHash.elementID: 5160505856.359>
+                                    Other, 0x10aa56580, {{0.0, 62.0}, {440.0, 860.0}} <AX element pid: 42784, elementOrHash.elementID: 5160594688.394>
+                                      Button, 0x10aa566c0, {{0.0, 62.0}, {440.0, 860.0}}, label: 'Fechar seletor de bateria' <AX element pid: 42784, elementOrHash.elementID: 5160598528.395>
+                                      Other, 0x10aa56800, {{0.0, 641.3}, {440.0, 280.7}} <AX element pid: 42784, elementOrHash.elementID: 5160596224.396>
+                                        Other, 0x10aa56940, {{22.0, 662.3}, {52.0, 52.0}} <AX element pid: 42784, elementOrHash.elementID: 5160596992.397>
+                                        StaticText, 0x10aa56a80, {{86.0, 666.0}, {280.0, 24.0}}, label: 'Bateria para estimativa' <AX element pid: 42784, elementOrHash.elementID: 5160366336.398>
+                                          StaticText, 0x10aa56bc0, {{86.0, 666.0}, {280.0, 24.0}}, label: 'Bateria para estimativa' <AX element pid: 42784, elementOrHash.elementID: 5161177072.408>
+                                        Other, 0x10aa56d00, {{35.0, 675.3}, {26.0, 26.0}} <AX element pid: 42784, elementOrHash.elementID: 5160235520.399>
+                                          Other, 0x10aa56e40, {{35.9, 680.5}, {24.3, 15.6}} <AX element pid: 42784, elementOrHash.elementID: 5160620544.409>
+                                            Other, 0x10aa56f80, {{35.9, 680.5}, {19.9, 15.6}} <AX element pid: 42784, elementOrHash.elementID: 5160625152.414>
+                                            Other, 0x10aa570c0, {{40.2, 684.9}, {2.6, 6.9}} <AX element pid: 42784, elementOrHash.elementID: 5160623616.415>
+                                            Other, 0x10aa57200, {{44.5, 684.9}, {2.6, 6.9}} <AX element pid: 42784, elementOrHash.elementID: 5160619008.416>
+                                            Other, 0x10aa57340, {{57.5, 684.9}, {2.6, 6.9}} <AX element pid: 42784, elementOrHash.elementID: 5160622080.417>
+                                        Button, 0x10aa57480, {{378.0, 668.3}, {40.0, 40.0}}, label: 'Fechar sem definir a carga' <AX element pid: 42784, elementOrHash.elementID: 5148474368.400>
+                                        StaticText, 0x10aa575c0, {{86.0, 693.0}, {280.0, 18.0}}, label: '≈135 km estimados · sem telemetria' <AX element pid: 42784, elementOrHash.elementID: 5160365440.401>
+                                          StaticText, 0x10aa57700, {{86.0, 693.0}, {280.0, 18.0}}, label: '≈135 km estimados · sem telemetria' <AX element pid: 42784, elementOrHash.elementID: 5161177152.410>
+                                        Button, 0x10aa57840, {{88.0, 735.3}, {64.0, 56.0}}, label: 'Diminuir bateria em 5 por cento' <AX element pid: 42784, elementOrHash.elementID: 5218156544.402>
+                                        StaticText, 0x10aa57980, {{179.7, 734.3}, {80.3, 40.0}}, label: '45%' <AX element pid: 42784, elementOrHash.elementID: 5160367232.403>
+                                          StaticText, 0x10aa57ac0, {{179.7, 734.3}, {80.3, 40.0}}, label: '45%' <AX element pid: 42784, elementOrHash.elementID: 5161177232.411>
+                                        Button, 0x10aa57c00, {{288.0, 735.3}, {64.0, 56.0}}, label: 'Aumentar bateria em 5 por cento' <AX element pid: 42784, elementOrHash.elementID: 5218158848.404>
+                                        StaticText, 0x10aa57d40, {{192.0, 776.3}, {55.7, 15.7}}, label: '≈135 km' <AX element pid: 42784, elementOrHash.elementID: 5160368128.405>
+                                          StaticText, 0x10aa57e80, {{192.0, 776.3}, {55.7, 15.7}}, label: '≈135 km' <AX element pid: 42784, elementOrHash.elementID: 5161177312.412>
+                                        StaticText, 0x10aa54000, {{22.0, 806.0}, {396.0, 18.0}}, label: 'Ajuste manualmente apenas com o veículo parado.' <AX element pid: 42784, elementOrHash.elementID: 5160369024.406>
+                                          StaticText, 0x10aa54140, {{22.0, 806.0}, {396.0, 18.0}}, label: 'Ajuste manualmente apenas com o veículo parado.' <AX element pid: 42784, elementOrHash.elementID: 5161177392.413>
+                                        Button, 0x10aa54280, {{22.0, 824.0}, {396.0, 62.0}}, label: 'Definir carga da bateria' <AX element pid: 42784, elementOrHash.elementID: 5218160384.407>
+                                    Other, 0x10aa543c0, {{0.0, 224.0}, {440.0, 698.0}} <AX element pid: 42784, elementOrHash.elementID: 5149704192.354>
+                                      Other, 0x10aa54500, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos' <AX element pid: 42784, elementOrHash.elementID: 5148357760.360>
+                                        Other, 0x10aa54640, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos' <AX element pid: 42784, elementOrHash.elementID: 5160471552.369>
+                                          Other, 0x10aa54780, {{0.0, 224.0}, {72.0, 72.0}} <AX element pid: 42784, elementOrHash.elementID: 5024034048.373>
+                                          Other, 0x10aa548c0, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos' <AX element pid: 42784, elementOrHash.elementID: 4540887040.374>
+                                            Button, 0x10aa54a00, {{184.0, 390.3}, {72.0, 72.0}}, identifier: 'AIRGMSMarker_0x12c77f980', label: 'Origem demonstrativa: Vila Mariana' <AX element pid: 42784, elementOrHash.elementID: 5041027456.381>
+                                            Button, 0x10aa54b40, {{185.3, 366.0}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x12c77ebc0', label: 'Flui Vila Mariana Lins' <AX element pid: 42784, elementOrHash.elementID: 5041023936.382>
+                                            Button, 0x10aa54c80, {{25.0, 345.3}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x12c77e300', label: 'EcoCarga Parque Aclimação' <AX element pid: 42784, elementOrHash.elementID: 5041021696.383>
+                                            Button, 0x10aa54dc0, {{367.7, 187.7}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x12c77fc00', label: 'Mercado Charge Cambuci' <AX element pid: 42784, elementOrHash.elementID: 5041028096.384>
+                                            Other, 0x10aa54f00, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos' <AX element pid: 42784, elementOrHash.elementID: 5149358144.385>
+                                          Other, 0x10aa55040, {{0.0, 224.0}, {440.0, 698.0}} <AX element pid: 42784, elementOrHash.elementID: 5037518656.375>
+                                            Other, 0x10aa55180, {{0.0, 224.0}, {440.0, 698.0}} <AX element pid: 42784, elementOrHash.elementID: 4756054528.386>
+                                              Button, 0x10aa552c0, {{5.0, 895.0}, {60.0, 22.0}}, label: 'Google Maps' <AX element pid: 42784, elementOrHash.elementID: 5160502016.390>
+                                          Other, 0x10aa55400, {{1912.0, 2136.0}, {74.0, 74.0}} <AX element pid: 42784, elementOrHash.elementID: 4756057600.376>
+                                            Other, 0x10aa55540, {{1912.0, 2136.0}, {72.0, 72.0}} <AX element pid: 42784, elementOrHash.elementID: 5037520448.387>
+                                              Other, 0x10aa58000, {{1912.0, 2136.0}, {72.0, 72.0}} <AX element pid: 42784, elementOrHash.elementID: 5097012096.391>
+                                                Other, 0x10aa58140, {{1912.0, 2136.0}, {72.0, 72.0}} <AX element pid: 42784, elementOrHash.elementID: 5148471296.241>
+                                                  Other, 0x10aa58280, {{1919.4, 2143.4}, {57.2, 57.2}} <AX element pid: 42784, elementOrHash.elementID: 5148470528.240>
+                                                  Other, 0x10aa583c0, {{1936.0, 2160.0}, {24.0, 24.0}} <AX element pid: 42784, elementOrHash.elementID: 5039272704.244>
+                                      Other, 0x10aa58500, {{0.0, 224.0}, {440.0, 698.0}} <AX element pid: 42784, elementOrHash.elementID: 5149704960.361>
+                                      Other, 0x10aa58640, {{372.0, 242.0}, {52.0, 166.0}} <AX element pid: 42784, elementOrHash.elementID: 5149708032.362>
+                                        Other, 0x10aa58780, {{372.0, 242.0}, {52.0, 104.0}} <AX element pid: 42784, elementOrHash.elementID: 5050956032.258>
+                                          Button, 0x10aa588c0, {{372.0, 243.0}, {52.0, 51.0}}, label: 'Aumentar zoom do mapa' <AX element pid: 42784, elementOrHash.elementID: 5050946048.335>
+                                          Button, 0x10aa58a00, {{372.0, 295.0}, {52.0, 51.0}}, label: 'Diminuir zoom do mapa' <AX element pid: 42784, elementOrHash.elementID: 5050949888.341>
+                                          Other, 0x10aa58b40, {{384.0, 294.0}, {28.0, 1.0}} <AX element pid: 42784, elementOrHash.elementID: 5050950656.342>
+                                        Button, 0x10aa58c80, {{372.0, 356.0}, {52.0, 52.0}}, label: 'Centralizar origem demonstrativa: Vila Mariana' <AX element pid: 42784, elementOrHash.elementID: 5050944512.253>
+                                      Other, 0x10aa58dc0, {{372.0, 439.3}, {52.0, 52.0}} <AX element pid: 42784, elementOrHash.elementID: 5149707264.363>
+                                        Other, 0x10aa58f00, {{372.0, 439.3}, {52.0, 52.0}} <AX element pid: 42784, elementOrHash.elementID: 5050946816.337>
+                                          Button, 0x10aa59040, {{372.0, 439.3}, {52.0, 52.0}}, label: 'Abrir assistente Flui IA' <AX element pid: 42784, elementOrHash.elementID: 5149717248.377>
+                                      Other, 0x10aa59180, {{16.0, 495.3}, {408.0, 426.7}} <AX element pid: 42784, elementOrHash.elementID: 5149705728.364>
+                                        Other, 0x10aa592c0, {{16.0, 495.3}, {408.0, 426.7}} <AX element pid: 42784, elementOrHash.elementID: 5050943744.252>
+                                          Button, 0x10aa59400, {{35.0, 514.3}, {370.0, 12.0}}, label: 'Minimizar opções demonstrativas para ver o mapa inteiro' <AX element pid: 42784, elementOrHash.elementID: 5050942976.251>
+                                          StaticText, 0x10aa59540, {{35.0, 526.3}, {370.0, 27.7}}, label: 'Opções demonstrativas' <AX element pid: 42784, elementOrHash.elementID: 5038369280.235>
+                                            StaticText, 0x10aa59680, {{35.0, 526.3}, {370.0, 27.7}}, label: 'Opções demonstrativas' <AX element pid: 42784, elementOrHash.elementID: 5161175952.388>
+                                          StaticText, 0x10aa597c0, {{35.0, 562.0}, {370.0, 38.0}}, label: 'Origem: Vila Mariana · distâncias em linha reta, sem cálculo de percurso' <AX element pid: 42784, elementOrHash.elementID: 5148355968.378>
+                                            StaticText, 0x10aa59900, {{35.0, 562.0}, {370.0, 38.0}}, label: 'Origem: Vila Mariana · distâncias em linha reta, sem cálculo de percurso' <AX element pid: 42784, elementOrHash.elementID: 5161176032.389>
+                                          Other, 0x10aa59a40, {{35.0, 610.0}, {370.0, 262.0}} <AX element pid: 42784, elementOrHash.elementID: 5024039936.236>
+                                            ScrollView, 0x10aa59b80, {{35.0, 610.0}, {370.0, 262.0}} <AX element pid: 42784, elementOrHash.elementID: 5039390720.239>
+                                              Other, 0x10aa59cc0, {{35.0, 610.0}, {370.0, 928.0}} <AX element pid: 42784, elementOrHash.elementID: 5097004032.242>
+                                                Other, 0x10aa59e00, {{35.0, 610.0}, {370.0, 928.0}} <AX element pid: 42784, elementOrHash.elementID: 5039271936.248>
+                                                  Button, 0x10aa59f40, {{35.0, 610.0}, {370.0, 154.7}}, label: 'Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈4,9 km em linha reta. Chegada estimada com 43% de bateria.' <AX element pid: 42784, elementOrHash.elementID: 5039270400.247>
+                                                  Button, 0x10aa5a080, {{35.0, 764.7}, {370.0, 154.7}}, label: 'Plug & Café Consolação. Opção demonstrativa. R. da Consolação, 2302. Aberto agora. Nota 4,3. 50 kW. ≈4,1 km em linha reta. Chegada estimada com 44% de bateria.' <AX element pid: 42784, elementOrHash.elementID: 5039273472.246>
+                                                  Button, 0x10aa5a1c0, {{35.0, 919.3}, {370.0, 154.7}}, label: 'Charge City Jardins. Opção demonstrativa. Alameda Santos, 2159. Aberto agora. Nota 4,7. 120 kW. ≈4,3 km em linha reta. Chegada estimada com 44% de bateria.' <AX element pid: 42784, elementOrHash.elementID: 5148467456.299>
+                                                  Button, 0x10aa5a300, {{35.0, 1074.0}, {370.0, 154.7}}, label: 'Flui Vila Mariana Lins. Opção demonstrativa. Av. Lins de Vasconcelos, 1264. Aberto agora. Nota 4,8. 150 kW. ≈0 m em linha reta. Chegada estimada com 45% de bateria.' <AX element pid: 42784, elementOrHash.elementID: 5148466688.298>
+                                                  Button, 0x10aa5a440, {{35.0, 1228.7}, {370.0, 154.7}}, label: 'EcoCarga Parque Aclimação. Opção demonstrativa. R. Muniz de Sousa, 1119. Aberto agora. Nota 4,2. 22 kW. ≈524 m em linha reta. Chegada estimada com 45% de bateria.' <AX element pid: 42784, elementOrHash.elementID: 5148465920.297>
+                                                  Button, 0x10aa5a580, {{35.0, 1383.3}, {370.0, 154.7}}, label: 'Mercado Charge Cambuci. Opção demonstrativa. R. Luís Gama, 650. Aberto agora. Nota 4,1. 50 kW. ≈827 m em linha reta. Chegada estimada com 45% de bateria.' <AX element pid: 42784, elementOrHash.elementID: 5148463616.293>
+                                              Other, 0x10aa5a6c0, {{372.0, 610.0}, {30.0, 262.0}}, label: 'Vertical scroll bar, 4 pages', value: 0% <AX element pid: 42784, elementOrHash.elementID: 4541309952.392>
+                                                Other, 0x10aa5a800, {{399.0, 613.0}, {3.0, 64.7}} <AX element pid: 42784, elementOrHash.elementID: 5097009408.393>
+                                              Other, 0x10aa5a940, {{35.0, 839.0}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0% <AX element pid: 42784, elementOrHash.elementID: 5054124544.243>
+                                                Other, 0x10aa5aa80, {{65.0, 866.0}, {310.0, 3.0}} <AX element pid: 42784, elementOrHash.elementID: 5097012544.245>
+                                              Other, 0x10aa5abc0, {{372.0, 610.0}, {30.0, 262.0}}, label: 'Vertical scroll bar, 4 pages', value: 0% <AX element pid: 42784, elementOrHash.elementID: 4541309952.392>
+                                                Other, 0x10aa5ad00, {{399.0, 613.0}, {3.0, 64.7}} <AX element pid: 42784, elementOrHash.elementID: 5097009408.393>
+                                              Other, 0x10aa5ae40, {{35.0, 839.0}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0% <AX element pid: 42784, elementOrHash.elementID: 5054124544.243>
+                                                Other, 0x10aa5af80, {{65.0, 866.0}, {310.0, 3.0}} <AX element pid: 42784, elementOrHash.elementID: 5097012544.245>
+                        Toolbar, 0x10aa5b0c0, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar' <AX element pid: 42784, elementOrHash.elementID: 4781254144.140>
+                          Other, 0x10aa5b200, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 42784, elementOrHash.elementID: 4781254656.141>
+                  Other, 0x10aa5b340, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 42784, elementOrHash.elementID: 4755060992.134>
+                    Other, 0x10aa5b480, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 42784, elementOrHash.elementID: 4766650752.136>
+                      Other, 0x10aa5b5c0, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 42784, elementOrHash.elementID: 4781164544.138>

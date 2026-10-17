@@ -1,28 +1,8 @@
-import { LocationObject } from "expo-location";
 import { useState } from "react";
 import { Linking } from "react-native";
 import { useLocationContext } from "../context/LocationContext";
-import { RouteProvider } from "../features/stations/stationPresentation";
+import { getStationRouteUrl, type RouteProvider } from "../features/stations/stationPresentation";
 import { ChargingStation } from "../types";
-
-function getStationRouteUrl(
-  station: ChargingStation,
-  provider: RouteProvider,
-  origin?: LocationObject["coords"],
-) {
-  const destination = `${station.latitude},${station.longitude}`;
-  let originString = "";
-
-  if (provider === "waze") {
-    return `https://www.waze.com/ul?ll=${destination}&navigate=yes`;
-  }
-
-  if (origin) {
-    originString = `&origin=${origin?.latitude},${origin?.longitude}`;
-  }
-
-  return `https://www.google.com/maps/dir/?api=1${originString}&destination=${destination}&travelmode=driving`;
-}
 
 type ExternalMapErrorType = null | string;
 

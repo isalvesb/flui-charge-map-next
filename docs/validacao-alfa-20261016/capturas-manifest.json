@@ -1,0 +1,38 @@
+[
+  {
+    "configurationName": "Test Scheme Action",
+    "deviceId": "4A2C862B-D6FC-4E88-8FB5-88164A5C5A2E",
+    "deviceName": "iPhone 18 Pro Max",
+    "exportedFileName": "41447A1E-1318-4405-979F-CD6AD3625C8F.png",
+    "isAssociatedWithFailure": false,
+    "suggestedHumanReadableName": "12-paulista-mapa-filtrado_0_A0776928-7A9E-4FC2-A957-FE47FA1F4605.png",
+    "timestamp": 1792200526.304
+  },
+  {
+    "configurationName": "Test Scheme Action",
+    "deviceId": "4A2C862B-D6FC-4E88-8FB5-88164A5C5A2E",
+    "deviceName": "iPhone 18 Pro Max",
+    "exportedFileName": "ECBD874B-C60E-4679-AE95-7F7F7E9F6486.png",
+    "isAssociatedWithFailure": false,
+    "suggestedHumanReadableName": "11-paulista-raio-500m_0_F2EC1679-0BD8-4BE2-A8BE-D794BA340EC7.png",
+    "timestamp": 1792200523.934
+  },
+  {
+    "configurationName": "Test Scheme Action",
+    "deviceId": "4A2C862B-D6FC-4E88-8FB5-88164A5C5A2E",
+    "deviceName": "iPhone 18 Pro Max",
+    "exportedFileName": "BB067053-121A-472A-A0E9-C08B02FEEE6D.png",
+    "isAssociatedWithFailure": false,
+    "suggestedHumanReadableName": "10-paulista-centralizada_0_A14F0608-1DAA-4877-8DB7-5E84A11DF763.png",
+    "timestamp": 1792200492.419
+  },
+  {
+    "configurationName": "Test Scheme Action",
+    "deviceId": "4A2C862B-D6FC-4E88-8FB5-88164A5C5A2E",
+    "deviceName": "iPhone 18 Pro Max",
+    "exportedFileName": "56B0875D-C86B-4A14-B8D4-09DB1F48F255.png",
+    "isAssociatedWithFailure": false,
+    "suggestedHumanReadableName": "10-paulista-centralizada_0_3F3C19D4-F861-4A44-953F-DA31FBCAB151.png",
+    "timestamp": 1792200491.75
+  }
+]

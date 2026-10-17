@@ -221,3 +221,7 @@ O caso **`testFichaUxAutonomiaERecarga` passou em 92,263 s: 1 teste, 0 falhas; `
 **Limitações:** observação visual somente em tema escuro, Expo Go e simulador, com relógio controlado no contexto Hermes. Manutenção, indisponibilidade, horário desconhecido e os demais casos têm testes de apresentação nesta rodada, sem novas capturas nativas específicas. O agrupamento acessível foi confirmado na árvore; não houve sessão de VoiceOver ou conferência de todas as escalas de fonte. Android, dispositivo físico, distribuição/credenciais publicadas, persistência após reload e abertura de aplicativos de rota continuam fora desta rodada. As evidências históricas mantêm seus limites.
 
 Entrega restrita à branch `alfa/auditoria-tecnica-1.2`, com registro local de testes e evidências; commit com `[skip ci]` para não repetir Actions. PR #1 permanece em rascunho, sem merge; main local e remota preservadas. **A tarefa 1.2 permanece pendente de aprovação humana.**
+
+## Consolidação das pendências — 16/10/2026
+
+As evidências acima permanecem históricas e conservam seus resultados/limites. A persistência de preferências e bateria foi complementada pela [validação iOS da Alfa 1.3](validacao-1.3/ios-final-d14b85b/RESUMO.md). A [matriz atual de pendências](pendencias-alfa.md) registra comparação do código, correções reproduzidas na main posterior e validação dirigida atual. Android continua indisponível neste Mac, sem testes simulados ou declaração de conclusão da Issue #75. Aprovação final da tarefa 1.2 permanece humana.
