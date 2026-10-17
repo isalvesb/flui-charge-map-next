@@ -133,23 +133,24 @@
 
 ---
 
-## 4. Acompanhamento e evidências | 16/10/2026
+## 4. Acompanhamento e evidências | atualização de 16/10/2026
 
 > Registro do progresso conhecido nesta revisão. O [GitHub Projects](https://github.com/users/guicunhasou/projects/2/views/1) e as Issues são as referências para o estado corrente. Trabalho demonstrado, implementação integrada e validação concluída são fatos distintos. Não se atribui `Done` sem evidências e aprovação pertinentes.
 
 | Tarefa | Situação constatada | Pendência |
 | --- | --- | --- |
-| **Alfa 1.1** | Histórico preservado, branches e PRs em uso. A [PR #77](https://github.com/isalvesb/flui-charge-map-next/pull/77) propõe a documentação das convenções e segue aberta. | Revisão das convenções pela responsável; [1.1.1](https://github.com/isalvesb/flui-charge-map-next/issues/12) e [1.1.3](https://github.com/isalvesb/flui-charge-map-next/issues/74) continuam abertas. |
-| **Alfa 1.2** | Correções integradas; evidências web e iOS registradas em [auditoria-1.2.md](auditoria-1.2.md). A PR #77 reúne validações complementares e correções reproduzidas na base posterior, sem aprovação integral. | [1.2.3](https://github.com/isalvesb/flui-charge-map-next/issues/75): regressão complementar na versão atual, validação Android e revisão da equipe. |
-| **Alfa 1.3** | Configurações e estimativas implementadas, com validação web e evidências iOS documentadas em [alfa-1.3.md](alfa-1.3.md) e na PR #77. | [1.3.4](https://github.com/isalvesb/flui-charge-map-next/issues/76): completar validação iOS da versão atual e Android. |
+| **Alfa 1.1** | Histórico preservado, branches e PRs em uso. A [PR #77](https://github.com/isalvesb/flui-charge-map-next/pull/77) foi integrada à `main`, incluindo [convenções de colaboração](colaboracao.md). | Revisão colaborativa e confirmação da conclusão pela equipe; [1.1.1](https://github.com/isalvesb/flui-charge-map-next/issues/12) e [1.1.3](https://github.com/isalvesb/flui-charge-map-next/issues/74) permanecem abertas. |
+| **Alfa 1.2** | Correções anteriores e complementares da [PR #77](https://github.com/isalvesb/flui-charge-map-next/pull/77) integradas; evidências web e iOS reunidas em [auditoria-1.2.md](auditoria-1.2.md) e [pendencias-alfa.md](pendencias-alfa.md), sem validação móvel integral. | [1.2.3](https://github.com/isalvesb/flui-charge-map-next/issues/75): regressão complementar na versão atual, Android não validado e revisão da equipe. |
+| **Alfa 1.3** | Configurações e estimativas implementadas; evidências web e iOS em [alfa-1.3.md](alfa-1.3.md) e [pendencias-alfa.md](pendencias-alfa.md), reunidas na PR #77 já integrada. | [1.3.4](https://github.com/isalvesb/flui-charge-map-next/issues/76): regressão complementar da versão atual e Android não validado. |
 | **Beta 2.1** | [2.1.1](https://github.com/isalvesb/flui-charge-map-next/issues/8) e [2.1.2](https://github.com/isalvesb/flui-charge-map-next/issues/9) integradas à `main` pela [PR #4](https://github.com/isalvesb/flui-charge-map-next/pull/4). | [2.1.3](https://github.com/isalvesb/flui-charge-map-next/issues/10): validação iOS e Android; tarefa principal permanece aberta. |
-| **Beta 2.2** | Motor local de respostas integrado pela [PR #3](https://github.com/isalvesb/flui-charge-map-next/pull/3); [PR #6](https://github.com/isalvesb/flui-charge-map-next/pull/6) apresenta interface conversacional, mas segue aberta. Imagens compartilhadas pela equipe mostram chat com entrada/resposta e interface de recomendações. | [2.2.1](https://github.com/isalvesb/flui-charge-map-next/issues/22) em andamento; verificar recomendações contextualizadas no chat ([2.2.2](https://github.com/isalvesb/flui-charge-map-next/issues/23)) e avaliar voz ([2.2.3](https://github.com/isalvesb/flui-charge-map-next/issues/24)). |
+| **Beta 2.2** | Motor local da [PR #3](https://github.com/isalvesb/flui-charge-map-next/pull/3) e interface conversacional da [PR #6](https://github.com/isalvesb/flui-charge-map-next/pull/6) integrados à `main`; chat e recomendação demonstrativa verificados na web, com Quality e 60 testes aprovados na PR #6. | [2.2.1](https://github.com/isalvesb/flui-charge-map-next/issues/22) e [2.2.2](https://github.com/isalvesb/flui-charge-map-next/issues/23) ainda abertas para conferência da versão integrada; validação nativa específica não registrada. Avaliar voz em [2.2.3](https://github.com/isalvesb/flui-charge-map-next/issues/24). |
+| **Beta 2.6** | A [PR #79](https://github.com/isalvesb/flui-charge-map-next/pull/79) implementa ajustes de responsividade e acessibilidade básica, com Quality aprovado, verificações web em quatro proporções e teste iOS dirigido; continua em rascunho, sem merge. | Reconciliar as mudanças da FluIA após o merge da PR #6 e revalidar a integração; Android, dispositivo físico e outras verificações nativas seguem sem comprovação. [2.6](https://github.com/isalvesb/flui-charge-map-next/issues/34) e subtarefas permanecem abertas. |
 
 **Demonstrações compartilhadas pela equipe, ainda não arquivadas como evidências no repositório:**
 
-- Imagens da Isa exibem a interface da FluIA com opções de necessidades, conversa com campo de entrada e resposta, além de uma recomendação demonstrativa. Elas comprovam estados visuais capturados; não substituem testes de fluxo completo, testes de regressão ou a integração da PR #6.
+- Imagens da Isa exibem opções, conversa e recomendação demonstrativa da FluIA. Essas capturas históricas são complementadas pelas verificações web e testes da [PR #6](https://github.com/isalvesb/flui-charge-map-next/pull/6), agora integrada; não comprovam, por si só, funcionamento nativo ou integração com versões futuras.
 - Vídeo do Camilo demonstra a ação de iniciar rota e a abertura do Google Maps no ambiente apresentado. Isso acrescenta evidência ao fluxo de navegação externa observado, mas **não comprova** o planejamento de viagens com autonomia/paradas da **Beta 2.4**, nem funcionamento equivalente em todas as plataformas.
-- Na PR #77, Android segue impedido pela ausência do ambiente de SDK/emulador disponível; o iOS contém evidências históricas e testes dirigidos atuais com limites documentados. Nenhum desses impedimentos deve ser registrado como validação aprovada.
+- Após a integração da PR #77, Android segue sem validação por ausência de SDK/emulador no ambiente utilizado; o iOS conta com evidências históricas e testes dirigidos com limites documentados. A integração da PR não converte essas pendências em validações aprovadas.
 
 As demais tarefas da Beta e as propostas da Gama mantêm seus escopos originais. Esta revisão não atesta nem descarta trabalho feito fora do repositório; o andamento deve ser confirmado com seus responsáveis antes de alterar os status.
 
@@ -174,7 +175,7 @@ As demais tarefas da Beta e as propostas da Gama mantêm seus escopos originais.
 ### v2.1 | 16/10/2026 (proposta de atualização)
 
 - Incorporação ao planejamento das subtarefas 1.1.3, 1.2.3, 1.3.4 e 2.1.3, já cadastradas nas Issues.
-- Registro de evidências e pendências verificadas da Alfa e das Betas 2.1 e 2.2, sem presumir conclusão a partir de capturas ou PRs abertas.
+- Registro de evidências e pendências da Alfa e das Betas 2.1, 2.2 e 2.6; atualização dos estados das PRs #77, #6 e #79, sem presumir conclusão a partir de capturas ou PRs abertas.
 - Inclusão do vídeo demonstrativo da abertura de rotas como evidência delimitada, sem confundi-la com o planejamento de viagens da Beta 2.4.
 - Manutenção das 19 tarefas principais e dos escopos provisórios da Gama; total atualizado para **49 subtarefas**.
 
