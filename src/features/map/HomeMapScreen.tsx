@@ -742,6 +742,7 @@ export default function HomeMapScreen() {
   const [controleMapaAtivo, setControleMapaAtivo] =
     useState<ControleMapaAtivo>(null);
   const [assistenteFluiAberto, setAssistenteFluiAberto] = useState(false);
+  const [assistenteFluiApresentado, setAssistenteFluiApresentado] = useState(false);
   const [mapaPronto, setMapaPronto] = useState(false);
 
   const mapFeedbackTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
@@ -1746,7 +1747,7 @@ export default function HomeMapScreen() {
             </PressableScale>
           </View>
 
-          {funcionalidadesExperimentais.fluia ? <Animated.View
+          {funcionalidadesExperimentais.fluia && !assistenteFluiApresentado ? <Animated.View
             style={[
               styles.fluiAssistantFloating,
               {
@@ -1772,7 +1773,12 @@ export default function HomeMapScreen() {
                 accessibilityHint="Abre opções de recomendação simulada para encontrar um ponto de recarga."
                 pressedScale={0.95}
                 style={styles.fluiAssistantButton}
-                onPress={() => setAssistenteFluiAberto(true)}
+                onPress={() => {
+                  assistantLabelProgress.stopAnimation();
+                  assistantLabelProgress.setValue(0);
+                  setAssistenteFluiApresentado(true);
+                  setAssistenteFluiAberto(true);
+                }}
               >
                 <FluiAiIcon color={colors.white} size={21} />
                 <Animated.View
@@ -2035,7 +2041,11 @@ export default function HomeMapScreen() {
           now={now}
           batteryPercent={batteryPercent}
           vehicleRangeKm={vehicleRangeKm}
-          onClose={() => setAssistenteFluiAberto(false)}
+          onClose={() => {
+            setAssistenteFluiAberto(false);
+            if (Platform.OS !== "ios") setAssistenteFluiApresentado(false);
+          }}
+          onDismiss={() => setAssistenteFluiApresentado(false)}
           onSelectStation={openStationDetails}
         /> : null}
 

@@ -101,3 +101,7 @@ PR #6 confirmada como integrada na main `1cdb01555b4cba1696800d94ce3b519d06bce48
 **Limites desta atualização:** validação nova exclusivamente web, conforme solicitado; iOS/Android, teclado virtual nativo e sessões VoiceOver/TalkBack não foram repetidos. Orientação portrait e demais limitações anteriores mantidas. Servidor local encerrado após a coleta.
 
 Durante a conferência final, a main avançou para `b89a71b1ab1a0adc80c0b9f0ec0a47dda02b8e92`, alterando somente `docs/LDT.md` e `docs/colaboracao.md`. Esses commits também foram incorporados à branch da PR #79, sem novo conflito. A revisão permanece colaborativa, sem aprovador exclusivo. O código do aplicativo é idêntico ao já validado nesta atualização; tipos/testes, exportação e cenários web não foram repetidos localmente por uma mudança exclusivamente documental. O Quality do commit final permanece acompanhado na PR.
+
+## Validação nativa dirigida da FluIA — 17/10/2026
+
+A conferência iOS da interface combinada e os ajustes pontuais de fechamento, teclado e rolagem estão registrados em [ios-pr79/README.md](validacao-2.6/ios-pr79/README.md), com evidências próprias do código modificado. Essa rodada substitui a limitação anterior de ausência de validação nativa da combinação; os resultados históricos continuam identificados acima. Motor da FluIA e Configurações não foram alterados. PR #79 preservada em rascunho, sem merge.

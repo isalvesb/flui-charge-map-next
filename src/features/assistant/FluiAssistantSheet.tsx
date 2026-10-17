@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   Animated,
   Easing,
+  Keyboard,
   KeyboardAvoidingView,
   Modal,
   Platform,
@@ -49,6 +50,7 @@ type Props = {
   vehicleRangeKm: number;
   now: Date;
   onClose: () => void;
+  onDismiss?: () => void;
   onSelectStation: (stationId: string) => void;
 };
 
@@ -89,6 +91,7 @@ export function FluiAssistantSheet({
   vehicleRangeKm,
   now,
   onClose,
+  onDismiss,
   onSelectStation,
 }: Props) {
   const { theme, fontScale, appearanceMode, demoOrigin, userPreferences } = useAppPreferences();
@@ -159,6 +162,14 @@ export function FluiAssistantSheet({
     };
   }, [isAnalyzing, reduceMotionEnabled, thinkingProgress]);
 
+  const resetConversation = () => {
+    setMessages([]);
+    setDraft("");
+    setIsChatThinking(false);
+    setSelectedIntent(null);
+    setIsAnalyzing(false);
+  };
+
   const closeAssistant = () => {
     if (analysisTimeoutRef.current) {
       clearTimeout(analysisTimeoutRef.current);
@@ -168,11 +179,9 @@ export function FluiAssistantSheet({
       clearTimeout(chatTimeoutRef.current);
       chatTimeoutRef.current = null;
     }
-    setMessages([]);
-    setDraft("");
-    setIsChatThinking(false);
-    setSelectedIntent(null);
-    setIsAnalyzing(false);
+    Keyboard.dismiss();
+    // No iOS, preserve o conteúdo durante a animação nativa de saída.
+    if (Platform.OS !== "ios") resetConversation();
     onClose();
   };
 
@@ -224,6 +233,12 @@ export function FluiAssistantSheet({
     );
   };
 
+  const scrollToLatestMessage = () => {
+    if (messages.length > 0) {
+      chatScrollRef.current?.scrollToEnd({ animated: !reduceMotionEnabled });
+    }
+  };
+
   const chooseStation = (stationId: string) => {
     closeAssistant();
     onSelectStation(stationId);
@@ -238,6 +253,10 @@ export function FluiAssistantSheet({
       animationType={reduceMotionEnabled ? "none" : "slide"}
       statusBarTranslucent
       onRequestClose={closeAssistant}
+      onDismiss={() => {
+        resetConversation();
+        onDismiss?.();
+      }}
     >
       <KeyboardAvoidingView
         style={styles.overlay}
@@ -259,11 +278,6 @@ export function FluiAssistantSheet({
             </View>
             <View style={styles.headerText}>
               <Text style={styles.title}>FluIA</Text>
-              <Text style={styles.subtitle}>
-                {selectedIntent
-                  ? "Recomendação simulada com os dados do protótipo."
-                  : identificacaoDados.fluia.aviso}
-              </Text>
             </View>
             <PressableScale
               accessibilityRole="button"
@@ -275,278 +289,278 @@ export function FluiAssistantSheet({
             </PressableScale>
           </View>
 
-          {isAnalyzing ? (
-            <View
-              style={styles.analyzingCard}
-              accessibilityRole="progressbar"
-              accessibilityLiveRegion="polite"
-            >
-              <Animated.View
-                style={[
-                  styles.analyzingIcon,
-                  !reduceMotionEnabled && {
-                    opacity: thinkingProgress.interpolate({
-                      inputRange: [0, 0.5, 1],
-                      outputRange: [0.72, 1, 0.72],
-                    }),
-                    transform: [
-                      {
-                        scale: thinkingProgress.interpolate({
-                          inputRange: [0, 0.5, 1],
-                          outputRange: [1, 1.12, 1],
-                        }),
-                      },
-                    ],
-                  },
-                ]}
-              >
-                <Sparkles size={28} color={theme.primary} strokeWidth={2.2} />
-              </Animated.View>
-              <Text style={styles.analyzingTitle}>Analisando suas opções</Text>
-              <View style={styles.thinkingDots} accessibilityElementsHidden>
-                {[
-                  [0, 0.12, 0.25, 0.38, 1],
-                  [0, 0.3, 0.43, 0.56, 1],
-                  [0, 0.48, 0.61, 0.74, 1],
-                ].map((inputRange, index) => (
-                  <Animated.View
-                    key={index}
-                    style={[
-                      styles.thinkingDot,
-                      !reduceMotionEnabled && {
-                        opacity: thinkingProgress.interpolate({
-                          inputRange,
-                          outputRange: [0.35, 0.35, 1, 0.35, 0.35],
-                        }),
-                        transform: [
-                          {
-                            translateY: thinkingProgress.interpolate({
-                              inputRange,
-                              outputRange: [1, 1, -3, 1, 1],
-                            }),
-                          },
-                        ],
-                      },
-                    ]}
-                  />
-                ))}
-              </View>
-              <Text style={styles.analyzingText}>
-                Comparando alcance, disponibilidade, potência e conforto.
-              </Text>
-            </View>
-          ) : recommendation ? (
-            <ScrollView
-              style={styles.resultScroll}
-              contentContainerStyle={styles.resultContent}
-              showsVerticalScrollIndicator={false}
-            >
+          <ScrollView
+            ref={chatScrollRef}
+            testID="fluia-conteudo"
+            style={styles.chatMessages}
+            contentContainerStyle={styles.bodyContent}
+            keyboardShouldPersistTaps="handled"
+            onContentSizeChange={scrollToLatestMessage}
+            onLayout={scrollToLatestMessage}
+          >
+            <Text style={styles.subtitle}>
+              {selectedIntent
+                ? "Recomendação simulada com os dados do protótipo."
+                : identificacaoDados.fluia.aviso}
+            </Text>
+            {isAnalyzing ? (
               <View
-                style={styles.recommendationCard}
+                style={styles.analyzingCard}
+                accessibilityRole="progressbar"
                 accessibilityLiveRegion="polite"
               >
-                <View style={styles.bestChoiceBadge}>
-                  <Text style={styles.bestChoiceText}>
-                    Sugestão demonstrativa
-                  </Text>
+                <Animated.View
+                  style={[
+                    styles.analyzingIcon,
+                    !reduceMotionEnabled && {
+                      opacity: thinkingProgress.interpolate({
+                        inputRange: [0, 0.5, 1],
+                        outputRange: [0.72, 1, 0.72],
+                      }),
+                      transform: [
+                        {
+                          scale: thinkingProgress.interpolate({
+                            inputRange: [0, 0.5, 1],
+                            outputRange: [1, 1.12, 1],
+                          }),
+                        },
+                      ],
+                    },
+                  ]}
+                >
+                  <Sparkles size={28} color={theme.primary} strokeWidth={2.2} />
+                </Animated.View>
+                <Text style={styles.analyzingTitle}>Analisando suas opções</Text>
+                <View style={styles.thinkingDots} accessibilityElementsHidden>
+                  {[
+                    [0, 0.12, 0.25, 0.38, 1],
+                    [0, 0.3, 0.43, 0.56, 1],
+                    [0, 0.48, 0.61, 0.74, 1],
+                  ].map((inputRange, index) => (
+                    <Animated.View
+                      key={index}
+                      style={[
+                        styles.thinkingDot,
+                        !reduceMotionEnabled && {
+                          opacity: thinkingProgress.interpolate({
+                            inputRange,
+                            outputRange: [0.35, 0.35, 1, 0.35, 0.35],
+                          }),
+                          transform: [
+                            {
+                              translateY: thinkingProgress.interpolate({
+                                inputRange,
+                                outputRange: [1, 1, -3, 1, 1],
+                              }),
+                            },
+                          ],
+                        },
+                      ]}
+                    />
+                  ))}
                 </View>
-                <Text style={styles.stationName}>
-                  {recommendation.primary.name}
-                </Text>
-                <Text style={styles.stationAddress}>
-                  {recommendation.primary.address}
-                </Text>
-
-                <View style={styles.metricsGrid}>
-                  <Metric
-                    styles={styles}
-                    icon={BatteryMedium}
-                    label={`Chegada ≈${recommendation.arrivalBatteryPercent}%`}
-                    color={theme.primary}
-                  />
-                  <Metric
-                    styles={styles}
-                    icon={Zap}
-                    label={`${recommendation.powerKw} kW`}
-                    color={theme.primary}
-                  />
-                  <Metric
-                    styles={styles}
-                    icon={Plug}
-                    label={`${recommendation.availableChargers} livres`}
-                    color={theme.primary}
-                  />
-                  <Metric
-                    styles={styles}
-                    icon={MapPin}
-                    label={formatAssistantDistance(
-                      recommendation.primary.distanceKm,
-                    )}
-                    color={theme.primary}
-                  />
-                </View>
-
-                <Text style={styles.explanationTitle}>
-                  Por que essa escolha?
-                </Text>
-                <Text style={styles.explanationText}>
-                  {recommendation.explanation}
-                  {"\n"}
-                  {userPreferences.vehicleName} · origem demonstrativa: {demoOrigin.nome}.
-                  {"\n"}
-                  {RECOMMENDATION_DISCLAIMER}
+                <Text style={styles.analyzingText}>
+                  Comparando alcance, disponibilidade, potência e conforto.
                 </Text>
               </View>
-
-              {recommendation.backup ? (
-                <PressableScale
-                  accessibilityRole="button"
-                  accessibilityLabel={`Abrir Plano B, ${recommendation.backup.name}`}
-                  accessibilityHint="Abre a ficha detalhada da estação alternativa."
-                  style={styles.backupCard}
-                  onPress={() => chooseStation(recommendation.backup!.id)}
+            ) : recommendation ? (
+              <View style={[styles.resultScroll, styles.resultContent]}>
+                <View
+                  style={styles.recommendationCard}
+                  accessibilityLiveRegion="polite"
                 >
-                  <View style={styles.backupIcon}>
-                    <MapPin size={22} color={theme.primary} strokeWidth={2.3} />
-                  </View>
-                  <View style={styles.backupText}>
-                    <Text style={styles.backupTitle}>Plano B</Text>
-                    <Text style={styles.backupDescription} numberOfLines={1}>
-                      {recommendation.backup.name} ·{" "}
-                      {formatAssistantDistance(
-                        recommendation.backup.distanceKm,
-                      )}
+                  <View style={styles.bestChoiceBadge}>
+                    <Text style={styles.bestChoiceText}>
+                      Sugestão demonstrativa
                     </Text>
                   </View>
-                  <ChevronRight
-                    size={22}
-                    color={theme.textMuted}
-                    strokeWidth={2.2}
-                  />
-                </PressableScale>
-              ) : null}
+                  <Text style={styles.stationName}>
+                    {recommendation.primary.name}
+                  </Text>
+                  <Text style={styles.stationAddress}>
+                    {recommendation.primary.address}
+                  </Text>
 
-              <PressableScale
-                accessibilityRole="button"
-                accessibilityLabel={`Ver ${recommendation.primary.name} no mapa`}
-                accessibilityHint="Abre a ficha detalhada do ponto recomendado."
-                style={styles.primaryButton}
-                onPress={() => chooseStation(recommendation.primary.id)}
-              >
-                <Text style={styles.primaryButtonText}>Ver ponto no mapa</Text>
-              </PressableScale>
-              <PressableScale
-                accessibilityRole="button"
-                accessibilityLabel="Escolher outra necessidade"
-                style={styles.secondaryButton}
-                onPress={() => setSelectedIntent(null)}
-              >
-                <Text style={styles.secondaryButtonText}>
-                  Escolher outra necessidade
-                </Text>
-              </PressableScale>
-            </ScrollView>
-          ) : selectedIntent ? (
-            <View style={styles.analyzingCard}>
-              <Text style={styles.analyzingTitle}>
-                Nenhuma opção viável confirmada
-              </Text>
-              <Text style={styles.analyzingText}>
-                Os dados disponíveis não confirmam uma opção com alcance,
-                horário, carregador livre e comodidades solicitadas. Revise os
-                filtros e os dados informados. Não há indicação segura neste
-                cenário.
-              </Text>
-            </View>
-          ) : messages.length === 0 ? (
-            <ScrollView
-              style={styles.optionsScroll}
-              contentContainerStyle={styles.optionsContent}
-              showsVerticalScrollIndicator={false}
-            >
-              {options.map(({ id, label, Icon }) => (
-                <PressableScale
-                  key={id}
-                  accessibilityRole="button"
-                  accessibilityLabel={label}
-                  accessibilityHint="Gera uma recomendação simulada com os dados do mapa."
-                  style={styles.optionCard}
-                  onPress={() => chooseIntent(id)}
-                >
-                  <View style={styles.optionIcon}>
-                    <Icon size={22} color={theme.primary} strokeWidth={2.3} />
+                  <View style={styles.metricsGrid}>
+                    <Metric
+                      styles={styles}
+                      icon={BatteryMedium}
+                      label={`Chegada ≈${recommendation.arrivalBatteryPercent}%`}
+                      color={theme.primary}
+                    />
+                    <Metric
+                      styles={styles}
+                      icon={Zap}
+                      label={`${recommendation.powerKw} kW`}
+                      color={theme.primary}
+                    />
+                    <Metric
+                      styles={styles}
+                      icon={Plug}
+                      label={`${recommendation.availableChargers} livres`}
+                      color={theme.primary}
+                    />
+                    <Metric
+                      styles={styles}
+                      icon={MapPin}
+                      label={formatAssistantDistance(
+                        recommendation.primary.distanceKm,
+                      )}
+                      color={theme.primary}
+                    />
                   </View>
-                  <Text style={styles.optionText}>{label}</Text>
-                  <ChevronRight
-                    size={22}
-                    color={theme.textMuted}
-                    strokeWidth={2.2}
-                  />
-                </PressableScale>
-              ))}
-            </ScrollView>
-          ) : null}
-          <View style={styles.chatBox}>
-            <Text style={styles.subtitle}>
-              {userPreferences.vehicleName} · origem demonstrativa: {demoOrigin.nome}.
-            </Text>
-            <ScrollView
-              ref={chatScrollRef}
-              style={styles.chatMessages}
-              showsVerticalScrollIndicator={false}
-              onContentSizeChange={() =>
-                chatScrollRef.current?.scrollToEnd({ animated: !reduceMotionEnabled })
-              }
-            >
-              {messages.map((message) => (
-                <View
-                  key={message.id}
-                  style={
-                    message.from === "user"
-                      ? styles.userBubble
-                      : styles.fluiBubble
-                  }
-                >
-                  <Text style={styles.bubbleText}>{message.text}</Text>
-                  {message.stationId ? (
-                    <PressableScale
-                      accessibilityRole="button"
-                      accessibilityLabel="Ver ponto no mapa"
-                      style={styles.chatButton}
-                      onPress={() => chooseStation(message.stationId!)}
-                    >
-                      <Text style={styles.chatButtonText}>
-                        Ver ponto no mapa
-                      </Text>
-                    </PressableScale>
-                  ) : null}
-                </View>
-              ))}
-              {isChatThinking ? (
-                <Text style={styles.thinkingText}>FluIA está pensando...</Text>
-              ) : null}
-            </ScrollView>
 
-            <View style={styles.inputRow}>
-              <TextInput
-                value={draft}
-                onChangeText={setDraft}
-                onSubmitEditing={sendMessage}
-                placeholder="Pergunte algo à FluIA"
-                placeholderTextColor={theme.textMuted}
-                accessibilityLabel="Mensagem para a FluIA"
-                returnKeyType="send"
-                style={styles.input}
-              />
-              <PressableScale
-                accessibilityRole="button"
-                accessibilityLabel="Enviar mensagem"
-                style={styles.sendButton}
-                onPress={sendMessage}
-              >
-                <Text style={styles.sendButtonText}>Enviar</Text>
-              </PressableScale>
+                  <Text style={styles.explanationTitle}>
+                    Por que essa escolha?
+                  </Text>
+                  <Text style={styles.explanationText}>
+                    {recommendation.explanation}
+                    {"\n"}
+                    {userPreferences.vehicleName} · origem demonstrativa: {demoOrigin.nome}.
+                    {"\n"}
+                    {RECOMMENDATION_DISCLAIMER}
+                  </Text>
+                </View>
+
+                {recommendation.backup ? (
+                  <PressableScale
+                    accessibilityRole="button"
+                    accessibilityLabel={`Abrir Plano B, ${recommendation.backup.name}`}
+                    accessibilityHint="Abre a ficha detalhada da estação alternativa."
+                    style={styles.backupCard}
+                    onPress={() => chooseStation(recommendation.backup!.id)}
+                  >
+                    <View style={styles.backupIcon}>
+                      <MapPin size={22} color={theme.primary} strokeWidth={2.3} />
+                    </View>
+                    <View style={styles.backupText}>
+                      <Text style={styles.backupTitle}>Plano B</Text>
+                      <Text style={styles.backupDescription} numberOfLines={1}>
+                        {recommendation.backup.name} ·{" "}
+                        {formatAssistantDistance(
+                          recommendation.backup.distanceKm,
+                        )}
+                      </Text>
+                    </View>
+                    <ChevronRight
+                      size={22}
+                      color={theme.textMuted}
+                      strokeWidth={2.2}
+                    />
+                  </PressableScale>
+                ) : null}
+
+                <PressableScale
+                  accessibilityRole="button"
+                  accessibilityLabel={`Ver ${recommendation.primary.name} no mapa`}
+                  accessibilityHint="Abre a ficha detalhada do ponto recomendado."
+                  style={styles.primaryButton}
+                  onPress={() => chooseStation(recommendation.primary.id)}
+                >
+                  <Text style={styles.primaryButtonText}>Ver ponto no mapa</Text>
+                </PressableScale>
+                <PressableScale
+                  accessibilityRole="button"
+                  accessibilityLabel="Escolher outra necessidade"
+                  style={styles.secondaryButton}
+                  onPress={() => setSelectedIntent(null)}
+                >
+                  <Text style={styles.secondaryButtonText}>
+                    Escolher outra necessidade
+                  </Text>
+                </PressableScale>
+              </View>
+            ) : selectedIntent ? (
+              <View style={styles.analyzingCard}>
+                <Text style={styles.analyzingTitle}>
+                  Nenhuma opção viável confirmada
+                </Text>
+                <Text style={styles.analyzingText}>
+                  Os dados disponíveis não confirmam uma opção com alcance,
+                  horário, carregador livre e comodidades solicitadas. Revise os
+                  filtros e os dados informados. Não há indicação segura neste
+                  cenário.
+                </Text>
+              </View>
+            ) : messages.length === 0 ? (
+              <View style={[styles.optionsScroll, styles.optionsContent]}>
+                {options.map(({ id, label, Icon }) => (
+                  <PressableScale
+                    key={id}
+                    accessibilityRole="button"
+                    accessibilityLabel={label}
+                    accessibilityHint="Gera uma recomendação simulada com os dados do mapa."
+                    style={styles.optionCard}
+                    onPress={() => chooseIntent(id)}
+                  >
+                    <View style={styles.optionIcon}>
+                      <Icon size={22} color={theme.primary} strokeWidth={2.3} />
+                    </View>
+                    <Text style={styles.optionText}>{label}</Text>
+                    <ChevronRight
+                      size={22}
+                      color={theme.textMuted}
+                      strokeWidth={2.2}
+                    />
+                  </PressableScale>
+                ))}
+              </View>
+            ) : null}
+            <View style={styles.chatBox}>
+              <Text style={styles.subtitle}>
+                {userPreferences.vehicleName} · origem demonstrativa: {demoOrigin.nome}.
+              </Text>
+              <View style={styles.messagesContent}>
+                {messages.map((message) => (
+                  <View
+                    key={message.id}
+                    style={
+                      message.from === "user"
+                        ? styles.userBubble
+                        : styles.fluiBubble
+                    }
+                  >
+                    <Text style={styles.bubbleText}>{message.text}</Text>
+                    {message.stationId ? (
+                      <PressableScale
+                        accessibilityRole="button"
+                        accessibilityLabel="Ver ponto no mapa"
+                        style={styles.chatButton}
+                        onPress={() => chooseStation(message.stationId!)}
+                      >
+                        <Text style={styles.chatButtonText}>
+                          Ver ponto no mapa
+                        </Text>
+                      </PressableScale>
+                    ) : null}
+                  </View>
+                ))}
+                {isChatThinking ? (
+                  <Text style={styles.thinkingText}>FluIA está pensando...</Text>
+                ) : null}
+              </View>
             </View>
+          </ScrollView>
+
+          <View style={styles.inputRow}>
+            <TextInput
+              value={draft}
+              onChangeText={setDraft}
+              onSubmitEditing={sendMessage}
+              placeholder="Pergunte algo à FluIA"
+              placeholderTextColor={theme.textMuted}
+              accessibilityLabel="Mensagem para a FluIA"
+              returnKeyType="send"
+              style={styles.input}
+            />
+            <PressableScale
+              accessibilityRole="button"
+              accessibilityLabel="Enviar mensagem"
+              style={styles.sendButton}
+              onPress={sendMessage}
+            >
+              <Text style={styles.sendButtonText}>Enviar</Text>
+            </PressableScale>
           </View>
         </View>
       </KeyboardAvoidingView>
@@ -661,7 +675,7 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean) {
       borderWidth: 1,
       borderColor: purple.border,
     },
-    optionsScroll: { marginTop: 18, flexGrow: 0, flexShrink: 1 },
+    optionsScroll: { marginTop: 18 },
     optionsContent: { gap: 10, paddingBottom: 4 },
     optionCard: {
       minHeight: 58,
@@ -871,14 +885,14 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean) {
       fontWeight: "800",
     },
     chatBox: {
-      flex: 1,
-      minHeight: 112,
       marginTop: 12,
       paddingTop: 12,
       borderTopWidth: 1,
       borderColor: purple.border,
     },
-    chatMessages: { flex: 1 },
+    chatMessages: { flex: 1, minHeight: 0 },
+    bodyContent: { paddingBottom: 12 },
+    messagesContent: { paddingTop: 12 },
     userBubble: {
       alignSelf: "flex-end",
       maxWidth: "80%",
@@ -931,6 +945,7 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean) {
       flex: 1,
       minHeight: 44,
       paddingHorizontal: 14,
+      paddingVertical: 10,
       borderRadius: 16,
       borderWidth: 1,
       borderColor: purple.border,
@@ -941,6 +956,7 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean) {
     sendButton: {
       minHeight: 44,
       paddingHorizontal: 14,
+      paddingVertical: 10,
       borderRadius: 16,
       alignItems: "center",
       justifyContent: "center",
