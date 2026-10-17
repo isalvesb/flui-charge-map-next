@@ -1,0 +1,158 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -xctestrun /tmp/flui-xctest-12/DerivedData/Build/Products/FluiValidacao_iphonesimulator27.1-arm64-x86_64.xctestrun -destination "platform=iOS Simulator,id=4A2C862B-D6FC-4E88-8FB5-88164A5C5A2E" -destination-timeout 25 -parallel-testing-enabled NO -collect-test-diagnostics never "-only-testing:FluiValidacao/FluiValidacao/test02OrigemConsistenciaEBateria" -test-timeouts-enabled YES -default-test-execution-time-allowance 450 -maximum-test-execution-time-allowance 500 -resultBundlePath /tmp/flui-13-ios/Resultado-dirigido.xcresult
+
+Writing result bundle at path:
+	/tmp/flui-13-ios/Resultado-dirigido.xcresult
+
+2026-10-16 13:07:42.490 xcodebuild[42748:4100793] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 13:07:54.685309-0300 FluiValidacao-Runner[42754:4101136] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-10-16 13:08:28.576.
+Test Suite 'FluiValidacao.xctest' started at 2026-10-16 13:08:28.588.
+Test Suite 'FluiValidacao' started at 2026-10-16 13:08:28.589.
+Test Case '-[FluiValidacao.FluiValidacao test02OrigemConsistenciaEBateria]' started.
+    t =     0.15s Start Test at 2026-10-16 13:08:28.742
+    t =     0.32s Set Up
+    t =     0.32s Terminate host.exp.Exponent:42304
+objc[42754]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x106704398) and /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x1097a8310). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =     1.54s Open host.exp.Exponent
+    t =     1.54s     Launch host.exp.Exponent
+    t =     1.78s         Setting up automation session
+    t =     8.49s         Wait for host.exp.Exponent to idle
+    t =    11.30s Open host.exp.Exponent
+    t =    11.30s     Activate host.exp.Exponent
+    t =    11.32s         Wait for host.exp.Exponent to idle
+    t =    15.45s Waiting 3.0s for Button (First Match) to exist
+    t =    16.48s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    16.48s         Checking existence of `Button (First Match)`
+    t =    16.61s         Capturing element debug description
+    t =    17.53s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    17.53s         Checking existence of `Button (First Match)`
+    t =    17.60s         Capturing element debug description
+    t =    18.46s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    18.46s         Checking existence of `Button (First Match)`
+    t =    18.51s         Capturing element debug description
+    t =    18.51s     Checking existence of `Button (First Match)`
+    t =    18.55s Collecting debug information to assist test failure triage
+    t =    18.55s     Requesting snapshot of accessibility hierarchy for app with pid 42784
+    t =    18.66s Waiting 10.0s for Button (First Match) to exist
+    t =    19.68s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    19.68s         Checking existence of `Button (First Match)`
+    t =    19.74s Tap Button (First Match)
+    t =    19.74s     Wait for host.exp.Exponent to idle
+    t =    19.74s     Find the Button (First Match)
+    t =    19.78s     Check for interrupting elements affecting "flui-charge-map" Button
+    t =    19.84s     Synthesize event
+    t =    20.23s     Wait for host.exp.Exponent to idle
+    t =    20.64s Waiting 45.0s for Button (First Match) to exist
+    t =    21.69s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    21.69s         Checking existence of `Button (First Match)`
+    t =    24.24s         Capturing element debug description
+    t =    24.66s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    24.66s         Checking existence of `Button (First Match)`
+    t =    24.66s         Capturing element debug description
+    t =    25.69s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    25.70s         Checking existence of `Button (First Match)`
+    t =    25.82s         Capturing element debug description
+    t =    26.65s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    26.65s         Checking existence of `Button (First Match)`
+    t =    26.68s         Capturing element debug description
+    t =    27.71s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    27.71s         Checking existence of `Button (First Match)`
+    t =    27.73s         Capturing element debug description
+    t =    28.65s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    28.65s         Checking existence of `Button (First Match)`
+    t =    28.70s         Capturing element debug description
+    t =    29.65s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    29.65s         Checking existence of `Button (First Match)`
+    t =    29.76s Waiting 8.0s for Button (First Match) to exist
+    t =    30.79s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    30.79s         Checking existence of `Button (First Match)`
+    t =    30.83s Tap Button (First Match)
+    t =    30.83s     Wait for host.exp.Exponent to idle
+    t =    30.85s     Find the Button (First Match)
+    t =    30.94s     Check for interrupting elements affecting "Abrir busca e filtros" Button
+    t =    31.07s     Synthesize event
+    t =    31.49s     Wait for host.exp.Exponent to idle
+    t =    31.68s Waiting 8.0s for Button (First Match) to exist
+    t =    32.77s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    32.77s         Checking existence of `Button (First Match)`
+    t =    32.79s Tap Button (First Match)
+    t =    32.79s     Wait for host.exp.Exponent to idle
+    t =    32.80s     Find the Button (First Match)
+    t =    32.82s     Check for interrupting elements affecting "Limpar busca e filtros" Button
+    t =    32.90s     Synthesize event
+    t =    33.22s     Wait for host.exp.Exponent to idle
+    t =    33.23s Tap Button (First Match)
+    t =    33.23s     Wait for host.exp.Exponent to idle
+    t =    33.23s     Find the Button (First Match)
+    t =    33.25s     Check for interrupting elements affecting "Ver pontos encontrados no mapa" Button
+    t =    33.29s     Synthesize event
+    t =    33.60s     Wait for host.exp.Exponent to idle
+    t =    33.61s Waiting 10.0s for Button (First Match) to exist
+    t =    34.65s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    34.65s         Checking existence of `Button (First Match)`
+    t =    34.81s Find the Button (First Match)
+    t =    34.87s Find the Button (First Match)
+    t =    34.90s Tap Button (First Match)
+    t =    34.91s     Wait for host.exp.Exponent to idle
+    t =    34.93s     Find the Button (First Match)
+    t =    35.00s     Check for interrupting elements affecting "Flui iOS NEXT. Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 135 quilômetros estimados" Button
+    t =    35.09s     Synthesize event
+    t =    35.44s     Wait for host.exp.Exponent to idle
+    t =    35.54s Waiting 8.0s for Button (First Match) to exist
+    t =    36.58s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    36.58s         Checking existence of `Button (First Match)`
+    t =    36.67s Waiting 8.0s for Any (First Match) to exist
+    t =    37.69s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    37.69s         Checking existence of `Any (First Match)`
+    t =    37.83s         Capturing element debug description
+    t =    38.76s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    38.77s         Checking existence of `Any (First Match)`
+    t =    38.89s         Capturing element debug description
+    t =    39.71s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    39.71s         Checking existence of `Any (First Match)`
+    t =    39.82s         Capturing element debug description
+    t =    40.75s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    40.75s         Checking existence of `Any (First Match)`
+    t =    40.88s         Capturing element debug description
+    t =    41.71s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    41.71s         Checking existence of `Any (First Match)`
+    t =    41.84s         Capturing element debug description
+    t =    42.68s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    42.68s         Checking existence of `Any (First Match)`
+    t =    42.80s         Capturing element debug description
+    t =    43.74s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    43.74s         Checking existence of `Any (First Match)`
+    t =    43.88s         Capturing element debug description
+    t =    44.67s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    44.67s         Checking existence of `Any (First Match)`
+    t =    44.80s         Capturing element debug description
+    t =    44.80s     Checking existence of `Any (First Match)`
+    t =    44.88s Collecting debug information to assist test failure triage
+    t =    44.88s     Requesting snapshot of accessibility hierarchy for app with pid 42784
+/tmp/flui-xctest-12/FluiValidacao.swift:135: error: -[FluiValidacao.FluiValidacao test02OrigemConsistenciaEBateria] : XCTAssertTrue failed
+    t =    45.58s Tear Down
+Test Case '-[FluiValidacao.FluiValidacao test02OrigemConsistenciaEBateria]' failed (46.636 seconds).
+Test Suite 'FluiValidacao' failed at 2026-10-16 13:09:15.378.
+	 Executed 1 test, with 1 failure (0 unexpected) in 46.636 (46.790) seconds
+Test Suite 'FluiValidacao.xctest' failed at 2026-10-16 13:09:15.388.
+	 Executed 1 test, with 1 failure (0 unexpected) in 46.636 (46.801) seconds
+Test Suite 'Selected tests' failed at 2026-10-16 13:09:15.389.
+	 Executed 1 test, with 1 failure (0 unexpected) in 46.636 (46.814) seconds
+2026-10-16 13:09:15.859 xcodebuild[42748:4100793] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 13:09:15.866 xcodebuild[42748:4100793] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 13:09:15.884 xcodebuild[42748:4100793] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 13:09:16.177 xcodebuild[42748:4100793] [MT] IDETestOperationsObserverDebug: 94.060 elapsed -- Testing started completed.
+2026-10-16 13:09:16.177 xcodebuild[42748:4100793] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-16 13:09:16.177 xcodebuild[42748:4100793] [MT] IDETestOperationsObserverDebug: 94.060 sec, +94.060 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/flui-13-ios/Resultado-dirigido.xcresult
+
+Failing tests:
+	FluiValidacao.test02OrigemConsistenciaEBateria()
+
+** TEST EXECUTE FAILED **
+
+Testing started

@@ -125,6 +125,21 @@ export function getUserInitials(userName: string) {
   return `${firstInitial}${lastInitial}`.toUpperCase();
 }
 
+export function getStationRouteUrl(
+  station: ChargingStation,
+  provider: RouteProvider,
+  origin?: Pick<ChargingStation, "latitude" | "longitude">,
+) {
+  const destination = `${station.latitude},${station.longitude}`;
+  if (provider === "waze") {
+    return `https://www.waze.com/ul?ll=${destination}&navigate=yes`;
+  }
+  const originString = origin
+    ? `&origin=${origin.latitude},${origin.longitude}`
+    : "";
+  return `https://www.google.com/maps/dir/?api=1${originString}&destination=${destination}&travelmode=driving`;
+}
+
 export function getEstimatedChargingTime(powerKw: number) {
   if (powerKw >= 120) return "20 a 35 min";
   if (powerKw >= 50) return "40 a 60 min";

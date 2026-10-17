@@ -1,0 +1,36 @@
+Starting project at /Users/guicunha/.codex/.chatgpt-projects/g-p-69f512a9480481918bb9b34c4162ae65/flui-charge-map-next-alfa
+PluginError: Plugin is an unexpected object, with keys: "locationAlwaysAndWhenInUsePermission".
+
+If you tried to provide parameters to a config plugin, make sure the plugin configuration is wrapped by square brackets. Ex:
+
+[
+  "some-config-plugin",
+  {
+    "someParam": "someValue"
+  }
+]
+
+
+See the package documentation on how to correctly configure the plugin.
+PluginError: Plugin is an unexpected object, with keys: "locationAlwaysAndWhenInUsePermission".
+
+If you tried to provide parameters to a config plugin, make sure the plugin configuration is wrapped by square brackets. Ex:
+
+[
+  "some-config-plugin",
+  {
+    "someParam": "someValue"
+  }
+]
+
+
+See the package documentation on how to correctly configure the plugin.
+    at withStaticPlugin (/Users/guicunha/.codex/.chatgpt-projects/g-p-69f512a9480481918bb9b34c4162ae65/flui-charge-map-next-alfa/node_modules/@expo/config-plugins/build/plugins/withStaticPlugin.js:129:13)
+    at /Users/guicunha/.codex/.chatgpt-projects/g-p-69f512a9480481918bb9b34c4162ae65/flui-charge-map-next-alfa/node_modules/@expo/config-plugins/build/plugins/withPlugins.js:28:84
+    at Array.reduce (<anonymous>)
+    at withPlugins (/Users/guicunha/.codex/.chatgpt-projects/g-p-69f512a9480481918bb9b34c4162ae65/flui-charge-map-next-alfa/node_modules/@expo/config-plugins/build/plugins/withPlugins.js:28:18)
+    at withConfigPlugins (/Users/guicunha/.codex/.chatgpt-projects/g-p-69f512a9480481918bb9b34c4162ae65/flui-charge-map-next-alfa/node_modules/@expo/config/build/plugins/withConfigPlugins.js:33:47)
+    at fillAndReturnConfig (/Users/guicunha/.codex/.chatgpt-projects/g-p-69f512a9480481918bb9b34c4162ae65/flui-charge-map-next-alfa/node_modules/@expo/config/build/Config.js:229:78)
+    at getConfig (/Users/guicunha/.codex/.chatgpt-projects/g-p-69f512a9480481918bb9b34c4162ae65/flui-charge-map-next-alfa/node_modules/@expo/config/build/Config.js:282:12)
+    at startAsync (/Users/guicunha/.codex/.chatgpt-projects/g-p-69f512a9480481918bb9b34c4162ae65/flui-charge-map-next-alfa/node_modules/expo/node_modules/@expo/cli/build/src/start/startAsync.js:129:68)
+    at expoStart (/Users/guicunha/.codex/.chatgpt-projects/g-p-69f512a9480481918bb9b34c4162ae65/flui-charge-map-next-alfa/node_modules/expo/node_modules/@expo/cli/build/src/start/index.js:146:12)

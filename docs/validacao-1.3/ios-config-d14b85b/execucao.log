@@ -1,0 +1,982 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -xctestrun /tmp/flui-xctest-12/DerivedData/Build/Products/FluiValidacao_iphonesimulator27.1-arm64-x86_64.xctestrun -destination "platform=iOS Simulator,id=4A2C862B-D6FC-4E88-8FB5-88164A5C5A2E" -destination-timeout 25 -parallel-testing-enabled NO -collect-test-diagnostics never -test-timeouts-enabled YES -default-test-execution-time-allowance 400 -maximum-test-execution-time-allowance 500 -resultBundlePath /tmp/flui-13-ios/Resultado.xcresult
+
+Writing result bundle at path:
+	/tmp/flui-13-ios/Resultado.xcresult
+
+2026-10-16 12:56:59.815 xcodebuild[42118:4082023] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 12:57:57.485393-0300 FluiValidacao-Runner[42172:4083493] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'All tests' started at 2026-10-16 12:58:40.957.
+Test Suite 'FluiValidacao.xctest' started at 2026-10-16 12:58:40.961.
+Test Suite 'FluiValidacao' started at 2026-10-16 12:58:40.964.
+Test Case '-[FluiValidacao.FluiValidacao test01ConfiguracaoEPersistencia]' started.
+    t =     0.12s Start Test at 2026-10-16 12:58:41.083
+    t =     1.22s Set Up
+    t =     1.23s Open host.exp.Exponent
+    t =     1.25s     Activate host.exp.Exponent
+    t =     1.53s         Wait for host.exp.Exponent to idle
+    t =     2.01s Waiting 3.0s for Button (First Match) to exist
+    t =     3.10s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     3.11s         Checking existence of `Button (First Match)`
+    t =     3.29s Waiting 45.0s for Button (First Match) to exist
+objc[42172]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x1033a4398) and /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x106878310). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =     4.39s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     4.39s         Checking existence of `Button (First Match)`
+    t =     4.46s Waiting 8.0s for Button (First Match) to exist
+    t =     5.48s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     5.48s         Checking existence of `Button (First Match)`
+    t =     5.56s Tap Button (First Match)
+    t =     5.56s     Wait for host.exp.Exponent to idle
+    t =     5.58s     Find the Button (First Match)
+    t =     5.68s     Check for interrupting elements affecting "Abrir busca e filtros" Button
+    t =     6.11s     Synthesize event
+    t =     6.61s     Wait for host.exp.Exponent to idle
+    t =     6.66s Waiting 8.0s for Button (First Match) to exist
+    t =     7.94s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     7.94s         Checking existence of `Button (First Match)`
+    t =     7.98s Tap Button (First Match)
+    t =     7.99s     Wait for host.exp.Exponent to idle
+    t =     8.10s     Find the Button (First Match)
+    t =     8.14s     Check for interrupting elements affecting "Limpar busca e filtros" Button
+    t =     8.31s     Synthesize event
+    t =     8.63s     Wait for host.exp.Exponent to idle
+    t =     8.64s Tap Button (First Match)
+    t =     8.64s     Wait for host.exp.Exponent to idle
+    t =     8.65s     Find the Button (First Match)
+    t =     8.68s     Check for interrupting elements affecting "Ver pontos encontrados no mapa" Button
+    t =     8.76s     Synthesize event
+    t =     9.07s     Wait for host.exp.Exponent to idle
+    t =     9.09s Waiting 10.0s for Button (First Match) to exist
+    t =    10.13s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    10.13s         Checking existence of `Button (First Match)`
+    t =    10.26s Find the Button (First Match)
+    t =    10.33s Find the Button (First Match)
+FLUI_13 BATERIA_INICIAL BYD Dolphin Plus. Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 180 quilômetros estimados
+    t =    10.41s Requesting snapshot of accessibility hierarchy for app with pid 41824
+    t =    11.84s Requesting snapshot of accessibility hierarchy for app with pid 41824
+FLUI_13 EVIDENCIA 01-mapa-inicial
+Attributes: Application, 0x106424dc0, pid: 41824, label: 'Expo Go'
+Element subtree:
+ →Application, 0x106424dc0, pid: 41824, label: 'Expo Go'
+    Window (Main), 0x106425040, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x1064252c0, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x106424f00, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x106425400, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x106425180, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x106425540, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x106425a40, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x106425e00, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x106425f40, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x106425b80, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x106426080, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x106426300, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x106426580, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x1064261c0, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x1064266c0, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x106426440, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x106426a80, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Other, 0x106426940, {{0.0, 62.0}, {440.0, 162.0}}
+                                        Other, 0x106426bc0, {{20.0, 76.0}, {76.0, 36.0}}
+                                          Other, 0x106426e40, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x106427480, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x106427200, {{89.2, 82.8}, {6.7, 6.7}}
+                                        Button, 0x1064275c0, {{191.7, 71.0}, {180.3, 46.0}}, label: 'BYD Dolphin Plus. Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 180 quilômetros estimados'
+                                        Button, 0x106427840, {{374.0, 71.0}, {46.0, 46.0}}, label: 'Abrir perfil'
+                                        Other, 0x106427980, {{20.0, 132.0}, {400.0, 58.0}}
+                                          Other, 0x106427700, {{39.0, 150.7}, {21.0, 21.0}}
+                                            Other, 0x106427ac0, {{40.8, 152.4}, {17.5, 17.5}}
+                                              Other, 0x106427c00, {{40.8, 152.4}, {15.8, 15.8}}
+                                              Other, 0x106427e80, {{52.7, 164.4}, {5.5, 5.5}}
+                                          Other, 0x106427d40, {{73.0, 150.7}, {277.0, 20.3}}
+                                            TextField, 0x106424500, {{73.0, 150.7}, {277.0, 20.3}}, label: 'Buscar no mapa', placeholderValue: 'Buscar endereço, bairro ou ponto'
+                                          Other, 0x106424640, {{358.0, 146.0}, {1.0, 30.0}}
+                                          Button, 0x1035b6bc0, {{367.0, 140.0}, {42.0, 42.0}}, label: 'Abrir busca e filtros'
+                                        Button, 0x1035b70c0, {{20.0, 194.0}, {400.0, 16.0}}, label: 'Mostrar atalhos de filtro'
+                                      Other, 0x1035b7480, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x1035b7700, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                          Other, 0x1035b7840, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x1035b7980, {{0.0, 224.0}, {72.0, 72.0}}
+                                            Other, 0x1035b7ac0, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                              Button, 0x1035b7d40, {{184.0, 390.3}, {72.0, 72.0}}, identifier: 'AIRGMSMarker_0x10c7de080', label: 'Origem demonstrativa: FIAP'
+                                              Button, 0x1035b7c00, {{95.3, 273.3}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x10c7dd900', label: 'Flui Express MASP'
+                                              Button, 0x1035b5400, {{180.3, 509.7}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x114c5f0c0', label: 'Estação Jardins Pamplona'
+                                              Button, 0x1035b5540, {{324.7, 654.0}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x1247cb5c0', label: 'Garagem Verde Brigadeiro'
+                                              Other, 0x1079ac000, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x1079ac140, {{0.0, 224.0}, {440.0, 698.0}}
+                                              Other, 0x1079ac280, {{0.0, 224.0}, {440.0, 698.0}}
+                                                Button, 0x1079ac3c0, {{5.0, 895.0}, {60.0, 22.0}}, label: 'Google Maps'
+                                            Other, 0x1079ac500, {{1912.0, 2136.0}, {74.0, 74.0}}
+                                              Other, 0x1079ac640, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                Other, 0x1079ac780, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                  Other, 0x1079ac8c0, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                    Other, 0x1079aca00, {{1920.8, 2144.8}, {54.4, 54.4}}
+                                                    Other, 0x1079acb40, {{1936.0, 2160.0}, {24.0, 24.0}}
+                                        Other, 0x1079acc80, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x1079acdc0, {{372.0, 242.0}, {52.0, 166.0}}
+                                          Other, 0x1079acf00, {{372.0, 242.0}, {52.0, 104.0}}
+                                            Button, 0x1079ad040, {{372.0, 243.0}, {52.0, 51.0}}, label: 'Aumentar zoom do mapa'
+                                            Button, 0x1079ad180, {{372.0, 295.0}, {52.0, 51.0}}, label: 'Diminuir zoom do mapa'
+                                            Other, 0x1079ad2c0, {{384.0, 294.0}, {28.0, 1.0}}
+                                          Button, 0x1079ad400, {{372.0, 356.0}, {52.0, 52.0}}, label: 'Centralizar origem demonstrativa: FIAP'
+                                        Other, 0x1079ad540, {{304.0, 439.3}, {120.0, 52.0}}
+                                          Other, 0x1079ad680, {{304.0, 439.3}, {120.0, 52.0}}
+                                            Button, 0x1079ad7c0, {{304.0, 439.3}, {120.0, 52.0}}, label: 'Abrir assistente Flui IA'
+                                        Other, 0x1079ad900, {{16.0, 495.3}, {408.0, 426.7}}
+                                          Other, 0x1079ada40, {{16.0, 495.3}, {408.0, 426.7}}
+                                            Button, 0x1079adb80, {{35.0, 514.3}, {370.0, 12.0}}, label: 'Minimizar opções demonstrativas para ver o mapa inteiro'
+                                            StaticText, 0x1079adcc0, {{35.0, 526.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                              StaticText, 0x1079ade00, {{35.0, 526.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                            StaticText, 0x1079adf40, {{35.0, 562.0}, {370.0, 38.0}}, label: 'Origem: FIAP · distâncias em linha reta, sem cálculo de percurso'
+                                              StaticText, 0x1079ae080, {{35.0, 562.0}, {370.0, 38.0}}, label: 'Origem: FIAP · distâncias em linha reta, sem cálculo de percurso'
+                                            Other, 0x1079ae1c0, {{35.0, 610.0}, {370.0, 262.0}}
+                                              ScrollView, 0x1079ae300, {{35.0, 610.0}, {370.0, 262.0}}
+                                                Other, 0x1079ae440, {{35.0, 610.0}, {370.0, 928.0}}
+                                                  Other, 0x1079ae580, {{35.0, 610.0}, {370.0, 928.0}}
+                                                    Button, 0x1079ae6c0, {{35.0, 610.0}, {370.0, 154.7}}, label: 'Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈2,1 km em linha reta. Chegada estimada com 44% de bateria.'
+                                                    Button, 0x1079ae800, {{35.0, 764.7}, {370.0, 154.7}}, label: 'Plug & Café Consolação. Opção demonstrativa. R. da Consolação, 2302. Aberto agora. Nota 4,3. 50 kW. ≈1,1 km em linha reta. Chegada estimada com 45% de bateria.'
+                                                    Button, 0x1079ae940, {{35.0, 919.3}, {370.0, 154.7}}, label: 'Charge City Jardins. Opção demonstrativa. Alameda Santos, 2159. Aberto agora. Nota 4,7. 120 kW. ≈1,2 km em linha reta. Chegada estimada com 45% de bateria.'
+                                                    Button, 0x1079aea80, {{35.0, 1074.0}, {370.0, 154.7}}, label: 'Flui Vila Mariana Lins. Opção demonstrativa. Av. Lins de Vasconcelos, 1264. Aberto agora. Nota 4,8. 150 kW. ≈3,1 km em linha reta. Chegada estimada com 44% de bateria.'
+                                                    Button, 0x1079aebc0, {{35.0, 1228.7}, {370.0, 154.7}}, label: 'EcoCarga Parque Aclimação. Opção demonstrativa. R. Muniz de Sousa, 1119. Aberto agora. Nota 4,2. 22 kW. ≈2,6 km em linha reta. Chegada estimada com 44% de bateria.'
+                                                    Button, 0x1079aed00, {{35.0, 1383.3}, {370.0, 154.7}}, label: 'Mercado Charge Cambuci. Opção demonstrativa. R. Luís Gama, 650. Aberto agora. Nota 4,1. 50 kW. ≈3,6 km em linha reta. Chegada estimada com 44% de bateria.'
+                                                Other, 0x1079aee40, {{372.0, 610.0}, {30.0, 262.0}}, label: 'Vertical scroll bar, 4 pages', value: 0%
+                                                  Other, 0x1079aef80, {{399.0, 613.0}, {3.0, 64.7}}
+                                                Other, 0x1079af0c0, {{35.0, 839.0}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x1079af200, {{65.0, 866.0}, {310.0, 3.0}}
+                                                Other, 0x1079af340, {{372.0, 610.0}, {30.0, 262.0}}, label: 'Vertical scroll bar, 4 pages', value: 0%
+                                                  Other, 0x1079af480, {{399.0, 613.0}, {3.0, 64.7}}
+                                                Other, 0x1079af5c0, {{35.0, 839.0}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x1079af700, {{65.0, 866.0}, {310.0, 3.0}}
+                          Toolbar, 0x1079af840, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x1079af980, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1079afac0, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1079afc00, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1079afd40, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x106424dc0, pid: 41824, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x1079afe80, pid: 41824, label: 'Expo Go'
+  }
+
+    t =    11.95s Find the Application 'host.exp.Exponent'
+    t =    12.60s Added attachment named '01-mapa-inicial'
+    t =    12.61s Tap Button (First Match)
+    t =    12.61s     Wait for host.exp.Exponent to idle
+    t =    12.65s     Find the Button (First Match)
+    t =    12.74s     Check for interrupting elements affecting "Abrir perfil" Button
+    t =    12.84s     Synthesize event
+    t =    13.27s     Wait for host.exp.Exponent to idle
+    t =    13.42s Waiting 10.0s for Button (First Match) to exist
+    t =    14.48s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    14.49s         Checking existence of `Button (First Match)`
+    t =    14.51s Tap Button (First Match)
+    t =    14.51s     Wait for host.exp.Exponent to idle
+    t =    14.51s     Find the Button (First Match)
+    t =    14.53s     Check for interrupting elements affecting "Abrir configurações" Button
+    t =    14.56s     Synthesize event
+    t =    14.86s     Wait for host.exp.Exponent to idle
+    t =    15.35s Waiting 10.0s for TextField (First Match) to exist
+    t =    16.39s     Checking `Expect predicate `existsNoRetry == 1` for object TextField (First Match)`
+    t =    16.39s         Checking existence of `TextField (First Match)`
+    t =    17.51s Find the TextField (First Match)
+    t =    17.54s Find the TextField (First Match)
+    t =    17.57s Find the TextField (First Match)
+FLUI_13 CONFIG_INICIAL nome=Optional(BYD Dolphin Plus) autonomia=Optional(400)
+    t =    17.59s Find the TextField (First Match)
+    t =    17.63s Tap "Veículo demonstrativo" TextField[0.95, 0.50]
+    t =    17.63s     Wait for host.exp.Exponent to idle
+    t =    17.63s     Find the "Veículo demonstrativo" TextField
+    t =    17.66s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    17.69s     Synthesize event
+    t =    17.69s         Find the "Veículo demonstrativo" TextField
+    t =    17.72s         Find the "Veículo demonstrativo" TextField
+    t =    17.75s         Find the "Veículo demonstrativo" TextField
+    t =    18.08s     Wait for host.exp.Exponent to idle
+    t =    21.09s Find the "Veículo demonstrativo" TextField
+    t =    21.22s Type '' into "Veículo demonstrativo" TextField
+    t =    21.22s     Wait for host.exp.Exponent to idle
+    t =    21.23s     Find the "Veículo demonstrativo" TextField
+    t =    21.29s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    21.35s     Synthesize event
+    t =    21.57s     Wait for host.exp.Exponent to idle
+    t =    21.58s Type '' into "Veículo demonstrativo" TextField
+    t =    21.58s     Wait for host.exp.Exponent to idle
+    t =    21.59s     Find the "Veículo demonstrativo" TextField
+    t =    21.67s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    21.74s     Synthesize event
+    t =    21.99s     Wait for host.exp.Exponent to idle
+    t =    21.99s Type '' into "Veículo demonstrativo" TextField
+    t =    21.99s     Wait for host.exp.Exponent to idle
+    t =    22.00s     Find the "Veículo demonstrativo" TextField
+    t =    22.05s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    22.14s     Synthesize event
+    t =    22.38s     Wait for host.exp.Exponent to idle
+    t =    22.39s Type '' into "Veículo demonstrativo" TextField
+    t =    22.39s     Wait for host.exp.Exponent to idle
+    t =    22.39s     Find the "Veículo demonstrativo" TextField
+    t =    22.44s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    22.48s     Synthesize event
+    t =    22.71s     Wait for host.exp.Exponent to idle
+    t =    22.72s Type '' into "Veículo demonstrativo" TextField
+    t =    22.72s     Wait for host.exp.Exponent to idle
+    t =    22.73s     Find the "Veículo demonstrativo" TextField
+    t =    22.80s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    22.85s     Synthesize event
+    t =    23.08s     Wait for host.exp.Exponent to idle
+    t =    23.08s Type '' into "Veículo demonstrativo" TextField
+    t =    23.08s     Wait for host.exp.Exponent to idle
+    t =    23.09s     Find the "Veículo demonstrativo" TextField
+    t =    23.19s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    23.24s     Synthesize event
+    t =    23.48s     Wait for host.exp.Exponent to idle
+    t =    23.48s Type '' into "Veículo demonstrativo" TextField
+    t =    23.48s     Wait for host.exp.Exponent to idle
+    t =    23.49s     Find the "Veículo demonstrativo" TextField
+    t =    23.54s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    23.60s     Synthesize event
+    t =    23.82s     Wait for host.exp.Exponent to idle
+    t =    23.82s Type '' into "Veículo demonstrativo" TextField
+    t =    23.82s     Wait for host.exp.Exponent to idle
+    t =    23.83s     Find the "Veículo demonstrativo" TextField
+    t =    23.87s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    23.91s     Synthesize event
+    t =    24.14s     Wait for host.exp.Exponent to idle
+    t =    24.14s Type '' into "Veículo demonstrativo" TextField
+    t =    24.14s     Wait for host.exp.Exponent to idle
+    t =    24.15s     Find the "Veículo demonstrativo" TextField
+    t =    24.19s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    24.22s     Synthesize event
+    t =    24.45s     Wait for host.exp.Exponent to idle
+    t =    24.45s Type '' into "Veículo demonstrativo" TextField
+    t =    24.45s     Wait for host.exp.Exponent to idle
+    t =    24.45s     Find the "Veículo demonstrativo" TextField
+    t =    24.49s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    24.53s     Synthesize event
+    t =    24.75s     Wait for host.exp.Exponent to idle
+    t =    24.76s Type '' into "Veículo demonstrativo" TextField
+    t =    24.76s     Wait for host.exp.Exponent to idle
+    t =    24.76s     Find the "Veículo demonstrativo" TextField
+    t =    24.82s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    24.88s     Synthesize event
+    t =    25.11s     Wait for host.exp.Exponent to idle
+    t =    25.12s Type '' into "Veículo demonstrativo" TextField
+    t =    25.12s     Wait for host.exp.Exponent to idle
+    t =    25.12s     Find the "Veículo demonstrativo" TextField
+    t =    25.21s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    25.28s     Synthesize event
+    t =    25.52s     Wait for host.exp.Exponent to idle
+    t =    25.53s Type '' into "Veículo demonstrativo" TextField
+    t =    25.53s     Wait for host.exp.Exponent to idle
+    t =    25.54s     Find the "Veículo demonstrativo" TextField
+    t =    25.62s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    25.68s     Synthesize event
+    t =    25.92s     Wait for host.exp.Exponent to idle
+    t =    25.92s Type '' into "Veículo demonstrativo" TextField
+    t =    25.92s     Wait for host.exp.Exponent to idle
+    t =    25.93s     Find the "Veículo demonstrativo" TextField
+    t =    25.99s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    26.04s     Synthesize event
+    t =    26.27s     Wait for host.exp.Exponent to idle
+    t =    26.28s Type '' into "Veículo demonstrativo" TextField
+    t =    26.29s     Wait for host.exp.Exponent to idle
+    t =    26.29s     Find the "Veículo demonstrativo" TextField
+    t =    26.35s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    26.41s     Synthesize event
+    t =    26.65s     Wait for host.exp.Exponent to idle
+    t =    26.66s Type '' into "Veículo demonstrativo" TextField
+    t =    26.66s     Wait for host.exp.Exponent to idle
+    t =    26.67s     Find the "Veículo demonstrativo" TextField
+    t =    26.73s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    26.80s     Synthesize event
+    t =    27.04s     Wait for host.exp.Exponent to idle
+    t =    28.07s Find the "Veículo demonstrativo" TextField
+    t =    28.12s Type 'F' into "Veículo demonstrativo" TextField
+    t =    28.12s     Wait for host.exp.Exponent to idle
+    t =    28.12s     Find the "Veículo demonstrativo" TextField
+    t =    28.17s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    28.22s     Synthesize event
+    t =    28.45s     Wait for host.exp.Exponent to idle
+    t =    29.49s Find the "Veículo demonstrativo" TextField
+    t =    29.54s Type 'l' into "Veículo demonstrativo" TextField
+    t =    29.54s     Wait for host.exp.Exponent to idle
+    t =    29.54s     Find the "Veículo demonstrativo" TextField
+    t =    29.58s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    29.62s     Synthesize event
+    t =    29.85s     Wait for host.exp.Exponent to idle
+    t =    30.88s Find the "Veículo demonstrativo" TextField
+    t =    30.94s Type 'u' into "Veículo demonstrativo" TextField
+    t =    30.94s     Wait for host.exp.Exponent to idle
+    t =    30.94s     Find the "Veículo demonstrativo" TextField
+    t =    30.98s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    31.02s     Synthesize event
+    t =    31.24s     Wait for host.exp.Exponent to idle
+    t =    32.26s Find the "Veículo demonstrativo" TextField
+    t =    32.31s Type 'i' into "Veículo demonstrativo" TextField
+    t =    32.31s     Wait for host.exp.Exponent to idle
+    t =    32.32s     Find the "Veículo demonstrativo" TextField
+    t =    32.36s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    32.39s     Synthesize event
+    t =    32.62s     Wait for host.exp.Exponent to idle
+    t =    33.65s Find the "Veículo demonstrativo" TextField
+    t =    33.71s Type ' ' into "Veículo demonstrativo" TextField
+    t =    33.71s     Wait for host.exp.Exponent to idle
+    t =    33.71s     Find the "Veículo demonstrativo" TextField
+    t =    33.75s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    33.78s     Synthesize event
+    t =    34.01s     Wait for host.exp.Exponent to idle
+    t =    35.03s Find the "Veículo demonstrativo" TextField
+    t =    35.09s Type 'i' into "Veículo demonstrativo" TextField
+    t =    35.09s     Wait for host.exp.Exponent to idle
+    t =    35.09s     Find the "Veículo demonstrativo" TextField
+    t =    35.13s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    35.17s     Synthesize event
+    t =    35.39s     Wait for host.exp.Exponent to idle
+    t =    36.40s Find the "Veículo demonstrativo" TextField
+    t =    36.46s Type 'O' into "Veículo demonstrativo" TextField
+    t =    36.46s     Wait for host.exp.Exponent to idle
+    t =    36.46s     Find the "Veículo demonstrativo" TextField
+    t =    36.50s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    36.54s     Synthesize event
+    t =    36.76s     Wait for host.exp.Exponent to idle
+    t =    37.79s Find the "Veículo demonstrativo" TextField
+    t =    37.84s Type 'S' into "Veículo demonstrativo" TextField
+    t =    37.84s     Wait for host.exp.Exponent to idle
+    t =    37.85s     Find the "Veículo demonstrativo" TextField
+    t =    37.89s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    37.93s     Synthesize event
+    t =    38.15s     Wait for host.exp.Exponent to idle
+    t =    39.18s Find the "Veículo demonstrativo" TextField
+    t =    39.26s Type ' ' into "Veículo demonstrativo" TextField
+    t =    39.26s     Wait for host.exp.Exponent to idle
+    t =    39.27s     Find the "Veículo demonstrativo" TextField
+    t =    39.35s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    39.43s     Synthesize event
+    t =    39.66s     Wait for host.exp.Exponent to idle
+    t =    40.70s Find the "Veículo demonstrativo" TextField
+    t =    40.79s Type 'N' into "Veículo demonstrativo" TextField
+    t =    40.79s     Wait for host.exp.Exponent to idle
+    t =    40.81s     Find the "Veículo demonstrativo" TextField
+    t =    40.89s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    40.96s     Synthesize event
+    t =    41.20s     Wait for host.exp.Exponent to idle
+    t =    42.22s Find the "Veículo demonstrativo" TextField
+    t =    42.27s Type 'E' into "Veículo demonstrativo" TextField
+    t =    42.27s     Wait for host.exp.Exponent to idle
+    t =    42.28s     Find the "Veículo demonstrativo" TextField
+    t =    42.33s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    42.39s     Synthesize event
+    t =    42.62s     Wait for host.exp.Exponent to idle
+    t =    43.64s Find the "Veículo demonstrativo" TextField
+    t =    43.69s Type 'X' into "Veículo demonstrativo" TextField
+    t =    43.69s     Wait for host.exp.Exponent to idle
+    t =    43.69s     Find the "Veículo demonstrativo" TextField
+    t =    43.75s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    43.81s     Synthesize event
+    t =    44.04s     Wait for host.exp.Exponent to idle
+    t =    45.06s Find the "Veículo demonstrativo" TextField
+    t =    45.13s Type 'T' into "Veículo demonstrativo" TextField
+    t =    45.13s     Wait for host.exp.Exponent to idle
+    t =    45.14s     Find the "Veículo demonstrativo" TextField
+    t =    45.21s     Check for interrupting elements affecting "Veículo demonstrativo" TextField
+    t =    45.27s     Synthesize event
+    t =    45.50s     Wait for host.exp.Exponent to idle
+    t =    46.50s Find the "Veículo demonstrativo" TextField
+    t =    46.59s Find the TextField (First Match)
+    t =    46.75s Tap "Autonomia com bateria cheia em quilômetros" TextField[0.95, 0.50]
+    t =    46.75s     Wait for host.exp.Exponent to idle
+    t =    46.79s     Find the "Autonomia com bateria cheia em quilômetros" TextField
+    t =    46.88s     Check for interrupting elements affecting "Autonomia com bateria cheia em quilômetros" TextField
+    t =    47.00s     Synthesize event
+    t =    47.01s         Find the "Autonomia com bateria cheia em quilômetros" TextField
+    t =    47.15s         Find the "Autonomia com bateria cheia em quilômetros" TextField
+    t =    47.25s         Find the "Autonomia com bateria cheia em quilômetros" TextField
+    t =    47.73s     Wait for host.exp.Exponent to idle
+    t =    48.14s Find the "Autonomia com bateria cheia em quilômetros" TextField
+    t =    48.26s Type '' into "Autonomia com bateria cheia em quilômetros" TextField
+    t =    48.27s     Wait for host.exp.Exponent to idle
+    t =    48.52s     Find the "Autonomia com bateria cheia em quilômetros" TextField
+    t =    48.57s     Check for interrupting elements affecting "Autonomia com bateria cheia em quilômetros" TextField
+    t =    48.62s     Synthesize event
+    t =    48.87s     Wait for host.exp.Exponent to idle
+    t =    48.89s Type '' into "Autonomia com bateria cheia em quilômetros" TextField
+    t =    48.89s     Wait for host.exp.Exponent to idle
+    t =    48.90s     Find the "Autonomia com bateria cheia em quilômetros" TextField
+    t =    48.96s     Check for interrupting elements affecting "Autonomia com bateria cheia em quilômetros" TextField
+    t =    49.03s     Synthesize event
+    t =    49.28s     Wait for host.exp.Exponent to idle
+    t =    49.29s Type '' into "Autonomia com bateria cheia em quilômetros" TextField
+    t =    49.29s     Wait for host.exp.Exponent to idle
+    t =    49.30s     Find the "Autonomia com bateria cheia em quilômetros" TextField
+    t =    49.39s     Check for interrupting elements affecting "Autonomia com bateria cheia em quilômetros" TextField
+    t =    49.47s     Synthesize event
+    t =    49.72s     Wait for host.exp.Exponent to idle
+    t =    50.78s Find the "Autonomia com bateria cheia em quilômetros" TextField
+    t =    50.86s Type '3' into "Autonomia com bateria cheia em quilômetros" TextField
+    t =    50.86s     Wait for host.exp.Exponent to idle
+    t =    50.87s     Find the "Autonomia com bateria cheia em quilômetros" TextField
+    t =    50.92s     Check for interrupting elements affecting "Autonomia com bateria cheia em quilômetros" TextField
+    t =    50.99s     Synthesize event
+    t =    51.22s     Wait for host.exp.Exponent to idle
+    t =    52.25s Find the "Autonomia com bateria cheia em quilômetros" TextField
+    t =    52.32s Type '0' into "Autonomia com bateria cheia em quilômetros" TextField
+    t =    52.32s     Wait for host.exp.Exponent to idle
+    t =    52.32s     Find the "Autonomia com bateria cheia em quilômetros" TextField
+    t =    52.37s     Check for interrupting elements affecting "Autonomia com bateria cheia em quilômetros" TextField
+    t =    52.42s     Synthesize event
+    t =    52.65s     Wait for host.exp.Exponent to idle
+    t =    53.67s Find the "Autonomia com bateria cheia em quilômetros" TextField
+    t =    53.76s Type '0' into "Autonomia com bateria cheia em quilômetros" TextField
+    t =    53.76s     Wait for host.exp.Exponent to idle
+    t =    53.78s     Find the "Autonomia com bateria cheia em quilômetros" TextField
+    t =    53.86s     Check for interrupting elements affecting "Autonomia com bateria cheia em quilômetros" TextField
+    t =    53.92s     Synthesize event
+    t =    54.16s     Wait for host.exp.Exponent to idle
+    t =    55.20s Find the "Autonomia com bateria cheia em quilômetros" TextField
+    t =    55.26s Swipe up ScrollView (First Match)
+    t =    55.26s     Wait for host.exp.Exponent to idle
+    t =    55.27s     Find the ScrollView (First Match)
+    t =    55.36s     Check for interrupting elements affecting ScrollView
+    t =    55.41s     Synthesize event
+    t =    56.08s     Wait for host.exp.Exponent to idle
+    t =    58.19s Find the Button (First Match)
+    t =    58.30s Tap "Selecionar origem Vila Mariana" Button
+    t =    58.30s     Wait for host.exp.Exponent to idle
+    t =    58.30s     Find the "Selecionar origem Vila Mariana" Button
+    t =    58.36s     Check for interrupting elements affecting "Selecionar origem Vila Mariana" Button
+    t =    58.41s     Synthesize event
+    t =    58.73s     Wait for host.exp.Exponent to idle
+    t =    58.74s Find the "Selecionar origem Vila Mariana" Button
+    t =    58.82s Find the Button (First Match)
+    t =    58.92s Tap Button (First Match)
+    t =    58.92s     Wait for host.exp.Exponent to idle
+    t =    58.94s     Find the Button (First Match)
+    t =    59.02s     Check for interrupting elements affecting "Salvar demonstração" Button
+    t =    59.11s     Synthesize event
+    t =    59.43s     Wait for host.exp.Exponent to idle
+    t =    59.46s Waiting 8.0s for StaticText (First Match) to exist
+    t =    60.49s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    60.49s         Checking existence of `StaticText (First Match)`
+    t =    60.52s Requesting snapshot of accessibility hierarchy for app with pid 41824
+    t =    60.82s Requesting snapshot of accessibility hierarchy for app with pid 41824
+FLUI_13 EVIDENCIA 02-configuracao-salva-vila
+Attributes: Application, 0x1079afd40, pid: 41824, label: 'Expo Go'
+Element subtree:
+ →Application, 0x1079afd40, pid: 41824, label: 'Expo Go'
+    Window (Main), 0x1079af480, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x1079aebc0, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x1079af200, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x1079ac3c0, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x1079ad540, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x1079ac500, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x1079ae800, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x1079acc80, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1079ad180, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1079acf00, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1079acdc0, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x1079ad680, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x1079adb80, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x1079adcc0, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x1079aea80, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x1079af700, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x1079aed00, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Other, 0x1079ac000, {{0.0, 62.0}, {440.0, 860.0}}
+                                        Other, 0x1079ad7c0, {{46.0, 466.0}, {348.0, 52.0}}
+                                          StaticText, 0x1079af0c0, {{63.0, 481.0}, {22.0, 22.0}}, label: 'i'
+                                            StaticText, 0x1079afac0, {{63.0, 481.0}, {22.0, 22.0}}, label: 'i'
+                                          StaticText, 0x1079ac140, {{94.0, 483.0}, {283.0, 18.0}}, label: 'Demonstração salva neste dispositivo'
+                                            StaticText, 0x1079ac640, {{94.0, 483.0}, {283.0, 18.0}}, label: 'Demonstração salva neste dispositivo'
+                                      Button, 0x1079aca00, {{20.0, 70.0}, {44.0, 44.0}}, label: 'Voltar'
+                                      Button, 0x1079af980, {{376.0, 70.0}, {44.0, 44.0}}, label: 'Reiniciar dados locais do Flui'
+                                      StaticText, 0x1079acb40, {{149.7, 80.0}, {140.3, 24.0}}, label: 'Configurações'
+                                        StaticText, 0x1079ada40, {{149.7, 80.0}, {140.3, 24.0}}, label: 'Configurações'
+                                      Other, 0x1079ac8c0, {{0.0, 122.0}, {440.0, 800.0}}
+                                        ScrollView, 0x1079ae300, {{0.0, 122.0}, {440.0, 800.0}}
+                                          Other, 0x1079ac780, {{0.0, -507.0}, {440.0, 1721.7}}
+                                            Other, 0x1079af5c0, {{0.0, -507.0}, {440.0, 1721.7}}
+                                              StaticText, 0x1079ae1c0, {{20.0, -475.0}, {400.0, 26.3}}, label: 'Demonstração NEXT'
+                                                StaticText, 0x1079ad900, {{20.0, -475.0}, {400.0, 26.3}}, label: 'Demonstração NEXT'
+                                              StaticText, 0x1079af840, {{20.0, -442.7}, {400.0, 44.0}}, label: 'Veículo e autonomia usados nas simulações. Sem GPS ou integração com o veículo.'
+                                                StaticText, 0x1079afc00, {{20.0, -442.7}, {400.0, 44.0}}, label: 'Veículo e autonomia usados nas simulações. Sem GPS ou integração com o veículo.'
+                                              StaticText, 0x1079ae580, {{20.0, -382.7}, {400.0, 18.0}}, label: 'Veículo demonstrativo'
+                                                StaticText, 0x1079ade00, {{20.0, -382.7}, {400.0, 18.0}}, label: 'Veículo demonstrativo'
+                                              Other, 0x1079ae080, {{20.0, -358.7}, {400.0, 48.0}}
+                                                TextField, 0x1079ae440, {{21.0, -357.7}, {398.0, 46.0}}, label: 'Veículo demonstrativo', value: Flui iOS NEXT
+                                              StaticText, 0x1079ad400, {{20.0, -294.7}, {400.0, 18.0}}, label: 'Autonomia com bateria cheia (km)'
+                                                StaticText, 0x1079aef80, {{20.0, -294.7}, {400.0, 18.0}}, label: 'Autonomia com bateria cheia (km)'
+                                              Other, 0x1079ad2c0, {{20.0, -270.7}, {400.0, 48.0}}
+                                                TextField, 0x1079aee40, {{21.0, -269.7}, {398.0, 46.0}}, label: 'Autonomia com bateria cheia em quilômetros', value: 300
+                                              StaticText, 0x1079ad040, {{20.0, -206.7}, {400.0, 18.0}}, label: 'Origem demonstrativa'
+                                                StaticText, 0x1079ac280, {{20.0, -206.7}, {400.0, 18.0}}, label: 'Origem demonstrativa'
+                                              StaticText, 0x1035b7ac0, {{20.0, -176.7}, {400.0, 44.0}}, label: 'Distâncias em linha reta a partir da origem escolhida. Não representam percursos reais.'
+                                                StaticText, 0x1035b6bc0, {{20.0, -176.7}, {400.0, 44.0}}, label: 'Distâncias em linha reta a partir da origem escolhida. Não representam percursos reais.'
+                                              Button, 0x1035b5400, {{20.0, -120.7}, {400.0, 82.0}}, label: 'Selecionar origem FIAP'
+                                              Button, 0x1035b7840, {{20.0, -28.7}, {400.0, 82.0}}, label: 'Selecionar origem Paulista'
+                                              Button, 0x1035b7d40, {{20.0, 63.3}, {400.0, 82.0}}, label: 'Selecionar origem Vila Mariana', Selected
+                                              Button, 0x1035b5540, {{20.0, 145.3}, {400.0, 94.0}}, label: 'Salvar demonstração'
+                                              StaticText, 0x1035b70c0, {{20.0, 245.3}, {400.0, 44.0}}, label: 'Bateria: 45% · Informado manualmente. 16/10, 06:33.
+Para alterar, use o indicador de bateria no mapa.'
+                                                StaticText, 0x1035b7c00, {{20.0, 245.3}, {400.0, 44.0}}, label: 'Bateria: 45% · Informado manualmente. 16/10, 06:33.
+Para alterar, use o indicador de bateria no mapa.'
+                                              Button, 0x1035b7480, {{20.0, 289.3}, {400.0, 94.0}}, label: 'Abrir mapa para editar bateria'
+                                              StaticText, 0x1035b7980, {{20.0, 405.3}, {400.0, 26.3}}, label: 'Aparência'
+                                                StaticText, 0x1035b7700, {{20.0, 405.3}, {400.0, 26.3}}, label: 'Aparência'
+                                              StaticText, 0x106424dc0, {{20.0, 437.7}, {400.0, 22.0}}, label: 'Escolha o tema visual do app.'
+                                                StaticText, 0x106425040, {{20.0, 437.7}, {400.0, 22.0}}, label: 'Escolha o tema visual do app.'
+                                              Button, 0x1064252c0, {{20.0, 471.7}, {400.0, 82.0}}, label: 'Selecionar tema claro'
+                                              Button, 0x106424f00, {{20.0, 563.7}, {400.0, 82.0}}, label: 'Selecionar tema escuro', Selected
+                                              StaticText, 0x106425400, {{20.0, 667.7}, {400.0, 26.3}}, label: 'Acessibilidade'
+                                                StaticText, 0x106425180, {{20.0, 667.7}, {400.0, 26.3}}, label: 'Acessibilidade'
+                                              StaticText, 0x106425540, {{20.0, 700.0}, {400.0, 22.0}}, label: 'Ajuste o tamanho da fonte para melhorar a leitura.'
+                                                StaticText, 0x106425a40, {{20.0, 700.0}, {400.0, 22.0}}, label: 'Ajuste o tamanho da fonte para melhorar a leitura.'
+                                              Button, 0x106425e00, {{20.0, 734.0}, {400.0, 82.0}}, label: 'Selecionar fonte menor'
+                                              Button, 0x106425f40, {{20.0, 826.0}, {400.0, 82.0}}, label: 'Selecionar fonte padrão'
+                                              Button, 0x106425b80, {{20.0, 918.0}, {400.0, 82.0}}, label: 'Selecionar fonte maior', Selected
+                                              StaticText, 0x106426080, {{20.0, 1022.0}, {400.0, 26.3}}, label: 'Introdução'
+                                                StaticText, 0x106426300, {{20.0, 1022.0}, {400.0, 26.3}}, label: 'Introdução'
+                                              StaticText, 0x106426580, {{20.0, 1054.3}, {400.0, 22.0}}, label: 'Reveja o tour inicial do app no tema visual ativo agora.'
+                                                StaticText, 0x1064261c0, {{20.0, 1054.3}, {400.0, 22.0}}, label: 'Reveja o tour inicial do app no tema visual ativo agora.'
+                                              Button, 0x1064266c0, {{20.0, 1088.3}, {400.0, 92.3}}, label: 'Ver introdução do app'
+                                          Other, 0x106426440, {{28.0, 889.0}, {384.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                            Other, 0x106426a80, {{31.0, 916.0}, {378.0, 3.0}}
+                                          Other, 0x106426940, {{28.0, 889.0}, {384.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                            Other, 0x106427980, {{31.0, 916.0}, {378.0, 3.0}}
+                          Toolbar, 0x106424640, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x106427d40, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x106424500, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x106427700, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x106427ac0, {{0.0, 0.0}, {440.0, 956.0}}
+    Window, 0x106427e80, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x106427c00, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x106427840, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x1079afd40, pid: 41824, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x1064275c0, pid: 41824, label: 'Expo Go'
+  }
+
+    t =    60.90s Find the Application 'host.exp.Exponent'
+    t =    61.18s Added attachment named '02-configuracao-salva-vila'
+    t =    61.18s Find the Button (First Match)
+    t =    61.26s Tap Button (First Match)
+    t =    61.26s     Wait for host.exp.Exponent to idle
+    t =    61.28s     Find the Button (First Match)
+    t =    61.36s     Check for interrupting elements affecting "Abrir mapa para editar bateria" Button
+    t =    61.48s     Synthesize event
+    t =    61.87s     Wait for host.exp.Exponent to idle
+    t =    61.91s Waiting 10.0s for Button (First Match) to exist
+    t =    63.02s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    63.04s         Checking existence of `Button (First Match)`
+    t =    63.40s Find the Button (First Match)
+FLUI_13 REINICIAR_APP terminate/launch, sem editar armazenamento
+    t =    63.52s Terminate host.exp.Exponent:41824
+    t =    65.79s Open host.exp.Exponent
+    t =    66.03s     Launch host.exp.Exponent
+    t =    69.74s         Setting up automation session
+    t =    80.12s         Wait for host.exp.Exponent to idle
+    t =    87.21s Open host.exp.Exponent
+    t =    87.23s     Activate host.exp.Exponent
+    t =    87.26s         Wait for host.exp.Exponent to idle
+    t =    87.49s Waiting 3.0s for Button (First Match) to exist
+    t =    88.58s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    88.58s         Checking existence of `Button (First Match)`
+    t =    88.71s         Capturing element debug description
+    t =    89.59s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    89.59s         Checking existence of `Button (First Match)`
+    t =    89.63s         Capturing element debug description
+    t =    90.49s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    90.49s         Checking existence of `Button (First Match)`
+    t =    90.54s         Capturing element debug description
+    t =    90.54s     Checking existence of `Button (First Match)`
+    t =    90.56s Collecting debug information to assist test failure triage
+    t =    90.56s     Requesting snapshot of accessibility hierarchy for app with pid 42304
+    t =    90.79s Waiting 10.0s for Button (First Match) to exist
+    t =    91.86s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    91.93s         Checking existence of `Button (First Match)`
+    t =    92.52s         Capturing element debug description
+    t =    92.92s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    92.93s         Checking existence of `Button (First Match)`
+    t =    93.29s Tap Button (First Match)
+    t =    93.29s     Wait for host.exp.Exponent to idle
+    t =    93.30s     Find the Button (First Match)
+    t =    94.05s     Check for interrupting elements affecting "flui-charge-map" Button
+    t =    94.65s     Synthesize event
+    t =    95.37s     Wait for host.exp.Exponent to idle
+    t =    95.68s Waiting 45.0s for Button (First Match) to exist
+    t =    96.88s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    96.88s         Checking existence of `Button (First Match)`
+    t =    97.86s         Capturing element debug description
+    t =    98.76s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    98.76s         Checking existence of `Button (First Match)`
+    t =   104.13s         Capturing element debug description
+    t =   104.76s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =   104.77s         Checking existence of `Button (First Match)`
+    t =   104.79s         Capturing element debug description
+    t =   105.78s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =   105.79s         Checking existence of `Button (First Match)`
+    t =   105.82s         Capturing element debug description
+    t =   106.69s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =   106.69s         Checking existence of `Button (First Match)`
+    t =   106.76s         Capturing element debug description
+    t =   107.75s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =   107.75s         Checking existence of `Button (First Match)`
+    t =   107.81s         Capturing element debug description
+    t =   108.80s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =   108.80s         Checking existence of `Button (First Match)`
+    t =   109.17s         Capturing element debug description
+    t =   109.76s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =   109.76s         Checking existence of `Button (First Match)`
+    t =   110.50s Waiting 8.0s for Button (First Match) to exist
+    t =   111.62s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =   111.62s         Checking existence of `Button (First Match)`
+    t =   112.64s Find the Button (First Match)
+    t =   112.87s Find the Button (First Match)
+    t =   113.25s Checking existence of `Button (First Match)`
+    t =   113.68s Tap Button (First Match)
+    t =   113.68s     Wait for host.exp.Exponent to idle
+    t =   114.22s     Find the Button (First Match)
+    t =   115.07s     Check for interrupting elements affecting "Abrir perfil" Button
+    t =   116.71s     Synthesize event
+    t =   119.45s     Wait for host.exp.Exponent to idle
+    t =   119.81s Waiting 10.0s for Button (First Match) to exist
+    t =   120.89s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =   120.89s         Checking existence of `Button (First Match)`
+    t =   120.97s Tap Button (First Match)
+    t =   120.97s     Wait for host.exp.Exponent to idle
+    t =   120.99s     Find the Button (First Match)
+    t =   121.13s     Check for interrupting elements affecting "Abrir configurações" Button
+    t =   121.60s     Synthesize event
+    t =   122.30s     Wait for host.exp.Exponent to idle
+    t =   122.84s Waiting 10.0s for TextField (First Match) to exist
+    t =   123.90s     Checking `Expect predicate `existsNoRetry == 1` for object TextField (First Match)`
+    t =   123.92s         Checking existence of `TextField (First Match)`
+    t =   125.04s Find the TextField (First Match)
+    t =   126.12s Find the TextField (First Match)
+    t =   127.28s Find the TextField (First Match)
+    t =   127.39s Find the Button (First Match)
+    t =   127.52s Requesting snapshot of accessibility hierarchy for app with pid 42304
+    t =   130.55s Requesting snapshot of accessibility hierarchy for app with pid 42304
+FLUI_13 EVIDENCIA 03-configuracao-persistida-apos-reiniciar
+Attributes: Application, 0x1035b7980, pid: 42304, label: 'Expo Go'
+Element subtree:
+ →Application, 0x1035b7980, pid: 42304, label: 'Expo Go'
+    Window (Main), 0x1035b7700, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x1035b7480, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x1035b70c0, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x1035b7c00, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x1035b5540, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x1035b7d40, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x1035b7840, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x1035b5400, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1035b7ac0, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1035b6bc0, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1064275c0, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x106426580, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x1064261c0, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x106426080, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x106426300, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x106425b80, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x106425f40, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Button, 0x106425e00, {{20.0, 70.0}, {44.0, 44.0}}, label: 'Voltar'
+                                      Button, 0x106425540, {{376.0, 70.0}, {44.0, 44.0}}, label: 'Reiniciar dados locais do Flui'
+                                      StaticText, 0x106425a40, {{149.7, 80.0}, {140.3, 24.0}}, label: 'Configurações'
+                                        StaticText, 0x106425400, {{149.7, 80.0}, {140.3, 24.0}}, label: 'Configurações'
+                                      Other, 0x106425180, {{0.0, 122.0}, {440.0, 800.0}}
+                                        ScrollView, 0x106424f00, {{0.0, 122.0}, {440.0, 800.0}}
+                                          Other, 0x1064252c0, {{0.0, 122.0}, {440.0, 1721.7}}
+                                            Other, 0x106424dc0, {{0.0, 122.0}, {440.0, 1721.7}}
+                                              StaticText, 0x106425040, {{20.0, 154.0}, {400.0, 26.3}}, label: 'Demonstração NEXT'
+                                                StaticText, 0x106426bc0, {{20.0, 154.0}, {400.0, 26.3}}, label: 'Demonstração NEXT'
+                                              StaticText, 0x106426e40, {{20.0, 186.3}, {400.0, 44.0}}, label: 'Veículo e autonomia usados nas simulações. Sem GPS ou integração com o veículo.'
+                                                StaticText, 0x106427200, {{20.0, 186.3}, {400.0, 44.0}}, label: 'Veículo e autonomia usados nas simulações. Sem GPS ou integração com o veículo.'
+                                              StaticText, 0x106427480, {{20.0, 246.3}, {400.0, 18.0}}, label: 'Veículo demonstrativo'
+                                                StaticText, 0x106427840, {{20.0, 246.3}, {400.0, 18.0}}, label: 'Veículo demonstrativo'
+                                              Other, 0x1079adb80, {{20.0, 270.3}, {400.0, 48.0}}
+                                                TextField, 0x1079adcc0, {{21.0, 271.3}, {398.0, 46.0}}, label: 'Veículo demonstrativo', value: Flui iOS NEXT
+                                              StaticText, 0x1079aea80, {{20.0, 334.3}, {400.0, 18.0}}, label: 'Autonomia com bateria cheia (km)'
+                                                StaticText, 0x1079af700, {{20.0, 334.3}, {400.0, 18.0}}, label: 'Autonomia com bateria cheia (km)'
+                                              Other, 0x1079aed00, {{20.0, 358.3}, {400.0, 48.0}}
+                                                TextField, 0x1079ac8c0, {{21.0, 359.3}, {398.0, 46.0}}, label: 'Autonomia com bateria cheia em quilômetros', value: 300
+                                              StaticText, 0x1079ae300, {{20.0, 422.3}, {400.0, 18.0}}, label: 'Origem demonstrativa'
+                                                StaticText, 0x1079ac780, {{20.0, 422.3}, {400.0, 18.0}}, label: 'Origem demonstrativa'
+                                              StaticText, 0x1079af5c0, {{20.0, 452.3}, {400.0, 44.0}}, label: 'Distâncias em linha reta a partir da origem escolhida. Não representam percursos reais.'
+                                                StaticText, 0x1079ad040, {{20.0, 452.3}, {400.0, 44.0}}, label: 'Distâncias em linha reta a partir da origem escolhida. Não representam percursos reais.'
+                                              Button, 0x1079ac280, {{20.0, 508.3}, {400.0, 82.0}}, label: 'Selecionar origem FIAP'
+                                              Button, 0x1079ad2c0, {{20.0, 600.3}, {400.0, 82.0}}, label: 'Selecionar origem Paulista'
+                                              Button, 0x1079aee40, {{20.0, 692.3}, {400.0, 82.0}}, label: 'Selecionar origem Vila Mariana', Selected
+                                              Button, 0x1079ad400, {{20.0, 774.3}, {400.0, 94.0}}, label: 'Salvar demonstração'
+                                              StaticText, 0x1079aef80, {{20.0, 874.3}, {400.0, 44.0}}, label: 'Bateria: 45% · Informado manualmente. 16/10, 06:33.
+Para alterar, use o indicador de bateria no mapa.'
+                                                StaticText, 0x1079ae080, {{20.0, 874.3}, {400.0, 44.0}}, label: 'Bateria: 45% · Informado manualmente. 16/10, 06:33.
+Para alterar, use o indicador de bateria no mapa.'
+                                              Button, 0x1079ae440, {{20.0, 918.3}, {400.0, 94.0}}, label: 'Abrir mapa para editar bateria'
+                                              StaticText, 0x1079ae580, {{20.0, 1034.3}, {400.0, 26.3}}, label: 'Aparência'
+                                                StaticText, 0x1079ade00, {{20.0, 1034.3}, {400.0, 26.3}}, label: 'Aparência'
+                                              StaticText, 0x1079af840, {{20.0, 1066.7}, {400.0, 22.0}}, label: 'Escolha o tema visual do app.'
+                                                StaticText, 0x1079afc00, {{20.0, 1066.7}, {400.0, 22.0}}, label: 'Escolha o tema visual do app.'
+                                              Button, 0x1079ae1c0, {{20.0, 1100.7}, {400.0, 82.0}}, label: 'Selecionar tema claro'
+                                              Button, 0x1079ad900, {{20.0, 1192.7}, {400.0, 82.0}}, label: 'Selecionar tema escuro', Selected
+                                              StaticText, 0x1079acb40, {{20.0, 1296.7}, {400.0, 26.3}}, label: 'Acessibilidade'
+                                                StaticText, 0x1079ada40, {{20.0, 1296.7}, {400.0, 26.3}}, label: 'Acessibilidade'
+                                              StaticText, 0x1079af980, {{20.0, 1329.0}, {400.0, 22.0}}, label: 'Ajuste o tamanho da fonte para melhorar a leitura.'
+                                                StaticText, 0x1079aca00, {{20.0, 1329.0}, {400.0, 22.0}}, label: 'Ajuste o tamanho da fonte para melhorar a leitura.'
+                                              Button, 0x1079ac000, {{20.0, 1363.0}, {400.0, 82.0}}, label: 'Selecionar fonte menor'
+                                              Button, 0x1079ad7c0, {{20.0, 1455.0}, {400.0, 82.0}}, label: 'Selecionar fonte padrão'
+                                              Button, 0x1079ac140, {{20.0, 1547.0}, {400.0, 82.0}}, label: 'Selecionar fonte maior', Selected
+                                              StaticText, 0x1079ac640, {{20.0, 1651.0}, {400.0, 26.3}}, label: 'Introdução'
+                                                StaticText, 0x1079af0c0, {{20.0, 1651.0}, {400.0, 26.3}}, label: 'Introdução'
+                                              StaticText, 0x1079afac0, {{20.0, 1683.3}, {400.0, 22.0}}, label: 'Reveja o tour inicial do app no tema visual ativo agora.'
+                                                StaticText, 0x1079afe80, {{20.0, 1683.3}, {400.0, 22.0}}, label: 'Reveja o tour inicial do app no tema visual ativo agora.'
+                                              Button, 0x1079afd40, {{20.0, 1717.3}, {400.0, 92.3}}, label: 'Ver introdução do app'
+                                          Other, 0x1079af480, {{28.0, 889.0}, {384.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                            Other, 0x1079aebc0, {{38.5, 916.0}, {363.0, 3.0}}
+                                          Other, 0x1079af200, {{28.0, 889.0}, {384.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                            Other, 0x1079ac3c0, {{38.5, 916.0}, {363.0, 3.0}}
+                          Toolbar, 0x1079ad540, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x1079ac500, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1079ae800, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1079acc80, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1079ad180, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x1035b7980, pid: 42304, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x1079acf00, pid: 42304, label: 'Expo Go'
+  }
+
+    t =   130.64s Find the Application 'host.exp.Exponent'
+    t =   131.11s Added attachment named '03-configuracao-persistida-apos-reiniciar'
+FLUI_13 APROVADO_PERSISTENCIA nome=Flui iOS NEXT, autonomia=300, origem=Vila Mariana, bateria preservada=45 por cento. Informado manualmente. 16/10, 06:33
+    t =   131.11s Find the Button (First Match)
+    t =   131.21s Tap Button (First Match)
+    t =   131.21s     Wait for host.exp.Exponent to idle
+    t =   131.22s     Find the Button (First Match)
+    t =   131.44s     Check for interrupting elements affecting "Abrir mapa para editar bateria" Button
+    t =   131.53s     Synthesize event
+    t =   131.97s     Wait for host.exp.Exponent to idle
+    t =   132.09s Waiting 10.0s for Button (First Match) to exist
+    t =   133.24s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =   133.24s         Checking existence of `Button (First Match)`
+    t =   133.38s Tear Down
+Test Case '-[FluiValidacao.FluiValidacao test01ConfiguracaoEPersistencia]' passed (135.681 seconds).
+Test Case '-[FluiValidacao.FluiValidacao test02OrigemConsistenciaEBateria]' started.
+    t =     0.00s Start Test at 2026-10-16 13:00:56.768
+    t =     0.16s Set Up
+    t =     0.18s Open host.exp.Exponent
+    t =     0.21s     Activate host.exp.Exponent
+    t =     0.38s         Wait for host.exp.Exponent to idle
+    t =     0.78s Waiting 3.0s for Button (First Match) to exist
+    t =     1.84s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     1.84s         Checking existence of `Button (First Match)`
+    t =     2.17s Waiting 45.0s for Button (First Match) to exist
+    t =     3.25s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     3.25s         Checking existence of `Button (First Match)`
+    t =     3.50s Waiting 8.0s for Button (First Match) to exist
+    t =     4.58s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     4.58s         Checking existence of `Button (First Match)`
+    t =     5.09s Tap Button (First Match)
+    t =     5.09s     Wait for host.exp.Exponent to idle
+    t =     5.60s     Find the Button (First Match)
+    t =     6.49s     Check for interrupting elements affecting "Abrir busca e filtros" Button
+    t =     8.10s     Synthesize event
+    t =     9.38s     Wait for host.exp.Exponent to idle
+    t =     9.59s Waiting 8.0s for Button (First Match) to exist
+    t =    10.63s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    10.64s         Checking existence of `Button (First Match)`
+    t =    10.71s Tap Button (First Match)
+    t =    10.72s     Wait for host.exp.Exponent to idle
+    t =    10.74s     Find the Button (First Match)
+    t =    10.79s     Check for interrupting elements affecting "Limpar busca e filtros" Button
+    t =    10.93s     Synthesize event
+    t =    11.27s     Wait for host.exp.Exponent to idle
+    t =    11.28s Tap Button (First Match)
+    t =    11.29s     Wait for host.exp.Exponent to idle
+    t =    11.29s     Find the Button (First Match)
+    t =    11.37s     Check for interrupting elements affecting "Ver pontos encontrados no mapa" Button
+    t =    11.47s     Synthesize event
+    t =    11.93s     Wait for host.exp.Exponent to idle
+    t =    11.94s Waiting 10.0s for Button (First Match) to exist
+    t =    13.05s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    13.05s         Checking existence of `Button (First Match)`
+    t =    13.29s Find the Button (First Match)
+    t =    13.52s Find the Button (First Match)
+    t =    13.62s Tap Button (First Match)
+    t =    13.95s     Wait for host.exp.Exponent to idle
+    t =    14.40s     Find the Button (First Match)
+    t =    15.06s     Check for interrupting elements affecting "Flui iOS NEXT. Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 135 quilômetros estimados" Button
+    t =    15.59s     Synthesize event
+    t =    16.33s     Wait for host.exp.Exponent to idle
+    t =    16.36s Waiting 8.0s for Button (First Match) to exist
+    t =    18.11s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    18.12s         Checking existence of `Button (First Match)`
+    t =    18.98s Tap Button (First Match)
+    t =    18.98s     Wait for host.exp.Exponent to idle
+    t =    19.28s     Find the Button (First Match)
+    t =    19.88s     Check for interrupting elements affecting "Diminuir bateria em 5 por cento" Button
+    t =    22.84s     Synthesize event
+    t =    24.83s     Wait for host.exp.Exponent to idle
+    t =    26.45s Tap Button (First Match)
+    t =    26.45s     Wait for host.exp.Exponent to idle
+    t =    27.59s     Find the Button (First Match)
+    t =    28.17s     Check for interrupting elements affecting "Diminuir bateria em 5 por cento" Button
+    t =    28.86s     Synthesize event
+    t =    31.13s     Wait for host.exp.Exponent to idle
+    t =    31.55s Checking existence of `Any (First Match)`
+    t =    31.90s Requesting snapshot of accessibility hierarchy for app with pid 42304
+    t =    42.44s Requesting snapshot of accessibility hierarchy for app with pid 42304
+/tmp/flui-xctest-12/FluiValidacao.swift:140: error: -[FluiValidacao.FluiValidacao test02OrigemConsistenciaEBateria] : XCTAssertTrue failed - Attributes: Application, 0x1079ae6c0, pid: 42304, label: 'Expo Go'
+Element subtree:
+ →Application, 0x1079ae6c0, pid: 42304, label: 'Expo Go'
+    Window (Main), 0x1079adf40, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x1079af340, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x1079ae940, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x1079ae800, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x1079acc80, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x1079ad180, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x1079ad540, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x1079ac500, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1079af200, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1079ac3c0, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1079af480, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x1079aebc0, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x1079afd40, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x1079afac0, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x1079afe80, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x1079ac640, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x1079af0c0, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Other, 0x1079ac140, {{0.0, 62.0}, {440.0, 162.0}}
+                                        Other, 0x1079ad7c0, {{20.0, 76.0}, {76.0, 36.0}}
+                                          Other, 0x1079ac000, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x1079af980, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x1079aca00, {{89.2, 82.8}, {6.7, 6.7}}
+                                        Button, 0x1079acb40, {{191.7, 71.0}, {180.3, 46.0}}, label: 'Flui iOS NEXT. Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 135 quilômetros estimados'
+                                        Button, 0x1079ada40, {{374.0, 71.0}, {46.0, 46.0}}, label: 'Abrir perfil'
+                                        Other, 0x1079ad900, {{20.0, 132.0}, {400.0, 58.0}}
+                                          Other, 0x1079ae1c0, {{39.0, 150.7}, {21.0, 21.0}}
+                                            Other, 0x1079af840, {{40.8, 152.4}, {17.5, 17.5}}
+                                              Other, 0x1079afc00, {{40.8, 152.4}, {15.8, 15.8}}
+                                              Other, 0x1079ae580, {{52.7, 164.4}, {5.5, 5.5}}
+                                          Other, 0x1079ade00, {{73.0, 150.7}, {277.0, 20.3}}
+                                            TextField, 0x1079ae440, {{73.0, 150.7}, {277.0, 20.3}}, label: 'Buscar no mapa', placeholderValue: 'Buscar endereço, bairro ou ponto'
+                                          Other, 0x1079aef80, {{358.0, 146.0}, {1.0, 30.0}}
+                                          Button, 0x1079ae080, {{367.0, 140.0}, {42.0, 42.0}}, label: 'Abrir busca e filtros'
+                                        Button, 0x1079ad400, {{20.0, 194.0}, {400.0, 16.0}}, label: 'Mostrar atalhos de filtro'
+                                      Other, 0x1079aee40, {{0.0, 62.0}, {440.0, 860.0}}
+                                        Button, 0x1079ad2c0, {{0.0, 62.0}, {440.0, 860.0}}, label: 'Fechar seletor de bateria'
+                                        Other, 0x1079ac280, {{0.0, 641.3}, {440.0, 280.7}}
+                                          Other, 0x1079af5c0, {{22.0, 662.3}, {52.0, 52.0}}
+                                          StaticText, 0x1079ad040, {{86.0, 666.0}, {280.0, 24.0}}, label: 'Bateria para estimativa'
+                                            StaticText, 0x1079ae300, {{86.0, 666.0}, {280.0, 24.0}}, label: 'Bateria para estimativa'
+                                          Other, 0x1079ac780, {{35.0, 675.3}, {26.0, 26.0}}
+                                            Other, 0x1079aed00, {{35.9, 680.5}, {24.3, 15.6}}
+                                              Other, 0x1079ac8c0, {{35.9, 680.5}, {19.9, 15.6}}
+                                              Other, 0x1079aea80, {{40.2, 684.9}, {2.6, 6.9}}
+                                              Other, 0x1079af700, {{44.5, 684.9}, {2.6, 6.9}}
+                                              Other, 0x1079adb80, {{57.5, 684.9}, {2.6, 6.9}}
+                                          Button, 0x1079adcc0, {{378.0, 668.3}, {40.0, 40.0}}, label: 'Fechar sem definir a carga'
+                                          StaticText, 0x1079acdc0, {{86.0, 693.0}, {280.0, 18.0}}, label: '≈105 km estimados · sem telemetria'
+                                            StaticText, 0x1079ad680, {{86.0, 693.0}, {280.0, 18.0}}, label: '≈105 km estimados · sem telemetria'
+                                          Button, 0x1035b7980, {{88.0, 735.3}, {64.0, 56.0}}, label: 'Diminuir bateria em 5 por cento'
+                                          StaticText, 0x1035b7700, {{180.0, 734.3}, {79.7, 40.0}}, label: '35%'
+                                            StaticText, 0x1035b7480, {{180.0, 734.3}, {79.7, 40.0}}, label: '35%'
+                                          Button, 0x1035b70c0, {{288.0, 735.3}, {64.0, 56.0}}, label: 'Aumentar bateria em 5 por cento'
+                                          StaticText, 0x1035b7c00, {{192.0, 776.3}, {55.7, 15.7}}, label: '≈105 km'
+                                            StaticText, 0x1035b5540, {{192.0, 776.3}, {55.7, 15.7}}, label: '≈105 km'
+                                          StaticText, 0x1035b7d40, {{22.0, 806.0}, {396.0, 18.0}}, label: 'Ajuste manualmente apenas com o veículo parado.'
+                                            StaticText, 0x1035b7840, {{22.0, 806.0}, {396.0, 18.0}}, label: 'Ajuste manualmente apenas com o veículo parado.'
+                                          Button, 0x1035b5400, {{22.0, 824.0}, {396.0, 62.0}}, label: 'Definir carga da bateria'
+                                      Other, 0x1035b7ac0, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x1035b6bc0, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                          Other, 0x1064248c0, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x1064275c0, {{0.0, 224.0}, {72.0, 72.0}}
+                                            Other, 0x106426580, {{0.0, 224.0}, {440.0, 696.4}}
+                                              Other, 0x1064261c0, {{0.0, 224.0}, {440.0, 696.4}}
+                                                Button, 0x106426080, {{5.0, 893.3}, {60.0, 22.0}}, label: 'Google Maps'
+                                            Other, 0x106426300, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                              Button, 0x106425b80, {{184.0, 389.3}, {72.0, 72.0}}, identifier: 'AIRGMSMarker_0x131ed3200', label: 'Origem demonstrativa: Vila Mariana'
+                                              Button, 0x106425f40, {{185.3, 365.0}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x131ed0a00', label: 'Flui Vila Mariana Lins'
+                                              Button, 0x106425180, {{25.0, 344.7}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x131ed0640', label: 'EcoCarga Parque Aclimação'
+                                              Button, 0x106424f00, {{367.7, 186.7}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x131ed0000', label: 'Mercado Charge Cambuci'
+                                              Other, 0x1064252c0, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x106424dc0, {{1912.0, 2136.0}, {74.0, 74.0}}
+                                              Other, 0x106427480, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                Other, 0x106427840, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                  Other, 0x106426e40, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                    Other, 0x106427200, {{1925.5, 2149.5}, {45.0, 45.0}}
+                                                    Other, 0x106425040, {{1936.0, 2160.0}, {24.0, 24.0}}
+                                        Other, 0x106426bc0, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x106425a40, {{372.0, 242.0}, {52.0, 166.0}}
+                                          Other, 0x106425400, {{372.0, 242.0}, {52.0, 104.0}}
+                                            Button, 0x106425540, {{372.0, 243.0}, {52.0, 51.0}}, label: 'Aumentar zoom do mapa'
+                                            Button, 0x106425e00, {{372.0, 295.0}, {52.0, 51.0}}, label: 'Diminuir zoom do mapa'
+                                            Other, 0x106427c00, {{384.0, 294.0}, {28.0, 1.0}}
+                                          Button, 0x106424500, {{372.0, 356.0}, {52.0, 52.0}}, label: 'Centralizar origem demonstrativa: Vila Mariana'
+                                        Other, 0x106427700, {{372.0, 439.3}, {52.0, 52.0}}
+                                          Other, 0x106427ac0, {{372.0, 439.3}, {52.0, 52.0}}
+                                            Button, 0x106424640, {{372.0, 439.3}, {52.0, 52.0}}, label: 'Abrir assistente Flui IA'
+                                        Other, 0x106427d40, {{16.0, 495.3}, {408.0, 426.7}}
+                                          Other, 0x106426a80, {{16.0, 495.3}, {408.0, 426.7}}
+                                            Button, 0x1064266c0, {{35.0, 514.3}, {370.0, 12.0}}, label: 'Minimizar opções demonstrativas para ver o mapa inteiro'
+                                            StaticText, 0x106426940, {{35.0, 526.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                              StaticText, 0x106427980, {{35.0, 526.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                            StaticText, 0x106426440, {{35.0, 562.0}, {370.0, 38.0}}, label: 'Origem: Vila Mariana · distâncias em linha reta, sem cálculo de percurso'
+                                              StaticText, 0x10fdb4000, {{35.0, 562.0}, {370.0, 38.0}}, label: 'Origem: Vila Mariana · distâncias em linha reta, sem cálculo de percurso'
+                                            Other, 0x10fdb4140, {{35.0, 610.0}, {370.0, 262.0}}
+                                              ScrollView, 0x10fdb4280, {{35.0, 610.0}, {370.0, 262.0}}
+                                                Other, 0x10fdb43c0, {{35.0, 610.0}, {370.0, 928.0}}
+                                                  Other, 0x10fdb4500, {{35.0, 610.0}, {370.0, 928.0}}
+                                                    Button, 0x10fdb4640, {{35.0, 610.0}, {370.0, 154.7}}, label: 'Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈4,9 km em linha reta. Chegada estimada com 43% de bateria.'
+                                                    Button, 0x10fdb4780, {{35.0, 764.7}, {370.0, 154.7}}, label: 'Plug & Café Consolação. Opção demonstrativa. R. da Consolação, 2302. Aberto agora. Nota 4,3. 50 kW. ≈4,1 km em linha reta. Chegada estimada com 44% de bateria.'
+                                                    Button, 0x10fdb48c0, {{35.0, 919.3}, {370.0, 154.7}}, label: 'Charge City Jardins. Opção demonstrativa. Alameda Santos, 2159. Aberto agora. Nota 4,7. 120 kW. ≈4,3 km em linha reta. Chegada estimada com 44% de bateria.'
+                                                    Button, 0x10fdb4a00, {{35.0, 1074.0}, {370.0, 154.7}}, label: 'Flui Vila Mariana Lins. Opção demonstrativa. Av. Lins de Vasconcelos, 1264. Aberto agora. Nota 4,8. 150 kW. ≈0 m em linha reta. Chegada estimada com 45% de bateria.'
+                                                    Button, 0x10fdb4b40, {{35.0, 1228.7}, {370.0, 154.7}}, label: 'EcoCarga Parque Aclimação. Opção demonstrativa. R. Muniz de Sousa, 1119. Aberto agora. Nota 4,2. 22 kW. ≈524 m em linha reta. Chegada estimada com 45% de bateria.'
+                                                    Button, 0x10fdb4c80, {{35.0, 1383.3}, {370.0, 154.7}}, label: 'Mercado Charge Cambuci. Opção demonstrativa. R. Luís Gama, 650. Aberto agora. Nota 4,1. 50 kW. ≈827 m em linha reta. Chegada estimada com 45% de bateria.'
+                                                Other, 0x10fdb4dc0, {{372.0, 610.0}, {30.0, 262.0}}, label: 'Vertical scroll bar, 4 pages', value: 0%
+                                                  Other, 0x10fdb4f00, {{399.0, 613.0}, {3.0, 64.7}}
+                                                Other, 0x10fdb5040, {{35.0, 839.0}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x10fdb5180, {{65.0, 866.0}, {310.0, 3.0}}
+                                                Other, 0x10fdb52c0, {{372.0, 610.0}, {30.0, 262.0}}, label: 'Vertical scroll bar, 4 pages', value: 0%
+                                                  Other, 0x10fdb5400, {{399.0, 613.0}, {3.0, 64.7}}
+                                                Other, 0x10fdb5540, {{35.0, 839.0}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x10fdb5680, {{65.0, 866.0}, {310.0, 3.0}}
+                          Toolbar, 0x10fdb57c0, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x10fdb5900, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x10fdb5a40, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x10fdb5b80, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x10fdb5cc0, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x1079ae6c0, pid: 42304, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x10fdb5e00, pid: 42304, label: 'Expo Go'
+  }
+
+    t =    46.11s Tear Down
+Test Case '-[FluiValidacao.FluiValidacao test02OrigemConsistenciaEBateria]' failed (55.066 seconds).
+Test Suite 'FluiValidacao' failed at 2026-10-16 13:01:51.832.
+	 Executed 2 tests, with 1 failure (0 unexpected) in 190.747 (190.867) seconds
+Test Suite 'FluiValidacao.xctest' failed at 2026-10-16 13:01:51.839.
+	 Executed 2 tests, with 1 failure (0 unexpected) in 190.747 (190.879) seconds
+Test Suite 'All tests' failed at 2026-10-16 13:01:51.841.
+	 Executed 2 tests, with 1 failure (0 unexpected) in 190.747 (190.884) seconds
+2026-10-16 13:01:52.201 xcodebuild[42118:4082023] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 13:01:52.216 xcodebuild[42118:4082023] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 13:01:52.239 xcodebuild[42118:4082023] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 13:01:52.547 xcodebuild[42118:4082023] [MT] IDETestOperationsObserverDebug: 309.387 elapsed -- Testing started completed.
+2026-10-16 13:01:52.548 xcodebuild[42118:4082023] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-16 13:01:52.548 xcodebuild[42118:4082023] [MT] IDETestOperationsObserverDebug: 309.387 sec, +309.387 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/flui-13-ios/Resultado.xcresult
+
+Failing tests:
+	FluiValidacao.test02OrigemConsistenciaEBateria()
+
+** TEST EXECUTE FAILED **
+
+Testing started

@@ -1,0 +1,19 @@
+# Alfa 1.3 — finalização funcional iOS, 16/10/2026
+
+Os três pontos pendentes foram comprovados em `d14b85b`, branch `alfa/dados-demonstrativos-1.3`, no iPhone 18 Pro Max / iOS 27.0, Expo Go 54.0.7 e Xcode 27.1. Investigação dentro do limite de 20 minutos, sem alterações no aplicativo.
+
+| Conferência | Evidência observada |
+| --- | --- |
+| Nova bateria manual e persistência | 45% → 40%, salva em 16/10 às 14:06. Após `terminate/launch` do Expo Go e reabertura do Flui, manteve 40%, origem manual e data; alcance ≈120 km com autonomia de 300 km. [Antes](01-bateria-antes-edicao.png) · [seleção](02-nova-bateria-selecionada.png) · [após reiniciar](03-bateria-manual-persistida.png). Caso aprovado em 65,847 s. |
+| Mapa, ficha e FluIA | Vila Mariana, 300 km e 40%: Higienópolis a ≈4,9 km em linha reta, chegada estimada em 38% nos três consumidores. No mapa, a chegada numérica foi conferida no rótulo de acessibilidade do cartão; ficha e FluIA também foram inspecionadas visualmente. FluIA recomendou o ponto aberto, com carregadores utilizáveis e ressalvas de reserva de 5%/compatibilidade não confirmada. [Mapa](04-estimativas-mapa.png) · [FluIA](05-estimativas-fluia.png) · [ficha](06-estimativas-ficha.png). Caso aprovado em 50,392 s. |
+| Nova origem, centralização e estabilidade | Origem alterada para FIAP e depois Vila Mariana; centralização confirmada pela posição do marcador no centro geométrico do mapa. No caso dirigido, centro da origem em (220; 571,33), centro do mapa em (220; 573), dentro da tolerância de 30 pontos. Após arraste, frame do marcador (-7,33; 686; 72; 72) permaneceu exatamente igual após 35 s, sem navegação, reload ou relógio artificial: deslocamento observado zero, tolerância 2 pontos. [Centralização](07-nova-origem-vila-centralizada.png) · [arraste](08-enquadramento-escolhido.png) · [após ciclo](09-enquadramento-preservado.png). Caso dirigido aprovado em 64,857 s. |
+
+Resultados completos: execução inicial com **2 casos aprovados e 1 falho**. A falha ocorreu na preparação do arraste, que incidiu numa região coberta pelo painel, sem deslocar o mapa. Ajustada somente a sonda para usar a área visível; execução dirigida exclusivamente da câmera: **1 caso aprovado, 0 falhas, saída 0**. Os dois casos já aprovados não foram repetidos. A suíte inicial continua registrada como falha; o conjunto das evidências comprova agora os três cenários solicitados.
+
+[Log inicial](execucao.log), [log da câmera](camera.log), [sonda inicial](FluiValidacao.swift), [sonda dirigida](CameraDirigida.swift), resultados `.xcresult` e manifests das capturas estão nesta pasta. As capturas relevantes foram inspecionadas visualmente. O localizador da bateria foi ajustado para o texto percentual efetivamente exposto pelo iOS; nenhum código de produção foi alterado.
+
+Nenhum defeito funcional reproduzível identificado nos cenários executados. Não foram repetidos os 51 testes, a CI, a exportação/web ou a validação nativa integral da Alfa 1.2. Limites mantidos: Expo Go/simulador em tema escuro, sem comprovação de Android, dispositivo físico, distribuição/credenciais, todos os temas/fontes, VoiceOver ou todas as situações de funcionamento/reserva. Esta conferência de consistência usou uma estação aberta e recomendação viável; não é uma nova auditoria de todas as regras de elegibilidade.
+
+**Recomendação:** PR #2 pronta para revisão final e decisão de merge pela equipe, considerando os limites acima e as evidências automatizadas/web anteriores. Os três pontos funcionais iOS que estavam pendentes foram resolvidos. Não houve aprovação automática do backlog, merge, push, comentário ou modificação da PR. HEAD remoto continua `d14b85b763a9f4a40c99b1f16574ad3fb0a50e36`; PR aberta e em rascunho.
+
+Repositório e main preservados, árvore Git limpa. Metro encerrado e simulador desligado. Estado demonstrativo deixado: Flui iOS NEXT, 300 km, Vila Mariana, bateria manual de 40% com data 16/10 14:06. Relógio real não foi alterado.

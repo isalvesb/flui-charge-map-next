@@ -1,0 +1,1550 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -xctestrun /tmp/flui-xctest-12/DerivedData/Build/Products/FluiValidacao_iphonesimulator27.1-arm64-x86_64.xctestrun -destination "platform=iOS Simulator,id=4A2C862B-D6FC-4E88-8FB5-88164A5C5A2E" -destination-timeout 25 -parallel-testing-enabled NO -collect-test-diagnostics never -test-timeouts-enabled YES -default-test-execution-time-allowance 160 -maximum-test-execution-time-allowance 180 -resultBundlePath /tmp/flui-13-final/Resultado.xcresult
+
+Writing result bundle at path:
+	/tmp/flui-13-final/Resultado.xcresult
+
+2026-10-16 14:04:51.055 xcodebuild[44302:4152732] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 14:05:36.026484-0300 FluiValidacao-Runner[44343:4153929] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'All tests' started at 2026-10-16 14:06:20.692.
+Test Suite 'FluiValidacao.xctest' started at 2026-10-16 14:06:20.697.
+Test Suite 'FluiValidacao' started at 2026-10-16 14:06:20.699.
+Test Case '-[FluiValidacao.FluiValidacao test01NovaBateriaEPersistencia]' started.
+    t =     0.11s Start Test at 2026-10-16 14:06:20.804
+    t =     1.08s Set Up
+    t =     1.13s Open host.exp.Exponent
+    t =     1.14s     Activate host.exp.Exponent
+    t =     1.40s         Wait for host.exp.Exponent to idle
+    t =     1.79s Waiting 3.0s for Button (First Match) to exist
+objc[44343]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x109c58398) and /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x109d4c310). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =     2.86s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     2.86s         Checking existence of `Button (First Match)`
+    t =     3.00s Waiting 45.0s for Button (First Match) to exist
+    t =     4.03s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     4.03s         Checking existence of `Button (First Match)`
+    t =     4.14s Waiting 8.0s for Button (First Match) to exist
+    t =     5.19s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     5.20s         Checking existence of `Button (First Match)`
+    t =     5.45s Find the Button (First Match)
+FLUI_13 BATERIA_ANTES Flui iOS NEXT. Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 135 quilômetros estimados
+    t =     6.00s Tap Button (First Match)
+    t =     6.00s     Wait for host.exp.Exponent to idle
+    t =     6.05s     Find the Button (First Match)
+    t =     6.18s     Check for interrupting elements affecting "Flui iOS NEXT. Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 135 quilômetros estimados" Button
+    t =     6.54s     Synthesize event
+    t =     7.10s     Wait for host.exp.Exponent to idle
+    t =     7.13s Waiting 8.0s for Button (First Match) to exist
+    t =     8.21s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     8.21s         Checking existence of `Button (First Match)`
+    t =     8.31s Waiting 5.0s for StaticText (First Match) to exist
+    t =     9.33s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =     9.34s         Checking existence of `StaticText (First Match)`
+    t =     9.40s Requesting snapshot of accessibility hierarchy for app with pid 44236
+    t =    11.44s Requesting snapshot of accessibility hierarchy for app with pid 44236
+FLUI_13 EVIDENCIA 01-bateria-antes-edicao
+Attributes: Application, 0x109834c80, pid: 44236, label: 'Expo Go'
+Element subtree:
+ →Application, 0x109834c80, pid: 44236, label: 'Expo Go'
+    Window (Main), 0x109835040, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x109835180, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x109834dc0, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x109834f00, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x1098352c0, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x109835400, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x109835900, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x109835cc0, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x109835e00, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x109835b80, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x109835f40, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x109836300, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x109836440, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x109836080, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x109836580, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x109836800, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x109836940, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Other, 0x109836bc0, {{0.0, 62.0}, {440.0, 162.0}}
+                                        Other, 0x109836f80, {{20.0, 76.0}, {76.0, 36.0}}
+                                          Other, 0x109837200, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x109837340, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x1098370c0, {{89.2, 82.8}, {6.7, 6.7}}
+                                        Button, 0x109837480, {{191.7, 71.0}, {180.3, 46.0}}, label: 'Flui iOS NEXT. Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 135 quilômetros estimados'
+                                        Button, 0x109837700, {{374.0, 71.0}, {46.0, 46.0}}, label: 'Abrir perfil'
+                                        Other, 0x109837840, {{20.0, 132.0}, {400.0, 58.0}}
+                                          Other, 0x1098375c0, {{39.0, 150.7}, {21.0, 21.0}}
+                                            Other, 0x109837980, {{40.8, 152.4}, {17.5, 17.5}}
+                                              Other, 0x109837ac0, {{40.8, 152.4}, {15.8, 15.8}}
+                                              Other, 0x109837d40, {{52.7, 164.4}, {5.5, 5.5}}
+                                          Other, 0x109837e80, {{73.0, 150.7}, {277.0, 20.3}}
+                                            TextField, 0x109837c00, {{73.0, 150.7}, {277.0, 20.3}}, label: 'Buscar no mapa', placeholderValue: 'Buscar endereço, bairro ou ponto'
+                                          Other, 0x1098343c0, {{358.0, 146.0}, {1.0, 30.0}}
+                                          Button, 0x1098348c0, {{367.0, 140.0}, {42.0, 42.0}}, label: 'Abrir busca e filtros'
+                                        Button, 0x1069a7200, {{20.0, 194.0}, {400.0, 16.0}}, label: 'Mostrar atalhos de filtro'
+                                      Other, 0x1069a6f80, {{0.0, 62.0}, {440.0, 860.0}}
+                                        Button, 0x1069a7340, {{0.0, 62.0}, {440.0, 860.0}}, label: 'Fechar seletor de bateria'
+                                        Other, 0x1069a75c0, {{0.0, 641.3}, {440.0, 280.7}}
+                                          Other, 0x1069a7700, {{22.0, 662.3}, {52.0, 52.0}}
+                                          StaticText, 0x1069a7840, {{86.0, 666.0}, {280.0, 24.0}}, label: 'Bateria para estimativa'
+                                            StaticText, 0x1069a7ac0, {{86.0, 666.0}, {280.0, 24.0}}, label: 'Bateria para estimativa'
+                                          Other, 0x1069a7c00, {{35.0, 675.3}, {26.0, 26.0}}
+                                            Other, 0x1069a7980, {{35.9, 680.5}, {24.3, 15.6}}
+                                              Other, 0x1069a52c0, {{35.9, 680.5}, {19.9, 15.6}}
+                                              Other, 0x1069a5400, {{40.2, 684.9}, {2.6, 6.9}}
+                                              Other, 0x11308c000, {{44.5, 684.9}, {2.6, 6.9}}
+                                              Other, 0x11308c140, {{57.5, 684.9}, {2.6, 6.9}}
+                                          Button, 0x11308c280, {{378.0, 668.3}, {40.0, 40.0}}, label: 'Fechar sem definir a carga'
+                                          StaticText, 0x11308c3c0, {{86.0, 693.0}, {280.0, 18.0}}, label: '≈135 km estimados · sem telemetria'
+                                            StaticText, 0x11308c500, {{86.0, 693.0}, {280.0, 18.0}}, label: '≈135 km estimados · sem telemetria'
+                                          Button, 0x11308c640, {{88.0, 735.3}, {64.0, 56.0}}, label: 'Diminuir bateria em 5 por cento'
+                                          StaticText, 0x11308c780, {{179.7, 734.3}, {80.3, 40.0}}, label: '45%'
+                                            StaticText, 0x11308c8c0, {{179.7, 734.3}, {80.3, 40.0}}, label: '45%'
+                                          Button, 0x11308ca00, {{288.0, 735.3}, {64.0, 56.0}}, label: 'Aumentar bateria em 5 por cento'
+                                          StaticText, 0x11308cb40, {{192.0, 776.3}, {55.7, 15.7}}, label: '≈135 km'
+                                            StaticText, 0x11308cc80, {{192.0, 776.3}, {55.7, 15.7}}, label: '≈135 km'
+                                          StaticText, 0x11308cdc0, {{22.0, 806.0}, {396.0, 18.0}}, label: 'Ajuste manualmente apenas com o veículo parado.'
+                                            StaticText, 0x11308cf00, {{22.0, 806.0}, {396.0, 18.0}}, label: 'Ajuste manualmente apenas com o veículo parado.'
+                                          Button, 0x11308d040, {{22.0, 824.0}, {396.0, 62.0}}, label: 'Definir carga da bateria'
+                                      Other, 0x11308d180, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x11308d2c0, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                          Other, 0x11308d400, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x11308d540, {{0.0, 224.0}, {72.0, 72.0}}
+                                            Other, 0x11308d680, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                              Button, 0x11308d7c0, {{184.0, 390.3}, {72.0, 72.0}}, identifier: 'AIRGMSMarker_0x11359c500', label: 'Origem demonstrativa: Vila Mariana'
+                                              Button, 0x11308d900, {{185.3, 366.0}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x11359d540', label: 'Flui Vila Mariana Lins'
+                                              Button, 0x11308da40, {{25.0, 345.3}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x11359d180', label: 'EcoCarga Parque Aclimação'
+                                              Button, 0x11308db80, {{367.7, 187.7}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x11359df40', label: 'Mercado Charge Cambuci'
+                                              Other, 0x11308dcc0, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x11308de00, {{0.0, 224.0}, {440.0, 698.0}}
+                                              Other, 0x11308df40, {{0.0, 224.0}, {440.0, 698.0}}
+                                                Button, 0x11308e080, {{5.0, 895.0}, {60.0, 22.0}}, label: 'Google Maps'
+                                            Other, 0x11308e1c0, {{1912.0, 2136.0}, {74.0, 74.0}}
+                                              Other, 0x11308e300, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                Other, 0x11308e440, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                  Other, 0x11308e580, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                    Other, 0x11308e6c0, {{1918.0, 2142.0}, {59.9, 59.9}}
+                                                    Other, 0x11308e800, {{1936.0, 2160.0}, {24.0, 24.0}}
+                                        Other, 0x11308e940, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x11308ea80, {{372.0, 242.0}, {52.0, 166.0}}
+                                          Other, 0x11308ebc0, {{372.0, 242.0}, {52.0, 104.0}}
+                                            Button, 0x11308ed00, {{372.0, 243.0}, {52.0, 51.0}}, label: 'Aumentar zoom do mapa'
+                                            Button, 0x11308ee40, {{372.0, 295.0}, {52.0, 51.0}}, label: 'Diminuir zoom do mapa'
+                                            Other, 0x11308ef80, {{384.0, 294.0}, {28.0, 1.0}}
+                                          Button, 0x11308f0c0, {{372.0, 356.0}, {52.0, 52.0}}, label: 'Centralizar origem demonstrativa: Vila Mariana'
+                                        Other, 0x11308f200, {{372.0, 439.3}, {52.0, 52.0}}
+                                          Other, 0x11308f340, {{372.0, 439.3}, {52.0, 52.0}}
+                                            Button, 0x11308f480, {{372.0, 439.3}, {52.0, 52.0}}, label: 'Abrir assistente Flui IA'
+                                        Other, 0x11308f5c0, {{16.0, 495.3}, {408.0, 426.7}}
+                                          Other, 0x11308f700, {{16.0, 495.3}, {408.0, 426.7}}
+                                            Button, 0x11308f840, {{35.0, 514.3}, {370.0, 12.0}}, label: 'Minimizar opções demonstrativas para ver o mapa inteiro'
+                                            StaticText, 0x11308f980, {{35.0, 526.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                              StaticText, 0x11308fac0, {{35.0, 526.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                            StaticText, 0x11308fc00, {{35.0, 562.0}, {370.0, 38.0}}, label: 'Origem: Vila Mariana · distâncias em linha reta, sem cálculo de percurso'
+                                              StaticText, 0x11308fd40, {{35.0, 562.0}, {370.0, 38.0}}, label: 'Origem: Vila Mariana · distâncias em linha reta, sem cálculo de percurso'
+                                            Other, 0x11308fe80, {{35.0, 610.0}, {370.0, 262.0}}
+                                              ScrollView, 0x1130a0000, {{35.0, 610.0}, {370.0, 262.0}}
+                                                Other, 0x1130a0140, {{35.0, 610.0}, {370.0, 928.0}}
+                                                  Other, 0x1130a0280, {{35.0, 610.0}, {370.0, 928.0}}
+                                                    Button, 0x1130a03c0, {{35.0, 610.0}, {370.0, 154.7}}, label: 'Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈4,9 km em linha reta. Chegada estimada com 43% de bateria.'
+                                                    Button, 0x1130a0500, {{35.0, 764.7}, {370.0, 154.7}}, label: 'Plug & Café Consolação. Opção demonstrativa. R. da Consolação, 2302. Aberto agora. Nota 4,3. 50 kW. ≈4,1 km em linha reta. Chegada estimada com 44% de bateria.'
+                                                    Button, 0x1130a0640, {{35.0, 919.3}, {370.0, 154.7}}, label: 'Charge City Jardins. Opção demonstrativa. Alameda Santos, 2159. Aberto agora. Nota 4,7. 120 kW. ≈4,3 km em linha reta. Chegada estimada com 44% de bateria.'
+                                                    Button, 0x1130a0780, {{35.0, 1074.0}, {370.0, 154.7}}, label: 'Flui Vila Mariana Lins. Opção demonstrativa. Av. Lins de Vasconcelos, 1264. Aberto agora. Nota 4,8. 150 kW. ≈0 m em linha reta. Chegada estimada com 45% de bateria.'
+                                                    Button, 0x1130a08c0, {{35.0, 1228.7}, {370.0, 154.7}}, label: 'EcoCarga Parque Aclimação. Opção demonstrativa. R. Muniz de Sousa, 1119. Aberto agora. Nota 4,2. 22 kW. ≈524 m em linha reta. Chegada estimada com 45% de bateria.'
+                                                    Button, 0x1130a0a00, {{35.0, 1383.3}, {370.0, 154.7}}, label: 'Mercado Charge Cambuci. Opção demonstrativa. R. Luís Gama, 650. Aberto agora. Nota 4,1. 50 kW. ≈827 m em linha reta. Chegada estimada com 45% de bateria.'
+                                                Other, 0x1130a0b40, {{372.0, 610.0}, {30.0, 262.0}}, label: 'Vertical scroll bar, 4 pages', value: 0%
+                                                  Other, 0x1130a0c80, {{399.0, 613.0}, {3.0, 72.3}}
+                                                Other, 0x1130a0dc0, {{35.0, 839.0}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x1130a0f00, {{38.0, 866.0}, {361.0, 3.0}}
+                                                Other, 0x1130a1040, {{372.0, 610.0}, {30.0, 262.0}}, label: 'Vertical scroll bar, 4 pages', value: 0%
+                                                  Other, 0x1130a1180, {{399.0, 613.0}, {3.0, 72.3}}
+                                                Other, 0x1130a12c0, {{35.0, 839.0}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x1130a1400, {{38.0, 866.0}, {361.0, 3.0}}
+                          Toolbar, 0x1130a1540, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x1130a1680, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1130a17c0, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1130a1900, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1130a1a40, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x109834c80, pid: 44236, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x1130a1b80, pid: 44236, label: 'Expo Go'
+  }
+
+    t =    11.68s Find the Application 'host.exp.Exponent'
+    t =    12.31s Added attachment named '01-bateria-antes-edicao'
+    t =    12.31s Tap Button (First Match)[0.50, 0.50]
+    t =    12.32s     Wait for host.exp.Exponent to idle
+    t =    12.34s     Find the Button (First Match)
+    t =    12.42s     Check for interrupting elements affecting "Diminuir bateria em 5 por cento" Button
+    t =    12.52s     Synthesize event
+    t =    12.55s         Find the "Diminuir bateria em 5 por cento" Button
+    t =    12.67s         Find the "Diminuir bateria em 5 por cento" Button
+    t =    12.75s         Find the "Diminuir bateria em 5 por cento" Button
+    t =    13.15s     Wait for host.exp.Exponent to idle
+    t =    13.20s Waiting 8.0s for StaticText (First Match) to exist
+    t =    14.29s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    14.29s         Checking existence of `StaticText (First Match)`
+    t =    14.60s Requesting snapshot of accessibility hierarchy for app with pid 44236
+    t =    17.48s Requesting snapshot of accessibility hierarchy for app with pid 44236
+FLUI_13 EVIDENCIA 02-nova-bateria-selecionada
+Attributes: Application, 0x1130a3e80, pid: 44236, label: 'Expo Go'
+Element subtree:
+ →Application, 0x1130a3e80, pid: 44236, label: 'Expo Go'
+    Window (Main), 0x1130a1e00, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x1130a1f40, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x1130a2080, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x1130a21c0, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x1130a2300, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x1130a2440, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x1130a2580, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x1130a26c0, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1130a2800, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1130a2940, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1130a2a80, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x1130a2bc0, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x1130a2d00, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x1130a2e40, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x1130a2f80, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x1130a30c0, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x1130a3200, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Other, 0x1130a3ac0, {{0.0, 62.0}, {440.0, 162.0}}
+                                        Other, 0x1130a3c00, {{20.0, 76.0}, {76.0, 36.0}}
+                                          Other, 0x1130a3d40, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x1130a1cc0, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x1130a3980, {{89.2, 82.8}, {6.7, 6.7}}
+                                        Button, 0x1130a1a40, {{191.7, 71.0}, {180.3, 46.0}}, label: 'Flui iOS NEXT. Bateria para estimativa: 45 por cento. Informado manualmente. 16/10, 06:33. Cerca de 135 quilômetros estimados'
+                                        Button, 0x1130a1540, {{374.0, 71.0}, {46.0, 46.0}}, label: 'Abrir perfil'
+                                        Other, 0x1130a1680, {{20.0, 132.0}, {400.0, 58.0}}
+                                          Other, 0x1130a0000, {{39.0, 150.7}, {21.0, 21.0}}
+                                            Other, 0x1130a12c0, {{40.8, 152.4}, {17.5, 17.5}}
+                                              Other, 0x1130a1400, {{40.8, 152.4}, {15.8, 15.8}}
+                                              Other, 0x1130a1040, {{52.7, 164.4}, {5.5, 5.5}}
+                                          Other, 0x1130a1180, {{73.0, 150.7}, {277.0, 20.3}}
+                                            TextField, 0x1130a0dc0, {{73.0, 150.7}, {277.0, 20.3}}, label: 'Buscar no mapa', placeholderValue: 'Buscar endereço, bairro ou ponto'
+                                          Other, 0x1130a0f00, {{358.0, 146.0}, {1.0, 30.0}}
+                                          Button, 0x1130a0b40, {{367.0, 140.0}, {42.0, 42.0}}, label: 'Abrir busca e filtros'
+                                        Button, 0x1130a0c80, {{20.0, 194.0}, {400.0, 16.0}}, label: 'Mostrar atalhos de filtro'
+                                      Other, 0x1130a0140, {{0.0, 62.0}, {440.0, 860.0}}
+                                        Button, 0x1130a0280, {{0.0, 62.0}, {440.0, 860.0}}, label: 'Fechar seletor de bateria'
+                                        Other, 0x1130a0a00, {{0.0, 641.3}, {440.0, 280.7}}
+                                          Other, 0x1130a08c0, {{22.0, 662.3}, {52.0, 52.0}}
+                                          StaticText, 0x1130a0780, {{86.0, 666.0}, {280.0, 24.0}}, label: 'Bateria para estimativa'
+                                            StaticText, 0x1130a0640, {{86.0, 666.0}, {280.0, 24.0}}, label: 'Bateria para estimativa'
+                                          Other, 0x1130a0500, {{35.0, 675.3}, {26.0, 26.0}}
+                                            Other, 0x1130a03c0, {{35.9, 680.5}, {24.3, 15.6}}
+                                              Other, 0x1130a3840, {{35.9, 680.5}, {19.9, 15.6}}
+                                              Other, 0x1130a3340, {{40.2, 684.9}, {2.6, 6.9}}
+                                              Other, 0x1130a3480, {{44.5, 684.9}, {2.6, 6.9}}
+                                              Other, 0x1130a3700, {{57.5, 684.9}, {2.6, 6.9}}
+                                          Button, 0x1130a35c0, {{378.0, 668.3}, {40.0, 40.0}}, label: 'Fechar sem definir a carga'
+                                          StaticText, 0x1069a6f80, {{86.0, 693.0}, {280.0, 18.0}}, label: '≈120 km estimados · sem telemetria'
+                                            StaticText, 0x1069a75c0, {{86.0, 693.0}, {280.0, 18.0}}, label: '≈120 km estimados · sem telemetria'
+                                          Button, 0x1069a7c00, {{88.0, 735.3}, {64.0, 56.0}}, label: 'Diminuir bateria em 5 por cento'
+                                          StaticText, 0x1069a7980, {{179.0, 734.3}, {81.7, 40.0}}, label: '40%'
+                                            StaticText, 0x1069a5400, {{179.0, 734.3}, {81.7, 40.0}}, label: '40%'
+                                          Button, 0x1069a52c0, {{288.0, 735.3}, {64.0, 56.0}}, label: 'Aumentar bateria em 5 por cento'
+                                          StaticText, 0x1069a7840, {{192.0, 776.3}, {55.7, 15.7}}, label: '≈120 km'
+                                            StaticText, 0x1069a7ac0, {{192.0, 776.3}, {55.7, 15.7}}, label: '≈120 km'
+                                          StaticText, 0x1069a7700, {{22.0, 806.0}, {396.0, 18.0}}, label: 'Ajuste manualmente apenas com o veículo parado.'
+                                            StaticText, 0x1069a7340, {{22.0, 806.0}, {396.0, 18.0}}, label: 'Ajuste manualmente apenas com o veículo parado.'
+                                          Button, 0x1069a7200, {{22.0, 824.0}, {396.0, 62.0}}, label: 'Definir carga da bateria'
+                                      Other, 0x109834c80, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x109835040, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                          Other, 0x109835180, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x109834dc0, {{0.0, 224.0}, {72.0, 72.0}}
+                                            Other, 0x109834f00, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                              Button, 0x1098352c0, {{184.0, 390.3}, {72.0, 72.0}}, identifier: 'AIRGMSMarker_0x11359c500', label: 'Origem demonstrativa: Vila Mariana'
+                                              Button, 0x109835400, {{185.3, 366.0}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x11359d540', label: 'Flui Vila Mariana Lins'
+                                              Button, 0x109835900, {{25.0, 345.3}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x11359d180', label: 'EcoCarga Parque Aclimação'
+                                              Button, 0x109835cc0, {{367.7, 187.7}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x11359df40', label: 'Mercado Charge Cambuci'
+                                              Other, 0x109835e00, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x109835b80, {{0.0, 224.0}, {440.0, 698.0}}
+                                              Other, 0x109835f40, {{0.0, 224.0}, {440.0, 698.0}}
+                                                Button, 0x109836300, {{5.0, 895.0}, {60.0, 22.0}}, label: 'Google Maps'
+                                            Other, 0x109836440, {{1912.0, 2136.0}, {74.0, 74.0}}
+                                              Other, 0x109836080, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                Other, 0x109836580, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                  Other, 0x109836800, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                    Other, 0x109836940, {{1916.8, 2140.8}, {62.4, 62.4}}
+                                                    Other, 0x109836bc0, {{1936.0, 2160.0}, {24.0, 24.0}}
+                                        Other, 0x109837840, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x1098348c0, {{372.0, 242.0}, {52.0, 166.0}}
+                                          Other, 0x1098343c0, {{372.0, 242.0}, {52.0, 104.0}}
+                                            Button, 0x109837e80, {{372.0, 243.0}, {52.0, 51.0}}, label: 'Aumentar zoom do mapa'
+                                            Button, 0x109837c00, {{372.0, 295.0}, {52.0, 51.0}}, label: 'Diminuir zoom do mapa'
+                                            Other, 0x1098375c0, {{384.0, 294.0}, {28.0, 1.0}}
+                                          Button, 0x109837980, {{372.0, 356.0}, {52.0, 52.0}}, label: 'Centralizar origem demonstrativa: Vila Mariana'
+                                        Other, 0x109837d40, {{372.0, 439.3}, {52.0, 52.0}}
+                                          Other, 0x109837ac0, {{372.0, 439.3}, {52.0, 52.0}}
+                                            Button, 0x109837700, {{372.0, 439.3}, {52.0, 52.0}}, label: 'Abrir assistente Flui IA'
+                                        Other, 0x109837480, {{16.0, 495.3}, {408.0, 426.7}}
+                                          Other, 0x109836f80, {{16.0, 495.3}, {408.0, 426.7}}
+                                            Button, 0x109837200, {{35.0, 514.3}, {370.0, 12.0}}, label: 'Minimizar opções demonstrativas para ver o mapa inteiro'
+                                            StaticText, 0x1098370c0, {{35.0, 526.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                              StaticText, 0x109837340, {{35.0, 526.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                            StaticText, 0x11308c000, {{35.0, 562.0}, {370.0, 38.0}}, label: 'Origem: Vila Mariana · distâncias em linha reta, sem cálculo de percurso'
+                                              StaticText, 0x11308c140, {{35.0, 562.0}, {370.0, 38.0}}, label: 'Origem: Vila Mariana · distâncias em linha reta, sem cálculo de percurso'
+                                            Other, 0x11308c280, {{35.0, 610.0}, {370.0, 262.0}}
+                                              ScrollView, 0x11308c3c0, {{35.0, 610.0}, {370.0, 262.0}}
+                                                Other, 0x11308c500, {{35.0, 610.0}, {370.0, 928.0}}
+                                                  Other, 0x11308c640, {{35.0, 610.0}, {370.0, 928.0}}
+                                                    Button, 0x11308c780, {{35.0, 610.0}, {370.0, 154.7}}, label: 'Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈4,9 km em linha reta. Chegada estimada com 43% de bateria.'
+                                                    Button, 0x11308c8c0, {{35.0, 764.7}, {370.0, 154.7}}, label: 'Plug & Café Consolação. Opção demonstrativa. R. da Consolação, 2302. Aberto agora. Nota 4,3. 50 kW. ≈4,1 km em linha reta. Chegada estimada com 44% de bateria.'
+                                                    Button, 0x11308ca00, {{35.0, 919.3}, {370.0, 154.7}}, label: 'Charge City Jardins. Opção demonstrativa. Alameda Santos, 2159. Aberto agora. Nota 4,7. 120 kW. ≈4,3 km em linha reta. Chegada estimada com 44% de bateria.'
+                                                    Button, 0x11308cb40, {{35.0, 1074.0}, {370.0, 154.7}}, label: 'Flui Vila Mariana Lins. Opção demonstrativa. Av. Lins de Vasconcelos, 1264. Aberto agora. Nota 4,8. 150 kW. ≈0 m em linha reta. Chegada estimada com 45% de bateria.'
+                                                    Button, 0x11308cc80, {{35.0, 1228.7}, {370.0, 154.7}}, label: 'EcoCarga Parque Aclimação. Opção demonstrativa. R. Muniz de Sousa, 1119. Aberto agora. Nota 4,2. 22 kW. ≈524 m em linha reta. Chegada estimada com 45% de bateria.'
+                                                    Button, 0x11308cdc0, {{35.0, 1383.3}, {370.0, 154.7}}, label: 'Mercado Charge Cambuci. Opção demonstrativa. R. Luís Gama, 650. Aberto agora. Nota 4,1. 50 kW. ≈827 m em linha reta. Chegada estimada com 45% de bateria.'
+                                                Other, 0x11308cf00, {{372.0, 610.0}, {30.0, 262.0}}, label: 'Vertical scroll bar, 4 pages', value: 0%
+                                                  Other, 0x11308d040, {{399.0, 613.0}, {3.0, 72.3}}
+                                                Other, 0x11308d180, {{35.0, 839.0}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x11308d2c0, {{38.0, 866.0}, {361.0, 3.0}}
+                                                Other, 0x11308d400, {{372.0, 610.0}, {30.0, 262.0}}, label: 'Vertical scroll bar, 4 pages', value: 0%
+                                                  Other, 0x11308d540, {{399.0, 613.0}, {3.0, 72.3}}
+                                                Other, 0x11308d680, {{35.0, 839.0}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x11308d7c0, {{38.0, 866.0}, {361.0, 3.0}}
+                          Toolbar, 0x11308d900, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x11308da40, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x11308db80, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x11308dcc0, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x11308de00, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x1130a3e80, pid: 44236, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x11308df40, pid: 44236, label: 'Expo Go'
+  }
+
+    t =    17.80s Find the Application 'host.exp.Exponent'
+    t =    18.28s Added attachment named '02-nova-bateria-selecionada'
+    t =    18.28s Tap Button (First Match)
+    t =    18.28s     Wait for host.exp.Exponent to idle
+    t =    18.30s     Find the Button (First Match)
+    t =    18.42s     Check for interrupting elements affecting "Definir carga da bateria" Button
+    t =    18.56s     Synthesize event
+    t =    18.98s     Wait for host.exp.Exponent to idle
+    t =    20.12s Checking existence of `Button (First Match)`
+    t =    20.19s Find the Button (First Match)
+    t =    20.26s Find the Button (First Match)
+    t =    20.29s Find the Button (First Match)
+FLUI_13 BATERIA_SALVA Flui iOS NEXT. Bateria para estimativa: 40 por cento. Informado manualmente. 16/10, 14:06. Cerca de 120 quilômetros estimados
+FLUI_13 REINICIAR_APP terminate/launch, sem editar armazenamento
+    t =    20.32s Terminate host.exp.Exponent:44236
+    t =    21.35s Open host.exp.Exponent
+    t =    21.35s     Launch host.exp.Exponent
+    t =    21.59s         Setting up automation session
+    t =    27.64s         Wait for host.exp.Exponent to idle
+    t =    30.38s Open host.exp.Exponent
+    t =    30.39s     Activate host.exp.Exponent
+    t =    30.45s         Wait for host.exp.Exponent to idle
+    t =    34.51s Waiting 3.0s for Button (First Match) to exist
+    t =    35.53s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    35.53s         Checking existence of `Button (First Match)`
+    t =    35.77s         Capturing element debug description
+    t =    36.54s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    36.54s         Checking existence of `Button (First Match)`
+    t =    36.70s         Capturing element debug description
+    t =    37.52s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    37.52s         Checking existence of `Button (First Match)`
+    t =    37.59s         Capturing element debug description
+    t =    37.59s     Checking existence of `Button (First Match)`
+    t =    37.66s Collecting debug information to assist test failure triage
+    t =    37.66s     Requesting snapshot of accessibility hierarchy for app with pid 44484
+    t =    37.81s Waiting 10.0s for Button (First Match) to exist
+    t =    38.89s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    38.89s         Checking existence of `Button (First Match)`
+    t =    38.97s Tap Button (First Match)
+    t =    38.97s     Wait for host.exp.Exponent to idle
+    t =    38.99s     Find the Button (First Match)
+    t =    39.07s     Check for interrupting elements affecting "flui-charge-map" Button
+    t =    39.13s     Synthesize event
+    t =    39.57s     Wait for host.exp.Exponent to idle
+    t =    40.17s Waiting 45.0s for Button (First Match) to exist
+    t =    41.19s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    41.19s         Checking existence of `Button (First Match)`
+    t =    44.67s         Capturing element debug description
+    t =    45.20s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    45.20s         Checking existence of `Button (First Match)`
+    t =    45.23s         Capturing element debug description
+    t =    46.18s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    46.18s         Checking existence of `Button (First Match)`
+    t =    46.20s         Capturing element debug description
+    t =    47.23s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    47.23s         Checking existence of `Button (First Match)`
+    t =    47.26s         Capturing element debug description
+    t =    48.19s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    48.20s         Checking existence of `Button (First Match)`
+    t =    48.26s         Capturing element debug description
+    t =    49.21s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    49.21s         Checking existence of `Button (First Match)`
+    t =    49.25s         Capturing element debug description
+    t =    50.18s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    50.18s         Checking existence of `Button (First Match)`
+    t =    50.62s Waiting 8.0s for Button (First Match) to exist
+    t =    51.71s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    51.71s         Checking existence of `Button (First Match)`
+    t =    51.79s Find the Button (First Match)
+    t =    51.89s Requesting snapshot of accessibility hierarchy for app with pid 44484
+    t =    62.87s Requesting snapshot of accessibility hierarchy for app with pid 44484
+FLUI_13 EVIDENCIA 03-bateria-manual-persistida
+Attributes: Application, 0x1130a1f40, pid: 44484, label: 'Expo Go'
+Element subtree:
+ →Application, 0x1130a1f40, pid: 44484, label: 'Expo Go'
+    Window (Main), 0x1130a1b80, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x11308ea80, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x11308ed00, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x11308ee40, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x11308ef80, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x11308f0c0, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x11308f200, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x11308f340, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x11308f480, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x11308f5c0, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x11308f700, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x11308f840, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x11308f980, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x11308fac0, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x11308fc00, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x11308fd40, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x11308fe80, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Other, 0x11308ebc0, {{0.0, 62.0}, {440.0, 162.0}}
+                                        Other, 0x1135b8000, {{20.0, 76.0}, {76.0, 36.0}}
+                                          Other, 0x1135b8140, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x1135b8280, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x1135b83c0, {{89.2, 82.8}, {6.7, 6.7}}
+                                        Button, 0x1135b8500, {{191.7, 71.0}, {180.3, 46.0}}, label: 'Flui iOS NEXT. Bateria para estimativa: 40 por cento. Informado manualmente. 16/10, 14:06. Cerca de 120 quilômetros estimados'
+                                        Button, 0x1135b8640, {{374.0, 71.0}, {46.0, 46.0}}, label: 'Abrir perfil'
+                                        Other, 0x1135b8780, {{20.0, 132.0}, {400.0, 58.0}}
+                                          Other, 0x1135b88c0, {{39.0, 150.7}, {21.0, 21.0}}
+                                            Other, 0x1135b8a00, {{40.8, 152.4}, {17.5, 17.5}}
+                                              Other, 0x1135b8b40, {{40.8, 152.4}, {15.8, 15.8}}
+                                              Other, 0x1135b8c80, {{52.7, 164.4}, {5.5, 5.5}}
+                                          Other, 0x1135b8dc0, {{73.0, 150.7}, {277.0, 20.3}}
+                                            TextField, 0x1135b8f00, {{73.0, 150.7}, {277.0, 20.3}}, label: 'Buscar no mapa', placeholderValue: 'Buscar endereço, bairro ou ponto'
+                                          Other, 0x1135b9040, {{358.0, 146.0}, {1.0, 30.0}}
+                                          Button, 0x1135b9180, {{367.0, 140.0}, {42.0, 42.0}}, label: 'Abrir busca e filtros'
+                                        Button, 0x1135b92c0, {{20.0, 194.0}, {400.0, 16.0}}, label: 'Mostrar atalhos de filtro'
+                                      Other, 0x1135b9400, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x1135b9540, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                          Other, 0x1135b9680, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x1135b97c0, {{0.0, 224.0}, {72.0, 72.0}}
+                                            Other, 0x1135b9900, {{0.0, 224.0}, {440.0, 697.6}}
+                                              Other, 0x1135b9a40, {{0.0, 224.0}, {440.0, 697.6}}
+                                                Button, 0x1135b9b80, {{5.0, 894.3}, {60.0, 22.0}}, label: 'Google Maps'
+                                            Other, 0x1135b9cc0, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                              Button, 0x1135b9e00, {{184.0, 390.0}, {72.0, 72.0}}, identifier: 'AIRGMSMarker_0x11ca43700', label: 'Origem demonstrativa: Vila Mariana'
+                                              Button, 0x1135b9f40, {{185.3, 365.7}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x11ca42300', label: 'Flui Vila Mariana Lins'
+                                              Button, 0x1135ba080, {{25.0, 345.3}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x11ca41f40', label: 'EcoCarga Parque Aclimação'
+                                              Button, 0x1135ba1c0, {{367.7, 187.3}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x11ca408c0', label: 'Mercado Charge Cambuci'
+                                              Other, 0x1135ba300, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x1135ba440, {{1912.0, 2136.0}, {74.0, 74.0}}
+                                              Other, 0x1135ba580, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                Other, 0x1135ba6c0, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                  Other, 0x1135ba800, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                    Other, 0x1135ba940, {{1920.3, 2144.3}, {55.4, 55.4}}
+                                                    Other, 0x1135baa80, {{1936.0, 2160.0}, {24.0, 24.0}}
+                                        Other, 0x1135babc0, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x1135bad00, {{372.0, 242.0}, {52.0, 166.0}}
+                                          Other, 0x1135bae40, {{372.0, 242.0}, {52.0, 104.0}}
+                                            Button, 0x1135baf80, {{372.0, 243.0}, {52.0, 51.0}}, label: 'Aumentar zoom do mapa'
+                                            Button, 0x1135bb0c0, {{372.0, 295.0}, {52.0, 51.0}}, label: 'Diminuir zoom do mapa'
+                                            Other, 0x1135bb200, {{384.0, 294.0}, {28.0, 1.0}}
+                                          Button, 0x1135bb340, {{372.0, 356.0}, {52.0, 52.0}}, label: 'Centralizar origem demonstrativa: Vila Mariana'
+                                        Other, 0x1135bb480, {{304.0, 439.3}, {120.0, 52.0}}
+                                          Other, 0x1135bb5c0, {{304.0, 439.3}, {120.0, 52.0}}
+                                            Button, 0x1135bb700, {{304.0, 439.3}, {120.0, 52.0}}, label: 'Abrir assistente Flui IA'
+                                        Other, 0x1135bb840, {{16.0, 495.3}, {408.0, 426.7}}
+                                          Other, 0x1135bb980, {{16.0, 495.3}, {408.0, 426.7}}
+                                            Button, 0x1135bbac0, {{35.0, 514.3}, {370.0, 12.0}}, label: 'Minimizar opções demonstrativas para ver o mapa inteiro'
+                                            StaticText, 0x1135bbc00, {{35.0, 526.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                              StaticText, 0x1135bbd40, {{35.0, 526.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                            StaticText, 0x1135bbe80, {{35.0, 562.0}, {370.0, 38.0}}, label: 'Origem: Vila Mariana · distâncias em linha reta, sem cálculo de percurso'
+                                              StaticText, 0x1135c0000, {{35.0, 562.0}, {370.0, 38.0}}, label: 'Origem: Vila Mariana · distâncias em linha reta, sem cálculo de percurso'
+                                            Other, 0x1135c0140, {{35.0, 610.0}, {370.0, 262.0}}
+                                              ScrollView, 0x1135c0280, {{35.0, 610.0}, {370.0, 262.0}}
+                                                Other, 0x1135c03c0, {{35.0, 610.0}, {370.0, 928.0}}
+                                                  Other, 0x1135c0500, {{35.0, 610.0}, {370.0, 928.0}}
+                                                    Button, 0x1135c0640, {{35.0, 610.0}, {370.0, 154.7}}, label: 'Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈4,9 km em linha reta. Chegada estimada com 38% de bateria.'
+                                                    Button, 0x1135c0780, {{35.0, 764.7}, {370.0, 154.7}}, label: 'Plug & Café Consolação. Opção demonstrativa. R. da Consolação, 2302. Aberto agora. Nota 4,3. 50 kW. ≈4,1 km em linha reta. Chegada estimada com 39% de bateria.'
+                                                    Button, 0x1135c08c0, {{35.0, 919.3}, {370.0, 154.7}}, label: 'Charge City Jardins. Opção demonstrativa. Alameda Santos, 2159. Aberto agora. Nota 4,7. 120 kW. ≈4,3 km em linha reta. Chegada estimada com 39% de bateria.'
+                                                    Button, 0x1135c0a00, {{35.0, 1074.0}, {370.0, 154.7}}, label: 'Flui Vila Mariana Lins. Opção demonstrativa. Av. Lins de Vasconcelos, 1264. Aberto agora. Nota 4,8. 150 kW. ≈0 m em linha reta. Chegada estimada com 40% de bateria.'
+                                                    Button, 0x1135c0b40, {{35.0, 1228.7}, {370.0, 154.7}}, label: 'EcoCarga Parque Aclimação. Opção demonstrativa. R. Muniz de Sousa, 1119. Aberto agora. Nota 4,2. 22 kW. ≈524 m em linha reta. Chegada estimada com 40% de bateria.'
+                                                    Button, 0x1135c0c80, {{35.0, 1383.3}, {370.0, 154.7}}, label: 'Mercado Charge Cambuci. Opção demonstrativa. R. Luís Gama, 650. Aberto agora. Nota 4,1. 50 kW. ≈827 m em linha reta. Chegada estimada com 40% de bateria.'
+                                                Other, 0x1135c0dc0, {{372.0, 610.0}, {30.0, 262.0}}, label: 'Vertical scroll bar, 4 pages', value: 0%
+                                                  Other, 0x1135c0f00, {{399.0, 613.0}, {3.0, 72.3}}
+                                                Other, 0x1135c1040, {{35.0, 839.0}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x1135c1180, {{38.0, 866.0}, {361.0, 3.0}}
+                                                Other, 0x1135c12c0, {{372.0, 610.0}, {30.0, 262.0}}, label: 'Vertical scroll bar, 4 pages', value: 0%
+                                                  Other, 0x1135c1400, {{399.0, 613.0}, {3.0, 72.3}}
+                                                Other, 0x1135c1540, {{35.0, 839.0}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x1135c1680, {{38.0, 866.0}, {361.0, 3.0}}
+                          Toolbar, 0x1135c17c0, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x1135c1900, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1135c1a40, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1135c1b80, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1135c1cc0, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x1130a1f40, pid: 44484, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x1135c1e00, pid: 44484, label: 'Expo Go'
+  }
+
+    t =    63.36s Find the Application 'host.exp.Exponent'
+    t =    64.06s Added attachment named '03-bateria-manual-persistida'
+FLUI_13 APROVADO_NOVA_BATERIA 45 -> 40, origem e data persistidas: 40 por cento. Informado manualmente. 16/10, 14:06
+    t =    64.07s Tear Down
+Test Case '-[FluiValidacao.FluiValidacao test01NovaBateriaEPersistencia]' passed (65.847 seconds).
+Test Case '-[FluiValidacao.FluiValidacao test02ConsistenciaMapaFichaFluia]' started.
+    t =     0.01s Start Test at 2026-10-16 14:07:26.657
+    t =     0.17s Set Up
+    t =     0.17s Open host.exp.Exponent
+    t =     0.18s     Activate host.exp.Exponent
+    t =     0.23s         Wait for host.exp.Exponent to idle
+    t =     0.28s Waiting 3.0s for Button (First Match) to exist
+    t =     1.33s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     1.33s         Checking existence of `Button (First Match)`
+    t =     1.41s Waiting 45.0s for Button (First Match) to exist
+    t =     2.49s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     2.49s         Checking existence of `Button (First Match)`
+    t =     2.54s Waiting 8.0s for Button (First Match) to exist
+    t =     3.61s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     3.61s         Checking existence of `Button (First Match)`
+    t =     3.70s Tap Button (First Match)
+    t =     3.70s     Wait for host.exp.Exponent to idle
+    t =     3.82s     Find the Button (First Match)
+    t =     3.90s     Check for interrupting elements affecting "Abrir busca e filtros" Button
+    t =     4.03s     Synthesize event
+    t =     4.57s     Wait for host.exp.Exponent to idle
+    t =     4.62s Waiting 8.0s for Button (First Match) to exist
+    t =     5.70s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     5.70s         Checking existence of `Button (First Match)`
+    t =     5.73s Tap Button (First Match)
+    t =     5.73s     Wait for host.exp.Exponent to idle
+    t =     5.76s     Find the Button (First Match)
+    t =     5.79s     Check for interrupting elements affecting "Limpar busca e filtros" Button
+    t =     5.87s     Synthesize event
+    t =     6.19s     Wait for host.exp.Exponent to idle
+    t =     6.20s Tap Button (First Match)
+    t =     6.20s     Wait for host.exp.Exponent to idle
+    t =     6.21s     Find the Button (First Match)
+    t =     6.24s     Check for interrupting elements affecting "Ver pontos encontrados no mapa" Button
+    t =     6.31s     Synthesize event
+    t =     6.74s     Wait for host.exp.Exponent to idle
+    t =     6.75s Waiting 10.0s for Button (First Match) to exist
+    t =     7.78s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     7.79s         Checking existence of `Button (First Match)`
+    t =     7.89s Checking existence of `Button (First Match)`
+    t =     7.96s Find the Button (First Match)
+FLUI_13 ENTRADAS Vila Mariana, autonomia=300, bateria=40, chegada esperada=38
+    t =     8.00s Tap TextField (First Match)
+    t =     8.00s     Wait for host.exp.Exponent to idle
+    t =     8.03s     Find the TextField (First Match)
+    t =     8.10s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =     8.22s     Synthesize event
+    t =     8.61s     Wait for host.exp.Exponent to idle
+    t =    11.26s Type 'H' into "Buscar endereço, bairro ou ponto" TextField
+    t =    11.26s     Wait for host.exp.Exponent to idle
+    t =    11.29s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    11.44s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    11.55s     Synthesize event
+    t =    11.87s     Wait for host.exp.Exponent to idle
+    t =    13.13s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    13.34s Type 'i' into "Buscar endereço, bairro ou ponto" TextField
+    t =    13.34s     Wait for host.exp.Exponent to idle
+    t =    13.36s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    13.47s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    13.57s     Synthesize event
+    t =    13.85s     Wait for host.exp.Exponent to idle
+    t =    15.01s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    15.13s Type 'g' into "Buscar endereço, bairro ou ponto" TextField
+    t =    15.13s     Wait for host.exp.Exponent to idle
+    t =    15.16s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    15.35s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    15.47s     Synthesize event
+    t =    15.79s     Wait for host.exp.Exponent to idle
+    t =    17.06s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    17.30s Type 'i' into "Buscar endereço, bairro ou ponto" TextField
+    t =    17.31s     Wait for host.exp.Exponent to idle
+    t =    17.35s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    17.48s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    17.60s     Synthesize event
+    t =    17.89s     Wait for host.exp.Exponent to idle
+    t =    18.93s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    19.05s Type 'e' into "Buscar endereço, bairro ou ponto" TextField
+    t =    19.06s     Wait for host.exp.Exponent to idle
+    t =    19.12s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    19.23s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    19.41s     Synthesize event
+    t =    19.69s     Wait for host.exp.Exponent to idle
+    t =    20.73s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    20.87s Type 'n' into "Buscar endereço, bairro ou ponto" TextField
+    t =    20.87s     Wait for host.exp.Exponent to idle
+    t =    20.91s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    21.12s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    21.29s     Synthesize event
+    t =    21.58s     Wait for host.exp.Exponent to idle
+    t =    22.74s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    23.57s Type '
+' into "Buscar endereço, bairro ou ponto" TextField
+    t =    23.58s     Wait for host.exp.Exponent to idle
+    t =    23.97s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    24.16s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    24.32s     Synthesize event
+    t =    24.60s     Wait for host.exp.Exponent to idle
+    t =    24.66s Waiting 12.0s for Button (First Match) to exist
+    t =    25.73s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    25.73s         Checking existence of `Button (First Match)`
+    t =    25.83s Find the Button (First Match)
+    t =    25.92s Find the "Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈4,9 km em linha reta. Chegada estimada com 38% de bateria." Button
+    t =    26.00s Find the "Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈4,9 km em linha reta. Chegada estimada com 38% de bateria." Button
+FLUI_13 MAPA Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈4,9 km em linha reta. Chegada estimada com 38% de bateria.
+    t =    26.06s Requesting snapshot of accessibility hierarchy for app with pid 44484
+    t =    27.65s Requesting snapshot of accessibility hierarchy for app with pid 44484
+FLUI_13 EVIDENCIA 04-estimativas-mapa
+Attributes: Application, 0x1069a52c0, pid: 44484, label: 'Expo Go'
+Element subtree:
+ →Application, 0x1069a52c0, pid: 44484, label: 'Expo Go'
+    Window (Main), 0x1069a7700, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x1069a7ac0, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x1069a6f80, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x1069a75c0, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x1069a5400, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x1130a1900, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x1130a0140, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x1130a35c0, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1130a0500, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1130a03c0, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1130a3480, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x1130a3340, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x109835040, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x109836440, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x109836080, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x109837ac0, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x109836800, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Other, 0x109836bc0, {{0.0, 62.0}, {440.0, 162.0}}
+                                        Other, 0x109835b80, {{20.0, 76.0}, {76.0, 36.0}}
+                                          Other, 0x109835f40, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x109835cc0, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x109836940, {{89.2, 82.8}, {6.7, 6.7}}
+                                        Button, 0x109834f00, {{191.7, 71.0}, {180.3, 46.0}}, label: 'Flui iOS NEXT. Bateria para estimativa: 40 por cento. Informado manualmente. 16/10, 14:06. Cerca de 120 quilômetros estimados'
+                                        Button, 0x109835e00, {{374.0, 71.0}, {46.0, 46.0}}, label: 'Abrir perfil'
+                                        Other, 0x109837700, {{20.0, 132.0}, {400.0, 58.0}}
+                                          Other, 0x1098348c0, {{39.0, 150.7}, {21.0, 21.0}}
+                                            Other, 0x109835900, {{40.8, 152.4}, {17.5, 17.5}}
+                                              Other, 0x109834dc0, {{40.8, 152.4}, {15.8, 15.8}}
+                                              Other, 0x1098352c0, {{52.7, 164.4}, {5.5, 5.5}}
+                                          Other, 0x109835400, {{73.0, 150.7}, {277.0, 20.3}}
+                                            TextField, 0x109836300, {{73.0, 150.7}, {277.0, 20.3}}, label: 'Buscar no mapa', placeholderValue: 'Buscar endereço, bairro ou ponto', value: Higien
+                                          Other, 0x109837840, {{358.0, 146.0}, {1.0, 30.0}}
+                                          Button, 0x109837e80, {{367.0, 140.0}, {42.0, 42.0}}, label: 'Abrir busca e filtros'
+                                        Button, 0x1098343c0, {{20.0, 194.0}, {400.0, 16.0}}, label: 'Mostrar atalhos de filtro'
+                                      Other, 0x1098375c0, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x109837200, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                          Other, 0x109837d40, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x109836f80, {{0.0, 224.0}, {72.0, 72.0}}
+                                            Other, 0x1098370c0, {{0.0, 224.0}, {440.0, 691.0}}
+                                              Other, 0x109837340, {{0.0, 224.0}, {440.0, 691.0}}
+                                                Button, 0x109834c80, {{5.0, 887.7}, {60.0, 22.0}}, label: 'Google Maps'
+                                            Other, 0x109837480, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                              Button, 0x109837980, {{185.3, 509.3}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x12d4b0280', label: 'Higienópolis Prime Charge'
+                                              Other, 0x109834640, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x1135c0000, {{1912.0, 2136.0}, {74.0, 74.0}}
+                                              Other, 0x1135c0140, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                Other, 0x1135c0280, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                  Other, 0x1135c03c0, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                    Other, 0x1135c0500, {{1916.1, 2140.1}, {63.7, 63.7}}
+                                                    Other, 0x1135c0640, {{1936.0, 2160.0}, {24.0, 24.0}}
+                                        Other, 0x1135c0780, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x1135c08c0, {{372.0, 242.0}, {52.0, 166.0}}
+                                          Other, 0x1135c0a00, {{372.0, 242.0}, {52.0, 104.0}}
+                                            Button, 0x1135c0b40, {{372.0, 243.0}, {52.0, 51.0}}, label: 'Aumentar zoom do mapa'
+                                            Button, 0x1135c0c80, {{372.0, 295.0}, {52.0, 51.0}}, label: 'Diminuir zoom do mapa'
+                                            Other, 0x1135c0dc0, {{384.0, 294.0}, {28.0, 1.0}}
+                                          Button, 0x1135c0f00, {{372.0, 356.0}, {52.0, 52.0}}, label: 'Centralizar origem demonstrativa: Vila Mariana'
+                                        Other, 0x1135c1040, {{372.0, 439.3}, {52.0, 52.0}}
+                                          Other, 0x1135c1180, {{372.0, 439.3}, {52.0, 52.0}}
+                                            Button, 0x1135c12c0, {{372.0, 439.3}, {52.0, 52.0}}, label: 'Abrir assistente Flui IA'
+                                        Other, 0x1135c1400, {{16.0, 495.3}, {408.0, 426.7}}
+                                          Other, 0x1135c1540, {{16.0, 495.3}, {408.0, 426.7}}
+                                            Button, 0x1135c1680, {{35.0, 514.3}, {370.0, 12.0}}, label: 'Minimizar opções demonstrativas para ver o mapa inteiro'
+                                            StaticText, 0x1135c17c0, {{35.0, 526.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                              StaticText, 0x1135c1900, {{35.0, 526.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                            StaticText, 0x1135c1a40, {{35.0, 562.0}, {370.0, 38.0}}, label: 'Origem: Vila Mariana · distâncias em linha reta, sem cálculo de percurso'
+                                              StaticText, 0x1135c1b80, {{35.0, 562.0}, {370.0, 38.0}}, label: 'Origem: Vila Mariana · distâncias em linha reta, sem cálculo de percurso'
+                                            Other, 0x1135c1cc0, {{35.0, 610.0}, {370.0, 262.0}}
+                                              ScrollView, 0x1135c1e00, {{35.0, 610.0}, {370.0, 262.0}}
+                                                Other, 0x1135c1f40, {{35.0, 610.0}, {370.0, 154.7}}
+                                                  Other, 0x1135c2080, {{35.0, 610.0}, {370.0, 154.7}}
+                                                    Button, 0x1135c21c0, {{35.0, 610.0}, {370.0, 154.7}}, label: 'Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈4,9 km em linha reta. Chegada estimada com 38% de bateria.'
+                                                Other, 0x1135c2300, {{35.0, 839.0}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x1135c2440, {{65.0, 866.0}, {310.0, 3.0}}
+                                                Other, 0x1135c2580, {{35.0, 839.0}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x1135c26c0, {{65.0, 866.0}, {310.0, 3.0}}
+                          Toolbar, 0x1135c2800, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x1135c2940, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1135c2a80, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1135c2bc0, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1135c2d00, {{0.0, 0.0}, {440.0, 956.0}}
+    Window, 0x1135c2e40, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x1135c2f80, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x1135c30c0, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x1069a52c0, pid: 44484, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x1135c3200, pid: 44484, label: 'Expo Go'
+  }
+
+    t =    27.83s Find the Application 'host.exp.Exponent'
+    t =    28.34s Added attachment named '04-estimativas-mapa'
+    t =    28.34s Tap Button (First Match)
+    t =    28.35s     Wait for host.exp.Exponent to idle
+    t =    28.38s     Find the Button (First Match)
+    t =    28.52s     Check for interrupting elements affecting "Abrir assistente Flui IA" Button
+    t =    28.63s     Synthesize event
+    t =    29.00s     Wait for host.exp.Exponent to idle
+    t =    29.06s Waiting 8.0s for Button (First Match) to exist
+    t =    30.15s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    30.15s         Checking existence of `Button (First Match)`
+    t =    30.23s Tap Button (First Match)
+    t =    30.23s     Wait for host.exp.Exponent to idle
+    t =    30.26s     Find the Button (First Match)
+    t =    30.37s     Check for interrupting elements affecting "Quero carregar rápido" Button
+    t =    30.52s     Synthesize event
+    t =    30.95s     Wait for host.exp.Exponent to idle
+    t =    30.97s Waiting 15.0s for Button (First Match) to exist
+    t =    32.05s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    32.05s         Checking existence of `Button (First Match)`
+    t =    32.19s         Capturing element debug description
+    t =    32.98s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    32.98s         Checking existence of `Button (First Match)`
+    t =    33.08s Checking existence of `StaticText (First Match)`
+    t =    33.15s Checking existence of `StaticText (First Match)`
+    t =    33.23s Requesting snapshot of accessibility hierarchy for app with pid 44484
+    t =    35.75s Requesting snapshot of accessibility hierarchy for app with pid 44484
+FLUI_13 EVIDENCIA 05-estimativas-fluia
+Attributes: Application, 0x1135c2e40, pid: 44484, label: 'Expo Go'
+Element subtree:
+ →Application, 0x1135c2e40, pid: 44484, label: 'Expo Go'
+    Window (Main), 0x1135c26c0, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x1135c2300, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x1135c2440, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x1135c1f40, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x1135c2080, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x1135c21c0, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x1135c1a40, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x1135c1b80, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1135c17c0, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1135c1900, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1135c1680, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x1135c1040, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x1135c1180, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x1135c12c0, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x1135c08c0, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x1135c0f00, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x1135c0a00, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Other, 0x1135c0dc0, {{0.0, 62.0}, {440.0, 162.0}}
+                                        Other, 0x1135c0c80, {{20.0, 76.0}, {76.0, 36.0}}
+                                          Other, 0x1135c0b40, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x1135c0780, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x1135c0000, {{89.2, 82.8}, {6.7, 6.7}}
+                                        Button, 0x1135c0140, {{191.7, 71.0}, {180.3, 46.0}}, label: 'Flui iOS NEXT. Bateria para estimativa: 40 por cento. Informado manualmente. 16/10, 14:06. Cerca de 120 quilômetros estimados'
+                                        Button, 0x1135c0280, {{374.0, 71.0}, {46.0, 46.0}}, label: 'Abrir perfil'
+                                        Other, 0x1135c03c0, {{20.0, 132.0}, {400.0, 58.0}}
+                                          Other, 0x1135c0640, {{39.0, 150.7}, {21.0, 21.0}}
+                                            Other, 0x1135c0500, {{40.8, 152.4}, {17.5, 17.5}}
+                                              Other, 0x1135c3340, {{40.8, 152.4}, {15.8, 15.8}}
+                                              Other, 0x1135c3480, {{52.7, 164.4}, {5.5, 5.5}}
+                                          Other, 0x1135c35c0, {{73.0, 150.7}, {277.0, 20.3}}
+                                            TextField, 0x1135c3700, {{73.0, 150.7}, {277.0, 20.3}}, label: 'Buscar no mapa', placeholderValue: 'Buscar endereço, bairro ou ponto', value: Higien
+                                          Other, 0x1135c3840, {{358.0, 146.0}, {1.0, 30.0}}
+                                          Button, 0x1135c3980, {{367.0, 140.0}, {42.0, 42.0}}, label: 'Abrir busca e filtros'
+                                        Button, 0x1135c3ac0, {{20.0, 194.0}, {400.0, 16.0}}, label: 'Mostrar atalhos de filtro'
+                                      Other, 0x1135c3c00, {{0.0, 62.0}, {440.0, 956.0}}
+                                      Other, 0x1135c3d40, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x1135c3e80, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                          Other, 0x1069a52c0, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x1069a7700, {{0.0, 224.0}, {72.0, 72.0}}
+                                            Other, 0x1069a7ac0, {{0.0, 224.0}, {440.0, 691.0}}
+                                              Other, 0x1069a6f80, {{0.0, 224.0}, {440.0, 691.0}}
+                                                Button, 0x1069a75c0, {{5.0, 887.7}, {60.0, 22.0}}, label: 'Google Maps'
+                                            Other, 0x1069a5400, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                              Button, 0x1130a1900, {{185.3, 509.3}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x12d4b0280', label: 'Higienópolis Prime Charge'
+                                              Other, 0x1130a0140, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x1130a35c0, {{1912.0, 2136.0}, {74.0, 74.0}}
+                                              Other, 0x1130a0500, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                Other, 0x1130a03c0, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                  Other, 0x1130a3480, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                    Other, 0x1130a3340, {{1926.6, 2150.6}, {42.7, 42.7}}
+                                                    Other, 0x109835040, {{1936.0, 2160.0}, {24.0, 24.0}}
+                                        Other, 0x109836440, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x109836080, {{372.0, 242.0}, {52.0, 166.0}}
+                                          Other, 0x109837ac0, {{372.0, 242.0}, {52.0, 104.0}}
+                                            Button, 0x109836800, {{372.0, 243.0}, {52.0, 51.0}}, label: 'Aumentar zoom do mapa'
+                                            Button, 0x1098375c0, {{372.0, 295.0}, {52.0, 51.0}}, label: 'Diminuir zoom do mapa'
+                                            Other, 0x109837200, {{384.0, 294.0}, {28.0, 1.0}}
+                                          Button, 0x109837d40, {{372.0, 356.0}, {52.0, 52.0}}, label: 'Centralizar origem demonstrativa: Vila Mariana'
+                                        Other, 0x109837480, {{372.0, 439.3}, {52.0, 52.0}}
+                                          Other, 0x109834640, {{372.0, 439.3}, {52.0, 52.0}}
+                                            Button, 0x109837980, {{372.0, 439.3}, {52.0, 52.0}}, label: 'Abrir assistente Flui IA'
+                                        Other, 0x1098370c0, {{16.0, 495.3}, {408.0, 426.7}}
+                                          Other, 0x109837340, {{16.0, 495.3}, {408.0, 426.7}}
+                                            Button, 0x109834c80, {{35.0, 514.3}, {370.0, 12.0}}, label: 'Minimizar opções demonstrativas para ver o mapa inteiro'
+                                            StaticText, 0x109836f80, {{35.0, 526.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                              StaticText, 0x109836bc0, {{35.0, 526.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                            StaticText, 0x1098343c0, {{35.0, 562.0}, {370.0, 38.0}}, label: 'Origem: Vila Mariana · distâncias em linha reta, sem cálculo de percurso'
+                                              StaticText, 0x109837700, {{35.0, 562.0}, {370.0, 38.0}}, label: 'Origem: Vila Mariana · distâncias em linha reta, sem cálculo de percurso'
+                                            Other, 0x109837e80, {{35.0, 610.0}, {370.0, 262.0}}
+                                              ScrollView, 0x109837840, {{35.0, 610.0}, {370.0, 262.0}}
+                                                Other, 0x109835400, {{35.0, 610.0}, {370.0, 154.7}}
+                                                  Other, 0x109836300, {{35.0, 610.0}, {370.0, 154.7}}
+                                                    Button, 0x1098348c0, {{35.0, 610.0}, {370.0, 154.7}}, label: 'Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈4,9 km em linha reta. Chegada estimada com 38% de bateria.'
+                                                Other, 0x109835900, {{35.0, 839.0}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x1098352c0, {{65.0, 866.0}, {310.0, 3.0}}
+                                                Other, 0x109834dc0, {{35.0, 839.0}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x109835e00, {{65.0, 866.0}, {310.0, 3.0}}
+                          Toolbar, 0x109834f00, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x109835b80, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x109835f40, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x109836940, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x109835cc0, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x11308c000, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x11308c140, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x11308c280, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x11308c3c0, {{0.0, 0.0}, {440.0, 956.0}}
+              Button, 0x11308c500, {{0.0, 0.0}, {440.0, 956.0}}, label: 'Fechar assistente Flui IA'
+              Other, 0x11308c640, {{0.0, 254.0}, {440.0, 702.0}}
+                Other, 0x11308c780, {{199.0, 265.0}, {42.0, 4.0}}
+                Other, 0x11308c8c0, {{20.0, 285.0}, {42.0, 42.0}}
+                StaticText, 0x11308ca00, {{72.0, 286.0}, {296.0, 29.0}}, label: 'Flui IA'
+                  StaticText, 0x11308cb40, {{72.0, 286.0}, {296.0, 29.0}}, label: 'Flui IA'
+                Button, 0x11308cc80, {{378.0, 285.0}, {42.0, 42.0}}, label: 'Fechar assistente'
+                Other, 0x11308cdc0, {{24.7, 295.0}, {22.0, 22.0}}
+                  Other, 0x11308cf00, {{26.3, 295.7}, {18.7, 20.5}}
+                    Other, 0x11308d040, {{26.3, 295.7}, {18.7, 20.5}}
+                Other, 0x11308d180, {{44.7, 293.0}, {8.0, 8.0}}
+                  Other, 0x11308d2c0, {{45.0, 293.3}, {7.4, 7.4}}
+                    Other, 0x11308d400, {{45.0, 293.3}, {7.4, 7.4}}
+                Other, 0x11308d540, {{50.3, 300.7}, {6.0, 6.0}}
+                  Other, 0x11308d680, {{50.6, 300.9}, {5.6, 5.6}}
+                    Other, 0x11308d7c0, {{50.6, 300.9}, {5.6, 5.6}}
+                StaticText, 0x11308d900, {{72.0, 318.0}, {296.0, 40.0}}, label: 'Recomendação simulada com os dados do protótipo.'
+                  StaticText, 0x11308da40, {{72.0, 318.0}, {296.0, 40.0}}, label: 'Recomendação simulada com os dados do protótipo.'
+                Other, 0x11308db80, {{20.0, 376.0}, {400.0, 556.0}}
+                  ScrollView, 0x11308dcc0, {{20.0, 376.0}, {400.0, 556.0}}
+                    Other, 0x11308de00, {{20.0, 376.0}, {400.0, 556.0}}
+                      Other, 0x11308df40, {{20.0, 376.0}, {400.0, 556.0}}
+                        Other, 0x11308e080, {{20.0, 376.0}, {400.0, 438.0}}
+                        Other, 0x11308e1c0, {{37.0, 393.0}, {190.7, 30.0}}
+                        StaticText, 0x11308e300, {{48.0, 399.0}, {168.7, 18.0}}, label: 'Sugestão demonstrativa'
+                          StaticText, 0x11308e440, {{48.0, 399.0}, {168.7, 18.0}}, label: 'Sugestão demonstrativa'
+                        StaticText, 0x11308e580, {{37.0, 435.0}, {366.0, 31.0}}, label: 'Higienópolis Prime Charge'
+                          StaticText, 0x11308e6c0, {{37.0, 435.0}, {366.0, 31.0}}, label: 'Higienópolis Prime Charge'
+                        StaticText, 0x11308e800, {{37.0, 469.0}, {366.0, 20.0}}, label: 'Rua Alagoas, 974'
+                          StaticText, 0x11308e940, {{37.0, 469.0}, {366.0, 20.0}}, label: 'Rua Alagoas, 974'
+                        Other, 0x11308ea80, {{37.0, 504.0}, {175.7, 48.0}}
+                        Other, 0x11308ebc0, {{220.7, 504.0}, {175.7, 48.0}}
+                        Other, 0x11308ed00, {{47.0, 518.7}, {19.0, 19.0}}
+                          Other, 0x11308ee40, {{47.7, 522.5}, {17.7, 11.3}}
+                            Other, 0x11308ef80, {{47.7, 522.5}, {14.5, 11.3}}
+                            Other, 0x11308f0c0, {{50.8, 525.7}, {1.8, 5.0}}
+                            Other, 0x11308f200, {{54.0, 525.7}, {1.8, 5.0}}
+                            Other, 0x11308f340, {{63.5, 525.7}, {1.8, 5.0}}
+                        StaticText, 0x11308f480, {{74.0, 518.3}, {110.7, 19.0}}, label: 'Chegada ≈38%'
+                          StaticText, 0x11308f5c0, {{74.0, 518.3}, {110.7, 19.0}}, label: 'Chegada ≈38%'
+                        Other, 0x11308f700, {{230.7, 518.7}, {19.0, 19.0}}
+                          Other, 0x11308f840, {{232.1, 519.3}, {16.1, 17.7}}
+                            Other, 0x11308f980, {{232.1, 519.3}, {16.1, 17.7}}
+                        StaticText, 0x11308fac0, {{257.7, 518.3}, {52.7, 19.0}}, label: '150 kW'
+                          StaticText, 0x11308fc00, {{257.7, 518.3}, {52.7, 19.0}}, label: '150 kW'
+                        Other, 0x11308fd40, {{37.0, 560.0}, {175.7, 48.0}}
+                        Other, 0x11308fe80, {{220.7, 560.0}, {175.7, 48.0}}
+                        Other, 0x1135b8000, {{47.0, 574.7}, {19.0, 19.0}}
+                          Other, 0x1135b8140, {{50.8, 575.3}, {11.3, 17.7}}
+                            Other, 0x1135b8280, {{50.8, 580.1}, {11.3, 8.9}}
+                            Other, 0x1135b83c0, {{53.2, 575.3}, {1.8, 6.6}}
+                            Other, 0x1135b8500, {{58.0, 575.3}, {1.8, 6.6}}
+                            Other, 0x1135b8640, {{55.6, 587.2}, {1.8, 5.8}}
+                        StaticText, 0x1135b8780, {{74.0, 574.3}, {52.7, 19.0}}, label: '4 livres'
+                          StaticText, 0x1135b88c0, {{74.0, 574.3}, {52.7, 19.0}}, label: '4 livres'
+                        Other, 0x1135b8a00, {{230.7, 574.7}, {19.0, 19.0}}
+                          Other, 0x1135b8b40, {{232.9, 575.3}, {14.5, 17.6}}
+                            Other, 0x1135b8c80, {{232.9, 575.3}, {14.5, 17.6}}
+                            Other, 0x1135b8dc0, {{236.9, 579.3}, {6.6, 6.6}}
+                        StaticText, 0x1135b8f00, {{257.7, 574.3}, {59.0, 19.0}}, label: '≈4,9 km'
+                          StaticText, 0x1135b9040, {{257.7, 574.3}, {59.0, 19.0}}, label: '≈4,9 km'
+                        StaticText, 0x1135b9180, {{37.0, 624.0}, {366.0, 22.0}}, label: 'Por que essa escolha?'
+                          StaticText, 0x1135b92c0, {{37.0, 624.0}, {366.0, 22.0}}, label: 'Por que essa escolha?'
+                        StaticText, 0x1135b9400, {{37.0, 650.0}, {366.0, 147.0}}, label: 'Oferece até 150 kW nos conectores utilizáveis e 4 carregadores livres nos dados demonstrativos.
+Flui iOS NEXT · origem demonstrativa: Vila Mariana. Distância em linha reta, sem cálculo de percurso. Estimativa linear com reserva de 5%. Compatibilidade do veículo não confirmada; não há integração em tempo real.'
+                          StaticText, 0x1135b9540, {{37.0, 650.0}, {366.0, 147.0}}, label: 'Oferece até 150 kW nos conectores utilizáveis e 4 carregadores livres nos dados demonstrativos.
+Flui iOS NEXT · origem demonstrativa: Vila Mariana. Distância em linha reta, sem cálculo de percurso. Estimativa linear com reserva de 5%. Compatibilidade do veículo não confirmada; não há integração em tempo real.'
+                        Button, 0x1135b9680, {{20.0, 814.0}, {400.0, 68.0}}, label: 'Ver Higienópolis Prime Charge no mapa'
+                        Button, 0x1135b97c0, {{20.0, 882.0}, {400.0, 44.0}}, label: 'Escolher outra necessidade'
+                    Other, 0x1135b9900, {{58.0, 899.0}, {324.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                      Other, 0x1135b9a40, {{61.0, 926.0}, {318.0, 3.0}}
+                    Other, 0x1135b9b80, {{58.0, 899.0}, {324.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                      Other, 0x1135b9cc0, {{61.0, 926.0}, {318.0, 3.0}}
+            Other, 0x1135b9e00, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x1135b9f40, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x1135ba080, {{0.0, 0.0}, {440.0, 956.0}}
+    Window, 0x1135ba1c0, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x1135ba300, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x1135ba440, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x1135c2e40, pid: 44484, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x1135ba580, pid: 44484, label: 'Expo Go'
+  }
+
+    t =    35.96s Find the Application 'host.exp.Exponent'
+    t =    36.41s Added attachment named '05-estimativas-fluia'
+    t =    36.42s Tap Button (First Match)
+    t =    36.42s     Wait for host.exp.Exponent to idle
+    t =    36.47s     Find the Button (First Match)
+    t =    36.59s     Check for interrupting elements affecting "Ver Higienópolis Prime Charge no mapa" Button
+    t =    36.77s     Synthesize event
+    t =    37.20s     Wait for host.exp.Exponent to idle
+    t =    37.75s Waiting 10.0s for StaticText (First Match) to exist
+    t =    38.75s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    38.76s         Checking existence of `StaticText (First Match)`
+    t =    38.85s Checking existence of `StaticText (First Match)`
+    t =    38.95s Checking existence of `Any (First Match)`
+    t =    39.03s Checking existence of `Any (First Match)`
+    t =    39.13s Swipe up ScrollView (First Match)
+    t =    39.13s     Wait for host.exp.Exponent to idle
+    t =    39.13s     Find the ScrollView (First Match)
+    t =    39.15s     Check for interrupting elements affecting ScrollView
+    t =    39.31s     Synthesize event
+    t =    39.82s     Wait for host.exp.Exponent to idle
+    t =    41.93s Requesting snapshot of accessibility hierarchy for app with pid 44484
+    t =    43.00s Requesting snapshot of accessibility hierarchy for app with pid 44484
+FLUI_13 EVIDENCIA 06-estimativas-ficha
+Attributes: Application, 0x1135b9400, pid: 44484, label: 'Expo Go'
+Element subtree:
+ →Application, 0x1135b9400, pid: 44484, label: 'Expo Go'
+    Window (Main), 0x1135b9540, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x1135b9180, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x1135b92c0, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x1135b8f00, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x1135b9040, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x1135b8a00, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x1135b8b40, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x1135b8dc0, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1135b8c80, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1135b8780, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1135b88c0, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x1135b8000, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x1135b8140, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x1135b8640, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x1135b8500, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x1135b83c0, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x1135b8280, {{0.0, 0.0}, {440.0, 956.0}}
+                                      ScrollView, 0x1135ba6c0, {{0.0, 0.0}, {440.0, 956.0}}
+                                        Other, 0x1135ba800, {{0.0, -681.0}, {440.0, 2625.0}}
+                                          Other, 0x1135ba940, {{0.0, -681.0}, {440.0, 2625.0}}
+                                            Other, 0x1135baa80, {{0.0, -681.0}, {440.0, 290.0}}
+                                              Other, 0x1135babc0, {{0.0, -681.0}, {440.0, 290.0}}
+                                                Other, 0x1135bad00, {{0.0, -681.0}, {440.0, 290.0}}
+                                                Other, 0x1135bae40, {{0.0, -681.0}, {440.0, 290.0}}
+                                              Other, 0x1135baf80, {{20.0, -681.0}, {400.0, 110.0}}
+                                                Button, 0x1135bb0c0, {{20.0, -619.0}, {48.0, 48.0}}, label: 'Voltar ao mapa'
+                                                Button, 0x1135bb200, {{372.0, -619.0}, {48.0, 48.0}}, label: 'Adicionar aos favoritos'
+                                            Other, 0x1135bb340, {{0.0, -425.0}, {440.0, 2249.0}}
+                                            StaticText, 0x1135bb480, {{22.0, -397.0}, {396.0, 38.3}}, label: 'Higienópolis Prime Charge'
+                                              StaticText, 0x1135bb5c0, {{22.0, -397.0}, {396.0, 38.3}}, label: 'Higienópolis Prime Charge'
+                                            StaticText, 0x1135bb700, {{22.0, -350.7}, {396.0, 22.0}}, label: 'Rua Alagoas, 974, Higienópolis, São Paulo, SP'
+                                              StaticText, 0x1135bb840, {{22.0, -350.7}, {396.0, 22.0}}, label: 'Rua Alagoas, 974, Higienópolis, São Paulo, SP'
+                                            Other, 0x1135bb980, {{22.0, -313.3}, {19.0, 19.0}}
+                                              Other, 0x1135bbac0, {{22.8, -312.5}, {17.4, 16.7}}
+                                                Other, 0x1135bbc00, {{22.8, -312.5}, {17.4, 16.7}}
+                                            StaticText, 0x1135bbd40, {{48.0, -314.7}, {28.7, 21.7}}, label: '4.9'
+                                              StaticText, 0x1135bbe80, {{48.0, -314.7}, {28.7, 21.7}}, label: '4.9'
+                                            StaticText, 0x109835f40, {{81.7, -313.0}, {111.7, 18.0}}, label: '(184 avaliações)'
+                                              StaticText, 0x109836940, {{81.7, -313.0}, {111.7, 18.0}}, label: '(184 avaliações)'
+                                            Other, 0x109835cc0, {{305.7, -308.0}, {9.0, 9.0}}
+                                            StaticText, 0x109834f00, {{321.7, -312.7}, {96.3, 18.0}}, label: 'Aberto agora'
+                                              StaticText, 0x109835b80, {{321.7, -312.7}, {96.3, 18.0}}, label: 'Aberto agora'
+                                            Other, 0x1098370c0, {{22.0, -277.0}, {32.0, 32.0}}
+                                            Other, 0x109837340, {{29.7, -269.3}, {17.0, 17.0}}
+                                              Other, 0x109837e80, {{31.0, -268.7}, {14.3, 15.7}}
+                                                Other, 0x109837840, {{31.0, -268.7}, {14.3, 15.7}}
+                                            StaticText, 0x109834dc0, {{64.0, -272.0}, {354.0, 21.7}}, label: '4 de 6 carregadores livres no exemplo'
+                                              StaticText, 0x109835e00, {{64.0, -272.0}, {354.0, 21.7}}, label: '4 de 6 carregadores livres no exemplo'
+                                            Other, 0x109835900, {{22.0, -227.0}, {396.0, 311.3}}
+                                            StaticText, 0x1098352c0, {{39.0, -210.0}, {362.0, 15.7}}, label: 'GUIA DO PONTO'
+                                              StaticText, 0x109835400, {{39.0, -210.0}, {362.0, 15.7}}, label: 'GUIA DO PONTO'
+                                            StaticText, 0x109836300, {{39.0, -188.3}, {362.0, 56.0}}, label: 'Opção com conector rápido no exemplo'
+                                              StaticText, 0x1098348c0, {{39.0, -188.3}, {362.0, 56.0}}, label: 'Opção com conector rápido no exemplo'
+                                            StaticText, 0x1098343c0, {{39.0, -126.3}, {362.0, 105.0}}, label: 'Dados demonstrativos, sem disponibilidade em tempo real. Distância em linha reta, autonomia e tempo de carga são estimativas simplificadas; confirme o funcionamento e a compatibilidade do veículo antes de ir.'
+                                              StaticText, 0x109837700, {{39.0, -126.3}, {362.0, 105.0}}, label: 'Dados demonstrativos, sem disponibilidade em tempo real. Distância em linha reta, autonomia e tempo de carga são estimativas simplificadas; confirme o funcionamento e a compatibilidade do veículo antes de ir.'
+                                            Other, 0x109836f80, {{39.0, -7.3}, {114.0, 74.7}}
+                                            Other, 0x109836bc0, {{163.0, -7.3}, {114.0, 74.7}}
+                                            Other, 0x109834c80, {{287.0, -7.3}, {114.0, 74.7}}
+                                            StaticText, 0x109837480, {{66.0, 3.7}, {92.0, 28.7}}, label: 'Espera simulada'
+                                              StaticText, 0x109834640, {{66.0, 3.7}, {92.0, 28.7}}, label: 'Espera simulada'
+                                            StaticText, 0x109837980, {{190.0, 3.7}, {92.0, 28.7}}, label: 'Tempo estimado'
+                                              StaticText, 0x109836080, {{190.0, 3.7}, {92.0, 28.7}}, label: 'Tempo estimado'
+                                            Other, 0x109837d40, {{50.0, 12.0}, {12.0, 12.0}}
+                                              Other, 0x109837ac0, {{51.4, 12.4}, {9.2, 11.1}}
+                                                Other, 0x109837200, {{51.4, 14.4}, {9.2, 9.1}}
+                                                Other, 0x1098375c0, {{54.4, 12.4}, {3.2, 1.2}}
+                                                Other, 0x109836800, {{55.4, 16.9}, {2.7, 2.6}}
+                                            Other, 0x109836440, {{174.0, 12.0}, {12.0, 12.0}}
+                                              Other, 0x109835040, {{174.4, 14.4}, {11.1, 7.1}}
+                                                Other, 0x1130a35c0, {{174.4, 14.4}, {3.6, 7.1}}
+                                                Other, 0x1130a0500, {{177.4, 14.9}, {3.2, 6.2}}
+                                                Other, 0x1130a03c0, {{180.0, 14.4}, {3.6, 7.1}}
+                                                Other, 0x1130a3480, {{184.4, 16.4}, {1.1, 3.1}}
+                                            Other, 0x1130a3340, {{298.0, 12.3}, {12.0, 12.0}}
+                                              Other, 0x1130a0140, {{298.4, 12.8}, {11.1, 11.1}}
+                                                Other, 0x1130a1900, {{298.4, 12.8}, {11.1, 11.1}}
+                                                Other, 0x1069a52c0, {{300.9, 15.3}, {1.6, 1.6}}
+                                            StaticText, 0x1069a5400, {{314.0, 11.0}, {32.7, 14.3}}, label: 'Perfil'
+                                              StaticText, 0x1069a7ac0, {{314.0, 11.0}, {32.7, 14.3}}, label: 'Perfil'
+                                            StaticText, 0x1069a6f80, {{50.0, 37.3}, {92.0, 19.0}}, label: 'Baixa'
+                                              StaticText, 0x1069a75c0, {{50.0, 37.3}, {92.0, 19.0}}, label: 'Baixa'
+                                            StaticText, 0x1069a7700, {{174.0, 37.3}, {92.0, 19.0}}, label: '20 a 35 min'
+                                              StaticText, 0x1135c0000, {{174.0, 37.3}, {92.0, 19.0}}, label: '20 a 35 min'
+                                            StaticText, 0x1135c0140, {{298.0, 30.0}, {92.0, 19.0}}, label: 'Carga rápida'
+                                              StaticText, 0x1135c0280, {{298.0, 30.0}, {92.0, 19.0}}, label: 'Carga rápida'
+                                            Other, 0x1135c03c0, {{22.0, 96.3}, {396.0, 76.0}}, label: 'Autonomia para chegar ao local
+Chegada estimada com 38% de bateria.
+Não garante recarga no local.'
+                                            Other, 0x1135c0500, {{22.0, 184.3}, {192.0, 146.7}}
+                                            Other, 0x1135c0640, {{226.0, 184.3}, {192.0, 146.7}}
+                                            Other, 0x1135c0780, {{37.0, 199.3}, {40.0, 40.0}}
+                                            Other, 0x1135c08c0, {{241.0, 199.3}, {40.0, 40.0}}
+                                            Other, 0x1135c0a00, {{47.0, 209.3}, {20.0, 20.0}}
+                                              Other, 0x1135c0b40, {{47.7, 211.7}, {18.5, 14.3}}
+                                                Other, 0x1135c0c80, {{47.7, 211.7}, {18.5, 14.3}}
+                                                Other, 0x1135c0dc0, {{56.1, 216.7}, {5.2, 5.2}}
+                                            Other, 0x1135c0f00, {{251.0, 209.3}, {20.0, 20.0}}
+                                              Other, 0x1135c1040, {{255.1, 210.1}, {11.8, 18.5}}
+                                                Other, 0x1135c1180, {{255.1, 215.1}, {11.8, 9.3}}
+                                                Other, 0x1135c12c0, {{257.6, 210.1}, {1.8, 6.8}}
+                                                Other, 0x1135c1400, {{262.6, 210.1}, {1.8, 6.8}}
+                                                Other, 0x1135c1540, {{260.1, 222.6}, {1.8, 6.0}}
+                                            StaticText, 0x1135c1680, {{37.0, 249.3}, {162.0, 15.7}}, label: 'Potência'
+                                              StaticText, 0x1135c17c0, {{37.0, 249.3}, {162.0, 15.7}}, label: 'Potência'
+                                            StaticText, 0x1135c1900, {{241.0, 249.3}, {162.0, 15.7}}, label: 'Conectores'
+                                              StaticText, 0x1135c1a40, {{241.0, 249.3}, {162.0, 15.7}}, label: 'Conectores'
+                                            StaticText, 0x1135c1b80, {{37.0, 270.0}, {162.0, 24.0}}, label: '150 kW'
+                                              StaticText, 0x1135c1cc0, {{37.0, 270.0}, {162.0, 24.0}}, label: '150 kW'
+                                            StaticText, 0x1135c1e00, {{241.0, 270.0}, {162.0, 24.0}}, label: 'CCS2, Type 2'
+                                              StaticText, 0x1135c1f40, {{241.0, 270.0}, {162.0, 24.0}}, label: 'CCS2, Type 2'
+                                            StaticText, 0x1135c2080, {{37.0, 298.0}, {162.0, 18.0}}, label: 'Velocidade de carga'
+                                              StaticText, 0x1135c21c0, {{37.0, 298.0}, {162.0, 18.0}}, label: 'Velocidade de carga'
+                                            StaticText, 0x1135c2300, {{241.0, 298.0}, {162.0, 18.0}}, label: 'Tipos compatíveis'
+                                              StaticText, 0x1135c2440, {{241.0, 298.0}, {162.0, 18.0}}, label: 'Tipos compatíveis'
+                                            Other, 0x1135c2580, {{22.0, 345.0}, {192.0, 206.7}}
+                                            Other, 0x1135c26c0, {{226.0, 345.0}, {192.0, 206.7}}
+                                            Other, 0x1135c2800, {{37.0, 360.0}, {40.0, 40.0}}
+                                            Other, 0x1135c2940, {{241.0, 360.0}, {40.0, 40.0}}
+                                            Other, 0x1135c2a80, {{47.0, 370.0}, {20.0, 20.0}}
+                                              Other, 0x1135c2bc0, {{47.8, 371.6}, {18.5, 16.8}}
+                                                Other, 0x1135c2d00, {{47.8, 371.6}, {4.3, 4.3}}
+                                                Other, 0x1135c2e40, {{49.4, 373.2}, {15.2, 15.2}}
+                                                Other, 0x1135c2f80, {{56.1, 376.6}, {3.5, 6.8}}
+                                                Other, 0x1135c30c0, {{61.9, 371.6}, {4.3, 4.3}}
+                                                Other, 0x1135c3200, {{49.4, 384.7}, {3.8, 3.8}}
+                                                Other, 0x1135c3340, {{60.8, 384.6}, {3.8, 3.8}}
+                                            Other, 0x1135c3480, {{251.0, 370.0}, {20.0, 20.0}}
+                                              Other, 0x1135c35c0, {{254.2, 370.7}, {13.5, 17.7}}
+                                                Other, 0x1135c3700, {{254.2, 370.7}, {13.5, 17.7}}
+                                            StaticText, 0x1135c3840, {{37.0, 410.0}, {162.0, 15.7}}, label: 'Funcionamento'
+                                              StaticText, 0x1135c3980, {{37.0, 410.0}, {162.0, 15.7}}, label: 'Funcionamento'
+                                            StaticText, 0x1135c3ac0, {{241.0, 410.0}, {162.0, 15.7}}, label: 'Distância aproximada'
+                                              StaticText, 0x1135c3c00, {{241.0, 410.0}, {162.0, 15.7}}, label: 'Distância aproximada'
+                                            StaticText, 0x1135c3d40, {{37.0, 430.7}, {162.0, 48.0}}, label: '24 horas, todos os dias'
+                                              StaticText, 0x1135c3e80, {{37.0, 430.7}, {162.0, 48.0}}, label: '24 horas, todos os dias'
+                                            StaticText, 0x113a08000, {{241.0, 430.7}, {162.0, 24.0}}, label: '≈4,9 km'
+                                              StaticText, 0x113a08140, {{241.0, 430.7}, {162.0, 24.0}}, label: '≈4,9 km'
+                                            StaticText, 0x113a08280, {{241.0, 458.7}, {162.0, 54.0}}, label: 'Em linha reta desde Vila Mariana. Não é distância de percurso.'
+                                              StaticText, 0x113a083c0, {{241.0, 458.7}, {162.0, 54.0}}, label: 'Em linha reta desde Vila Mariana. Não é distância de percurso.'
+                                            StaticText, 0x113a08500, {{37.0, 482.7}, {162.0, 54.0}}, label: 'Disponibilidade demonstrativa de carregadores'
+                                              StaticText, 0x113a08640, {{37.0, 482.7}, {162.0, 54.0}}, label: 'Disponibilidade demonstrativa de carregadores'
+                                            Other, 0x113a08780, {{22.0, 565.7}, {396.0, 115.7}}
+                                            StaticText, 0x113a088c0, {{102.0, 580.7}, {301.0, 17.0}}, label: 'Horário sugerido no exemplo'
+                                              StaticText, 0x113a08a00, {{102.0, 580.7}, {301.0, 17.0}}, label: 'Horário sugerido no exemplo'
+                                            Other, 0x113a08b40, {{37.0, 597.7}, {52.0, 52.0}}
+                                            StaticText, 0x113a08c80, {{102.0, 600.7}, {301.0, 45.7}}, label: '06h às 08h ou 13h às 15h ou 22h às 00h'
+                                              StaticText, 0x113a08dc0, {{102.0, 600.7}, {301.0, 45.7}}, label: '06h às 08h ou 13h às 15h ou 22h às 00h'
+                                            Other, 0x113a08f00, {{51.0, 611.7}, {24.0, 24.0}}
+                                              Other, 0x113a09040, {{51.9, 612.6}, {22.2, 22.2}}
+                                                Other, 0x113a09180, {{51.9, 612.6}, {22.2, 22.2}}
+                                                Other, 0x113a092c0, {{61.9, 616.6}, {6.2, 8.2}}
+                                            StaticText, 0x113a09400, {{102.0, 649.3}, {301.0, 17.0}}, label: 'Sem previsão de movimento em tempo real'
+                                              StaticText, 0x113a09540, {{102.0, 649.3}, {301.0, 17.0}}, label: 'Sem previsão de movimento em tempo real'
+                                            Other, 0x113a09680, {{22.0, 701.3}, {396.0, 190.3}}
+                                            StaticText, 0x113a097c0, {{39.0, 718.3}, {362.0, 21.7}}, label: 'Conectores do ponto'
+                                              StaticText, 0x113a09900, {{39.0, 718.3}, {362.0, 21.7}}, label: 'Conectores do ponto'
+                                            Other, 0x113a09a40, {{39.0, 765.3}, {38.0, 38.0}}
+                                            StaticText, 0x113a09b80, {{89.0, 764.0}, {312.0, 20.3}}, label: 'CCS2'
+                                              StaticText, 0x113a09cc0, {{89.0, 764.0}, {312.0, 20.3}}, label: 'CCS2'
+                                            Other, 0x113a09e00, {{49.0, 775.3}, {18.0, 18.0}}
+                                              Other, 0x113a09f40, {{49.7, 779.0}, {16.7, 10.7}}
+                                                Other, 0x113a0a080, {{49.7, 779.0}, {5.4, 10.7}}
+                                                Other, 0x113a0a1c0, {{54.2, 779.8}, {4.7, 9.2}}
+                                                Other, 0x113a0a300, {{58.0, 779.0}, {5.4, 10.7}}
+                                                Other, 0x113a0a440, {{64.7, 782.0}, {1.7, 4.7}}
+                                            StaticText, 0x113a0a580, {{89.0, 787.3}, {312.0, 17.0}}, label: '150 kW · 2 de 4 carregadores livres no exemplo'
+                                              StaticText, 0x113a0a6c0, {{89.0, 787.3}, {312.0, 17.0}}, label: '150 kW · 2 de 4 carregadores livres no exemplo'
+                                            Other, 0x113a0a800, {{39.0, 825.7}, {38.0, 38.0}}
+                                            StaticText, 0x113a0a940, {{89.0, 824.3}, {312.0, 20.3}}, label: 'Type 2'
+                                              StaticText, 0x113a0aa80, {{89.0, 824.3}, {312.0, 20.3}}, label: 'Type 2'
+                                            Other, 0x113a0abc0, {{49.0, 835.7}, {18.0, 18.0}}
+                                              Other, 0x113a0ad00, {{52.7, 836.3}, {10.7, 16.7}}
+                                                Other, 0x113a0ae40, {{52.7, 840.8}, {10.7, 8.4}}
+                                                Other, 0x113a0af80, {{54.9, 836.3}, {1.7, 6.2}}
+                                                Other, 0x113a0b0c0, {{59.4, 836.3}, {1.7, 6.2}}
+                                                Other, 0x113a0b200, {{57.2, 847.6}, {1.7, 5.4}}
+                                            StaticText, 0x113a0b340, {{89.0, 847.7}, {312.0, 17.0}}, label: '22 kW · 2 de 2 carregadores livres no exemplo'
+                                              StaticText, 0x113a0b480, {{89.0, 847.7}, {312.0, 17.0}}, label: '22 kW · 2 de 2 carregadores livres no exemplo'
+                                            Other, 0x113a0b5c0, {{22.0, 901.7}, {396.0, 226.7}}
+                                            StaticText, 0x113a0b700, {{39.0, 918.7}, {362.0, 21.7}}, label: 'Comodidades próximas'
+                                              StaticText, 0x113a0b840, {{39.0, 918.7}, {362.0, 21.7}}, label: 'Comodidades próximas'
+                                            Other, 0x113a0b980, {{97.0, 954.3}, {42.0, 42.0}}
+                                            Other, 0x113a0bac0, {{199.0, 954.3}, {42.0, 42.0}}
+                                            Other, 0x113a0bc00, {{301.0, 954.3}, {42.0, 42.0}}
+                                            Other, 0x113a0bd40, {{109.0, 966.3}, {18.0, 18.0}}
+                                              Other, 0x113a0be80, {{109.7, 967.0}, {16.6, 16.6}}
+                                                Other, 0x11308c000, {{109.7, 967.0}, {16.6, 16.6}}
+                                                Other, 0x11308c140, {{115.0, 970.8}, {6.8, 9.1}}
+                                            Other, 0x11308c280, {{211.0, 966.3}, {18.0, 18.0}}
+                                              Other, 0x11308c3c0, {{211.7, 967.0}, {16.6, 15.8}}
+                                                Other, 0x11308c500, {{211.7, 967.0}, {16.6, 15.8}}
+                                                Other, 0x11308c640, {{214.7, 972.3}, {10.6, 10.6}}
+                                                Other, 0x11308c780, {{214.7, 975.3}, {10.6, 1.6}}
+                                                Other, 0x11308c8c0, {{214.7, 978.3}, {10.6, 1.6}}
+                                            Other, 0x11308ca00, {{313.0, 966.3}, {18.0, 18.0}}
+                                              Other, 0x11308cb40, {{314.5, 967.0}, {15.1, 16.6}}
+                                                Other, 0x11308cc80, {{314.5, 967.0}, {10.6, 13.6}}
+                                                Other, 0x11308cdc0, {{315.9, 974.5}, {13.6, 9.1}}
+                                            StaticText, 0x11308cf00, {{72.0, 1003.3}, {92.0, 28.7}}, label: 'Estacionamento'
+                                              StaticText, 0x11308d040, {{72.0, 1003.3}, {92.0, 28.7}}, label: 'Estacionamento'
+                                            StaticText, 0x11308d180, {{180.7, 1003.3}, {78.3, 14.3}}, label: 'Área coberta'
+                                              StaticText, 0x11308d2c0, {{180.7, 1003.3}, {78.3, 14.3}}, label: 'Área coberta'
+                                            StaticText, 0x11308d400, {{295.0, 1003.3}, {54.0, 14.3}}, label: 'Banheiro'
+                                              StaticText, 0x11308d540, {{295.0, 1003.3}, {54.0, 14.3}}, label: 'Banheiro'
+                                            Other, 0x11308d680, {{97.0, 1048.0}, {42.0, 42.0}}
+                                            Other, 0x11308d7c0, {{199.0, 1048.0}, {42.0, 42.0}}
+                                            Other, 0x11308d900, {{301.0, 1048.0}, {42.0, 42.0}}
+                                            Other, 0x11308da40, {{109.0, 1060.0}, {18.0, 18.0}}
+                                              Other, 0x11308db80, {{110.5, 1060.7}, {15.8, 15.8}}
+                                                Other, 0x11308dcc0, {{110.5, 1065.2}, {15.8, 11.3}}
+                                                Other, 0x11308de00, {{112.7, 1060.7}, {1.6, 3.1}}
+                                                Other, 0x11308df40, {{115.7, 1060.7}, {1.6, 3.1}}
+                                                Other, 0x11308e080, {{118.7, 1060.7}, {1.6, 3.1}}
+                                            Other, 0x11308e1c0, {{211.0, 1060.0}, {18.0, 18.0}}
+                                              Other, 0x11308e300, {{211.7, 1063.0}, {16.6, 12.8}}
+                                                Other, 0x11308e440, {{211.7, 1063.0}, {16.6, 4.4}}
+                                                Other, 0x11308e580, {{214.0, 1066.7}, {12.1, 3.7}}
+                                                Other, 0x11308e6c0, {{216.6, 1070.5}, {6.8, 2.6}}
+                                                Other, 0x11308e800, {{219.2, 1074.2}, {1.6, 1.6}}
+                                            Other, 0x11308e940, {{313.0, 1060.0}, {18.0, 18.0}}
+                                              Other, 0x11308ea80, {{315.2, 1060.7}, {13.6, 16.6}}
+                                                Other, 0x11308ebc0, {{315.2, 1060.7}, {13.6, 16.6}}
+                                                Other, 0x11308ed00, {{319.0, 1066.7}, {6.1, 4.6}}
+                                            StaticText, 0x11308ee40, {{104.0, 1097.0}, {28.0, 14.3}}, label: 'Café'
+                                              StaticText, 0x11308ef80, {{104.0, 1097.0}, {28.0, 14.3}}, label: 'Café'
+                                            StaticText, 0x11308f0c0, {{204.0, 1097.0}, {32.0, 14.3}}, label: 'Wi-Fi'
+                                              StaticText, 0x11308f200, {{204.0, 1097.0}, {32.0, 14.3}}, label: 'Wi-Fi'
+                                            StaticText, 0x11308f340, {{289.7, 1097.0}, {64.7, 14.3}}, label: 'Segurança'
+                                              StaticText, 0x11308f480, {{289.7, 1097.0}, {64.7, 14.3}}, label: 'Segurança'
+                                            Other, 0x11308f5c0, {{22.0, 1138.3}, {396.0, 661.7}}
+                                            StaticText, 0x11308f700, {{39.0, 1155.3}, {362.0, 21.7}}, label: 'Avaliações de usuários'
+                                              StaticText, 0x11308f840, {{39.0, 1155.3}, {362.0, 21.7}}, label: 'Avaliações de usuários'
+                                            StaticText, 0x11308f980, {{373.0, 1191.0}, {28.0, 28.7}}, label: '85%'
+                                              StaticText, 0x11308fac0, {{373.0, 1191.0}, {28.0, 28.7}}, label: '85%'
+                                            StaticText, 0x11308fc00, {{57.0, 1201.3}, {74.0, 53.0}}, label: '4.9'
+                                              StaticText, 0x11308fd40, {{57.0, 1201.3}, {74.0, 53.0}}, label: '4.9'
+                                            StaticText, 0x11308fe80, {{149.0, 1198.0}, {32.0, 14.3}}, label: '5 ★'
+                                              StaticText, 0x113a0c000, {{149.0, 1198.0}, {32.0, 14.3}}, label: '5 ★'
+                                            Other, 0x113a0c140, {{189.0, 1203.0}, {176.0, 5.0}}
+                                              Other, 0x113a0c280, {{189.0, 1203.0}, {149.7, 5.0}}
+                                            StaticText, 0x113a0c3c0, {{149.0, 1225.7}, {32.0, 14.3}}, label: '4 ★'
+                                              StaticText, 0x113a0c500, {{149.0, 1225.7}, {32.0, 14.3}}, label: '4 ★'
+                                            Other, 0x113a0c640, {{189.0, 1230.3}, {176.0, 5.0}}
+                                              Other, 0x113a0c780, {{189.0, 1230.3}, {17.7, 5.0}}
+                                            StaticText, 0x113a0c8c0, {{373.0, 1225.7}, {28.0, 14.3}}, label: '10%'
+                                              StaticText, 0x113a0ca00, {{373.0, 1225.7}, {28.0, 14.3}}, label: '10%'
+                                            StaticText, 0x113a0cb40, {{149.0, 1246.0}, {32.0, 14.3}}, label: '3 ★'
+                                              StaticText, 0x113a0cc80, {{149.0, 1246.0}, {32.0, 14.3}}, label: '3 ★'
+                                            StaticText, 0x113a0cdc0, {{48.3, 1257.3}, {91.0, 18.0}}, label: '★ ★ ★ ★ ★'
+                                              StaticText, 0x113a0cf00, {{48.3, 1257.3}, {91.0, 18.0}}, label: '★ ★ ★ ★ ★'
+                                            Other, 0x113a0d040, {{189.0, 1250.7}, {176.0, 5.0}}
+                                              Other, 0x113a0d180, {{189.0, 1250.7}, {5.3, 5.0}}
+                                            StaticText, 0x113a0d2c0, {{373.0, 1246.0}, {28.0, 14.3}}, label: '3%'
+                                              StaticText, 0x113a0d400, {{373.0, 1246.0}, {28.0, 14.3}}, label: '3%'
+                                            StaticText, 0x113a0d540, {{149.0, 1266.3}, {32.0, 14.3}}, label: '2 ★'
+                                              StaticText, 0x113a0d680, {{149.0, 1266.3}, {32.0, 14.3}}, label: '2 ★'
+                                            Other, 0x113a0d7c0, {{189.0, 1271.0}, {176.0, 5.0}}
+                                              Other, 0x113a0d900, {{189.0, 1271.0}, {1.7, 5.0}}
+                                            StaticText, 0x113a0da40, {{373.0, 1266.3}, {28.0, 14.3}}, label: '1%'
+                                              StaticText, 0x113a0db80, {{373.0, 1266.3}, {28.0, 14.3}}, label: '1%'
+                                            StaticText, 0x113a0dcc0, {{49.3, 1281.3}, {89.3, 15.7}}, label: '184 avaliações'
+                                              StaticText, 0x113a0de00, {{49.3, 1281.3}, {89.3, 15.7}}, label: '184 avaliações'
+                                            StaticText, 0x113a0df40, {{149.0, 1286.7}, {32.0, 14.3}}, label: '1 ★'
+                                              StaticText, 0x113a0e080, {{149.0, 1286.7}, {32.0, 14.3}}, label: '1 ★'
+                                            Other, 0x113a0e1c0, {{189.0, 1291.3}, {176.0, 5.0}}
+                                              Other, 0x113a0e300, {{189.0, 1291.3}, {1.7, 5.0}}
+                                            StaticText, 0x113a0e440, {{373.0, 1286.7}, {28.0, 14.3}}, label: '1%'
+                                              StaticText, 0x113a0e580, {{373.0, 1286.7}, {28.0, 14.3}}, label: '1%'
+                                            Button, 0x113a0e6c0, {{39.0, 1321.0}, {362.0, 48.0}}, label: 'Editar minha avaliação deste ponto'
+                                            Other, 0x113a0e800, {{39.0, 1387.0}, {362.0, 130.7}}
+                                            Other, 0x113a0e940, {{54.0, 1402.0}, {44.0, 44.0}}
+                                            StaticText, 0x113a0ea80, {{110.0, 1402.0}, {276.0, 18.0}}, label: 'Leonardo Bragatti'
+                                              StaticText, 0x113a0ebc0, {{110.0, 1402.0}, {276.0, 18.0}}, label: 'Leonardo Bragatti'
+                                            StaticText, 0x113a0ed00, {{66.0, 1415.0}, {19.7, 18.0}}, label: 'LB'
+                                              StaticText, 0x113a0ee40, {{66.0, 1415.0}, {19.7, 18.0}}, label: 'LB'
+                                            StaticText, 0x113a0ef80, {{110.0, 1422.0}, {276.0, 15.7}}, label: '★ ★ ★ ★ ★'
+                                              StaticText, 0x113a0f0c0, {{110.0, 1422.0}, {276.0, 15.7}}, label: '★ ★ ★ ★ ★'
+                                            StaticText, 0x113a0f200, {{110.0, 1442.7}, {276.0, 60.0}}, label: 'Cobertura, banheiro e café deixam a parada bem confortável para uma recarga rápida.'
+                                              StaticText, 0x113a0f340, {{110.0, 1442.7}, {276.0, 60.0}}, label: 'Cobertura, banheiro e café deixam a parada bem confortável para uma recarga rápida.'
+                                            Other, 0x113a0f480, {{39.0, 1529.7}, {362.0, 110.7}}
+                                            Other, 0x113a0f5c0, {{54.0, 1544.7}, {44.0, 44.0}}
+                                            StaticText, 0x113a0f700, {{110.0, 1544.7}, {276.0, 18.0}}, label: 'Marina Polverari'
+                                              StaticText, 0x113a0f840, {{110.0, 1544.7}, {276.0, 18.0}}, label: 'Marina Polverari'
+                                            StaticText, 0x113a0f980, {{64.0, 1557.7}, {24.0, 18.0}}, label: 'MP'
+                                              StaticText, 0x113a0fac0, {{64.0, 1557.7}, {24.0, 18.0}}, label: 'MP'
+                                            StaticText, 0x113a0fc00, {{110.0, 1564.7}, {276.0, 15.7}}, label: '★ ★ ★ ★ ★'
+                                              StaticText, 0x113a0fd40, {{110.0, 1564.7}, {276.0, 15.7}}, label: '★ ★ ★ ★ ★'
+                                            StaticText, 0x113a0fe80, {{110.0, 1585.3}, {276.0, 40.0}}, label: 'Boa sinalização, ambiente limpo e conexão estável no CCS2 durante a recarga.'
+                                              StaticText, 0x113a10000, {{110.0, 1585.3}, {276.0, 40.0}}, label: 'Boa sinalização, ambiente limpo e conexão estável no CCS2 durante a recarga.'
+                                            Other, 0x113a10140, {{39.0, 1652.3}, {362.0, 130.7}}
+                                            Other, 0x113a10280, {{54.0, 1667.3}, {44.0, 44.0}}
+                                            StaticText, 0x113a103c0, {{110.0, 1667.3}, {276.0, 18.0}}, label: 'John Paul'
+                                              StaticText, 0x113a10500, {{110.0, 1667.3}, {276.0, 18.0}}, label: 'John Paul'
+                                            StaticText, 0x113a10640, {{66.0, 1680.3}, {19.7, 18.0}}, label: 'JP'
+                                              StaticText, 0x113a10780, {{66.0, 1680.3}, {19.7, 18.0}}, label: 'JP'
+                                            StaticText, 0x113a108c0, {{110.0, 1687.3}, {276.0, 15.7}}, label: '★ ★ ★ ★ ★'
+                                              StaticText, 0x113a10a00, {{110.0, 1687.3}, {276.0, 15.7}}, label: '★ ★ ★ ★ ★'
+                                            StaticText, 0x113a10b40, {{110.0, 1708.0}, {276.0, 60.0}}, label: 'Ponto completo para quem precisa carregar sem abrir mão de segurança e Wi-Fi.'
+                                              StaticText, 0x113a10c80, {{110.0, 1708.0}, {276.0, 60.0}}, label: 'Ponto completo para quem precisa carregar sem abrir mão de segurança e Wi-Fi.'
+                                        Other, 0x113a10dc0, {{62.0, 923.0}, {316.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                          Other, 0x113a10f00, {{65.0, 950.0}, {310.0, 3.0}}
+                                        Other, 0x113a11040, {{62.0, 923.0}, {316.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                          Other, 0x113a11180, {{65.0, 950.0}, {310.0, 3.0}}
+                                    Other, 0x113a112c0, {{0.0, 847.0}, {440.0, 109.0}}
+                                      Button, 0x113a11400, {{22.0, 860.0}, {193.7, 52.0}}, label: 'Ver mapa'
+                                      Button, 0x113a11540, {{227.7, 860.0}, {190.3, 52.0}}, label: 'Iniciar rota para Higienópolis Prime Charge'
+                          Toolbar, 0x113a11680, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x113a117c0, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x113a11900, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x113a11a40, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x113a11b80, {{0.0, 0.0}, {440.0, 956.0}}
+    Window, 0x113a11cc0, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x113a11e00, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x113a11f40, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x1135b9400, pid: 44484, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x113a12080, pid: 44484, label: 'Expo Go'
+  }
+
+    t =    43.26s Find the Application 'host.exp.Exponent'
+    t =    43.60s Added attachment named '06-estimativas-ficha'
+FLUI_13 APROVADO_CONSISTENCIA Higienópolis ≈4,9km / 38% nas três telas
+    t =    43.60s Tap Button (First Match)
+    t =    43.60s     Wait for host.exp.Exponent to idle
+    t =    43.61s     Find the Button (First Match)
+    t =    43.78s     Check for interrupting elements affecting "Voltar ao mapa" Button
+    t =    43.93s     Synthesize event
+    t =    43.94s         Scroll element to visible
+    t =    43.95s         Find the "Voltar ao mapa" Button
+    t =    44.13s         Computed hit point {44, 64} after scrolling to visible
+    t =    44.43s     Wait for host.exp.Exponent to idle
+    t =    44.44s Waiting 10.0s for Button (First Match) to exist
+    t =    45.52s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    45.52s         Checking existence of `Button (First Match)`
+    t =    45.59s Tap Button (First Match)
+    t =    45.60s     Wait for host.exp.Exponent to idle
+    t =    45.62s     Find the Button (First Match)
+    t =    45.70s     Check for interrupting elements affecting "Abrir busca e filtros" Button
+    t =    45.80s     Synthesize event
+    t =    46.20s     Wait for host.exp.Exponent to idle
+    t =    46.31s Waiting 8.0s for Button (First Match) to exist
+    t =    47.37s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    47.37s         Checking existence of `Button (First Match)`
+    t =    47.39s Tap Button (First Match)
+    t =    47.39s     Wait for host.exp.Exponent to idle
+    t =    47.40s     Find the Button (First Match)
+    t =    47.42s     Check for interrupting elements affecting "Limpar busca e filtros" Button
+    t =    47.49s     Synthesize event
+    t =    47.80s     Wait for host.exp.Exponent to idle
+    t =    47.81s Tap Button (First Match)
+    t =    47.81s     Wait for host.exp.Exponent to idle
+    t =    47.81s     Find the Button (First Match)
+    t =    47.84s     Check for interrupting elements affecting "Ver pontos encontrados no mapa" Button
+    t =    47.90s     Synthesize event
+    t =    48.21s     Wait for host.exp.Exponent to idle
+    t =    48.22s Waiting 10.0s for Button (First Match) to exist
+    t =    49.23s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    49.23s         Checking existence of `Button (First Match)`
+    t =    49.37s Tear Down
+Test Case '-[FluiValidacao.FluiValidacao test02ConsistenciaMapaFichaFluia]' passed (50.392 seconds).
+Test Case '-[FluiValidacao.FluiValidacao test03OrigemCentralizacaoEEstabilidade]' started.
+    t =     0.01s Start Test at 2026-10-16 14:08:17.052
+    t =     0.08s Set Up
+    t =     0.09s Open host.exp.Exponent
+    t =     0.10s     Activate host.exp.Exponent
+    t =     0.13s         Wait for host.exp.Exponent to idle
+    t =     0.17s Waiting 3.0s for Button (First Match) to exist
+    t =     1.20s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     1.20s         Checking existence of `Button (First Match)`
+    t =     1.37s Waiting 45.0s for Button (First Match) to exist
+    t =     2.44s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     2.45s         Checking existence of `Button (First Match)`
+    t =     2.49s Waiting 8.0s for Button (First Match) to exist
+    t =     3.55s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     3.55s         Checking existence of `Button (First Match)`
+    t =     3.59s Tap Button (First Match)
+    t =     3.60s     Wait for host.exp.Exponent to idle
+    t =     3.62s     Find the Button (First Match)
+    t =     3.72s     Check for interrupting elements affecting "Abrir busca e filtros" Button
+    t =     3.83s     Synthesize event
+    t =     4.26s     Wait for host.exp.Exponent to idle
+    t =     4.40s Waiting 8.0s for Button (First Match) to exist
+    t =     5.48s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     5.48s         Checking existence of `Button (First Match)`
+    t =     5.50s Tap Button (First Match)
+    t =     5.50s     Wait for host.exp.Exponent to idle
+    t =     5.51s     Find the Button (First Match)
+    t =     5.52s     Check for interrupting elements affecting "Limpar busca e filtros" Button
+    t =     5.59s     Synthesize event
+    t =     5.89s     Wait for host.exp.Exponent to idle
+    t =     5.89s Tap Button (First Match)
+    t =     5.89s     Wait for host.exp.Exponent to idle
+    t =     5.89s     Find the Button (First Match)
+    t =     5.91s     Check for interrupting elements affecting "Ver pontos encontrados no mapa" Button
+    t =     5.95s     Synthesize event
+    t =     6.25s     Wait for host.exp.Exponent to idle
+    t =     6.26s Waiting 10.0s for Button (First Match) to exist
+    t =     7.36s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     7.44s         Checking existence of `Button (First Match)`
+    t =     7.67s Tap Button (First Match)
+    t =     7.67s     Wait for host.exp.Exponent to idle
+    t =     7.92s     Find the Button (First Match)
+    t =     8.26s     Check for interrupting elements affecting "Abrir perfil" Button
+    t =     8.52s     Synthesize event
+    t =     8.92s     Wait for host.exp.Exponent to idle
+    t =     9.52s Waiting 10.0s for Button (First Match) to exist
+    t =    10.55s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    10.55s         Checking existence of `Button (First Match)`
+    t =    10.57s Tap Button (First Match)
+    t =    10.57s     Wait for host.exp.Exponent to idle
+    t =    10.58s     Find the Button (First Match)
+    t =    10.59s     Check for interrupting elements affecting "Abrir configurações" Button
+    t =    10.62s     Synthesize event
+    t =    10.92s     Wait for host.exp.Exponent to idle
+    t =    11.37s Waiting 10.0s for TextField (First Match) to exist
+    t =    12.43s     Checking `Expect predicate `existsNoRetry == 1` for object TextField (First Match)`
+    t =    12.43s         Checking existence of `TextField (First Match)`
+    t =    13.49s Find the TextField (First Match)
+    t =    13.53s Find the Button (First Match)
+    t =    13.58s Tap "Selecionar origem FIAP" Button
+    t =    13.58s     Wait for host.exp.Exponent to idle
+    t =    13.59s     Find the "Selecionar origem FIAP" Button
+    t =    13.62s     Check for interrupting elements affecting "Selecionar origem FIAP" Button
+    t =    13.67s     Synthesize event
+    t =    13.98s     Wait for host.exp.Exponent to idle
+    t =    13.99s Find the "Selecionar origem FIAP" Button
+    t =    14.05s Find the Button (First Match)
+    t =    14.11s Tap Button (First Match)
+    t =    14.11s     Wait for host.exp.Exponent to idle
+    t =    14.12s     Find the Button (First Match)
+    t =    14.16s     Check for interrupting elements affecting "Salvar demonstração" Button
+    t =    14.21s     Synthesize event
+    t =    14.53s     Wait for host.exp.Exponent to idle
+    t =    14.55s Waiting 8.0s for StaticText (First Match) to exist
+    t =    15.55s     Checking `Expect predicate `existsNoRetry == 1` for object StaticText (First Match)`
+    t =    15.55s         Checking existence of `StaticText (First Match)`
+    t =    15.58s Find the Button (First Match)
+    t =    15.66s Tap Button (First Match)
+    t =    15.66s     Wait for host.exp.Exponent to idle
+    t =    15.67s     Find the Button (First Match)
+    t =    15.71s     Check for interrupting elements affecting "Abrir mapa para editar bateria" Button
+    t =    15.76s     Synthesize event
+    t =    16.06s     Wait for host.exp.Exponent to idle
+    t =    16.08s Waiting 10.0s for Button (First Match) to exist
+    t =    17.13s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    17.13s         Checking existence of `Button (First Match)`
+    t =    17.20s Checking existence of `Button (First Match)`
+    t =    17.26s Tap Button (First Match)
+    t =    17.26s     Wait for host.exp.Exponent to idle
+    t =    17.28s     Find the Button (First Match)
+    t =    17.35s     Check for interrupting elements affecting "Minimizar opções demonstrativas para ver o mapa inteiro" Button
+    t =    17.44s     Synthesize event
+    t =    17.80s     Wait for host.exp.Exponent to idle
+    t =    17.83s Tap Button (First Match)
+    t =    17.84s     Wait for host.exp.Exponent to idle
+    t =    17.88s     Find the Button (First Match)
+    t =    17.99s     Check for interrupting elements affecting "Centralizar origem demonstrativa: FIAP" Button
+    t =    18.09s     Synthesize event
+    t =    18.46s     Wait for host.exp.Exponent to idle
+    t =    19.50s Waiting 8.0s for Button (First Match) to exist
+    t =    20.57s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    20.57s         Checking existence of `Button (First Match)`
+    t =    20.66s Checking existence of `Other (First Match)`
+    t =    20.71s Find the Button (First Match)
+    t =    20.79s Find the Other (First Match)
+FLUI_13 ORIGEM_ALTERADA_E_CENTRALIZADA FIAP origem=(184.0, 536.3333435058594, 72.0, 72.0), mapa=(0.0, 224.0, 440.0, 698.0)
+    t =    20.88s Requesting snapshot of accessibility hierarchy for app with pid 44484
+    t =    22.20s Requesting snapshot of accessibility hierarchy for app with pid 44484
+FLUI_13 EVIDENCIA 07-nova-origem-fiap-centralizada
+Attributes: Application, 0x1135bbd40, pid: 44484, label: 'Expo Go'
+Element subtree:
+ →Application, 0x1135bbd40, pid: 44484, label: 'Expo Go'
+    Window (Main), 0x1135b9400, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x1135b9540, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x1135b9180, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x1135b92c0, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x1135b9cc0, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x1135b9900, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x1135b9a40, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x1135b97c0, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x1135b9680, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x1135bbac0, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x1135bbc00, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x1135bb700, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x1135bb840, {{0.0, 0.0}, {440.0, 956.0}}
+                              Other, 0x1135bb480, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x1135bb5c0, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x1135bb340, {{0.0, 0.0}, {440.0, 956.0}}
+                                    Other, 0x1135baa80, {{0.0, 62.0}, {440.0, 860.0}}
+                                      Other, 0x1135baf80, {{0.0, 62.0}, {440.0, 162.0}}
+                                        Other, 0x1135ba940, {{20.0, 76.0}, {76.0, 36.0}}
+                                          Other, 0x1130a2d00, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x1130a2a80, {{20.0, 76.4}, {76.0, 35.2}}
+                                            Other, 0x1130a1f40, {{89.2, 82.8}, {6.7, 6.7}}
+                                        Button, 0x1130a1b80, {{191.7, 71.0}, {180.3, 46.0}}, label: 'Flui iOS NEXT. Bateria para estimativa: 40 por cento. Informado manualmente. 16/10, 14:06. Cerca de 120 quilômetros estimados'
+                                        Button, 0x1130a1e00, {{374.0, 71.0}, {46.0, 46.0}}, label: 'Abrir perfil'
+                                        Other, 0x1130a2080, {{20.0, 132.0}, {400.0, 58.0}}
+                                          Other, 0x1130a21c0, {{39.0, 150.7}, {21.0, 21.0}}
+                                            Other, 0x1130a2300, {{40.8, 152.4}, {17.5, 17.5}}
+                                              Other, 0x1130a2440, {{40.8, 152.4}, {15.8, 15.8}}
+                                              Other, 0x1130a2580, {{52.7, 164.4}, {5.5, 5.5}}
+                                          Other, 0x1130a26c0, {{73.0, 150.7}, {277.0, 20.3}}
+                                            TextField, 0x1130a2800, {{73.0, 150.7}, {277.0, 20.3}}, label: 'Buscar no mapa', placeholderValue: 'Buscar endereço, bairro ou ponto'
+                                          Other, 0x1130a2940, {{358.0, 146.0}, {1.0, 30.0}}
+                                          Button, 0x1130a2bc0, {{367.0, 140.0}, {42.0, 42.0}}, label: 'Abrir busca e filtros'
+                                        Button, 0x1130a2f80, {{20.0, 194.0}, {400.0, 16.0}}, label: 'Mostrar atalhos de filtro'
+                                      Other, 0x1069a7c00, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x1069a7980, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                          Other, 0x1069a7200, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x1069a7340, {{0.0, 224.0}, {72.0, 72.0}}
+                                            Other, 0x1069a7840, {{0.0, 224.0}, {440.0, 696.4}}
+                                              Other, 0x1069a7700, {{0.0, 224.0}, {440.0, 696.4}}
+                                                Button, 0x1069a6f80, {{5.0, 893.3}, {60.0, 22.0}}, label: 'Google Maps'
+                                            Other, 0x1069a75c0, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                              Button, 0x1069a5400, {{184.0, 536.3}, {72.0, 72.0}}, identifier: 'AIRGMSMarker_0x138726940', label: 'Origem demonstrativa: FIAP'
+                                              Button, 0x1069a7ac0, {{95.3, 419.3}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x13cd0c000', label: 'Flui Express MASP'
+                                              Button, 0x1069a52c0, {{1.0, 223.7}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x13cd0e1c0', label: 'Plug & Café Consolação'
+                                              Button, 0x109835180, {{180.3, 655.7}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x1478dfd40', label: 'Estação Jardins Pamplona'
+                                              Button, 0x109837c00, {{324.7, 799.7}, {69.3, 69.3}}, identifier: 'AIRGMSMarker_0x1478dea80', label: 'Garagem Verde Brigadeiro'
+                                              Other, 0x109836440, {{0.0, 224.0}, {440.0, 698.0}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x109835040, {{1912.0, 2136.0}, {74.0, 74.0}}
+                                              Other, 0x109837d40, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                Other, 0x109837ac0, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                  Other, 0x109836800, {{1912.0, 2136.0}, {72.0, 72.0}}
+                                                    Other, 0x1098375c0, {{1918.7, 2142.7}, {58.5, 58.5}}
+                                                    Other, 0x109837200, {{1936.0, 2160.0}, {24.0, 24.0}}
+                                        Other, 0x109837980, {{0.0, 224.0}, {440.0, 698.0}}
+                                        Other, 0x109836080, {{372.0, 242.0}, {52.0, 166.0}}
+                                          Other, 0x109837480, {{372.0, 242.0}, {52.0, 104.0}}
+                                            Button, 0x109834640, {{372.0, 243.0}, {52.0, 51.0}}, label: 'Aumentar zoom do mapa'
+                                            Button, 0x109834c80, {{372.0, 295.0}, {52.0, 51.0}}, label: 'Diminuir zoom do mapa'
+                                            Other, 0x109836bc0, {{384.0, 294.0}, {28.0, 1.0}}
+                                          Button, 0x109836f80, {{372.0, 356.0}, {52.0, 52.0}}, label: 'Centralizar origem demonstrativa: FIAP'
+                                        Other, 0x1098343c0, {{304.0, 439.3}, {120.0, 52.0}}
+                                          Other, 0x109837700, {{304.0, 439.3}, {120.0, 52.0}}
+                                            Button, 0x109836300, {{304.0, 439.3}, {120.0, 52.0}}, label: 'Abrir assistente Flui IA'
+                                        Other, 0x1098348c0, {{16.0, 495.3}, {408.0, 426.7}}
+                                          Other, 0x1098352c0, {{16.0, 495.3}, {408.0, 426.7}}
+                                            Button, 0x109835400, {{35.0, 514.3}, {370.0, 12.0}}, label: 'Minimizar opções demonstrativas para ver o mapa inteiro'
+                                            StaticText, 0x109835900, {{35.0, 526.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                              StaticText, 0x109834dc0, {{35.0, 526.3}, {370.0, 27.7}}, label: 'Opções demonstrativas'
+                                            StaticText, 0x109835e00, {{35.0, 562.0}, {370.0, 38.0}}, label: 'Origem: FIAP · distâncias em linha reta, sem cálculo de percurso'
+                                              StaticText, 0x109837340, {{35.0, 562.0}, {370.0, 38.0}}, label: 'Origem: FIAP · distâncias em linha reta, sem cálculo de percurso'
+                                            Other, 0x109837e80, {{35.0, 610.0}, {370.0, 262.0}}
+                                              ScrollView, 0x109837840, {{35.0, 610.0}, {370.0, 262.0}}
+                                                Other, 0x1098370c0, {{35.0, 610.0}, {370.0, 928.0}}
+                                                  Other, 0x109834f00, {{35.0, 610.0}, {370.0, 928.0}}
+                                                    Button, 0x109835b80, {{35.0, 610.0}, {370.0, 154.7}}, label: 'Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈2,1 km em linha reta. Chegada estimada com 39% de bateria.'
+                                                    Button, 0x109835cc0, {{35.0, 764.7}, {370.0, 154.7}}, label: 'Plug & Café Consolação. Opção demonstrativa. R. da Consolação, 2302. Aberto agora. Nota 4,3. 50 kW. ≈1,1 km em linha reta. Chegada estimada com 40% de bateria.'
+                                                    Button, 0x109835f40, {{35.0, 919.3}, {370.0, 154.7}}, label: 'Charge City Jardins. Opção demonstrativa. Alameda Santos, 2159. Aberto agora. Nota 4,7. 120 kW. ≈1,2 km em linha reta. Chegada estimada com 40% de bateria.'
+                                                    Button, 0x109836940, {{35.0, 1074.0}, {370.0, 154.7}}, label: 'Flui Vila Mariana Lins. Opção demonstrativa. Av. Lins de Vasconcelos, 1264. Aberto agora. Nota 4,8. 150 kW. ≈3,1 km em linha reta. Chegada estimada com 39% de bateria.'
+                                                    Button, 0x113a10000, {{35.0, 1228.7}, {370.0, 154.7}}, label: 'EcoCarga Parque Aclimação. Opção demonstrativa. R. Muniz de Sousa, 1119. Aberto agora. Nota 4,2. 22 kW. ≈2,6 km em linha reta. Chegada estimada com 39% de bateria.'
+                                                    Button, 0x113a10140, {{35.0, 1383.3}, {370.0, 154.7}}, label: 'Mercado Charge Cambuci. Opção demonstrativa. R. Luís Gama, 650. Aberto agora. Nota 4,1. 50 kW. ≈3,6 km em linha reta. Chegada estimada com 39% de bateria.'
+                                                Other, 0x113a10280, {{372.0, 610.0}, {30.0, 262.0}}, label: 'Vertical scroll bar, 4 pages', value: 0%
+                                                  Other, 0x113a103c0, {{399.0, 613.0}, {3.0, 64.7}}
+                                                Other, 0x113a10500, {{35.0, 839.0}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x113a10640, {{65.0, 866.0}, {310.0, 3.0}}
+                                                Other, 0x113a10780, {{372.0, 610.0}, {30.0, 262.0}}, label: 'Vertical scroll bar, 4 pages', value: 0%
+                                                  Other, 0x113a108c0, {{399.0, 613.0}, {3.0, 64.7}}
+                                                Other, 0x113a10a00, {{35.0, 839.0}, {370.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x113a10b40, {{65.0, 866.0}, {310.0, 3.0}}
+                          Toolbar, 0x113a10c80, {{0.0, 0.0}, {440.0, 956.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x113a10dc0, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x113a10f00, {{0.0, 0.0}, {440.0, 956.0}}
+                      Other, 0x113a11040, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x113a11180, {{0.0, 0.0}, {440.0, 956.0}}
+    Window, 0x113a112c0, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x113a11400, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x113a11540, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x1135bbd40, pid: 44484, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x113a11680, pid: 44484, label: 'Expo Go'
+  }
+
+    t =    22.41s Find the Application 'host.exp.Exponent'
+    t =    22.95s Added attachment named '07-nova-origem-fiap-centralizada'
+    t =    23.02s Press "Mapa com pontos de recarga próximos" Other[0.50, 0.50] for 0.1 seconds, then drag to "Mapa com pontos de recarga próximos" Other[0.65, 0.55] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    23.02s     Wait for host.exp.Exponent to idle
+    t =    23.06s     Find the "Mapa com pontos de recarga próximos" Other
+    t =    23.14s     Check for interrupting elements affecting "Mapa com pontos de recarga próximos" Other
+    t =    23.24s     Synthesize event
+    t =    23.28s         Find the "Mapa com pontos de recarga próximos" Other
+    t =    23.35s         Find the "Mapa com pontos de recarga próximos" Other
+    t =    23.44s         Find the "Mapa com pontos de recarga próximos" Other
+    t =    23.54s         Find the "Mapa com pontos de recarga próximos" Other
+    t =    23.67s         Find the "Mapa com pontos de recarga próximos" Other
+    t =    24.33s     Wait for host.exp.Exponent to idle
+    t =    25.44s Find the "AIRGMSMarker_0x138726940" Button
+/tmp/flui-xctest-12/FluiValidacao.swift:137: error: -[FluiValidacao.FluiValidacao test03OrigemCentralizacaoEEstabilidade] : XCTAssertGreaterThan failed: ("0.0") is not greater than ("20.0")
+    t =    27.52s Tear Down
+Test Case '-[FluiValidacao.FluiValidacao test03OrigemCentralizacaoEEstabilidade]' failed (28.049 seconds).
+Test Suite 'FluiValidacao' failed at 2026-10-16 14:08:45.103.
+	 Executed 3 tests, with 1 failure (0 unexpected) in 144.288 (144.404) seconds
+Test Suite 'FluiValidacao.xctest' failed at 2026-10-16 14:08:45.111.
+	 Executed 3 tests, with 1 failure (0 unexpected) in 144.288 (144.415) seconds
+Test Suite 'All tests' failed at 2026-10-16 14:08:45.113.
+	 Executed 3 tests, with 1 failure (0 unexpected) in 144.288 (144.421) seconds
+2026-10-16 14:08:45.443 xcodebuild[44302:4152732] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 14:08:45.462 xcodebuild[44302:4152732] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 14:08:45.495 xcodebuild[44302:4152732] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-16 14:08:45.943 xcodebuild[44302:4152732] [MT] IDETestOperationsObserverDebug: 241.122 elapsed -- Testing started completed.
+2026-10-16 14:08:45.943 xcodebuild[44302:4152732] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-16 14:08:45.943 xcodebuild[44302:4152732] [MT] IDETestOperationsObserverDebug: 241.122 sec, +241.122 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/flui-13-final/Resultado.xcresult
+
+Failing tests:
+	FluiValidacao.test03OrigemCentralizacaoEEstabilidade()
+
+** TEST EXECUTE FAILED **
+
+Testing started

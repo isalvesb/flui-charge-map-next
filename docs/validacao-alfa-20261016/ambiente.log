@@ -1,0 +1,15 @@
+Ambiente conferido em 16/10/2026; Android não executado.
+Node: v24.13.1
+npm: 11.8.0
+adb no PATH: None
+emulator no PATH: None
+~/Library/Android/sdk: ausente
+~/.android/avd: ausente
+/Applications/Android Studio.app: ausente
+/opt/homebrew/share/android-sdk: ausente
+/opt/homebrew/share/android-commandlinetools: ausente
+/usr/local/share/android-sdk: ausente
+/opt/android-sdk: ausente
+/Users/Shared/Android/sdk: ausente
+Xcode 27.1
+Build version 27A9275
