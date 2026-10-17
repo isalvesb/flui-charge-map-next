@@ -1,22 +1,9 @@
-import React, { useCallback, useMemo, useState } from "react";
-import {
-  Alert,
-  Image,
-  Linking,
-  Modal,
-  StatusBar,
-  Pressable,
-  ScrollView,
-  Text,
-  View,
-} from "react-native";
 import {
   router,
-  type Href,
   useFocusEffect,
   useLocalSearchParams,
+  type Href,
 } from "expo-router";
-import { SafeAreaView } from "react-native-safe-area-context";
 import {
   AlarmClock,
   ArrowLeft,
@@ -24,12 +11,12 @@ import {
   BatteryFull,
   BatteryLow,
   BatteryWarning,
+  CircleParking,
   Clock3,
   Coffee,
   Gauge,
   Heart,
   Navigation2,
-  CircleParking,
   Plug,
   ShieldCheck,
   ShoppingCart,
@@ -42,39 +29,54 @@ import {
   Wifi,
   Zap,
 } from "lucide-react-native";
-
-import { identificacaoDados } from "../../data/identificacaoDados";
-import { chargingStations } from "../../data";
-import { styles as baseStyles } from "./PointDetailsScreen.styles";
+import React, { useCallback, useMemo, useState } from "react";
+import {
+  Alert,
+  Image,
+  Modal,
+  Pressable,
+  ScrollView,
+  StatusBar,
+  Text,
+  View,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { getStationImageSource } from "../../assets/stations";
 import {
   LoadingOverlay,
   ScreenTransition,
   StationVisualCover,
 } from "../../components";
+import { useAppPreferences } from "../../context/PreferencesContext";
+import { chargingStations } from "../../data";
+import { identificacaoDados } from "../../data/identificacaoDados";
+import { useCurrentTime } from "../../hooks/useCurrentTime";
 import { useFluiStorage } from "../../hooks/useFluiStorage";
 import { useTelaComPreferencias } from "../../hooks/useTelaComPreferencias";
-import { useAppPreferences } from "../../context/PreferencesContext";
-import { getStationImageSource } from "../../assets/stations";
-import { triggerImpact, type PressableVisualState } from "../../utils/interaction";
 import { avaliarAlcance } from "../../utils/autonomia";
 import { formatarDistanciaDemonstrativa } from "../../utils/demonstracao";
-import { useCurrentTime } from "../../hooks/useCurrentTime";
+import {
+  triggerImpact,
+  type PressableVisualState,
+} from "../../utils/interaction";
 import { isStationOpenAt } from "../../utils/stationHours";
 import {
-  getStationStatusInfo,
-  getStationRouteNotice,
-  getStationRouteUrl,
-  getStationRecommendation,
-  getStationChargerCountLabel,
+  RoutingModalPermission,
+  RoutingModalRoutes,
+} from "./components/RoutingModal";
+import { styles as baseStyles } from "./PointDetailsScreen.styles";
+import {
   getStationArrivalPresentation,
+  getStationChargerCountLabel,
+  getStationRecommendation,
+  getStationStatusInfo,
   getWaitingLevel,
 } from "./stationPresentation";
+import { useLocationContext } from "@/src/context/LocationContext";
 
 const imagemPerfilUsuario = require("../../assets/user/profile1.webp");
 
 type Station = (typeof chargingStations)[number];
-
-type RouteProvider = "google" | "waze";
 
 type ReviewCardData = NonNullable<Station["reviews"]>[number];
 
@@ -144,7 +146,7 @@ function getUserInitials(userName: string) {
   const nameParts = userName.trim().split(/\s+/);
   const firstInitial = nameParts[0]?.[0] ?? "";
   const lastInitial =
-    nameParts.length > 1 ? nameParts[nameParts.length - 1]?.[0] ?? "" : "";
+    nameParts.length > 1 ? (nameParts[nameParts.length - 1]?.[0] ?? "") : "";
 
   return `${firstInitial}${lastInitial}`.toUpperCase();
 }
@@ -173,7 +175,9 @@ function montarPerfilDoPonto(station: Station) {
   return "Recarga essencial";
 }
 
-function obterIconeDeAlcance(nivel: ReturnType<typeof avaliarAlcance>["nivel"]) {
+function obterIconeDeAlcance(
+  nivel: ReturnType<typeof avaliarAlcance>["nivel"],
+) {
   if (nivel === "foraDeAlcance") {
     return BatteryWarning;
   }
@@ -187,6 +191,7 @@ function obterIconeDeAlcance(nivel: ReturnType<typeof avaliarAlcance>["nivel"]) 
 
 export default function PointDetailsScreen() {
   const now = useCurrentTime();
+  const { location } = useLocationContext();
   const { styles, colors, isDarkMode } = useTelaComPreferencias(baseStyles);
   const { userPreferences, demoStations, demoOrigin } = useAppPreferences();
   const { stationId } = useLocalSearchParams<{
@@ -210,12 +215,19 @@ export default function PointDetailsScreen() {
   const [isLoadingAction, setIsLoadingAction] = useState(false);
   const [isRouteDialogOpen, setIsRouteDialogOpen] = useState(false);
   const [routeError, setRouteError] = useState<string | null>(null);
+  const [modalStep, setModalStep] = useState<"confirmation" | "redirect">(() =>
+    location?.coords ? "redirect" : "confirmation",
+  );
 
   useFocusEffect(
     useCallback(() => {
       void reloadStorage();
     }, [reloadStorage]),
   );
+
+  const handleNext = () => {
+    setModalStep("redirect");
+  };
 
   const isFavorite = station ? favoriteStationIds.includes(station.id) : false;
 
@@ -253,42 +265,6 @@ export default function PointDetailsScreen() {
       setIsLoadingAction(false);
       router.push(route);
     }, 360);
-  }
-
-  async function openRouteInExternalApp(provider: RouteProvider) {
-    if (!station) {
-      return;
-    }
-
-    const hasCoordinates =
-      Number.isFinite(station.latitude) && Number.isFinite(station.longitude);
-
-    if (!hasCoordinates) {
-      setRouteError("Este ponto ainda não possui coordenadas cadastradas.");
-
-      return;
-    }
-
-    const url = getStationRouteUrl(station, provider);
-
-    try {
-      setIsLoadingAction(true);
-
-      const canOpen = await Linking.canOpenURL(url);
-
-      if (!canOpen) {
-        setRouteError("Seu dispositivo não conseguiu abrir o aplicativo de mapas.");
-
-        return;
-      }
-
-      await Linking.openURL(url);
-      setIsRouteDialogOpen(false);
-    } catch {
-      setRouteError("Não foi possível abrir a rota agora. Tente novamente em alguns instantes.");
-    } finally {
-      setIsLoadingAction(false);
-    }
   }
 
   function handleStartRoute() {
@@ -343,7 +319,9 @@ export default function PointDetailsScreen() {
             ]}
             onPress={voltarAoMapa}
           >
-            <Text style={styles.secondaryFallbackButtonText}>Voltar ao mapa</Text>
+            <Text style={styles.secondaryFallbackButtonText}>
+              Voltar ao mapa
+            </Text>
           </Pressable>
         </View>
       </SafeAreaView>
@@ -422,7 +400,11 @@ export default function PointDetailsScreen() {
             : colors.textLight;
 
   const IconeAlcance = obterIconeDeAlcance(avaliacaoAlcance.nivel);
-  const apresentacaoAlcance = getStationArrivalPresentation(station, avaliacaoAlcance, now);
+  const apresentacaoAlcance = getStationArrivalPresentation(
+    station,
+    avaliacaoAlcance,
+    now,
+  );
   const corAlcance =
     apresentacaoAlcance.tone === "danger"
       ? colors.dangerBorder
@@ -456,7 +438,6 @@ export default function PointDetailsScreen() {
             status={station.status}
             comodidades={station.amenities}
             imageSource={getStationImageSource(station.imageKey)}
-
             imageUrl={station.imageUrl}
           />
           <SafeAreaView edges={["top"]} style={styles.heroActions}>
@@ -475,7 +456,9 @@ export default function PointDetailsScreen() {
 
             <Pressable
               accessibilityRole="button"
-              accessibilityLabel={isFavorite ? "Remover dos favoritos" : "Adicionar aos favoritos"}
+              accessibilityLabel={
+                isFavorite ? "Remover dos favoritos" : "Adicionar aos favoritos"
+              }
               accessibilityState={{
                 selected: isFavorite,
                 disabled: isLoadingAction || isLoadingStorage,
@@ -526,10 +509,7 @@ export default function PointDetailsScreen() {
             <View style={styles.statusGroup}>
               <View
                 accessible={false}
-                style={[
-                  styles.statusDot,
-                  { backgroundColor: statusColor },
-                ]}
+                style={[styles.statusDot, { backgroundColor: statusColor }]}
               />
 
               <Text style={[styles.statusText, { color: statusColor }]}>
@@ -549,7 +529,12 @@ export default function PointDetailsScreen() {
             </View>
 
             <Text style={styles.availableText}>
-              {getStationChargerCountLabel(station, availableChargers, totalChargers, now)}
+              {getStationChargerCountLabel(
+                station,
+                availableChargers,
+                totalChargers,
+                now,
+              )}
             </Text>
           </View>
 
@@ -557,8 +542,9 @@ export default function PointDetailsScreen() {
             <Text style={styles.resumoEyebrow}>Guia do ponto</Text>
             <Text style={styles.resumoTitle}>{recomendacaoDoPonto}</Text>
             <Text style={styles.resumoDescription}>
-              {identificacaoDados.catalogo.aviso} {identificacaoDados.estimativas.aviso}
-              {" "}Confirme o funcionamento e a compatibilidade do veículo antes de ir.
+              {identificacaoDados.catalogo.aviso}{" "}
+              {identificacaoDados.estimativas.aviso} Confirme o funcionamento e
+              a compatibilidade do veículo antes de ir.
             </Text>
 
             <View style={styles.resumoInfoGrid}>
@@ -572,7 +558,11 @@ export default function PointDetailsScreen() {
 
               <View style={styles.resumoInfoItem}>
                 <View style={styles.resumoInfoLabelRow}>
-                  <BatteryCharging size={12} color={colors.textLight} strokeWidth={2.3} />
+                  <BatteryCharging
+                    size={12}
+                    color={colors.textLight}
+                    strokeWidth={2.3}
+                  />
                   <Text style={styles.resumoInfoLabel}>Tempo estimado</Text>
                 </View>
                 <Text style={styles.resumoInfoValue}>{tempoEstimadoCarga}</Text>
@@ -606,19 +596,29 @@ export default function PointDetailsScreen() {
             <View style={styles.infoRow}>
               <View style={styles.infoCard}>
                 <View style={styles.infoIconBox}>
-                  <Gauge size={20} color={colors.primaryBright} strokeWidth={2.2} />
+                  <Gauge
+                    size={20}
+                    color={colors.primaryBright}
+                    strokeWidth={2.2}
+                  />
                 </View>
 
                 <View style={styles.infoTextBox}>
                   <Text style={styles.infoLabel}>Potência</Text>
                   <Text style={styles.infoValue}>{station.powerKw} kW</Text>
-                  <Text style={styles.infoDescription}>Velocidade de carga</Text>
+                  <Text style={styles.infoDescription}>
+                    Velocidade de carga
+                  </Text>
                 </View>
               </View>
 
               <View style={styles.infoCard}>
                 <View style={styles.infoIconBox}>
-                  <Plug size={20} color={colors.primaryBright} strokeWidth={2.2} />
+                  <Plug
+                    size={20}
+                    color={colors.primaryBright}
+                    strokeWidth={2.2}
+                  />
                 </View>
 
                 <View style={styles.infoTextBox}>
@@ -659,9 +659,12 @@ export default function PointDetailsScreen() {
 
                 <View style={styles.infoTextBox}>
                   <Text style={styles.infoLabel}>Distância aproximada</Text>
-                  <Text style={styles.infoValue}>{formatarDistanciaDemonstrativa(station.distanceKm)}</Text>
+                  <Text style={styles.infoValue}>
+                    {formatarDistanciaDemonstrativa(station.distanceKm)}
+                  </Text>
                   <Text style={styles.infoDescription}>
-                    Em linha reta desde {demoOrigin.nome}. Não é distância de percurso.
+                    Em linha reta desde {demoOrigin.nome}. Não é distância de
+                    percurso.
                   </Text>
                 </View>
               </View>
@@ -674,7 +677,9 @@ export default function PointDetailsScreen() {
             </View>
 
             <View style={styles.highlightContent}>
-              <Text style={styles.highlightLabel}>Horário sugerido no exemplo</Text>
+              <Text style={styles.highlightLabel}>
+                Horário sugerido no exemplo
+              </Text>
               <Text style={styles.highlightValue}>{lessBusyText}</Text>
               <Text style={styles.highlightDescription}>
                 Sem previsão de movimento em tempo real
@@ -702,8 +707,12 @@ export default function PointDetailsScreen() {
                     <Text style={styles.connectorName}>{connector.label}</Text>
 
                     <Text style={styles.connectorDescription}>
-                      {connector.powerKw} kW · {getStationChargerCountLabel(
-                        station, connector.availableChargers, connector.totalChargers, now,
+                      {connector.powerKw} kW ·{" "}
+                      {getStationChargerCountLabel(
+                        station,
+                        connector.availableChargers,
+                        connector.totalChargers,
+                        now,
                       )}
                     </Text>
                   </View>
@@ -740,7 +749,9 @@ export default function PointDetailsScreen() {
 
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Avaliações</Text>
-            <Text style={styles.resumoDescription}>{identificacaoDados.avaliacoesExemplo.aviso}</Text>
+            <Text style={styles.resumoDescription}>
+              {identificacaoDados.avaliacoesExemplo.aviso}
+            </Text>
 
             <View style={styles.ratingPanel}>
               <View style={styles.ratingPanelLeft}>
@@ -918,43 +929,16 @@ export default function PointDetailsScreen() {
         animationType="fade"
         onRequestClose={() => !isLoadingAction && setIsRouteDialogOpen(false)}
       >
-        <View style={styles.routeBackdrop}>
-          <View style={styles.routeDialog} accessibilityViewIsModal>
-            <Text style={styles.routeTitle} accessibilityRole="header">
-              Antes de iniciar a rota
-            </Text>
-            <Text style={styles.routeDescription}>{station.name}</Text>
-            <Text style={styles.routeDescription} accessibilityLiveRegion="polite">
-              {getStationRouteNotice(station, now)}
-            </Text>
-            {routeError ? (
-              <Text style={styles.routeDescription} accessibilityRole="alert">
-                {routeError}
-              </Text>
-            ) : null}
-            {(["google", "waze"] as const).map((provider) => (
-              <Pressable
-                key={provider}
-                accessibilityRole="button"
-                disabled={isLoadingAction}
-                style={styles.routeAction}
-                onPress={() => void openRouteInExternalApp(provider)}
-              >
-                <Text style={styles.primaryActionText}>
-                  {provider === "google" ? "Abrir Google Maps" : "Abrir Waze"}
-                </Text>
-              </Pressable>
-            ))}
-            <Pressable
-              accessibilityRole="button"
-              disabled={isLoadingAction}
-              style={[styles.routeAction, styles.routeCancelAction]}
-              onPress={() => setIsRouteDialogOpen(false)}
-            >
-              <Text style={styles.secondaryActionText}>Cancelar</Text>
-            </Pressable>
-          </View>
-        </View>
+        {modalStep === "confirmation" ? (
+          <RoutingModalPermission next={handleNext} />
+        ) : (
+          <RoutingModalRoutes
+            station={station}
+            isLoadingAction={isLoadingAction}
+            routeError={routeError}
+            openDialog={setIsRouteDialogOpen}
+          />
+        )}
       </Modal>
 
       <LoadingOverlay visible={isLoadingAction} message="Preparando ação..." />

@@ -1,5 +1,10 @@
-import PointDetailsScreen from '../src/features/stations/PointDetailsScreen';
+import { LocationContextProvider } from "@/src/context/LocationContext";
+import PointDetailsScreen from "../src/features/stations/PointDetailsScreen";
 
 export default function PointDetailsRoute() {
-  return <PointDetailsScreen />;
+  return (
+    <LocationContextProvider>
+      <PointDetailsScreen />
+    </LocationContextProvider>
+  );
 }

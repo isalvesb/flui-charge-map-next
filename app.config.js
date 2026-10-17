@@ -54,6 +54,11 @@ module.exports = {
         },
       ],
       "expo-font",
+      "expo-location",
+      {
+        locationAlwaysAndWhenInUsePermission:
+          "Permitir que $(PRODUCT_NAME) acesse sua localização.",
+      },
     ],
     experiments: {
       typedRoutes: true,

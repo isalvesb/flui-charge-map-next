@@ -125,19 +125,6 @@ export function getUserInitials(userName: string) {
   return `${firstInitial}${lastInitial}`.toUpperCase();
 }
 
-export function getStationRouteUrl(
-  station: ChargingStation,
-  provider: RouteProvider,
-) {
-  const destination = `${station.latitude},${station.longitude}`;
-
-  if (provider === "waze") {
-    return `https://www.waze.com/ul?ll=${destination}&navigate=yes`;
-  }
-
-  return `https://www.google.com/maps/dir/?api=1&destination=${destination}&travelmode=driving`;
-}
-
 export function getEstimatedChargingTime(powerKw: number) {
   if (powerKw >= 120) return "20 a 35 min";
   if (powerKw >= 50) return "40 a 60 min";
