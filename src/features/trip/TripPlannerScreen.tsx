@@ -40,7 +40,11 @@ import {
 } from "../../data/destinosViagem";
 import { identificacaoDados } from "../../data/identificacaoDados";
 import { calcularAutonomiaAtualKm } from "../../utils/autonomia";
-import { planejarViagem, type ParadaDeViagem } from "../../utils/tripPlanner";
+import {
+  planejarViagem,
+  podeIniciarViagem,
+  type ParadaDeViagem,
+} from "../../utils/tripPlanner";
 import { getStationRouteUrl } from "../stations/stationPresentation";
 import { styles as baseStyles } from "./TripPlannerScreen.styles";
 
@@ -110,6 +114,8 @@ export default function TripPlannerScreen() {
     );
   }, [origemSelecionada, destinoSelecionado, vehicleRangeKm, batteryPercent]);
 
+  const podeIniciar = podeIniciarViagem(plano);
+
   const autonomiaAtualKm = Math.round(
     calcularAutonomiaAtualKm(vehicleRangeKm, batteryPercent),
   );
@@ -165,7 +171,7 @@ export default function TripPlannerScreen() {
   const proximoDestinoNome = plano.paradas[0]?.nome ?? destinoSelecionado.nome;
 
   const abrirNavegacao = async () => {
-    if (isIniciandoViagem) {
+    if (isIniciandoViagem || !podeIniciar) {
       return;
     }
 
@@ -585,7 +591,9 @@ export default function TripPlannerScreen() {
                         { color: tomDoAlcance.fg },
                       ]}
                     >
-                      {plano.bateriaChegadaDestinoPercent}% na chegada
+                      {podeIniciar
+                        ? `${plano.bateriaChegadaDestinoPercent}% na chegada`
+                        : "Chegada não estimada"}
                     </Text>
                   </View>
                 </View>
@@ -610,18 +618,31 @@ export default function TripPlannerScreen() {
 
       <View style={styles.footer}>
         <Text style={styles.footerCaption} numberOfLines={1}>
-          Navegação até {proximoDestinoNome}
+          {podeIniciar
+            ? `Navegação até ${proximoDestinoNome}`
+            : "Autonomia insuficiente para iniciar esta viagem"}
         </Text>
 
         <PressableScale
           accessibilityRole="button"
-          accessibilityLabel="Iniciar viagem"
-          accessibilityHint={`Abre o aplicativo de navegação até ${proximoDestinoNome}.`}
-          style={styles.startButton}
+          accessibilityLabel={podeIniciar ? "Iniciar viagem" : "Viagem indisponível"}
+          accessibilityHint={
+            podeIniciar
+              ? `Abre o aplicativo de navegação até ${proximoDestinoNome}.`
+              : "Autonomia insuficiente para alcançar uma parada demonstrativa."
+          }
+          accessibilityState={{ disabled: !podeIniciar }}
+          disabled={!podeIniciar || isIniciandoViagem}
+          style={[
+            styles.startButton,
+            !podeIniciar ? styles.startButtonDisabled : null,
+          ]}
           onPress={abrirNavegacao}
         >
           <Navigation2 size={18} color={colors.white} strokeWidth={2.2} />
-          <Text style={styles.startButtonText}>Iniciar viagem</Text>
+          <Text style={styles.startButtonText}>
+            {podeIniciar ? "Iniciar viagem" : "Viagem indisponível"}
+          </Text>
         </PressableScale>
       </View>
 

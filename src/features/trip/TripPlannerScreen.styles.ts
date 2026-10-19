@@ -437,6 +437,10 @@ export const styles = StyleSheet.create({
     gap: spacing.xs,
   },
 
+  startButtonDisabled: {
+    opacity: 0.5,
+  },
+
   startButtonPressed: {
     opacity: 0.86,
     transform: [{ scale: 0.98 }],
