@@ -868,6 +868,7 @@ const styles = StyleSheet.create({
   },
 
   pointBadge: {
+    maxWidth: "100%",
     alignSelf: "flex-start",
     minHeight: 22,
     paddingVertical: 4,
@@ -880,6 +881,7 @@ const styles = StyleSheet.create({
   },
 
   pointBadgeText: {
+    flexShrink: 1,
     color: colors.primary,
     fontSize: 10,
     fontWeight: "800",
@@ -930,6 +932,7 @@ const styles = StyleSheet.create({
   },
 
   pointAutonomiaChip: {
+    maxWidth: "100%",
     alignSelf: "flex-start",
     minHeight: 22,
     paddingVertical: 4,
@@ -941,6 +944,7 @@ const styles = StyleSheet.create({
   },
 
   pointAutonomiaChipText: {
+    flexShrink: 1,
     fontSize: 10,
     fontWeight: "800",
     letterSpacing: -0.1,

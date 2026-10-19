@@ -1819,6 +1819,8 @@ export default function HomeMapScreen() {
             ]}
           >
             <ScrollView
+              // Recalcular os textos nativos quando o Dynamic Type mudar durante a sessão.
+              key={`painel-${fontScale}-${escalaFonteSistema}`}
               tabIndex={-1}
               nestedScrollEnabled
               style={[styles.bottomSheetCard, { maxHeight: layout.panelMaxHeight }]}
@@ -1973,7 +1975,7 @@ export default function HomeMapScreen() {
                       <Text style={styles.pointStationName}>
                         {point.nomeEstacao}
                       </Text>
-                      <Text style={styles.pointAddress} numberOfLines={1}>
+                      <Text style={styles.pointAddress}>
                         {point.address}
                       </Text>
 
