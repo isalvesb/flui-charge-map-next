@@ -377,6 +377,7 @@ export const styles = StyleSheet.create({
   },
 
   timelineBatteryText: {
+    color: colors.text,
     fontSize: typography.sizes.sm,
     fontWeight: typography.weights.semibold,
   },

@@ -129,18 +129,33 @@ export function planejarViagem(
 
   distanciaTotalKm += trechoFinalKm;
 
+  // Exigir reserva mínima de 5% também na chegada ao destino.
+  // Comparar antes do arredondamento da apresentação.
+  const bateriaChegadaDestinoExata =
+    bateriaAtual - (trechoFinalKm / vehicleRangeKm) * 100;
+
+  const destinoSemReserva =
+    !Number.isFinite(bateriaChegadaDestinoExata) ||
+    bateriaChegadaDestinoExata < RESERVA_MINIMA_PARADA_PERCENT;
+
   return {
     distanciaTotalKm: Math.round(distanciaTotalKm),
     tempoEstimadoMin: calcularTempoMin(distanciaTotalKm),
     paradas,
-    bateriaChegadaDestinoPercent: trechoInviavel
-      ? 0
-      : Math.max(0, Math.round(avaliacaoFinal.bateriaAoChegarPercent)),
-    nivelDeAlcance: trechoInviavel ? "foraDeAlcance" : avaliacaoFinal.nivel,
+    bateriaChegadaDestinoPercent:
+      trechoInviavel || !Number.isFinite(bateriaChegadaDestinoExata)
+        ? 0
+        : Math.max(0, Math.floor(bateriaChegadaDestinoExata)),
+    nivelDeAlcance:
+      trechoInviavel || destinoSemReserva
+        ? "foraDeAlcance"
+        : avaliacaoFinal.nivel,
   };
 }
 
-export function podeIniciarViagem(plano: Pick<PlanoDeViagem, "nivelDeAlcance">) {
+export function podeIniciarViagem(
+  plano: Pick<PlanoDeViagem, "nivelDeAlcance">,
+) {
   return plano.nivelDeAlcance !== "foraDeAlcance";
 }
 

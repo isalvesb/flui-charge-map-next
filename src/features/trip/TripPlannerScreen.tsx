@@ -4,6 +4,7 @@ import {
   Modal,
   Pressable,
   ScrollView,
+  StyleSheet,
   StatusBar,
   Text,
   View,
@@ -235,11 +236,14 @@ export default function TripPlannerScreen() {
         animationType="slide"
         onRequestClose={() => setSeletorAberto(null)}
       >
-        <Pressable
-          style={styles.modalBackdrop}
-          onPress={() => setSeletorAberto(null)}
-        >
-          <Pressable style={styles.modalSheet} onPress={() => {}}>
+        <View style={styles.modalBackdrop}>
+          <Pressable
+            style={StyleSheet.absoluteFill}
+            accessibilityRole="button"
+            accessibilityLabel="Fechar seletor"
+            onPress={() => setSeletorAberto(null)}
+          />
+          <View style={styles.modalSheet} accessibilityViewIsModal>
             <Text style={styles.modalTitle} accessibilityRole="header">
               {seletorAberto === "origem"
                 ? "Escolher origem"
@@ -251,6 +255,8 @@ export default function TripPlannerScreen() {
                 <Pressable
                   key={opcao.id}
                   accessibilityRole="button"
+                  accessibilityLabel={opcao.titulo}
+                  accessibilityHint={opcao.subtitulo}
                   accessibilityState={{ selected: opcao.selecionado }}
                   style={({ pressed }) => [
                     styles.modalOption,
@@ -274,8 +280,8 @@ export default function TripPlannerScreen() {
             >
               <Text style={styles.modalCloseButtonText}>Cancelar</Text>
             </Pressable>
-          </Pressable>
-        </Pressable>
+          </View>
+        </View>
       </Modal>
     );
   };
@@ -519,7 +525,7 @@ export default function TripPlannerScreen() {
                 <Text style={[styles.warningText, { color: tomDoAlcance.fg }]}>
                   {plano.nivelDeAlcance === "apertado"
                     ? `Autonomia limitada: chegada estimada com ${plano.bateriaChegadaDestinoPercent}% de bateria.`
-                    : "Autonomia insuficiente para esta viagem com as paradas demonstrativas disponíveis."}
+                    : "A viagem não preserva a reserva mínima de 5% na chegada com as paradas demonstrativas disponíveis."}
                 </Text>
               </View>
             ) : null}
@@ -593,7 +599,7 @@ export default function TripPlannerScreen() {
                     >
                       {podeIniciar
                         ? `${plano.bateriaChegadaDestinoPercent}% na chegada`
-                        : "Chegada não estimada"}
+                        : "Viagem bloqueada · reserva mínima de 5%"}
                     </Text>
                   </View>
                 </View>
@@ -620,7 +626,7 @@ export default function TripPlannerScreen() {
         <Text style={styles.footerCaption} numberOfLines={1}>
           {podeIniciar
             ? `Navegação até ${proximoDestinoNome}`
-            : "Autonomia insuficiente para iniciar esta viagem"}
+            : "Reserva mínima de 5% não preservada na chegada"}
         </Text>
 
         <PressableScale
@@ -629,7 +635,7 @@ export default function TripPlannerScreen() {
           accessibilityHint={
             podeIniciar
               ? `Abre o aplicativo de navegação até ${proximoDestinoNome}.`
-              : "Autonomia insuficiente para alcançar uma parada demonstrativa."
+              : "A viagem não preserva a reserva mínima de 5% com as paradas demonstrativas disponíveis."
           }
           accessibilityState={{ disabled: !podeIniciar }}
           disabled={!podeIniciar || isIniciandoViagem}

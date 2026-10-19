@@ -7,6 +7,7 @@ import {
   type DestinoViagem,
 } from "../src/data/destinosViagem";
 import { planejarViagem, podeIniciarViagem } from "../src/utils/tripPlanner";
+import { calcularDistanciaGeograficaKm } from "../src/utils/demonstracao";
 
 const origem = obterOrigemDemonstrativa("fiap");
 const campinas = obterDestinoDemonstrativo("campinas");
@@ -40,13 +41,18 @@ test("reserva de 5% é aplicada antes de arredondar bateria", () => {
   assert.deepEqual(plano.paradas, []);
 });
 
-test("parada alcançável pode elevar a bateria demonstrativa a 80%", () => {
+test("parada alcançável não libera destino sem reserva mínima", () => {
   const plano = planejarViagem(origem, campinas, 50, 100);
+
+  // A parada pode ser alcançada e oferecer recarga.
   assert.equal(plano.paradas.length, 1);
   assert.ok(plano.paradas[0].bateriaChegadaPercent >= 5);
   assert.equal(plano.paradas[0].bateriaSaidaPercent, 80);
-  assert.notEqual(plano.nivelDeAlcance, "foraDeAlcance");
-  assert.equal(podeIniciarViagem(plano), true);
+
+  // Mas a chegada ao destino não preserva os 5%.
+  assert.equal(plano.bateriaChegadaDestinoPercent, 4);
+  assert.equal(plano.nivelDeAlcance, "foraDeAlcance");
+  assert.equal(podeIniciarViagem(plano), false);
 });
 
 test("autonomia confortável não exige paradas desnecessárias", () => {
@@ -79,4 +85,41 @@ test("a decisão de navegação diferencia aperto de impossibilidade", () => {
   assert.equal(podeIniciarViagem({ nivelDeAlcance: "tranquilo" }), true);
   assert.equal(podeIniciarViagem({ nivelDeAlcance: "apertado" }), true);
   assert.equal(podeIniciarViagem({ nivelDeAlcance: "foraDeAlcance" }), false);
+});
+
+// Distância/alcance de 1/2 consome exatamente 50 pontos percentuais.
+const origemLimite = { latitude: 0, longitude: 0 };
+const destinoLimite: DestinoViagem = {
+  id: "limite-reserva", nome: "Destino limite", cidade: "Teste", estado: "SP",
+  latitude: 0, longitude: 1, paradas: [],
+};
+const alcanceLimite = calcularDistanciaGeograficaKm(origemLimite, destinoLimite) * 2;
+
+test("chegada de 4,6% não arredonda para liberar a viagem", () => {
+  const plano = planejarViagem(origemLimite, destinoLimite, alcanceLimite, 54.6);
+  assert.equal(plano.bateriaChegadaDestinoPercent, 4);
+  assert.equal(plano.nivelDeAlcance, "foraDeAlcance");
+  assert.equal(podeIniciarViagem(plano), false);
+});
+
+test("chegada exatamente em 5% permite iniciar a viagem", () => {
+  const plano = planejarViagem(origemLimite, destinoLimite, alcanceLimite, 55);
+  assert.equal(plano.bateriaChegadaDestinoPercent, 5);
+  assert.equal(plano.nivelDeAlcance, "apertado");
+  assert.equal(podeIniciarViagem(plano), true);
+});
+
+test("chegada imediatamente abaixo de 5% continua bloqueada", () => {
+  const plano = planejarViagem(origemLimite, destinoLimite, alcanceLimite, 54.999999);
+  assert.equal(plano.bateriaChegadaDestinoPercent, 4);
+  assert.equal(podeIniciarViagem(plano), false);
+});
+
+test("recarga alcançável permite alternativa que preserva a reserva no destino", () => {
+  const plano = planejarViagem(origem, campinas, 52, 100);
+  assert.equal(plano.paradas.length, 1);
+  assert.ok(plano.paradas[0].bateriaChegadaPercent >= 5);
+  assert.equal(plano.paradas[0].bateriaSaidaPercent, 80);
+  assert.equal(plano.bateriaChegadaDestinoPercent, 7);
+  assert.equal(podeIniciarViagem(plano), true);
 });
