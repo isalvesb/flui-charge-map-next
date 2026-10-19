@@ -44,7 +44,11 @@ import {
   recommendStations,
   type FluiAssistantIntent,
 } from "./fluiAssistant";
-import type { FluiaState } from "./fluiaState";
+import {
+  FLUIA_STATE_LABELS,
+  tempoDeExibicaoFluia,
+  type FluiaState,
+} from "./fluiaState";
 
 type Props = {
   visible: boolean;
@@ -170,6 +174,16 @@ export function FluiAssistantSheet({
     };
   }, [isAnalyzing, reduceMotionEnabled, thinkingProgress]);
 
+  const markTyping = () => {
+    if (stateTimeoutRef.current) {
+      clearTimeout(stateTimeoutRef.current);
+      stateTimeoutRef.current = null;
+    }
+    setFluiaState((current) =>
+      current === "pensando" ? current : "digitando",
+    );
+  };
+
   const closeAssistant = () => {
     Speech.stop();
     if (stateTimeoutRef.current) {
@@ -208,6 +222,10 @@ export function FluiAssistantSheet({
   const sendMessage = () => {
     const text = draft.trim();
     if (!text || isChatThinking) return;
+    if (stateTimeoutRef.current) {
+      clearTimeout(stateTimeoutRef.current);
+      stateTimeoutRef.current = null;
+    }
     setFluiaState("pensando");
 
     setDraft("");
@@ -239,17 +257,16 @@ export function FluiAssistantSheet({
           Speech.stop();
           Speech.speak(response.text, { language: "pt-BR" });
         }
-        const nextState: FluiaState =
-          response.state === "alerta" || response.state === "aviso"
-            ? response.state
-            : "respondendo";
+        const nextState: FluiaState = response.state;
         setFluiaState(nextState);
-        if (stateTimeoutRef.current) clearTimeout(stateTimeoutRef.current);
-        if (nextState !== "alerta") {
-          stateTimeoutRef.current = setTimeout(
-            () => setFluiaState("repouso"),
-            nextState === "aviso" ? 5000 : 2500,
-          );
+        const duration = tempoDeExibicaoFluia(nextState);
+        if (duration !== null) {
+          stateTimeoutRef.current = setTimeout(() => {
+            setFluiaState((current) =>
+              current === nextState ? "repouso" : current,
+            );
+            stateTimeoutRef.current = null;
+          }, duration);
         }
         setIsChatThinking(false);
         chatTimeoutRef.current = null;
@@ -297,7 +314,17 @@ export function FluiAssistantSheet({
               <FluiAiIcon color={theme.primary} size={22} />
             </View>
             <View style={styles.headerText}>
-              <Text style={styles.title}>FluIA</Text>
+              <View style={styles.titleRow}>
+                <Text style={styles.title}>FluIA</Text>
+                <Text
+                  style={styles.stateText}
+                  numberOfLines={1}
+                  accessibilityLiveRegion="polite"
+                  accessibilityLabel={`Estado da FluIA: ${FLUIA_STATE_LABELS[fluiaState]}`}
+                >
+                  {FLUIA_STATE_LABELS[fluiaState]}
+                </Text>
+              </View>
               <Text style={styles.subtitle}>
                 {selectedIntent
                   ? "Recomendação simulada com os dados do protótipo."
@@ -584,16 +611,19 @@ export function FluiAssistantSheet({
             <View style={styles.inputRow}>
               <TextInput
                 value={draft}
-                onChangeText={setDraft}
+                onChangeText={(text) => {
+                  setDraft(text);
+                  markTyping();
+                }}
                 onSubmitEditing={sendMessage}
                 placeholder="Pergunte algo à FluIA"
                 placeholderTextColor={theme.textMuted}
                 accessibilityLabel="Mensagem para a FluIA"
                 returnKeyType="send"
-                onFocus={() => setFluiaState("ouvindo")}
+                onFocus={markTyping}
                 onBlur={() =>
                   setFluiaState((current) =>
-                    current === "ouvindo" ? "repouso" : current,
+                    current === "digitando" ? "repouso" : current,
                   )
                 }
                 style={styles.input}
@@ -693,6 +723,13 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean) {
       backgroundColor: purple.soft,
     },
     headerText: { flex: 1, paddingTop: 1 },
+    titleRow: { flexDirection: "row", alignItems: "center", gap: 6 },
+    stateText: {
+      color: theme.textMuted,
+      fontSize: font(11),
+      fontWeight: "700",
+      flexShrink: 1,
+    },
     title: {
       color: theme.text,
       fontSize: font(21),
