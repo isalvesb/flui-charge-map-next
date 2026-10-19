@@ -8,6 +8,7 @@ import React, {
 import {
   Animated,
   Image,
+  Keyboard,
   Modal,
   Platform,
   Pressable,
@@ -708,6 +709,7 @@ export default function HomeMapScreen() {
   const filtersParam = routeParams.filters;
   const queryParam = routeParams.query;
   const mapRef = useRef<MapViewHandle | null>(null);
+  const searchInputRef = useRef<TextInput>(null);
   const currentMapRegionRef = useRef<Region | null>(null);
   const sheetTranslateY = useRef(new Animated.Value(0)).current;
   const quickFiltersProgress = useRef(new Animated.Value(0)).current;
@@ -1509,6 +1511,7 @@ export default function HomeMapScreen() {
             <Search size={21} color={colors.textMuted} strokeWidth={2} />
 
             <TextInput
+              ref={searchInputRef}
               accessibilityLabel="Buscar no mapa"
               accessibilityHint="Digite endereço, bairro ou nome do ponto de recarga."
               value={searchTerm}
@@ -1774,6 +1777,8 @@ export default function HomeMapScreen() {
                 pressedScale={0.95}
                 style={styles.fluiAssistantButton}
                 onPress={() => {
+                  searchInputRef.current?.blur();
+                  Keyboard.dismiss();
                   assistantLabelProgress.stopAnimation();
                   assistantLabelProgress.setValue(0);
                   setAssistenteFluiApresentado(true);
