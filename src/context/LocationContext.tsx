@@ -1,11 +1,12 @@
 import * as Location from "expo-location";
 import { LocationObject } from "expo-location";
 import { createContext, useContext, useState } from "react";
+import { acquireCurrentLocation, type CurrentLocationResult } from "../utils/currentLocation";
 
 type LocationContextType = {
   location?: LocationObject;
   setLocation: (location: LocationObject) => void;
-  getCurrentLocation: () => Promise<LocationObject | undefined>;
+  getCurrentLocation: () => Promise<CurrentLocationResult>;
 };
 
 const LocationContext = createContext<LocationContextType | null>(null);
@@ -18,13 +19,9 @@ export function LocationContextProvider({
   const [location, setLocation] = useState<LocationObject>();
 
   async function getCurrentLocation() {
-    let { status } = await Location.requestForegroundPermissionsAsync();
-
-    if (status !== "granted") return;
-
-    let location = await Location.getCurrentPositionAsync({});
-    setLocation(location);
-    return location;
+    const result = await acquireCurrentLocation(Location);
+    setLocation(result.status === "success" ? result.location : undefined);
+    return result;
   }
 
   return (

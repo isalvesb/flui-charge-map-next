@@ -1,3 +1,18 @@
+import {
+  Armchair,
+  BatteryLow,
+  BatteryMedium,
+  ChevronRight,
+  Coffee,
+  MapPin,
+  Plug,
+  Sparkles,
+  Users,
+  Volume2,
+  VolumeX,
+  X,
+  Zap,
+} from "lucide-react-native";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   Animated,
@@ -13,35 +28,23 @@ import {
   TextInput,
   View,
 } from "react-native";
-import {
-  Armchair,
-  BatteryLow,
-  BatteryMedium,
-  ChevronRight,
-  Coffee,
-  MapPin,
-  Plug,
-  Sparkles,
-  Users,
-  X,
-  Zap,
-} from "lucide-react-native";
 
+import * as Speech from "expo-speech";
 import { PressableScale } from "../../components";
+import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
 import { useAppPreferences } from "../../context/PreferencesContext";
+import { identificacaoDados } from "../../data/identificacaoDados";
 import { useReducedMotion } from "../../hooks/useReducedMotion";
 import type { AppTheme } from "../../theme/appTheme";
 import { scaleFontSize } from "../../theme/appTheme";
 import type { ChargingStation } from "../../types";
+import { FluiAiIcon } from "./FluiAiIcon";
+import { answerMessage, RECOMMENDATION_DISCLAIMER } from "./chatEngine";
 import {
   formatAssistantDistance,
   recommendStations,
   type FluiAssistantIntent,
 } from "./fluiAssistant";
-import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
-import { identificacaoDados } from "../../data/identificacaoDados";
-import { FluiAiIcon } from "./FluiAiIcon";
-import { answerMessage, RECOMMENDATION_DISCLAIMER } from "./chatEngine";
 
 type Props = {
   visible: boolean;
@@ -94,7 +97,8 @@ export function FluiAssistantSheet({
   onDismiss,
   onSelectStation,
 }: Props) {
-  const { theme, fontScale, appearanceMode, demoOrigin, userPreferences } = useAppPreferences();
+  const { theme, fontScale, appearanceMode, demoOrigin, userPreferences } =
+    useAppPreferences();
   const reduceMotionEnabled = useReducedMotion();
   const styles = useMemo(
     () => createStyles(theme, fontScale, appearanceMode === "dark"),
@@ -111,9 +115,11 @@ export function FluiAssistantSheet({
   const chatTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const nextMessageId = useRef(0);
   const chatScrollRef = useRef<ScrollView>(null);
+  const [voiceEnabled, setVoiceEnabled] = useState(true);
 
   const recommendation = useMemo(() => {
-    if (!funcionalidadesExperimentais.fluia || !selectedIntent || isAnalyzing) return null;
+    if (!funcionalidadesExperimentais.fluia || !selectedIntent || isAnalyzing)
+      return null;
     return recommendStations({
       stations,
       intent: selectedIntent,
@@ -134,6 +140,7 @@ export function FluiAssistantSheet({
     return () => {
       if (analysisTimeoutRef.current) clearTimeout(analysisTimeoutRef.current);
       if (chatTimeoutRef.current) clearTimeout(chatTimeoutRef.current);
+      Speech.stop();
     };
   }, []);
 
@@ -171,6 +178,7 @@ export function FluiAssistantSheet({
   };
 
   const closeAssistant = () => {
+    Speech.stop();
     if (analysisTimeoutRef.current) {
       clearTimeout(analysisTimeoutRef.current);
       analysisTimeoutRef.current = null;
@@ -226,6 +234,10 @@ export function FluiAssistantSheet({
             stationId: response.recommendation?.primary.id,
           },
         ]);
+        if (voiceEnabled) {
+          Speech.stop();
+          Speech.speak(response.text, { language: "pt-BR" });
+        }
         setIsChatThinking(false);
         chatTimeoutRef.current = null;
       },
@@ -242,6 +254,11 @@ export function FluiAssistantSheet({
   const chooseStation = (stationId: string) => {
     closeAssistant();
     onSelectStation(stationId);
+  };
+
+  const toggleVoice = () => {
+    if (voiceEnabled) Speech.stop();
+    setVoiceEnabled((current) => !current);
   };
 
   if (!funcionalidadesExperimentais.fluia) return null;
@@ -279,6 +296,20 @@ export function FluiAssistantSheet({
             <View style={styles.headerText}>
               <Text style={styles.title}>FluIA</Text>
             </View>
+            <PressableScale
+              accessibilityRole="button"
+              accessibilityLabel={
+                voiceEnabled ? "Desativar voz da FluIA" : "Ativar voz da FluIA"
+              }
+              style={styles.closeButton}
+              onPress={toggleVoice}
+            >
+              {voiceEnabled ? (
+                <Volume2 size={22} color={theme.primary} strokeWidth={2.2} />
+              ) : (
+                <VolumeX size={22} color={theme.textMuted} strokeWidth={2.2} />
+              )}
+            </PressableScale>
             <PressableScale
               accessibilityRole="button"
               accessibilityLabel="Fechar assistente"

@@ -13,6 +13,9 @@ export type FluiAssistantIntent =
   | "avoidQueues"
   | "coffeeAndRestroom"
   | "comfortableWait";
+// Compartilhada com as explicações do chat; o corte continua sem arredondamento.
+export const MIN_ARRIVAL_BATTERY_PERCENT = 5;
+
 export type FluiAssistantRecommendation = {
   intent: FluiAssistantIntent;
   primary: ChargingStation;
@@ -130,7 +133,7 @@ export function recommendStations({
         station.distanceKm >= 0 &&
         Number.isFinite(station.powerKw) &&
         station.powerKw > 0 &&
-        batteryPercent - (station.distanceKm / vehicleRangeKm) * 100 >= 5,
+        batteryPercent - (station.distanceKm / vehicleRangeKm) * 100 >= MIN_ARRIVAL_BATTERY_PERCENT,
     )
     .filter(
       (station) =>
