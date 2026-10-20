@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
 
   vehicleButton: {
     maxWidth: 190,
-    height: 46,
+    minHeight: 46,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-end",
@@ -151,15 +151,15 @@ const styles = StyleSheet.create({
   vehicleBatterySource: {
     maxWidth: 116,
     color: colors.textLight,
-    fontSize: 9,
-    lineHeight: 11,
+    fontSize: 11,
+    lineHeight: 14,
     fontWeight: "700",
   },
 
   vehicleBatteryUpdatedAt: {
     color: colors.textLight,
-    fontSize: 8,
-    lineHeight: 9,
+    fontSize: 10,
+    lineHeight: 13,
     fontWeight: "600",
   },
 
@@ -174,10 +174,17 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(16, 34, 30, 0.35)",
   },
 
-  batterySheetCard: {
+  batterySheetContent: {
     paddingHorizontal: 22,
     paddingTop: 20,
-    paddingBottom: 36,
+    paddingBottom: 24,
+  },
+
+  batterySheetCard: {
+    width: "100%",
+    maxWidth: 560,
+    alignSelf: "center",
+    flexGrow: 0,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     backgroundColor: colors.background,
@@ -209,8 +216,8 @@ const styles = StyleSheet.create({
   },
 
   batterySheetCloseButton: {
-    width: 40,
-    height: 40,
+    width: 44,
+    height: 44,
     borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",
@@ -238,7 +245,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    gap: 16,
+    gap: 8,
   },
 
   batteryStepperButton: {
@@ -265,7 +272,8 @@ const styles = StyleSheet.create({
   },
 
   batteryStepperValue: {
-    minWidth: 104,
+    flex: 1,
+    minWidth: 0,
     alignItems: "center",
   },
 
@@ -293,7 +301,8 @@ const styles = StyleSheet.create({
   },
 
   batterySheetDoneButton: {
-    height: 48,
+    minHeight: 48,
+    paddingVertical: 12,
     marginTop: 14,
     borderRadius: 16,
     alignItems: "center",
@@ -337,8 +346,8 @@ const styles = StyleSheet.create({
   },
 
   filterButton: {
-    width: 42,
-    height: 42,
+    width: 44,
+    height: 44,
     borderRadius: 15,
     alignItems: "center",
     justifyContent: "center",
@@ -349,7 +358,7 @@ const styles = StyleSheet.create({
   },
 
   quickFiltersHandleArea: {
-    minHeight: 2,
+    minHeight: 44,
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 2,
@@ -374,7 +383,8 @@ const styles = StyleSheet.create({
   },
 
   chip: {
-    height: 42,
+    minHeight: 44,
+    paddingVertical: 8,
     marginRight: 4,
     paddingHorizontal: 14,
     borderRadius: 22,
@@ -562,6 +572,23 @@ const styles = StyleSheet.create({
     zIndex: 12,
   },
 
+  mapControlsCompact: {
+    top: 12,
+    width: "auto",
+    flexDirection: "row",
+  },
+
+  zoomPillCompact: {
+    width: 104,
+    height: 52,
+    flexDirection: "row",
+  },
+
+  zoomDividerCompact: {
+    width: 1,
+    height: 28,
+  },
+
   zoomPill: {
     width: 52,
     height: 104,
@@ -662,10 +689,13 @@ const styles = StyleSheet.create({
     zIndex: 16,
   },
 
-  bottomSheetCard: {
+  bottomSheetContent: {
     paddingHorizontal: 18,
-    paddingTop: 18,
     paddingBottom: 2,
+  },
+
+  bottomSheetCard: {
+    flexGrow: 0,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     backgroundColor: colors.background,
@@ -681,8 +711,8 @@ const styles = StyleSheet.create({
   },
 
   sheetHandleArea: {
-    minHeight: 22,
-    marginTop: -10,
+    minHeight: 44,
+    marginTop: 0,
     marginBottom: 0,
     alignItems: "center",
     justifyContent: "center",
@@ -785,7 +815,8 @@ const styles = StyleSheet.create({
   },
 
   emptyButton: {
-    height: 40,
+    minHeight: 44,
+    paddingVertical: 10,
     marginTop: 12,
     paddingHorizontal: 14,
     borderRadius: 14,
@@ -837,8 +868,10 @@ const styles = StyleSheet.create({
   },
 
   pointBadge: {
+    maxWidth: "100%",
     alignSelf: "flex-start",
-    height: 22,
+    minHeight: 22,
+    paddingVertical: 4,
     paddingHorizontal: 8,
     borderRadius: 11,
     flexDirection: "row",
@@ -848,6 +881,7 @@ const styles = StyleSheet.create({
   },
 
   pointBadgeText: {
+    flexShrink: 1,
     color: colors.primary,
     fontSize: 10,
     fontWeight: "800",
@@ -898,8 +932,10 @@ const styles = StyleSheet.create({
   },
 
   pointAutonomiaChip: {
+    maxWidth: "100%",
     alignSelf: "flex-start",
-    height: 22,
+    minHeight: 22,
+    paddingVertical: 4,
     paddingHorizontal: 8,
     borderRadius: 11,
     flexDirection: "row",
@@ -908,6 +944,7 @@ const styles = StyleSheet.create({
   },
 
   pointAutonomiaChipText: {
+    flexShrink: 1,
     fontSize: 10,
     fontWeight: "800",
     letterSpacing: -0.1,

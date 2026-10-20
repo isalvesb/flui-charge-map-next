@@ -1,0 +1,34 @@
+React Compiler enabled
+Starting Metro Bundler
+Static rendering is enabled. Learn more: https://docs.expo.dev/router/reference/static-rendering/
+Web node_modules/expo-router/entry.js ░░░░░░░░░░░░░░░░  0.0% (0/1)
+λ node_modules/expo-router/node/render.js ░░░░░░░░░░░░░░░░  0.0% (0/1)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓░░░░░ 73.3% (543/637)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓▓▓▓▓▓▓▓░░░░ 76.4% (577/660)
+| (node:59817) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 98.7% (2453/2469)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 98.6% (2430/2449)
+| (node:59818) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+λ Bundled 9858ms node_modules/expo-router/node/render.js (2558 modules)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 99.9% (2522/2523)
+Web Bundled 11820ms node_modules/expo-router/entry.js (2534 modules)
+
+› web bundles (1):
+_expo/static/js/web/entry-c500835823f5c3188e135d77de04b6aa.js (3.71 MB)
+
+› Static routes (11):
+/map (74.7 kB)
+/ (index) (39.8 kB)
+/review (40.8 kB)
+/search (74.3 kB)
+/loading (41 kB)
+/profile (51.5 kB)
+/settings (59.6 kB)
+/_sitemap (38.9 kB)
+/onboarding (44.7 kB)
+/+not-found (38.9 kB)
+/point-details (69.8 kB)
+
+Exported: /tmp/flui-beta26-export-entrega

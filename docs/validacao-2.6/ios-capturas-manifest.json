@@ -1,0 +1,38 @@
+[
+  {
+    "configurationName": "Test Scheme Action",
+    "deviceId": "4A2C862B-D6FC-4E88-8FB5-88164A5C5A2E",
+    "deviceName": "iPhone 18 Pro Max",
+    "exportedFileName": "BB08D74C-D537-4A15-B3C3-DA4766AE7168.png",
+    "isAssociatedWithFailure": false,
+    "suggestedHumanReadableName": "ios-fluia-opcoes-alcancaveis_0_995C50BE-59AD-40AD-980C-44AF1D88ABD5.png",
+    "timestamp": 1792204321.794
+  },
+  {
+    "configurationName": "Test Scheme Action",
+    "deviceId": "4A2C862B-D6FC-4E88-8FB5-88164A5C5A2E",
+    "deviceName": "iPhone 18 Pro Max",
+    "exportedFileName": "C3F84DA9-73B7-4A83-A41E-130073C51D48.png",
+    "isAssociatedWithFailure": false,
+    "suggestedHumanReadableName": "ios-bateria-acao-alcancavel_0_EE65402E-184E-43FA-8F8C-8627B2BDC8FF.png",
+    "timestamp": 1792204313.275
+  },
+  {
+    "configurationName": "Test Scheme Action",
+    "deviceId": "4A2C862B-D6FC-4E88-8FB5-88164A5C5A2E",
+    "deviceName": "iPhone 18 Pro Max",
+    "exportedFileName": "071D233B-2298-4ADC-A6C0-851C96F73746.png",
+    "isAssociatedWithFailure": false,
+    "suggestedHumanReadableName": "ios-bateria-texto-ampliado_0_384D17C5-61DB-4115-BD83-0B41B6FE6747.png",
+    "timestamp": 1792204310.814
+  },
+  {
+    "configurationName": "Test Scheme Action",
+    "deviceId": "4A2C862B-D6FC-4E88-8FB5-88164A5C5A2E",
+    "deviceName": "iPhone 18 Pro Max",
+    "exportedFileName": "FBAC1E94-4FA4-42C7-AD57-C5C33FB14F22.png",
+    "isAssociatedWithFailure": false,
+    "suggestedHumanReadableName": "ios-texto-ampliado-mapa_0_CAC2B91E-CA47-4C68-8437-42B7C156198B.png",
+    "timestamp": 1792204304.227
+  }
+]
