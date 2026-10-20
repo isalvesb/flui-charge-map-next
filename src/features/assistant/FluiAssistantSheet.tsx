@@ -43,7 +43,7 @@ import {
 } from "./fluiAssistant";
 import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
 import { identificacaoDados } from "../../data/identificacaoDados";
-import { FluiAiIcon } from "./FluiAiIcon";
+import { EnergyOrb } from "./EnergyOrb";
 import { answerMessage, RECOMMENDATION_DISCLAIMER } from "./chatEngine";
 import { summarizeSuggestion } from "./assistantPresentation";
 
@@ -130,6 +130,7 @@ export function FluiAssistantSheet({
   const stateTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [voiceEnabled, setVoiceEnabled] = useState(true);
   const [fluiaState, setFluiaState] = useState<FluiaState>("repouso");
+  const displayedState: FluiaState = isAnalyzing ? "pensando" : fluiaState;
 
   const recommendation = useMemo(() => {
     if (!funcionalidadesExperimentais.fluia || !selectedIntent || isAnalyzing) return null;
@@ -344,9 +345,7 @@ export function FluiAssistantSheet({
         <View style={styles.sheet}>
           <View style={styles.handle} />
           <View style={styles.headerRow}>
-            <View style={styles.headerIcon}>
-              <FluiAiIcon color={theme.primary} size={22} />
-            </View>
+            <EnergyOrb state={displayedState} reducedMotion={reduceMotionEnabled} active={visible} />
             <View style={styles.headerText}>
               <View style={styles.titleRow}>
                 <Text style={styles.title}>FluIA</Text>
@@ -354,9 +353,9 @@ export function FluiAssistantSheet({
                   style={styles.stateText}
                   numberOfLines={1}
                   accessibilityLiveRegion="polite"
-                  accessibilityLabel={`Estado da FluIA: ${FLUIA_STATE_LABELS[fluiaState]}`}
+                  accessibilityLabel={`Estado da FluIA: ${FLUIA_STATE_LABELS[displayedState]}`}
                 >
-                  {FLUIA_STATE_LABELS[fluiaState]}
+                  {FLUIA_STATE_LABELS[displayedState]}
                 </Text>
               </View>
             </View>
@@ -751,14 +750,6 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean) {
       flexDirection: "row",
       alignItems: "flex-start",
       gap: 10,
-    },
-    headerIcon: {
-      width: 42,
-      height: 42,
-      borderRadius: 21,
-      alignItems: "center",
-      justifyContent: "center",
-      backgroundColor: purple.soft,
     },
     headerText: { flex: 1, paddingTop: 1 },
     titleRow: { flexDirection: "row", alignItems: "center", gap: 6 },

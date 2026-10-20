@@ -32,3 +32,26 @@ Os ensaios exploratórios que falharam são preservados em `output/betas-2.8-2.3
 Checkpoint da Beta 2.8 concluído em 20/10/2026: implementação, 110 testes, web e cenário iOS compacto/ampliado aprovados. A Beta 2.3 pode iniciar a partir deste marco, em commit separado.
 
 A pausa solicitada para a 2.5 preservou integralmente o diff da 2.8 (comparação byte a byte). A rodada iOS da PR #90 foi inconclusiva por não haver corte de rede isolado verificável; o ambiente anterior foi restaurado. Parecer e logs locais em `output/beta-2.5-ios-20261020`.
+
+
+## Beta 2.3 — Energy Orb
+
+Implementada depois do checkpoint da 2.8, em commit separado. `EnergyOrb.tsx` usa SVG e Animated já disponíveis: gradiente, brilho, aro e raio da identidade Flui, sem WebGL, renderizador 3D, efeitos elétricos ou dependências novas. Uma progressão com driver nativo controla somente escala e rotação; não há atualização React por quadro.
+
+`energyOrbPresentation.ts` cobre os seis estados existentes: Pronta, Escrevendo, Pensando, Respondendo, Aviso e Alerta. Cores e movimento reforçam o rótulo textual acessível; o desenho é decorativo e não duplica anúncios do leitor de tela. Na espera dos atalhos, o rótulo e a esfera passam a Pensando usando `isAnalyzing`, sem alterar motor, cálculos, conteúdo falado ou temporizadores. Aviso e Alerta são estáticos, sem piscadas. A redução de movimento e o fechamento interrompem o ciclo; o hook existente observa a preferência do sistema.
+
+### Evidências da versão com Orb
+
+- TypeScript, ESLint e **112/112 testes**, zero falhas. Dois casos novos verificam todos os estados, redução de movimento, suspensão ao fechar e limites de frequência/amplitude. Exportação final: **12 rotas**.
+- iPhone 17e / iOS27.0 / Expo Go, 390×844 pt, fonte padrão: **3 casos XCTest dirigidos, cada um com 0 falhas**, executados na implementação com Orb. Primeiro: Pronta → Escrevendo → Pensando → Respondendo, Aviso, fechamento e reabertura, com teclado real verificado. Segundo: busca `zzorb` sem resultados e pedido de recarga produzem Alerta real; busca limpa ao terminar, sem alterar bateria ou fixtures. Terceiro: `UIAccessibility.isReduceMotionEnabled == true`, abertura e três capturas separadas por 1,1 segundo.
+- Comparação das três capturas de redução: região da esfera x=55..199/y=390..534 na imagem 1170×2532, **zero canais diferentes** nas duas comparações. Script, capturas e log permitem reproduzir a conferência de esfera parada.
+- Capturas completas dos seis estados em `validacao-2.3/`. `orb-estados-ios.mp4` é um trecho real de 29 segundos (183..212 s da gravação original), comprimido com AVFoundation para revisão, sem alterar eventos ou velocidade. A gravação original permanece em `output/betas-2.8-2.3-20261020/2.3-orb-ios.mov` no workspace.
+- Exportação web final: abertura da FluIA, desenho da Orb, rótulo acessível e retorno ao mapa conferidos. Captura `orb-web.jpg`. Fluxos completos web/320×568 da 2.8 não foram repetidos.
+
+### Limites e revisão
+
+- A rodada completa de texto ampliado/teclado da 2.8 foi executada no commit `b5f15ee`, antes de adicionar a Orb. Os três casos da Orb usam fonte padrão; não representam nova certificação integral do fluxo ampliado após essa adição.
+- Não foi medido FPS ou consumo de memória, nem validado aparelho físico/Android. O vídeo e os testes de interação no simulador comprovam a execução dirigida, sem substituir medições em dispositivos reais. Não há novas chamadas a serviços remotos.
+- Não foram revalidados aplicativos externos instalados nem a integração offline da PR #90. A validação da 2.5 ficou inconclusiva por falta de desconexão real isolada; nenhum resultado antigo foi apresentado como nova evidência offline.
+- Ao terminar, fonte original large, redução de movimento desativada e teclado físico simulado foram restaurados. Busca voltou vazia; veículo/bateria/origem preservados. Orientação global continua portrait.
+- Beta 2.7 não iniciada. Issues/Projects intactos; revisão humana e merge continuam decisões da equipe.
