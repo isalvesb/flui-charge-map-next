@@ -28,4 +28,8 @@ export const identificacaoDados = {
     origem: "estimada",
     aviso: "FluIA experimental · sugestões locais com dados demonstrativos, sem IA generativa ou disponibilidade em tempo real.",
   },
+  viagem: {
+    origem: "estimada",
+    aviso: "Planejador demonstrativo: trajeto, paradas de recarga, tempos e bateria estimada em linha reta, sem cálculo de rota real, trânsito ou reserva nos pontos.",
+  },
 } as const;

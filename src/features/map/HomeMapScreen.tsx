@@ -37,6 +37,7 @@ import {
   Clock3,
   Crosshair,
   Maximize2,
+  Milestone,
   Plug,
   Search,
   SlidersHorizontal,
@@ -68,7 +69,7 @@ import { useReducedMotion } from "../../hooks/useReducedMotion";
 import { useAppPreferences } from "../../context/PreferencesContext";
 import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
 import { identificacaoDados } from "../../data/identificacaoDados";
-import { getMapPanelLayout } from "./mapLayout";
+import { getMapPanelLayout, getMapVerticalFocusOffset } from "./mapLayout";
 import { FluiAssistantSheet } from "../assistant/FluiAssistantSheet";
 import { FluiAiIcon } from "../assistant/FluiAiIcon";
 
@@ -1058,21 +1059,12 @@ export default function HomeMapScreen() {
   const hasNoResults = estacoesRecomendadas.length === 0;
   const hasSearchTerm = searchTerm.trim().length > 0;
 
-  const fracaoDeDeslocamentoVertical = useMemo(() => {
-    if (mapAreaHeight <= 0) {
-      return 0.08;
-    }
-
-    if (painelTotalmenteOculto) {
-      return 0;
-    }
-
-    const alturaObstruida = isSheetCollapsed
-      ? SHEET_VISIBLE_HANDLE
-      : sheetHeight;
-
-    return limitarValor(alturaObstruida / 2 / mapAreaHeight, 0, 0.4);
-  }, [isSheetCollapsed, mapAreaHeight, painelTotalmenteOculto, sheetHeight]);
+  const fracaoDeDeslocamentoVertical = getMapVerticalFocusOffset(
+    layout.horizontal,
+    mapAreaHeight,
+    isSheetCollapsed ? SHEET_VISIBLE_HANDLE : sheetHeight,
+    painelTotalmenteOculto,
+  );
 
   const fracaoDeDeslocamentoVerticalRef = useRef(fracaoDeDeslocamentoVertical);
   fracaoDeDeslocamentoVerticalRef.current = fracaoDeDeslocamentoVertical;
@@ -1369,6 +1361,10 @@ export default function HomeMapScreen() {
 
   const openProfile = () => {
     router.push("/profile" as Href);
+  };
+
+  const abrirPlanejadorDeViagens = () => {
+    router.push("/trip-planner" as Href);
   };
 
   const showLocationFeedback = (message: string) => {
@@ -1747,6 +1743,17 @@ export default function HomeMapScreen() {
               disabled={isLocatingUser}
             >
               <Crosshair size={25} color={colors.primary} strokeWidth={2.2} />
+            </PressableScale>
+
+            <PressableScale
+              accessibilityRole="button"
+              accessibilityLabel="Planejar viagem"
+              accessibilityHint="Abre o planejador de rota com paradas de recarga estimadas."
+              pressedScale={0.94}
+              style={styles.mapControlButton}
+              onPress={abrirPlanejadorDeViagens}
+            >
+              <Milestone size={22} color={colors.primary} strokeWidth={2.2} />
             </PressableScale>
           </View>
 

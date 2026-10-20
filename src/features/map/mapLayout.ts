@@ -11,3 +11,16 @@ export function getMapPanelLayout(width: number, height: number, mapHeight: numb
     panelMaxHeight: Math.max(80, mapHeight - (horizontal ? 12 : 80)),
   };
 }
+
+// Um painel lateral não encobre a parte inferior do mapa.
+export function getMapVerticalFocusOffset(
+  horizontal: boolean,
+  mapHeight: number,
+  obstructedHeight: number,
+  panelHidden = false,
+) {
+  if (horizontal) return 0;
+  if (mapHeight <= 0) return 0.08;
+  if (panelHidden) return 0;
+  return Math.min(Math.max(obstructedHeight / 2 / mapHeight, 0), 0.4);
+}

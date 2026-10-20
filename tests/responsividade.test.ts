@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { getMapPanelLayout } from "../src/features/map/mapLayout";
+import { getMapPanelLayout, getMapVerticalFocusOffset } from "../src/features/map/mapLayout";
 import { appThemes } from "../src/theme/appTheme";
 
 test("painel deixa espaço para controles em tela compacta e respeita a área do mapa", () => {
@@ -50,4 +50,23 @@ test("textos essenciais e indicadores têm contraste mínimo de 4,5:1 nos dois t
     }
     assert.ok(contrast(theme.onPrimary, theme.primary) >= 4.5);
   }
+});
+
+
+test("centralização horizontal não desloca a origem para o topo por causa do painel lateral", () => {
+  for (const width of [700, 956, 1194, 1920]) {
+    const layout = getMapPanelLayout(width, 390, 200);
+    for (const panelHeight of [0, 52, 188, 600]) {
+      assert.equal(getMapVerticalFocusOffset(layout.horizontal, 200, panelHeight), 0);
+    }
+  }
+  assert.equal(getMapVerticalFocusOffset(true, 0, 600), 0);
+});
+
+test("centralização em retrato preserva compensação, limite, recolhimento e painel oculto", () => {
+  assert.equal(getMapVerticalFocusOffset(false, 600, 360), 0.3);
+  assert.equal(getMapVerticalFocusOffset(false, 200, 600), 0.4);
+  assert.equal(getMapVerticalFocusOffset(false, 600, 52), 52 / 1200);
+  assert.equal(getMapVerticalFocusOffset(false, 600, 360, true), 0);
+  assert.equal(getMapVerticalFocusOffset(false, 0, 360), 0.08);
 });

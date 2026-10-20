@@ -126,7 +126,7 @@ export function getUserInitials(userName: string) {
 }
 
 export function getStationRouteUrl(
-  station: ChargingStation,
+  station: Pick<ChargingStation, "latitude" | "longitude">,
   provider: RouteProvider,
   origin?: Pick<ChargingStation, "latitude" | "longitude">,
 ) {

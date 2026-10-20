@@ -1,18 +1,3 @@
-import {
-  Armchair,
-  BatteryLow,
-  BatteryMedium,
-  ChevronRight,
-  Coffee,
-  MapPin,
-  Plug,
-  Sparkles,
-  Users,
-  Volume2,
-  VolumeX,
-  X,
-  Zap,
-} from "lucide-react-native";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   Animated,
@@ -28,23 +13,44 @@ import {
   TextInput,
   View,
 } from "react-native";
+import {
+  Armchair,
+  BatteryLow,
+  BatteryMedium,
+  ChevronRight,
+  Coffee,
+  MapPin,
+  Plug,
+  Sparkles,
+  Users,
+  Volume2,
+  VolumeX,
+  X,
+  Zap,
+} from "lucide-react-native";
 
 import * as Speech from "expo-speech";
 import { PressableScale } from "../../components";
-import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
 import { useAppPreferences } from "../../context/PreferencesContext";
-import { identificacaoDados } from "../../data/identificacaoDados";
 import { useReducedMotion } from "../../hooks/useReducedMotion";
 import type { AppTheme } from "../../theme/appTheme";
 import { scaleFontSize } from "../../theme/appTheme";
 import type { ChargingStation } from "../../types";
-import { FluiAiIcon } from "./FluiAiIcon";
-import { answerMessage, RECOMMENDATION_DISCLAIMER } from "./chatEngine";
 import {
   formatAssistantDistance,
   recommendStations,
   type FluiAssistantIntent,
 } from "./fluiAssistant";
+import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
+import { identificacaoDados } from "../../data/identificacaoDados";
+import { FluiAiIcon } from "./FluiAiIcon";
+import { answerMessage, RECOMMENDATION_DISCLAIMER } from "./chatEngine";
+
+import {
+  FLUIA_STATE_LABELS,
+  tempoDeExibicaoFluia,
+  type FluiaState,
+} from "./fluiaState";
 
 type Props = {
   visible: boolean;
@@ -97,8 +103,7 @@ export function FluiAssistantSheet({
   onDismiss,
   onSelectStation,
 }: Props) {
-  const { theme, fontScale, appearanceMode, demoOrigin, userPreferences } =
-    useAppPreferences();
+  const { theme, fontScale, appearanceMode, demoOrigin, userPreferences } = useAppPreferences();
   const reduceMotionEnabled = useReducedMotion();
   const styles = useMemo(
     () => createStyles(theme, fontScale, appearanceMode === "dark"),
@@ -115,11 +120,13 @@ export function FluiAssistantSheet({
   const chatTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const nextMessageId = useRef(0);
   const chatScrollRef = useRef<ScrollView>(null);
+
+  const stateTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [voiceEnabled, setVoiceEnabled] = useState(true);
+  const [fluiaState, setFluiaState] = useState<FluiaState>("repouso");
 
   const recommendation = useMemo(() => {
-    if (!funcionalidadesExperimentais.fluia || !selectedIntent || isAnalyzing)
-      return null;
+    if (!funcionalidadesExperimentais.fluia || !selectedIntent || isAnalyzing) return null;
     return recommendStations({
       stations,
       intent: selectedIntent,
@@ -140,6 +147,7 @@ export function FluiAssistantSheet({
     return () => {
       if (analysisTimeoutRef.current) clearTimeout(analysisTimeoutRef.current);
       if (chatTimeoutRef.current) clearTimeout(chatTimeoutRef.current);
+      if (stateTimeoutRef.current) clearTimeout(stateTimeoutRef.current);
       Speech.stop();
     };
   }, []);
@@ -169,6 +177,16 @@ export function FluiAssistantSheet({
     };
   }, [isAnalyzing, reduceMotionEnabled, thinkingProgress]);
 
+  const markTyping = () => {
+    if (stateTimeoutRef.current) {
+      clearTimeout(stateTimeoutRef.current);
+      stateTimeoutRef.current = null;
+    }
+    setFluiaState((current) =>
+      current === "pensando" ? current : "digitando",
+    );
+  };
+
   const resetConversation = () => {
     setMessages([]);
     setDraft("");
@@ -179,6 +197,11 @@ export function FluiAssistantSheet({
 
   const closeAssistant = () => {
     Speech.stop();
+    if (stateTimeoutRef.current) {
+      clearTimeout(stateTimeoutRef.current);
+      stateTimeoutRef.current = null;
+    }
+    setFluiaState("repouso");
     if (analysisTimeoutRef.current) {
       clearTimeout(analysisTimeoutRef.current);
       analysisTimeoutRef.current = null;
@@ -208,6 +231,11 @@ export function FluiAssistantSheet({
   const sendMessage = () => {
     const text = draft.trim();
     if (!text || isChatThinking) return;
+    if (stateTimeoutRef.current) {
+      clearTimeout(stateTimeoutRef.current);
+      stateTimeoutRef.current = null;
+    }
+    setFluiaState("pensando");
 
     setDraft("");
     setMessages((current) => [
@@ -237,6 +265,17 @@ export function FluiAssistantSheet({
         if (voiceEnabled) {
           Speech.stop();
           Speech.speak(response.text, { language: "pt-BR" });
+        }
+        const nextState: FluiaState = response.state;
+        setFluiaState(nextState);
+        const duration = tempoDeExibicaoFluia(nextState);
+        if (duration !== null) {
+          stateTimeoutRef.current = setTimeout(() => {
+            setFluiaState((current) =>
+              current === nextState ? "repouso" : current,
+            );
+            stateTimeoutRef.current = null;
+          }, duration);
         }
         setIsChatThinking(false);
         chatTimeoutRef.current = null;
@@ -294,7 +333,17 @@ export function FluiAssistantSheet({
               <FluiAiIcon color={theme.primary} size={22} />
             </View>
             <View style={styles.headerText}>
-              <Text style={styles.title}>FluIA</Text>
+              <View style={styles.titleRow}>
+                <Text style={styles.title}>FluIA</Text>
+                <Text
+                  style={styles.stateText}
+                  numberOfLines={1}
+                  accessibilityLiveRegion="polite"
+                  accessibilityLabel={`Estado da FluIA: ${FLUIA_STATE_LABELS[fluiaState]}`}
+                >
+                  {FLUIA_STATE_LABELS[fluiaState]}
+                </Text>
+              </View>
             </View>
             <PressableScale
               accessibilityRole="button"
@@ -576,7 +625,9 @@ export function FluiAssistantSheet({
           <View style={styles.inputRow}>
             <TextInput
               value={draft}
-              onChangeText={setDraft}
+              onChangeText={(text) => { setDraft(text); markTyping(); }}
+              onFocus={markTyping}
+              onBlur={() => setFluiaState((current) => current === "digitando" ? "repouso" : current)}
               onSubmitEditing={sendMessage}
               placeholder="Pergunte algo à FluIA"
               placeholderTextColor={theme.textMuted}
@@ -682,6 +733,13 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean) {
       backgroundColor: purple.soft,
     },
     headerText: { flex: 1, paddingTop: 1 },
+    titleRow: { flexDirection: "row", alignItems: "center", gap: 6 },
+    stateText: {
+      color: theme.textMuted,
+      fontSize: font(11),
+      fontWeight: "700",
+      flexShrink: 1,
+    },
     title: {
       color: theme.text,
       fontSize: font(21),
