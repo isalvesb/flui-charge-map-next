@@ -7,7 +7,8 @@ test("painel deixa espaço para controles em tela compacta e respeita a área do
   const layout = getMapPanelLayout(320, 568, 374);
   assert.equal(layout.horizontal, false);
   assert.equal(layout.compactControls, true);
-  assert.equal(layout.panelMaxHeight, 294);
+  assert.equal(layout.panelMaxHeight, 224);
+  assert.ok(374 - layout.panelMaxHeight >= 150, "reserva espaço para controles e FluIA sem sobreposição");
   assert.equal(layout.panelWidth, undefined);
   assert.equal(getMapPanelLayout(440, 956, 700, 2).compactControls, true);
   assert.equal(getMapPanelLayout(440, 956, 700, 1, 600).compactControls, true);

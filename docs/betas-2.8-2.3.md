@@ -1,0 +1,34 @@
+# Betas 2.8 e 2.3 — entrega sequencial
+
+Refs #91, #25, #26 e #27. Base: main `7335322`, em 20/10/2026. Branch: `beta/refinamentos-ux-energy-orb-2.8-2.3`.
+
+A PR #90 permanece independente e não foi alterada. Não houve merge, mudança de orientação global, dependências, cálculos, dados demonstrativos ou motor de respostas. A Beta 2.7 não faz parte desta execução.
+
+## Beta 2.8 — refinamentos
+
+Referências: cinco capturas fornecidas em `Desktop/prints figma`, observadas diretamente. As anotações orientam os ajustes visuais; o escopo e as restrições são os da solicitação humana e da #91.
+
+- Filtros rápidos sempre visíveis e roláveis, com estado selecionado acessível. Removidos os controles e animações de ocultação desses filtros.
+- Acesso à FluIA com nome persistente, centralizado em retrato. Na tela compacta ocupa uma fileira própria, sem disputar espaço com zoom, centralização ou planejador. O painel reserva esse espaço.
+- “Pontos de recarga” e “No catálogo” substituem os rótulos repetidos “Opções demonstrativas”. O aviso explícito de catálogo, disponibilidade e distâncias demonstrativos foi preservado.
+- Feedback de carregamento com ícone acima do texto centralizado, respeitando redução de movimento.
+- Ficha com capa menor, sem o grande bloco “Guia do ponto”; status, autonomia, potência, conectores e distância ganham prioridade. Estimativas e avisos continuam disponíveis abaixo. Removida a faixa redundante de horários sugeridos do exemplo, sem alterar os dados. Corrigido o recorte do status na linha de avaliações.
+- Pesos tipográficos mais leves nos títulos da ficha, recomendações e critérios de avaliação.
+- Modal de origem com escolhas explícitas: usar localização atual, continuar sem localização ou cancelar. Conteúdo rolável e botões que admitem texto ampliado. Confirmação de funcionamento e escolha do aplicativo externo preservadas.
+- Recomendações com resumo e explicação completa expansível. CTA “Iniciar rota” encaminha à ficha com escolha de origem e confirmação, sem abrir navegação automaticamente. Respostas completas e conteúdo falado do motor permanecem iguais.
+
+### Verificações da 2.8
+
+- TypeScript e lint aprovados; **110/110 testes**. Novo teste comprova que o resumo mantém valores e ressalvas do motor sem modificar seu resultado. Teste de layout ajustado para o espaço reservado à FluIA.
+- Exportação web: **12 rotas**. Navegador integrado, **320 × 568**: filtros, posições dos controles, chat, resumo/explicação e fechamento conferidos. O mapa web continua sendo a prévia existente.
+- iOS Simulator: **iPhone 17e, iOS 27.0, 390 × 844 pt**, Expo Go SDK 54. Conferidos filtro rápido, recomendação, CTA, escolha sem GPS, confirmação Google/Waze, ficha e tipografia da avaliação.
+- Dynamic Type `extra-extra-extra-large`: corrigido isolamento de acessibilidade do modal; foi necessário manter `accessibilityViewIsModal` no contêiner externo, pois no ScrollView os botões ficavam visualmente presentes, mas indisponíveis para toque. XCTest posterior percorreu o fluxo, fechamento/reabertura e controles sem interseção: **1 teste, 0 falhas**.
+- A primeira execução bem-sucedida detectava existência do teclado, sem comprovar sua presença na área visível. Essa evidência não é usada para aprovar teclado virtual. A configuração do Device Hub foi ajustada e a verificação foi reforçada com geometria real. A conferência final desse ponto foi concluída após aguardar a estabilização do teclado e digitar caractere a caractere no roteiro de automação, sem alteração adicional no aplicativo: **1 teste nativo, 0 falhas**, teclado visível em y=560, CTA terminando em y≈406 e Enviar em y≈482. Botões acessíveis, envio, rolagem, fechamento sem teclado residual e reabertura aprovados. Capturas reais e roteiro em `validacao-2.8/`.
+
+Os ensaios exploratórios que falharam são preservados em `output/betas-2.8-2.3-20261020`, separados dos resultados aprovados. O harness XCTest existente foi reutilizado em cópia isolada `/tmp/flui-ux28-native`; não foi instalada ferramenta adicional.
+
+## Ponto de controle
+
+Checkpoint da Beta 2.8 concluído em 20/10/2026: implementação, 110 testes, web e cenário iOS compacto/ampliado aprovados. A Beta 2.3 pode iniciar a partir deste marco, em commit separado.
+
+A pausa solicitada para a 2.5 preservou integralmente o diff da 2.8 (comparação byte a byte). A rodada iOS da PR #90 foi inconclusiva por não haver corte de rede isolado verificável; o ambiente anterior foi restaurado. Parecer e logs locais em `output/beta-2.5-ios-20261020`.
