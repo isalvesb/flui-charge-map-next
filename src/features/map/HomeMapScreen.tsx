@@ -69,7 +69,7 @@ import { useReducedMotion } from "../../hooks/useReducedMotion";
 import { useAppPreferences } from "../../context/PreferencesContext";
 import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
 import { identificacaoDados } from "../../data/identificacaoDados";
-import { getMapPanelLayout, getMapVerticalFocusOffset } from "./mapLayout";
+import { getMapPanelLayout, getMapVerticalFocusOffset, getMapHorizontalFocusOffset } from "./mapLayout";
 import { FluiAssistantSheet } from "../assistant/FluiAssistantSheet";
 import { FluiAiIcon } from "../assistant/FluiAiIcon";
 
@@ -435,13 +435,14 @@ const criarRegiaoComFocoVisivel = (
   longitude: number,
   aproxima = true,
   fracaoDeDeslocamento = 0.08,
+  fracaoHorizontal = 0,
 ): Region => {
   const latitudeDelta = aproxima ? 0.014 : 0.026;
   const longitudeDelta = aproxima ? 0.014 : 0.026;
 
   return {
     latitude: latitude - latitudeDelta * fracaoDeDeslocamento,
-    longitude,
+    longitude: longitude - longitudeDelta * fracaoHorizontal,
     latitudeDelta,
     longitudeDelta,
   };
@@ -725,6 +726,7 @@ export default function HomeMapScreen() {
   const [painelTotalmenteOculto, setPainelTotalmenteOculto] = useState(false);
   const [sheetHeight, setSheetHeight] = useState(0);
   const [mapAreaHeight, setMapAreaHeight] = useState(0);
+  const [mapAreaWidth, setMapAreaWidth] = useState(0);
   const layout = getMapPanelLayout(larguraJanela, alturaJanela, mapAreaHeight, fontScale * escalaFonteSistema, sheetHeight);
   const cabecalhoCompacto = larguraJanela <= 360 || fontScale * escalaFonteSistema > 1.3;
   const [alturaCardPonto, setAlturaCardPonto] = useState<number | null>(null);
@@ -1066,6 +1068,15 @@ export default function HomeMapScreen() {
     painelTotalmenteOculto,
   );
 
+  const fracaoDeDeslocamentoHorizontal = getMapHorizontalFocusOffset(
+    layout.horizontal,
+    mapAreaWidth,
+    layout.panelWidth ?? 0,
+    painelTotalmenteOculto || isSheetCollapsed,
+  );
+  const fracaoDeDeslocamentoHorizontalRef = useRef(fracaoDeDeslocamentoHorizontal);
+  fracaoDeDeslocamentoHorizontalRef.current = fracaoDeDeslocamentoHorizontal;
+
   const fracaoDeDeslocamentoVerticalRef = useRef(fracaoDeDeslocamentoVertical);
   fracaoDeDeslocamentoVerticalRef.current = fracaoDeDeslocamentoVertical;
 
@@ -1083,6 +1094,7 @@ export default function HomeMapScreen() {
         localizacaoUsuario.longitude,
         true,
         fracaoDeDeslocamentoVerticalRef.current,
+        fracaoDeDeslocamentoHorizontalRef.current,
       );
     }
 
@@ -1149,6 +1161,7 @@ export default function HomeMapScreen() {
       localizacaoUsuario.longitude,
       true,
       fracaoDeDeslocamentoVertical,
+      fracaoDeDeslocamentoHorizontal,
     );
 
     currentMapRegionRef.current = regiaoCentralizada;
@@ -1157,6 +1170,7 @@ export default function HomeMapScreen() {
       reduceMotionEnabled ? 0 : 400,
     );
   }, [
+    fracaoDeDeslocamentoHorizontal,
     fracaoDeDeslocamentoVertical,
     hasFiltersApplied,
     hasSearchTerm,
@@ -1394,6 +1408,11 @@ export default function HomeMapScreen() {
         nextLocation.longitude,
         true,
         fracaoDeDeslocamentoVertical,
+        getMapHorizontalFocusOffset(
+          layout.horizontal,
+          mapAreaWidth,
+          layout.panelWidth ?? 0,
+        ),
       ),
       reduceMotionEnabled ? 0 : 500,
     );
@@ -1603,6 +1622,7 @@ export default function HomeMapScreen() {
           style={styles.mapArea}
           onLayout={(event) => {
             setMapAreaHeight(event.nativeEvent.layout.height);
+            setMapAreaWidth(event.nativeEvent.layout.width);
           }}
         >
           <MapView

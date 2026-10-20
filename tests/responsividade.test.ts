@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { getMapPanelLayout, getMapVerticalFocusOffset } from "../src/features/map/mapLayout";
+import { getMapPanelLayout, getMapVerticalFocusOffset, getMapHorizontalFocusOffset } from "../src/features/map/mapLayout";
 import { appThemes } from "../src/theme/appTheme";
 
 test("painel deixa espaço para controles em tela compacta e respeita a área do mapa", () => {
@@ -69,4 +69,12 @@ test("centralização em retrato preserva compensação, limite, recolhimento e 
   assert.equal(getMapVerticalFocusOffset(false, 600, 52), 52 / 1200);
   assert.equal(getMapVerticalFocusOffset(false, 600, 360, true), 0);
   assert.equal(getMapVerticalFocusOffset(false, 0, 360), 0.08);
+});
+
+
+test("painel lateral centraliza a origem na área livre sem alterar o retrato", () => {
+  assert.equal(getMapHorizontalFocusOffset(true, 832, 400), 0.25);
+  assert.equal(getMapHorizontalFocusOffset(false, 440, 400), 0);
+  assert.equal(getMapHorizontalFocusOffset(true, 832, 400, true), 0);
+  assert.equal(getMapHorizontalFocusOffset(true, 0, 400), 0);
 });

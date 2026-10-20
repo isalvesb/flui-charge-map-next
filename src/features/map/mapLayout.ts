@@ -24,3 +24,13 @@ export function getMapVerticalFocusOffset(
   if (panelHidden) return 0;
   return Math.min(Math.max(obstructedHeight / 2 / mapHeight, 0), 0.4);
 }
+
+export function getMapHorizontalFocusOffset(
+  horizontal: boolean,
+  mapWidth: number,
+  panelWidth: number,
+  panelHidden = false,
+) {
+  if (!horizontal || panelHidden || mapWidth <= 0) return 0;
+  return Math.min(Math.max((panelWidth + 16) / 2 / mapWidth, 0), 0.4);
+}
