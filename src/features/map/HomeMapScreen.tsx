@@ -35,6 +35,7 @@ import {
   Clock3,
   Crosshair,
   Maximize2,
+  Milestone,
   Plug,
   Search,
   SlidersHorizontal,
@@ -1362,6 +1363,10 @@ export default function HomeMapScreen() {
     router.push("/profile" as Href);
   };
 
+  const abrirPlanejadorDeViagens = () => {
+    router.push("/trip-planner" as Href);
+  };
+
   const showLocationFeedback = (message: string) => {
     if (mapFeedbackTimeoutRef.current) {
       clearTimeout(mapFeedbackTimeoutRef.current);
@@ -1732,6 +1737,17 @@ export default function HomeMapScreen() {
               disabled={isLocatingUser}
             >
               <Crosshair size={25} color={colors.primary} strokeWidth={2.2} />
+            </PressableScale>
+
+            <PressableScale
+              accessibilityRole="button"
+              accessibilityLabel="Planejar viagem"
+              accessibilityHint="Abre o planejador de rota com paradas de recarga estimadas."
+              pressedScale={0.94}
+              style={styles.mapControlButton}
+              onPress={abrirPlanejadorDeViagens}
+            >
+              <Milestone size={22} color={colors.primary} strokeWidth={2.2} />
             </PressableScale>
           </View>
 
