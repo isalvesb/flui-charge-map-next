@@ -91,7 +91,8 @@ export function FluiAssistantSheet({
   onClose,
   onSelectStation,
 }: Props) {
-  const { theme, fontScale, appearanceMode, demoOrigin, userPreferences } = useAppPreferences();
+  const { theme, fontScale, appearanceMode, demoOrigin, userPreferences } =
+    useAppPreferences();
   const reduceMotionEnabled = useReducedMotion();
   const styles = useMemo(
     () => createStyles(theme, fontScale, appearanceMode === "dark"),
@@ -110,7 +111,8 @@ export function FluiAssistantSheet({
   const chatScrollRef = useRef<ScrollView>(null);
 
   const recommendation = useMemo(() => {
-    if (!funcionalidadesExperimentais.fluia || !selectedIntent || isAnalyzing) return null;
+    if (!funcionalidadesExperimentais.fluia || !selectedIntent || isAnalyzing)
+      return null;
     return recommendStations({
       stations,
       intent: selectedIntent,
@@ -303,6 +305,9 @@ export function FluiAssistantSheet({
                 <Sparkles size={28} color={theme.primary} strokeWidth={2.2} />
               </Animated.View>
               <Text style={styles.analyzingTitle}>Analisando suas opções</Text>
+              <Text style={styles.analyzingText}>
+                Comparando alcance, disponibilidade, potência e conforto.
+              </Text>
               <View style={styles.thinkingDots} accessibilityElementsHidden>
                 {[
                   [0, 0.12, 0.25, 0.38, 1],
@@ -331,123 +336,6 @@ export function FluiAssistantSheet({
                   />
                 ))}
               </View>
-              <Text style={styles.analyzingText}>
-                Comparando alcance, disponibilidade, potência e conforto.
-              </Text>
-            </View>
-          ) : recommendation ? (
-            <ScrollView
-              style={styles.resultScroll}
-              contentContainerStyle={styles.resultContent}
-              showsVerticalScrollIndicator={false}
-            >
-              <View
-                style={styles.recommendationCard}
-                accessibilityLiveRegion="polite"
-              >
-                <View style={styles.bestChoiceBadge}>
-                  <Text style={styles.bestChoiceText}>
-                    Sugestão demonstrativa
-                  </Text>
-                </View>
-                <Text style={styles.stationName}>
-                  {recommendation.primary.name}
-                </Text>
-                <Text style={styles.stationAddress}>
-                  {recommendation.primary.address}
-                </Text>
-
-                <View style={styles.metricsGrid}>
-                  <Metric
-                    styles={styles}
-                    icon={BatteryMedium}
-                    label={`Chegada ≈${recommendation.arrivalBatteryPercent}%`}
-                    color={theme.primary}
-                  />
-                  <Metric
-                    styles={styles}
-                    icon={Zap}
-                    label={`${recommendation.powerKw} kW`}
-                    color={theme.primary}
-                  />
-                  <Metric
-                    styles={styles}
-                    icon={Plug}
-                    label={`${recommendation.availableChargers} livres`}
-                    color={theme.primary}
-                  />
-                  <Metric
-                    styles={styles}
-                    icon={MapPin}
-                    label={formatAssistantDistance(
-                      recommendation.primary.distanceKm,
-                    )}
-                    color={theme.primary}
-                  />
-                </View>
-
-                <Text style={styles.explanationTitle}>
-                  Por que essa escolha?
-                </Text>
-                <Text style={styles.explanationText}>
-                  {recommendation.explanation}
-                  {"\n"}
-                  {userPreferences.vehicleName} · origem demonstrativa: {demoOrigin.nome}.
-                  {"\n"}
-                  {RECOMMENDATION_DISCLAIMER}
-                </Text>
-              </View>
-
-              {recommendation.backup ? (
-                <PressableScale
-                  accessibilityRole="button"
-                  accessibilityLabel={`Abrir Plano B, ${recommendation.backup.name}`}
-                  accessibilityHint="Abre a ficha detalhada da estação alternativa."
-                  style={styles.backupCard}
-                  onPress={() => chooseStation(recommendation.backup!.id)}
-                >
-                  <View style={styles.backupIcon}>
-                    <MapPin size={22} color={theme.primary} strokeWidth={2.3} />
-                  </View>
-                  <View style={styles.backupText}>
-                    <Text style={styles.backupTitle}>Plano B</Text>
-                    <Text style={styles.backupDescription} numberOfLines={1}>
-                      {recommendation.backup.name} ·{" "}
-                      {formatAssistantDistance(
-                        recommendation.backup.distanceKm,
-                      )}
-                    </Text>
-                  </View>
-                  <ChevronRight
-                    size={22}
-                    color={theme.textMuted}
-                    strokeWidth={2.2}
-                  />
-                </PressableScale>
-              ) : null}
-
-              <PressableScale
-                accessibilityRole="button"
-                accessibilityLabel={`Ver ${recommendation.primary.name} no mapa`}
-                accessibilityHint="Abre a ficha detalhada do ponto recomendado."
-                style={styles.primaryButton}
-                onPress={() => chooseStation(recommendation.primary.id)}
-              >
-                <Text style={styles.primaryButtonText}>Ver ponto no mapa</Text>
-              </PressableScale>
-              <PressableScale
-                accessibilityRole="button"
-                accessibilityLabel="Escolher outra necessidade"
-                style={styles.secondaryButton}
-                onPress={() => setSelectedIntent(null)}
-              >
-                <Text style={styles.secondaryButtonText}>
-                  Escolher outra necessidade
-                </Text>
-              </PressableScale>
-            </ScrollView>
-          ) : selectedIntent ? (
-            <View style={styles.analyzingCard}>
               <Text style={styles.analyzingTitle}>
                 Nenhuma opção viável confirmada
               </Text>
@@ -488,7 +376,8 @@ export function FluiAssistantSheet({
           ) : null}
           <View style={styles.chatBox}>
             <Text style={styles.subtitle}>
-              {userPreferences.vehicleName} · origem demonstrativa: {demoOrigin.nome}.
+              {userPreferences.vehicleName} · origem demonstrativa:{" "}
+              {demoOrigin.nome}.
             </Text>
             <ScrollView
               ref={chatScrollRef}
@@ -511,13 +400,11 @@ export function FluiAssistantSheet({
                   {message.stationId ? (
                     <PressableScale
                       accessibilityRole="button"
-                      accessibilityLabel="Ver ponto no mapa"
+                      accessibilityLabel="Iniciar rota"
                       style={styles.chatButton}
                       onPress={() => chooseStation(message.stationId!)}
                     >
-                      <Text style={styles.chatButtonText}>
-                        Ver ponto no mapa
-                      </Text>
+                      <Text style={styles.chatButtonText}>Iniciar rota</Text>
                     </PressableScale>
                   ) : null}
                 </View>
@@ -683,7 +570,7 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean) {
       color: theme.text,
       fontSize: font(15),
       lineHeight: font(20),
-      fontWeight: "800",
+      fontWeight: "600",
     },
     analyzingCard: {
       minHeight: 210,
@@ -709,7 +596,7 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean) {
       color: theme.text,
       fontSize: font(17),
       lineHeight: font(22),
-      fontWeight: "900",
+      fontWeight: "600",
       textAlign: "center",
     },
     thinkingDots: {
@@ -760,7 +647,7 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean) {
       color: theme.text,
       fontSize: font(23),
       lineHeight: font(28),
-      fontWeight: "900",
+      fontWeight: "600",
       letterSpacing: -0.45,
     },
     stationAddress: {
@@ -798,7 +685,7 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean) {
       color: theme.text,
       fontSize: font(15),
       lineHeight: font(20),
-      fontWeight: "900",
+      fontWeight: "600",
     },
     explanationText: {
       marginTop: 4,
@@ -832,7 +719,7 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean) {
       color: theme.text,
       fontSize: font(14),
       lineHeight: font(18),
-      fontWeight: "900",
+      fontWeight: "600",
     },
     backupDescription: {
       marginTop: 2,
