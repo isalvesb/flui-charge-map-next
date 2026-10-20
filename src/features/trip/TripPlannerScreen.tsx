@@ -4,6 +4,7 @@ import {
   Modal,
   Pressable,
   ScrollView,
+  StyleSheet,
   StatusBar,
   Text,
   View,
@@ -40,7 +41,11 @@ import {
 } from "../../data/destinosViagem";
 import { identificacaoDados } from "../../data/identificacaoDados";
 import { calcularAutonomiaAtualKm } from "../../utils/autonomia";
-import { planejarViagem, type ParadaDeViagem } from "../../utils/tripPlanner";
+import {
+  planejarViagem,
+  podeIniciarViagem,
+  type ParadaDeViagem,
+} from "../../utils/tripPlanner";
 import { getStationRouteUrl } from "../stations/stationPresentation";
 import { styles as baseStyles } from "./TripPlannerScreen.styles";
 
@@ -110,6 +115,8 @@ export default function TripPlannerScreen() {
     );
   }, [origemSelecionada, destinoSelecionado, vehicleRangeKm, batteryPercent]);
 
+  const podeIniciar = podeIniciarViagem(plano);
+
   const autonomiaAtualKm = Math.round(
     calcularAutonomiaAtualKm(vehicleRangeKm, batteryPercent),
   );
@@ -165,7 +172,7 @@ export default function TripPlannerScreen() {
   const proximoDestinoNome = plano.paradas[0]?.nome ?? destinoSelecionado.nome;
 
   const abrirNavegacao = async () => {
-    if (isIniciandoViagem) {
+    if (isIniciandoViagem || !podeIniciar) {
       return;
     }
 
@@ -229,11 +236,14 @@ export default function TripPlannerScreen() {
         animationType="slide"
         onRequestClose={() => setSeletorAberto(null)}
       >
-        <Pressable
-          style={styles.modalBackdrop}
-          onPress={() => setSeletorAberto(null)}
-        >
-          <Pressable style={styles.modalSheet} onPress={() => {}}>
+        <View style={styles.modalBackdrop}>
+          <Pressable
+            style={StyleSheet.absoluteFill}
+            accessibilityRole="button"
+            accessibilityLabel="Fechar seletor"
+            onPress={() => setSeletorAberto(null)}
+          />
+          <View style={styles.modalSheet} accessibilityViewIsModal>
             <Text style={styles.modalTitle} accessibilityRole="header">
               {seletorAberto === "origem"
                 ? "Escolher origem"
@@ -245,6 +255,8 @@ export default function TripPlannerScreen() {
                 <Pressable
                   key={opcao.id}
                   accessibilityRole="button"
+                  accessibilityLabel={opcao.titulo}
+                  accessibilityHint={opcao.subtitulo}
                   accessibilityState={{ selected: opcao.selecionado }}
                   style={({ pressed }) => [
                     styles.modalOption,
@@ -268,8 +280,8 @@ export default function TripPlannerScreen() {
             >
               <Text style={styles.modalCloseButtonText}>Cancelar</Text>
             </Pressable>
-          </Pressable>
-        </Pressable>
+          </View>
+        </View>
       </Modal>
     );
   };
@@ -513,7 +525,7 @@ export default function TripPlannerScreen() {
                 <Text style={[styles.warningText, { color: tomDoAlcance.fg }]}>
                   {plano.nivelDeAlcance === "apertado"
                     ? `Autonomia limitada: chegada estimada com ${plano.bateriaChegadaDestinoPercent}% de bateria.`
-                    : "Autonomia insuficiente para esta viagem com as paradas demonstrativas disponíveis."}
+                    : "A viagem não preserva a reserva mínima de 5% na chegada com as paradas demonstrativas disponíveis."}
                 </Text>
               </View>
             ) : null}
@@ -585,7 +597,9 @@ export default function TripPlannerScreen() {
                         { color: tomDoAlcance.fg },
                       ]}
                     >
-                      {plano.bateriaChegadaDestinoPercent}% na chegada
+                      {podeIniciar
+                        ? `${plano.bateriaChegadaDestinoPercent}% na chegada`
+                        : "Viagem bloqueada · reserva mínima de 5%"}
                     </Text>
                   </View>
                 </View>
@@ -610,18 +624,31 @@ export default function TripPlannerScreen() {
 
       <View style={styles.footer}>
         <Text style={styles.footerCaption} numberOfLines={1}>
-          Navegação até {proximoDestinoNome}
+          {podeIniciar
+            ? `Navegação até ${proximoDestinoNome}`
+            : "Reserva mínima de 5% não preservada na chegada"}
         </Text>
 
         <PressableScale
           accessibilityRole="button"
-          accessibilityLabel="Iniciar viagem"
-          accessibilityHint={`Abre o aplicativo de navegação até ${proximoDestinoNome}.`}
-          style={styles.startButton}
+          accessibilityLabel={podeIniciar ? "Iniciar viagem" : "Viagem indisponível"}
+          accessibilityHint={
+            podeIniciar
+              ? `Abre o aplicativo de navegação até ${proximoDestinoNome}.`
+              : "A viagem não preserva a reserva mínima de 5% com as paradas demonstrativas disponíveis."
+          }
+          accessibilityState={{ disabled: !podeIniciar }}
+          disabled={!podeIniciar || isIniciandoViagem}
+          style={[
+            styles.startButton,
+            !podeIniciar ? styles.startButtonDisabled : null,
+          ]}
           onPress={abrirNavegacao}
         >
           <Navigation2 size={18} color={colors.white} strokeWidth={2.2} />
-          <Text style={styles.startButtonText}>Iniciar viagem</Text>
+          <Text style={styles.startButtonText}>
+            {podeIniciar ? "Iniciar viagem" : "Viagem indisponível"}
+          </Text>
         </PressableScale>
       </View>
 

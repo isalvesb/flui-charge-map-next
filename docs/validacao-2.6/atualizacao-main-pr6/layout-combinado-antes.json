@@ -1,0 +1,174 @@
+[
+  {
+    "name": "compacta",
+    "width": 320,
+    "height": 568,
+    "elements": [
+      {
+        "name": "Enviar mensagem",
+        "box": {
+          "x": 229.625,
+          "y": 490,
+          "width": 70.375,
+          "height": 44
+        }
+      },
+      {
+        "name": "Fechar assistente",
+        "box": {
+          "x": 256,
+          "y": 99.171875,
+          "width": 44,
+          "height": 44
+        }
+      },
+      {
+        "name": "Quero esperar com conforto",
+        "box": {
+          "x": 20,
+          "y": 527.171875,
+          "width": 280,
+          "height": 58
+        }
+      },
+      {
+        "name": "Mensagem para a FluIA",
+        "box": {
+          "x": 20,
+          "y": 490,
+          "width": 201.625,
+          "height": 44
+        }
+      }
+    ]
+  },
+  {
+    "name": "horizontal",
+    "width": 844,
+    "height": 390,
+    "elements": [
+      {
+        "name": "Enviar mensagem",
+        "box": {
+          "x": 611.625,
+          "y": 349.8125,
+          "width": 70.375,
+          "height": 44
+        }
+      },
+      {
+        "name": "Fechar assistente",
+        "box": {
+          "x": 638,
+          "y": 77.8125,
+          "width": 44,
+          "height": 44
+        }
+      },
+      {
+        "name": "Quero esperar com conforto",
+        "box": {
+          "x": 162,
+          "y": 433.8125,
+          "width": 520,
+          "height": 58
+        }
+      },
+      {
+        "name": "Mensagem para a FluIA",
+        "box": {
+          "x": 162,
+          "y": 349.8125,
+          "width": 441.625,
+          "height": 44
+        }
+      }
+    ]
+  },
+  {
+    "name": "tablet",
+    "width": 768,
+    "height": 1024,
+    "elements": [
+      {
+        "name": "Enviar mensagem",
+        "box": {
+          "x": 573.625,
+          "y": 946,
+          "width": 70.375,
+          "height": 44
+        }
+      },
+      {
+        "name": "Fechar assistente",
+        "box": {
+          "x": 600,
+          "y": 153.890625,
+          "width": 44,
+          "height": 44
+        }
+      },
+      {
+        "name": "Quero esperar com conforto",
+        "box": {
+          "x": 124,
+          "y": 509.890625,
+          "width": 520,
+          "height": 58
+        }
+      },
+      {
+        "name": "Mensagem para a FluIA",
+        "box": {
+          "x": 124,
+          "y": 946,
+          "width": 441.625,
+          "height": 44
+        }
+      }
+    ]
+  },
+  {
+    "name": "panoramica",
+    "width": 1920,
+    "height": 480,
+    "elements": [
+      {
+        "name": "Enviar mensagem",
+        "box": {
+          "x": 1149.625,
+          "y": 402,
+          "width": 70.375,
+          "height": 44
+        }
+      },
+      {
+        "name": "Fechar assistente",
+        "box": {
+          "x": 1176,
+          "y": 88.609375,
+          "width": 44,
+          "height": 44
+        }
+      },
+      {
+        "name": "Quero esperar com conforto",
+        "box": {
+          "x": 700,
+          "y": 444.609375,
+          "width": 520,
+          "height": 58
+        }
+      },
+      {
+        "name": "Mensagem para a FluIA",
+        "box": {
+          "x": 700,
+          "y": 402,
+          "width": 441.625,
+          "height": 44
+        }
+      }
+    ]
+  }
+]

@@ -8,7 +8,7 @@ export const appThemes = {
 
     text: "#10221E",
     textMuted: "#3F554F",
-    textLight: "#63766F",
+    textLight: "#5B6E67",
 
     primary: "#2B0055",
     primarySoft: "#EEF7F1",
@@ -18,6 +18,8 @@ export const appThemes = {
 
     yellow: "#FFF2C7",
     yellowDark: "#F4B942",
+    warningText: "#805500",
+    dangerText: "#AD352D",
 
     border: "#DDE8E3",
     shadow: "#12302A",
@@ -25,7 +27,7 @@ export const appThemes = {
     dangerSoft: "#FBE5E2",
     dangerBorder: "#E9BAB5",
 
-    success: "#1FA971",
+    success: "#137A50",
     successSoft: "#DDF6E8",
   },
 
@@ -46,6 +48,8 @@ export const appThemes = {
 
     yellow: "#4A3D18",
     yellowDark: "#FFD35A",
+    warningText: "#FFD35A",
+    dangerText: "#FFAAA2",
 
     border: "#2E403A",
     shadow: "#080A12",

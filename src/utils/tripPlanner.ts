@@ -29,6 +29,8 @@ export type PlanoDeViagem = {
 };
 
 const MARGEM_SEGURANCA_PERCENT = 20;
+// Mesma reserva mínima usada nas recomendações da FluIA.
+const RESERVA_MINIMA_PARADA_PERCENT = 5;
 const BATERIA_ALVO_PARADA_PERCENT = 80;
 const VELOCIDADE_MEDIA_KMH = 70;
 
@@ -61,6 +63,7 @@ export function planejarViagem(
   let posicaoAtual = origem;
   let bateriaAtual = batteryPercent;
   let distanciaTotalKm = 0;
+  let trechoInviavel = false;
   const paradas: ParadaDeViagem[] = [];
 
   for (const candidata of paradasOrdenadas) {
@@ -87,10 +90,15 @@ export function planejarViagem(
       posicaoAtual,
       coordenadaParada,
     );
-    const bateriaChegadaPercent = Math.max(
-      0,
-      Math.round(bateriaAtual - (distanciaTrechoKm / vehicleRangeKm) * 100),
-    );
+    // Não atribuir recarga em um ponto que o veículo não consegue alcançar.
+    // Comparar a bateria sem arredondar para preservar a reserva de 5%.
+    const bateriaChegadaExata =
+      bateriaAtual - (distanciaTrechoKm / vehicleRangeKm) * 100;
+    if (bateriaChegadaExata < RESERVA_MINIMA_PARADA_PERCENT) {
+      trechoInviavel = true;
+      break;
+    }
+    const bateriaChegadaPercent = Math.round(bateriaChegadaExata);
 
     paradas.push({
       id: candidata.id,
@@ -121,16 +129,34 @@ export function planejarViagem(
 
   distanciaTotalKm += trechoFinalKm;
 
+  // Exigir reserva mínima de 5% também na chegada ao destino.
+  // Comparar antes do arredondamento da apresentação.
+  const bateriaChegadaDestinoExata =
+    bateriaAtual - (trechoFinalKm / vehicleRangeKm) * 100;
+
+  const destinoSemReserva =
+    !Number.isFinite(bateriaChegadaDestinoExata) ||
+    bateriaChegadaDestinoExata < RESERVA_MINIMA_PARADA_PERCENT;
+
   return {
     distanciaTotalKm: Math.round(distanciaTotalKm),
     tempoEstimadoMin: calcularTempoMin(distanciaTotalKm),
     paradas,
-    bateriaChegadaDestinoPercent: Math.max(
-      0,
-      Math.round(avaliacaoFinal.bateriaAoChegarPercent),
-    ),
-    nivelDeAlcance: avaliacaoFinal.nivel,
+    bateriaChegadaDestinoPercent:
+      trechoInviavel || !Number.isFinite(bateriaChegadaDestinoExata)
+        ? 0
+        : Math.max(0, Math.floor(bateriaChegadaDestinoExata)),
+    nivelDeAlcance:
+      trechoInviavel || destinoSemReserva
+        ? "foraDeAlcance"
+        : avaliacaoFinal.nivel,
   };
+}
+
+export function podeIniciarViagem(
+  plano: Pick<PlanoDeViagem, "nivelDeAlcance">,
+) {
+  return plano.nivelDeAlcance !== "foraDeAlcance";
 }
 
 export const MARGEM_SEGURANCA_PARADAS_PERCENT = MARGEM_SEGURANCA_PERCENT;

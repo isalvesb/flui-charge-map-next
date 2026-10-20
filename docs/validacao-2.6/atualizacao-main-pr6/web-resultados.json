@@ -1,0 +1,130 @@
+[
+  {
+    "name": "compacta",
+    "width": 320,
+    "height": 568,
+    "font": "maior",
+    "theme": "claro",
+    "checks": [
+      "mapa sem overflow; controles Beta >=44 e dentro da tela",
+      "campo, envio e fechar visíveis e >=44",
+      "cinco atalhos preservados e alcançáveis",
+      "pergunta programada e envio por Enter",
+      "recomendação pelo chat com botão >=44",
+      "chat abre ficha Higienópolis station-01",
+      "retorno/reabertura limpa conversa e rascunho",
+      "atalho continua recomendando; ficha alcançável",
+      "foco contido e Escape fecha"
+    ],
+    "composer": {
+      "input": {
+        "x": 20,
+        "y": 490,
+        "width": 198.78125,
+        "height": 44
+      },
+      "send": {
+        "x": 226.78125,
+        "y": 490,
+        "width": 73.21875,
+        "height": 44
+      }
+    }
+  },
+  {
+    "name": "horizontal",
+    "width": 844,
+    "height": 390,
+    "font": "maior",
+    "theme": "claro",
+    "checks": [
+      "mapa sem overflow; controles Beta >=44 e dentro da tela",
+      "campo, envio e fechar visíveis e >=44",
+      "cinco atalhos preservados e alcançáveis",
+      "pergunta programada e envio por Enter",
+      "recomendação pelo chat com botão >=44",
+      "chat abre ficha Higienópolis station-01",
+      "retorno/reabertura limpa conversa e rascunho",
+      "atalho continua recomendando; ficha alcançável",
+      "foco contido e Escape fecha"
+    ],
+    "composer": {
+      "input": {
+        "x": 162,
+        "y": 312,
+        "width": 438.78125,
+        "height": 44
+      },
+      "send": {
+        "x": 608.78125,
+        "y": 312,
+        "width": 73.21875,
+        "height": 44
+      }
+    }
+  },
+  {
+    "name": "tablet",
+    "width": 768,
+    "height": 1024,
+    "font": "maior",
+    "theme": "escuro",
+    "checks": [
+      "mapa sem overflow; controles Beta >=44 e dentro da tela",
+      "campo, envio e fechar visíveis e >=44",
+      "cinco atalhos preservados e alcançáveis",
+      "pergunta programada e envio por Enter",
+      "recomendação pelo chat com botão >=44",
+      "chat abre ficha Higienópolis station-01",
+      "retorno/reabertura limpa conversa e rascunho",
+      "atalho continua recomendando; ficha alcançável",
+      "foco contido e Escape fecha"
+    ],
+    "composer": {
+      "input": {
+        "x": 124,
+        "y": 946,
+        "width": 438.78125,
+        "height": 44
+      },
+      "send": {
+        "x": 570.78125,
+        "y": 946,
+        "width": 73.21875,
+        "height": 44
+      }
+    }
+  },
+  {
+    "name": "panoramica",
+    "width": 1920,
+    "height": 480,
+    "font": "maior",
+    "theme": "claro",
+    "checks": [
+      "mapa sem overflow; controles Beta >=44 e dentro da tela",
+      "campo, envio e fechar visíveis e >=44",
+      "cinco atalhos preservados e alcançáveis",
+      "pergunta programada e envio por Enter",
+      "recomendação pelo chat com botão >=44",
+      "chat abre ficha Higienópolis station-01",
+      "retorno/reabertura limpa conversa e rascunho",
+      "atalho continua recomendando; ficha alcançável",
+      "foco contido e Escape fecha"
+    ],
+    "composer": {
+      "input": {
+        "x": 700,
+        "y": 402,
+        "width": 438.78125,
+        "height": 44
+      },
+      "send": {
+        "x": 1146.78125,
+        "y": 402,
+        "width": 73.21875,
+        "height": 44
+      }
+    }
+  }
+]

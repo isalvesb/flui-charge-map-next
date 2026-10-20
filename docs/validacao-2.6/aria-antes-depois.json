@@ -1,0 +1,24 @@
+[
+  {
+    "version": "base-93c453c",
+    "font": {
+      "selected": null,
+      "pressed": null
+    },
+    "hiddenCard": {
+      "tabIndex": 0,
+      "ariaHidden": false
+    }
+  },
+  {
+    "version": "corrigida",
+    "font": {
+      "selected": null,
+      "pressed": "true"
+    },
+    "hiddenCard": {
+      "tabIndex": -1,
+      "ariaHidden": true
+    }
+  }
+]

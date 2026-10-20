@@ -377,6 +377,7 @@ export const styles = StyleSheet.create({
   },
 
   timelineBatteryText: {
+    color: colors.text,
     fontSize: typography.sizes.sm,
     fontWeight: typography.weights.semibold,
   },
@@ -435,6 +436,10 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     gap: spacing.xs,
+  },
+
+  startButtonDisabled: {
+    opacity: 0.5,
   },
 
   startButtonPressed: {

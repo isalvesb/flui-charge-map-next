@@ -1,31 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import {
-  Animated,
-  Image,
-  Platform,
-  Pressable,
-  ScrollView,
-  StatusBar,
-  Text,
-  TextInput,
-  useWindowDimensions,
-  View,
-} from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import MapView, {
-  Marker,
-  PROVIDER_GOOGLE,
-  type MapViewHandle,
-  type Region,
-} from "../../components/MapSurface";
-import { SvgXml } from "react-native-svg";
-import { router, type Href, useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams, type Href } from "expo-router";
 import {
   BatteryFull,
   BatteryLow,
@@ -44,34 +17,67 @@ import {
   X,
   Zap,
 } from "lucide-react-native";
-
-import { chargingStations } from "../../data";
-import { defaultFilters } from "../../data/filterOptions";
-import { StationFilters } from "../../types";
-import { filtrarEstacoes } from "../../utils/filtrarEstacoes";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
-  avaliarAlcance,
-  calcularAutonomiaAtualKm,
-} from "../../utils/autonomia";
-import { formatarDistanciaDemonstrativa } from "../../utils/demonstracao";
-import { canChargeAt } from "../../utils/stationAvailability";
-import { isStationOpenAt } from "../../utils/stationHours";
-import { getStationStatusInfo } from "../stations/stationPresentation";
-import { getBatterySourceLabels } from "../../utils/batteryData";
-import { useCurrentTime } from "../../hooks/useCurrentTime";
+  Animated,
+  Image,
+  Modal,
+  Platform,
+  Pressable,
+  ScrollView,
+  StatusBar,
+  Text,
+  TextInput,
+  useWindowDimensions,
+  View,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { SvgXml } from "react-native-svg";
+import MapView, {
+  Marker,
+  PROVIDER_GOOGLE,
+  type MapViewHandle,
+  type Region,
+} from "../../components/MapSurface";
+
 import {
   LoadingOverlay,
   PressableScale,
   ScreenTransition,
 } from "../../components";
-import baseStyles, { colors as baseColors } from "./HomeMapScreen.styles";
-import { useTelaComPreferencias } from "../../hooks/useTelaComPreferencias";
-import { useReducedMotion } from "../../hooks/useReducedMotion";
-import { useAppPreferences } from "../../context/PreferencesContext";
 import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
+import { useAppPreferences } from "../../context/PreferencesContext";
+import { chargingStations } from "../../data";
+import { defaultFilters } from "../../data/filterOptions";
 import { identificacaoDados } from "../../data/identificacaoDados";
-import { FluiAssistantSheet } from "../assistant/FluiAssistantSheet";
+import { useCurrentTime } from "../../hooks/useCurrentTime";
+import { useReducedMotion } from "../../hooks/useReducedMotion";
+import { useTelaComPreferencias } from "../../hooks/useTelaComPreferencias";
+import { StationFilters } from "../../types";
+import {
+  avaliarAlcance,
+  calcularAutonomiaAtualKm,
+} from "../../utils/autonomia";
+import { getBatterySourceLabels } from "../../utils/batteryData";
+import { formatarDistanciaDemonstrativa } from "../../utils/demonstracao";
+import { filtrarEstacoes } from "../../utils/filtrarEstacoes";
+import { canChargeAt } from "../../utils/stationAvailability";
+import { isStationOpenAt } from "../../utils/stationHours";
 import { FluiAiIcon } from "../assistant/FluiAiIcon";
+import { FluiAssistantSheet } from "../assistant/FluiAssistantSheet";
+import { getStationStatusInfo } from "../stations/stationPresentation";
+import baseStyles, { colors as baseColors } from "./HomeMapScreen.styles";
+import {
+  getMapHorizontalFocusOffset,
+  getMapPanelLayout,
+  getMapVerticalFocusOffset,
+} from "./mapLayout";
 
 const FEEDBACK_DURATION = 1500;
 const SHEET_VISIBLE_HANDLE = 30;
@@ -182,6 +188,8 @@ type MapColorTokens = typeof baseColors & {
   successSoft?: string;
   dangerSoft?: string;
   warningLight?: string;
+  warningText?: string;
+  dangerText?: string;
 };
 
 const toRecord = (value: unknown): Record<string, unknown> => {
@@ -433,13 +441,14 @@ const criarRegiaoComFocoVisivel = (
   longitude: number,
   aproxima = true,
   fracaoDeDeslocamento = 0.08,
+  fracaoHorizontal = 0,
 ): Region => {
   const latitudeDelta = aproxima ? 0.014 : 0.026;
   const longitudeDelta = aproxima ? 0.014 : 0.026;
 
   return {
     latitude: latitude - latitudeDelta * fracaoDeDeslocamento,
-    longitude,
+    longitude: longitude - longitudeDelta * fracaoHorizontal,
     latitudeDelta,
     longitudeDelta,
   };
@@ -509,10 +518,10 @@ function obterCorDeBateriaAtual(percentual: number, colorSet: MapColorTokens) {
   }
 
   if (percentual >= 25) {
-    return colorSet.yellowDark;
+    return colorSet.warningText ?? colorSet.yellowDark;
   }
 
-  return colorSet.dangerBorder ?? colorSet.yellowDark;
+  return colorSet.dangerText ?? colorSet.dangerBorder ?? colorSet.yellowDark;
 }
 
 function obterCorDoAlcance(
@@ -524,10 +533,10 @@ function obterCorDoAlcance(
   }
 
   if (nivel === "apertado") {
-    return colorSet.yellowDark;
+    return colorSet.warningText ?? colorSet.yellowDark;
   }
 
-  return colorSet.dangerBorder ?? colorSet.yellowDark;
+  return colorSet.dangerText ?? colorSet.dangerBorder ?? colorSet.yellowDark;
 }
 
 function obterFundoDoAlcance(
@@ -686,7 +695,7 @@ const TABLET_BREAKPOINT = 700;
 const MAX_CONTENT_WIDTH = 560;
 
 export default function HomeMapScreen() {
-  const { styles, colors, isDarkMode } = useTelaComPreferencias(
+  const { styles, colors, isDarkMode, fontScale } = useTelaComPreferencias(
     baseStyles,
     baseColors,
   );
@@ -715,6 +724,7 @@ export default function HomeMapScreen() {
   const filtersParam = routeParams.filters;
   const queryParam = routeParams.query;
   const mapRef = useRef<MapViewHandle | null>(null);
+  const searchInputRef = useRef<TextInput>(null);
   const currentMapRegionRef = useRef<Region | null>(null);
   const sheetTranslateY = useRef(new Animated.Value(0)).current;
   const quickFiltersProgress = useRef(new Animated.Value(1)).current;
@@ -729,6 +739,16 @@ export default function HomeMapScreen() {
   const [painelTotalmenteOculto, setPainelTotalmenteOculto] = useState(false);
   const [sheetHeight, setSheetHeight] = useState(0);
   const [mapAreaHeight, setMapAreaHeight] = useState(0);
+  const [mapAreaWidth, setMapAreaWidth] = useState(0);
+  const layout = getMapPanelLayout(
+    larguraJanela,
+    alturaJanela,
+    mapAreaHeight,
+    fontScale * escalaFonteSistema,
+    sheetHeight,
+  );
+  const cabecalhoCompacto =
+    larguraJanela <= 360 || fontScale * escalaFonteSistema > 1.3;
   const [alturaCardPonto, setAlturaCardPonto] = useState<number | null>(null);
   const [atalhosRapidosAbertos, setAtalhosRapidosAbertos] = useState(true);
   const [hasInteractedWithQuickFilters, setHasInteractedWithQuickFilters] =
@@ -747,6 +767,8 @@ export default function HomeMapScreen() {
   const [controleMapaAtivo, setControleMapaAtivo] =
     useState<ControleMapaAtivo>(null);
   const [assistenteFluiAberto, setAssistenteFluiAberto] = useState(false);
+  const [assistenteFluiApresentado, setAssistenteFluiApresentado] =
+    useState(false);
   const [mapaPronto, setMapaPronto] = useState(false);
 
   const mapFeedbackTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
@@ -768,7 +790,13 @@ export default function HomeMapScreen() {
 
   const alturaAtalhosRapidos = quickFiltersProgress.interpolate({
     inputRange: [0, 1],
-    outputRange: [0, QUICK_FILTERS_CONTENT_HEIGHT],
+    outputRange: [
+      0,
+      Math.max(
+        QUICK_FILTERS_CONTENT_HEIGHT,
+        48 * fontScale * escalaFonteSistema,
+      ),
+    ],
   });
 
   const escalaPulsoLocalizacao = userLocationPulseProgress.interpolate({
@@ -1056,21 +1084,23 @@ export default function HomeMapScreen() {
   const hasNoResults = estacoesRecomendadas.length === 0;
   const hasSearchTerm = searchTerm.trim().length > 0;
 
-  const fracaoDeDeslocamentoVertical = useMemo(() => {
-    if (mapAreaHeight <= 0) {
-      return 0.08;
-    }
+  const fracaoDeDeslocamentoVertical = getMapVerticalFocusOffset(
+    layout.horizontal,
+    mapAreaHeight,
+    isSheetCollapsed ? SHEET_VISIBLE_HANDLE : sheetHeight,
+    painelTotalmenteOculto,
+  );
 
-    if (painelTotalmenteOculto) {
-      return 0;
-    }
-
-    const alturaObstruida = isSheetCollapsed
-      ? SHEET_VISIBLE_HANDLE
-      : sheetHeight;
-
-    return limitarValor(alturaObstruida / 2 / mapAreaHeight, 0, 0.4);
-  }, [isSheetCollapsed, mapAreaHeight, painelTotalmenteOculto, sheetHeight]);
+  const fracaoDeDeslocamentoHorizontal = getMapHorizontalFocusOffset(
+    layout.horizontal,
+    mapAreaWidth,
+    layout.panelWidth ?? 0,
+    painelTotalmenteOculto || isSheetCollapsed,
+  );
+  const fracaoDeDeslocamentoHorizontalRef = useRef(
+    fracaoDeDeslocamentoHorizontal,
+  );
+  fracaoDeDeslocamentoHorizontalRef.current = fracaoDeDeslocamentoHorizontal;
 
   const fracaoDeDeslocamentoVerticalRef = useRef(fracaoDeDeslocamentoVertical);
   fracaoDeDeslocamentoVerticalRef.current = fracaoDeDeslocamentoVertical;
@@ -1088,6 +1118,7 @@ export default function HomeMapScreen() {
         localizacaoUsuario.longitude,
         true,
         fracaoDeDeslocamentoVerticalRef.current,
+        fracaoDeDeslocamentoHorizontalRef.current,
       );
     }
 
@@ -1166,6 +1197,7 @@ export default function HomeMapScreen() {
       localizacaoUsuario.longitude,
       true,
       fracaoDeDeslocamentoVertical,
+      fracaoDeDeslocamentoHorizontal,
     );
 
     currentMapRegionRef.current = regiaoCentralizada;
@@ -1174,6 +1206,7 @@ export default function HomeMapScreen() {
       reduceMotionEnabled ? 0 : 400,
     );
   }, [
+    fracaoDeDeslocamentoHorizontal,
     fracaoDeDeslocamentoVertical,
     hasFiltersApplied,
     hasSearchTerm,
@@ -1410,6 +1443,11 @@ export default function HomeMapScreen() {
         nextLocation.longitude,
         true,
         fracaoDeDeslocamentoVertical,
+        getMapHorizontalFocusOffset(
+          layout.horizontal,
+          mapAreaWidth,
+          layout.panelWidth ?? 0,
+        ),
       ),
       reduceMotionEnabled ? 0 : 500,
     );
@@ -1501,7 +1539,10 @@ export default function HomeMapScreen() {
 
                 <Image
                   source={imagemCarroUsuario}
-                  style={styles.vehicleImage}
+                  style={[
+                    styles.vehicleImage,
+                    cabecalhoCompacto && { display: "none" },
+                  ]}
                   resizeMode="cover"
                 />
               </PressableScale>
@@ -1525,6 +1566,7 @@ export default function HomeMapScreen() {
             <Search size={21} color={colors.textMuted} strokeWidth={2} />
 
             <TextInput
+              ref={searchInputRef}
               accessibilityLabel="Buscar no mapa"
               accessibilityHint="Digite endereço, bairro ou nome do ponto de recarga."
               value={searchTerm}
@@ -1574,6 +1616,7 @@ export default function HomeMapScreen() {
                   return (
                     <PressableScale
                       key={filter.id}
+                      tabIndex={atalhosRapidosAbertos ? 0 : -1}
                       accessibilityRole="button"
                       accessibilityLabel={`${filter.label}${filter.active ? ", filtro ativo" : ""}`}
                       accessibilityHint="Filtra os pontos do mapa em tempo real."
@@ -1611,6 +1654,7 @@ export default function HomeMapScreen() {
           style={styles.mapArea}
           onLayout={(event) => {
             setMapAreaHeight(event.nativeEvent.layout.height);
+            setMapAreaWidth(event.nativeEvent.layout.width);
           }}
         >
           <MapView
@@ -1695,8 +1739,19 @@ export default function HomeMapScreen() {
             ]}
           />
 
-          <View pointerEvents="box-none" style={styles.fixedMapControls}>
-            <View style={styles.zoomPill}>
+          <View
+            pointerEvents="box-none"
+            style={[
+              styles.fixedMapControls,
+              layout.compactControls && styles.mapControlsCompact,
+            ]}
+          >
+            <View
+              style={[
+                styles.zoomPill,
+                layout.compactControls && styles.zoomPillCompact,
+              ]}
+            >
               <PressableScale
                 accessibilityRole="button"
                 accessibilityLabel="Aumentar zoom do mapa"
@@ -1712,10 +1767,17 @@ export default function HomeMapScreen() {
                 onPressOut={() => setControleMapaAtivo(null)}
                 onPress={() => alterarZoomMapa("aproximar")}
               >
-                <Text style={styles.mapControlText}>+</Text>
+                <Text allowFontScaling={false} style={styles.mapControlText}>
+                  +
+                </Text>
               </PressableScale>
 
-              <View style={styles.zoomPillDivider} />
+              <View
+                style={[
+                  styles.zoomPillDivider,
+                  layout.compactControls && styles.zoomDividerCompact,
+                ]}
+              />
 
               <PressableScale
                 accessibilityRole="button"
@@ -1732,7 +1794,9 @@ export default function HomeMapScreen() {
                 onPressOut={() => setControleMapaAtivo(null)}
                 onPress={() => alterarZoomMapa("afastar")}
               >
-                <Text style={styles.mapControlText}>−</Text>
+                <Text allowFontScaling={false} style={styles.mapControlText}>
+                  −
+                </Text>
               </PressableScale>
             </View>
 
@@ -1774,8 +1838,7 @@ export default function HomeMapScreen() {
               style={[
                 styles.fluiAssistantFloating,
                 {
-                  left: 0,
-                  right: 0,
+                  right: margemHorizontalSheet,
                   bottom: sheetHeight + ASSISTANT_SHEET_GAP,
                   transform: [
                     { translateY: deslocamentoVerticalBotaoAssistente },
@@ -1818,17 +1881,31 @@ export default function HomeMapScreen() {
           ) : null}
 
           <Animated.View
+            aria-hidden={painelTotalmenteOculto}
+            accessibilityElementsHidden={painelTotalmenteOculto}
+            importantForAccessibility={
+              painelTotalmenteOculto ? "no-hide-descendants" : "auto"
+            }
             style={[
               styles.bottomSheet,
               {
-                left: margemHorizontalSheet,
-                right: margemHorizontalSheet,
+                left: layout.horizontal ? 16 : margemHorizontalSheet,
+                right: layout.horizontal ? undefined : margemHorizontalSheet,
+                width: layout.panelWidth,
                 transform: [{ translateY: sheetTranslateY }],
               },
             ]}
           >
-            <View
-              style={styles.bottomSheetCard}
+            <ScrollView
+              // Recalcular os textos nativos quando o Dynamic Type mudar durante a sessão.
+              key={`painel-${fontScale}-${escalaFonteSistema}`}
+              tabIndex={-1}
+              nestedScrollEnabled
+              style={[
+                styles.bottomSheetCard,
+                { maxHeight: layout.panelMaxHeight },
+              ]}
+              contentContainerStyle={styles.bottomSheetContent}
               onLayout={(event) => {
                 setSheetHeight(event.nativeEvent.layout.height);
               }}
@@ -1836,6 +1913,7 @@ export default function HomeMapScreen() {
               <PressableScale
                 accessibilityRole="button"
                 accessibilityLabel="Minimizar opções demonstrativas para ver o mapa inteiro"
+                tabIndex={painelTotalmenteOculto ? -1 : 0}
                 accessibilityHint="Esconde completamente o painel, deixando só um atalho para trazê-lo de volta."
                 hitSlop={{ top: 10, right: 44, bottom: 10, left: 44 }}
                 pressedScale={0.94}
@@ -2024,7 +2102,7 @@ export default function HomeMapScreen() {
                   })}
                 </ScrollView>
               )}
-            </View>
+            </ScrollView>
           </Animated.View>
 
           {painelTotalmenteOculto ? (
@@ -2076,120 +2154,133 @@ export default function HomeMapScreen() {
         ) : null}
 
         {seletorBateriaAberto ? (
-          <View style={styles.batterySheetOverlay}>
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel="Fechar seletor de bateria"
-              style={styles.batterySheetBackdrop}
-              onPress={cancelarEdicaoDeBateria}
-            />
+          <Modal
+            transparent
+            visible
+            animationType={reduceMotionEnabled ? "none" : "slide"}
+            onRequestClose={cancelarEdicaoDeBateria}
+          >
+            <View style={styles.batterySheetOverlay} accessibilityViewIsModal>
+              <Pressable
+                accessibilityRole="button"
+                accessibilityLabel="Fechar seletor de bateria"
+                style={styles.batterySheetBackdrop}
+                onPress={cancelarEdicaoDeBateria}
+              />
 
-            <View style={styles.batterySheetCard}>
-              <View style={styles.batterySheetHeaderRow}>
-                <View
-                  style={[
-                    styles.batterySheetPreviewIcon,
-                    { backgroundColor: corBateriaEmEdicao + "1F" },
-                  ]}
-                >
-                  <IconeBateriaEmEdicao
-                    size={26}
-                    color={corBateriaEmEdicao}
-                    strokeWidth={2.4}
-                  />
-                </View>
-
-                <View style={styles.batterySheetHeaderText}>
-                  <Text style={styles.batterySheetTitle}>
-                    Bateria para estimativa
-                  </Text>
-                  <Text style={styles.batterySheetSubtitle}>
-                    ≈{autonomiaEmEdicaoKm} km estimados · sem telemetria
-                  </Text>
-                </View>
-
-                <PressableScale
-                  accessibilityRole="button"
-                  accessibilityLabel="Fechar sem definir a carga"
-                  accessibilityHint="Descarta a carga selecionada e fecha este painel."
-                  pressedScale={0.92}
-                  style={styles.batterySheetCloseButton}
-                  onPress={cancelarEdicaoDeBateria}
-                >
-                  <X size={21} color={colors.textMuted} strokeWidth={2.3} />
-                </PressableScale>
-              </View>
-
-              <View style={styles.batteryStepperRow}>
-                <PressableScale
-                  accessibilityRole="button"
-                  accessibilityLabel="Diminuir bateria em 5 por cento"
-                  accessibilityState={{ disabled: bateriaEmEdicao === 0 }}
-                  pressedScale={0.92}
-                  style={[
-                    styles.batteryStepperButton,
-                    bateriaEmEdicao === 0
-                      ? styles.batteryStepperButtonDisabled
-                      : null,
-                  ]}
-                  onPress={() => ajustarNivelDeBateria(-PASSO_AJUSTE_BATERIA)}
-                  disabled={bateriaEmEdicao === 0}
-                >
-                  <Text style={styles.batteryStepperButtonText}>−</Text>
-                </PressableScale>
-
-                <View
-                  accessibilityRole="text"
-                  accessibilityLabel={`Bateria selecionada em ${bateriaEmEdicao} por cento, cerca de ${autonomiaEmEdicaoKm} quilômetros`}
-                  style={styles.batteryStepperValue}
-                >
-                  <Text
+              <ScrollView
+                style={[
+                  styles.batterySheetCard,
+                  { maxHeight: alturaJanela * 0.9 },
+                ]}
+                contentContainerStyle={styles.batterySheetContent}
+              >
+                <View style={styles.batterySheetHeaderRow}>
+                  <View
                     style={[
-                      styles.batteryStepperPercent,
-                      { color: corBateriaEmEdicao },
+                      styles.batterySheetPreviewIcon,
+                      { backgroundColor: corBateriaEmEdicao + "1F" },
                     ]}
                   >
-                    {bateriaEmEdicao}%
-                  </Text>
-                  <Text style={styles.batteryStepperRange}>
-                    ≈{autonomiaEmEdicaoKm} km
-                  </Text>
+                    <IconeBateriaEmEdicao
+                      size={26}
+                      color={corBateriaEmEdicao}
+                      strokeWidth={2.4}
+                    />
+                  </View>
+
+                  <View style={styles.batterySheetHeaderText}>
+                    <Text style={styles.batterySheetTitle}>
+                      Bateria para estimativa
+                    </Text>
+                    <Text style={styles.batterySheetSubtitle}>
+                      ≈{autonomiaEmEdicaoKm} km estimados · sem telemetria
+                    </Text>
+                  </View>
+
+                  <PressableScale
+                    accessibilityRole="button"
+                    accessibilityLabel="Fechar sem definir a carga"
+                    accessibilityHint="Descarta a carga selecionada e fecha este painel."
+                    pressedScale={0.92}
+                    style={styles.batterySheetCloseButton}
+                    onPress={cancelarEdicaoDeBateria}
+                  >
+                    <X size={21} color={colors.textMuted} strokeWidth={2.3} />
+                  </PressableScale>
                 </View>
+
+                <View style={styles.batteryStepperRow}>
+                  <PressableScale
+                    accessibilityRole="button"
+                    accessibilityLabel="Diminuir bateria em 5 por cento"
+                    accessibilityState={{ disabled: bateriaEmEdicao === 0 }}
+                    pressedScale={0.92}
+                    style={[
+                      styles.batteryStepperButton,
+                      bateriaEmEdicao === 0
+                        ? styles.batteryStepperButtonDisabled
+                        : null,
+                    ]}
+                    onPress={() => ajustarNivelDeBateria(-PASSO_AJUSTE_BATERIA)}
+                    disabled={bateriaEmEdicao === 0}
+                  >
+                    <Text style={styles.batteryStepperButtonText}>−</Text>
+                  </PressableScale>
+
+                  <View
+                    accessibilityRole="text"
+                    accessibilityLabel={`Bateria selecionada em ${bateriaEmEdicao} por cento, cerca de ${autonomiaEmEdicaoKm} quilômetros`}
+                    style={styles.batteryStepperValue}
+                  >
+                    <Text
+                      style={[
+                        styles.batteryStepperPercent,
+                        { color: corBateriaEmEdicao },
+                      ]}
+                    >
+                      {bateriaEmEdicao}%
+                    </Text>
+                    <Text style={styles.batteryStepperRange}>
+                      ≈{autonomiaEmEdicaoKm} km
+                    </Text>
+                  </View>
+
+                  <PressableScale
+                    accessibilityRole="button"
+                    accessibilityLabel="Aumentar bateria em 5 por cento"
+                    accessibilityState={{ disabled: bateriaEmEdicao === 100 }}
+                    pressedScale={0.92}
+                    style={[
+                      styles.batteryStepperButton,
+                      bateriaEmEdicao === 100
+                        ? styles.batteryStepperButtonDisabled
+                        : null,
+                    ]}
+                    onPress={() => ajustarNivelDeBateria(PASSO_AJUSTE_BATERIA)}
+                    disabled={bateriaEmEdicao === 100}
+                  >
+                    <Text style={styles.batteryStepperButtonText}>+</Text>
+                  </PressableScale>
+                </View>
+
+                <Text style={styles.batterySheetSafetyHint}>
+                  Ajuste manualmente apenas com o veículo parado.
+                </Text>
 
                 <PressableScale
                   accessibilityRole="button"
-                  accessibilityLabel="Aumentar bateria em 5 por cento"
-                  accessibilityState={{ disabled: bateriaEmEdicao === 100 }}
-                  pressedScale={0.92}
-                  style={[
-                    styles.batteryStepperButton,
-                    bateriaEmEdicao === 100
-                      ? styles.batteryStepperButtonDisabled
-                      : null,
-                  ]}
-                  onPress={() => ajustarNivelDeBateria(PASSO_AJUSTE_BATERIA)}
-                  disabled={bateriaEmEdicao === 100}
+                  accessibilityLabel="Definir carga da bateria"
+                  style={styles.batterySheetDoneButton}
+                  onPress={() => void definirNivelDeBateria()}
                 >
-                  <Text style={styles.batteryStepperButtonText}>+</Text>
+                  <Text style={styles.batterySheetDoneButtonText}>
+                    Definir carga
+                  </Text>
                 </PressableScale>
-              </View>
-
-              <Text style={styles.batterySheetSafetyHint}>
-                Ajuste manualmente apenas com o veículo parado.
-              </Text>
-
-              <PressableScale
-                accessibilityRole="button"
-                accessibilityLabel="Definir carga da bateria"
-                style={styles.batterySheetDoneButton}
-                onPress={() => void definirNivelDeBateria()}
-              >
-                <Text style={styles.batterySheetDoneButtonText}>
-                  Definir carga
-                </Text>
-              </PressableScale>
+              </ScrollView>
             </View>
-          </View>
+          </Modal>
         ) : null}
       </ScreenTransition>
     </SafeAreaView>

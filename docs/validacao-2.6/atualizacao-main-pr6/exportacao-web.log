@@ -1,0 +1,27 @@
+React Compiler enabled
+Starting Metro Bundler
+Static rendering is enabled. Learn more: https://docs.expo.dev/router/reference/static-rendering/
+Web node_modules/expo-router/entry.js ▓▓░░░░░░░░░░░░░░ 14.5% ( 29/141)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░ 87.9% ( 663/2419)
+| (node:61254) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+λ Bundled 1613ms node_modules/expo-router/node/render.js (2505 modules)
+Web Bundled 2358ms node_modules/expo-router/entry.js (2536 modules)
+
+› web bundles (1):
+_expo/static/js/web/entry-8fe1334b478287de0606a0b82002c552.js (3.71 MB)
+
+› Static routes (11):
+/map (74.8 kB)
+/ (index) (39.9 kB)
+/review (40.9 kB)
+/search (74.4 kB)
+/loading (41.1 kB)
+/profile (51.6 kB)
+/settings (59.7 kB)
+/_sitemap (39 kB)
+/onboarding (44.8 kB)
+/+not-found (39 kB)
+/point-details (69.9 kB)
+
+Exported: /tmp/flui-pr79-main-web

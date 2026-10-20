@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Texto secundário",
+    "before": "#63766F",
+    "after": "#5B6E67",
+    "background": "#F3F8F4",
+    "beforeRatio": 4.49,
+    "afterRatio": 5.05
+  },
+  {
+    "name": "Bateria confortável",
+    "before": "#1FA971",
+    "after": "#137A50",
+    "background": "#F3F8F4",
+    "beforeRatio": 2.8,
+    "afterRatio": 4.98
+  },
+  {
+    "name": "Bateria intermediária",
+    "before": "#F4B942",
+    "after": "#805500",
+    "background": "#F3F8F4",
+    "beforeRatio": 1.65,
+    "afterRatio": 6.07
+  },
+  {
+    "name": "Bateria baixa",
+    "before": "#E9BAB5",
+    "after": "#AD352D",
+    "background": "#F3F8F4",
+    "beforeRatio": 1.61,
+    "afterRatio": 5.88
+  }
+]
