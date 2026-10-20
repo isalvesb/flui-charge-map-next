@@ -51,7 +51,8 @@ function worker() {
 test("worker prepara páginas e assets locais, sem armazenar serviços externos", async () => {
   const app = worker();
   await app.lifecycle("install");
-  assert.equal(app.entries.size, 11); // nove páginas e dois assets da mesma origem
+  assert.equal(app.entries.size, 12); // dez páginas e dois assets da mesma origem
+  assert.ok(app.entries.has("https://flui.test/loading"));
   assert.ok(app.entries.has("https://flui.test/trip-planner"));
   assert.ok(app.entries.has("https://flui.test/_expo/entry.js"));
   assert.equal(app.request("https://external.test/photo.jpg", "cors", "image"), undefined);
@@ -66,6 +67,7 @@ test("worker permite reinício offline e ficha com parâmetros sem rede", async 
   await app.lifecycle("install");
   app.setOnline(false);
   assert.equal((await app.request("/map"))?.status, 200);
+  assert.equal((await app.request("/loading"))?.status, 200);
   assert.equal((await app.request("/point-details?stationId=vm"))?.status, 200);
   const calls = app.requests.length;
   assert.equal(await (await app.request("/_expo/entry.js", "cors", "script"))?.text(), "asset");

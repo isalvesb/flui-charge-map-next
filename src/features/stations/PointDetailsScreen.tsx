@@ -439,7 +439,7 @@ export default function PointDetailsScreen() {
       <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} />
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.scrollContent}
+        contentContainerStyle={[styles.scrollContent, connectionError && styles.scrollContentWithError]}
       >
         <View style={styles.hero}>
           <StationVisualCover
@@ -900,45 +900,47 @@ export default function PointDetailsScreen() {
         </View>
       </ScrollView>
 
-      {connectionError ? (
-        <Text accessibilityRole="alert" style={styles.connectionError}>
-          {connectionError}
-        </Text>
-      ) : null}
       <SafeAreaView edges={["bottom"]} style={styles.bottomActions}>
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel="Ver mapa"
-          accessibilityState={{ disabled: isLoadingAction }}
-          style={({ pressed, hovered }: PressableVisualState) => [
-            styles.secondaryActionButton,
-            hovered && !pressed ? styles.hoverFeedback : null,
-            pressed ? styles.buttonPressed : null,
-          ]}
-          disabled={isLoadingAction}
-          onPress={voltarAoMapa}
-        >
-          <Text style={styles.secondaryActionText}>Ver mapa</Text>
-        </Pressable>
+        {connectionError ? (
+          <Text accessibilityRole="alert" accessibilityLiveRegion="assertive" style={styles.connectionError}>
+            {connectionError}
+          </Text>
+        ) : null}
+        <View style={styles.bottomActionRow}>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="Ver mapa"
+            accessibilityState={{ disabled: isLoadingAction }}
+            style={({ pressed, hovered }: PressableVisualState) => [
+              styles.secondaryActionButton,
+              hovered && !pressed ? styles.hoverFeedback : null,
+              pressed ? styles.buttonPressed : null,
+            ]}
+            disabled={isLoadingAction}
+            onPress={voltarAoMapa}
+          >
+            <Text style={styles.secondaryActionText}>Ver mapa</Text>
+          </Pressable>
 
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel={`Iniciar rota para ${station.name}`}
-          accessibilityHint="Mostra o aviso de funcionamento antes de escolher Google Maps ou Waze."
-          accessibilityState={{ disabled: isLoadingAction }}
-          style={({ pressed, hovered }: PressableVisualState) => [
-            styles.primaryActionButton,
-            hovered && !pressed ? styles.hoverFeedback : null,
-            pressed ? styles.primaryButtonPressed : null,
-          ]}
-          disabled={isLoadingAction}
-          onPress={() => {
-            triggerImpact();
-            void handleStartRoute();
-          }}
-        >
-          <Text style={styles.primaryActionText}>Iniciar rota</Text>
-        </Pressable>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={`Iniciar rota para ${station.name}`}
+            accessibilityHint="Mostra o aviso de funcionamento antes de escolher Google Maps ou Waze."
+            accessibilityState={{ disabled: isLoadingAction }}
+            style={({ pressed, hovered }: PressableVisualState) => [
+              styles.primaryActionButton,
+              hovered && !pressed ? styles.hoverFeedback : null,
+              pressed ? styles.primaryButtonPressed : null,
+            ]}
+            disabled={isLoadingAction}
+            onPress={() => {
+              triggerImpact();
+              void handleStartRoute();
+            }}
+          >
+            <Text style={styles.primaryActionText}>Iniciar rota</Text>
+          </Pressable>
+        </View>
       </SafeAreaView>
 
       <Modal

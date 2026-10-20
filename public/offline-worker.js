@@ -2,7 +2,7 @@
 // Apenas arquivos públicos do app; preferências e avaliações continuam no AsyncStorage.
 const VERSION = new URL(self.location.href).searchParams.get("version") || "v1";
 const CACHE = `flui-offline-${VERSION}`;
-const PAGES = ["/", "/map", "/search", "/point-details", "/settings", "/profile", "/review", "/trip-planner", "/onboarding"];
+const PAGES = ["/", "/map", "/search", "/point-details", "/settings", "/profile", "/review", "/trip-planner", "/onboarding", "/loading"];
 const ASSETS = new Set(["script", "style", "image", "font"]);
 
 self.addEventListener("install", (event) => {
