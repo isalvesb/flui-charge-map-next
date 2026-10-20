@@ -744,11 +744,11 @@ export default function HomeMapScreen() {
     larguraJanela,
     alturaJanela,
     mapAreaHeight,
-    fontScale * escalaFonteSistema,
+    fontScale,
     sheetHeight,
   );
   const cabecalhoCompacto =
-    larguraJanela <= 360 || fontScale * escalaFonteSistema > 1.3;
+    larguraJanela <= 360 || fontScale > 1.3;
   const [alturaCardPonto, setAlturaCardPonto] = useState<number | null>(null);
   const [atalhosRapidosAbertos, setAtalhosRapidosAbertos] = useState(true);
   const [hasInteractedWithQuickFilters, setHasInteractedWithQuickFilters] =
@@ -794,7 +794,7 @@ export default function HomeMapScreen() {
       0,
       Math.max(
         QUICK_FILTERS_CONTENT_HEIGHT,
-        48 * fontScale * escalaFonteSistema,
+        48 * fontScale,
       ),
     ],
   });
@@ -1898,7 +1898,7 @@ export default function HomeMapScreen() {
           >
             <ScrollView
               // Recalcular os textos nativos quando o Dynamic Type mudar durante a sessão.
-              key={`painel-${fontScale}-${escalaFonteSistema}`}
+              key={`painel-${fontScale}`}
               tabIndex={-1}
               nestedScrollEnabled
               style={[
