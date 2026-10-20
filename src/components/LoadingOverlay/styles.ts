@@ -25,9 +25,9 @@ export const styles = StyleSheet.create({
     minWidth: 220,
     maxWidth: "82%",
     paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.md,
+    paddingVertical: spacing.lg,
     borderRadius: radius.lg,
-    flexDirection: "row",
+    flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
     gap: spacing.sm,
@@ -75,5 +75,6 @@ export const styles = StyleSheet.create({
     fontSize: typography.sizes.sm,
     fontWeight: typography.weights.semibold,
     lineHeight: 20,
+    textAlign: "center",
   },
 });
