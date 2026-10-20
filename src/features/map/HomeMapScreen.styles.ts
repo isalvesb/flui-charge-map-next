@@ -685,7 +685,7 @@ const styles = StyleSheet.create({
   fluiAssistantFloating: {
     position: "absolute",
     height: 52,
-    alignItems: "flex-end",
+    alignItems: "center",
     zIndex: 16,
   },
 
@@ -770,7 +770,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "800",
   },
-
 
   sheetTitle: {
     flex: 1,

@@ -103,7 +103,8 @@ export function FluiAssistantSheet({
   onDismiss,
   onSelectStation,
 }: Props) {
-  const { theme, fontScale, appearanceMode, demoOrigin, userPreferences } = useAppPreferences();
+  const { theme, fontScale, appearanceMode, demoOrigin, userPreferences } =
+    useAppPreferences();
   const reduceMotionEnabled = useReducedMotion();
   const styles = useMemo(
     () => createStyles(theme, fontScale, appearanceMode === "dark"),
@@ -126,7 +127,8 @@ export function FluiAssistantSheet({
   const [fluiaState, setFluiaState] = useState<FluiaState>("repouso");
 
   const recommendation = useMemo(() => {
-    if (!funcionalidadesExperimentais.fluia || !selectedIntent || isAnalyzing) return null;
+    if (!funcionalidadesExperimentais.fluia || !selectedIntent || isAnalyzing)
+      return null;
     return recommendStations({
       stations,
       intent: selectedIntent,
@@ -410,7 +412,9 @@ export function FluiAssistantSheet({
                 >
                   <Sparkles size={28} color={theme.primary} strokeWidth={2.2} />
                 </Animated.View>
-                <Text style={styles.analyzingTitle}>Analisando suas opções</Text>
+                <Text style={styles.analyzingTitle}>
+                  Analisando suas opções
+                </Text>
                 <View style={styles.thinkingDots} accessibilityElementsHidden>
                   {[
                     [0, 0.12, 0.25, 0.38, 1],
@@ -496,8 +500,8 @@ export function FluiAssistantSheet({
                   <Text style={styles.explanationText}>
                     {recommendation.explanation}
                     {"\n"}
-                    {userPreferences.vehicleName} · origem demonstrativa: {demoOrigin.nome}.
-                    {"\n"}
+                    {userPreferences.vehicleName} · origem demonstrativa:{" "}
+                    {demoOrigin.nome}.{"\n"}
                     {RECOMMENDATION_DISCLAIMER}
                   </Text>
                 </View>
@@ -511,7 +515,11 @@ export function FluiAssistantSheet({
                     onPress={() => chooseStation(recommendation.backup!.id)}
                   >
                     <View style={styles.backupIcon}>
-                      <MapPin size={22} color={theme.primary} strokeWidth={2.3} />
+                      <MapPin
+                        size={22}
+                        color={theme.primary}
+                        strokeWidth={2.3}
+                      />
                     </View>
                     <View style={styles.backupText}>
                       <Text style={styles.backupTitle}>Plano B</Text>
@@ -537,7 +545,9 @@ export function FluiAssistantSheet({
                   style={styles.primaryButton}
                   onPress={() => chooseStation(recommendation.primary.id)}
                 >
-                  <Text style={styles.primaryButtonText}>Ver ponto no mapa</Text>
+                  <Text style={styles.primaryButtonText}>
+                    Ver ponto no mapa
+                  </Text>
                 </PressableScale>
                 <PressableScale
                   accessibilityRole="button"
@@ -588,7 +598,8 @@ export function FluiAssistantSheet({
             ) : null}
             <View style={styles.chatBox}>
               <Text style={styles.subtitle}>
-                {userPreferences.vehicleName} · origem demonstrativa: {demoOrigin.nome}.
+                {userPreferences.vehicleName} · origem demonstrativa:{" "}
+                {demoOrigin.nome}.
               </Text>
               <View style={styles.messagesContent}>
                 {messages.map((message) => (
@@ -616,7 +627,9 @@ export function FluiAssistantSheet({
                   </View>
                 ))}
                 {isChatThinking ? (
-                  <Text style={styles.thinkingText}>FluIA está pensando...</Text>
+                  <Text style={styles.thinkingText}>
+                    FluIA está pensando...
+                  </Text>
                 ) : null}
               </View>
             </View>
@@ -625,9 +638,16 @@ export function FluiAssistantSheet({
           <View style={styles.inputRow}>
             <TextInput
               value={draft}
-              onChangeText={(text) => { setDraft(text); markTyping(); }}
+              onChangeText={(text) => {
+                setDraft(text);
+                markTyping();
+              }}
               onFocus={markTyping}
-              onBlur={() => setFluiaState((current) => current === "digitando" ? "repouso" : current)}
+              onBlur={() =>
+                setFluiaState((current) =>
+                  current === "digitando" ? "repouso" : current,
+                )
+              }
               onSubmitEditing={sendMessage}
               placeholder="Pergunte algo à FluIA"
               placeholderTextColor={theme.textMuted}
@@ -790,7 +810,7 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean) {
       color: theme.text,
       fontSize: font(15),
       lineHeight: font(20),
-      fontWeight: "800",
+      fontWeight: "600",
     },
     analyzingCard: {
       minHeight: 210,
@@ -816,7 +836,7 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean) {
       color: theme.text,
       fontSize: font(17),
       lineHeight: font(22),
-      fontWeight: "900",
+      fontWeight: "600",
       textAlign: "center",
     },
     thinkingDots: {
@@ -867,7 +887,7 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean) {
       color: theme.text,
       fontSize: font(23),
       lineHeight: font(28),
-      fontWeight: "900",
+      fontWeight: "600",
       letterSpacing: -0.45,
     },
     stationAddress: {
@@ -905,7 +925,7 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean) {
       color: theme.text,
       fontSize: font(15),
       lineHeight: font(20),
-      fontWeight: "900",
+      fontWeight: "600",
     },
     explanationText: {
       marginTop: 4,
@@ -939,7 +959,7 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean) {
       color: theme.text,
       fontSize: font(14),
       lineHeight: font(18),
-      fontWeight: "900",
+      fontWeight: "600",
     },
     backupDescription: {
       marginTop: 2,
