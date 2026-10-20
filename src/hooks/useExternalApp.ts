@@ -1,3 +1,4 @@
+import { useConnectivity } from "../context/ConnectivityContext";
 import { useState } from "react";
 import { Linking } from "react-native";
 import { type RouteProvider } from "../features/stations/stationPresentation";
@@ -16,6 +17,7 @@ export function useExternalMapApp(
   station: ChargingStation,
   origin?: Pick<ChargingStation, "latitude" | "longitude">,
 ): ExternamMapResponseType {
+  const { checkConnection } = useConnectivity();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<ExternalMapErrorType>(null);
   const routeToExternalApp = async (provider: RouteProvider) => {
@@ -23,7 +25,7 @@ export function useExternalMapApp(
     setError(null);
     setIsLoading(true);
     try {
-      setError(await openExternalRoute(station, provider, origin, Linking));
+      setError(await openExternalRoute(station, provider, origin, Linking, checkConnection));
     } finally {
       setIsLoading(false);
     }

@@ -1,3 +1,6 @@
+import { ConnectionNotice } from "../../components/ConnectionNotice";
+import { useConnectivity } from "../../context/ConnectivityContext";
+import { externalActionBlock } from "../../utils/connectivity";
 import {
   router,
   useFocusEffect,
@@ -212,6 +215,8 @@ export default function PointDetailsScreen() {
   } = useFluiStorage();
 
   const [isLoadingAction, setIsLoadingAction] = useState(false);
+  const { checkConnection } = useConnectivity();
+  const [connectionError, setConnectionError] = useState<string | null>(null);
   const [isRouteDialogOpen, setIsRouteDialogOpen] = useState(false);
   const [routeLocation, setRouteLocation] = useState<LocationObject | null>(null);
   const [modalStep, setModalStep] = useState<"confirmation" | "redirect">("confirmation");
@@ -265,14 +270,22 @@ export default function PointDetailsScreen() {
     }, 360);
   }
 
-  function handleStartRoute() {
-    if (!station || isLoadingAction) {
-      return;
+  async function handleStartRoute() {
+    if (!station || isLoadingAction) return;
+    setIsLoadingAction(true);
+    setConnectionError(null);
+    try {
+      const blocked = externalActionBlock(await checkConnection());
+      if (blocked) {
+        setConnectionError(blocked);
+        return;
+      }
+      setRouteLocation(null);
+      setModalStep("confirmation");
+      setIsRouteDialogOpen(true);
+    } finally {
+      setIsLoadingAction(false);
     }
-
-    setRouteLocation(null);
-    setModalStep("confirmation");
-    setIsRouteDialogOpen(true);
   }
 
   function voltarAoMapa() {
@@ -540,6 +553,7 @@ export default function PointDetailsScreen() {
           <View style={styles.resumoMotoristaCard}>
             <Text style={styles.resumoEyebrow}>Guia do ponto</Text>
             <Text style={styles.resumoTitle}>{recomendacaoDoPonto}</Text>
+            <ConnectionNotice />
             <Text style={styles.resumoDescription}>
               {identificacaoDados.catalogo.aviso}{" "}
               {identificacaoDados.estimativas.aviso} Confirme o funcionamento e
@@ -886,6 +900,11 @@ export default function PointDetailsScreen() {
         </View>
       </ScrollView>
 
+      {connectionError ? (
+        <Text accessibilityRole="alert" style={styles.connectionError}>
+          {connectionError}
+        </Text>
+      ) : null}
       <SafeAreaView edges={["bottom"]} style={styles.bottomActions}>
         <Pressable
           accessibilityRole="button"
@@ -915,7 +934,7 @@ export default function PointDetailsScreen() {
           disabled={isLoadingAction}
           onPress={() => {
             triggerImpact();
-            handleStartRoute();
+            void handleStartRoute();
           }}
         >
           <Text style={styles.primaryActionText}>Iniciar rota</Text>

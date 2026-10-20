@@ -1,0 +1,37 @@
+- 'button "Beta 2.5 Offline. Bateria para estimativa: 60 por cento. Informado manualmente. 20/10, 00:13. Cerca de 210 quilômetros estimados"':
+  - generic: 60%
+  - generic: Informado manualmente
+  - generic: 20/10, 00:13
+- button "Abrir perfil"
+- textbox "Buscar no mapa":
+  - /placeholder: Buscar endereço, bairro ou ponto
+- button "Abrir busca e filtros":
+- button "Mostrar atalhos de filtro":
+- generic: Aberto agora
+- generic: CCS2
+- generic: Rápido
+- generic: Banheiro
+- generic "Mapa com pontos de recarga próximos":
+  - generic: Prévia do mapa
+  - generic: "-23.547, -46.662"
+  - button "Abrir ficha de Higienópolis Prime Charge"
+- button "Aumentar zoom do mapa":
+  - generic: +
+- button "Diminuir zoom do mapa":
+  - generic: −
+- 'button "Centralizar origem demonstrativa: Vila Mariana"':
+- button "Planejar viagem":
+- button "Abrir assistente Flui IA":
+  - generic: Flui IA
+- button "Minimizar opções demonstrativas para ver o mapa inteiro":
+- generic: Opções demonstrativas
+- generic: "Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo. Dados desta versão, sem atualização pela conexão; podem estar desatualizados. Origem: Vila Mariana · distâncias em linha reta, sem cálculo de percurso"
+- button "Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈4,9 km em linha reta. Chegada estimada com 59% de bateria.":
+  - generic: Opção demonstrativa
+  - generic: Confortável
+  - generic: Higienópolis Prime Charge
+  - generic: Rua Alagoas, 974
+  - generic: ≈4,9 km em linha reta
+  - generic: Aberto agora
+  - generic: 4,9
+  - generic: 150 kW

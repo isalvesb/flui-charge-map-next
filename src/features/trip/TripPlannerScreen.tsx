@@ -1,3 +1,6 @@
+import { useConnectivity } from "../../context/ConnectivityContext";
+import { ConnectionNotice } from "../../components/ConnectionNotice";
+import { openExternalRoute } from "../../utils/externalRoute";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   Linking,
@@ -46,7 +49,6 @@ import {
   podeIniciarViagem,
   type ParadaDeViagem,
 } from "../../utils/tripPlanner";
-import { getStationRouteUrl } from "../stations/stationPresentation";
 import { styles as baseStyles } from "./TripPlannerScreen.styles";
 
 type Coordenada = { latitude: number; longitude: number };
@@ -83,6 +85,7 @@ function calcularRegiaoDoMapa(pontos: Coordenada[]): Region {
 export default function TripPlannerScreen() {
   const { styles, colors, isDarkMode } = useTelaComPreferencias(baseStyles);
   const { userPreferences, demoOrigin } = useAppPreferences();
+  const { checkConnection } = useConnectivity();
   const vehicleRangeKm = userPreferences.vehicleRangeKm;
   const batteryPercent = userPreferences.batteryPercent;
 
@@ -179,22 +182,12 @@ export default function TripPlannerScreen() {
     const alvo: ParadaDeViagem | Coordenada =
       plano.paradas[0] ?? destinoSelecionado;
     const provider = userPreferences.preferredRouteApp;
-    const url = getStationRouteUrl(alvo, provider, origemSelecionada);
 
     setIsIniciandoViagem(true);
     setErroDeRota(null);
 
     try {
-      const canOpen = await Linking.canOpenURL(url);
-
-      if (!canOpen) {
-        setErroDeRota(
-          "Seu dispositivo não conseguiu abrir o aplicativo de mapas.",
-        );
-        return;
-      }
-
-      await Linking.openURL(url);
+      setErroDeRota(await openExternalRoute(alvo, provider, origemSelecionada, Linking, checkConnection));
     } catch {
       setErroDeRota(
         "Não foi possível abrir a rota agora. Tente novamente em alguns instantes.",
@@ -306,6 +299,7 @@ export default function TripPlannerScreen() {
           <View style={styles.headerSpacer} />
         </View>
 
+        <ConnectionNotice />
         <ScrollView
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}

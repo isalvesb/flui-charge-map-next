@@ -585,6 +585,13 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
 
+  connectionError: {
+    color: colors.text,
+    fontSize: 14,
+    paddingHorizontal: 20,
+    paddingVertical: 8,
+  },
+
   bigRating: {
     color: "#10221E",
     fontSize: 42,

@@ -1,0 +1,27 @@
+React Compiler enabled
+Starting Metro Bundler
+Static rendering is enabled. Learn more: https://docs.expo.dev/router/reference/static-rendering/
+| (node:33764) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+λ Bundled 1249ms node_modules/expo-router/node/render.js (2482 modules)
+Web Bundled 1603ms node_modules/expo-router/entry.js (2553 modules)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 99.9% (2553/2553)
+
+› web bundles (1):
+_expo/static/js/web/entry-a3831cb445567b6e29b36126123dd831.js (3.73 MB)
+
+› Static routes (12):
+/map (77.2 kB)
+/ (index) (40.6 kB)
+/review (41.6 kB)
+/search (75.1 kB)
+/loading (41.8 kB)
+/profile (52.3 kB)
+/settings (60.6 kB)
+/_sitemap (39.8 kB)
+/onboarding (45.5 kB)
+/+not-found (39.8 kB)
+/trip-planner (56.9 kB)
+/point-details (71.4 kB)
+
+Exported: /tmp/flui-beta25-web

@@ -1,3 +1,4 @@
+import { externalActionBlock, type ConnectionStatus } from "./connectivity";
 import { getStationRouteUrl, type RouteProvider } from "../features/stations/stationPresentation";
 import type { ChargingStation } from "../types";
 
@@ -8,16 +9,21 @@ type ExternalLinking = {
 };
 
 export async function openExternalRoute(
-  station: ChargingStation,
+  station: Coordinates,
   provider: RouteProvider,
   origin: Coordinates | undefined,
   linking: ExternalLinking,
+  checkConnection?: () => Promise<ConnectionStatus>,
 ): Promise<string | null> {
   if (!Number.isFinite(station.latitude) || !Number.isFinite(station.longitude)) {
     return "Este ponto ainda não possui coordenadas cadastradas.";
   }
 
   try {
+    if (checkConnection) {
+      const blocked = externalActionBlock(await checkConnection());
+      if (blocked) return blocked;
+    }
     const url = getStationRouteUrl(station, provider, origin);
     if (!(await linking.canOpenURL(url))) {
       return "Seu dispositivo não conseguiu abrir o aplicativo de mapas. Tente novamente ou escolha outro aplicativo.";
