@@ -71,10 +71,10 @@ export const styles = StyleSheet.create({
 
   message: {
     flexShrink: 1,
+    textAlign: "center",
     color: colors.text,
     fontSize: typography.sizes.sm,
     fontWeight: typography.weights.semibold,
     lineHeight: 20,
-    textAlign: "center",
   },
 });

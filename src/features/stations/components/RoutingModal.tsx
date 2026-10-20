@@ -5,7 +5,7 @@ import { ChargingStation } from "@/src/types";
 import { canChargeAt } from "@/src/utils/stationAvailability";
 import type { LocationObject } from "expo-location";
 import { useEffect, useRef, useState } from "react";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, ScrollView, Text, View } from "react-native";
 import { styles as baseStyles } from "../PointDetailsScreen.styles";
 import { getStationStatusInfo } from "../stationPresentation";
 import { useLocationContext } from "@/src/context/LocationContext";
@@ -42,8 +42,8 @@ export const RoutingModalRoutes = ({
   const { routeToExternalApp, isLoading, error } = useExternalMapApp(station, origin);
 
   return (
-    <View style={styles.routeBackdrop}>
-      <View style={styles.routeDialog} accessibilityViewIsModal>
+    <View style={styles.routeBackdrop} accessibilityViewIsModal>
+      <ScrollView style={styles.routeDialog} contentContainerStyle={styles.routeDialogContent} keyboardShouldPersistTaps="handled">
         <Text style={styles.routeTitle} accessibilityRole="header">
           Antes de iniciar a rota
         </Text>
@@ -83,7 +83,7 @@ export const RoutingModalRoutes = ({
         >
           <Text style={styles.secondaryActionText}>Cancelar</Text>
         </Pressable>
-      </View>
+      </ScrollView>
     </View>
   );
 };
@@ -124,13 +124,13 @@ export const RoutingModalPermission = ({
   };
 
   return (
-    <View style={styles.routeBackdrop}>
-      <View style={styles.routeDialog} accessibilityViewIsModal>
+    <View style={styles.routeBackdrop} accessibilityViewIsModal>
+      <ScrollView style={styles.routeDialog} contentContainerStyle={styles.routeDialogContent} keyboardShouldPersistTaps="handled">
         <Text style={styles.routeTitle} accessibilityRole="header">
-          Deseja compartilhar sua localização?
+          De onde você vai sair?
         </Text>
         <Text style={styles.routeDescription}>
-          Podemos usar a localização atual do dispositivo como origem no aplicativo de navegação.
+          Compartilhar sua localização é opcional. Você também pode definir a origem no aplicativo de navegação.
         </Text>
         {error ? (
           <Text style={styles.routeDescription} accessibilityRole="alert">
@@ -145,11 +145,10 @@ export const RoutingModalPermission = ({
           onPress={() => void handleNext()}
         >
           <Text style={styles.primaryActionText}>
-            {isLoading ? "Obtendo localização..." : error ? "Tentar novamente" : "Continuar"}
+            {isLoading ? "Obtendo localização..." : error ? "Tentar novamente" : "Usar localização atual"}
           </Text>
         </Pressable>
-        {error ? (
-          <Pressable
+        <Pressable
             accessibilityRole="button"
             disabled={isLoading}
             style={styles.routeAction}
@@ -157,7 +156,6 @@ export const RoutingModalPermission = ({
           >
             <Text style={styles.primaryActionText}>Continuar sem localização</Text>
           </Pressable>
-        ) : null}
         <Pressable
           accessibilityRole="button"
           style={[styles.routeAction, styles.routeCancelAction]}
@@ -165,7 +163,7 @@ export const RoutingModalPermission = ({
         >
           <Text style={styles.secondaryActionText}>Cancelar</Text>
         </Pressable>
-      </View>
+      </ScrollView>
     </View>
   );
 };

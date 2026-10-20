@@ -4,11 +4,13 @@ const VERTICAL_CONTROL_SPACE = 250;
 // Mantém espaço para os controles do mapa sem depender de um dispositivo específico.
 export function getMapPanelLayout(width: number, height: number, mapHeight: number, textScale = 1, panelHeight = 0) {
   const horizontal = width >= 700 && width > height;
+  const compactControls = horizontal || mapHeight < 420 || textScale > 1.3 || mapHeight - panelHeight < VERTICAL_CONTROL_SPACE;
   return {
     horizontal,
-    compactControls: horizontal || mapHeight < 420 || textScale > 1.3 || mapHeight - panelHeight < VERTICAL_CONTROL_SPACE,
+    compactControls,
     panelWidth: horizontal ? Math.min(400, width * 0.42) : undefined,
-    panelMaxHeight: Math.max(80, mapHeight - (horizontal ? 12 : 80)),
+    // Na tela compacta, a FluIA fica abaixo da fileira de controles.
+    panelMaxHeight: Math.max(80, mapHeight - (horizontal ? 12 : compactControls ? 150 : 80)),
   };
 }
 

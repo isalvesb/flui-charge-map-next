@@ -1,0 +1,44 @@
+React Compiler enabled
+Starting Metro Bundler
+Static rendering is enabled. Learn more: https://docs.expo.dev/router/reference/static-rendering/
+Web node_modules/expo-router/entry.js ░░░░░░░░░░░░░░░░  0.0% (0/1)
+λ node_modules/expo-router/node/render.js ░░░░░░░░░░░░░░░░  0.0% (0/1)
+Web node_modules/expo-router/entry.js ▓▓▓░░░░░░░░░░░░░ 23.1% ( 89/205)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓░░░░░░░░░░░ 36.7% (265/440)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓░░░░░░░ 60.5% (469/603)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓▓▓▓▓▓▓▓▓░░░ 86.7% (674/724)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓░░░ 87.1% ( 699/2445)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 97.0% (2431/2468)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 98.4% (2488/2522)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 97.3% (2511/2545)
+| (node:42375) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 99.9% (2539/2540)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 99.8% (2562/2564)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 99.9% (2539/2540)
+λ node_modules/expo-router/node/render.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 99.9% (2564/2564)
+λ Bundled 21344ms node_modules/expo-router/node/render.js (2574 modules)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 99.9% (2539/2540)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 99.9% (2540/2540)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 99.9% (2550/2550)
+Web Bundled 32604ms node_modules/expo-router/entry.js (2550 modules)
+Web node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 99.9% (2550/2550)
+
+› web bundles (1):
+_expo/static/js/web/entry-a7da9e555a1cf4a32707e0307f395cd4.js (3.75 MB)
+
+› Static routes (12):
+/map (89.3 kB)
+/ (index) (40.6 kB)
+/review (41.6 kB)
+/search (75.1 kB)
+/loading (41.8 kB)
+/profile (52.3 kB)
+/settings (60.4 kB)
+/_sitemap (39.7 kB)
+/onboarding (45.5 kB)
+/+not-found (39.7 kB)
+/trip-planner (56.2 kB)
+/point-details (66.9 kB)
+
+Exported: /tmp/flui-orb23-final

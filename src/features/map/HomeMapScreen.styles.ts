@@ -775,7 +775,7 @@ const styles = StyleSheet.create({
     flex: 1,
     color: colors.text,
     fontSize: 21,
-    fontWeight: "800",
+    fontWeight: "600",
     letterSpacing: -0.35,
   },
 
@@ -975,6 +975,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "800",
     letterSpacing: -0.1,
+  },
+
+  sheetCaption: {
+    marginTop: 2,
+    color: colors.textMuted,
+    fontSize: 12,
+    fontWeight: "500",
   },
 });
 

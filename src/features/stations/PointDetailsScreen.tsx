@@ -1,3 +1,4 @@
+import type { LocationObject } from "expo-location";
 import {
   router,
   useFocusEffect,
@@ -12,7 +13,6 @@ import {
   BatteryLow,
   BatteryWarning,
   CircleParking,
-  Clock3,
   Coffee,
   Gauge,
   Heart,
@@ -21,8 +21,6 @@ import {
   ShieldCheck,
   ShoppingCart,
   Star,
-  Tag,
-  Timer,
   Toilet,
   Utensils,
   Warehouse,
@@ -72,7 +70,6 @@ import {
   getStationStatusInfo,
   getWaitingLevel,
 } from "./stationPresentation";
-import type { LocationObject } from "expo-location";
 
 const imagemPerfilUsuario = require("../../assets/user/profile1.webp");
 
@@ -94,36 +91,6 @@ function formatAddress(station: Station) {
   return [station.address, station.neighborhood, station.city, station.state]
     .filter(Boolean)
     .join(", ");
-}
-
-function getAmenityLabel(amenity: string) {
-  const labels: Record<string, string> = {
-    restaurant: "Restaurante",
-    coffee: "Café",
-    restroom: "Banheiro",
-    parking: "Estacionamento",
-    security: "Segurança",
-    wifi: "Wi-Fi",
-    coveredArea: "Área coberta",
-    market: "Mercado",
-  };
-
-  return labels[amenity] ?? amenity;
-}
-
-function getAmenityIcon(amenity: string) {
-  const icons: Record<string, React.ElementType> = {
-    restaurant: Utensils,
-    coffee: Coffee,
-    restroom: Toilet,
-    parking: CircleParking,
-    security: ShieldCheck,
-    wifi: Wifi,
-    coveredArea: Warehouse,
-    market: ShoppingCart,
-  };
-
-  return icons[amenity] ?? ShoppingCart;
 }
 
 function getConnectorIcon(connectorType: string): React.ElementType {
@@ -193,8 +160,9 @@ export default function PointDetailsScreen() {
   const now = useCurrentTime();
   const { styles, colors, isDarkMode } = useTelaComPreferencias(baseStyles);
   const { userPreferences, demoStations, demoOrigin } = useAppPreferences();
-  const { stationId } = useLocalSearchParams<{
+  const { stationId, startRoute } = useLocalSearchParams<{
     stationId?: string | string[];
+    startRoute?: string | string[];
   }>();
 
   const selectedStationId = normalizeParam(stationId) ?? "station-01";
@@ -212,9 +180,16 @@ export default function PointDetailsScreen() {
   } = useFluiStorage();
 
   const [isLoadingAction, setIsLoadingAction] = useState(false);
-  const [isRouteDialogOpen, setIsRouteDialogOpen] = useState(false);
-  const [routeLocation, setRouteLocation] = useState<LocationObject | null>(null);
-  const [modalStep, setModalStep] = useState<"confirmation" | "redirect">("confirmation");
+  const [isRouteDialogOpen, setIsRouteDialogOpen] = useState(
+    normalizeParam(startRoute) === "1",
+  );
+  const [routeLocation, setRouteLocation] = useState<LocationObject | null>(
+    null,
+  );
+  const [modalStep, setModalStep] = useState<"confirmation" | "redirect">(
+    "confirmation",
+  );
+  const [mostrarAvaliacoes, setMostrarAvaliacoes] = useState(false);
 
   useFocusEffect(
     useCallback(() => {
@@ -342,11 +317,6 @@ export default function PointDetailsScreen() {
   const connectorLabels = station.connectors
     .map((connector) => connector.label)
     .join(", ");
-
-  const lessBusyText =
-    station.lessBusyPeriods.length > 0
-      ? station.lessBusyPeriods.join(" ou ")
-      : "Sem previsão de menor movimento";
 
   const avaliacaoAlcance = avaliarAlcance(
     station.distanceKm,
@@ -537,46 +507,7 @@ export default function PointDetailsScreen() {
             </Text>
           </View>
 
-          <View style={styles.resumoMotoristaCard}>
-            <Text style={styles.resumoEyebrow}>Guia do ponto</Text>
-            <Text style={styles.resumoTitle}>{recomendacaoDoPonto}</Text>
-            <Text style={styles.resumoDescription}>
-              {identificacaoDados.catalogo.aviso}{" "}
-              {identificacaoDados.estimativas.aviso} Confirme o funcionamento e
-              a compatibilidade do veículo antes de ir.
-            </Text>
-
-            <View style={styles.resumoInfoGrid}>
-              <View style={styles.resumoInfoItem}>
-                <View style={styles.resumoInfoLabelRow}>
-                  <Timer size={12} color={colors.textLight} strokeWidth={2.3} />
-                  <Text style={styles.resumoInfoLabel}>Espera simulada</Text>
-                </View>
-                <Text style={styles.resumoInfoValue}>{orientacaoDeEspera}</Text>
-              </View>
-
-              <View style={styles.resumoInfoItem}>
-                <View style={styles.resumoInfoLabelRow}>
-                  <BatteryCharging
-                    size={12}
-                    color={colors.textLight}
-                    strokeWidth={2.3}
-                  />
-                  <Text style={styles.resumoInfoLabel}>Tempo estimado</Text>
-                </View>
-                <Text style={styles.resumoInfoValue}>{tempoEstimadoCarga}</Text>
-              </View>
-
-              <View style={styles.resumoInfoItem}>
-                <View style={styles.resumoInfoLabelRow}>
-                  <Tag size={12} color={colors.textLight} strokeWidth={2.3} />
-                  <Text style={styles.resumoInfoLabel}>Perfil</Text>
-                </View>
-                <Text style={styles.resumoInfoValue}>{perfilDoPonto}</Text>
-              </View>
-            </View>
-          </View>
-
+          <Text style={styles.resumoTitle}>{recomendacaoDoPonto}</Text>
           <View
             accessible
             style={[
@@ -670,20 +601,20 @@ export default function PointDetailsScreen() {
             </View>
           </View>
 
-          <View style={styles.highlightCard}>
-            <View style={styles.highlightIconBox}>
-              <Clock3 size={24} color={colors.yellowDark} strokeWidth={2.2} />
-            </View>
-
-            <View style={styles.highlightContent}>
-              <Text style={styles.highlightLabel}>
-                Horário sugerido no exemplo
-              </Text>
-              <Text style={styles.highlightValue}>{lessBusyText}</Text>
-              <Text style={styles.highlightDescription}>
-                Sem previsão de movimento em tempo real
-              </Text>
-            </View>
+          <Text style={styles.resumoDescription}>
+            {identificacaoDados.catalogo.aviso}{" "}
+            {identificacaoDados.estimativas.aviso}
+          </Text>
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Estimativas de recarga</Text>
+            <Text style={styles.infoDescription}>
+              Espera simulada: {orientacaoDeEspera} · Carga:{" "}
+              {tempoEstimadoCarga}
+            </Text>
+            <Text style={styles.infoDescription}>
+              {perfilDoPonto}. Confirme funcionamento e compatibilidade antes de
+              ir.
+            </Text>
           </View>
 
           <View style={styles.section}>
@@ -721,167 +652,159 @@ export default function PointDetailsScreen() {
           </View>
 
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Comodidades próximas</Text>
-
-            <View style={styles.amenitiesGrid}>
-              {station.amenities.map((amenity) => {
-                const IconeComodidade = getAmenityIcon(amenity);
-
-                return (
-                  <View key={amenity} style={styles.amenityItem}>
-                    <View style={styles.amenityIconBox}>
-                      <IconeComodidade
-                        size={18}
-                        color={colors.primary}
-                        strokeWidth={2.1}
-                      />
-                    </View>
-
-                    <Text style={styles.amenityLabel}>
-                      {getAmenityLabel(amenity)}
-                    </Text>
-                  </View>
-                );
-              })}
-            </View>
-          </View>
-
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Avaliações</Text>
-            <Text style={styles.resumoDescription}>
-              {identificacaoDados.avaliacoesExemplo.aviso}
-            </Text>
-
-            <View style={styles.ratingPanel}>
-              <View style={styles.ratingPanelLeft}>
-                <Text style={styles.bigRating}>
-                  {station.rating.toFixed(1)}
-                </Text>
-
-                <Text style={styles.ratingStars}>
-                  {getRatingStars(station.rating)}
-                </Text>
-
-                <Text style={styles.totalReviews}>
-                  {station.reviewCount} avaliações demonstrativas
-                </Text>
-              </View>
-
-              <View style={styles.ratingPanelRight}>
-                <View style={styles.ratingLine}>
-                  <Text style={styles.ratingLineLabel}>5 ★</Text>
-                  <View style={styles.ratingTrack}>
-                    <View style={styles.ratingBarLarge} />
-                  </View>
-                  <Text style={styles.ratingPercent}>85%</Text>
-                </View>
-
-                <View style={styles.ratingLine}>
-                  <Text style={styles.ratingLineLabel}>4 ★</Text>
-                  <View style={styles.ratingTrack}>
-                    <View style={styles.ratingBarSmall} />
-                  </View>
-                  <Text style={styles.ratingPercent}>10%</Text>
-                </View>
-
-                <View style={styles.ratingLine}>
-                  <Text style={styles.ratingLineLabel}>3 ★</Text>
-                  <View style={styles.ratingTrack}>
-                    <View style={styles.ratingBarTiny} />
-                  </View>
-                  <Text style={styles.ratingPercent}>3%</Text>
-                </View>
-
-                <View style={styles.ratingLine}>
-                  <Text style={styles.ratingLineLabel}>2 ★</Text>
-                  <View style={styles.ratingTrack}>
-                    <View style={styles.ratingBarMinimal} />
-                  </View>
-                  <Text style={styles.ratingPercent}>1%</Text>
-                </View>
-
-                <View style={styles.ratingLine}>
-                  <Text style={styles.ratingLineLabel}>1 ★</Text>
-                  <View style={styles.ratingTrack}>
-                    <View style={styles.ratingBarMinimal} />
-                  </View>
-                  <Text style={styles.ratingPercent}>1%</Text>
-                </View>
-              </View>
-            </View>
-
             <Pressable
               accessibilityRole="button"
               accessibilityLabel={
-                userStationReview
-                  ? "Editar minha avaliação deste ponto"
-                  : "Avaliar este ponto"
+                mostrarAvaliacoes ? "Ocultar avaliações" : "Ver avaliações"
               }
-              accessibilityHint="Abre a tela de avaliação do ponto de recarga."
-              accessibilityState={{ disabled: isLoadingAction }}
-              disabled={isLoadingAction}
-              style={({ pressed, hovered }: PressableVisualState) => [
-                styles.reviewCtaButton,
-                hovered && !pressed ? styles.hoverFeedback : null,
-                pressed ? styles.buttonPressed : null,
-              ]}
-              onPress={handleOpenReview}
+              accessibilityState={{ expanded: mostrarAvaliacoes }}
+              style={styles.verAvaliacoesButton}
+              onPress={() => setMostrarAvaliacoes((atual) => !atual)}
             >
-              <Star size={18} color={colors.white} strokeWidth={2.4} />
-              <Text style={styles.reviewCtaText}>
-                {userStationReview
-                  ? "Editar minha avaliação"
-                  : "Avaliar este ponto"}
+              <Text style={styles.verAvaliacoesText}>
+                {mostrarAvaliacoes ? "Ocultar avaliações" : "Ver avaliações"}
               </Text>
             </Pressable>
 
-            {stationReviews.length > 0 ? (
-              <View style={styles.userReviewsList}>
-                {stationReviews.map((review) => (
-                  <View key={review.id} style={styles.userReviewCard}>
-                    {review === userReviewCard ? (
-                      <Image
-                        source={imagemPerfilUsuario}
-                        style={styles.avatarImage}
-                        accessible={false}
-                        accessibilityIgnoresInvertColors
-                      />
-                    ) : (
-                      <View style={styles.avatar}>
-                        <Text style={styles.avatarText}>
-                          {getUserInitials(review.userName)}
-                        </Text>
+            {mostrarAvaliacoes ? (
+              <>
+                <Text style={styles.resumoDescription}>
+                  {identificacaoDados.avaliacoesExemplo.aviso}
+                </Text>
+
+                <View style={styles.ratingPanel}>
+                  <View style={styles.ratingPanelLeft}>
+                    <Text style={styles.bigRating}>
+                      {station.rating.toFixed(1)}
+                    </Text>
+
+                    <Text style={styles.ratingStars}>
+                      {getRatingStars(station.rating)}
+                    </Text>
+
+                    <Text style={styles.totalReviews}>
+                      {station.reviewCount} avaliações demonstrativas
+                    </Text>
+                  </View>
+
+                  <View style={styles.ratingPanelRight}>
+                    <View style={styles.ratingLine}>
+                      <Text style={styles.ratingLineLabel}>5 ★</Text>
+                      <View style={styles.ratingTrack}>
+                        <View style={styles.ratingBarLarge} />
                       </View>
-                    )}
+                      <Text style={styles.ratingPercent}>85%</Text>
+                    </View>
 
-                    <View style={styles.userReviewContent}>
-                      <Text style={styles.userName}>{review.userName}</Text>
-                      <Text style={styles.userComment}>
-                        {review === userReviewCard
-                          ? identificacaoDados.avaliacoesLocais.rotulo
-                          : identificacaoDados.avaliacoesExemplo.rotulo}
-                      </Text>
+                    <View style={styles.ratingLine}>
+                      <Text style={styles.ratingLineLabel}>4 ★</Text>
+                      <View style={styles.ratingTrack}>
+                        <View style={styles.ratingBarSmall} />
+                      </View>
+                      <Text style={styles.ratingPercent}>10%</Text>
+                    </View>
 
-                      <Text style={styles.userStars}>
-                        {getRatingStars(review.rating)}
-                      </Text>
+                    <View style={styles.ratingLine}>
+                      <Text style={styles.ratingLineLabel}>3 ★</Text>
+                      <View style={styles.ratingTrack}>
+                        <View style={styles.ratingBarTiny} />
+                      </View>
+                      <Text style={styles.ratingPercent}>3%</Text>
+                    </View>
 
-                      <Text style={styles.userComment}>{review.comment}</Text>
+                    <View style={styles.ratingLine}>
+                      <Text style={styles.ratingLineLabel}>2 ★</Text>
+                      <View style={styles.ratingTrack}>
+                        <View style={styles.ratingBarMinimal} />
+                      </View>
+                      <Text style={styles.ratingPercent}>1%</Text>
+                    </View>
+
+                    <View style={styles.ratingLine}>
+                      <Text style={styles.ratingLineLabel}>1 ★</Text>
+                      <View style={styles.ratingTrack}>
+                        <View style={styles.ratingBarMinimal} />
+                      </View>
+                      <Text style={styles.ratingPercent}>1%</Text>
                     </View>
                   </View>
-                ))}
-              </View>
-            ) : (
-              <View style={styles.emptyReviewCard}>
-                <Text style={styles.emptyReviewTitle}>
-                  Ainda não há comentários recentes
-                </Text>
+                </View>
+                <Pressable
+                  accessibilityRole="button"
+                  accessibilityLabel={
+                    userStationReview
+                      ? "Editar minha avaliação deste ponto"
+                      : "Avaliar este ponto"
+                  }
+                  accessibilityHint="Abre a tela de avaliação do ponto de recarga."
+                  accessibilityState={{ disabled: isLoadingAction }}
+                  disabled={isLoadingAction}
+                  style={({ pressed, hovered }: PressableVisualState) => [
+                    styles.reviewCtaButton,
+                    hovered && !pressed ? styles.hoverFeedback : null,
+                    pressed ? styles.buttonPressed : null,
+                  ]}
+                  onPress={handleOpenReview}
+                >
+                  <Star size={18} color={colors.white} strokeWidth={2.4} />
+                  <Text style={styles.reviewCtaText}>
+                    {userStationReview
+                      ? "Editar minha avaliação"
+                      : "Avaliar este ponto"}
+                  </Text>
+                </Pressable>
 
-                <Text style={styles.emptyReviewText}>
-                  Seja uma das primeiras pessoas a avaliar este ponto.
-                </Text>
-              </View>
-            )}
+                {stationReviews.length > 0 ? (
+                  <View style={styles.userReviewsList}>
+                    {stationReviews.map((review) => (
+                      <View key={review.id} style={styles.userReviewCard}>
+                        {review === userReviewCard ? (
+                          <Image
+                            source={imagemPerfilUsuario}
+                            style={styles.avatarImage}
+                            accessible={false}
+                            accessibilityIgnoresInvertColors
+                          />
+                        ) : (
+                          <View style={styles.avatar}>
+                            <Text style={styles.avatarText}>
+                              {getUserInitials(review.userName)}
+                            </Text>
+                          </View>
+                        )}
+
+                        <View style={styles.userReviewContent}>
+                          <Text style={styles.userName}>{review.userName}</Text>
+                          <Text style={styles.userComment}>
+                            {review === userReviewCard
+                              ? identificacaoDados.avaliacoesLocais.rotulo
+                              : identificacaoDados.avaliacoesExemplo.rotulo}
+                          </Text>
+
+                          <Text style={styles.userStars}>
+                            {getRatingStars(review.rating)}
+                          </Text>
+
+                          <Text style={styles.userComment}>
+                            {review.comment}
+                          </Text>
+                        </View>
+                      </View>
+                    ))}
+                  </View>
+                ) : (
+                  <View style={styles.emptyReviewCard}>
+                    <Text style={styles.emptyReviewTitle}>
+                      Ainda não há comentários recentes
+                    </Text>
+
+                    <Text style={styles.emptyReviewText}>
+                      Seja uma das primeiras pessoas a avaliar este ponto.
+                    </Text>
+                  </View>
+                )}
+              </>
+            ) : null}
           </View>
         </View>
       </ScrollView>
@@ -929,7 +852,10 @@ export default function PointDetailsScreen() {
         onRequestClose={() => !isLoadingAction && setIsRouteDialogOpen(false)}
       >
         {modalStep === "confirmation" ? (
-          <RoutingModalPermission next={handleNext} onCancel={() => setIsRouteDialogOpen(false)} />
+          <RoutingModalPermission
+            next={handleNext}
+            onCancel={() => setIsRouteDialogOpen(false)}
+          />
         ) : (
           <RoutingModalRoutes
             station={station}

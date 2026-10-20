@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
   },
 
   hero: {
-    height: 290,
+    height: 205,
     backgroundColor: "#10221E",
     overflow: "hidden",
   },
@@ -131,7 +131,7 @@ export const styles = StyleSheet.create({
   stationName: {
     color: "#10221E",
     fontSize: 29,
-    fontWeight: "800",
+    fontWeight: "600",
     letterSpacing: -0.8,
     marginBottom: 8,
   },
@@ -145,6 +145,7 @@ export const styles = StyleSheet.create({
 
   summaryRow: {
     flexDirection: "row",
+    flexWrap: "wrap",
     alignItems: "center",
     justifyContent: "space-between",
     gap: 12,
@@ -153,6 +154,9 @@ export const styles = StyleSheet.create({
 
   ratingGroup: {
     flexDirection: "row",
+    flexWrap: "wrap",
+    maxWidth: "100%",
+    flexShrink: 1,
     alignItems: "center",
   },
 
@@ -174,6 +178,7 @@ export const styles = StyleSheet.create({
   },
 
   reviewCount: {
+    flexShrink: 1,
     color: "#63766F",
     fontSize: 14,
   },
@@ -265,7 +270,7 @@ export const styles = StyleSheet.create({
   resumoTitle: {
     color: "#10221E",
     fontSize: 20,
-    fontWeight: "800",
+    fontWeight: "600",
     lineHeight: 25,
     marginBottom: 6,
   },
@@ -365,7 +370,7 @@ export const styles = StyleSheet.create({
   infoValue: {
     color: "#10221E",
     fontSize: 17,
-    fontWeight: "800",
+    fontWeight: "600",
     lineHeight: 22,
     marginBottom: 4,
   },
@@ -444,7 +449,7 @@ export const styles = StyleSheet.create({
   sectionTitle: {
     color: "#10221E",
     fontSize: 16,
-    fontWeight: "800",
+    fontWeight: "600",
     marginBottom: 14,
   },
 
@@ -516,7 +521,7 @@ export const styles = StyleSheet.create({
   connectorName: {
     color: "#10221E",
     fontSize: 15,
-    fontWeight: "800",
+    fontWeight: "600",
     marginBottom: 3,
   },
 
@@ -793,15 +798,16 @@ export const styles = StyleSheet.create({
   routeDialog: {
     width: "100%",
     maxWidth: 440,
-    padding: 24,
+    maxHeight: "90%",
+    flexGrow: 0,
     borderRadius: 24,
     backgroundColor: "#FCFEFA",
-    gap: 12,
   },
+  routeDialogContent: { padding: 24, gap: 12 },
   routeTitle: {
     color: "#10221E",
     fontSize: 20,
-    fontWeight: "800",
+    fontWeight: "600",
   },
   routeDescription: {
     color: "#3F554F",
@@ -809,7 +815,9 @@ export const styles = StyleSheet.create({
     lineHeight: 22,
   },
   routeAction: {
-    height: 52,
+    minHeight: 52,
+    paddingVertical: 12,
+    paddingHorizontal: 12,
     borderRadius: 18,
     alignItems: "center",
     justifyContent: "center",
@@ -823,7 +831,9 @@ export const styles = StyleSheet.create({
 
   secondaryActionButton: {
     flex: 1,
-    height: 52,
+    minHeight: 52,
+    paddingVertical: 12,
+    paddingHorizontal: 12,
     borderRadius: 18,
     borderWidth: 1.5,
     borderColor: "#2B0055",
@@ -840,7 +850,9 @@ export const styles = StyleSheet.create({
 
   primaryActionButton: {
     flex: 1,
-    height: 52,
+    minHeight: 52,
+    paddingVertical: 12,
+    paddingHorizontal: 12,
     borderRadius: 18,
     backgroundColor: "#2B0055",
     alignItems: "center",
@@ -959,5 +971,20 @@ export const styles = StyleSheet.create({
     backgroundColor: "#EAF1FF",
     borderWidth: 1.5,
     borderColor: colors.primaryBright,
+  },
+
+  verAvaliacoesButton: {
+    alignSelf: "flex-start",
+    marginBottom: 12,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    borderRadius: 12,
+    backgroundColor: colors.surface,
+  },
+
+  verAvaliacoesText: {
+    color: colors.primary,
+    fontSize: 16,
+    fontWeight: "600",
   },
 });

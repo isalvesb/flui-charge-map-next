@@ -1,0 +1,777 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test -project /tmp/flui-ux28-native/FluiValidacao.xcodeproj -scheme FluiValidacao -destination "platform=iOS Simulator,id=EE0F47DC-9FFE-40E8-92A7-AE7E3F11C819" -derivedDataPath /tmp/flui-ux28-native/DerivedData -resultBundlePath /tmp/flui-ux28-native/TecladoEstavel.xcresult -parallel-testing-enabled NO "-only-testing:FluiValidacao/FluiValidacao/testFluxoCompactoAmpliado"
+
+2026-10-20 07:31:08.037 xcodebuild[41293:6426382] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+Writing result bundle at path:
+	/tmp/flui-ux28-native/TecladoEstavel.xcresult
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (1 target)
+    Target 'FluiValidacao' in project 'FluiValidacao' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+Build description signature: cfec69b875d06daee0c4e9556b64a7da
+Build description path: /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/XCBuildData/cfec69b875d06daee0c4e9556b64a7da.xcbuilddata
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk /tmp/flui-ux28-native/DerivedData/SDKStatCaches.noindex/iphonesimulator27.1-24A94232-35d3147121984ba087c28d913653d626.sdkstatcache
+    cd /tmp/flui-ux28-native/FluiValidacao.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -o /tmp/flui-ux28-native/DerivedData/SDKStatCaches.noindex/iphonesimulator27.1-24A94232-35d3147121984ba087c28d913653d626.sdkstatcache
+
+SwiftDriver FluiValidacao normal arm64 com.apple.xcode.tools.swift.compiler (in target 'FluiValidacao' from project 'FluiValidacao')
+    cd /tmp/flui-ux28-native
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name FluiValidacao -O @/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.SwiftFileList -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /tmp/flui-ux28-native/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -swift-version 5 -I /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/Developer/Library/Frameworks -parse-as-library -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/flui-ux28-native/DerivedData/SDKStatCaches.noindex/iphonesimulator27.1-24A94232-35d3147121984ba087c28d913653d626.sdkstatcache -output-file-map /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/flui-ux28-native/DerivedData/ModuleCache.noindex -sdk-module-cache-path /tmp/flui-ux28-native/DerivedData/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /tmp/flui-ux28-native/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -emit-const-values -const-gather-protocols-list /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao-generated-files.hmap -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao-own-target-headers.hmap -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao-all-target-headers.hmap -Xcc -iquote -Xcc /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao-project-headers.hmap -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/DerivedSources-normal/arm64 -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/DerivedSources/arm64 -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/DerivedSources -emit-objc-header -emit-objc-header-path /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao-Swift.h -working-directory /tmp/flui-ux28-native -experimental-emit-module-separately -disable-cmo
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ FluiValidacao (in target 'FluiValidacao' from project 'FluiValidacao')
+
+SwiftCompile normal arm64 (in target 'FluiValidacao' from project 'FluiValidacao')
+    cd /tmp/flui-ux28-native
+    
+
+SwiftCompile normal arm64 Compiling\ FluiValidacao.swift /tmp/flui-ux28-native/FluiValidacao.swift (in target 'FluiValidacao' from project 'FluiValidacao')
+
+SwiftCompile normal arm64 /tmp/flui-ux28-native/FluiValidacao.swift (in target 'FluiValidacao' from project 'FluiValidacao')
+    cd /tmp/flui-ux28-native
+    builtin-SwiftPerFileCompile FluiValidacao.swift
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for FluiValidacao (in target 'FluiValidacao' from project 'FluiValidacao')
+
+SwiftDriver\ Compilation\ Requirements FluiValidacao normal arm64 com.apple.xcode.tools.swift.compiler (in target 'FluiValidacao' from project 'FluiValidacao')
+    cd /tmp/flui-ux28-native
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name FluiValidacao -O @/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.SwiftFileList -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /tmp/flui-ux28-native/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -swift-version 5 -I /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/Developer/Library/Frameworks -parse-as-library -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/flui-ux28-native/DerivedData/SDKStatCaches.noindex/iphonesimulator27.1-24A94232-35d3147121984ba087c28d913653d626.sdkstatcache -output-file-map /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/flui-ux28-native/DerivedData/ModuleCache.noindex -sdk-module-cache-path /tmp/flui-ux28-native/DerivedData/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /tmp/flui-ux28-native/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -emit-const-values -const-gather-protocols-list /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao-generated-files.hmap -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao-own-target-headers.hmap -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao-all-target-headers.hmap -Xcc -iquote -Xcc /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao-project-headers.hmap -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/DerivedSources-normal/arm64 -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/DerivedSources/arm64 -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/DerivedSources -emit-objc-header -emit-objc-header-path /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao-Swift.h -working-directory /tmp/flui-ux28-native -experimental-emit-module-separately -disable-cmo
+
+SwiftDriverJobDiscovery normal arm64 Compiling FluiValidacao.swift (in target 'FluiValidacao' from project 'FluiValidacao')
+
+SwiftDriver\ Compilation FluiValidacao normal arm64 com.apple.xcode.tools.swift.compiler (in target 'FluiValidacao' from project 'FluiValidacao')
+    cd /tmp/flui-ux28-native
+    builtin-Swift-Compilation -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name FluiValidacao -O @/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.SwiftFileList -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /tmp/flui-ux28-native/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -swift-version 5 -I /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/Developer/Library/Frameworks -parse-as-library -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/flui-ux28-native/DerivedData/SDKStatCaches.noindex/iphonesimulator27.1-24A94232-35d3147121984ba087c28d913653d626.sdkstatcache -output-file-map /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/flui-ux28-native/DerivedData/ModuleCache.noindex -sdk-module-cache-path /tmp/flui-ux28-native/DerivedData/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /tmp/flui-ux28-native/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -emit-const-values -const-gather-protocols-list /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao-generated-files.hmap -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao-own-target-headers.hmap -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao-all-target-headers.hmap -Xcc -iquote -Xcc /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao-project-headers.hmap -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/DerivedSources-normal/arm64 -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/DerivedSources/arm64 -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/DerivedSources -emit-objc-header -emit-objc-header-path /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao-Swift.h -working-directory /tmp/flui-ux28-native -experimental-emit-module-separately -disable-cmo
+
+Ld /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest/FluiValidacao normal (in target 'FluiValidacao' from project 'FluiValidacao')
+    cd /tmp/flui-ux28-native
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios17.0-simulator -bundle -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -Os -Xlinker -no_warn_duplicate_libraries -L/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -L/tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator -L/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -F/tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/Developer/Library/Frameworks -filelist /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.LinkFileList -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker @loader_path/Frameworks -Xlinker -dead_strip -Xlinker -object_path_lto -Xlinker /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao_lto.o -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -debug_variant -Xlinker -dependency_info -Xlinker /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao_dependency_info.dat -fobjc-link-runtime -fprofile-instr-generate -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.swiftmodule -Xlinker -needed_framework -Xlinker XCTest -framework XCTest -Xlinker -needed-lXCTestSwiftSupport -lXCTestSwiftSupport -o /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest/FluiValidacao
+
+Copy /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao.swiftmodule/arm64-apple-ios-simulator.abi.json /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.abi.json (in target 'FluiValidacao' from project 'FluiValidacao')
+    cd /tmp/flui-ux28-native
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.abi.json /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao.swiftmodule/arm64-apple-ios-simulator.abi.json
+
+Copy /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.swiftsourceinfo (in target 'FluiValidacao' from project 'FluiValidacao')
+    cd /tmp/flui-ux28-native
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.swiftsourceinfo /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo
+
+ExtractAppIntentsMetadata (in target 'FluiValidacao' from project 'FluiValidacao')
+    cd /tmp/flui-ux28-native
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name FluiValidacao --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk --xcode-version 27A9275 --platform-family iOS --deployment-target 17.0 --bundle-identifier local.flui.validacao12 --output /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest --target-triple arm64-apple-ios17.0-simulator --binary-file /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest/FluiValidacao --dependency-file /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao_dependency_info.dat --stringsdata-file /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.SwiftFileList --metadata-file-list /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao.DependencyMetadataFileList --static-metadata-file-list /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao.DependencyStaticMetadataFileList --swift-const-vals-list /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --no-app-shortcuts-localization
+2026-10-20 07:31:22.367 appintentsmetadataprocessor[41327:6426979] Starting appintentsmetadataprocessor export
+2026-10-20 07:31:22.385 appintentsmetadataprocessor[41327:6426979] warning: Metadata extraction skipped, no AppIntents.framework dependency found
+
+ProcessInfoPlistFile /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest/Info.plist /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/empty-FluiValidacao.plist (in target 'FluiValidacao' from project 'FluiValidacao')
+    cd /tmp/flui-ux28-native
+    builtin-infoPlistUtility /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/empty-FluiValidacao.plist -producttype com.apple.product-type.bundle.ui-testing -expandbuildsettings -format binary -platform iphonesimulator -additionalcontentfile /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/ProductTypeInfoPlistAdditions.plist -o /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest/Info.plist
+
+CopySwiftLibs /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest (in target 'FluiValidacao' from project 'FluiValidacao')
+    cd /tmp/flui-ux28-native
+    builtin-swiftStdLibTool --copy --verbose --scan-executable /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest/FluiValidacao --scan-folder /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest/Frameworks --scan-folder /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest/PlugIns --scan-folder /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest/SystemExtensions --scan-folder /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest/Extensions --platform iphonesimulator --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest/Frameworks --strip-bitcode --scan-executable /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+Ignoring --strip-bitcode because --sign was not passed
+
+GenerateDSYMFile /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest.dSYM /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest/FluiValidacao (in target 'FluiValidacao' from project 'FluiValidacao')
+    cd /tmp/flui-ux28-native
+    export PATH\=/Applications/Xcode.app/Contents/SharedFrameworks/SwiftBuild.framework/Versions/A/PlugIns/SWBBuildService.bundle/Contents/PlugIns/SWBUniversalPlatformPlugin.bundle/Contents/Frameworks/SWBUniversalPlatform.framework/Resources:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/local/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/libexec:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/usr/bin:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/usr/local/bin:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/local/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/local/bin:/Applications/ChatGPT.app/Contents/Resources/codex-cli/codex-path:/Users/guicunha/.npm-global/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/Users/guicunha/.codex/tmp/arg0-macos/codex-arg0G8D8UL:/Users/guicunha/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/Users/guicunha/Library/Android/sdk/emulator:/Users/guicunha/Library/Android/sdk/platform-tools:/Users/guicunha/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/Applications/ChatGPT.app/Contents/Resources:/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest/FluiValidacao -o /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest.dSYM
+
+PruneExplicitPrecompiledModules /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/ExplicitPrecompiledModules
+
+PruneExplicitPrecompiledModules /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+
+PruneExplicitPrecompiledModules /tmp/flui-ux28-native/DerivedData/SDKExplicitPrecompiledModules
+
+2026-10-20 07:31:23.311 xcodebuild[41293:6426382] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-20 07:31:34.083351-0300 FluiValidacao-Runner[41342:6427307] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-10-20 07:31:48.616.
+Test Suite 'FluiValidacao.xctest' started at 2026-10-20 07:31:48.619.
+Test Suite 'FluiValidacao' started at 2026-10-20 07:31:48.620.
+Test Case '-[FluiValidacao.FluiValidacao testFluxoCompactoAmpliado]' started.
+    t =     0.10s Start Test at 2026-10-20 07:31:48.717
+    t =     0.39s Set Up
+    t =     0.41s Open host.exp.Exponent
+    t =     0.51s     Activate host.exp.Exponent
+    t =     0.61s         Wait for host.exp.Exponent to idle
+    t =     0.94s Waiting 2.0s for Button (First Match) to exist
+    t =     1.94s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     1.95s         Checking existence of `Button (First Match)`
+    t =     2.20s         Capturing element debug description
+objc[41342]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x10767c398) and /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x107790310). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =     2.94s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     2.95s         Checking existence of `Button (First Match)`
+    t =     3.13s         Capturing element debug description
+    t =     3.13s     Checking existence of `Button (First Match)`
+    t =     3.25s Collecting debug information to assist test failure triage
+    t =     3.26s     Requesting snapshot of accessibility hierarchy for app with pid 41272
+    t =     3.43s Waiting 3.0s for Button (First Match) to exist
+    t =     4.43s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     4.44s         Checking existence of `Button (First Match)`
+    t =     4.60s Tap Button (First Match)
+    t =     4.60s     Wait for host.exp.Exponent to idle
+    t =     4.65s     Find the Button (First Match)
+    t =     4.80s     Check for interrupting elements affecting "Abrir assistente Flui IA" Button
+    t =     4.95s     Synthesize event
+    t =     5.53s     Wait for host.exp.Exponent to idle
+    t =     5.55s Waiting 5.0s for Button (First Match) to exist
+    t =     6.58s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     6.58s         Checking existence of `Button (First Match)`
+    t =     6.71s Checking existence of `Button (First Match)`
+    t =     6.77s Tap Button (First Match)
+    t =     6.78s     Wait for host.exp.Exponent to idle
+    t =     6.82s     Find the Button (First Match)
+    t =     6.93s     Check for interrupting elements affecting "Desativar voz da FluIA" Button
+    t =     7.16s     Synthesize event
+    t =     8.69s     Wait for host.exp.Exponent to idle
+    t =     8.97s Tap Button (First Match)
+    t =     8.97s     Wait for host.exp.Exponent to idle
+    t =     9.05s     Find the Button (First Match)
+    t =     9.18s     Check for interrupting elements affecting "Quero carregar rápido" Button
+    t =     9.34s     Synthesize event
+    t =     9.77s     Wait for host.exp.Exponent to idle
+    t =     9.84s Waiting 8.0s for Button (First Match) to exist
+    t =    10.89s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    10.89s         Checking existence of `Button (First Match)`
+    t =    11.07s         Capturing element debug description
+    t =    11.85s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    11.85s         Checking existence of `Button (First Match)`
+    t =    11.98s Tap Button (First Match)
+    t =    11.98s     Wait for host.exp.Exponent to idle
+    t =    12.00s     Find the Button (First Match)
+    t =    12.09s     Check for interrupting elements affecting "Iniciar rota para Higienópolis Prime Charge" Button
+    t =    12.20s     Synthesize event
+    t =    13.72s     Wait for host.exp.Exponent to idle
+    t =    14.45s Waiting 15.0s for Button (First Match) to exist
+    t =    15.49s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    15.50s         Checking existence of `Button (First Match)`
+    t =    15.55s Find the Application 'host.exp.Exponent'
+    t =    15.80s Find the Button (First Match)
+FLUI GEOMETRIA app=(0.0, 0.0, 390.0, 844.0) botao=(44.0, 483.99998474121094, 302.0, 52.0) state=XCUIApplicationState(rawValue: 4)
+    t =    15.89s Requesting snapshot of accessibility hierarchy for app with pid 41272
+    t =    18.51s Requesting snapshot of accessibility hierarchy for app with pid 41272
+Attributes: Application, 0x1080a0a00, pid: 41272, label: 'Expo Go'
+Element subtree:
+ →Application, 0x1080a0a00, pid: 41272, label: 'Expo Go'
+    Window (Main), 0x1080a1a40, {{0.0, 0.0}, {390.0, 844.0}}
+      Other, 0x1080a1b80, {{0.0, 0.0}, {390.0, 844.0}}
+        Other, 0x1080a1cc0, {{0.0, 0.0}, {390.0, 844.0}}
+          Other, 0x1080a1e00, {{0.0, 0.0}, {390.0, 844.0}}
+            Other, 0x1080a1f40, {{0.0, 0.0}, {390.0, 844.0}}
+              Other, 0x1080a2080, {{0.0, 0.0}, {390.0, 844.0}}
+                Other, 0x1080a21c0, {{0.0, 0.0}, {390.0, 844.0}}
+                  Other, 0x1080a2300, {{0.0, 0.0}, {390.0, 844.0}}
+                    Other, 0x1080a2440, {{0.0, 0.0}, {390.0, 844.0}}
+                      Other, 0x1080a2580, {{0.0, 0.0}, {390.0, 844.0}}
+                        Other, 0x1080a1900, {{0.0, 0.0}, {390.0, 844.0}}
+                          Other, 0x1080a2800, {{0.0, 0.0}, {390.0, 844.0}}
+                            Other, 0x1080a2940, {{0.0, 0.0}, {390.0, 844.0}}
+                              Other, 0x1080a2a80, {{0.0, 0.0}, {390.0, 844.0}}
+                                Other, 0x1080a2bc0, {{0.0, 0.0}, {390.0, 844.0}}
+                                  Other, 0x1080a2d00, {{0.0, 0.0}, {390.0, 844.0}}
+                                    Other, 0x1080a2e40, {{0.0, 0.0}, {390.0, 844.0}}
+                                      ScrollView, 0x1080a2f80, {{0.0, 0.0}, {390.0, 844.0}}
+                                        Other, 0x1080a30c0, {{0.0, 0.0}, {390.0, 3254.0}}
+                                          Other, 0x1080a3200, {{0.0, 0.0}, {390.0, 3254.0}}
+                                            Other, 0x1080a3340, {{0.0, 0.0}, {390.0, 205.0}}
+                                              Other, 0x1080a3480, {{0.0, 0.0}, {390.0, 205.0}}
+                                                Other, 0x1080a35c0, {{0.0, 0.0}, {390.0, 205.0}}
+                                                Other, 0x1080a3700, {{0.0, 0.0}, {390.0, 205.0}}
+                                              Other, 0x1080a3840, {{20.0, 0.0}, {350.0, 95.0}}
+                                                Button, 0x1080a3980, {{20.0, 47.0}, {48.0, 48.0}}, label: 'Voltar ao mapa'
+                                                Button, 0x1080a3ac0, {{322.0, 47.0}, {48.0, 48.0}}, label: 'Adicionar aos favoritos'
+                                            Other, 0x1080a3c00, {{0.0, 171.0}, {390.0, 2963.0}}
+                                            StaticText, 0x1080a3d40, {{22.0, 199.0}, {346.0, 93.7}}, label: 'Higienópolis Prime Charge'
+                                              StaticText, 0x1080a3e80, {{22.0, 199.0}, {346.0, 93.7}}, label: 'Higienópolis Prime Charge'
+                                            StaticText, 0x104a3e6c0, {{22.0, 300.7}, {346.0, 54.3}}, label: 'Rua Alagoas, 974, Higienópolis, São Paulo, SP'
+                                              StaticText, 0x104a3ea80, {{22.0, 300.7}, {346.0, 54.3}}, label: 'Rua Alagoas, 974, Higienópolis, São Paulo, SP'
+                                            Other, 0x104a3ed00, {{22.0, 372.7}, {19.0, 19.0}}
+                                              Other, 0x104a3ee40, {{22.8, 373.5}, {17.4, 16.7}}
+                                                Other, 0x104a3ebc0, {{22.8, 373.5}, {17.4, 16.7}}
+                                            StaticText, 0x104a3ef80, {{48.0, 369.0}, {34.0, 26.0}}, label: '4.9'
+                                              StaticText, 0x104a3f200, {{48.0, 369.0}, {34.0, 26.0}}, label: '4.9'
+                                            StaticText, 0x104a3f340, {{87.0, 370.7}, {272.0, 22.7}}, label: '(184 avaliações demonstrativas)'
+                                              StaticText, 0x104a3f480, {{87.0, 370.7}, {272.0, 22.7}}, label: '(184 avaliações demonstrativas)'
+                                            Other, 0x104a3f700, {{22.0, 414.0}, {9.0, 9.0}}
+                                            StaticText, 0x104a3f840, {{38.0, 407.0}, {118.7, 22.7}}, label: 'Aberto agora'
+                                              StaticText, 0x104a3f5c0, {{38.0, 407.0}, {118.7, 22.7}}, label: 'Aberto agora'
+                                            StaticText, 0x104a3c780, {{64.0, 445.7}, {304.0, 52.0}}, label: '4 de 6 carregadores livres no exemplo'
+                                              StaticText, 0x104a3cf00, {{64.0, 445.7}, {304.0, 52.0}}, label: '4 de 6 carregadores livres no exemplo'
+                                            Other, 0x104bb83c0, {{22.0, 455.7}, {32.0, 32.0}}
+                                            Other, 0x104bb97c0, {{29.7, 463.3}, {17.0, 17.0}}
+                                              Other, 0x104bb8a00, {{31.0, 464.0}, {14.3, 15.7}}
+                                                Other, 0x104bb8b40, {{31.0, 464.0}, {14.3, 15.7}}
+                                            StaticText, 0x104bbb340, {{22.0, 515.7}, {346.0, 67.7}}, label: 'Opção com conector rápido no exemplo'
+                                              StaticText, 0x104bbb700, {{22.0, 515.7}, {346.0, 67.7}}, label: 'Opção com conector rápido no exemplo'
+                                            Other, 0x104bbb840, {{22.0, 589.3}, {346.0, 135.3}}, label: 'Autonomia para chegar ao local
+Chegada estimada com 69% de bateria.
+Não garante recarga no local.'
+                                            Other, 0x104bb8000, {{22.0, 736.7}, {167.0, 190.0}}
+                                            Other, 0x104bbbc00, {{201.0, 736.7}, {167.0, 190.0}}
+                                            Other, 0x104bbbd40, {{37.0, 751.7}, {40.0, 40.0}}
+                                            Other, 0x104bbbac0, {{216.0, 751.7}, {40.0, 40.0}}
+                                            Other, 0x104bbb980, {{47.0, 761.7}, {20.0, 20.0}}
+                                              Other, 0x104bb8dc0, {{47.7, 764.1}, {18.5, 14.3}}
+                                                Other, 0x104bb9f40, {{47.7, 764.1}, {18.5, 14.3}}
+                                                Other, 0x104bba800, {{56.1, 769.1}, {5.2, 5.2}}
+                                            Other, 0x104bbb480, {{226.0, 761.7}, {20.0, 20.0}}
+                                              Other, 0x104bbb5c0, {{230.1, 762.4}, {11.8, 18.5}}
+                                                Other, 0x104bbae40, {{230.1, 767.4}, {11.8, 9.3}}
+                                                Other, 0x104bbb200, {{232.6, 762.4}, {1.8, 6.8}}
+                                                Other, 0x104bbaa80, {{237.6, 762.4}, {1.8, 6.8}}
+                                                Other, 0x104bbabc0, {{235.1, 774.9}, {1.8, 6.0}}
+                                            StaticText, 0x104bbb0c0, {{37.0, 801.7}, {137.0, 19.7}}, label: 'Potência'
+                                              StaticText, 0x104bbaf80, {{37.0, 801.7}, {137.0, 19.7}}, label: 'Potência'
+                                            StaticText, 0x104bbad00, {{216.0, 801.7}, {137.0, 19.7}}, label: 'Conectores'
+                                              StaticText, 0x104bba940, {{216.0, 801.7}, {137.0, 19.7}}, label: 'Conectores'
+                                            StaticText, 0x104bb9b80, {{37.0, 826.3}, {137.0, 30.0}}, label: '150 kW'
+                                              StaticText, 0x104bba6c0, {{37.0, 826.3}, {137.0, 30.0}}, label: '150 kW'
+                                            StaticText, 0x104bba580, {{216.0, 826.3}, {137.0, 59.7}}, label: 'CCS2, Type 2'
+                                              StaticText, 0x104bb9e00, {{216.0, 826.3}, {137.0, 59.7}}, label: 'CCS2, Type 2'
+                                            StaticText, 0x104bba300, {{37.0, 860.3}, {137.0, 43.3}}, label: 'Velocidade de carga'
+                                              StaticText, 0x104bb9900, {{37.0, 860.3}, {137.0, 43.3}}, label: 'Velocidade de carga'
+                                            StaticText, 0x104bb9cc0, {{216.0, 890.0}, {137.0, 21.7}}, label: 'Tipos compatíveis'
+                                              StaticText, 0x104bba1c0, {{216.0, 890.0}, {137.0, 21.7}}, label: 'Tipos compatíveis'
+                                            Other, 0x104bba080, {{22.0, 940.7}, {167.0, 263.0}}
+                                            Other, 0x104bb9a40, {{201.0, 940.7}, {167.0, 263.0}}
+                                            Other, 0x104bb8c80, {{37.0, 955.7}, {40.0, 40.0}}
+                                            Other, 0x104bb9040, {{216.0, 955.7}, {40.0, 40.0}}
+                                            Other, 0x104bb9680, {{47.0, 965.7}, {20.0, 20.0}}
+                                              Other, 0x104bb9180, {{47.8, 967.3}, {18.5, 16.8}}
+                                                Other, 0x104bb8f00, {{47.8, 967.3}, {4.3, 4.3}}
+                                                Other, 0x107ffc8c0, {{49.4, 968.9}, {15.2, 15.2}}
+                                                Other, 0x107ffca00, {{56.1, 972.3}, {3.5, 6.8}}
+                                                Other, 0x107ffcb40, {{61.9, 967.3}, {4.3, 4.3}}
+                                                Other, 0x107ffc640, {{49.4, 980.3}, {3.8, 3.8}}
+                                                Other, 0x107ffc780, {{60.8, 980.3}, {3.8, 3.8}}
+                                            Other, 0x107ffc3c0, {{226.0, 965.7}, {20.0, 20.0}}
+                                              Other, 0x107ffc500, {{229.2, 966.4}, {13.5, 17.7}}
+                                                Other, 0x107ffc140, {{229.2, 966.4}, {13.5, 17.7}}
+                                            StaticText, 0x107ffc280, {{37.0, 1005.7}, {137.0, 19.7}}, label: 'Funcionamento'
+                                              StaticText, 0x107ffc000, {{37.0, 1005.7}, {137.0, 19.7}}, label: 'Funcionamento'
+                                            StaticText, 0x107ffcc80, {{216.0, 1005.7}, {137.0, 39.0}}, label: 'Distância aproximada'
+                                              StaticText, 0x107ffcdc0, {{216.0, 1005.7}, {137.0, 39.0}}, label: 'Distância aproximada'
+                                            StaticText, 0x107ffcf00, {{37.0, 1030.3}, {137.0, 89.3}}, label: '24 horas, todos os dias'
+                                              StaticText, 0x107ffd040, {{37.0, 1030.3}, {137.0, 89.3}}, label: '24 horas, todos os dias'
+                                            StaticText, 0x107ffd180, {{216.0, 1049.7}, {137.0, 30.0}}, label: '≈2,1 km'
+                                              StaticText, 0x107ffd2c0, {{216.0, 1049.7}, {137.0, 30.0}}, label: '≈2,1 km'
+                                            StaticText, 0x107ffd400, {{216.0, 1083.7}, {137.0, 86.7}}, label: 'Em linha reta desde FIAP. Não é distância de percurso.'
+                                              StaticText, 0x107ffd540, {{216.0, 1083.7}, {137.0, 86.7}}, label: 'Em linha reta desde FIAP. Não é distância de percurso.'
+                                            StaticText, 0x107ffd680, {{37.0, 1123.7}, {137.0, 65.0}}, label: 'Disponibilidade demonstrativa de carregadores'
+                                              StaticText, 0x107ffd7c0, {{37.0, 1123.7}, {137.0, 65.0}}, label: 'Disponibilidade demonstrativa de carregadores'
+                                            StaticText, 0x107ffd900, {{22.0, 1217.3}, {346.0, 154.3}}, label: 'Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo. Distância em linha reta, autonomia e tempo de carga são estimativas simplificadas, sem telemetria ou cálculo de percurso.'
+                                              StaticText, 0x107ffda40, {{22.0, 1217.3}, {346.0, 154.3}}, label: 'Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo. Distância em linha reta, autonomia e tempo de carga são estimativas simplificadas, sem telemetria ou cálculo de percurso.'
+                                            Other, 0x107ffdb80, {{22.0, 1396.0}, {346.0, 160.7}}
+                                            StaticText, 0x107ffdcc0, {{39.0, 1413.0}, {312.0, 26.0}}, label: 'Estimativas de recarga'
+                                              StaticText, 0x107ffde00, {{39.0, 1413.0}, {312.0, 26.0}}, label: 'Estimativas de recarga'
+                                            StaticText, 0x107ffdf40, {{39.0, 1453.0}, {312.0, 43.3}}, label: 'Espera simulada: Baixa · Carga: 20 a 35 min'
+                                              StaticText, 0x107ffe080, {{39.0, 1453.0}, {312.0, 43.3}}, label: 'Espera simulada: Baixa · Carga: 20 a 35 min'
+                                            StaticText, 0x107ffe1c0, {{39.0, 1496.3}, {312.0, 43.3}}, label: 'Carga rápida. Confirme funcionamento e compatibilidade antes de ir.'
+                                              StaticText, 0x107ffe300, {{39.0, 1496.3}, {312.0, 43.3}}, label: 'Carga rápida. Confirme funcionamento e compatibilidade antes de ir.'
+                                            Other, 0x107ffe440, {{22.0, 1566.7}, {346.0, 252.7}}
+                                            StaticText, 0x107ffe580, {{39.0, 1583.7}, {312.0, 26.0}}, label: 'Conectores do ponto'
+                                              StaticText, 0x107ffe6c0, {{39.0, 1583.7}, {312.0, 26.0}}, label: 'Conectores do ponto'
+                                            StaticText, 0x107ff8000, {{89.0, 1633.7}, {262.0, 24.3}}, label: 'CCS2'
+                                              StaticText, 0x107ff8140, {{89.0, 1633.7}, {262.0, 24.3}}, label: 'CCS2'
+                                            Other, 0x107ff8280, {{39.0, 1649.3}, {38.0, 38.0}}
+                                            Other, 0x107ff83c0, {{49.0, 1659.3}, {18.0, 18.0}}
+                                              Other, 0x107ff8500, {{49.7, 1663.0}, {16.7, 10.7}}
+                                                Other, 0x107ff8640, {{49.7, 1663.0}, {5.4, 10.7}}
+                                                Other, 0x107ff8780, {{54.2, 1663.8}, {4.7, 9.2}}
+                                                Other, 0x107ff88c0, {{58.0, 1663.0}, {5.4, 10.7}}
+                                                Other, 0x107ff8a00, {{64.7, 1666.0}, {1.7, 4.7}}
+                                            StaticText, 0x107ff8b40, {{89.0, 1661.0}, {262.0, 42.0}}, label: '150 kW · 2 de 4 carregadores livres no exemplo'
+                                              StaticText, 0x107ff8c80, {{89.0, 1661.0}, {262.0, 42.0}}, label: '150 kW · 2 de 4 carregadores livres no exemplo'
+                                            StaticText, 0x107ff8dc0, {{89.0, 1723.0}, {262.0, 24.3}}, label: 'Type 2'
+                                              StaticText, 0x107ff8f00, {{89.0, 1723.0}, {262.0, 24.3}}, label: 'Type 2'
+                                            Other, 0x107ff9040, {{39.0, 1738.7}, {38.0, 38.0}}
+                                            Other, 0x107ff9180, {{49.0, 1748.7}, {18.0, 18.0}}
+                                              Other, 0x107ff92c0, {{52.7, 1749.3}, {10.7, 16.7}}
+                                                Other, 0x107ff9400, {{52.7, 1753.8}, {10.7, 8.4}}
+                                                Other, 0x107ff9540, {{54.9, 1749.3}, {1.7, 6.2}}
+                                                Other, 0x107ff9680, {{59.4, 1749.3}, {1.7, 6.2}}
+                                                Other, 0x107ff97c0, {{57.2, 1760.6}, {1.7, 5.4}}
+                                            StaticText, 0x107ff9900, {{89.0, 1750.3}, {262.0, 42.0}}, label: '22 kW · 2 de 2 carregadores livres no exemplo'
+                                              StaticText, 0x107ff9a40, {{89.0, 1750.3}, {262.0, 42.0}}, label: '22 kW · 2 de 2 carregadores livres no exemplo'
+                                            Other, 0x107ff9b80, {{22.0, 1829.3}, {346.0, 241.7}}
+                                            StaticText, 0x107ff9cc0, {{39.0, 1846.3}, {312.0, 26.0}}, label: 'Comodidades próximas'
+                                              StaticText, 0x107ff9e00, {{39.0, 1846.3}, {312.0, 26.0}}, label: 'Comodidades próximas'
+                                            Other, 0x107ff9f40, {{72.0, 1886.3}, {42.0, 42.0}}
+                                            Other, 0x107ffa080, {{174.0, 1886.3}, {42.0, 42.0}}
+                                            Other, 0x107ffa1c0, {{276.0, 1886.3}, {42.0, 42.0}}
+                                            Other, 0x107ffa300, {{84.0, 1898.3}, {18.0, 18.0}}
+                                              Other, 0x107ffa440, {{84.7, 1899.0}, {16.6, 16.6}}
+                                                Other, 0x107ffa580, {{84.7, 1899.0}, {16.6, 16.6}}
+                                                Other, 0x107ffa6c0, {{90.0, 1902.8}, {6.8, 9.1}}
+                                            Other, 0x107ffa800, {{186.0, 1898.3}, {18.0, 18.0}}
+                                              Other, 0x107ffa940, {{186.7, 1899.0}, {16.6, 15.8}}
+                                                Other, 0x107ffaa80, {{186.7, 1899.0}, {16.6, 15.8}}
+                                                Other, 0x107ffabc0, {{189.7, 1904.3}, {10.6, 10.6}}
+                                                Other, 0x107ffad00, {{189.7, 1907.3}, {10.6, 1.6}}
+                                                Other, 0x107ffae40, {{189.7, 1910.3}, {10.6, 1.6}}
+                                            Other, 0x107ffaf80, {{288.0, 1898.3}, {18.0, 18.0}}
+                                              Other, 0x107ffb0c0, {{289.5, 1899.0}, {15.1, 16.6}}
+                                                Other, 0x107ffb200, {{289.5, 1899.0}, {10.6, 13.6}}
+                                                Other, 0x107ffb340, {{290.9, 1906.5}, {13.6, 9.1}}
+                                            StaticText, 0x107ffb480, {{47.0, 1935.3}, {92.0, 35.7}}, label: 'Estacionamento'
+                                              StaticText, 0x107ffb5c0, {{47.0, 1935.3}, {92.0, 35.7}}, label: 'Estacionamento'
+                                            StaticText, 0x107ffb700, {{149.0, 1935.3}, {92.0, 35.7}}, label: 'Área coberta'
+                                              StaticText, 0x107ffb840, {{149.0, 1935.3}, {92.0, 35.7}}, label: 'Área coberta'
+                                            StaticText, 0x107ffb980, {{264.3, 1935.3}, {65.0, 18.0}}, label: 'Banheiro'
+                                              StaticText, 0x107ffbac0, {{264.3, 1935.3}, {65.0, 18.0}}, label: 'Banheiro'
+                                            Other, 0x107ffbc00, {{72.0, 1987.0}, {42.0, 42.0}}
+                                            Other, 0x107ffbd40, {{174.0, 1987.0}, {42.0, 42.0}}
+                                            Other, 0x107ffbe80, {{276.0, 1987.0}, {42.0, 42.0}}
+                                            Other, 0x1081e4000, {{84.0, 1999.0}, {18.0, 18.0}}
+                                              Other, 0x1081e4140, {{85.5, 1999.7}, {15.8, 15.8}}
+                                                Other, 0x1081e4280, {{85.5, 2004.2}, {15.8, 11.3}}
+                                                Other, 0x1081e43c0, {{87.7, 1999.7}, {1.6, 3.1}}
+                                                Other, 0x1081e4500, {{90.7, 1999.7}, {1.6, 3.1}}
+                                                Other, 0x1081e4640, {{93.7, 1999.7}, {1.6, 3.1}}
+                                            Other, 0x1081e4780, {{186.0, 1999.0}, {18.0, 18.0}}
+                                              Other, 0x1081e48c0, {{186.7, 2002.0}, {16.6, 12.8}}
+                                                Other, 0x1081e4a00, {{186.7, 2002.0}, {16.6, 4.4}}
+                                                Other, 0x1081e4b40, {{189.0, 2005.7}, {12.1, 3.7}}
+                                                Other, 0x1081e4c80, {{191.6, 2009.5}, {6.8, 2.6}}
+                                                Other, 0x1081e4dc0, {{194.2, 2013.2}, {1.6, 1.6}}
+                                            Other, 0x1081e4f00, {{288.0, 1999.0}, {18.0, 18.0}}
+                                              Other, 0x1081e5040, {{290.2, 1999.7}, {13.6, 16.6}}
+                                                Other, 0x1081e5180, {{290.2, 1999.7}, {13.6, 16.6}}
+                                                Other, 0x1081e52c0, {{294.0, 2005.7}, {6.1, 4.6}}
+                                            StaticText, 0x1081e5400, {{76.0, 2036.0}, {34.0, 18.0}}, label: 'Café'
+                                              StaticText, 0x1081e5540, {{76.0, 2036.0}, {34.0, 18.0}}, label: 'Café'
+                                            StaticText, 0x1081e5680, {{175.7, 2036.0}, {38.7, 18.0}}, label: 'Wi-Fi'
+                                              StaticText, 0x1081e57c0, {{175.7, 2036.0}, {38.7, 18.0}}, label: 'Wi-Fi'
+                                            StaticText, 0x1081e5900, {{258.0, 2036.0}, {78.0, 18.0}}, label: 'Segurança'
+                                              StaticText, 0x1081e5a40, {{258.0, 2036.0}, {78.0, 18.0}}, label: 'Segurança'
+                                            Other, 0x1081e5b80, {{22.0, 2081.0}, {346.0, 1029.0}}
+                                            StaticText, 0x1081e5cc0, {{39.0, 2098.0}, {312.0, 26.0}}, label: 'Avaliações'
+                                              StaticText, 0x1081e5e00, {{39.0, 2098.0}, {312.0, 26.0}}, label: 'Avaliações'
+                                            StaticText, 0x1081e5f40, {{39.0, 2138.0}, {312.0, 103.0}}, label: 'Notas, totais, distribuição e comentários do catálogo são exemplos. Sua avaliação local não altera esses números.'
+                                              StaticText, 0x1081e6080, {{39.0, 2138.0}, {312.0, 103.0}}, label: 'Notas, totais, distribuição e comentários do catálogo são exemplos. Sua avaliação local não altera esses números.'
+                                            StaticText, 0x1081e61c0, {{48.3, 2255.0}, {91.0, 65.0}}, label: '4.9'
+                                              StaticText, 0x1081e6300, {{48.3, 2255.0}, {91.0, 65.0}}, label: '4.9'
+                                            StaticText, 0x1081e6440, {{323.0, 2266.3}, {28.0, 35.7}}, label: '85%'
+                                              StaticText, 0x1081e6580, {{323.0, 2266.3}, {28.0, 35.7}}, label: '85%'
+                                            StaticText, 0x1081e66c0, {{149.0, 2275.0}, {32.0, 18.0}}, label: '5 ★'
+                                              StaticText, 0x1081e6800, {{149.0, 2275.0}, {32.0, 18.0}}, label: '5 ★'
+                                            Other, 0x1081e6940, {{189.0, 2281.7}, {126.0, 5.0}}
+                                              Other, 0x1081e6a80, {{189.0, 2281.7}, {107.0, 5.0}}
+                                            StaticText, 0x1081e6bc0, {{323.0, 2308.0}, {28.0, 35.7}}, label: '10%'
+                                              StaticText, 0x1081e6d00, {{323.0, 2308.0}, {28.0, 35.7}}, label: '10%'
+                                            StaticText, 0x1081e6e40, {{39.0, 2323.0}, {110.0, 45.3}}, label: '★ ★ ★ ★ ★'
+                                              StaticText, 0x1081e6f80, {{39.0, 2323.0}, {110.0, 45.3}}, label: '★ ★ ★ ★ ★'
+                                            StaticText, 0x1081e70c0, {{149.0, 2316.7}, {32.0, 18.0}}, label: '4 ★'
+                                              StaticText, 0x1081e7200, {{149.0, 2316.7}, {32.0, 18.0}}, label: '4 ★'
+                                            Other, 0x1081e7340, {{189.0, 2323.3}, {126.0, 5.0}}
+                                              Other, 0x1081e7480, {{189.0, 2323.3}, {12.7, 5.0}}
+                                            StaticText, 0x1081e75c0, {{149.0, 2349.7}, {32.0, 18.0}}, label: '3 ★'
+                                              StaticText, 0x1081e7700, {{149.0, 2349.7}, {32.0, 18.0}}, label: '3 ★'
+                                            Other, 0x1081e7840, {{189.0, 2356.3}, {126.0, 5.0}}
+                                              Other, 0x1081e7980, {{189.0, 2356.3}, {3.7, 5.0}}
+                                            StaticText, 0x1081e7ac0, {{323.0, 2349.7}, {28.0, 18.0}}, label: '3%'
+                                              StaticText, 0x1081e7c00, {{323.0, 2349.7}, {28.0, 18.0}}, label: '3%'
+                                            StaticText, 0x1081e7d40, {{39.0, 2374.3}, {110.0, 58.3}}, label: '184 avaliações demonstrativas'
+                                              StaticText, 0x1081e7e80, {{39.0, 2374.3}, {110.0, 58.3}}, label: '184 avaliações demonstrativas'
+                                            StaticText, 0x1081ec000, {{149.0, 2373.7}, {32.0, 18.0}}, label: '2 ★'
+                                              StaticText, 0x1081ec140, {{149.0, 2373.7}, {32.0, 18.0}}, label: '2 ★'
+                                            Other, 0x1081ec280, {{189.0, 2380.3}, {126.0, 5.0}}
+                                              Other, 0x1081ec3c0, {{189.0, 2380.3}, {1.3, 5.0}}
+                                            StaticText, 0x1081ec500, {{323.0, 2373.7}, {28.0, 18.0}}, label: '1%'
+                                              StaticText, 0x1081ec640, {{323.0, 2373.7}, {28.0, 18.0}}, label: '1%'
+                                            StaticText, 0x1081ec780, {{149.0, 2397.7}, {32.0, 18.0}}, label: '1 ★'
+                                              StaticText, 0x1081ec8c0, {{149.0, 2397.7}, {32.0, 18.0}}, label: '1 ★'
+                                            Other, 0x1081eca00, {{189.0, 2404.3}, {126.0, 5.0}}
+                                              Other, 0x1081ecb40, {{189.0, 2404.3}, {1.3, 5.0}}
+                                            StaticText, 0x1081ecc80, {{323.0, 2397.7}, {28.0, 18.0}}, label: '1%'
+                                              StaticText, 0x1081ecdc0, {{323.0, 2397.7}, {28.0, 18.0}}, label: '1%'
+                                            Button, 0x1081ecf00, {{39.0, 2446.7}, {312.0, 48.0}}, label: 'Avaliar este ponto'
+                                            Other, 0x1081ed040, {{39.0, 2512.7}, {312.0, 201.7}}
+                                            Other, 0x1081ed180, {{54.0, 2527.7}, {44.0, 44.0}}
+                                            StaticText, 0x1081ed2c0, {{110.0, 2527.7}, {226.0, 22.7}}, label: 'Leonardo Bragatti'
+                                              StaticText, 0x1081ed400, {{110.0, 2527.7}, {226.0, 22.7}}, label: 'Leonardo Bragatti'
+                                            StaticText, 0x1081ed540, {{64.0, 2538.3}, {24.0, 22.7}}, label: 'LB'
+                                              StaticText, 0x1081ed680, {{64.0, 2538.3}, {24.0, 22.7}}, label: 'LB'
+                                            StaticText, 0x1081ed7c0, {{110.0, 2552.3}, {226.0, 24.7}}, label: 'Avaliação demonstrativa'
+                                              StaticText, 0x1081ed900, {{110.0, 2552.3}, {226.0, 24.7}}, label: 'Avaliação demonstrativa'
+                                            StaticText, 0x1081eda40, {{110.0, 2577.0}, {226.0, 19.7}}, label: '★ ★ ★ ★ ★'
+                                              StaticText, 0x1081edb80, {{110.0, 2577.0}, {226.0, 19.7}}, label: '★ ★ ★ ★ ★'
+                                            StaticText, 0x1081edcc0, {{110.0, 2601.7}, {226.0, 97.7}}, label: 'Cobertura, banheiro e café deixam a parada bem confortável para uma recarga rápida.'
+                                              StaticText, 0x1081ede00, {{110.0, 2601.7}, {226.0, 97.7}}, label: 'Cobertura, banheiro e café deixam a parada bem confortável para uma recarga rápida.'
+                                            Other, 0x1081edf40, {{39.0, 2726.3}, {312.0, 177.3}}
+                                            Other, 0x1081ee080, {{54.0, 2741.3}, {44.0, 44.0}}
+                                            StaticText, 0x1081ee1c0, {{110.0, 2741.3}, {226.0, 22.7}}, label: 'Marina Polverari'
+                                              StaticText, 0x1081ee300, {{110.0, 2741.3}, {226.0, 22.7}}, label: 'Marina Polverari'
+                                            StaticText, 0x1081ee440, {{61.0, 2752.0}, {29.7, 22.7}}, label: 'MP'
+                                              StaticText, 0x1081ee580, {{61.0, 2752.0}, {29.7, 22.7}}, label: 'MP'
+                                            StaticText, 0x1081ee6c0, {{110.0, 2766.0}, {226.0, 24.7}}, label: 'Avaliação demonstrativa'
+                                              StaticText, 0x1081ee800, {{110.0, 2766.0}, {226.0, 24.7}}, label: 'Avaliação demonstrativa'
+                                            StaticText, 0x1081ee940, {{110.0, 2790.7}, {226.0, 19.7}}, label: '★ ★ ★ ★ ★'
+                                              StaticText, 0x1081eea80, {{110.0, 2790.7}, {226.0, 19.7}}, label: '★ ★ ★ ★ ★'
+                                            StaticText, 0x1081eebc0, {{110.0, 2815.3}, {226.0, 73.3}}, label: 'Boa sinalização, ambiente limpo e conexão estável no CCS2 durante a recarga.'
+                                              StaticText, 0x1081eed00, {{110.0, 2815.3}, {226.0, 73.3}}, label: 'Boa sinalização, ambiente limpo e conexão estável no CCS2 durante a recarga.'
+                                            Other, 0x1081eee40, {{39.0, 2915.7}, {312.0, 177.3}}
+                                            Other, 0x1081eef80, {{54.0, 2930.7}, {44.0, 44.0}}
+                                            StaticText, 0x1081ef0c0, {{110.0, 2930.7}, {226.0, 22.7}}, label: 'John Paul'
+                                              StaticText, 0x1081ef200, {{110.0, 2930.7}, {226.0, 22.7}}, label: 'John Paul'
+                                            StaticText, 0x1081ef340, {{63.7, 2941.3}, {24.3, 22.7}}, label: 'JP'
+                                              StaticText, 0x1081ef480, {{63.7, 2941.3}, {24.3, 22.7}}, label: 'JP'
+                                            StaticText, 0x1081ef5c0, {{110.0, 2955.3}, {226.0, 24.7}}, label: 'Avaliação demonstrativa'
+                                              StaticText, 0x1081ef700, {{110.0, 2955.3}, {226.0, 24.7}}, label: 'Avaliação demonstrativa'
+                                            StaticText, 0x1081ef840, {{110.0, 2980.0}, {226.0, 19.7}}, label: '★ ★ ★ ★ ★'
+                                              StaticText, 0x1081ef980, {{110.0, 2980.0}, {226.0, 19.7}}, label: '★ ★ ★ ★ ★'
+                                            StaticText, 0x1081efac0, {{110.0, 3004.7}, {226.0, 73.3}}, label: 'Ponto completo para quem precisa carregar sem abrir mão de segurança e Wi-Fi.'
+                                              StaticText, 0x1081efc00, {{110.0, 3004.7}, {226.0, 73.3}}, label: 'Ponto completo para quem precisa carregar sem abrir mão de segurança e Wi-Fi.'
+                                        Other, 0x1081efd40, {{47.3, 811.0}, {295.3, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                          Other, 0x1081efe80, {{50.3, 838.0}, {289.3, 3.0}}
+                                        Other, 0x1081f8000, {{47.3, 811.0}, {295.3, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                          Other, 0x1081f8140, {{50.3, 838.0}, {289.3, 3.0}}
+                                    Other, 0x1081f8280, {{0.0, 0.0}, {390.0, 844.0}}
+                                    Other, 0x1081f83c0, {{0.0, 735.0}, {390.0, 109.0}}
+                                      Button, 0x1081f8500, {{22.0, 748.0}, {168.7, 52.0}}, label: 'Ver mapa'
+                                      Button, 0x1081f8640, {{202.7, 748.0}, {165.3, 52.0}}, label: 'Iniciar rota para Higienópolis Prime Charge'
+                          Toolbar, 0x1081f8780, {{0.0, 0.0}, {390.0, 844.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x1081f88c0, {{0.0, 0.0}, {390.0, 844.0}}
+                    Other, 0x1081f8a00, {{0.0, 0.0}, {390.0, 844.0}}
+                      Other, 0x1081f8b40, {{0.0, 0.0}, {390.0, 844.0}}
+                        Other, 0x1081f8c80, {{0.0, 0.0}, {390.0, 844.0}}
+      Other, 0x1081f8dc0, {{0.0, 0.0}, {390.0, 844.0}}
+        Other, 0x1081f8f00, {{0.0, 0.0}, {390.0, 844.0}}
+          Other, 0x1081f9040, {{0.0, 0.0}, {390.0, 844.0}}
+            Other, 0x1081f9180, {{0.0, 0.0}, {390.0, 844.0}}
+              Other, 0x1081f92c0, {{20.0, 220.3}, {350.0, 403.7}}
+                ScrollView, 0x1081f9400, {{20.0, 220.3}, {350.0, 403.7}}
+                  Other, 0x1081f9540, {{20.0, 220.3}, {350.0, 403.7}}
+                    Other, 0x1081f9680, {{20.0, 220.3}, {350.0, 403.7}}
+                      StaticText, 0x1081f97c0, {{44.0, 244.3}, {302.0, 32.3}}, label: 'De onde você vai sair?'
+                        StaticText, 0x1081f9900, {{44.0, 244.3}, {302.0, 32.3}}, label: 'De onde você vai sair?'
+                      StaticText, 0x1081f9a40, {{44.0, 288.7}, {302.0, 119.3}}, label: 'Compartilhar sua localização é opcional. Você também pode definir a origem no aplicativo de navegação.'
+                        StaticText, 0x1081f9b80, {{44.0, 288.7}, {302.0, 119.3}}, label: 'Compartilhar sua localização é opcional. Você também pode definir a origem no aplicativo de navegação.'
+                      Button, 0x1081f9cc0, {{44.0, 420.0}, {302.0, 52.0}}, label: 'Usar localização atual'
+                      Button, 0x1081f9e00, {{44.0, 484.0}, {302.0, 52.0}}, label: 'Continuar sem localização'
+                      Button, 0x1081f9f40, {{44.0, 548.0}, {302.0, 52.0}}, label: 'Cancelar'
+                  Other, 0x1081fa080, {{337.0, 220.3}, {30.0, 403.7}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                    Other, 0x1081fa1c0, {{364.0, 223.3}, {3.0, 397.7}}
+                  Other, 0x1081fa300, {{20.0, 591.0}, {350.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                    Other, 0x1081fa440, {{23.0, 618.0}, {344.0, 3.0}}
+                  Other, 0x1081fa580, {{337.0, 220.3}, {30.0, 403.7}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                    Other, 0x1081fa6c0, {{364.0, 223.3}, {3.0, 397.7}}
+                  Other, 0x1081fa800, {{20.0, 591.0}, {350.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                    Other, 0x1081fa940, {{23.0, 618.0}, {344.0, 3.0}}
+            Other, 0x1081faa80, {{0.0, 0.0}, {390.0, 844.0}}
+              Other, 0x1081fabc0, {{0.0, 0.0}, {390.0, 844.0}}
+                Other, 0x1081fad00, {{0.0, 0.0}, {390.0, 844.0}}
+Path to element:
+ →Application, 0x1080a0a00, pid: 41272, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x1081fae40, pid: 41272, label: 'Expo Go'
+  }
+
+    t =    18.99s Added attachment named 'diagnostico-modal-ampliado'
+    t =    20.02s Find the "Continuar sem localização" Button
+    t =    20.05s Find the Button (First Match)
+    t =    20.07s Find the Button (First Match)
+    t =    20.25s Added attachment named 'localizacao-ampliada'
+    t =    20.25s Tap "Continuar sem localização" Button
+    t =    20.25s     Wait for host.exp.Exponent to idle
+    t =    20.26s     Find the "Continuar sem localização" Button
+    t =    20.27s     Check for interrupting elements affecting "Continuar sem localização" Button
+    t =    20.38s     Synthesize event
+    t =    20.70s     Wait for host.exp.Exponent to idle
+    t =    20.71s Waiting 5.0s for Button (First Match) to exist
+    t =    21.74s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    21.75s         Checking existence of `Button (First Match)`
+    t =    21.77s Find the Button (First Match)
+    t =    21.79s Checking existence of `StaticText (First Match)`
+    t =    21.96s Added attachment named 'confirmacao-preservada'
+    t =    21.96s Tap Button (First Match)
+    t =    21.96s     Wait for host.exp.Exponent to idle
+    t =    21.96s     Find the Button (First Match)
+    t =    21.98s     Check for interrupting elements affecting "Cancelar" Button
+    t =    22.08s     Synthesize event
+    t =    22.40s     Wait for host.exp.Exponent to idle
+    t =    22.72s Waiting 5.0s for Button (First Match) to exist
+    t =    23.75s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    23.75s         Checking existence of `Button (First Match)`
+    t =    23.77s Tap Button (First Match)
+    t =    23.77s     Wait for host.exp.Exponent to idle
+    t =    23.77s     Find the Button (First Match)
+    t =    23.79s     Check for interrupting elements affecting "Ver mapa" Button
+    t =    23.89s     Synthesize event
+    t =    24.21s     Wait for host.exp.Exponent to idle
+    t =    24.22s Waiting 10.0s for Button (First Match) to exist
+    t =    25.26s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    25.26s         Checking existence of `Button (First Match)`
+    t =    25.33s Find the Button (First Match)
+    t =    25.47s Find the Button (First Match)
+    t =    25.56s Find the Button (First Match)
+    t =    25.67s Find the Button (First Match)
+    t =    25.84s Find the "Abrir assistente Flui IA" Button
+    t =    25.96s Find the Button (First Match)
+    t =    26.04s Find the Button (First Match)
+    t =    26.76s Find the "Abrir assistente Flui IA" Button
+    t =    26.90s Find the Button (First Match)
+    t =    26.98s Find the Button (First Match)
+    t =    27.11s Find the "Abrir assistente Flui IA" Button
+    t =    27.22s Find the Button (First Match)
+    t =    28.03s Added attachment named 'mapa-ampliado-sem-sobreposicao'
+    t =    28.15s Tap "Abrir assistente Flui IA" Button
+    t =    28.16s     Wait for host.exp.Exponent to idle
+    t =    28.31s     Find the "Abrir assistente Flui IA" Button
+    t =    28.55s     Check for interrupting elements affecting "Abrir assistente Flui IA" Button
+    t =    29.62s     Synthesize event
+    t =    30.90s     Wait for host.exp.Exponent to idle
+    t =    31.06s Waiting 5.0s for "Mensagem para a FluIA" TextField to exist
+    t =    32.07s     Checking `Expect predicate `existsNoRetry == 1` for object "Mensagem para a FluIA" TextField`
+    t =    32.14s         Checking existence of `"Mensagem para a FluIA" TextField`
+    t =    32.34s Checking existence of `Button (First Match)`
+    t =    32.38s Tap Button (First Match)
+    t =    32.38s     Wait for host.exp.Exponent to idle
+    t =    32.40s     Find the Button (First Match)
+    t =    32.49s     Check for interrupting elements affecting "Desativar voz da FluIA" Button
+    t =    32.64s     Synthesize event
+    t =    33.22s     Wait for host.exp.Exponent to idle
+    t =    33.27s Tap "Mensagem para a FluIA" TextField
+    t =    33.28s     Wait for host.exp.Exponent to idle
+    t =    33.34s     Find the "Mensagem para a FluIA" TextField
+    t =    33.47s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    33.61s     Synthesize event
+    t =    34.05s     Wait for host.exp.Exponent to idle
+    t =    35.95s Type 'q' into "Pergunte algo à FluIA" TextField
+    t =    35.96s     Wait for host.exp.Exponent to idle
+    t =    36.17s     Find the "Pergunte algo à FluIA" TextField
+    t =    36.44s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    36.63s     Synthesize event
+    t =    37.42s     Wait for host.exp.Exponent to idle
+    t =    37.70s Type 'u' into "Pergunte algo à FluIA" TextField
+    t =    37.70s     Wait for host.exp.Exponent to idle
+    t =    37.72s     Find the "Pergunte algo à FluIA" TextField
+    t =    37.87s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    38.01s     Synthesize event
+    t =    38.39s     Wait for host.exp.Exponent to idle
+    t =    38.46s Type 'e' into "Pergunte algo à FluIA" TextField
+    t =    38.46s     Wait for host.exp.Exponent to idle
+    t =    38.53s     Find the "Pergunte algo à FluIA" TextField
+    t =    38.68s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    38.85s     Synthesize event
+    t =    39.36s     Wait for host.exp.Exponent to idle
+    t =    39.42s Type 'r' into "Pergunte algo à FluIA" TextField
+    t =    39.42s     Wait for host.exp.Exponent to idle
+    t =    39.47s     Find the "Pergunte algo à FluIA" TextField
+    t =    39.61s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    39.78s     Synthesize event
+    t =    40.30s     Wait for host.exp.Exponent to idle
+    t =    40.35s Type 'o' into "Pergunte algo à FluIA" TextField
+    t =    40.35s     Wait for host.exp.Exponent to idle
+    t =    40.40s     Find the "Pergunte algo à FluIA" TextField
+    t =    40.56s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    40.76s     Synthesize event
+    t =    41.14s     Wait for host.exp.Exponent to idle
+    t =    41.17s Type ' ' into "Pergunte algo à FluIA" TextField
+    t =    41.17s     Wait for host.exp.Exponent to idle
+    t =    41.22s     Find the "Pergunte algo à FluIA" TextField
+    t =    41.38s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    41.54s     Synthesize event
+    t =    41.90s     Wait for host.exp.Exponent to idle
+    t =    41.92s Type 'c' into "Pergunte algo à FluIA" TextField
+    t =    41.92s     Wait for host.exp.Exponent to idle
+    t =    41.97s     Find the "Pergunte algo à FluIA" TextField
+    t =    42.11s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    42.53s     Synthesize event
+    t =    43.03s     Wait for host.exp.Exponent to idle
+    t =    43.12s Type 'a' into "Pergunte algo à FluIA" TextField
+    t =    43.14s     Wait for host.exp.Exponent to idle
+    t =    43.34s     Find the "Pergunte algo à FluIA" TextField
+    t =    43.51s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    43.69s     Synthesize event
+    t =    44.10s     Wait for host.exp.Exponent to idle
+    t =    44.14s Type 'r' into "Pergunte algo à FluIA" TextField
+    t =    44.15s     Wait for host.exp.Exponent to idle
+    t =    44.21s     Find the "Pergunte algo à FluIA" TextField
+    t =    44.37s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    44.52s     Synthesize event
+    t =    44.99s     Wait for host.exp.Exponent to idle
+    t =    45.07s Type 'r' into "Pergunte algo à FluIA" TextField
+    t =    45.08s     Wait for host.exp.Exponent to idle
+    t =    45.19s     Find the "Pergunte algo à FluIA" TextField
+    t =    45.34s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    45.63s     Synthesize event
+    t =    46.04s     Wait for host.exp.Exponent to idle
+    t =    46.08s Type 'e' into "Pergunte algo à FluIA" TextField
+    t =    46.09s     Wait for host.exp.Exponent to idle
+    t =    46.13s     Find the "Pergunte algo à FluIA" TextField
+    t =    46.27s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    46.41s     Synthesize event
+    t =    46.97s     Wait for host.exp.Exponent to idle
+    t =    47.05s Type 'g' into "Pergunte algo à FluIA" TextField
+    t =    47.05s     Wait for host.exp.Exponent to idle
+    t =    47.15s     Find the "Pergunte algo à FluIA" TextField
+    t =    47.33s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    47.58s     Synthesize event
+    t =    48.69s     Wait for host.exp.Exponent to idle
+    t =    48.94s Type 'a' into "Pergunte algo à FluIA" TextField
+    t =    48.94s     Wait for host.exp.Exponent to idle
+    t =    49.00s     Find the "Pergunte algo à FluIA" TextField
+    t =    49.16s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    49.39s     Synthesize event
+    t =    50.54s     Wait for host.exp.Exponent to idle
+    t =    50.66s Type 'r' into "Pergunte algo à FluIA" TextField
+    t =    50.67s     Wait for host.exp.Exponent to idle
+    t =    50.70s     Find the "Pergunte algo à FluIA" TextField
+    t =    50.86s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    51.11s     Synthesize event
+    t =    51.59s     Wait for host.exp.Exponent to idle
+    t =    51.87s Type ' ' into "Pergunte algo à FluIA" TextField
+    t =    51.88s     Wait for host.exp.Exponent to idle
+    t =    52.26s     Find the "Pergunte algo à FluIA" TextField
+    t =    52.46s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    52.64s     Synthesize event
+    t =    53.07s     Wait for host.exp.Exponent to idle
+    t =    53.33s Type 'r' into "Pergunte algo à FluIA" TextField
+    t =    53.33s     Wait for host.exp.Exponent to idle
+    t =    53.39s     Find the "Pergunte algo à FluIA" TextField
+    t =    53.51s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    53.66s     Synthesize event
+    t =    54.04s     Wait for host.exp.Exponent to idle
+    t =    54.07s Type 'a' into "Pergunte algo à FluIA" TextField
+    t =    54.07s     Wait for host.exp.Exponent to idle
+    t =    54.10s     Find the "Pergunte algo à FluIA" TextField
+    t =    54.25s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    54.38s     Synthesize event
+    t =    54.77s     Wait for host.exp.Exponent to idle
+    t =    54.82s Type 'p' into "Pergunte algo à FluIA" TextField
+    t =    54.82s     Wait for host.exp.Exponent to idle
+    t =    54.86s     Find the "Pergunte algo à FluIA" TextField
+    t =    55.00s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    55.16s     Synthesize event
+    t =    55.57s     Wait for host.exp.Exponent to idle
+    t =    55.60s Type 'i' into "Pergunte algo à FluIA" TextField
+    t =    55.61s     Wait for host.exp.Exponent to idle
+    t =    55.65s     Find the "Pergunte algo à FluIA" TextField
+    t =    55.79s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    55.96s     Synthesize event
+    t =    56.45s     Wait for host.exp.Exponent to idle
+    t =    56.48s Type 'd' into "Pergunte algo à FluIA" TextField
+    t =    56.49s     Wait for host.exp.Exponent to idle
+    t =    56.53s     Find the "Pergunte algo à FluIA" TextField
+    t =    56.68s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    56.93s     Synthesize event
+    t =    57.49s     Wait for host.exp.Exponent to idle
+    t =    57.61s Type 'o' into "Pergunte algo à FluIA" TextField
+    t =    57.62s     Wait for host.exp.Exponent to idle
+    t =    57.83s     Find the "Pergunte algo à FluIA" TextField
+    t =    57.97s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    58.15s     Synthesize event
+    t =    58.71s     Wait for host.exp.Exponent to idle
+    t =    59.21s Waiting 5.0s for Keyboard (First Match) to exist
+    t =    60.29s     Checking `Expect predicate `existsNoRetry == 1` for object Keyboard (First Match)`
+    t =    60.30s         Checking existence of `Keyboard (First Match)`
+    t =    61.54s Find the Button (First Match)
+    t =    61.91s Checking existence of `Keyboard (First Match)`
+    t =    62.00s Find the Keyboard (First Match)
+    t =    62.19s Find the Keyboard at {{0.0, 560.0}, {390.0, 226.0}}
+    t =    62.26s Find the Application 'host.exp.Exponent'
+    t =    62.38s Tap Button (First Match)
+    t =    62.38s     Wait for host.exp.Exponent to idle
+    t =    62.42s     Find the Button (First Match)
+    t =    62.53s     Check for interrupting elements affecting "Enviar mensagem" Button
+    t =    62.70s     Synthesize event
+    t =    63.22s     Wait for host.exp.Exponent to idle
+    t =    63.30s Waiting 10.0s for Button (First Match) to exist
+    t =    64.32s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    64.32s         Checking existence of `Button (First Match)`
+    t =    64.59s         Capturing element debug description
+    t =    65.32s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    65.32s         Checking existence of `Button (First Match)`
+    t =    65.49s Tap "Pergunte algo à FluIA" TextField
+    t =    65.49s     Wait for host.exp.Exponent to idle
+    t =    65.51s     Find the "Pergunte algo à FluIA" TextField
+    t =    65.64s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    65.80s     Synthesize event
+    t =    66.22s     Wait for host.exp.Exponent to idle
+    t =    67.77s Checking existence of `Keyboard (First Match)`
+    t =    67.84s Find the Keyboard (First Match)
+    t =    67.98s Find the Keyboard at {{0.0, 560.0}, {390.0, 226.0}}
+    t =    68.07s Find the Application 'host.exp.Exponent'
+    t =    68.19s Find the Button (First Match)
+    t =    68.47s Find the "Iniciar rota para o ponto recomendado" Button
+    t =    68.71s Find the Keyboard (First Match)
+    t =    68.87s Find the "Iniciar rota para o ponto recomendado" Button
+    t =    69.08s Find the Button (First Match)
+FLUI TECLADO (0.0, 560.0, 390.0, 226.0) CTA (31.0, 354.33333587646484, 275.6666564941406, 52.0) ENVIAR (285.0, 437.6666768491268, 85.0, 44.000030517578125)
+    t =    69.22s Find the "Iniciar rota para o ponto recomendado" Button
+    t =    69.38s Find the Keyboard (First Match)
+    t =    69.43s Find the Button (First Match)
+    t =    69.54s Find the Button (First Match)
+    t =    69.64s Find the Keyboard (First Match)
+    t =    69.78s Find the Button (First Match)
+    t =    70.39s Added attachment named 'resposta-resumida-teclado-ampliado'
+    t =    70.40s Tap Button (First Match)
+    t =    70.40s     Wait for host.exp.Exponent to idle
+    t =    70.42s     Find the Button (First Match)
+    t =    70.56s     Check for interrupting elements affecting "Fechar assistente" Button
+    t =    70.76s     Synthesize event
+    t =    71.20s     Wait for host.exp.Exponent to idle
+    t =    71.90s Waiting 8.0s for "Abrir assistente Flui IA" Button to exist
+    t =    72.93s     Checking `Expect predicate `existsNoRetry == 1` for object "Abrir assistente Flui IA" Button`
+    t =    72.94s         Checking existence of `"Abrir assistente Flui IA" Button`
+    t =    74.02s Checking existence of `Keyboard (First Match)`
+    t =    74.12s Tap "Abrir assistente Flui IA" Button
+    t =    74.12s     Wait for host.exp.Exponent to idle
+    t =    74.14s     Find the "Abrir assistente Flui IA" Button
+    t =    74.22s     Check for interrupting elements affecting "Abrir assistente Flui IA" Button
+    t =    74.33s     Synthesize event
+    t =    74.76s     Wait for host.exp.Exponent to idle
+    t =    74.87s Waiting 5.0s for "Pergunte algo à FluIA" TextField to exist
+    t =    75.90s     Checking `Expect predicate `existsNoRetry == 1` for object "Pergunte algo à FluIA" TextField`
+    t =    75.90s         Checking existence of `"Pergunte algo à FluIA" TextField`
+    t =    76.35s Added attachment named 'reabertura-ampliada'
+    t =    76.35s Tap Button (First Match)
+    t =    76.35s     Wait for host.exp.Exponent to idle
+    t =    76.39s     Find the Button (First Match)
+    t =    76.46s     Check for interrupting elements affecting "Fechar assistente" Button
+    t =    76.64s     Synthesize event
+    t =    77.04s     Wait for host.exp.Exponent to idle
+    t =    77.13s Tear Down
+Test Case '-[FluiValidacao.FluiValidacao testFluxoCompactoAmpliado]' passed (77.787 seconds).
+Test Suite 'FluiValidacao' passed at 2026-10-20 07:33:06.505.
+	 Executed 1 test, with 0 failures (0 unexpected) in 77.787 (77.885) seconds
+Test Suite 'FluiValidacao.xctest' passed at 2026-10-20 07:33:06.509.
+	 Executed 1 test, with 0 failures (0 unexpected) in 77.787 (77.890) seconds
+Test Suite 'Selected tests' passed at 2026-10-20 07:33:06.510.
+	 Executed 1 test, with 0 failures (0 unexpected) in 77.787 (77.894) seconds
+2026-10-20 07:33:06.788 xcodebuild[41293:6426382] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-20 07:33:06.799 xcodebuild[41293:6426382] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-20 07:33:06.818 xcodebuild[41293:6426382] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-20 07:33:07.117 xcodebuild[41293:6426382] [MT] IDETestOperationsObserverDebug: 104.128 elapsed -- Testing started completed.
+2026-10-20 07:33:07.118 xcodebuild[41293:6426382] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-20 07:33:07.118 xcodebuild[41293:6426382] [MT] IDETestOperationsObserverDebug: 104.128 sec, +104.128 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/flui-ux28-native/TecladoEstavel.xcresult
+
+** TEST SUCCEEDED **
+
+Testing started

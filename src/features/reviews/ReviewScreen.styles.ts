@@ -290,7 +290,7 @@ export const styles = StyleSheet.create({
   },
   overallTitle: {
     fontSize: 15,
-    fontWeight: "800",
+    fontWeight: "600",
     color: colors.text,
   },
   overallDescription: {
@@ -331,7 +331,7 @@ export const styles = StyleSheet.create({
   },
   criterionTitle: {
     fontSize: 14,
-    fontWeight: "800",
+    fontWeight: "600",
     color: colors.text,
   },
   criterionDescription: {
@@ -368,7 +368,7 @@ export const styles = StyleSheet.create({
   },
   commentLabel: {
     fontSize: 14,
-    fontWeight: "800",
+    fontWeight: "600",
     color: colors.text,
   },
   optionalText: {

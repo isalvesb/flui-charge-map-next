@@ -1,4 +1,33 @@
-import { router, useLocalSearchParams, type Href } from "expo-router";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import {
+  Animated,
+  Image,
+  Keyboard,
+  Modal,
+  Platform,
+  Pressable,
+  ScrollView,
+  StatusBar,
+  Text,
+  TextInput,
+  useWindowDimensions,
+  View,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import MapView, {
+  Marker,
+  PROVIDER_GOOGLE,
+  type MapViewHandle,
+  type Region,
+} from "../../components/MapSurface";
+import { SvgXml } from "react-native-svg";
+import { router, type Href, useLocalSearchParams } from "expo-router";
 import {
   BatteryFull,
   BatteryLow,
@@ -17,74 +46,44 @@ import {
   X,
   Zap,
 } from "lucide-react-native";
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import {
-  Animated,
-  Image,
-  Modal,
-  Platform,
-  Pressable,
-  ScrollView,
-  StatusBar,
-  Text,
-  TextInput,
-  useWindowDimensions,
-  View,
-} from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { SvgXml } from "react-native-svg";
-import MapView, {
-  Marker,
-  PROVIDER_GOOGLE,
-  type MapViewHandle,
-  type Region,
-} from "../../components/MapSurface";
 
+import { chargingStations } from "../../data";
+import { defaultFilters } from "../../data/filterOptions";
+import { StationFilters } from "../../types";
+import { filtrarEstacoes } from "../../utils/filtrarEstacoes";
+import {
+  avaliarAlcance,
+  calcularAutonomiaAtualKm,
+} from "../../utils/autonomia";
+import { formatarDistanciaDemonstrativa } from "../../utils/demonstracao";
+import { canChargeAt } from "../../utils/stationAvailability";
+import { isStationOpenAt } from "../../utils/stationHours";
+import { getStationStatusInfo } from "../stations/stationPresentation";
+import { getBatterySourceLabels } from "../../utils/batteryData";
+import { useCurrentTime } from "../../hooks/useCurrentTime";
 import {
   LoadingOverlay,
   PressableScale,
   ScreenTransition,
 } from "../../components";
-import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
-import { useAppPreferences } from "../../context/PreferencesContext";
-import { chargingStations } from "../../data";
-import { defaultFilters } from "../../data/filterOptions";
-import { identificacaoDados } from "../../data/identificacaoDados";
-import { useCurrentTime } from "../../hooks/useCurrentTime";
-import { useReducedMotion } from "../../hooks/useReducedMotion";
-import { useTelaComPreferencias } from "../../hooks/useTelaComPreferencias";
-import { StationFilters } from "../../types";
-import {
-  avaliarAlcance,
-  calcularAutonomiaAtualKm,
-} from "../../utils/autonomia";
-import { getBatterySourceLabels } from "../../utils/batteryData";
-import { formatarDistanciaDemonstrativa } from "../../utils/demonstracao";
-import { filtrarEstacoes } from "../../utils/filtrarEstacoes";
-import { canChargeAt } from "../../utils/stationAvailability";
-import { isStationOpenAt } from "../../utils/stationHours";
-import { FluiAiIcon } from "../assistant/FluiAiIcon";
-import { FluiAssistantSheet } from "../assistant/FluiAssistantSheet";
-import { getStationStatusInfo } from "../stations/stationPresentation";
 import baseStyles, { colors as baseColors } from "./HomeMapScreen.styles";
+import { useTelaComPreferencias } from "../../hooks/useTelaComPreferencias";
+import { useReducedMotion } from "../../hooks/useReducedMotion";
+import { useAppPreferences } from "../../context/PreferencesContext";
+import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
+import { identificacaoDados } from "../../data/identificacaoDados";
 import {
-  getMapHorizontalFocusOffset,
   getMapPanelLayout,
   getMapVerticalFocusOffset,
+  getMapHorizontalFocusOffset,
 } from "./mapLayout";
+import { FluiAssistantSheet } from "../assistant/FluiAssistantSheet";
+import { FluiAiIcon } from "../assistant/FluiAiIcon";
 
 const FEEDBACK_DURATION = 1500;
 const SHEET_VISIBLE_HANDLE = 30;
 const SHEET_OCULTO_MARGEM_EXTRA = 40;
-const QUICK_FILTERS_CONTENT_HEIGHT = 56;
 const HANDLE_HINT_DISTANCE = 4;
-const ASSISTANT_LABEL_DURATION = 5000;
 const ASSISTANT_SHEET_GAP = 4;
 const ASSISTANT_HIDDEN_BOTTOM = 20;
 
@@ -708,7 +707,11 @@ export default function HomeMapScreen() {
   const vehicleRangeKm = userPreferences.vehicleRangeKm;
   const [seletorBateriaAberto, setSeletorBateriaAberto] = useState(false);
   const [bateriaEmEdicao, setBateriaEmEdicao] = useState(batteryPercent);
-  const { width: larguraJanela, height: alturaJanela } = useWindowDimensions();
+  const {
+    width: larguraJanela,
+    height: alturaJanela,
+    fontScale: escalaFonteSistema,
+  } = useWindowDimensions();
   const isTelaLarga = larguraJanela >= TABLET_BREAKPOINT;
   const margemHorizontalConteudo = isTelaLarga
     ? Math.max(16, (larguraJanela - MAX_CONTENT_WIDTH) / 2)
@@ -727,11 +730,8 @@ export default function HomeMapScreen() {
   const searchInputRef = useRef<TextInput>(null);
   const currentMapRegionRef = useRef<Region | null>(null);
   const sheetTranslateY = useRef(new Animated.Value(0)).current;
-  const quickFiltersProgress = useRef(new Animated.Value(1)).current;
-  const quickFiltersHintTranslateY = useRef(new Animated.Value(0)).current;
   const sheetHintTranslateY = useRef(new Animated.Value(0)).current;
   const userLocationPulseProgress = useRef(new Animated.Value(0)).current;
-  const assistantLabelProgress = useRef(new Animated.Value(1)).current;
   const sheetPositionRef = useRef(0);
   const localizacaoUsuario = demoOrigin;
   const [isLocatingUser, setIsLocatingUser] = useState(false);
@@ -744,15 +744,12 @@ export default function HomeMapScreen() {
     larguraJanela,
     alturaJanela,
     mapAreaHeight,
-    fontScale,
+    fontScale * escalaFonteSistema,
     sheetHeight,
   );
   const cabecalhoCompacto =
-    larguraJanela <= 360 || fontScale > 1.3;
+    larguraJanela <= 360 || fontScale * escalaFonteSistema > 1.3;
   const [alturaCardPonto, setAlturaCardPonto] = useState<number | null>(null);
-  const [atalhosRapidosAbertos, setAtalhosRapidosAbertos] = useState(true);
-  const [hasInteractedWithQuickFilters, setHasInteractedWithQuickFilters] =
-    useState(false);
   const [hasInteractedWithSheet, setHasInteractedWithSheet] = useState(false);
   const [filtrosRapidos, setFiltrosRapidos] = useState<FiltrosRapidos>(
     filtrosRapidosIniciais,
@@ -788,17 +785,6 @@ export default function HomeMapScreen() {
 
   const usarMapaEscuro = Platform.OS === "android" && isDarkMode;
 
-  const alturaAtalhosRapidos = quickFiltersProgress.interpolate({
-    inputRange: [0, 1],
-    outputRange: [
-      0,
-      Math.max(
-        QUICK_FILTERS_CONTENT_HEIGHT,
-        48 * fontScale,
-      ),
-    ],
-  });
-
   const escalaPulsoLocalizacao = userLocationPulseProgress.interpolate({
     inputRange: [0, 1],
     outputRange: [0.78, 1.18],
@@ -809,14 +795,10 @@ export default function HomeMapScreen() {
     outputRange: [0.34, 0.1],
   });
 
-  const larguraBotaoAssistente = assistantLabelProgress.interpolate({
-    inputRange: [0, 1],
-    outputRange: [52, 120],
-  });
-  const larguraRotuloAssistente = assistantLabelProgress.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0, 66],
-  });
+  const assistantWidth = Math.min(
+    220,
+    Math.max(132, 132 * fontScale * escalaFonteSistema),
+  );
 
   const sheetCollapsedTranslateY = useMemo(() => {
     return Math.max(sheetHeight - SHEET_VISIBLE_HANDLE, 0);
@@ -869,89 +851,6 @@ export default function HomeMapScreen() {
       userLocationPulseProgress.setValue(0);
     };
   }, [reduceMotionEnabled, userLocationPulseProgress]);
-
-  useEffect(() => {
-    if (!funcionalidadesExperimentais.fluia) return;
-    assistantLabelProgress.setValue(1);
-
-    const labelTimeout = setTimeout(() => {
-      if (reduceMotionEnabled) {
-        assistantLabelProgress.setValue(0);
-        return;
-      }
-
-      Animated.timing(assistantLabelProgress, {
-        toValue: 0,
-        duration: 260,
-        useNativeDriver: false,
-      }).start();
-    }, ASSISTANT_LABEL_DURATION);
-
-    return () => {
-      clearTimeout(labelTimeout);
-      assistantLabelProgress.stopAnimation();
-    };
-  }, [assistantLabelProgress, reduceMotionEnabled]);
-
-  const animarAtalhosRapidos = useCallback(
-    (shouldOpen: boolean) => {
-      const nextProgress = shouldOpen ? 1 : 0;
-
-      quickFiltersProgress.stopAnimation();
-      setAtalhosRapidosAbertos(shouldOpen);
-
-      if (reduceMotionEnabled) {
-        quickFiltersProgress.setValue(nextProgress);
-        return;
-      }
-
-      Animated.timing(quickFiltersProgress, {
-        toValue: nextProgress,
-        duration: 220,
-        useNativeDriver: false,
-      }).start();
-    },
-    [quickFiltersProgress, reduceMotionEnabled],
-  );
-
-  useEffect(() => {
-    if (hasInteractedWithQuickFilters || reduceMotionEnabled) {
-      quickFiltersHintTranslateY.stopAnimation();
-      quickFiltersHintTranslateY.setValue(0);
-      return;
-    }
-
-    const hintOffset = atalhosRapidosAbertos
-      ? -HANDLE_HINT_DISTANCE
-      : HANDLE_HINT_DISTANCE;
-    const hintAnimation = Animated.loop(
-      Animated.sequence([
-        Animated.timing(quickFiltersHintTranslateY, {
-          toValue: hintOffset,
-          duration: 420,
-          useNativeDriver: true,
-        }),
-        Animated.timing(quickFiltersHintTranslateY, {
-          toValue: 0,
-          duration: 520,
-          useNativeDriver: true,
-        }),
-        Animated.delay(1300),
-      ]),
-    );
-
-    hintAnimation.start();
-
-    return () => {
-      hintAnimation.stop();
-      quickFiltersHintTranslateY.setValue(0);
-    };
-  }, [
-    atalhosRapidosAbertos,
-    hasInteractedWithQuickFilters,
-    quickFiltersHintTranslateY,
-    reduceMotionEnabled,
-  ]);
 
   useEffect(() => {
     if (hasInteractedWithSheet || reduceMotionEnabled) {
@@ -1063,7 +962,7 @@ export default function HomeMapScreen() {
       return {
         id: cardId,
         stationId: getStationId(item.station, item.index),
-        criterioLabel: "Opção demonstrativa",
+        criterioLabel: "No catálogo",
         criterioIcon: Zap,
         nomeEstacao: getStationName(item.station),
         address: getStationAddress(item.station),
@@ -1241,7 +1140,7 @@ export default function HomeMapScreen() {
 
   const sheetTitle = hasNoResults
     ? "Nenhum ponto disponível"
-    : "Opções demonstrativas";
+    : "Estações próximas";
 
   const corBateriaAtual = obterCorDeBateriaAtual(batteryPercent, colors);
   const autonomiaAtualKm = Math.round(
@@ -1337,14 +1236,14 @@ export default function HomeMapScreen() {
     sheetTranslateY,
   ]);
 
-  const openStationDetails = (stationId: string) => {
+  const openStationDetails = (stationId: string, startRoute = false) => {
     if (isOpeningDetails) {
       return;
     }
 
     const route = {
       pathname: "/point-details",
-      params: { stationId },
+      params: { stationId, ...(startRoute ? { startRoute: "1" } : {}) },
     } as Href;
 
     setIsOpeningDetails(true);
@@ -1366,11 +1265,6 @@ export default function HomeMapScreen() {
     }));
   };
 
-  const alternarAtalhosRapidos = () => {
-    setHasInteractedWithQuickFilters(true);
-    animarAtalhosRapidos(!atalhosRapidosAbertos);
-  };
-
   const renderizarChevronDeControle = (apontaParaCima: boolean) => {
     return (
       <SvgXml
@@ -1378,33 +1272,6 @@ export default function HomeMapScreen() {
         width={28}
         height={12}
       />
-    );
-  };
-
-  const renderizarPuxadorDeAtalhos = () => {
-    return (
-      <PressableScale
-        accessibilityRole="button"
-        accessibilityLabel={
-          atalhosRapidosAbertos
-            ? "Recolher atalhos de filtro"
-            : "Mostrar atalhos de filtro"
-        }
-        accessibilityHint="Toque para abrir ou recolher os filtros rápidos do mapa."
-        accessibilityState={{ expanded: atalhosRapidosAbertos }}
-        hitSlop={{ top: 8, right: 32, bottom: 8, left: 32 }}
-        pressedScale={0.9}
-        style={styles.quickFiltersHandleArea}
-        onPress={alternarAtalhosRapidos}
-      >
-        <Animated.View
-          style={{ transform: [{ translateY: quickFiltersHintTranslateY }] }}
-        >
-          <View style={styles.quickFiltersChevronButton}>
-            {renderizarChevronDeControle(atalhosRapidosAbertos)}
-          </View>
-        </Animated.View>
-      </PressableScale>
     );
   };
 
@@ -1594,59 +1461,47 @@ export default function HomeMapScreen() {
           </View>
 
           <View style={styles.quickFiltersArea}>
-            <Animated.View
-              pointerEvents="auto"
-              style={[
-                styles.quickFiltersAnimatedContent,
-                {
-                  height: alturaAtalhosRapidos,
-                  opacity: quickFiltersProgress,
-                },
-              ]}
+            <ScrollView
+              horizontal
+              tabIndex={-1}
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.filtersContent}
             >
-              <ScrollView
-                horizontal
-                scrollEnabled
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.filtersContent}
-              >
-                {filterChips.map((filter) => {
-                  const Icon = filter.icon;
+              {filterChips.map((filter) => {
+                const Icon = filter.icon;
 
-                  return (
-                    <PressableScale
-                      key={filter.id}
-                      tabIndex={atalhosRapidosAbertos ? 0 : -1}
-                      accessibilityRole="button"
-                      accessibilityLabel={`${filter.label}${filter.active ? ", filtro ativo" : ""}`}
-                      accessibilityHint="Filtra os pontos do mapa em tempo real."
-                      accessibilityState={{ selected: filter.active }}
-                      pressedScale={0.96}
+                return (
+                  <PressableScale
+                    key={filter.id}
+                    accessibilityRole="button"
+                    accessibilityLabel={`${filter.label}${filter.active ? ", filtro ativo" : ""}`}
+                    accessibilityHint="Filtra os pontos do catálogo demonstrativo."
+                    accessibilityState={{ selected: filter.active }}
+                    pressedScale={0.96}
+                    style={[
+                      styles.chip,
+                      filter.active ? styles.chipActive : null,
+                    ]}
+                    onPress={() => alternarFiltroRapido(filter.id)}
+                  >
+                    <Icon
+                      size={17}
+                      color={filter.active ? colors.white : colors.primary}
+                      strokeWidth={2}
+                    />
+
+                    <Text
                       style={[
-                        styles.chip,
-                        filter.active ? styles.chipActive : null,
+                        styles.chipText,
+                        filter.active ? styles.chipTextActive : null,
                       ]}
-                      onPress={() => alternarFiltroRapido(filter.id)}
                     >
-                      <Icon
-                        size={17}
-                        color={filter.active ? colors.white : colors.primary}
-                        strokeWidth={2}
-                      />
-
-                      <Text
-                        style={[
-                          styles.chipText,
-                          filter.active ? styles.chipTextActive : null,
-                        ]}
-                      >
-                        {filter.label}
-                      </Text>
-                    </PressableScale>
-                  );
-                })}
-              </ScrollView>
-            </Animated.View>
+                      {filter.label}
+                    </Text>
+                  </PressableScale>
+                );
+              })}
+            </ScrollView>
           </View>
         </View>
 
@@ -1667,11 +1522,9 @@ export default function HomeMapScreen() {
             showsMyLocationButton={false}
             showsCompass={false}
             toolbarEnabled={false}
-            rotateEnabled={false}
-            pitchEnabled={false}
-            loadingEnabled
             scrollEnabled
             zoomEnabled
+            loadingEnabled
             customMapStyle={usarMapaEscuro ? estiloEscuroDoMapa : []}
             onRegionChangeComplete={(region) => {
               currentMapRegionRef.current = region;
@@ -1833,15 +1686,29 @@ export default function HomeMapScreen() {
             </PressableScale>
           </View>
 
-          {funcionalidadesExperimentais.fluia ? (
+          {funcionalidadesExperimentais.fluia && !assistenteFluiApresentado ? (
             <Animated.View
               style={[
                 styles.fluiAssistantFloating,
                 {
-                  right: margemHorizontalSheet,
-                  bottom: sheetHeight + ASSISTANT_SHEET_GAP,
+                  right: layout.horizontal ? 16 : undefined,
+                  left: layout.horizontal ? undefined : "50%",
+                  marginLeft: layout.horizontal ? 0 : -assistantWidth / 2,
+                  top:
+                    layout.compactControls && !layout.horizontal
+                      ? 74
+                      : undefined,
+                  bottom: layout.compactControls
+                    ? layout.horizontal
+                      ? 12
+                      : undefined
+                    : sheetHeight + ASSISTANT_SHEET_GAP,
                   transform: [
-                    { translateY: deslocamentoVerticalBotaoAssistente },
+                    {
+                      translateY: layout.compactControls
+                        ? 0
+                        : deslocamentoVerticalBotaoAssistente,
+                    },
                   ],
                 },
               ]}
@@ -1849,7 +1716,7 @@ export default function HomeMapScreen() {
               <Animated.View
                 style={[
                   styles.fluiAssistantAnimatedButton,
-                  { width: larguraBotaoAssistente },
+                  { width: assistantWidth },
                 ]}
               >
                 <PressableScale
@@ -1858,23 +1725,15 @@ export default function HomeMapScreen() {
                   accessibilityHint="Abre opções de recomendação simulada para encontrar um ponto de recarga."
                   pressedScale={0.95}
                   style={styles.fluiAssistantButton}
-                  onPress={() => setAssistenteFluiAberto(true)}
+                  onPress={() => {
+                    searchInputRef.current?.blur();
+                    Keyboard.dismiss();
+                    setAssistenteFluiApresentado(true);
+                    setAssistenteFluiAberto(true);
+                  }}
                 >
                   <FluiAiIcon color={colors.white} size={21} />
-                  <Animated.View
-                    style={{
-                      width: larguraRotuloAssistente,
-                      opacity: assistantLabelProgress,
-                      overflow: "hidden",
-                    }}
-                  >
-                    <Text
-                      style={styles.fluiAssistantButtonText}
-                      numberOfLines={1}
-                    >
-                      Flui IA
-                    </Text>
-                  </Animated.View>
+                  <Text style={styles.fluiAssistantButtonText}>FluIA</Text>
                 </PressableScale>
               </Animated.View>
             </Animated.View>
@@ -1898,7 +1757,7 @@ export default function HomeMapScreen() {
           >
             <ScrollView
               // Recalcular os textos nativos quando o Dynamic Type mudar durante a sessão.
-              key={`painel-${fontScale}`}
+              key={`painel-${fontScale}-${escalaFonteSistema}`}
               tabIndex={-1}
               nestedScrollEnabled
               style={[
@@ -1912,7 +1771,7 @@ export default function HomeMapScreen() {
             >
               <PressableScale
                 accessibilityRole="button"
-                accessibilityLabel="Minimizar opções demonstrativas para ver o mapa inteiro"
+                accessibilityLabel="Minimizar pontos de recarga para ver o mapa inteiro"
                 tabIndex={painelTotalmenteOculto ? -1 : 0}
                 accessibilityHint="Esconde completamente o painel, deixando só um atalho para trazê-lo de volta."
                 hitSlop={{ top: 10, right: 44, bottom: 10, left: 44 }}
@@ -1933,6 +1792,7 @@ export default function HomeMapScreen() {
               </PressableScale>
               <View style={styles.sheetHeader}>
                 <Text style={styles.sheetTitle}>{sheetTitle}</Text>
+                <Text style={styles.sheetCaption}>Dados demonstrativos</Text>
               </View>
               <Text style={styles.originDescription}>
                 {identificacaoDados.catalogo.aviso}
@@ -1954,6 +1814,7 @@ export default function HomeMapScreen() {
                   <PressableScale
                     accessibilityRole="button"
                     accessibilityLabel="Ajustar busca"
+                    tabIndex={painelTotalmenteOculto ? -1 : 0}
                     style={styles.emptyButton}
                     onPress={abrirBusca}
                   >
@@ -1962,6 +1823,7 @@ export default function HomeMapScreen() {
                 </View>
               ) : (
                 <ScrollView
+                  tabIndex={-1}
                   style={[
                     styles.pointsScroll,
                     { height: alturaListaComDoisCards },
@@ -1994,6 +1856,7 @@ export default function HomeMapScreen() {
                     return (
                       <PressableScale
                         key={`${point.id}-${point.stationId}`}
+                        tabIndex={painelTotalmenteOculto ? -1 : 0}
                         accessibilityRole="button"
                         accessibilityLabel={`${point.nomeEstacao}. ${point.criterioLabel}. ${point.address}. ${point.status}. Nota ${point.rating}. ${point.power}. ${point.distancia} em linha reta. ${legendaAlcance}.`}
                         accessibilityHint="Abre a ficha detalhada do ponto de recarga."
@@ -2056,12 +1919,10 @@ export default function HomeMapScreen() {
                           />
                         </View>
 
-                        <Text style={styles.pointStationName} numberOfLines={1}>
+                        <Text style={styles.pointStationName}>
                           {point.nomeEstacao}
                         </Text>
-                        <Text style={styles.pointAddress} numberOfLines={1}>
-                          {point.address}
-                        </Text>
+                        <Text style={styles.pointAddress}>{point.address}</Text>
 
                         <Text style={styles.pointAddress}>
                           {point.distancia} em linha reta
@@ -2112,7 +1973,7 @@ export default function HomeMapScreen() {
             >
               <PressableScale
                 accessibilityRole="button"
-                accessibilityLabel="Mostrar opções demonstrativas"
+                accessibilityLabel="Mostrar pontos de recarga"
                 accessibilityHint="Traz de volta a lista de pontos recomendados."
                 pressedScale={0.94}
                 style={styles.restaurarPainelPill}
@@ -2120,7 +1981,7 @@ export default function HomeMapScreen() {
               >
                 <Maximize2 size={16} color={colors.primary} strokeWidth={2.3} />
                 <Text style={styles.restaurarPainelPillText}>
-                  Opções demonstrativas
+                  Pontos de recarga
                 </Text>
               </PressableScale>
             </View>
@@ -2134,8 +1995,13 @@ export default function HomeMapScreen() {
             now={now}
             batteryPercent={batteryPercent}
             vehicleRangeKm={vehicleRangeKm}
-            onClose={() => setAssistenteFluiAberto(false)}
+            onClose={() => {
+              setAssistenteFluiAberto(false);
+              if (Platform.OS !== "ios") setAssistenteFluiApresentado(false);
+            }}
+            onDismiss={() => setAssistenteFluiApresentado(false)}
             onSelectStation={openStationDetails}
+            onStartRoute={(stationId) => openStationDetails(stationId, true)}
           />
         ) : null}
 
