@@ -73,13 +73,14 @@ Base conferida em 21/10/2026: `main` em `94c862eacf86cd44d3de0535e08d1d35d2666b4
 
 | Verificação local | Resultado |
 | --- | --- |
-| `npm run check` | TypeScript aprovado; lint sem erros; 126 testes aprovados, zero falhas |
+| `npm run check` | TypeScript aprovado; lint sem erros; 127 testes aprovados, zero falhas |
 | Lint herdado | Um aviso `react-hooks/exhaustive-deps` em `src/context/ConnectivityContext.tsx:48`, arquivo idêntico à base; não alterado nesta tarefa |
 | `npm run build:web` | Expo exportou 12 rotas; preparo conferiu documentos, assets e limite de upload; 62 arquivos |
 | HTTP da exportação | 200 para `/`, `/map`, `/search`, `/point-details?stationId=vm`, `/profile`, `/settings`, `/review`, `/trip-planner`, `/onboarding`, `/loading`, worker e `build-info.json`; bundle também retornou 200 |
 | Documento e avisos | HTML em `pt-BR`, título da demonstração, aviso esquemático em `/map` e avisos demonstrativos na ficha presentes no HTML exportado |
 | Caminho inexistente | HTTP 404 com página exportada; não retorna a entrada como se fosse uma rota válida |
 | Três testes novos de HTTP | Rotas/parâmetros/404, tipo/cache do worker e HEAD, recusa de escrita/URL inválida/leitura fora da exportação |
+| Regressão direcionada do worker | Antes da correção, rota desconhecida retornava 503 em vez de 404; teste reproduziu a falha. Após a correção, preserva 404 e mantém a cópia local das rotas preparadas |
 
 As dependências locais foram reutilizadas de uma instalação com `package-lock.json` de SHA-256 idêntico; não houve instalação ou atualização. O Quality remoto fará a instalação limpa via `npm ci` e verificará a mesma preparação web.
 

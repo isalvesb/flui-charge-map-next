@@ -49,6 +49,11 @@ self.addEventListener("fetch", (event) => {
     const timer = setTimeout(() => controller.abort(), 3000);
     try {
       const response = await fetch(request, { signal: controller.signal });
+      if (navigation && response.status === 404) {
+        // Um link desconhecido deve mostrar a página 404 publicada. Uma rota
+        // já preparada ainda pode usar sua cópia local se faltar no servidor.
+        return await cache.match(request) || await cache.match(url.pathname) || response;
+      }
       if (navigation && !response.ok) throw new Error("Página indisponível na rede.");
       if (response.ok && response.type !== "opaque") {
         // Falha/quota de cache não pode transformar uma resposta online em erro.
