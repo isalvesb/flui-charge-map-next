@@ -213,6 +213,7 @@ export default function PointDetailsScreen() {
   } = useFluiStorage();
 
   const [isLoadingAction, setIsLoadingAction] = useState(false);
+  const [mostrarAvaliacoes, setMostrarAvaliacoes] = useState(false);
   const { checkConnection } = useConnectivity();
   const [connectionError, setConnectionError] = useState<string | null>(null);
   const [isRouteDialogOpen, setIsRouteDialogOpen] = useState(false);
@@ -688,34 +689,23 @@ export default function PointDetailsScreen() {
             })}
           </View>
 
+          
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Comodidades próximas</Text>
+            <Pressable
+              accessibilityRole="button"
+              accessibilityState={{ expanded: mostrarAvaliacoes }}
+              accessibilityLabel={mostrarAvaliacoes ? "Ocultar avaliações" : "Ver avaliações"}
+              style={{ minHeight: 44, marginTop: 8, borderRadius: 14, alignItems: "center", justifyContent: "center", borderWidth: 1, borderColor: colors.border }}
+              onPress={() => setMostrarAvaliacoes((atual) => !atual)}
+            >
+              <Text style={{ color: colors.primary, fontSize: 14, fontWeight: "600" }}>
+                {mostrarAvaliacoes ? "Ocultar avaliações" : "Ver avaliações"}
+              </Text>
+            </Pressable>
 
-            <View style={styles.amenitiesGrid}>
-              {station.amenities.map((amenity) => {
-                const IconeComodidade = getAmenityIcon(amenity);
+            {mostrarAvaliacoes ? (
+              <>
 
-                return (
-                  <View key={amenity} style={styles.amenityItem}>
-                    <View style={styles.amenityIconBox}>
-                      <IconeComodidade
-                        size={18}
-                        color={colors.primary}
-                        strokeWidth={2.1}
-                      />
-                    </View>
-
-                    <Text style={styles.amenityLabel}>
-                      {getAmenityLabel(amenity)}
-                    </Text>
-                  </View>
-                );
-              })}
-            </View>
-          </View>
-
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Avaliações</Text>
             <Text style={styles.resumoDescription}>
               {identificacaoDados.avaliacoesExemplo.aviso}
             </Text>
@@ -850,7 +840,9 @@ export default function PointDetailsScreen() {
                 </Text>
               </View>
             )}
-          </View>
+                        </>
+            ) : null}
+</View>
         </View>
       </ScrollView>
 

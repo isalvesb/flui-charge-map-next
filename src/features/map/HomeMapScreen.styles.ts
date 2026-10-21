@@ -977,6 +977,13 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     letterSpacing: -0.1,
   },
+
+  sheetCaption: {
+    marginTop: 2,
+    color: colors.textMuted,
+    fontSize: 12,
+    fontWeight: "500",
+  },
 });
 
 export default styles;

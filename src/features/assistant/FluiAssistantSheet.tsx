@@ -1,18 +1,3 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import {
-  Animated,
-  Easing,
-  Keyboard,
-  KeyboardAvoidingView,
-  Modal,
-  Platform,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
 import {
   Armchair,
   BatteryLow,
@@ -28,24 +13,39 @@ import {
   X,
   Zap,
 } from "lucide-react-native";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import {
+  Animated,
+  Easing,
+  Keyboard,
+  KeyboardAvoidingView,
+  Modal,
+  Platform,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 
 import * as Speech from "expo-speech";
 import { PressableScale } from "../../components";
+import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
 import { useAppPreferences } from "../../context/PreferencesContext";
+import { identificacaoDados } from "../../data/identificacaoDados";
 import { useReducedMotion } from "../../hooks/useReducedMotion";
 import type { AppTheme } from "../../theme/appTheme";
 import { scaleFontSize } from "../../theme/appTheme";
 import type { ChargingStation } from "../../types";
+import { EnergyOrb } from "./EnergyOrb";
+import { summarizeSuggestion } from "./assistantPresentation";
+import { answerMessage, RECOMMENDATION_DISCLAIMER } from "./chatEngine";
 import {
   formatAssistantDistance,
   recommendStations,
   type FluiAssistantIntent,
 } from "./fluiAssistant";
-import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
-import { identificacaoDados } from "../../data/identificacaoDados";
-import { EnergyOrb } from "./EnergyOrb";
-import { answerMessage, RECOMMENDATION_DISCLAIMER } from "./chatEngine";
-import { summarizeSuggestion } from "./assistantPresentation";
 
 import {
   FLUIA_STATE_LABELS,
@@ -121,7 +121,9 @@ export function FluiAssistantSheet({
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [draft, setDraft] = useState("");
   const [showExplanation, setShowExplanation] = useState(false);
-  const [expandedMessageId, setExpandedMessageId] = useState<number | null>(null);
+  const [expandedMessageId, setExpandedMessageId] = useState<number | null>(
+    null,
+  );
   const [isChatThinking, setIsChatThinking] = useState(false);
   const chatTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const nextMessageId = useRef(0);
@@ -270,7 +272,9 @@ export function FluiAssistantSheet({
             text: response.text,
             state: response.state,
             stationId: response.recommendation?.primary.id,
-            summary: response.recommendation ? summarizeSuggestion(response.recommendation) : undefined,
+            summary: response.recommendation
+              ? summarizeSuggestion(response.recommendation)
+              : undefined,
           },
         ]);
         if (voiceEnabled) {
@@ -345,7 +349,11 @@ export function FluiAssistantSheet({
         <View style={styles.sheet}>
           <View style={styles.handle} />
           <View style={styles.headerRow}>
-            <EnergyOrb state={displayedState} reducedMotion={reduceMotionEnabled} active={visible} />
+            <EnergyOrb
+              state={displayedState}
+              reducedMotion={reduceMotionEnabled}
+              active={visible}
+            />
             <View style={styles.headerText}>
               <View style={styles.titleRow}>
                 <Text style={styles.title}>FluIA</Text>
@@ -504,17 +512,18 @@ export function FluiAssistantSheet({
                     />
                   </View>
 
-                <PressableScale
-                  accessibilityRole="button"
-                  accessibilityLabel={`Iniciar rota para ${recommendation.primary.name}`}
-                  accessibilityHint="Abre a escolha de localização e a confirmação de funcionamento antes da navegação."
-                  style={styles.primaryButton}
-                  onPress={() => startRoute(recommendation.primary.id)}
-                >
-                  <Text style={styles.primaryButtonText}>Iniciar rota</Text>
-                </PressableScale>
+                  <PressableScale
+                    accessibilityRole="button"
+                    accessibilityLabel={`Iniciar rota para ${recommendation.primary.name}`}
+                    accessibilityHint="Abre a escolha de localização e a confirmação de funcionamento antes da navegação."
+                    style={styles.primaryButton}
+                    onPress={() => startRoute(recommendation.primary.id)}
+                  >
+                    <Text style={styles.primaryButtonText}>Iniciar rota</Text>
+                  </PressableScale>
                   <Text style={styles.explanationText}>
-                    Em linha reta · reserva de 5%. Confirme funcionamento e compatibilidade.
+                    Em linha reta · reserva de 5%. Confirme funcionamento e
+                    compatibilidade.
                   </Text>
                   <PressableScale
                     accessibilityRole="button"
@@ -522,44 +531,26 @@ export function FluiAssistantSheet({
                     style={styles.secondaryButton}
                     onPress={() => setShowExplanation((current) => !current)}
                   >
-                    <Text style={styles.secondaryButtonText}>{showExplanation ? "Resumir explicação" : "Por que essa escolha?"}</Text>
+                    <Text style={styles.secondaryButtonText}>
+                      {showExplanation
+                        ? "Resumir explicação"
+                        : "Por que essa escolha?"}
+                    </Text>
                   </PressableScale>
-                  {showExplanation ? <Text style={styles.explanationText}>
-                    {recommendation.explanation}
-                    {"\n"}
-                    {userPreferences.vehicleName} · origem demonstrativa: {demoOrigin.nome}.
-                    {"\n"}
-                    {RECOMMENDATION_DISCLAIMER}
-                  </Text> : null}
+                  {showExplanation ? (
+                    <Text style={styles.explanationText}>
+                      {recommendation.explanation}
+                      {"\n"}
+                      {userPreferences.vehicleName} · origem demonstrativa:{" "}
+                      {demoOrigin.nome}.{"\n"}
+                      {RECOMMENDATION_DISCLAIMER}
+                    </Text>
+                  ) : null}
                 </View>
 
-                {recommendation.backup ? (
-                  <PressableScale
-                    accessibilityRole="button"
-                    accessibilityLabel={`Abrir Plano B, ${recommendation.backup.name}`}
-                    accessibilityHint="Abre a ficha detalhada da estação alternativa."
-                    style={styles.backupCard}
-                    onPress={() => chooseStation(recommendation.backup!.id)}
-                  >
-                    <View style={styles.backupIcon}>
-                      <MapPin size={22} color={theme.primary} strokeWidth={2.3} />
-                    </View>
-                    <View style={styles.backupText}>
-                      <Text style={styles.backupTitle}>Plano B</Text>
-                      <Text style={styles.backupDescription} numberOfLines={1}>
-                        {recommendation.backup.name} ·{" "}
-                        {formatAssistantDistance(
-                          recommendation.backup.distanceKm,
-                        )}
-                      </Text>
-                    </View>
-                    <ChevronRight
-                      size={22}
-                      color={theme.textMuted}
-                      strokeWidth={2.2}
-                    />
-                  </PressableScale>
-                ) : null}
+                <Text style={styles.explanationText}>
+                  {RECOMMENDATION_DISCLAIMER}
+                </Text>
 
                 <PressableScale
                   accessibilityRole="button"
@@ -622,10 +613,29 @@ export function FluiAssistantSheet({
                         : styles.fluiBubble
                     }
                   >
-                    <Text style={styles.bubbleText}>{message.summary && expandedMessageId !== message.id ? message.summary : message.text}</Text>
+                    <Text style={styles.bubbleText}>
+                      {message.summary && expandedMessageId !== message.id
+                        ? message.summary
+                        : message.text}
+                    </Text>
                     {message.summary ? (
-                      <PressableScale accessibilityRole="button" accessibilityState={{ expanded: expandedMessageId === message.id }} style={styles.chatButton} onPress={() => setExpandedMessageId((current) => current === message.id ? null : message.id)}>
-                        <Text style={styles.chatButtonText}>{expandedMessageId === message.id ? "Resumir resposta" : "Ver explicação completa"}</Text>
+                      <PressableScale
+                        accessibilityRole="button"
+                        accessibilityState={{
+                          expanded: expandedMessageId === message.id,
+                        }}
+                        style={styles.chatButton}
+                        onPress={() =>
+                          setExpandedMessageId((current) =>
+                            current === message.id ? null : message.id,
+                          )
+                        }
+                      >
+                        <Text style={styles.chatButtonText}>
+                          {expandedMessageId === message.id
+                            ? "Resumir resposta"
+                            : "Ver explicação completa"}
+                        </Text>
                       </PressableScale>
                     ) : null}
                     {message.stationId ? (
@@ -635,9 +645,7 @@ export function FluiAssistantSheet({
                         style={styles.chatButton}
                         onPress={() => startRoute(message.stationId!)}
                       >
-                        <Text style={styles.chatButtonText}>
-                          Iniciar rota
-                        </Text>
+                        <Text style={styles.chatButtonText}>Iniciar rota</Text>
                       </PressableScale>
                     ) : null}
                   </View>

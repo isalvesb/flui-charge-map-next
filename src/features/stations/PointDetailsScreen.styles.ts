@@ -990,4 +990,19 @@ export const styles = StyleSheet.create({
     borderWidth: 1.5,
     borderColor: colors.primaryBright,
   },
+
+  verAvaliacoesButton: {
+    alignSelf: "flex-start",
+    marginBottom: 12,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    borderRadius: 12,
+    backgroundColor: colors.surface,
+  },
+
+  verAvaliacoesText: {
+    color: colors.primary,
+    fontSize: 16,
+    fontWeight: "600",
+  },
 });
