@@ -1,0 +1,610 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test -project /tmp/flui-ux28-native/FluiValidacao.xcodeproj -scheme FluiValidacao -destination "platform=iOS Simulator,id=EE0F47DC-9FFE-40E8-92A7-AE7E3F11C819" -derivedDataPath /tmp/flui-ux28-native/DerivedData -resultBundlePath /tmp/flui-ux28-native/EnergyOrbAlerta.xcresult -parallel-testing-enabled NO "-only-testing:FluiValidacao/FluiValidacao/testEnergyOrbAlerta"
+
+2026-10-20 07:45:35.649 xcodebuild[42586:6444270] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+Writing result bundle at path:
+	/tmp/flui-ux28-native/EnergyOrbAlerta.xcresult
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (1 target)
+    Target 'FluiValidacao' in project 'FluiValidacao' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+Build description signature: 586266297d18c349c7d0a0104a6a62ad
+Build description path: /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/XCBuildData/586266297d18c349c7d0a0104a6a62ad.xcbuilddata
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk /tmp/flui-ux28-native/DerivedData/SDKStatCaches.noindex/iphonesimulator27.1-24A94232-35d3147121984ba087c28d913653d626.sdkstatcache
+    cd /tmp/flui-ux28-native/FluiValidacao.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -o /tmp/flui-ux28-native/DerivedData/SDKStatCaches.noindex/iphonesimulator27.1-24A94232-35d3147121984ba087c28d913653d626.sdkstatcache
+
+SwiftDriver FluiValidacao normal arm64 com.apple.xcode.tools.swift.compiler (in target 'FluiValidacao' from project 'FluiValidacao')
+    cd /tmp/flui-ux28-native
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name FluiValidacao -O @/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.SwiftFileList -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /tmp/flui-ux28-native/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -swift-version 5 -I /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/Developer/Library/Frameworks -parse-as-library -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/flui-ux28-native/DerivedData/SDKStatCaches.noindex/iphonesimulator27.1-24A94232-35d3147121984ba087c28d913653d626.sdkstatcache -output-file-map /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/flui-ux28-native/DerivedData/ModuleCache.noindex -sdk-module-cache-path /tmp/flui-ux28-native/DerivedData/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /tmp/flui-ux28-native/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -emit-const-values -const-gather-protocols-list /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao-generated-files.hmap -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao-own-target-headers.hmap -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao-all-target-headers.hmap -Xcc -iquote -Xcc /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao-project-headers.hmap -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/DerivedSources-normal/arm64 -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/DerivedSources/arm64 -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/DerivedSources -emit-objc-header -emit-objc-header-path /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao-Swift.h -working-directory /tmp/flui-ux28-native -experimental-emit-module-separately -disable-cmo
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ FluiValidacao (in target 'FluiValidacao' from project 'FluiValidacao')
+
+SwiftCompile normal arm64 (in target 'FluiValidacao' from project 'FluiValidacao')
+    cd /tmp/flui-ux28-native
+    
+
+SwiftCompile normal arm64 Compiling\ FluiValidacao.swift /tmp/flui-ux28-native/FluiValidacao.swift (in target 'FluiValidacao' from project 'FluiValidacao')
+
+SwiftCompile normal arm64 /tmp/flui-ux28-native/FluiValidacao.swift (in target 'FluiValidacao' from project 'FluiValidacao')
+    cd /tmp/flui-ux28-native
+    builtin-SwiftPerFileCompile FluiValidacao.swift
+
+SwiftDriverJobDiscovery normal arm64 Compiling FluiValidacao.swift (in target 'FluiValidacao' from project 'FluiValidacao')
+
+SwiftDriver\ Compilation FluiValidacao normal arm64 com.apple.xcode.tools.swift.compiler (in target 'FluiValidacao' from project 'FluiValidacao')
+    cd /tmp/flui-ux28-native
+    builtin-Swift-Compilation -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name FluiValidacao -O @/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.SwiftFileList -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /tmp/flui-ux28-native/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -swift-version 5 -I /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/Developer/Library/Frameworks -parse-as-library -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/flui-ux28-native/DerivedData/SDKStatCaches.noindex/iphonesimulator27.1-24A94232-35d3147121984ba087c28d913653d626.sdkstatcache -output-file-map /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/flui-ux28-native/DerivedData/ModuleCache.noindex -sdk-module-cache-path /tmp/flui-ux28-native/DerivedData/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /tmp/flui-ux28-native/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -emit-const-values -const-gather-protocols-list /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao-generated-files.hmap -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao-own-target-headers.hmap -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao-all-target-headers.hmap -Xcc -iquote -Xcc /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao-project-headers.hmap -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/DerivedSources-normal/arm64 -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/DerivedSources/arm64 -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/DerivedSources -emit-objc-header -emit-objc-header-path /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao-Swift.h -working-directory /tmp/flui-ux28-native -experimental-emit-module-separately -disable-cmo
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for FluiValidacao (in target 'FluiValidacao' from project 'FluiValidacao')
+
+SwiftDriver\ Compilation\ Requirements FluiValidacao normal arm64 com.apple.xcode.tools.swift.compiler (in target 'FluiValidacao' from project 'FluiValidacao')
+    cd /tmp/flui-ux28-native
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name FluiValidacao -O @/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.SwiftFileList -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /tmp/flui-ux28-native/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -swift-version 5 -I /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/Developer/Library/Frameworks -parse-as-library -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/flui-ux28-native/DerivedData/SDKStatCaches.noindex/iphonesimulator27.1-24A94232-35d3147121984ba087c28d913653d626.sdkstatcache -output-file-map /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/flui-ux28-native/DerivedData/ModuleCache.noindex -sdk-module-cache-path /tmp/flui-ux28-native/DerivedData/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /tmp/flui-ux28-native/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -emit-const-values -const-gather-protocols-list /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao-generated-files.hmap -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao-own-target-headers.hmap -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao-all-target-headers.hmap -Xcc -iquote -Xcc /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao-project-headers.hmap -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/DerivedSources-normal/arm64 -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/DerivedSources/arm64 -Xcc -I/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/DerivedSources -emit-objc-header -emit-objc-header-path /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao-Swift.h -working-directory /tmp/flui-ux28-native -experimental-emit-module-separately -disable-cmo
+
+Copy /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao.swiftmodule/arm64-apple-ios-simulator.abi.json /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.abi.json (in target 'FluiValidacao' from project 'FluiValidacao')
+    cd /tmp/flui-ux28-native
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.abi.json /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao.swiftmodule/arm64-apple-ios-simulator.abi.json
+
+Copy /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao.swiftmodule/arm64-apple-ios-simulator.swiftmodule /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.swiftmodule (in target 'FluiValidacao' from project 'FluiValidacao')
+    cd /tmp/flui-ux28-native
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.swiftmodule /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao.swiftmodule/arm64-apple-ios-simulator.swiftmodule
+
+Copy /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.swiftsourceinfo (in target 'FluiValidacao' from project 'FluiValidacao')
+    cd /tmp/flui-ux28-native
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.swiftsourceinfo /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo
+
+Ld /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest/FluiValidacao normal (in target 'FluiValidacao' from project 'FluiValidacao')
+    cd /tmp/flui-ux28-native
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios17.0-simulator -bundle -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk -Os -Xlinker -no_warn_duplicate_libraries -L/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -L/tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator -L/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F/tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -F/tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk/Developer/Library/Frameworks -filelist /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.LinkFileList -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker @loader_path/Frameworks -Xlinker -dead_strip -Xlinker -object_path_lto -Xlinker /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao_lto.o -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -debug_variant -Xlinker -dependency_info -Xlinker /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao_dependency_info.dat -fobjc-link-runtime -fprofile-instr-generate -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.swiftmodule -Xlinker -needed_framework -Xlinker XCTest -framework XCTest -Xlinker -needed-lXCTestSwiftSupport -lXCTestSwiftSupport -o /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest/FluiValidacao
+
+ExtractAppIntentsMetadata (in target 'FluiValidacao' from project 'FluiValidacao')
+    cd /tmp/flui-ux28-native
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name FluiValidacao --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk --xcode-version 27A9275 --platform-family iOS --deployment-target 17.0 --bundle-identifier local.flui.validacao12 --output /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest --target-triple arm64-apple-ios17.0-simulator --binary-file /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest/FluiValidacao --dependency-file /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao_dependency_info.dat --stringsdata-file /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.SwiftFileList --metadata-file-list /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao.DependencyMetadataFileList --static-metadata-file-list /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/FluiValidacao.DependencyStaticMetadataFileList --swift-const-vals-list /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/Objects-normal/arm64/FluiValidacao.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --no-app-shortcuts-localization
+2026-10-20 07:45:51.332 appintentsmetadataprocessor[42628:6444960] Starting appintentsmetadataprocessor export
+2026-10-20 07:45:51.359 appintentsmetadataprocessor[42628:6444960] warning: Metadata extraction skipped, no AppIntents.framework dependency found
+
+ProcessInfoPlistFile /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest/Info.plist /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/empty-FluiValidacao.plist (in target 'FluiValidacao' from project 'FluiValidacao')
+    cd /tmp/flui-ux28-native
+    builtin-infoPlistUtility /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/empty-FluiValidacao.plist -producttype com.apple.product-type.bundle.ui-testing -expandbuildsettings -format binary -platform iphonesimulator -additionalcontentfile /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/ProductTypeInfoPlistAdditions.plist -o /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest/Info.plist
+
+CopySwiftLibs /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest (in target 'FluiValidacao' from project 'FluiValidacao')
+    cd /tmp/flui-ux28-native
+    builtin-swiftStdLibTool --copy --verbose --scan-executable /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest/FluiValidacao --scan-folder /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest/Frameworks --scan-folder /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest/PlugIns --scan-folder /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest/SystemExtensions --scan-folder /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest/Extensions --platform iphonesimulator --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest/Frameworks --strip-bitcode --scan-executable /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/FluiValidacao.build/Debug-iphonesimulator/FluiValidacao.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+Ignoring --strip-bitcode because --sign was not passed
+
+GenerateDSYMFile /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest.dSYM /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest/FluiValidacao (in target 'FluiValidacao' from project 'FluiValidacao')
+    cd /tmp/flui-ux28-native
+    export PATH\=/Applications/Xcode.app/Contents/SharedFrameworks/SwiftBuild.framework/Versions/A/PlugIns/SWBBuildService.bundle/Contents/PlugIns/SWBUniversalPlatformPlugin.bundle/Contents/Frameworks/SWBUniversalPlatform.framework/Resources:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/local/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/libexec:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/usr/bin:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/usr/local/bin:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/local/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/local/bin:/Applications/ChatGPT.app/Contents/Resources/codex-cli/codex-path:/Users/guicunha/.npm-global/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/Users/guicunha/.codex/tmp/arg0-macos/codex-arg0G8D8UL:/Users/guicunha/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/Users/guicunha/Library/Android/sdk/emulator:/Users/guicunha/Library/Android/sdk/platform-tools:/Users/guicunha/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/Applications/ChatGPT.app/Contents/Resources:/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest/FluiValidacao -o /tmp/flui-ux28-native/DerivedData/Build/Products/Debug-iphonesimulator/FluiValidacao-Runner.app/PlugIns/FluiValidacao.xctest.dSYM
+
+PruneExplicitPrecompiledModules /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+
+PruneExplicitPrecompiledModules /tmp/flui-ux28-native/DerivedData/SDKExplicitPrecompiledModules
+
+PruneExplicitPrecompiledModules /tmp/flui-ux28-native/DerivedData/Build/Intermediates.noindex/ExplicitPrecompiledModules
+
+2026-10-20 07:45:52.331 xcodebuild[42586:6444270] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-20 07:46:08.388649-0300 FluiValidacao-Runner[42636:6445300] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-10-20 07:46:31.201.
+Test Suite 'FluiValidacao.xctest' started at 2026-10-20 07:46:31.208.
+Test Suite 'FluiValidacao' started at 2026-10-20 07:46:31.209.
+Test Case '-[FluiValidacao.FluiValidacao testEnergyOrbAlerta]' started.
+    t =     0.02s Start Test at 2026-10-20 07:46:31.227
+    t =     0.17s Set Up
+    t =     0.18s Open host.exp.Exponent
+    t =     0.22s     Activate host.exp.Exponent
+    t =     0.44s         Wait for host.exp.Exponent to idle
+    t =     0.59s Waiting 2.0s for Button (First Match) to exist
+objc[42636]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x105b38398) and /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x106078310). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =     1.63s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     1.70s         Checking existence of `Button (First Match)`
+    t =     2.03s         Capturing element debug description
+    t =     2.60s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     2.60s         Checking existence of `Button (First Match)`
+    t =     2.81s         Capturing element debug description
+    t =     2.82s     Checking existence of `Button (First Match)`
+    t =     2.96s Collecting debug information to assist test failure triage
+    t =     2.96s     Requesting snapshot of accessibility hierarchy for app with pid 41272
+    t =     3.19s Waiting 8.0s for "Buscar no mapa" TextField to exist
+    t =     4.21s     Checking `Expect predicate `existsNoRetry == 1` for object "Buscar no mapa" TextField`
+    t =     4.21s         Checking existence of `"Buscar no mapa" TextField`
+    t =     4.37s Tap "Buscar no mapa" TextField
+    t =     4.37s     Wait for host.exp.Exponent to idle
+    t =     4.41s     Find the "Buscar no mapa" TextField
+    t =     4.52s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =     4.66s     Synthesize event
+    t =     5.09s     Wait for host.exp.Exponent to idle
+    t =     5.59s Find the "Buscar endereço, bairro ou ponto" TextField
+    t =     5.86s Type '' into "Buscar endereço, bairro ou ponto" TextField
+    t =     5.86s     Wait for host.exp.Exponent to idle
+    t =     5.90s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =     6.01s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =     6.21s     Synthesize event
+    t =     8.00s     Wait for host.exp.Exponent to idle
+    t =     8.27s Type 'z' into "Buscar endereço, bairro ou ponto" TextField
+    t =     8.27s     Wait for host.exp.Exponent to idle
+    t =     8.68s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =     8.84s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =     9.01s     Synthesize event
+    t =     9.52s     Wait for host.exp.Exponent to idle
+    t =     9.80s Type 'z' into "Buscar endereço, bairro ou ponto" TextField
+    t =     9.80s     Wait for host.exp.Exponent to idle
+    t =     9.88s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    10.00s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    10.12s     Synthesize event
+    t =    10.48s     Wait for host.exp.Exponent to idle
+    t =    10.53s Type 'o' into "Buscar endereço, bairro ou ponto" TextField
+    t =    10.54s     Wait for host.exp.Exponent to idle
+    t =    10.57s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    10.69s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    10.81s     Synthesize event
+    t =    11.19s     Wait for host.exp.Exponent to idle
+    t =    11.21s Type 'r' into "Buscar endereço, bairro ou ponto" TextField
+    t =    11.22s     Wait for host.exp.Exponent to idle
+    t =    11.25s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    11.34s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    11.60s     Synthesize event
+    t =    12.00s     Wait for host.exp.Exponent to idle
+    t =    12.02s Type 'b' into "Buscar endereço, bairro ou ponto" TextField
+    t =    12.02s     Wait for host.exp.Exponent to idle
+    t =    12.04s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    12.13s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    12.24s     Synthesize event
+    t =    12.55s     Wait for host.exp.Exponent to idle
+    t =    12.58s Tap Button (First Match)
+    t =    12.58s     Wait for host.exp.Exponent to idle
+    t =    12.62s     Find the Button (First Match)
+    t =    12.77s     Check for interrupting elements affecting "Abrir assistente Flui IA" Button
+    t =    13.35s     Synthesize event
+    t =    14.58s     Wait for host.exp.Exponent to idle
+    t =    14.71s Waiting 5.0s for "Estado da FluIA: Pronta" StaticText to exist
+    t =    15.80s     Checking `Expect predicate `existsNoRetry == 1` for object "Estado da FluIA: Pronta" StaticText`
+    t =    15.80s         Checking existence of `"Estado da FluIA: Pronta" StaticText`
+    t =    15.94s Checking existence of `Button (First Match)`
+    t =    16.17s Tap "Mensagem para a FluIA" TextField
+    t =    16.17s     Wait for host.exp.Exponent to idle
+    t =    16.31s     Find the "Mensagem para a FluIA" TextField
+    t =    16.50s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    16.88s     Synthesize event
+    t =    17.50s     Wait for host.exp.Exponent to idle
+    t =    17.88s Type 'q' into "Pergunte algo à FluIA" TextField
+    t =    17.88s     Wait for host.exp.Exponent to idle
+    t =    18.15s     Find the "Pergunte algo à FluIA" TextField
+    t =    18.30s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    18.93s     Synthesize event
+    t =    20.05s     Wait for host.exp.Exponent to idle
+    t =    20.39s Type 'u' into "Pergunte algo à FluIA" TextField
+    t =    20.40s     Wait for host.exp.Exponent to idle
+    t =    20.45s     Find the "Pergunte algo à FluIA" TextField
+    t =    20.90s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    21.25s     Synthesize event
+    t =    21.76s     Wait for host.exp.Exponent to idle
+    t =    22.02s Type 'e' into "Pergunte algo à FluIA" TextField
+    t =    22.02s     Wait for host.exp.Exponent to idle
+    t =    22.06s     Find the "Pergunte algo à FluIA" TextField
+    t =    22.23s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    22.48s     Synthesize event
+    t =    23.19s     Wait for host.exp.Exponent to idle
+    t =    23.43s Type 'r' into "Pergunte algo à FluIA" TextField
+    t =    23.43s     Wait for host.exp.Exponent to idle
+    t =    23.50s     Find the "Pergunte algo à FluIA" TextField
+    t =    23.65s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    23.84s     Synthesize event
+    t =    24.21s     Wait for host.exp.Exponent to idle
+    t =    24.23s Type 'o' into "Pergunte algo à FluIA" TextField
+    t =    24.23s     Wait for host.exp.Exponent to idle
+    t =    24.25s     Find the "Pergunte algo à FluIA" TextField
+    t =    24.41s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    24.62s     Synthesize event
+    t =    24.99s     Wait for host.exp.Exponent to idle
+    t =    25.06s Type ' ' into "Pergunte algo à FluIA" TextField
+    t =    25.07s     Wait for host.exp.Exponent to idle
+    t =    25.13s     Find the "Pergunte algo à FluIA" TextField
+    t =    25.30s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    25.57s     Synthesize event
+    t =    25.97s     Wait for host.exp.Exponent to idle
+    t =    26.00s Type 'c' into "Pergunte algo à FluIA" TextField
+    t =    26.01s     Wait for host.exp.Exponent to idle
+    t =    26.05s     Find the "Pergunte algo à FluIA" TextField
+    t =    26.18s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    26.30s     Synthesize event
+    t =    26.62s     Wait for host.exp.Exponent to idle
+    t =    26.65s Type 'a' into "Pergunte algo à FluIA" TextField
+    t =    26.65s     Wait for host.exp.Exponent to idle
+    t =    26.69s     Find the "Pergunte algo à FluIA" TextField
+    t =    26.84s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    26.97s     Synthesize event
+    t =    27.29s     Wait for host.exp.Exponent to idle
+    t =    27.31s Type 'r' into "Pergunte algo à FluIA" TextField
+    t =    27.32s     Wait for host.exp.Exponent to idle
+    t =    27.33s     Find the "Pergunte algo à FluIA" TextField
+    t =    27.44s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    27.57s     Synthesize event
+    t =    28.05s     Wait for host.exp.Exponent to idle
+    t =    28.13s Type 'r' into "Pergunte algo à FluIA" TextField
+    t =    28.13s     Wait for host.exp.Exponent to idle
+    t =    28.26s     Find the "Pergunte algo à FluIA" TextField
+    t =    28.51s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    28.79s     Synthesize event
+    t =    29.19s     Wait for host.exp.Exponent to idle
+    t =    29.29s Type 'e' into "Pergunte algo à FluIA" TextField
+    t =    29.29s     Wait for host.exp.Exponent to idle
+    t =    29.35s     Find the "Pergunte algo à FluIA" TextField
+    t =    29.51s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    29.73s     Synthesize event
+    t =    30.25s     Wait for host.exp.Exponent to idle
+    t =    30.36s Type 'g' into "Pergunte algo à FluIA" TextField
+    t =    30.36s     Wait for host.exp.Exponent to idle
+    t =    30.45s     Find the "Pergunte algo à FluIA" TextField
+    t =    30.61s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    30.82s     Synthesize event
+    t =    31.19s     Wait for host.exp.Exponent to idle
+    t =    31.25s Type 'a' into "Pergunte algo à FluIA" TextField
+    t =    31.25s     Wait for host.exp.Exponent to idle
+    t =    31.39s     Find the "Pergunte algo à FluIA" TextField
+    t =    31.55s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    31.75s     Synthesize event
+    t =    32.12s     Wait for host.exp.Exponent to idle
+    t =    32.17s Type 'r' into "Pergunte algo à FluIA" TextField
+    t =    32.18s     Wait for host.exp.Exponent to idle
+    t =    32.21s     Find the "Pergunte algo à FluIA" TextField
+    t =    32.35s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    32.54s     Synthesize event
+    t =    33.11s     Wait for host.exp.Exponent to idle
+    t =    33.21s Type ' ' into "Pergunte algo à FluIA" TextField
+    t =    33.21s     Wait for host.exp.Exponent to idle
+    t =    33.30s     Find the "Pergunte algo à FluIA" TextField
+    t =    33.45s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    33.74s     Synthesize event
+    t =    34.12s     Wait for host.exp.Exponent to idle
+    t =    34.16s Type 'r' into "Pergunte algo à FluIA" TextField
+    t =    34.16s     Wait for host.exp.Exponent to idle
+    t =    34.19s     Find the "Pergunte algo à FluIA" TextField
+    t =    34.33s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    34.45s     Synthesize event
+    t =    34.85s     Wait for host.exp.Exponent to idle
+    t =    34.89s Type 'a' into "Pergunte algo à FluIA" TextField
+    t =    34.90s     Wait for host.exp.Exponent to idle
+    t =    34.93s     Find the "Pergunte algo à FluIA" TextField
+    t =    35.08s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    35.20s     Synthesize event
+    t =    35.52s     Wait for host.exp.Exponent to idle
+    t =    35.55s Type 'p' into "Pergunte algo à FluIA" TextField
+    t =    35.55s     Wait for host.exp.Exponent to idle
+    t =    35.57s     Find the "Pergunte algo à FluIA" TextField
+    t =    35.67s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    35.77s     Synthesize event
+    t =    36.04s     Wait for host.exp.Exponent to idle
+    t =    36.07s Type 'i' into "Pergunte algo à FluIA" TextField
+    t =    36.08s     Wait for host.exp.Exponent to idle
+    t =    36.10s     Find the "Pergunte algo à FluIA" TextField
+    t =    36.25s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    36.33s     Synthesize event
+    t =    36.61s     Wait for host.exp.Exponent to idle
+    t =    36.63s Type 'd' into "Pergunte algo à FluIA" TextField
+    t =    36.63s     Wait for host.exp.Exponent to idle
+    t =    36.66s     Find the "Pergunte algo à FluIA" TextField
+    t =    36.81s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    36.90s     Synthesize event
+    t =    37.18s     Wait for host.exp.Exponent to idle
+    t =    37.24s Type 'o' into "Pergunte algo à FluIA" TextField
+    t =    37.25s     Wait for host.exp.Exponent to idle
+    t =    37.30s     Find the "Pergunte algo à FluIA" TextField
+    t =    37.44s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =    37.61s     Synthesize event
+    t =    37.95s     Wait for host.exp.Exponent to idle
+    t =    37.99s Tap Button (First Match)
+    t =    37.99s     Wait for host.exp.Exponent to idle
+    t =    38.03s     Find the Button (First Match)
+    t =    38.12s     Check for interrupting elements affecting "Enviar mensagem" Button
+    t =    38.28s     Synthesize event
+    t =    38.64s     Wait for host.exp.Exponent to idle
+    t =    38.71s Waiting 8.0s for "Estado da FluIA: Alerta" StaticText to exist
+    t =    39.80s     Checking `Expect predicate `existsNoRetry == 1` for object "Estado da FluIA: Alerta" StaticText`
+    t =    39.80s         Checking existence of `"Estado da FluIA: Alerta" StaticText`
+    t =    39.97s         Capturing element debug description
+    t =    40.78s     Checking `Expect predicate `existsNoRetry == 1` for object "Estado da FluIA: Alerta" StaticText`
+    t =    40.78s         Checking existence of `"Estado da FluIA: Alerta" StaticText`
+    t =    41.27s Added attachment named 'orb-alerta-sem-pontos'
+    t =    41.28s Requesting snapshot of accessibility hierarchy for app with pid 41272
+    t =    43.82s Requesting snapshot of accessibility hierarchy for app with pid 41272
+ORB ALERTA
+Attributes: Application, 0x106510c80, pid: 41272, label: 'Expo Go'
+Element subtree:
+ →Application, 0x106510c80, pid: 41272, label: 'Expo Go'
+    Window (Main), 0x1065108c0, {{0.0, 0.0}, {390.0, 844.0}}
+      Other, 0x1065112c0, {{0.0, 0.0}, {390.0, 844.0}}
+        Other, 0x106510a00, {{0.0, 0.0}, {390.0, 844.0}}
+          Other, 0x106510b40, {{0.0, 0.0}, {390.0, 844.0}}
+            Other, 0x106510dc0, {{0.0, 0.0}, {390.0, 844.0}}
+              Other, 0x106510780, {{0.0, 0.0}, {390.0, 844.0}}
+                Other, 0x106510f00, {{0.0, 0.0}, {390.0, 844.0}}
+                  Other, 0x1065103c0, {{0.0, 0.0}, {390.0, 844.0}}
+                    Other, 0x106511040, {{0.0, 0.0}, {390.0, 844.0}}
+                      Other, 0x1065135c0, {{0.0, 0.0}, {390.0, 844.0}}
+                        Other, 0x106510640, {{0.0, 0.0}, {390.0, 844.0}}
+                          Other, 0x106510280, {{0.0, 0.0}, {390.0, 844.0}}
+                            Other, 0x106513700, {{0.0, 0.0}, {390.0, 844.0}}
+                              Other, 0x106513840, {{0.0, 0.0}, {390.0, 844.0}}
+                                Other, 0x106510140, {{0.0, 0.0}, {390.0, 844.0}}
+                                  Other, 0x106511180, {{0.0, 0.0}, {390.0, 844.0}}
+                                    Other, 0x106510500, {{0.0, 47.0}, {390.0, 763.0}}
+                                      Other, 0x1065130c0, {{0.0, 47.0}, {390.0, 204.7}}
+                                        Button, 0x106513200, {{143.3, 55.0}, {178.7, 58.7}}, label: 'BYD Dolphin Plus. Bateria para estimativa: 70 por cento. Bateria demonstrativa. Sem telemetria. Cerca de 280 quilômetros estimados'
+                                        Other, 0x106513340, {{20.0, 66.3}, {76.0, 36.0}}
+                                          Other, 0x106513480, {{20.0, 66.7}, {76.0, 35.2}}
+                                            Other, 0x106513d40, {{20.0, 66.7}, {76.0, 35.2}}
+                                            Other, 0x106513e80, {{89.2, 73.1}, {6.7, 6.7}}
+                                        Button, 0x102fc0a00, {{324.0, 61.3}, {46.0, 46.0}}, label: 'Abrir perfil'
+                                        Other, 0x102e36a80, {{20.0, 127.7}, {350.0, 58.0}}
+                                          Other, 0x10642bac0, {{39.0, 146.3}, {21.0, 21.0}}
+                                            Other, 0x10642bc00, {{40.8, 148.1}, {17.5, 17.5}}
+                                              Other, 0x10642bd40, {{40.8, 148.1}, {15.8, 15.8}}
+                                              Other, 0x10642be80, {{52.7, 160.0}, {5.5, 5.5}}
+                                          Other, 0x106429cc0, {{73.0, 147.7}, {225.0, 18.0}}
+                                            TextField, 0x106429e00, {{73.0, 147.7}, {225.0, 18.0}}, label: 'Buscar no mapa', placeholderValue: 'Buscar endereço, bairro ou ponto', value: zzorb
+                                          Other, 0x106429f40, {{306.0, 141.7}, {1.0, 30.0}}
+                                          Button, 0x10642a080, {{315.0, 134.7}, {44.0, 44.0}}, label: 'Abrir busca e filtros'
+                                        Other, 0x10642a1c0, {{20.0, 189.7}, {350.0, 48.0}}
+                                          ScrollView, 0x10642a300, {{20.0, 189.7}, {350.0, 48.0}}
+                                            Other, 0x10642a440, {{20.0, 189.7}, {569.7, 48.0}}
+                                              Other, 0x10642a580, {{20.0, 189.7}, {569.7, 48.0}}
+                                                Button, 0x10642a6c0, {{20.0, 193.7}, {177.7, 44.0}}, label: 'Aberto agora'
+                                                Button, 0x10642a800, {{201.7, 193.7}, {110.3, 44.0}}, label: 'CCS2'
+                                                Button, 0x10642a940, {{316.0, 193.7}, {122.0, 44.0}}, label: 'Rápido'
+                                                Button, 0x10642aa80, {{442.0, 193.7}, {139.7, 44.0}}, label: 'Banheiro'
+                                            Other, 0x10642abc0, {{337.0, 189.7}, {30.0, 48.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                                              Other, 0x10642ad00, {{364.0, 192.7}, {3.0, 432.0}}
+                                            Other, 0x10642ae40, {{337.0, 189.7}, {30.0, 48.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                                              Other, 0x10642af80, {{364.0, 192.7}, {3.0, 432.0}}
+                                      Other, 0x10642b0c0, {{0.0, 47.0}, {390.0, 844.0}}
+                                      Other, 0x10642b200, {{0.0, 251.7}, {390.0, 558.3}}
+                                        Other, 0x10642b340, {{0.0, 251.7}, {390.0, 558.3}}, label: 'Mapa com pontos de recarga próximos'
+                                          Other, 0x10642b480, {{0.0, 251.7}, {390.0, 558.3}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x10642b5c0, {{0.0, 251.7}, {72.0, 72.0}}
+                                            Other, 0x10642b700, {{0.0, 251.7}, {390.0, 556.7}}
+                                              Other, 0x1066c0000, {{0.0, 251.7}, {390.0, 556.7}}
+                                                Button, 0x1066c0140, {{5.0, 781.3}, {60.0, 22.0}}, label: 'Google Maps'
+                                            Other, 0x1066c0280, {{0.0, 251.7}, {390.0, 558.3}}, label: 'Mapa com pontos de recarga próximos'
+                                              Other, 0x1066c03c0, {{0.0, 251.7}, {390.0, 558.3}}, label: 'Mapa com pontos de recarga próximos'
+                                            Other, 0x1066c0500, {{1688.0, 1939.7}, {74.0, 74.0}}
+                                              Other, 0x1066c0640, {{1688.0, 1939.7}, {72.0, 72.0}}
+                                                Other, 0x1066c0780, {{1688.0, 1939.7}, {72.0, 72.0}}
+                                                  Other, 0x1066c08c0, {{1688.0, 1939.7}, {72.0, 72.0}}
+                                                    Other, 0x1066c0a00, {{1702.1, 1953.7}, {43.8, 43.8}}
+                                                    Other, 0x1066c0b40, {{1712.0, 1963.7}, {24.0, 24.0}}
+                                        Other, 0x1066c0c80, {{0.0, 251.7}, {390.0, 558.3}}
+                                        Other, 0x1066c0dc0, {{146.0, 263.7}, {228.0, 52.0}}
+                                          Other, 0x1066c0f00, {{146.0, 263.7}, {104.0, 52.0}}
+                                            Button, 0x1066c1040, {{147.0, 264.3}, {52.0, 51.0}}, label: 'Aumentar zoom do mapa'
+                                            Button, 0x1066c1180, {{200.0, 264.3}, {52.0, 51.0}}, label: 'Diminuir zoom do mapa'
+                                            Other, 0x1066c12c0, {{199.0, 275.7}, {1.0, 28.0}}
+                                          Button, 0x1066c1400, {{260.0, 263.7}, {52.0, 52.0}}, label: 'Centralizar origem demonstrativa: FIAP'
+                                          Button, 0x1066c1540, {{322.0, 263.7}, {52.0, 52.0}}, label: 'Planejar viagem'
+                                        Other, 0x1066c1680, {{16.0, 452.7}, {358.0, 357.3}}
+                                          Other, 0x1066c17c0, {{16.0, 452.7}, {358.0, 357.3}}
+                                            ScrollView, 0x1066c1900, {{16.0, 452.7}, {358.0, 357.3}}
+                                              Other, 0x1066c1a40, {{16.0, 452.7}, {357.0, 357.3}}
+                                                Other, 0x1066c1b80, {{17.0, 453.7}, {356.0, 356.3}}
+                                                  Button, 0x1066c1cc0, {{35.0, 453.7}, {320.0, 44.0}}, label: 'Minimizar pontos de recarga para ver o mapa inteiro'
+                                                  StaticText, 0x1066c1e00, {{35.0, 497.7}, {320.0, 25.3}}, label: 'Nenhum ponto disponível'
+                                                    StaticText, 0x1066c1f40, {{35.0, 497.7}, {320.0, 25.3}}, label: 'Nenhum ponto disponível'
+                                                  StaticText, 0x1066c2080, {{35.0, 531.0}, {320.0, 85.0}}, label: 'Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo.
+Origem: FIAP · distâncias em linha reta, sem cálculo de percurso'
+                                                    StaticText, 0x1066c21c0, {{35.0, 531.0}, {320.0, 85.0}}, label: 'Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo.
+Origem: FIAP · distâncias em linha reta, sem cálculo de percurso'
+                                                  Other, 0x1066c2300, {{35.0, 636.0}, {320.0, 172.0}}
+                                                  StaticText, 0x1066c2440, {{52.0, 653.0}, {286.0, 40.0}}, label: 'Não encontramos pontos com esses critérios.'
+                                                    StaticText, 0x1066c2580, {{52.0, 653.0}, {286.0, 40.0}}, label: 'Não encontramos pontos com esses critérios.'
+                                                  StaticText, 0x1066c26c0, {{52.0, 699.0}, {286.0, 36.0}}, label: 'Tente limpar alguns filtros ou buscar por outro endereço.'
+                                                    StaticText, 0x1066c2800, {{52.0, 699.0}, {286.0, 36.0}}, label: 'Tente limpar alguns filtros ou buscar por outro endereço.'
+                                                  Button, 0x1066c2940, {{52.0, 735.0}, {286.0, 56.0}}, label: 'Ajustar busca'
+                                              Other, 0x1066c2a80, {{341.0, 452.7}, {30.0, 344.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                                Other, 0x1066c2bc0, {{368.0, 455.7}, {3.0, 337.0}}
+                                              Other, 0x1066c2d00, {{29.3, 775.3}, {331.3, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                Other, 0x1066c2e40, {{33.3, 802.3}, {324.3, 3.0}}
+                                              Other, 0x1066c2f80, {{341.0, 452.7}, {30.0, 344.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                                Other, 0x1066c30c0, {{368.0, 455.7}, {3.0, 337.0}}
+                                              Other, 0x1066c3200, {{29.3, 775.3}, {331.3, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                Other, 0x1066c3340, {{33.3, 802.3}, {324.3, 3.0}}
+                          Toolbar, 0x1066c3480, {{0.0, 0.0}, {390.0, 844.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x1066c35c0, {{0.0, 0.0}, {390.0, 844.0}}
+                    Other, 0x1066c3700, {{0.0, 0.0}, {390.0, 844.0}}
+                      Other, 0x1066c3840, {{0.0, 0.0}, {390.0, 844.0}}
+                        Other, 0x1066c3980, {{0.0, 0.0}, {390.0, 844.0}}
+      Other, 0x1066c3ac0, {{0.0, 0.0}, {390.0, 844.0}}
+        Other, 0x1066c3c00, {{0.0, 0.0}, {390.0, 844.0}}
+          Other, 0x1066c3d40, {{0.0, 0.0}, {390.0, 844.0}}
+            Other, 0x1066c3e80, {{0.0, 0.0}, {390.0, 844.0}}
+              Button, 0x1066c4000, {{0.0, 0.0}, {390.0, 844.0}}, label: 'Fechar assistente FluIA'
+              Other, 0x1066c4140, {{0.0, 62.0}, {390.0, 454.0}}
+                Other, 0x1066c4280, {{174.0, 73.0}, {42.0, 4.0}}
+                StaticText, 0x1066c43c0, {{74.0, 94.0}, {53.0, 26.0}}, label: 'FluIA'
+                  StaticText, 0x1066c4500, {{74.0, 94.0}, {53.0, 26.0}}, label: 'FluIA'
+                StaticText, 0x1066c4640, {{133.0, 100.3}, {34.3, 13.3}}, label: 'Estado da FluIA: Alerta'
+                  StaticText, 0x1066c4780, {{133.0, 100.3}, {34.3, 13.3}}, label: 'Estado da FluIA: Alerta'
+                Button, 0x1066c48c0, {{272.0, 93.0}, {44.0, 44.0}}, label: 'Ativar voz da FluIA'
+                Button, 0x1066c4a00, {{326.0, 93.0}, {44.0, 44.0}}, label: 'Fechar assistente'
+                Other, 0x1066c4b40, {{20.0, 137.0}, {350.0, 301.0}}, identifier: 'fluia-conteudo'
+                  ScrollView, 0x1066c4c80, {{20.0, 137.0}, {350.0, 301.0}}
+                    Other, 0x1066c4dc0, {{20.0, 137.0}, {350.0, 280.0}}
+                      Other, 0x1066c4f00, {{20.0, 137.0}, {350.0, 280.0}}
+                        StaticText, 0x1066c5040, {{20.0, 140.0}, {350.0, 54.0}}, label: 'FluIA experimental · sugestões locais com dados demonstrativos, sem IA generativa ou disponibilidade em tempo real.'
+                          StaticText, 0x1066c5180, {{20.0, 140.0}, {350.0, 54.0}}, label: 'FluIA experimental · sugestões locais com dados demonstrativos, sem IA generativa ou disponibilidade em tempo real.'
+                        Other, 0x1066c52c0, {{20.0, 206.0}, {350.0, 199.0}}
+                        StaticText, 0x1066c5400, {{20.0, 222.0}, {350.0, 18.0}}, label: 'BYD Dolphin Plus · origem demonstrativa: FIAP.'
+                          StaticText, 0x1066c5540, {{20.0, 222.0}, {350.0, 18.0}}, label: 'BYD Dolphin Plus · origem demonstrativa: FIAP.'
+                        Other, 0x1066c5680, {{203.0, 252.0}, {167.0, 39.0}}
+                        StaticText, 0x1066c57c0, {{213.0, 262.0}, {147.0, 19.0}}, label: 'quero carregar rapido'
+                          StaticText, 0x1066c5900, {{213.0, 262.0}, {147.0, 19.0}}, label: 'quero carregar rapido'
+                        Other, 0x1066c5a40, {{20.0, 299.0}, {297.7, 98.0}}
+                        StaticText, 0x1066c5b80, {{31.0, 310.0}, {275.7, 76.0}}, label: 'Não encontrei uma opção viável para priorizar a potência de recarga nos dados demonstrativos. Não recebi estações para comparar nesta consulta.'
+                          StaticText, 0x1066c5cc0, {{31.0, 310.0}, {275.7, 76.0}}, label: 'Não encontrei uma opção viável para priorizar a potência de recarga nos dados demonstrativos. Não recebi estações para comparar nesta consulta.'
+                    Other, 0x1066c5e00, {{337.0, 137.0}, {30.0, 301.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                      Other, 0x1066c5f40, {{364.0, 254.0}, {3.0, 129.7}}
+                    Other, 0x1066c6080, {{20.0, 405.0}, {350.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                      Other, 0x1066c61c0, {{35.3, 432.0}, {289.3, 3.0}}
+                    Other, 0x1066c6300, {{337.0, 137.0}, {30.0, 301.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                      Other, 0x1066c6440, {{364.0, 254.0}, {3.0, 129.7}}
+                    Other, 0x1066c6580, {{20.0, 405.0}, {350.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                      Other, 0x1066c66c0, {{35.3, 432.0}, {289.3, 3.0}}
+                Other, 0x1066c6800, {{20.0, 438.0}, {270.3, 44.0}}
+                  TextField, 0x1066c6940, {{21.0, 439.0}, {268.3, 42.0}}, label: 'Mensagem para a FluIA', placeholderValue: 'Pergunte algo à FluIA', Keyboard Focused
+                Button, 0x1066c6a80, {{298.3, 438.0}, {71.7, 44.0}}, label: 'Enviar mensagem'
+            Other, 0x1066c6bc0, {{0.0, 0.0}, {390.0, 844.0}}
+              Other, 0x1066c6d00, {{0.0, 0.0}, {390.0, 844.0}}
+                Other, 0x1066c6e40, {{0.0, 0.0}, {390.0, 844.0}}
+    Window, 0x1066c6f80, {{0.0, 0.0}, {390.0, 844.0}}
+      Other, 0x1066c70c0, {{0.0, 0.0}, {390.0, 844.0}}
+        Other, 0x1066c7200, {{0.0, 0.0}, {390.0, 844.0}}
+        Other, 0x1066c7340, {{0.0, 516.0}, {390.0, 328.0}}
+          Other, 0x1066c7480, {{0.0, 516.0}, {390.0, 328.0}}, identifier: 'inputView'
+    Window, 0x1066c75c0, {{0.0, 0.0}, {390.0, 844.0}}
+      Other, 0x1066c7700, {{0.0, 0.0}, {390.0, 844.0}}
+        Other, 0x1066c7840, {{0.0, 516.0}, {390.0, 328.0}}
+          Other, 0x1066c7980, {{0.0, 516.0}, {390.0, 44.0}}, identifier: 'SystemInputAssistantView'
+            Other, 0x1066c7ac0, {{0.0, 516.0}, {390.0, 44.0}}
+              Other, 0x1066c7c00, {{0.0, 516.0}, {390.0, 44.0}}, identifier: 'CenterPageView'
+                Other, 0x1066c7d40, {{0.0, -84.0}, {390.0, 1244.0}}
+                  ScrollView, 0x1066c7e80, {{0.0, 516.0}, {390.0, 44.0}}
+                Other, 0x1066d0000, {{0.0, 516.0}, {390.0, 44.0}}
+                  Other, 0x1066d0140, {{0.0, 516.0}, {390.0, 44.0}}
+                    Other, 0x1066d0280, {{0.0, 516.0}, {390.0, 44.0}}, label: 'Typing Predictions'
+                      Other, 0x1066d03c0, {{0.0, 516.0}, {390.0, 44.0}}
+                        Other, 0x1066d0500, {{0.0, 516.0}, {390.0, 44.0}}
+                          Button, 0x1066d0640, {{0.0, 516.0}, {130.0, 44.0}}, label: 'Eu'
+                          Button, 0x1066d0780, {{130.0, 516.0}, {130.0, 44.0}}, label: 'Não'
+                          Button, 0x1066d08c0, {{260.0, 516.0}, {130.0, 44.0}}, label: 'O'
+          Other, 0x1066d0a00, {{0.0, 516.0}, {390.0, 329.0}}
+            Other, 0x1066d0b40, {{0.0, 516.0}, {390.0, 329.0}}
+              Other, 0x1066d0c80, {{0.0, 516.0}, {390.0, 329.0}}
+          Other, 0x1066d0dc0, {{0.0, 560.0}, {390.0, 226.0}}
+            Keyboard, 0x1066d0f00, {{0.0, 560.0}, {390.0, 226.0}}
+              Other, 0x1066d1040, {{0.0, 560.0}, {390.0, 226.0}}
+                Other, 0x1066d1180, {{0.0, 560.0}, {390.0, 226.0}}, identifier: 'UIKeyboardLayoutStar Preview'
+                  Key, 0x1066d12c0, {{0.0, 560.0}, {0.0, 0.0}}, label: 'Padding-Left'
+                  Key, 0x1066d1400, {{0.0, 560.0}, {0.0, 0.0}}, label: 'Padding-Right'
+                  Key, 0x1066d1540, {{0.0, 560.0}, {0.0, 0.0}}, label: 'Padding-Left'
+                  Key, 0x1066d1680, {{0.0, 560.0}, {0.0, 0.0}}, label: 'Padding-Right'
+                  Key, 0x1066d17c0, {{0.0, 560.0}, {0.0, 0.0}}, label: 'Padding-Left'
+                  Key, 0x1066d1900, {{0.0, 560.0}, {0.0, 0.0}}, label: 'Padding-Right'
+                  Key, 0x1066d1a40, {{4.7, 567.0}, {38.0, 54.0}}, label: 'Q'
+                  Key, 0x1066d1b80, {{42.7, 567.0}, {38.3, 54.0}}, label: 'W'
+                  Key, 0x1066d1cc0, {{81.0, 567.0}, {38.3, 54.0}}, label: 'E'
+                  Key, 0x1066d1e00, {{119.3, 567.0}, {38.3, 54.0}}, label: 'R'
+                  Key, 0x1066d1f40, {{157.7, 567.0}, {38.3, 54.0}}, label: 'T'
+                  Key, 0x1066d2080, {{196.0, 567.0}, {38.3, 54.0}}, label: 'Y'
+                  Key, 0x1066d21c0, {{234.3, 567.0}, {38.3, 54.0}}, label: 'U'
+                  Key, 0x1066d2300, {{272.7, 567.0}, {38.3, 54.0}}, label: 'I'
+                  Key, 0x1066d2440, {{311.0, 567.0}, {38.3, 54.0}}, label: 'O'
+                  Key, 0x1066d2580, {{349.3, 567.0}, {38.3, 54.0}}, label: 'P'
+                  Key, 0x1066d26c0, {{23.7, 621.0}, {38.3, 54.0}}, label: 'A'
+                  Key, 0x1066d2800, {{62.0, 621.0}, {38.3, 54.0}}, label: 'S'
+                  Key, 0x1066d2940, {{100.3, 621.0}, {38.3, 54.0}}, label: 'D'
+                  Key, 0x1066d2a80, {{138.7, 621.0}, {38.3, 54.0}}, label: 'F'
+                  Key, 0x1066d2bc0, {{177.0, 621.0}, {38.0, 54.0}}, label: 'G'
+                  Key, 0x1066d2d00, {{215.0, 621.0}, {38.3, 54.0}}, label: 'H'
+                  Key, 0x1066d2e40, {{253.3, 621.0}, {38.3, 54.0}}, label: 'J'
+                  Key, 0x1066d2f80, {{291.7, 621.0}, {38.3, 54.0}}, label: 'K'
+                  Key, 0x1066d30c0, {{330.0, 621.0}, {38.3, 54.0}}, label: 'L'
+                  Button, 0x1066d3200, {{4.7, 675.0}, {49.7, 54.0}}, identifier: 'shift', label: 'maiúsculas', Selected
+                  Key, 0x1066d3340, {{62.0, 675.0}, {38.3, 54.0}}, label: 'Z'
+                  Key, 0x1066d3480, {{100.3, 675.0}, {38.3, 54.0}}, label: 'X'
+                  Key, 0x1066d35c0, {{138.7, 675.0}, {38.3, 54.0}}, label: 'C'
+                  Key, 0x1066d3700, {{177.0, 675.0}, {38.0, 54.0}}, label: 'V'
+                  Key, 0x1066d3840, {{215.0, 675.0}, {38.3, 54.0}}, label: 'B'
+                  Key, 0x1066d3980, {{253.3, 675.0}, {38.3, 54.0}}, label: 'N'
+                  Key, 0x1066d3ac0, {{291.7, 675.0}, {38.3, 54.0}}, label: 'M'
+                  Key, 0x1066d3c00, {{337.7, 675.0}, {50.0, 54.0}}, identifier: 'delete', label: 'apagar'
+                  Key, 0x1066d3d40, {{4.7, 729.0}, {47.7, 54.0}}, identifier: 'more', label: 'números'
+                  Button, 0x1066d3e80, {{52.3, 729.0}, {48.0, 54.0}}, identifier: 'emoji', label: 'Emoji'
+                  Key, 0x1066d8000, {{100.3, 729.0}, {191.3, 54.0}}, identifier: 'space', label: 'space'
+                  Button, 0x1066d8140, {{291.7, 729.0}, {96.0, 54.0}}, identifier: 'Send', label: 'enviar'
+          Other, 0x1066d8280, {{0.0, 560.0}, {390.0, 284.0}}
+            Button, 0x1066d83c0, {{8.5, 775.7}, {68.1, 68.7}}, label: 'Next keyboard', value: English (US)
+              StaticText, 0x1066d8500, {{8.5, 775.7}, {0.0, 0.0}}
+            Button, 0x1066d8640, {{313.4, 775.4}, {68.1, 68.7}}, identifier: 'dictation', label: 'Dictate'
+              StaticText, 0x1066d8780, {{313.4, 775.4}, {0.0, 0.0}}
+            Button, 0x1066d88c0, {{313.4, 775.4}, {68.1, 68.7}}, identifier: 'dictation', label: 'Dictate'
+              StaticText, 0x1066d8a00, {{313.4, 775.4}, {0.0, 0.0}}
+Path to element:
+ →Application, 0x106510c80, pid: 41272, label: 'Expo Go'
+Query chain:
+ →Find: Application 'host.exp.Exponent'
+  Output: {
+    Application, 0x1066d8b40, pid: 41272, label: 'Expo Go'
+  }
+
+    t =    44.13s Tap Button (First Match)
+    t =    44.13s     Wait for host.exp.Exponent to idle
+    t =    44.15s     Find the Button (First Match)
+    t =    44.22s     Check for interrupting elements affecting "Fechar assistente" Button
+    t =    44.39s     Synthesize event
+    t =    44.84s     Wait for host.exp.Exponent to idle
+    t =    45.54s Waiting 5.0s for "Buscar endereço, bairro ou ponto" TextField to exist
+    t =    46.58s     Checking `Expect predicate `existsNoRetry == 1` for object "Buscar endereço, bairro ou ponto" TextField`
+    t =    46.58s         Checking existence of `"Buscar endereço, bairro ou ponto" TextField`
+    t =    46.72s Tap "Buscar endereço, bairro ou ponto" TextField
+    t =    46.72s     Wait for host.exp.Exponent to idle
+    t =    46.77s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    46.89s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    47.00s     Synthesize event
+    t =    47.50s     Wait for host.exp.Exponent to idle
+    t =    47.54s Type '' into "Buscar endereço, bairro ou ponto" TextField
+    t =    47.54s     Wait for host.exp.Exponent to idle
+    t =    47.55s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    47.63s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    47.83s     Synthesize event
+    t =    48.30s     Wait for host.exp.Exponent to idle
+    t =    48.95s Type '
+' into "Buscar endereço, bairro ou ponto" TextField
+    t =    48.96s     Wait for host.exp.Exponent to idle
+    t =    49.00s     Find the "Buscar endereço, bairro ou ponto" TextField
+    t =    49.20s     Check for interrupting elements affecting "Buscar endereço, bairro ou ponto" TextField
+    t =    49.53s     Synthesize event
+    t =    49.92s     Wait for host.exp.Exponent to idle
+    t =    50.29s Tear Down
+Test Case '-[FluiValidacao.FluiValidacao testEnergyOrbAlerta]' passed (50.759 seconds).
+Test Suite 'FluiValidacao' passed at 2026-10-20 07:47:21.987.
+	 Executed 1 test, with 0 failures (0 unexpected) in 50.759 (50.778) seconds
+Test Suite 'FluiValidacao.xctest' passed at 2026-10-20 07:47:22.008.
+	 Executed 1 test, with 0 failures (0 unexpected) in 50.759 (50.800) seconds
+Test Suite 'Selected tests' passed at 2026-10-20 07:47:22.010.
+	 Executed 1 test, with 0 failures (0 unexpected) in 50.759 (50.809) seconds
+2026-10-20 07:47:22.414 xcodebuild[42586:6444270] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-20 07:47:22.429 xcodebuild[42586:6444270] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-20 07:47:22.455 xcodebuild[42586:6444270] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-20 07:47:22.760 xcodebuild[42586:6444270] [MT] IDETestOperationsObserverDebug: 90.715 elapsed -- Testing started completed.
+2026-10-20 07:47:22.761 xcodebuild[42586:6444270] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-20 07:47:22.761 xcodebuild[42586:6444270] [MT] IDETestOperationsObserverDebug: 90.715 sec, +90.715 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/flui-ux28-native/EnergyOrbAlerta.xcresult
+
+** TEST SUCCEEDED **
+
+Testing started

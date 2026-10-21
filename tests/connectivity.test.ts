@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { setTimeout as delay } from "node:timers/promises";
 import { classifyConnection, externalActionBlock, readConnectionStatus } from "../src/utils/connectivity";
-import { openExternalRoute } from "../src/utils/externalRoute";
+import { openExternalRoute, prepareExternalRoute } from "../src/utils/externalRoute";
 import { createStation } from "./fixtures";
 
 test("distingue conexão, ausência de internet e estado ainda desconhecido", () => {
@@ -57,4 +57,18 @@ test("detecção positiva não esconde falhas do aplicativo externo", async () =
   const check = async () => "connected" as const;
   assert.match((await openExternalRoute(createStation(), "waze", undefined, { canOpenURL: async () => false, openURL: async () => {} }, check))!, /não conseguiu abrir/);
   assert.match((await openExternalRoute(createStation(), "google", undefined, { canOpenURL: async () => true, openURL: async () => { throw Error("launch failed"); } }, check))!, /Não foi possível abrir/);
+});
+
+
+test("ficha e atalho da FluIA bloqueiam a escolha de GPS até confirmar conexão", async () => {
+  for (const status of ["offline", "unknown", "connected"] as const) {
+    let ready = 0;
+    const message = await prepareExternalRoute(async () => status, () => { ready++; });
+    assert.equal(message, externalActionBlock(status));
+    assert.equal(ready, status === "connected" ? 1 : 0);
+  }
+  let ready = false;
+  const message = await prepareExternalRoute(async () => { throw Error("native unavailable"); }, () => { ready = true; });
+  assert.equal(message, externalActionBlock("unknown"));
+  assert.equal(ready, false);
 });

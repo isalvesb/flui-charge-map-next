@@ -776,7 +776,7 @@ const styles = StyleSheet.create({
     flex: 1,
     color: colors.text,
     fontSize: 21,
-    fontWeight: "800",
+    fontWeight: "600",
     letterSpacing: -0.35,
   },
 

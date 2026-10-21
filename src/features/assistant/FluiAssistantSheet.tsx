@@ -43,8 +43,9 @@ import {
 } from "./fluiAssistant";
 import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
 import { identificacaoDados } from "../../data/identificacaoDados";
-import { FluiAiIcon } from "./FluiAiIcon";
+import { EnergyOrb } from "./EnergyOrb";
 import { answerMessage, RECOMMENDATION_DISCLAIMER } from "./chatEngine";
+import { summarizeSuggestion } from "./assistantPresentation";
 
 import {
   FLUIA_STATE_LABELS,
@@ -61,6 +62,7 @@ type Props = {
   onClose: () => void;
   onDismiss?: () => void;
   onSelectStation: (stationId: string) => void;
+  onStartRoute: (stationId: string) => void;
 };
 
 const ASSISTANT_THINKING_DURATION = 1800;
@@ -71,6 +73,7 @@ type ChatMessage = {
   text: string;
   state?: "respondendo" | "aviso" | "alerta";
   stationId?: string;
+  summary?: string;
 };
 
 const options: {
@@ -102,6 +105,7 @@ export function FluiAssistantSheet({
   onClose,
   onDismiss,
   onSelectStation,
+  onStartRoute,
 }: Props) {
   const { theme, fontScale, appearanceMode, demoOrigin, userPreferences } = useAppPreferences();
   const reduceMotionEnabled = useReducedMotion();
@@ -116,6 +120,8 @@ export function FluiAssistantSheet({
   const thinkingProgress = useRef(new Animated.Value(0)).current;
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [draft, setDraft] = useState("");
+  const [showExplanation, setShowExplanation] = useState(false);
+  const [expandedMessageId, setExpandedMessageId] = useState<number | null>(null);
   const [isChatThinking, setIsChatThinking] = useState(false);
   const chatTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const nextMessageId = useRef(0);
@@ -124,6 +130,7 @@ export function FluiAssistantSheet({
   const stateTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [voiceEnabled, setVoiceEnabled] = useState(true);
   const [fluiaState, setFluiaState] = useState<FluiaState>("repouso");
+  const displayedState: FluiaState = isAnalyzing ? "pensando" : fluiaState;
 
   const recommendation = useMemo(() => {
     if (!funcionalidadesExperimentais.fluia || !selectedIntent || isAnalyzing) return null;
@@ -193,6 +200,8 @@ export function FluiAssistantSheet({
     setIsChatThinking(false);
     setSelectedIntent(null);
     setIsAnalyzing(false);
+    setShowExplanation(false);
+    setExpandedMessageId(null);
   };
 
   const closeAssistant = () => {
@@ -217,6 +226,7 @@ export function FluiAssistantSheet({
   };
 
   const chooseIntent = (intent: FluiAssistantIntent) => {
+    setShowExplanation(false);
     setSelectedIntent(intent);
     setIsAnalyzing(true);
     analysisTimeoutRef.current = setTimeout(
@@ -260,6 +270,7 @@ export function FluiAssistantSheet({
             text: response.text,
             state: response.state,
             stationId: response.recommendation?.primary.id,
+            summary: response.recommendation ? summarizeSuggestion(response.recommendation) : undefined,
           },
         ]);
         if (voiceEnabled) {
@@ -293,6 +304,11 @@ export function FluiAssistantSheet({
   const chooseStation = (stationId: string) => {
     closeAssistant();
     onSelectStation(stationId);
+  };
+
+  const startRoute = (stationId: string) => {
+    closeAssistant();
+    onStartRoute(stationId);
   };
 
   const toggleVoice = () => {
@@ -329,9 +345,7 @@ export function FluiAssistantSheet({
         <View style={styles.sheet}>
           <View style={styles.handle} />
           <View style={styles.headerRow}>
-            <View style={styles.headerIcon}>
-              <FluiAiIcon color={theme.primary} size={22} />
-            </View>
+            <EnergyOrb state={displayedState} reducedMotion={reduceMotionEnabled} active={visible} />
             <View style={styles.headerText}>
               <View style={styles.titleRow}>
                 <Text style={styles.title}>FluIA</Text>
@@ -339,9 +353,9 @@ export function FluiAssistantSheet({
                   style={styles.stateText}
                   numberOfLines={1}
                   accessibilityLiveRegion="polite"
-                  accessibilityLabel={`Estado da FluIA: ${FLUIA_STATE_LABELS[fluiaState]}`}
+                  accessibilityLabel={`Estado da FluIA: ${FLUIA_STATE_LABELS[displayedState]}`}
                 >
-                  {FLUIA_STATE_LABELS[fluiaState]}
+                  {FLUIA_STATE_LABELS[displayedState]}
                 </Text>
               </View>
             </View>
@@ -490,16 +504,33 @@ export function FluiAssistantSheet({
                     />
                   </View>
 
-                  <Text style={styles.explanationTitle}>
-                    Por que essa escolha?
-                  </Text>
+                <PressableScale
+                  accessibilityRole="button"
+                  accessibilityLabel={`Iniciar rota para ${recommendation.primary.name}`}
+                  accessibilityHint="Abre a escolha de localização e a confirmação de funcionamento antes da navegação."
+                  style={styles.primaryButton}
+                  onPress={() => startRoute(recommendation.primary.id)}
+                >
+                  <Text style={styles.primaryButtonText}>Iniciar rota</Text>
+                </PressableScale>
                   <Text style={styles.explanationText}>
+                    Em linha reta · reserva de 5%. Confirme funcionamento e compatibilidade.
+                  </Text>
+                  <PressableScale
+                    accessibilityRole="button"
+                    accessibilityState={{ expanded: showExplanation }}
+                    style={styles.secondaryButton}
+                    onPress={() => setShowExplanation((current) => !current)}
+                  >
+                    <Text style={styles.secondaryButtonText}>{showExplanation ? "Resumir explicação" : "Por que essa escolha?"}</Text>
+                  </PressableScale>
+                  {showExplanation ? <Text style={styles.explanationText}>
                     {recommendation.explanation}
                     {"\n"}
                     {userPreferences.vehicleName} · origem demonstrativa: {demoOrigin.nome}.
                     {"\n"}
                     {RECOMMENDATION_DISCLAIMER}
-                  </Text>
+                  </Text> : null}
                 </View>
 
                 {recommendation.backup ? (
@@ -530,15 +561,6 @@ export function FluiAssistantSheet({
                   </PressableScale>
                 ) : null}
 
-                <PressableScale
-                  accessibilityRole="button"
-                  accessibilityLabel={`Ver ${recommendation.primary.name} no mapa`}
-                  accessibilityHint="Abre a ficha detalhada do ponto recomendado."
-                  style={styles.primaryButton}
-                  onPress={() => chooseStation(recommendation.primary.id)}
-                >
-                  <Text style={styles.primaryButtonText}>Ver ponto no mapa</Text>
-                </PressableScale>
                 <PressableScale
                   accessibilityRole="button"
                   accessibilityLabel="Escolher outra necessidade"
@@ -600,16 +622,21 @@ export function FluiAssistantSheet({
                         : styles.fluiBubble
                     }
                   >
-                    <Text style={styles.bubbleText}>{message.text}</Text>
+                    <Text style={styles.bubbleText}>{message.summary && expandedMessageId !== message.id ? message.summary : message.text}</Text>
+                    {message.summary ? (
+                      <PressableScale accessibilityRole="button" accessibilityState={{ expanded: expandedMessageId === message.id }} style={styles.chatButton} onPress={() => setExpandedMessageId((current) => current === message.id ? null : message.id)}>
+                        <Text style={styles.chatButtonText}>{expandedMessageId === message.id ? "Resumir resposta" : "Ver explicação completa"}</Text>
+                      </PressableScale>
+                    ) : null}
                     {message.stationId ? (
                       <PressableScale
                         accessibilityRole="button"
-                        accessibilityLabel="Ver ponto no mapa"
+                        accessibilityLabel="Iniciar rota para o ponto recomendado"
                         style={styles.chatButton}
-                        onPress={() => chooseStation(message.stationId!)}
+                        onPress={() => startRoute(message.stationId!)}
                       >
                         <Text style={styles.chatButtonText}>
-                          Ver ponto no mapa
+                          Iniciar rota
                         </Text>
                       </PressableScale>
                     ) : null}
@@ -724,14 +751,6 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean) {
       alignItems: "flex-start",
       gap: 10,
     },
-    headerIcon: {
-      width: 42,
-      height: 42,
-      borderRadius: 21,
-      alignItems: "center",
-      justifyContent: "center",
-      backgroundColor: purple.soft,
-    },
     headerText: { flex: 1, paddingTop: 1 },
     titleRow: { flexDirection: "row", alignItems: "center", gap: 6 },
     stateText: {
@@ -790,7 +809,7 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean) {
       color: theme.text,
       fontSize: font(15),
       lineHeight: font(20),
-      fontWeight: "800",
+      fontWeight: "600",
     },
     analyzingCard: {
       minHeight: 210,
@@ -816,7 +835,7 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean) {
       color: theme.text,
       fontSize: font(17),
       lineHeight: font(22),
-      fontWeight: "900",
+      fontWeight: "600",
       textAlign: "center",
     },
     thinkingDots: {
@@ -867,7 +886,7 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean) {
       color: theme.text,
       fontSize: font(23),
       lineHeight: font(28),
-      fontWeight: "900",
+      fontWeight: "600",
       letterSpacing: -0.45,
     },
     stationAddress: {

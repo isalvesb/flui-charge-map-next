@@ -8,6 +8,22 @@ type ExternalLinking = {
   openURL: (url: string) => Promise<unknown>;
 };
 
+// Compartilhado pelo botão da ficha e pelo atalho da FluIA; bloqueia antes do GPS.
+export async function prepareExternalRoute(
+  checkConnection: () => Promise<ConnectionStatus>,
+  onReady: () => void,
+): Promise<string | null> {
+  let status: ConnectionStatus;
+  try {
+    status = await checkConnection();
+  } catch {
+    status = "unknown";
+  }
+  const blocked = externalActionBlock(status);
+  if (!blocked) onReady();
+  return blocked;
+}
+
 export async function openExternalRoute(
   station: Coordinates,
   provider: RouteProvider,

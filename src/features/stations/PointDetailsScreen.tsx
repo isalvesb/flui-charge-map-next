@@ -1,6 +1,6 @@
 import { ConnectionNotice } from "../../components/ConnectionNotice";
 import { useConnectivity } from "../../context/ConnectivityContext";
-import { externalActionBlock } from "../../utils/connectivity";
+import { prepareExternalRoute } from "../../utils/externalRoute";
 import {
   router,
   useFocusEffect,
@@ -15,7 +15,6 @@ import {
   BatteryLow,
   BatteryWarning,
   CircleParking,
-  Clock3,
   Coffee,
   Gauge,
   Heart,
@@ -24,15 +23,13 @@ import {
   ShieldCheck,
   ShoppingCart,
   Star,
-  Tag,
-  Timer,
   Toilet,
   Utensils,
   Warehouse,
   Wifi,
   Zap,
 } from "lucide-react-native";
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Alert,
   Image,
@@ -196,8 +193,9 @@ export default function PointDetailsScreen() {
   const now = useCurrentTime();
   const { styles, colors, isDarkMode } = useTelaComPreferencias(baseStyles);
   const { userPreferences, demoStations, demoOrigin } = useAppPreferences();
-  const { stationId } = useLocalSearchParams<{
+  const { stationId, startRoute } = useLocalSearchParams<{
     stationId?: string | string[];
+    startRoute?: string | string[];
   }>();
 
   const selectedStationId = normalizeParam(stationId) ?? "station-01";
@@ -218,6 +216,7 @@ export default function PointDetailsScreen() {
   const { checkConnection } = useConnectivity();
   const [connectionError, setConnectionError] = useState<string | null>(null);
   const [isRouteDialogOpen, setIsRouteDialogOpen] = useState(false);
+  const requestedRouteRef = useRef<string | null>(null);
   const [routeLocation, setRouteLocation] = useState<LocationObject | null>(null);
   const [modalStep, setModalStep] = useState<"confirmation" | "redirect">("confirmation");
 
@@ -270,23 +269,29 @@ export default function PointDetailsScreen() {
     }, 360);
   }
 
-  async function handleStartRoute() {
+  const handleStartRoute = useCallback(async () => {
     if (!station || isLoadingAction) return;
     setIsLoadingAction(true);
     setConnectionError(null);
     try {
-      const blocked = externalActionBlock(await checkConnection());
-      if (blocked) {
-        setConnectionError(blocked);
-        return;
-      }
-      setRouteLocation(null);
-      setModalStep("confirmation");
-      setIsRouteDialogOpen(true);
+      const blocked = await prepareExternalRoute(checkConnection, () => {
+        setRouteLocation(null);
+        setModalStep("confirmation");
+        setIsRouteDialogOpen(true);
+      });
+      setConnectionError(blocked);
     } finally {
       setIsLoadingAction(false);
     }
-  }
+  }, [station, isLoadingAction, checkConnection]);
+
+  // O atalho da FluIA usa a mesma proteção do botão da ficha, antes de pedir GPS.
+  useEffect(() => {
+    if (normalizeParam(startRoute) !== "1" || !station ||
+        requestedRouteRef.current === station.id) return;
+    requestedRouteRef.current = station.id;
+    void handleStartRoute();
+  }, [startRoute, station, handleStartRoute]);
 
   function voltarAoMapa() {
     router.replace("/map" as Href);
@@ -355,11 +360,6 @@ export default function PointDetailsScreen() {
   const connectorLabels = station.connectors
     .map((connector) => connector.label)
     .join(", ");
-
-  const lessBusyText =
-    station.lessBusyPeriods.length > 0
-      ? station.lessBusyPeriods.join(" ou ")
-      : "Sem previsão de menor movimento";
 
   const avaliacaoAlcance = avaliarAlcance(
     station.distanceKm,
@@ -550,47 +550,8 @@ export default function PointDetailsScreen() {
             </Text>
           </View>
 
-          <View style={styles.resumoMotoristaCard}>
-            <Text style={styles.resumoEyebrow}>Guia do ponto</Text>
-            <Text style={styles.resumoTitle}>{recomendacaoDoPonto}</Text>
-            <ConnectionNotice />
-            <Text style={styles.resumoDescription}>
-              {identificacaoDados.catalogo.aviso}{" "}
-              {identificacaoDados.estimativas.aviso} Confirme o funcionamento e
-              a compatibilidade do veículo antes de ir.
-            </Text>
-
-            <View style={styles.resumoInfoGrid}>
-              <View style={styles.resumoInfoItem}>
-                <View style={styles.resumoInfoLabelRow}>
-                  <Timer size={12} color={colors.textLight} strokeWidth={2.3} />
-                  <Text style={styles.resumoInfoLabel}>Espera simulada</Text>
-                </View>
-                <Text style={styles.resumoInfoValue}>{orientacaoDeEspera}</Text>
-              </View>
-
-              <View style={styles.resumoInfoItem}>
-                <View style={styles.resumoInfoLabelRow}>
-                  <BatteryCharging
-                    size={12}
-                    color={colors.textLight}
-                    strokeWidth={2.3}
-                  />
-                  <Text style={styles.resumoInfoLabel}>Tempo estimado</Text>
-                </View>
-                <Text style={styles.resumoInfoValue}>{tempoEstimadoCarga}</Text>
-              </View>
-
-              <View style={styles.resumoInfoItem}>
-                <View style={styles.resumoInfoLabelRow}>
-                  <Tag size={12} color={colors.textLight} strokeWidth={2.3} />
-                  <Text style={styles.resumoInfoLabel}>Perfil</Text>
-                </View>
-                <Text style={styles.resumoInfoValue}>{perfilDoPonto}</Text>
-              </View>
-            </View>
-          </View>
-
+          <Text style={styles.resumoTitle}>{recomendacaoDoPonto}</Text>
+          <ConnectionNotice />
           <View
             accessible
             style={[
@@ -684,20 +645,13 @@ export default function PointDetailsScreen() {
             </View>
           </View>
 
-          <View style={styles.highlightCard}>
-            <View style={styles.highlightIconBox}>
-              <Clock3 size={24} color={colors.yellowDark} strokeWidth={2.2} />
-            </View>
-
-            <View style={styles.highlightContent}>
-              <Text style={styles.highlightLabel}>
-                Horário sugerido no exemplo
-              </Text>
-              <Text style={styles.highlightValue}>{lessBusyText}</Text>
-              <Text style={styles.highlightDescription}>
-                Sem previsão de movimento em tempo real
-              </Text>
-            </View>
+          <Text style={styles.resumoDescription}>
+            {identificacaoDados.catalogo.aviso}{" "}{identificacaoDados.estimativas.aviso}
+          </Text>
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Estimativas de recarga</Text>
+            <Text style={styles.infoDescription}>Espera simulada: {orientacaoDeEspera} · Carga: {tempoEstimadoCarga}</Text>
+            <Text style={styles.infoDescription}>{perfilDoPonto}. Confirme funcionamento e compatibilidade antes de ir.</Text>
           </View>
 
           <View style={styles.section}>
