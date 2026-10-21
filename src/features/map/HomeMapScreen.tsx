@@ -1,3 +1,22 @@
+import { router, useLocalSearchParams, type Href } from "expo-router";
+import {
+  BatteryFull,
+  BatteryLow,
+  BatteryMedium,
+  BatteryWarning,
+  ChevronRight,
+  Clock3,
+  Crosshair,
+  Maximize2,
+  Milestone,
+  Plug,
+  Search,
+  SlidersHorizontal,
+  Star,
+  Toilet,
+  X,
+  Zap,
+} from "lucide-react-native";
 import React, {
   useCallback,
   useEffect,
@@ -20,65 +39,47 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { SvgXml } from "react-native-svg";
+import { ConnectionNotice } from "../../components/ConnectionNotice";
 import MapView, {
   Marker,
   PROVIDER_GOOGLE,
   type MapViewHandle,
   type Region,
 } from "../../components/MapSurface";
-import { SvgXml } from "react-native-svg";
-import { router, type Href, useLocalSearchParams } from "expo-router";
-import {
-  BatteryFull,
-  BatteryLow,
-  BatteryMedium,
-  BatteryWarning,
-  ChevronRight,
-  Clock3,
-  Crosshair,
-  Maximize2,
-  Milestone,
-  Plug,
-  Search,
-  SlidersHorizontal,
-  Star,
-  Toilet,
-  X,
-  Zap,
-} from "lucide-react-native";
 
-import { chargingStations } from "../../data";
-import { defaultFilters } from "../../data/filterOptions";
-import { StationFilters } from "../../types";
-import { filtrarEstacoes } from "../../utils/filtrarEstacoes";
-import {
-  avaliarAlcance,
-  calcularAutonomiaAtualKm,
-} from "../../utils/autonomia";
-import { formatarDistanciaDemonstrativa } from "../../utils/demonstracao";
-import { canChargeAt } from "../../utils/stationAvailability";
-import { isStationOpenAt } from "../../utils/stationHours";
-import { getStationStatusInfo } from "../stations/stationPresentation";
-import { getBatterySourceLabels } from "../../utils/batteryData";
-import { useCurrentTime } from "../../hooks/useCurrentTime";
 import {
   LoadingOverlay,
   PressableScale,
   ScreenTransition,
 } from "../../components";
-import baseStyles, { colors as baseColors } from "./HomeMapScreen.styles";
-import { useTelaComPreferencias } from "../../hooks/useTelaComPreferencias";
-import { useReducedMotion } from "../../hooks/useReducedMotion";
-import { useAppPreferences } from "../../context/PreferencesContext";
 import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
+import { useAppPreferences } from "../../context/PreferencesContext";
+import { chargingStations } from "../../data";
+import { defaultFilters } from "../../data/filterOptions";
 import { identificacaoDados } from "../../data/identificacaoDados";
+import { useCurrentTime } from "../../hooks/useCurrentTime";
+import { useReducedMotion } from "../../hooks/useReducedMotion";
+import { useTelaComPreferencias } from "../../hooks/useTelaComPreferencias";
+import { StationFilters } from "../../types";
 import {
+  avaliarAlcance,
+  calcularAutonomiaAtualKm,
+} from "../../utils/autonomia";
+import { getBatterySourceLabels } from "../../utils/batteryData";
+import { formatarDistanciaDemonstrativa } from "../../utils/demonstracao";
+import { filtrarEstacoes } from "../../utils/filtrarEstacoes";
+import { canChargeAt } from "../../utils/stationAvailability";
+import { isStationOpenAt } from "../../utils/stationHours";
+import { FluiAiIcon } from "../assistant/FluiAiIcon";
+import { FluiAssistantSheet } from "../assistant/FluiAssistantSheet";
+import { getStationStatusInfo } from "../stations/stationPresentation";
+import baseStyles, { colors as baseColors } from "./HomeMapScreen.styles";
+import {
+  getMapHorizontalFocusOffset,
   getMapPanelLayout,
   getMapVerticalFocusOffset,
-  getMapHorizontalFocusOffset,
 } from "./mapLayout";
-import { FluiAssistantSheet } from "../assistant/FluiAssistantSheet";
-import { FluiAiIcon } from "../assistant/FluiAiIcon";
 
 const FEEDBACK_DURATION = 1500;
 const SHEET_VISIBLE_HANDLE = 30;
@@ -1505,6 +1506,7 @@ export default function HomeMapScreen() {
           </View>
         </View>
 
+        <ConnectionNotice />
         <View
           style={styles.mapArea}
           onLayout={(event) => {
@@ -1522,8 +1524,6 @@ export default function HomeMapScreen() {
             showsMyLocationButton={false}
             showsCompass={false}
             toolbarEnabled={false}
-            scrollEnabled
-            zoomEnabled
             loadingEnabled
             customMapStyle={usarMapaEscuro ? estiloEscuroDoMapa : []}
             onRegionChangeComplete={(region) => {

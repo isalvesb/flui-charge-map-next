@@ -1,0 +1,71 @@
+- 'button "Beta 2.5 Offline. Bateria para estimativa: 60 por cento. Informado manualmente. 20/10, 00:13. Cerca de 210 quilômetros estimados"':
+  - generic: 60%
+  - generic: Informado manualmente
+  - generic: 20/10, 00:13
+- button "Abrir perfil"
+- textbox "Buscar no mapa":
+  - /placeholder: Buscar endereço, bairro ou ponto
+- button "Abrir busca e filtros":
+- button "Mostrar atalhos de filtro":
+- generic: Aberto agora
+- generic: CCS2
+- generic: Rápido
+- generic: Banheiro
+- generic "Mapa com pontos de recarga próximos":
+  - generic: Prévia do mapa
+  - generic: "-23.574, -46.626"
+  - button "Abrir ficha de Higienópolis Prime Charge"
+  - button "Abrir ficha de Flui Express MASP"
+  - button "Abrir ficha de Plug & Café Consolação"
+  - button "Abrir ficha de Charge City Jardins"
+  - button "Abrir ficha de Estação Jardins Pamplona"
+  - button "Abrir ficha de Flui Vila Mariana Lins"
+  - button "Abrir ficha de EcoCarga Parque Aclimação"
+  - button "Abrir ficha de Hub Paraíso Vergueiro"
+  - button "Abrir ficha de Mercado Charge Cambuci"
+  - button "Abrir ficha de Garagem Liberdade Solar"
+  - button "Abrir ficha de Fast Point Ana Rosa"
+  - button "Abrir ficha de Garagem Verde Brigadeiro"
+- button "Aumentar zoom do mapa":
+  - generic: +
+- button "Diminuir zoom do mapa":
+  - generic: −
+- 'button "Centralizar origem demonstrativa: Vila Mariana"':
+- button "Planejar viagem":
+- button "Minimizar opções demonstrativas para ver o mapa inteiro":
+- generic: Opções demonstrativas
+- generic: "Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo. Dados desta versão, sem atualização pela conexão. Origem: Vila Mariana · distâncias em linha reta, sem cálculo de percurso"
+- button "Higienópolis Prime Charge. Opção demonstrativa. Rua Alagoas, 974. Aberto agora. Nota 4,9. 150 kW. ≈4,9 km em linha reta. Chegada estimada com 59% de bateria.":
+  - generic: Opção demonstrativa
+  - generic: Confortável
+  - generic: Higienópolis Prime Charge
+  - generic: Rua Alagoas, 974
+  - generic: ≈4,9 km em linha reta
+  - generic: Aberto agora
+  - generic: 4,9
+  - generic: 150 kW
+- dialog:
+  - button "Fechar assistente FluIA"
+  - generic: FluIA
+  - 'generic "Estado da FluIA: Pronta"': Pronta
+  - button "Ativar voz da FluIA":
+  - button "Fechar assistente":
+  - generic: Recomendação simulada com os dados do protótipo.
+  - generic: Sugestão demonstrativa
+  - generic: Higienópolis Prime Charge
+  - generic: Rua Alagoas, 974
+  - generic: Chegada ≈59%
+  - generic: 150 kW
+  - generic: 4 livres
+  - generic: ≈4,9 km
+  - generic: Por que essa escolha?
+  - generic: "Oferece até 150 kW nos conectores utilizáveis e 4 carregadores livres nos dados demonstrativos. Beta 2.5 Offline · origem demonstrativa: Vila Mariana. Distância aproximada em linha reta, sem cálculo de percurso. Estimativa linear com reserva de 5%. Compatibilidade do veículo não confirmada; não há integração em tempo real."
+  - button "Ver Higienópolis Prime Charge no mapa":
+    - generic: Ver ponto no mapa
+  - button "Escolher outra necessidade":
+    - generic: Escolher outra necessidade
+  - generic: "Beta 2.5 Offline · origem demonstrativa: Vila Mariana."
+  - textbox "Mensagem para a FluIA":
+    - /placeholder: Pergunte algo à FluIA
+  - button "Enviar mensagem":
+    - generic: Enviar

@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { ScrollView, StatusBar, Text, TextInput, View } from "react-native";
+import { Platform, ScrollView, StatusBar, Text, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
 import {
@@ -253,7 +253,8 @@ export default function SettingsScreen() {
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Demonstração NEXT</Text>
             <Text style={styles.sectionText}>
-              Veículo e autonomia usados nas simulações. Sem GPS ou integração com o veículo.
+            Veículo e autonomia usados nas simulações. Sem GPS ou integração com o veículo. Catálogo incluído no app. Reconectar não atualiza estações nem envia dados locais.
+            {Platform.OS === "web" ? " Na web, abra com conexão antes do uso offline; o armazenamento depende do navegador." : ""}
             </Text>
             <Text style={styles.fieldLabel}>Veículo demonstrativo</Text>
             <TextInput

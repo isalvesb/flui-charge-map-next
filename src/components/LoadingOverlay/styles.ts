@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
     minWidth: 220,
     maxWidth: "82%",
     paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.lg,
+    paddingVertical: spacing.md,
     borderRadius: radius.lg,
     flexDirection: "column",
     alignItems: "center",

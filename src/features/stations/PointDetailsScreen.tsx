@@ -1,4 +1,6 @@
-import type { LocationObject } from "expo-location";
+import { ConnectionNotice } from "../../components/ConnectionNotice";
+import { useConnectivity } from "../../context/ConnectivityContext";
+import { prepareExternalRoute } from "../../utils/externalRoute";
 import {
   router,
   useFocusEffect,
@@ -27,7 +29,7 @@ import {
   Wifi,
   Zap,
 } from "lucide-react-native";
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Alert,
   Image,
@@ -70,6 +72,7 @@ import {
   getStationStatusInfo,
   getWaitingLevel,
 } from "./stationPresentation";
+import type { LocationObject } from "expo-location";
 
 const imagemPerfilUsuario = require("../../assets/user/profile1.webp");
 
@@ -91,6 +94,36 @@ function formatAddress(station: Station) {
   return [station.address, station.neighborhood, station.city, station.state]
     .filter(Boolean)
     .join(", ");
+}
+
+function getAmenityLabel(amenity: string) {
+  const labels: Record<string, string> = {
+    restaurant: "Restaurante",
+    coffee: "Café",
+    restroom: "Banheiro",
+    parking: "Estacionamento",
+    security: "Segurança",
+    wifi: "Wi-Fi",
+    coveredArea: "Área coberta",
+    market: "Mercado",
+  };
+
+  return labels[amenity] ?? amenity;
+}
+
+function getAmenityIcon(amenity: string) {
+  const icons: Record<string, React.ElementType> = {
+    restaurant: Utensils,
+    coffee: Coffee,
+    restroom: Toilet,
+    parking: CircleParking,
+    security: ShieldCheck,
+    wifi: Wifi,
+    coveredArea: Warehouse,
+    market: ShoppingCart,
+  };
+
+  return icons[amenity] ?? ShoppingCart;
 }
 
 function getConnectorIcon(connectorType: string): React.ElementType {
@@ -180,16 +213,13 @@ export default function PointDetailsScreen() {
   } = useFluiStorage();
 
   const [isLoadingAction, setIsLoadingAction] = useState(false);
-  const [isRouteDialogOpen, setIsRouteDialogOpen] = useState(
-    normalizeParam(startRoute) === "1",
-  );
-  const [routeLocation, setRouteLocation] = useState<LocationObject | null>(
-    null,
-  );
-  const [modalStep, setModalStep] = useState<"confirmation" | "redirect">(
-    "confirmation",
-  );
   const [mostrarAvaliacoes, setMostrarAvaliacoes] = useState(false);
+  const { checkConnection } = useConnectivity();
+  const [connectionError, setConnectionError] = useState<string | null>(null);
+  const [isRouteDialogOpen, setIsRouteDialogOpen] = useState(false);
+  const requestedRouteRef = useRef<string | null>(null);
+  const [routeLocation, setRouteLocation] = useState<LocationObject | null>(null);
+  const [modalStep, setModalStep] = useState<"confirmation" | "redirect">("confirmation");
 
   useFocusEffect(
     useCallback(() => {
@@ -240,15 +270,29 @@ export default function PointDetailsScreen() {
     }, 360);
   }
 
-  function handleStartRoute() {
-    if (!station || isLoadingAction) {
-      return;
+  const handleStartRoute = useCallback(async () => {
+    if (!station || isLoadingAction) return;
+    setIsLoadingAction(true);
+    setConnectionError(null);
+    try {
+      const blocked = await prepareExternalRoute(checkConnection, () => {
+        setRouteLocation(null);
+        setModalStep("confirmation");
+        setIsRouteDialogOpen(true);
+      });
+      setConnectionError(blocked);
+    } finally {
+      setIsLoadingAction(false);
     }
+  }, [station, isLoadingAction, checkConnection]);
 
-    setRouteLocation(null);
-    setModalStep("confirmation");
-    setIsRouteDialogOpen(true);
-  }
+  // O atalho da FluIA usa a mesma proteção do botão da ficha, antes de pedir GPS.
+  useEffect(() => {
+    if (normalizeParam(startRoute) !== "1" || !station ||
+        requestedRouteRef.current === station.id) return;
+    requestedRouteRef.current = station.id;
+    void handleStartRoute();
+  }, [startRoute, station, handleStartRoute]);
 
   function voltarAoMapa() {
     router.replace("/map" as Href);
@@ -396,7 +440,7 @@ export default function PointDetailsScreen() {
       <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} />
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.scrollContent}
+        contentContainerStyle={[styles.scrollContent, connectionError && styles.scrollContentWithError]}
       >
         <View style={styles.hero}>
           <StationVisualCover
@@ -508,6 +552,7 @@ export default function PointDetailsScreen() {
           </View>
 
           <Text style={styles.resumoTitle}>{recomendacaoDoPonto}</Text>
+          <ConnectionNotice />
           <View
             accessible
             style={[
@@ -602,19 +647,12 @@ export default function PointDetailsScreen() {
           </View>
 
           <Text style={styles.resumoDescription}>
-            {identificacaoDados.catalogo.aviso}{" "}
-            {identificacaoDados.estimativas.aviso}
+            {identificacaoDados.catalogo.aviso}{" "}{identificacaoDados.estimativas.aviso}
           </Text>
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Estimativas de recarga</Text>
-            <Text style={styles.infoDescription}>
-              Espera simulada: {orientacaoDeEspera} · Carga:{" "}
-              {tempoEstimadoCarga}
-            </Text>
-            <Text style={styles.infoDescription}>
-              {perfilDoPonto}. Confirme funcionamento e compatibilidade antes de
-              ir.
-            </Text>
+            <Text style={styles.infoDescription}>Espera simulada: {orientacaoDeEspera} · Carga: {tempoEstimadoCarga}</Text>
+            <Text style={styles.infoDescription}>{perfilDoPonto}. Confirme funcionamento e compatibilidade antes de ir.</Text>
           </View>
 
           <View style={styles.section}>
@@ -651,198 +689,204 @@ export default function PointDetailsScreen() {
             })}
           </View>
 
+          
           <View style={styles.section}>
             <Pressable
               accessibilityRole="button"
-              accessibilityLabel={
-                mostrarAvaliacoes ? "Ocultar avaliações" : "Ver avaliações"
-              }
               accessibilityState={{ expanded: mostrarAvaliacoes }}
-              style={styles.verAvaliacoesButton}
+              accessibilityLabel={mostrarAvaliacoes ? "Ocultar avaliações" : "Ver avaliações"}
+              style={{ minHeight: 44, marginTop: 8, borderRadius: 14, alignItems: "center", justifyContent: "center", borderWidth: 1, borderColor: colors.border }}
               onPress={() => setMostrarAvaliacoes((atual) => !atual)}
             >
-              <Text style={styles.verAvaliacoesText}>
+              <Text style={{ color: colors.primary, fontSize: 14, fontWeight: "600" }}>
                 {mostrarAvaliacoes ? "Ocultar avaliações" : "Ver avaliações"}
               </Text>
             </Pressable>
 
             {mostrarAvaliacoes ? (
               <>
-                <Text style={styles.resumoDescription}>
-                  {identificacaoDados.avaliacoesExemplo.aviso}
+
+            <Text style={styles.resumoDescription}>
+              {identificacaoDados.avaliacoesExemplo.aviso}
+            </Text>
+
+            <View style={styles.ratingPanel}>
+              <View style={styles.ratingPanelLeft}>
+                <Text style={styles.bigRating}>
+                  {station.rating.toFixed(1)}
                 </Text>
 
-                <View style={styles.ratingPanel}>
-                  <View style={styles.ratingPanelLeft}>
-                    <Text style={styles.bigRating}>
-                      {station.rating.toFixed(1)}
-                    </Text>
+                <Text style={styles.ratingStars}>
+                  {getRatingStars(station.rating)}
+                </Text>
 
-                    <Text style={styles.ratingStars}>
-                      {getRatingStars(station.rating)}
-                    </Text>
+                <Text style={styles.totalReviews}>
+                  {station.reviewCount} avaliações demonstrativas
+                </Text>
+              </View>
 
-                    <Text style={styles.totalReviews}>
-                      {station.reviewCount} avaliações demonstrativas
-                    </Text>
+              <View style={styles.ratingPanelRight}>
+                <View style={styles.ratingLine}>
+                  <Text style={styles.ratingLineLabel}>5 ★</Text>
+                  <View style={styles.ratingTrack}>
+                    <View style={styles.ratingBarLarge} />
                   </View>
-
-                  <View style={styles.ratingPanelRight}>
-                    <View style={styles.ratingLine}>
-                      <Text style={styles.ratingLineLabel}>5 ★</Text>
-                      <View style={styles.ratingTrack}>
-                        <View style={styles.ratingBarLarge} />
-                      </View>
-                      <Text style={styles.ratingPercent}>85%</Text>
-                    </View>
-
-                    <View style={styles.ratingLine}>
-                      <Text style={styles.ratingLineLabel}>4 ★</Text>
-                      <View style={styles.ratingTrack}>
-                        <View style={styles.ratingBarSmall} />
-                      </View>
-                      <Text style={styles.ratingPercent}>10%</Text>
-                    </View>
-
-                    <View style={styles.ratingLine}>
-                      <Text style={styles.ratingLineLabel}>3 ★</Text>
-                      <View style={styles.ratingTrack}>
-                        <View style={styles.ratingBarTiny} />
-                      </View>
-                      <Text style={styles.ratingPercent}>3%</Text>
-                    </View>
-
-                    <View style={styles.ratingLine}>
-                      <Text style={styles.ratingLineLabel}>2 ★</Text>
-                      <View style={styles.ratingTrack}>
-                        <View style={styles.ratingBarMinimal} />
-                      </View>
-                      <Text style={styles.ratingPercent}>1%</Text>
-                    </View>
-
-                    <View style={styles.ratingLine}>
-                      <Text style={styles.ratingLineLabel}>1 ★</Text>
-                      <View style={styles.ratingTrack}>
-                        <View style={styles.ratingBarMinimal} />
-                      </View>
-                      <Text style={styles.ratingPercent}>1%</Text>
-                    </View>
-                  </View>
+                  <Text style={styles.ratingPercent}>85%</Text>
                 </View>
-                <Pressable
-                  accessibilityRole="button"
-                  accessibilityLabel={
-                    userStationReview
-                      ? "Editar minha avaliação deste ponto"
-                      : "Avaliar este ponto"
-                  }
-                  accessibilityHint="Abre a tela de avaliação do ponto de recarga."
-                  accessibilityState={{ disabled: isLoadingAction }}
-                  disabled={isLoadingAction}
-                  style={({ pressed, hovered }: PressableVisualState) => [
-                    styles.reviewCtaButton,
-                    hovered && !pressed ? styles.hoverFeedback : null,
-                    pressed ? styles.buttonPressed : null,
-                  ]}
-                  onPress={handleOpenReview}
-                >
-                  <Star size={18} color={colors.white} strokeWidth={2.4} />
-                  <Text style={styles.reviewCtaText}>
-                    {userStationReview
-                      ? "Editar minha avaliação"
-                      : "Avaliar este ponto"}
-                  </Text>
-                </Pressable>
 
-                {stationReviews.length > 0 ? (
-                  <View style={styles.userReviewsList}>
-                    {stationReviews.map((review) => (
-                      <View key={review.id} style={styles.userReviewCard}>
-                        {review === userReviewCard ? (
-                          <Image
-                            source={imagemPerfilUsuario}
-                            style={styles.avatarImage}
-                            accessible={false}
-                            accessibilityIgnoresInvertColors
-                          />
-                        ) : (
-                          <View style={styles.avatar}>
-                            <Text style={styles.avatarText}>
-                              {getUserInitials(review.userName)}
-                            </Text>
-                          </View>
-                        )}
+                <View style={styles.ratingLine}>
+                  <Text style={styles.ratingLineLabel}>4 ★</Text>
+                  <View style={styles.ratingTrack}>
+                    <View style={styles.ratingBarSmall} />
+                  </View>
+                  <Text style={styles.ratingPercent}>10%</Text>
+                </View>
 
-                        <View style={styles.userReviewContent}>
-                          <Text style={styles.userName}>{review.userName}</Text>
-                          <Text style={styles.userComment}>
-                            {review === userReviewCard
-                              ? identificacaoDados.avaliacoesLocais.rotulo
-                              : identificacaoDados.avaliacoesExemplo.rotulo}
-                          </Text>
+                <View style={styles.ratingLine}>
+                  <Text style={styles.ratingLineLabel}>3 ★</Text>
+                  <View style={styles.ratingTrack}>
+                    <View style={styles.ratingBarTiny} />
+                  </View>
+                  <Text style={styles.ratingPercent}>3%</Text>
+                </View>
 
-                          <Text style={styles.userStars}>
-                            {getRatingStars(review.rating)}
-                          </Text>
+                <View style={styles.ratingLine}>
+                  <Text style={styles.ratingLineLabel}>2 ★</Text>
+                  <View style={styles.ratingTrack}>
+                    <View style={styles.ratingBarMinimal} />
+                  </View>
+                  <Text style={styles.ratingPercent}>1%</Text>
+                </View>
 
-                          <Text style={styles.userComment}>
-                            {review.comment}
-                          </Text>
-                        </View>
+                <View style={styles.ratingLine}>
+                  <Text style={styles.ratingLineLabel}>1 ★</Text>
+                  <View style={styles.ratingTrack}>
+                    <View style={styles.ratingBarMinimal} />
+                  </View>
+                  <Text style={styles.ratingPercent}>1%</Text>
+                </View>
+              </View>
+            </View>
+
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel={
+                userStationReview
+                  ? "Editar minha avaliação deste ponto"
+                  : "Avaliar este ponto"
+              }
+              accessibilityHint="Abre a tela de avaliação do ponto de recarga."
+              accessibilityState={{ disabled: isLoadingAction }}
+              disabled={isLoadingAction}
+              style={({ pressed, hovered }: PressableVisualState) => [
+                styles.reviewCtaButton,
+                hovered && !pressed ? styles.hoverFeedback : null,
+                pressed ? styles.buttonPressed : null,
+              ]}
+              onPress={handleOpenReview}
+            >
+              <Star size={18} color={colors.white} strokeWidth={2.4} />
+              <Text style={styles.reviewCtaText}>
+                {userStationReview
+                  ? "Editar minha avaliação"
+                  : "Avaliar este ponto"}
+              </Text>
+            </Pressable>
+
+            {stationReviews.length > 0 ? (
+              <View style={styles.userReviewsList}>
+                {stationReviews.map((review) => (
+                  <View key={review.id} style={styles.userReviewCard}>
+                    {review === userReviewCard ? (
+                      <Image
+                        source={imagemPerfilUsuario}
+                        style={styles.avatarImage}
+                        accessible={false}
+                        accessibilityIgnoresInvertColors
+                      />
+                    ) : (
+                      <View style={styles.avatar}>
+                        <Text style={styles.avatarText}>
+                          {getUserInitials(review.userName)}
+                        </Text>
                       </View>
-                    ))}
-                  </View>
-                ) : (
-                  <View style={styles.emptyReviewCard}>
-                    <Text style={styles.emptyReviewTitle}>
-                      Ainda não há comentários recentes
-                    </Text>
+                    )}
 
-                    <Text style={styles.emptyReviewText}>
-                      Seja uma das primeiras pessoas a avaliar este ponto.
-                    </Text>
+                    <View style={styles.userReviewContent}>
+                      <Text style={styles.userName}>{review.userName}</Text>
+                      <Text style={styles.userComment}>
+                        {review === userReviewCard
+                          ? identificacaoDados.avaliacoesLocais.rotulo
+                          : identificacaoDados.avaliacoesExemplo.rotulo}
+                      </Text>
+
+                      <Text style={styles.userStars}>
+                        {getRatingStars(review.rating)}
+                      </Text>
+
+                      <Text style={styles.userComment}>{review.comment}</Text>
+                    </View>
                   </View>
-                )}
-              </>
+                ))}
+              </View>
+            ) : (
+              <View style={styles.emptyReviewCard}>
+                <Text style={styles.emptyReviewTitle}>
+                  Ainda não há comentários recentes
+                </Text>
+
+                <Text style={styles.emptyReviewText}>
+                  Seja uma das primeiras pessoas a avaliar este ponto.
+                </Text>
+              </View>
+            )}
+                        </>
             ) : null}
-          </View>
+</View>
         </View>
       </ScrollView>
 
       <SafeAreaView edges={["bottom"]} style={styles.bottomActions}>
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel="Ver mapa"
-          accessibilityState={{ disabled: isLoadingAction }}
-          style={({ pressed, hovered }: PressableVisualState) => [
-            styles.secondaryActionButton,
-            hovered && !pressed ? styles.hoverFeedback : null,
-            pressed ? styles.buttonPressed : null,
-          ]}
-          disabled={isLoadingAction}
-          onPress={voltarAoMapa}
-        >
-          <Text style={styles.secondaryActionText}>Ver mapa</Text>
-        </Pressable>
+        {connectionError ? (
+          <Text accessibilityRole="alert" accessibilityLiveRegion="assertive" style={styles.connectionError}>
+            {connectionError}
+          </Text>
+        ) : null}
+        <View style={styles.bottomActionRow}>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="Ver mapa"
+            accessibilityState={{ disabled: isLoadingAction }}
+            style={({ pressed, hovered }: PressableVisualState) => [
+              styles.secondaryActionButton,
+              hovered && !pressed ? styles.hoverFeedback : null,
+              pressed ? styles.buttonPressed : null,
+            ]}
+            disabled={isLoadingAction}
+            onPress={voltarAoMapa}
+          >
+            <Text style={styles.secondaryActionText}>Ver mapa</Text>
+          </Pressable>
 
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel={`Iniciar rota para ${station.name}`}
-          accessibilityHint="Mostra o aviso de funcionamento antes de escolher Google Maps ou Waze."
-          accessibilityState={{ disabled: isLoadingAction }}
-          style={({ pressed, hovered }: PressableVisualState) => [
-            styles.primaryActionButton,
-            hovered && !pressed ? styles.hoverFeedback : null,
-            pressed ? styles.primaryButtonPressed : null,
-          ]}
-          disabled={isLoadingAction}
-          onPress={() => {
-            triggerImpact();
-            handleStartRoute();
-          }}
-        >
-          <Text style={styles.primaryActionText}>Iniciar rota</Text>
-        </Pressable>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={`Iniciar rota para ${station.name}`}
+            accessibilityHint="Mostra o aviso de funcionamento antes de escolher Google Maps ou Waze."
+            accessibilityState={{ disabled: isLoadingAction }}
+            style={({ pressed, hovered }: PressableVisualState) => [
+              styles.primaryActionButton,
+              hovered && !pressed ? styles.hoverFeedback : null,
+              pressed ? styles.primaryButtonPressed : null,
+            ]}
+            disabled={isLoadingAction}
+            onPress={() => {
+              triggerImpact();
+              void handleStartRoute();
+            }}
+          >
+            <Text style={styles.primaryActionText}>Iniciar rota</Text>
+          </Pressable>
+        </View>
       </SafeAreaView>
 
       <Modal
@@ -852,10 +896,7 @@ export default function PointDetailsScreen() {
         onRequestClose={() => !isLoadingAction && setIsRouteDialogOpen(false)}
       >
         {modalStep === "confirmation" ? (
-          <RoutingModalPermission
-            next={handleNext}
-            onCancel={() => setIsRouteDialogOpen(false)}
-          />
+          <RoutingModalPermission next={handleNext} onCancel={() => setIsRouteDialogOpen(false)} />
         ) : (
           <RoutingModalRoutes
             station={station}

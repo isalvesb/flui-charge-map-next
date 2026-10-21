@@ -11,6 +11,10 @@ export const styles = StyleSheet.create({
     paddingBottom: 120,
   },
 
+  scrollContentWithError: {
+    paddingBottom: 230,
+  },
+
   hero: {
     height: 205,
     backgroundColor: "#10221E",
@@ -590,6 +594,16 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
 
+  connectionError: {
+    color: colors.text,
+    fontSize: 14,
+    lineHeight: 20,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    backgroundColor: "#FFF3D6",
+    borderRadius: 12,
+  },
+
   bigRating: {
     color: "#10221E",
     fontSize: 42,
@@ -784,6 +798,10 @@ export const styles = StyleSheet.create({
     backgroundColor: "#FCFEFA",
     borderTopWidth: 1,
     borderTopColor: "#DDE8E3",
+    gap: 8,
+  },
+
+  bottomActionRow: {
     flexDirection: "row",
     gap: 12,
   },

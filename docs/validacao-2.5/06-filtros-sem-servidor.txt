@@ -1,0 +1,74 @@
+- button "Voltar ao mapa":
+- generic: Busca e filtros
+- textbox "Campo de busca de pontos de recarga":
+  - /placeholder: Buscar por bairro, estação ou conector
+- generic: Sugestões rápidas
+- button "Buscar por Paulista":
+  - generic: Paulista
+- button "Buscar por Vila Mariana":
+  - generic: Vila Mariana
+- button "Buscar por Higienópolis":
+  - generic: Higienópolis
+- button "Buscar por Jardins":
+  - generic: Jardins
+- button "Buscar por Liberdade":
+  - generic: Liberdade
+- button "Buscar por Cambuci":
+  - generic: Cambuci
+- generic: Tipo de conector
+- button "CCS2, selecionado":
+  - generic: CCS2
+- button "Tipo 2":
+  - generic: Tipo 2
+- button "CHAdeMO":
+  - generic: CHAdeMO
+- button "GB/T":
+  - generic: GB/T
+- generic: Potência mínima
+- button "22 kW":
+  - generic: 22 kW
+- button "50 kW":
+  - generic: 50 kW
+- button "100 kW":
+  - generic: 100 kW
+- button "150 kW":
+  - generic: 150 kW
+- button "250 kW":
+  - generic: 250 kW
+- generic: Disponibilidade
+- button "Aberto agora, selecionado" [active]:
+  - generic: Aberto agora
+- button "Carregadores livres":
+  - generic: Carregadores livres
+- button "Aberto 24h":
+  - generic: Aberto 24h
+- generic: Comodidades
+- button "Restaurante":
+  - generic: Restaurante
+- button "Café":
+  - generic: Café
+- button "Banheiro":
+  - generic: Banheiro
+- button "Estacionamento":
+  - generic: Estacionamento
+- button "Área coberta":
+  - generic: Área coberta
+- button "Wi-Fi":
+  - generic: Wi-Fi
+- generic: Avaliação mínima
+- button "4,0+":
+  - generic: 4,0+
+- button "4,5+":
+  - generic: 4,5+
+- generic: Raio de busca
+- generic: Em linha reta desde Vila Mariana, origem demonstrativa. Sem cálculo de percurso.
+- button "500 m":
+  - generic: 500 m
+- button "1 km":
+  - generic: 1 km
+- button "5 km":
+  - generic: 5 km
+- button "Limpar busca e filtros":
+  - generic: Limpar busca
+- button "Ver pontos encontrados no mapa":
+  - generic: Ver 1 ponto no mapa

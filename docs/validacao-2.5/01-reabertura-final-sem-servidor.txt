@@ -1,0 +1,46 @@
+- button "Voltar":
+- generic: Configurações
+- button "Reiniciar dados locais do Flui"
+- generic: Demonstração NEXT
+- generic: Veículo e autonomia usados nas simulações. Sem GPS ou integração com o veículo. Catálogo incluído no app. Reconectar não atualiza estações nem envia dados locais. Na web, abra com conexão antes do uso offline; o armazenamento depende do navegador.
+- generic: Veículo demonstrativo
+- textbox "Veículo demonstrativo": Beta 2.5 Offline
+- generic: Autonomia com bateria cheia (km)
+- textbox "Autonomia com bateria cheia em quilômetros": "350"
+- generic: Origem demonstrativa
+- generic: Distâncias em linha reta a partir da origem escolhida. Não representam percursos reais.
+- button "Selecionar origem FIAP":
+  - generic: FIAP
+- button "Selecionar origem Paulista":
+  - generic: Paulista
+- button "Selecionar origem Vila Mariana" [pressed]:
+  - generic: Vila Mariana
+- button "Salvar demonstração":
+  - generic: Salvar demonstração
+- generic: "Bateria: 60% · Informado manualmente. 20/10, 00:13. Para alterar, use o indicador de bateria no mapa."
+- button "Abrir mapa para editar bateria":
+  - generic: Editar bateria no mapa
+- generic: Aparência
+- generic: Escolha o tema visual do app.
+- button "Selecionar tema claro" [pressed]:
+  - generic: Claro
+  - generic: Fundo claro e cartões brancos.
+- button "Selecionar tema escuro":
+  - generic: Escuro
+  - generic: Visual mais confortável para baixa luz.
+- generic: Acessibilidade
+- generic: Ajuste o tamanho da fonte para melhorar a leitura.
+- button "Selecionar fonte menor":
+  - generic: Fonte menor
+  - generic: Mais conteúdo visível por tela.
+- button "Selecionar fonte padrão" [pressed]:
+  - generic: Fonte padrão
+  - generic: Equilíbrio entre leitura e espaço.
+- button "Selecionar fonte maior":
+  - generic: Fonte maior
+  - generic: Leitura mais confortável.
+- generic: Introdução
+- generic: Reveja o tour inicial do app no tema visual ativo agora.
+- button "Ver introdução do app":
+  - generic: Ver introdução
+  - generic: Acesse novamente os recursos principais do Flui.

@@ -1,0 +1,75 @@
+- button "Voltar ao mapa":
+- button "Remover dos favoritos":
+- generic: Flui Vila Mariana Lins
+- generic: Av. Lins de Vasconcelos, 1264, Aclimação, São Paulo, SP
+- generic: "4.8"
+- generic: (132 avaliações demonstrativas)
+- generic: Fechado agora
+- generic: 5 carregadores cadastrados no exemplo. Recarga não confirmada.
+- generic: Guia do ponto
+- generic: Recarga não confirmada neste ponto
+- generic: "Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo. Dados desta versão, sem atualização pela conexão; podem estar desatualizados. Distância em linha reta, autonomia e tempo de carga são estimativas simplificadas, sem telemetria ou cálculo de percurso. Confirme o funcionamento e a compatibilidade do veículo antes de ir."
+- generic: Espera simulada
+- generic: Indisponível
+- generic: Tempo estimado
+- generic: 20 a 35 min
+- generic: Perfil
+- generic: Carga rápida
+- generic: Autonomia para chegar ao local Chegada estimada com 60% de bateria. Não garante recarga no local.
+- generic: Potência
+- generic: 150 kW
+- generic: Velocidade de carga
+- generic: Conectores
+- generic: CCS2, Type 2
+- generic: Tipos compatíveis
+- generic: Funcionamento
+- generic: Todos os dias, 06h às 22h
+- generic: Todos os dias, 06h às 22h
+- generic: Distância aproximada
+- generic: ≈0 m
+- generic: Em linha reta desde Vila Mariana. Não é distância de percurso.
+- generic: Horário sugerido no exemplo
+- generic: 07h às 09h ou 13h às 15h
+- generic: Sem previsão de movimento em tempo real
+- generic: Conectores do ponto
+- generic: CCS2
+- generic: 150 kW · 3 carregadores cadastrados no exemplo. Recarga não confirmada.
+- generic: Type 2
+- generic: 22 kW · 2 carregadores cadastrados no exemplo. Recarga não confirmada.
+- generic: Comodidades próximas
+- generic: Café
+- generic: Banheiro
+- generic: Estacionamento
+- generic: Wi-Fi
+- generic: Segurança
+- generic: Avaliações
+- generic: Notas, totais, distribuição e comentários do catálogo são exemplos. Sua avaliação local não altera esses números.
+- generic: "4.8"
+- generic: ★ ★ ★ ★ ★
+- generic: 132 avaliações demonstrativas
+- generic: 5 ★
+- generic: 85%
+- generic: 4 ★
+- generic: 10%
+- generic: 3 ★
+- generic: 3%
+- generic: 2 ★
+- generic: 1%
+- generic: 1 ★
+- generic: 1%
+- button "Avaliar este ponto":
+  - generic: Avaliar este ponto
+- generic: MP
+- generic: Marina Polverari
+- generic: Avaliação demonstrativa
+- generic: ★ ★ ★ ★ ★
+- generic: Muito bom para a rotina perto da Lins, com carregamento rápido e estrutura completa.
+- generic: JB
+- generic: Joseffe Barroso
+- generic: Avaliação demonstrativa
+- generic: ★ ★ ★ ★ ★
+- generic: A sinalização facilita a chegada e as comodidades tornam a espera bem tranquila.
+- button "Ver mapa":
+  - generic: Ver mapa
+- button "Iniciar rota para Flui Vila Mariana Lins":
+  - generic: Iniciar rota

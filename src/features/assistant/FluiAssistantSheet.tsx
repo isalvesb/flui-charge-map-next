@@ -107,8 +107,7 @@ export function FluiAssistantSheet({
   onSelectStation,
   onStartRoute,
 }: Props) {
-  const { theme, fontScale, appearanceMode, demoOrigin, userPreferences } =
-    useAppPreferences();
+  const { theme, fontScale, appearanceMode, demoOrigin, userPreferences } = useAppPreferences();
   const reduceMotionEnabled = useReducedMotion();
   const styles = useMemo(
     () => createStyles(theme, fontScale, appearanceMode === "dark"),
@@ -136,8 +135,7 @@ export function FluiAssistantSheet({
   const displayedState: FluiaState = isAnalyzing ? "pensando" : fluiaState;
 
   const recommendation = useMemo(() => {
-    if (!funcionalidadesExperimentais.fluia || !selectedIntent || isAnalyzing)
-      return null;
+    if (!funcionalidadesExperimentais.fluia || !selectedIntent || isAnalyzing) return null;
     return recommendStations({
       stations,
       intent: selectedIntent,
@@ -434,9 +432,7 @@ export function FluiAssistantSheet({
                 >
                   <Sparkles size={28} color={theme.primary} strokeWidth={2.2} />
                 </Animated.View>
-                <Text style={styles.analyzingTitle}>
-                  Analisando suas opções
-                </Text>
+                <Text style={styles.analyzingTitle}>Analisando suas opções</Text>
                 <View style={styles.thinkingDots} accessibilityElementsHidden>
                   {[
                     [0, 0.12, 0.25, 0.38, 1],
@@ -605,8 +601,7 @@ export function FluiAssistantSheet({
             ) : null}
             <View style={styles.chatBox}>
               <Text style={styles.subtitle}>
-                {userPreferences.vehicleName} · origem demonstrativa:{" "}
-                {demoOrigin.nome}.
+                {userPreferences.vehicleName} · origem demonstrativa: {demoOrigin.nome}.
               </Text>
               <View style={styles.messagesContent}>
                 {messages.map((message) => (
@@ -656,9 +651,7 @@ export function FluiAssistantSheet({
                   </View>
                 ))}
                 {isChatThinking ? (
-                  <Text style={styles.thinkingText}>
-                    FluIA está pensando...
-                  </Text>
+                  <Text style={styles.thinkingText}>FluIA está pensando...</Text>
                 ) : null}
               </View>
             </View>
@@ -667,16 +660,9 @@ export function FluiAssistantSheet({
           <View style={styles.inputRow}>
             <TextInput
               value={draft}
-              onChangeText={(text) => {
-                setDraft(text);
-                markTyping();
-              }}
+              onChangeText={(text) => { setDraft(text); markTyping(); }}
               onFocus={markTyping}
-              onBlur={() =>
-                setFluiaState((current) =>
-                  current === "digitando" ? "repouso" : current,
-                )
-              }
+              onBlur={() => setFluiaState((current) => current === "digitando" ? "repouso" : current)}
               onSubmitEditing={sendMessage}
               placeholder="Pergunte algo à FluIA"
               placeholderTextColor={theme.textMuted}
@@ -946,7 +932,7 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean) {
       color: theme.text,
       fontSize: font(15),
       lineHeight: font(20),
-      fontWeight: "600",
+      fontWeight: "900",
     },
     explanationText: {
       marginTop: 4,
@@ -980,7 +966,7 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean) {
       color: theme.text,
       fontSize: font(14),
       lineHeight: font(18),
-      fontWeight: "600",
+      fontWeight: "900",
     },
     backupDescription: {
       marginTop: 2,
