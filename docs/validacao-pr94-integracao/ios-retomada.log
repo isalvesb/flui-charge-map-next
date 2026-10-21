@@ -1,0 +1,95 @@
+Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-10-21 09:51:43.012.
+Test Suite 'FluiValidacao.xctest' started at 2026-10-21 09:51:43.022.
+Test Suite 'FluiValidacao' started at 2026-10-21 09:51:43.022.
+Test Case '-[FluiValidacao.FluiValidacao testRetomadaTecladoIntegrado]' started.
+    t =     0.16s Start Test at 2026-10-21 09:51:43.184
+    t =     0.50s Set Up
+    t =     0.51s Open host.exp.Exponent
+    t =     0.52s     Activate host.exp.Exponent
+    t =     0.76s         Wait for host.exp.Exponent to idle
+    t =     1.11s Waiting 10.0s for "Mensagem para a FluIA" TextField to exist
+    t =     2.16s     Checking `Expect predicate `existsNoRetry == 1` for object "Mensagem para a FluIA" TextField`
+    t =     2.17s         Checking existence of `"Mensagem para a FluIA" TextField`
+    t =     2.50s Checking existence of `"Estado da FluIA: Escrevendo" StaticText`
+    t =     3.16s Added attachment named 'orb-digitando-integrada'
+    t =     4.24s Checking existence of `Keyboard (First Match)`
+    t =     4.39s Find the Keyboard (First Match)
+    t =     4.60s Find the Keyboard at {{0.0, 560.0}, {390.0, 226.0}}
+    t =     4.82s Find the Button (First Match)
+    t =     5.30s Find the Keyboard (First Match)
+objc[57727]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x107cf0398) and /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x107de4310). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =     5.53s Find the Button (First Match)
+TECLADO INTEGRADO (0.0, 560.0, 390.0, 226.0) ENVIAR (285.0, 437.6666768491268, 85.0, 44.0)
+    t =     5.71s Tap Button (First Match)
+    t =     5.71s     Wait for host.exp.Exponent to idle
+    t =     5.84s     Find the Button (First Match)
+    t =     6.05s     Check for interrupting elements affecting "Enviar mensagem" Button
+    t =     6.39s     Synthesize event
+    t =     6.97s     Wait for host.exp.Exponent to idle
+    t =     7.05s Waiting 15.0s for Button (First Match) to exist
+    t =     8.07s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     8.08s         Checking existence of `Button (First Match)`
+    t =     8.39s         Capturing element debug description
+    t =     9.11s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     9.11s         Checking existence of `Button (First Match)`
+    t =     9.28s Tap "Mensagem para a FluIA" TextField
+    t =     9.28s     Wait for host.exp.Exponent to idle
+    t =     9.37s     Find the "Mensagem para a FluIA" TextField
+    t =     9.52s     Check for interrupting elements affecting "Pergunte algo à FluIA" TextField
+    t =     9.71s     Synthesize event
+    t =    10.29s     Wait for host.exp.Exponent to idle
+    t =    11.34s Find the Button (First Match)
+    t =    12.55s Find the "Iniciar rota para o ponto recomendado" Button
+    t =    12.83s Find the Button (First Match)
+    t =    13.39s Find the "Iniciar rota para o ponto recomendado" Button
+    t =    13.57s Find the Keyboard (First Match)
+    t =    14.12s Added attachment named 'resposta-orb-teclado-integrados'
+    t =    14.12s Tap Button (First Match)
+    t =    14.12s     Wait for host.exp.Exponent to idle
+    t =    14.16s     Find the Button (First Match)
+    t =    14.45s     Check for interrupting elements affecting "Fechar assistente" Button
+    t =    14.78s     Synthesize event
+    t =    15.29s     Wait for host.exp.Exponent to idle
+    t =    17.04s Checking existence of `Keyboard (First Match)`
+    t =    17.14s Waiting 8.0s for Button (First Match) to exist
+    t =    18.18s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    18.18s         Checking existence of `Button (First Match)`
+    t =    18.26s Tap Button (First Match)
+    t =    18.27s     Wait for host.exp.Exponent to idle
+    t =    18.30s     Find the Button (First Match)
+    t =    18.39s     Check for interrupting elements affecting "Abrir assistente Flui IA" Button
+    t =    18.51s     Synthesize event
+    t =    18.87s     Wait for host.exp.Exponent to idle
+    t =    18.90s Waiting 8.0s for "Estado da FluIA: Pronta" StaticText to exist
+    t =    19.95s     Checking `Expect predicate `existsNoRetry == 1` for object "Estado da FluIA: Pronta" StaticText`
+    t =    19.95s         Checking existence of `"Estado da FluIA: Pronta" StaticText`
+    t =    20.33s Added attachment named 'orb-reabertura-integrada'
+    t =    20.35s Tap Button (First Match)
+    t =    20.35s     Wait for host.exp.Exponent to idle
+    t =    20.39s     Find the Button (First Match)
+    t =    20.51s     Check for interrupting elements affecting "Fechar assistente" Button
+    t =    20.65s     Synthesize event
+    t =    21.04s     Wait for host.exp.Exponent to idle
+    t =    21.12s Tear Down
+Test Case '-[FluiValidacao.FluiValidacao testRetomadaTecladoIntegrado]' passed (21.248 seconds).
+Test Suite 'FluiValidacao' passed at 2026-10-21 09:52:04.425.
+	 Executed 1 test, with 0 failures (0 unexpected) in 21.248 (21.403) seconds
+Test Suite 'FluiValidacao.xctest' passed at 2026-10-21 09:52:04.433.
+	 Executed 1 test, with 0 failures (0 unexpected) in 21.248 (21.411) seconds
+Test Suite 'Selected tests' passed at 2026-10-21 09:52:04.436.
+	 Executed 1 test, with 0 failures (0 unexpected) in 21.248 (21.424) seconds
+2026-10-21 09:52:04.584 xcodebuild[57672:6723513] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-21 09:52:04.587 xcodebuild[57672:6723513] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-21 09:52:04.592 xcodebuild[57672:6723513] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-21 09:52:04.868 xcodebuild[57672:6723513] [MT] IDETestOperationsObserverDebug: 54.112 elapsed -- Testing started completed.
+2026-10-21 09:52:04.868 xcodebuild[57672:6723513] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-21 09:52:04.868 xcodebuild[57672:6723513] [MT] IDETestOperationsObserverDebug: 54.112 sec, +54.112 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/guicunha/.codex/.chatgpt-projects/g-p-69f512a9480481918bb9b34c4162ae65/output/pr94-integracao-20261021/ios-retomada.xcresult
+
+** TEST SUCCEEDED **
+
+Testing started

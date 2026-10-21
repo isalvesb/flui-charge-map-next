@@ -1,0 +1,149 @@
+
+> flui-charge-map@1.0.0 check
+> npm run typecheck && npm run lint && npm test
+
+
+> flui-charge-map@1.0.0 typecheck
+> tsc --noEmit
+
+
+> flui-charge-map@1.0.0 lint
+> expo lint
+
+
+/Users/guicunha/.codex/.chatgpt-projects/g-p-69f512a9480481918bb9b34c4162ae65/beta-offline-2.5/src/context/ConnectivityContext.tsx
+  48:18  warning  The ref value 'revision.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'revision.current' to a variable inside the effect, and use that variable in the cleanup function  react-hooks/exhaustive-deps
+
+✖ 1 problem (0 errors, 1 warning)
+
+
+> flui-charge-map@1.0.0 test
+> node --import tsx --test tests/*.test.ts
+
+✔ bateria padrão é demonstrativa e não inventa atualização (1.18ms)
+✔ edição manual conserva valor, origem e data após serialização e leitura (41.05325ms)
+✔ preferências antigas não recebem uma origem fabricada (0.140042ms)
+✔ dados inválidos não preservam uma alegação manual nem valores não finitos (0.126917ms)
+✔ responde pergunta programada sem acento e em maiúsculas (2.43525ms)
+✔ pergunta sem resposta cai na mensagem padrão (1.527209ms)
+✔ pedido de recarga rápida sem estações gera alerta (0.707292ms)
+✔ bateria baixa usa o motor local e recusa bateria insuficiente (16.981917ms)
+✔ chat respeita o horário recebido da tela nas duas intenções (1.104958ms)
+✔ bateria baixa não atribui indisponibilidade exclusivamente ao alcance (0.198625ms)
+✔ sinônimos de lowBattery encaminham ao motor sem alterar o resultado (3.601917ms)
+✔ sinônimos de fastCharge encaminham ao motor sem alterar o resultado (1.057791ms)
+✔ sinônimos de avoidQueues encaminham ao motor sem alterar o resultado (1.476458ms)
+✔ sinônimos de coffeeAndRestroom encaminham ao motor sem alterar o resultado (0.966416ms)
+✔ sinônimos de comfortableWait encaminham ao motor sem alterar o resultado (1.22025ms)
+✔ acentos, caixa, pontuação e espaços não mudam a intenção (0.319584ms)
+✔ as cinco intenções explicam necessidades diferentes mesmo para a mesma estação (0.930583ms)
+✔ pedido genérico pede prioridade e todas as opções oferecidas são reconhecidas (0.860292ms)
+✔ pedido com prioridades distintas pede esclarecimento sem ignorar requisitos (0.152166ms)
+✔ negações simples de comodidades ou rapidez não viram recomendações opostas (0.142166ms)
+✔ respostas programadas permanecem disponíveis sem anexar o aviso extenso (0.422375ms)
+✔ ausência de estações não inventa causa em filtros, bateria ou horários (0.349958ms)
+✔ explica reserva com 0%, 4% e 5% sem sugerir deslocamento em nenhuma intenção (23.999583ms)
+✔ chat preserva corte exato e não usa arredondamento para liberar a reserva (1.598583ms)
+✔ falta de comodidades só é afirmada entre as opções viáveis, sem relaxar a intenção (0.721292ms)
+✔ explicação de ausência usa disponibilidade e horários sem culpar a bateria (2.420625ms)
+✔ diagnóstico não apresenta dados inválidos como falta de bateria (1.229458ms)
+✔ distingue conexão, ausência de internet e estado ainda desconhecido (0.687542ms)
+✔ reconsulta acompanha online, offline e recuperação (0.326458ms)
+✔ erro e demora do detector são recuperáveis, inclusive rejeição tardia (7.300542ms)
+✔ offline e desconhecido não chegam ao Linking em nenhum provedor (0.93475ms)
+✔ uma nova tentativa após reconectar permite a navegação existente (0.446459ms)
+✔ detecção positiva não esconde falhas do aplicativo externo (0.305ms)
+✔ preferências antigas recebem FIAP e veículo padrão sem perder autonomia e origem da bateria (1.047834ms)
+✔ configuração demonstrativa conserva valores após serialização sem transformar bateria em telemetria (0.873625ms)
+✔ rejeita entradas inválidas e recupera padrões em dados locais inválidos (0.471167ms)
+✔ distância geográfica usa coordenadas em vez dos quilômetros estáticos do catálogo (3.695625ms)
+✔ origem atualiza os dados usados no raio de busca e na viabilidade da FluIA (35.227583ms)
+✔ mapa, ficha e FluIA exibem a mesma estimativa de chegada para toda origem (2.302125ms)
+✔ cortes de filtro e reserva mantêm precisão anterior ao arredondamento visual (0.4075ms)
+✔ prioriza uma estação próxima quando a bateria está baixa (25.638542ms)
+✔ considera potência e comodidades conforme a necessidade (0.545542ms)
+✔ nenhuma intenção recomenda posto fora da autonomia ou chegada sem reserva (1.110875ms)
+✔ exclui indisponibilidade, ocupação, ausência de carregadores e potência inválida (1.656625ms)
+✔ não inventa banheiro, café ou conforto em postos sem comodidades (0.425042ms)
+✔ rejeita dados energéticos inválidos sem fabricar autonomia (0.182916ms)
+✔ conta somente conectores compatíveis livres e usa sua potência na recomendação (0.675209ms)
+✔ compatibilidade ausente é explicitamente não confirmada (0.261792ms)
+✔ principal e alternativa obedecem às mesmas restrições, sem arredondar a reserva (0.386167ms)
+✔ todos os estados da FluIA têm rótulos visíveis (0.666875ms)
+✔ campo de texto não se apresenta como reconhecimento de voz (0.134083ms)
+✔ resposta e aviso expiram, mas alerta e estados ativos não (0.121ms)
+✔ FluIA fica habilitada por padrão e mantém sugestões locais (45.975709ms)
+✔ controle desabilitado bloqueia sugestões e todas as respostas do motor (0.391333ms)
+✔ falta de opção no exemplo não afirma indisponibilidade real (1.729125ms)
+✔ worker prepara páginas e assets locais, sem armazenar serviços externos (95.011375ms)
+✔ worker permite reinício offline e ficha com parâmetros sem rede (7.374917ms)
+✔ worker usa cópia local em erro do servidor e volta à rede ao reconectar (3.235416ms)
+✔ falha de quota rejeita preparação sem impedir consulta online (1.965166ms)
+✔ aplica filtros rápidos sem alterar o objeto original (1.158916ms)
+✔ detecta filtros rápidos ativos (0.152125ms)
+✔ prioriza estações aderentes e usa distância como desempate (0.329084ms)
+✔ painel deixa espaço para controles em tela compacta e respeita a área do mapa (0.748708ms)
+✔ painel horizontal e panorâmico preserva espaço lateral e limita a largura de leitura (0.183666ms)
+✔ textos essenciais e indicadores têm contraste mínimo de 4,5:1 nos dois temas (0.363958ms)
+✔ centralização horizontal não desloca a origem para o topo por causa do painel lateral (0.132833ms)
+✔ centralização em retrato preserva compensação, limite, recolhimento e painel oculto (0.086667ms)
+✔ painel lateral centraliza a origem na área livre sem alterar o retrato (0.093458ms)
+✔ permissão negada não solicita posição nem inventa origem (1.176291ms)
+✔ falha na solicitação de permissão é recuperável (0.32525ms)
+✔ GPS concedido mas indisponível não propaga a rejeição nativa (0.331291ms)
+✔ posição válida é devolvida integralmente e uma nova tentativa pode recuperar o GPS (0.326333ms)
+✔ coordenadas inválidas não são usadas como posição atual (0.242375ms)
+✔ GPS sem resposta tem limite e rejeição tardia continua tratada (6.566458ms)
+✔ aguarda canOpenURL e não abre um provedor indisponível (0.499583ms)
+✔ falhas de consulta e abertura externa retornam mensagens recuperáveis (0.419583ms)
+✔ destino inválido interrompe o fluxo antes de consultar ou abrir o navegador (0.149625ms)
+✔ Google Maps e Waze preservam URLs e não recebem origem demonstrativa no fallback (0.392875ms)
+✔ abertura externa pode ser repetida após falha (0.189917ms)
+✔ retorna filtros independentes quando o parâmetro é inválido (1.04725ms)
+✔ descarta opções desconhecidas e impede valores negativos (0.224041ms)
+✔ filtra por busca, potência, distância e comodidades (2.848208ms)
+✔ respeita horários 24 horas e bloqueia manutenção (23.21175ms)
+✔ considera período que atravessa a meia-noite (0.478584ms)
+✔ interpreta horário do catálogo no fuso da estação, incluindo domingo e limites (0.640583ms)
+✔ período noturno pertence ao dia da abertura, inclusive na virada da semana (0.339792ms)
+✔ não interpreta horas inválidas ou abertura igual ao fechamento como 24h (0.162792ms)
+✔ filtro, ficha e FluIA concordam nos horários reais do catálogo sem calendário estruturado (23.145667ms)
+✔ calendário estruturado prevalece sobre o texto e o filtro 24h usa a mesma fonte (0.502459ms)
+✔ horário ou fuso desconhecido não produz confirmação de abertura (0.511708ms)
+✔ filtro de carregadores livres exclui posto fechado ou com status incompatível (0.254083ms)
+✔ filtro 24h também rejeita fuso inválido (0.132583ms)
+✔ formata os dados apresentados pela ficha da estação (0.996708ms)
+✔ gera URLs seguras para os provedores suportados (0.285583ms)
+✔ avisa sobre recarga não confirmada antes de oferecer a rota (16.954875ms)
+✔ aviso da rota acompanha o limite de fechamento e não promete dados reais (0.721791ms)
+✔ resume status, recomendação e espera sem depender da tela (0.447167ms)
+✔ não promete parada rápida quando só o conector lento está utilizável (0.179625ms)
+✔ separa autonomia e recarga na ficha aberta com recarga demonstrativa (1.050417ms)
+✔ separa autonomia e recarga na ficha fechada (0.528708ms)
+✔ separa autonomia e recarga na ficha em manutenção (0.1195ms)
+✔ separa autonomia e recarga na ficha indisponível (0.161334ms)
+✔ separa autonomia e recarga na ficha com horário desconhecido (0.110667ms)
+✔ separa autonomia e recarga na ficha ocupada (0.213875ms)
+✔ separa autonomia e recarga na ficha aberta sem conector utilizável (0.366084ms)
+✔ preserva alertas de autonomia limitada e insuficiente mesmo sem recarga (0.141ms)
+✔ a mesma ficha deixa de anunciar carregadores livres exatamente ao fechar (0.394667ms)
+✔ bateria zerada não inventa recarga na primeira parada (1.206292ms)
+✔ bateria suficiente para 5 km não autoriza parada a mais de 40 km (0.126125ms)
+✔ não considera recarga em parada fisicamente inalcançável (0.100542ms)
+✔ reserva de 5% é aplicada antes de arredondar bateria (0.094542ms)
+✔ parada alcançável não libera destino sem reserva mínima (0.162958ms)
+✔ autonomia confortável não exige paradas desnecessárias (0.102459ms)
+✔ se uma parada posterior for inalcançável, não simula nova recarga (0.194625ms)
+✔ a decisão de navegação diferencia aperto de impossibilidade (0.067541ms)
+✔ chegada de 4,6% não arredonda para liberar a viagem (0.137041ms)
+✔ chegada exatamente em 5% permite iniciar a viagem (0.146208ms)
+✔ chegada imediatamente abaixo de 5% continua bloqueada (0.087ms)
+✔ recarga alcançável permite alternativa que preserva a reserva no destino (0.093833ms)
+ℹ tests 119
+ℹ suites 0
+ℹ pass 119
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 480.656083

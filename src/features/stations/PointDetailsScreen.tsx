@@ -1,3 +1,6 @@
+import { ConnectionNotice } from "../../components/ConnectionNotice";
+import { useConnectivity } from "../../context/ConnectivityContext";
+import { prepareExternalRoute } from "../../utils/externalRoute";
 import {
   router,
   useFocusEffect,
@@ -26,7 +29,7 @@ import {
   Wifi,
   Zap,
 } from "lucide-react-native";
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Alert,
   Image,
@@ -210,7 +213,10 @@ export default function PointDetailsScreen() {
   } = useFluiStorage();
 
   const [isLoadingAction, setIsLoadingAction] = useState(false);
-  const [isRouteDialogOpen, setIsRouteDialogOpen] = useState(normalizeParam(startRoute) === "1");
+  const { checkConnection } = useConnectivity();
+  const [connectionError, setConnectionError] = useState<string | null>(null);
+  const [isRouteDialogOpen, setIsRouteDialogOpen] = useState(false);
+  const requestedRouteRef = useRef<string | null>(null);
   const [routeLocation, setRouteLocation] = useState<LocationObject | null>(null);
   const [modalStep, setModalStep] = useState<"confirmation" | "redirect">("confirmation");
 
@@ -263,15 +269,29 @@ export default function PointDetailsScreen() {
     }, 360);
   }
 
-  function handleStartRoute() {
-    if (!station || isLoadingAction) {
-      return;
+  const handleStartRoute = useCallback(async () => {
+    if (!station || isLoadingAction) return;
+    setIsLoadingAction(true);
+    setConnectionError(null);
+    try {
+      const blocked = await prepareExternalRoute(checkConnection, () => {
+        setRouteLocation(null);
+        setModalStep("confirmation");
+        setIsRouteDialogOpen(true);
+      });
+      setConnectionError(blocked);
+    } finally {
+      setIsLoadingAction(false);
     }
+  }, [station, isLoadingAction, checkConnection]);
 
-    setRouteLocation(null);
-    setModalStep("confirmation");
-    setIsRouteDialogOpen(true);
-  }
+  // O atalho da FluIA usa a mesma proteção do botão da ficha, antes de pedir GPS.
+  useEffect(() => {
+    if (normalizeParam(startRoute) !== "1" || !station ||
+        requestedRouteRef.current === station.id) return;
+    requestedRouteRef.current = station.id;
+    void handleStartRoute();
+  }, [startRoute, station, handleStartRoute]);
 
   function voltarAoMapa() {
     router.replace("/map" as Href);
@@ -419,7 +439,7 @@ export default function PointDetailsScreen() {
       <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} />
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.scrollContent}
+        contentContainerStyle={[styles.scrollContent, connectionError && styles.scrollContentWithError]}
       >
         <View style={styles.hero}>
           <StationVisualCover
@@ -531,6 +551,7 @@ export default function PointDetailsScreen() {
           </View>
 
           <Text style={styles.resumoTitle}>{recomendacaoDoPonto}</Text>
+          <ConnectionNotice />
           <View
             accessible
             style={[
@@ -834,39 +855,46 @@ export default function PointDetailsScreen() {
       </ScrollView>
 
       <SafeAreaView edges={["bottom"]} style={styles.bottomActions}>
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel="Ver mapa"
-          accessibilityState={{ disabled: isLoadingAction }}
-          style={({ pressed, hovered }: PressableVisualState) => [
-            styles.secondaryActionButton,
-            hovered && !pressed ? styles.hoverFeedback : null,
-            pressed ? styles.buttonPressed : null,
-          ]}
-          disabled={isLoadingAction}
-          onPress={voltarAoMapa}
-        >
-          <Text style={styles.secondaryActionText}>Ver mapa</Text>
-        </Pressable>
+        {connectionError ? (
+          <Text accessibilityRole="alert" accessibilityLiveRegion="assertive" style={styles.connectionError}>
+            {connectionError}
+          </Text>
+        ) : null}
+        <View style={styles.bottomActionRow}>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="Ver mapa"
+            accessibilityState={{ disabled: isLoadingAction }}
+            style={({ pressed, hovered }: PressableVisualState) => [
+              styles.secondaryActionButton,
+              hovered && !pressed ? styles.hoverFeedback : null,
+              pressed ? styles.buttonPressed : null,
+            ]}
+            disabled={isLoadingAction}
+            onPress={voltarAoMapa}
+          >
+            <Text style={styles.secondaryActionText}>Ver mapa</Text>
+          </Pressable>
 
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel={`Iniciar rota para ${station.name}`}
-          accessibilityHint="Mostra o aviso de funcionamento antes de escolher Google Maps ou Waze."
-          accessibilityState={{ disabled: isLoadingAction }}
-          style={({ pressed, hovered }: PressableVisualState) => [
-            styles.primaryActionButton,
-            hovered && !pressed ? styles.hoverFeedback : null,
-            pressed ? styles.primaryButtonPressed : null,
-          ]}
-          disabled={isLoadingAction}
-          onPress={() => {
-            triggerImpact();
-            handleStartRoute();
-          }}
-        >
-          <Text style={styles.primaryActionText}>Iniciar rota</Text>
-        </Pressable>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={`Iniciar rota para ${station.name}`}
+            accessibilityHint="Mostra o aviso de funcionamento antes de escolher Google Maps ou Waze."
+            accessibilityState={{ disabled: isLoadingAction }}
+            style={({ pressed, hovered }: PressableVisualState) => [
+              styles.primaryActionButton,
+              hovered && !pressed ? styles.hoverFeedback : null,
+              pressed ? styles.primaryButtonPressed : null,
+            ]}
+            disabled={isLoadingAction}
+            onPress={() => {
+              triggerImpact();
+              void handleStartRoute();
+            }}
+          >
+            <Text style={styles.primaryActionText}>Iniciar rota</Text>
+          </Pressable>
+        </View>
       </SafeAreaView>
 
       <Modal

@@ -2,7 +2,7 @@
 
 Refs #91, #25, #26 e #27. Base: main `7335322`, em 20/10/2026. Branch: `beta/refinamentos-ux-energy-orb-2.8-2.3`.
 
-A PR #90 permanece independente e não foi alterada. Não houve merge, mudança de orientação global, dependências, cálculos, dados demonstrativos ou motor de respostas. A Beta 2.7 não faz parte desta execução.
+Registro inicial de 20/10/2026: a PR #90 ainda era independente. As validações abaixo mantêm seus commits e datas originais. A integração posterior com a Beta 2.5 está registrada ao final; não houve merge da PR #94 na main nem início da Beta 2.7.
 
 ## Beta 2.8 — refinamentos
 
@@ -55,3 +55,7 @@ Implementada depois do checkpoint da 2.8, em commit separado. `EnergyOrb.tsx` us
 - Não foram revalidados aplicativos externos instalados nem a integração offline da PR #90. A validação da 2.5 ficou inconclusiva por falta de desconexão real isolada; nenhum resultado antigo foi apresentado como nova evidência offline.
 - Ao terminar, fonte original large, redução de movimento desativada e teclado físico simulado foram restaurados. Busca voltou vazia; veículo/bateria/origem preservados. Orientação global continua portrait.
 - Beta 2.7 não iniciada. Issues/Projects intactos; revisão humana e merge continuam decisões da equipe.
+
+## Integração com a Beta 2.5 — 21/10/2026
+
+Main `23cc909` integrada na branch da PR #94 por merge normal. A ficha mantém o layout simplificado, o aviso de conexão e o erro visível no rodapé. O atalho de rota da FluIA agora compartilha a verificação de conexão antes de pedir GPS. TypeScript e exportação web aprovados (12 rotas); lint sem erros, com aviso herdado da main; **123/123 testes** aprovados. Roteiro nativo inicial parcialmente executado e retomada de teclado/Orb aprovada (1 teste, 0 falhas), com texto XXXL. Não houve desconexão nativa real comprovada. Resultados novos, falha inicial de automação, capturas e limites em [validacao-pr94-integracao/README.md](validacao-pr94-integracao/README.md).

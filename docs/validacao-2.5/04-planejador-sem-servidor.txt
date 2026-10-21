@@ -1,0 +1,39 @@
+- button "Voltar":
+- generic: Planejador de viagens
+- 'button "Origem: Vila Mariana"':
+  - generic: De
+  - generic: Vila Mariana
+- 'button "Destino: Campos do Jordão, SP"':
+  - generic: Para
+  - generic: Campos do Jordão, SP
+- generic: Autonomia estimada
+- generic: 210 km
+- generic: Bateria atual
+- generic: 60%
+- generic: Prévia do mapa
+- generic: "-23.157, -46.108"
+- 'generic "Origem: Vila Mariana"'
+- 'generic "Parada de recarga: Shell Recharge – Atibaia"':
+- 'generic "Destino: Campos do Jordão, SP"':
+- generic: Role para ver a rota completa
+- generic: Rota de viagem
+- generic: Com paradas de recarga e autonomia
+- button "Editar destino da viagem":
+  - generic: Editar destino
+- generic: 141 km
+- generic: Distância total
+- generic: 2h
+- generic: Tempo estimado
+- generic: "1"
+- generic: parada
+- generic: Vila Mariana
+- generic: 60%
+- generic: Shell Recharge – Atibaia
+- generic: 42min · 49 km · 150 kW
+- generic: 46% → 80%
+- generic: Campos do Jordão, SP
+- generic: 53% na chegada
+- generic: "Planejador demonstrativo: trajeto, paradas de recarga, tempos e bateria estimada em linha reta, sem cálculo de rota real, trânsito ou reserva nos pontos."
+- generic: Navegação até Shell Recharge – Atibaia
+- button "Iniciar viagem":
+  - generic: Iniciar viagem

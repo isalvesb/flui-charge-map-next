@@ -1,3 +1,4 @@
+import { ConnectionNotice } from "../../components/ConnectionNotice";
 import React, {
   useCallback,
   useEffect,
@@ -1462,6 +1463,7 @@ export default function HomeMapScreen() {
           </View>
         </View>
 
+        <ConnectionNotice />
         <View
           style={styles.mapArea}
           onLayout={(event) => {
