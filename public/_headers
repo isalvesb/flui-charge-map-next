@@ -1,0 +1,6 @@
+# Cloudflare Pages: HTML e worker devem consultar a versão publicada.
+/*
+  Cache-Control: no-cache
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Robots-Tag: noindex, nofollow

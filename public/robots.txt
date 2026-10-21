@@ -1,0 +1,3 @@
+# Evita indexação; não é controle de acesso nem protege informações reservadas.
+User-agent: *
+Disallow: /

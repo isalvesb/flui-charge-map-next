@@ -94,7 +94,11 @@ const MapSurface = forwardRef<MapViewHandle, MapViewProps>(
     );
 
     return (
-      <View {...viewProps} style={[styles.map, style]}>
+      <View
+        {...viewProps}
+        accessibilityLabel="Prévia esquemática do mapa. Posições ilustrativas, sem cartografia ou navegação geográfica. Selecione um ponto para abrir sua ficha."
+        style={[styles.map, style]}
+      >
         <View pointerEvents="none" style={styles.grid}>
           {[20, 40, 60, 80].map((position) => (
             <View
@@ -109,7 +113,7 @@ const MapSurface = forwardRef<MapViewHandle, MapViewProps>(
             />
           ))}
           <View style={styles.park} />
-          <Text style={styles.mapLabel}>Prévia do mapa</Text>
+          <Text style={styles.mapLabel}>Prévia esquemática · posições ilustrativas</Text>
           <Text style={styles.regionLabel}>
             {region.latitude.toFixed(3)}, {region.longitude.toFixed(3)}
           </Text>
@@ -199,6 +203,7 @@ const styles = StyleSheet.create({
   mapLabel: {
     position: "absolute",
     left: 12,
+    right: 12,
     bottom: 30,
     color: "#3F554F",
     fontSize: 12,

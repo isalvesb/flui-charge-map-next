@@ -243,6 +243,15 @@ npm run ios
 npm run web
 ```
 
+Para conferir a **exportação de produção** destinada ao acesso por QR Code:
+
+```bash
+npm run build:web
+npm run preview:web
+```
+
+Abra `http://127.0.0.1:8790`. A versão web usa uma **prévia esquemática com posições ilustrativas**, sem equivalência ao mapa nativo. O comando de build apenas prepara `dist/`; não publica o app. Veja [publicação web e QR Code — Gama 3.7](docs/publicacao-web-3.7.md) para limites, revisão e publicação após autorização.
+
 ---
 
 ## 📄 Scripts disponíveis
