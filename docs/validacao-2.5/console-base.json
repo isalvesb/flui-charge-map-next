@@ -1,0 +1,14 @@
+[
+  {
+    "level": "error",
+    "message": "Error: Minified React error #418; visit https://react.dev/errors/418?args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at bl (http://127.0.0.1:8131/_expo/static/js/web/entry-e52742b1f6f3c4e9b9307b30c4c1eb58.js:543:36758)\n    at Sl (http://127.0.0.1:8131/_expo/static/js/web/entry-e52742b1f6f3c4e9b9307b30c4c1eb58.js:543:38058)\n    at vi (http://127.0.0.1:8131/_expo/static/js/web/entry-e52742b1f6f3c4e9b9307b30c4c1eb58.js:543:89665)\n    at vc (http://127.0.0.1:8131/_expo/static/js/web/entry-e52742b1f6f3c4e9b9307b30c4c1eb58.js:543:118580)\n    at mc (http://127.0.0.1:8131/_expo/static/js/web/entry-e52742b1f6f3c4e9b9307b30c4c1eb58.js:543:117828)\n    at pc (http://127.0.0.1:8131/_expo/static/js/web/entry-e52742b1f6f3c4e9b9307b30c4c1eb58.js:543:117739)\n    at dc (http://127.0.0.1:8131/_expo/static/js/web/entry-e52742b1f6f3c4e9b9307b30c4c1eb58.js:543:117604)\n    at Js (http://127.0.0.1:8131/_expo/static/js/web/entry-e52742b1f6f3c4e9b9307b30c4c1eb58.js:543:113483)\n    at $c (http://127.0.0.1:8131/_expo/static/js/web/entry-e52742b1f6f3c4e9b9307b30c4c1eb58.js:543:125105)\n    at MessagePort.q (http://127.0.0.1:8131/_expo/static/js/web/entry-e52742b1f6f3c4e9b9307b30c4c1eb58.js:555:1531)",
+    "timestamp": "2026-10-20T03:18:28.555Z",
+    "url": "http://127.0.0.1:8131/_expo/static/js/web/entry-e52742b1f6f3c4e9b9307b30c4c1eb58.js"
+  },
+  {
+    "level": "warn",
+    "message": "Animated: `useNativeDriver` is not supported because the native animated module is missing. Falling back to JS-based animation. To resolve this, add `RCTAnimation` module to this app, or remove `useNativeDriver`. Make sure to run `bundle exec pod install` first. Read more about autolinking: https://github.com/react-native-community/cli/blob/master/docs/autolinking.md",
+    "timestamp": "2026-10-20T03:18:36.466Z",
+    "url": "http://127.0.0.1:8131/_expo/static/js/web/entry-e52742b1f6f3c4e9b9307b30c4c1eb58.js"
+  }
+]

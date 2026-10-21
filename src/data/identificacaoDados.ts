@@ -4,7 +4,7 @@
 export const identificacaoDados = {
   catalogo: {
     origem: "demonstrativa",
-    aviso: "Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo.",
+    aviso: "Catálogo demonstrativo: estações, horários, disponibilidade, notas e imagens não verificados em campo. Dados desta versão, sem atualização pela conexão; podem estar desatualizados.",
   },
   estimativas: {
     origem: "estimada",
