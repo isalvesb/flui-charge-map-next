@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { FLUIA_STATE_LABELS, type FluiaState } from "../src/features/assistant/fluiaState";
-import { getOrbPrototypeMotion } from "../src/features/assistant/orbPrototypePresentation";
+import { getOrbPrototypeMotion, ORB_PROTOTYPE_DETAILS } from "../src/features/assistant/orbPrototypePresentation";
 
 test("protótipo preserva seis estados e mantém avisos/alertas sem animação", () => {
   const states = Object.keys(FLUIA_STATE_LABELS) as FluiaState[];
@@ -21,6 +21,17 @@ test("redução de movimento e tela inativa removem efeitos adicionais e ciclos"
       assert.equal(motion.showEffects, false);
       assert.equal(motion.duration, 0);
       assert.equal(motion.rotate, false);
+      assert.equal(motion.turn, 0);
     }
+  }
+});
+
+test("estados possuem acabamentos distintos e só o pensamento faz uma órbita completa", () => {
+  assert.equal(new Set(Object.values(ORB_PROTOTYPE_DETAILS).map((detail) => detail.dash)).size, 6);
+  for (const state of Object.keys(FLUIA_STATE_LABELS) as FluiaState[]) {
+    const motion = getOrbPrototypeMotion(state, false, true);
+    assert.ok(ORB_PROTOTYPE_DETAILS[state].label.length > 0);
+    assert.equal(motion.turn === 360, state === "pensando");
+    assert.ok(motion.amplitude <= 0.055);
   }
 });
