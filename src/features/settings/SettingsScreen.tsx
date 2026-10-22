@@ -465,6 +465,17 @@ export default function SettingsScreen() {
               </PressableScale>
             </View>
           </View>
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Demonstrações locais</Text>
+            <View style={styles.optionsList}>
+              <PressableScale accessibilityRole="button" accessibilityLabel="Abrir Flui Auto Experience, simulação visual" style={styles.optionButton} onPress={() => router.push("/auto-experience")}>
+                <View style={styles.optionInfo}>
+                  <Text style={styles.optionTitle}>Flui Auto Experience</Text>
+                  <Text style={styles.optionDescription}>Compare formatos de central. Simulação visual, sem integração com veículos.</Text>
+                </View>
+              </PressableScale>
+            </View>
+          </View>
         </ScrollView>
 
         <LoadingOverlay
