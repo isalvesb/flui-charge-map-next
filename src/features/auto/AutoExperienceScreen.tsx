@@ -1,77 +1,104 @@
 import React, { useState } from "react";
-import { ScrollView, Text, View, useWindowDimensions } from "react-native";
+import { Pressable, ScrollView, Text, View, useWindowDimensions } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
-import { ArrowLeft, Check, Monitor } from "lucide-react-native";
-import Svg, { Circle, Path } from "react-native-svg";
+import { ArrowLeft, BatteryMedium, Check, ChevronRight, MapPin, MessageCircle, Zap } from "lucide-react-native";
+import Svg, { Circle, Path, Rect } from "react-native-svg";
 import { PressableScale } from "../../components";
 import { useAppPreferences } from "../../context/PreferencesContext";
 import { getStationStatusInfo } from "../stations/stationPresentation";
-import { AUTO_FORMATS, getAutoFrameSize } from "./autoPresentation";
+import { AUTO_FORMATS, getAutoPreviewLayout } from "./autoPresentation";
 
 export default function AutoExperienceScreen() {
-  const { theme, scale, userPreferences, demoOrigin, demoStations } = useAppPreferences();
-  const { width } = useWindowDimensions();
+  const { theme, scale, fontScale, userPreferences, demoOrigin, demoStations } = useAppPreferences();
+  const { width, fontScale: systemFontScale } = useWindowDimensions();
   const [formatId, setFormatId] = useState<string>("horizontal");
   const format = AUTO_FORMATS.find((item) => item.id === formatId)!;
-  const frame = getAutoFrameSize(width - 40, format.ratio);
+  const availableWidth = Math.min(1100, width - 40);
+  const frame = getAutoPreviewLayout(availableWidth, format, fontScale, systemFontScale);
   const station = demoStations[0];
-  const text = { color: theme.text, fontSize: scale(16), lineHeight: scale(24) };
+  const text = { color: theme.text, fontSize: scale(15), lineHeight: scale(22) };
+  const small = { ...text, fontSize: scale(12), lineHeight: scale(18), color: theme.textMuted };
   const button = { minHeight: 48, padding: 14, borderRadius: 16, borderWidth: 1, borderColor: theme.border, backgroundColor: theme.surface };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.background }}>
-      <ScrollView contentContainerStyle={{ padding: 20, gap: 18, alignItems: "center" }}>
+      <ScrollView contentContainerStyle={{ padding: 20, gap: 14, alignItems: "center" }}>
         <View style={{ width: "100%", maxWidth: 1100, flexDirection: "row", gap: 12, alignItems: "center" }}>
           <PressableScale accessibilityRole="button" accessibilityLabel="Voltar às configurações" style={button} onPress={() => router.back()}>
             <ArrowLeft color={theme.primary} size={22} />
           </PressableScale>
           <Text accessibilityRole="header" style={[text, { flex: 1, fontSize: scale(22), fontWeight: "800" }]}>Flui Auto Experience</Text>
         </View>
-        <View style={{ width: "100%", maxWidth: 1100, gap: 8 }}>
-          <Text style={[text, { color: theme.primary, fontWeight: "800" }]}>SIMULAÇÃO VISUAL</Text>
-          <Text style={text}>Estudo com dados demonstrativos. Sem conexão com veículos, CarPlay ou Android Auto.</Text>
-          <Text style={[text, { color: theme.textMuted }]}>Proporções ilustrativas. Use com o veículo parado.</Text>
-        </View>
-        <View style={{ width: "100%", maxWidth: 1100, flexDirection: "row", flexWrap: "wrap", gap: 10 }}>
+        <Text style={[small, { width: "100%", maxWidth: 1100, color: theme.primary, fontWeight: "800" }]}>SIMULAÇÃO VISUAL · DADOS DEMONSTRATIVOS</Text>
+        <View style={{ width: "100%", maxWidth: 1100, flexDirection: "row", gap: 8 }}>
           {AUTO_FORMATS.map((item) => (
-            <PressableScale key={item.id} accessibilityRole="button" accessibilityLabel={`Formato ${item.label}, ${item.proportion}`} accessibilityState={{ selected: item.id === formatId }}
-              style={[button, { flexGrow: 1, backgroundColor: item.id === formatId ? theme.selectedCard : theme.surface }]}
+            <Pressable key={item.id} accessibilityRole="button" accessibilityLabel={`Formato ${item.label}, ${item.proportion}`} accessibilityState={{ selected: item.id === formatId }}
+              style={[button, { flex: 1, paddingHorizontal: 6, alignItems: "center", justifyContent: "center", backgroundColor: item.id === formatId ? theme.selectedCard : theme.surface }]}
               onPress={() => setFormatId(item.id)}>
-              <View style={{ flexDirection: "row", gap: 8, alignItems: "center" }}>
-                {item.id === formatId ? <Check size={18} color={theme.primary} /> : <Monitor size={18} color={theme.primary} />}
-                <Text style={text}>{item.label} · {item.proportion}</Text>
+              <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 4, alignItems: "center", justifyContent: "center" }}>
+                {item.id === formatId ? <Check size={16} color={theme.primary} /> : null}
+                <Text style={[text, { fontWeight: "700" }]}>{item.proportion}</Text>
               </View>
-            </PressableScale>
+            </Pressable>
           ))}
         </View>
-        <View style={{ width: frame.width, height: frame.height, backgroundColor: "#080A12", borderWidth: 8, borderColor: theme.border, borderRadius: 24, overflow: "hidden" }}>
-          <ScrollView nestedScrollEnabled contentContainerStyle={{ minHeight: Math.max(0, frame.height - 16), backgroundColor: theme.surface }}>
-            <View style={{ padding: 12, flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between", gap: 8, borderBottomWidth: 1, borderColor: theme.border }}>
-              <Text style={[text, { fontWeight: "900" }]}>Flui</Text>
-              <Text style={[text, { color: theme.primary }]}>{userPreferences.batteryPercent}% · simulação</Text>
-            </View>
-            <View accessible accessibilityLabel="Mapa meramente ilustrativo, sem percurso real" style={{ minHeight: 100, backgroundColor: theme.primarySoft }}>
-              <Svg height={100} width="100%" viewBox="0 0 600 200" accessible={false}>
-                <Path d="M0 30H600 M0 110H600 M90 0V200 M350 0V200 M500 0V200" stroke={theme.border} strokeWidth={3} />
-                <Path d="M80 165L240 165L240 60L480 60" stroke={theme.primary} strokeWidth={8} fill="none" />
-                <Circle cx={80} cy={165} r={14} fill={theme.success} stroke={theme.text} strokeWidth={3} />
-                <Circle cx={480} cy={60} r={14} fill={theme.primary} stroke={theme.text} strokeWidth={3} />
-              </Svg>
-            </View>
-            <View style={{ padding: 12, gap: 6 }}>
-              <Text style={[text, { fontWeight: "800" }]}>{station.name}</Text>
-              <Text style={text}>{getStationStatusInfo(station).label} · dados demonstrativos</Text>
-              <Text style={[text, { color: theme.textMuted }]}>Origem: {demoOrigin.nome} · distância em linha reta</Text>
-            </View>
-          </ScrollView>
+        <View style={{ width: "100%", maxWidth: 1100, gap: 4 }}>
+          <Text accessibilityRole="header" style={[text, { fontWeight: "800" }]}>{format.label} · {format.proportion}</Text>
+          <Text style={small}>{frame.scrollsHorizontally ? "Deslize a prévia para os lados. " : ""}Role dentro dela se precisar. Textos mantêm o tamanho escolhido.</Text>
         </View>
-        <Text style={[text, { width: "100%", maxWidth: 1100, color: theme.textMuted }]}>Prévia {format.label.toLowerCase()}. Em telas pequenas, role dentro da moldura para ler tudo; os textos não são reduzidos para caber.</Text>
+        <ScrollView horizontal nestedScrollEnabled style={{ width: availableWidth, flexGrow: 0 }} contentContainerStyle={{ height: frame.height + 12 }} showsHorizontalScrollIndicator={frame.scrollsHorizontally}>
+          <View style={{ width: frame.width, height: frame.height, backgroundColor: theme.surface, borderWidth: 6, borderColor: theme.border, borderRadius: 24, overflow: "hidden" }}>
+            <ScrollView nestedScrollEnabled contentContainerStyle={{ flexGrow: 1, backgroundColor: theme.surface }}>
+              <View style={{ padding: 12, flexDirection: "row", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 8, borderBottomWidth: 1, borderColor: theme.border }}>
+                <Text style={[text, { fontSize: scale(21), fontWeight: "900", color: theme.primary }]}>Flui</Text>
+                <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
+                  <BatteryMedium size={20} color={theme.primary} />
+                  <Text style={[small, { color: theme.text }]}>{userPreferences.batteryPercent}% · sem telemetria</Text>
+                </View>
+              </View>
+              <View style={{ flex: 1, minHeight: frame.stacked ? 300 : 190, flexDirection: frame.stacked ? "column" : "row" }}>
+                <View style={{ width: frame.stacked ? "100%" : "38%", padding: 16, gap: 8, backgroundColor: theme.background }}>
+                  <Text style={[small, { fontWeight: "700" }]}>PONTO EM DESTAQUE · EXEMPLO</Text>
+                  <Text style={[text, { fontSize: scale(20), lineHeight: scale(26), fontWeight: "800" }]}>{station.name}</Text>
+                  <Text style={[small, { color: theme.text }]}>{getStationStatusInfo(station).label} nos dados locais</Text>
+                  <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
+                    <Text style={[small, { color: theme.primary, fontWeight: "800" }]}>≈{station.distanceKm.toFixed(1)} km</Text>
+                    <Text style={small}>em linha reta · {station.powerKw} kW</Text>
+                  </View>
+                  <Text style={small}>Confirme funcionamento e compatibilidade.</Text>
+                </View>
+                <View accessible accessibilityLabel={`Mapa ilustrativo. Origem demonstrativa: ${demoOrigin.nome}. Sem percurso real.`} style={{ flex: 1, minHeight: 170, backgroundColor: theme.primarySoft, overflow: "hidden" }}>
+                  <Svg height="100%" width="100%" style={{ position: "absolute" }} viewBox="0 0 600 300" preserveAspectRatio="xMidYMid slice" accessible={false}>
+                    <Rect x={0} y={0} width={600} height={300} fill={theme.primarySoft} />
+                    <Rect x={330} y={20} width={140} height={95} rx={28} fill={theme.primarySoftStrong} />
+                    <Rect x={30} y={195} width={165} height={80} rx={24} fill={theme.primarySoftStrong} />
+                    <Path d="M-20 75Q140 140 300 65T630 85 M-20 215Q170 155 340 220T630 190 M120 -20L210 320 M430 -20L370 320" fill="none" stroke={theme.surface} strokeWidth={20} />
+                    <Path d="M110 230L250 230Q280 230 280 190L280 125Q280 90 330 90L465 90" fill="none" stroke={theme.primary} strokeWidth={7} strokeLinecap="round" />
+                    <Circle cx={110} cy={230} r={14} fill={theme.success} stroke={theme.surface} strokeWidth={4} />
+                    <Circle cx={465} cy={90} r={16} fill={theme.primary} stroke={theme.surface} strokeWidth={4} />
+                    <Path d="M466 80L459 91H466L463 101L473 88H466Z" fill={theme.onPrimary} />
+                  </Svg>
+                  <Text style={[small, { alignSelf: "flex-start", margin: 10, paddingHorizontal: 10, paddingVertical: 6, borderRadius: 12, color: theme.text, backgroundColor: theme.surface }]}>Origem demo · {demoOrigin.nome}</Text>
+                </View>
+              </View>
+              <View accessibilityLabel="Barra ilustrativa: Mapa, Recarga e FluIA. Sem ações nesta prévia." style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "space-around", padding: 10, gap: 12, borderTopWidth: 1, borderColor: theme.border }}>
+                {[{ label: "Mapa", Icon: MapPin }, { label: "Recarga", Icon: Zap }, { label: "FluIA", Icon: MessageCircle }].map(({ label, Icon }) => (
+                  <View key={label} style={{ flexDirection: "row", alignItems: "center", gap: 6 }}><Icon size={18} color={label === "Mapa" ? theme.primary : theme.textMuted} /><Text style={[small, { color: label === "Mapa" ? theme.primary : theme.textMuted, fontWeight: "700" }]}>{label}</Text></View>
+                ))}
+              </View>
+            </ScrollView>
+          </View>
+        </ScrollView>
         <View style={{ width: "100%", maxWidth: 1100, padding: 16, borderWidth: 1, borderColor: theme.border, borderRadius: 18, gap: 8 }}>
-          <Text style={[text, { fontWeight: "800" }]}>{userPreferences.vehicleName}</Text>
-          <Text style={text}>Bateria {userPreferences.batteryPercent}% para estimativa · autonomia configurada {userPreferences.vehicleRangeKm} km. Sem telemetria. A moldura não inicia rotas nem envia comandos.</Text>
+          <Text style={[text, { fontWeight: "800" }]}>Estudo de interface, sem integração automotiva</Text>
+          <Text style={small}>Sem conexão com veículos, CarPlay ou Android Auto. Proporções ilustrativas; use com o veículo parado. A prévia não inicia rotas nem envia comandos.</Text>
+          <Text style={small}>{userPreferences.vehicleName} · autonomia configurada {userPreferences.vehicleRangeKm} km. Bateria informada para estimativas, sem telemetria.</Text>
           <PressableScale accessibilityRole="button" accessibilityLabel="Abrir o mapa real do aplicativo" style={button} onPress={() => router.push("/map")}>
-            <Text style={[text, { color: theme.primary, fontWeight: "700" }]}>Abrir mapa do aplicativo</Text>
+            <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
+              <Text style={[text, { flex: 1, color: theme.primary, fontWeight: "700" }]}>Abrir mapa do aplicativo</Text>
+              <ChevronRight size={20} color={theme.primary} />
+            </View>
           </PressableScale>
         </View>
       </ScrollView>

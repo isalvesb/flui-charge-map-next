@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { AUTO_FORMATS, getAutoFrameSize } from "../src/features/auto/autoPresentation";
+import { AUTO_FORMATS, getAutoFrameSize, getAutoPreviewLayout } from "../src/features/auto/autoPresentation";
 
 test("molduras preservam proporção e largura disponível em telefone, tablet e panorama", () => {
   assert.equal(AUTO_FORMATS.length, 3);
@@ -11,4 +11,21 @@ test("molduras preservam proporção e largura disponível em telefone, tablet e
       assert.ok(Math.abs(frame.height * format.ratio - frame.width) < 0.001);
     }
   }
+});
+
+test("prévia mantém proporções e permite leitura lateral sem reduzir fonte em telas compactas", () => {
+  for (const format of AUTO_FORMATS) {
+    for (const width of [280, 350, 768, 1100]) {
+      for (const font of [1, 1.1, 2]) {
+        const preview = getAutoPreviewLayout(width, format, font);
+        assert.ok(preview.width >= width);
+        assert.ok(Math.abs(preview.height * format.ratio - preview.width) < 0.001);
+        assert.equal(preview.scrollsHorizontally, preview.width > width);
+        if (format.id === "vertical") assert.equal(preview.stacked, true);
+      }
+    }
+  }
+  assert.equal(getAutoPreviewLayout(350, AUTO_FORMATS[0]).scrollsHorizontally, true);
+  assert.equal(getAutoPreviewLayout(350, AUTO_FORMATS[1]).scrollsHorizontally, false);
+  assert.equal(getAutoPreviewLayout(350, AUTO_FORMATS[2]).scrollsHorizontally, true);
 });
