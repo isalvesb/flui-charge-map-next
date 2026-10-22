@@ -50,7 +50,7 @@ export default function OrbLabScreen() {
           <Text accessibilityLiveRegion="polite" style={[text, { fontWeight: "800" }]}>Estado da comparação: {FLUIA_STATE_LABELS[state]}</Text>
           <Text style={[text, { fontSize: scale(13), lineHeight: scale(19), color: theme.textMuted }]}>{ORB_PROTOTYPE_DETAILS[state].label}</Text>
         </View>
-        <PressableScale accessibilityRole="switch" accessibilityLabel="Simular visualização estática neste laboratório" accessibilityState={{ checked: staticPreview, disabled: systemReducedMotion }} disabled={systemReducedMotion} style={button} onPress={() => setStaticPreview((value) => !value)}>
+        <PressableScale accessibilityRole="switch" accessibilityLabel="Simular visualização estática neste laboratório" accessibilityState={{ checked: reducedMotion, disabled: systemReducedMotion }} disabled={systemReducedMotion} style={button} onPress={() => setStaticPreview((value) => !value)}>
           <Text style={text}>Prévia estática: {reducedMotion ? "Ativada" : "Desativada"}</Text>
           <Text style={[text, { color: theme.textMuted }]}>{systemReducedMotion ? "A redução de movimento do sistema está ativa e tem prioridade." : "Teste local; não altera a preferência do sistema."}</Text>
         </PressableScale>
