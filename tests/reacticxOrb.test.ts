@@ -34,3 +34,14 @@ test("relógio usa tempo decorrido limitado e ignora intervalos inválidos", () 
   assert.equal(REACTICX_SHADER_INTERVAL_MS, 1000 / 30);
 });
 
+
+test("Orb do mapa usa roxos e respeita redução de movimento e foco", () => {
+  const map = getReacticxOrbPresentation("repouso", false, true, true);
+  assert.deepEqual(map.colors, ["#2B0055", "#C797FF", "#6F2DC4"]);
+  assert.equal(map.animate, true);
+  for (const state of states) {
+    assert.equal(getReacticxOrbPresentation(state, true, true, true).animate, false);
+    assert.equal(getReacticxOrbPresentation(state, false, false, true).animate, false);
+  }
+  assert.notDeepEqual(getReacticxOrbPresentation("repouso", false, true).colors, map.colors);
+});

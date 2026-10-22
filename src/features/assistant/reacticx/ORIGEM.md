@@ -16,8 +16,8 @@ Adaptações locais:
 - Uniforme de tempo atualizado com orçamento de 30 atualizações/s. Não é uma
   medição nem garantia de 30 FPS de renderização.
 - Callback desativado com movimento reduzido, aviso/alerta ou tela inativa.
-- Brilho mínimo na onda, alpha/canais limitados e fundo escuro circular para
-  preservar a leitura do efeito em superfícies claras e escuras.
+- Brilho mínimo na onda e alpha/canais limitados. Na revisão física UX-MAPA-01,
+  o usuário pediu a retirada do disco escuro; Canvas e botão ficam transparentes.
 - Adapter nativo com proteção a erro de importação/renderização. Web/SSR usa
   SVG explicitamente identificado, sem habilitar CanvasKit/CDN.
 
@@ -31,3 +31,8 @@ para o mapa e o cabeçalho conversacional; `OrbAssistantModal.tsx` faz a
 transição de abertura. O motor conversacional existente foi preservado.
 A incorporação é exclusiva da branch experimental; não altera a candidata
 consolidada nem substitui sua instalação de referência.
+
+Revisão física final UX-MAPA-01: Orb do mapa128pt, variante de paleta roxa
+e alfa próprio; ciclo3,6s com transições smoothstep. Transparência central
+20%–40%, externa até60%, sem disco de fundo. Ícone FluiAiIcon original em
+primeiro plano, sem nome. A variante conversacional mantém suas seis paletas.

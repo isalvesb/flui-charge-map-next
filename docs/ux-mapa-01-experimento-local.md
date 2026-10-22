@@ -1,125 +1,134 @@
-# UX-MAPA-01 — experiência local
+# UX-MAPA-01 — Flui 2.1 experimental
 
 Base: `abd5dfacaf51350b32fa77066ee849dbfcc9fbdc`.
-Branch: `local/ux-mapa-01-reacticx-20261022`.
-Cópia: `flui-ux-mapa-01`, independente da consolidação.
+Branch exclusiva: `local/ux-mapa-01-reacticx-20261022`.
+Diretório: `/Users/guicunha/.codex/.chatgpt-projects/g-p-69f512a9480481918bb9b34c4162ae65/flui-ux-mapa-01`.
 
-## Implementação
+## Estado entregue
 
-- Busca mantém o filtro completo e ganha um botão independente para atalhos.
-  Atalhos começam recolhidos, preservam suas seleções e devolvem a altura ao mapa.
-- Controles sobre o mapa usam contraste invertido: roxo escuro/ícones claros
-  no tema claro; lavanda/ícones escuros no tema escuro. A alteração solicitada
-  pelo usuário chegou ao iPhone via Fast Refresh, sem reinstalação.
-- Viagem e sugestões formam a coluna esquerda; zoom vertical e centralização,
-  a direita, com início alinhado e alvos de 48 pontos.
-- Lista existente começa oculta e abre pelo novo botão. Seu conteúdo continua
-  rolável e sua altura respeita a Orb e os controles.
-- Mapa passa a desenhar até o limite inferior. A área segura superior/lateral
-  continua ativa; a Orb de 64 pontos recebe distância inferior pelo inset real.
-- Orb nativa usa o renderer MIT da Reacticx, origem `4e11fcf`, a partir da cópia
-  experimental `f23c69c`. Apenas Skia `2.2.12` e seus nós novos foram acrescentados;
-  versões P1 e dependências existentes da candidata foram mantidas.
-- Expansão usa a posição medida da Orb e cobre os cantos do viewport. A conversa
-  aparece progressivamente em tela cheia, com área segura. O mapa fica montado.
-  Fechamento conserva o comportamento anterior de reinicialização da conversa.
-- Movimento reduzido elimina a transição; renderer pausa em segundo plano e
-  quando o mapa perde foco. Avisos/alertas permanecem estáticos.
-- Web/SSR usa a Orb SVG existente; não carrega CanvasKit. Erro nativo possui
-  fallback SVG. A presença de uma Orb na web não comprova execução de Skia.
+Experiência local instalada separadamente como **Flui 2.1**, versão2.1.0,
+bundleID `com.guicunhasou.fluiuxmapa01`. Candidata consolidada, sua instalação
+Flui NEXT Revisão, antigo flui-charge-map e servidor8106 preservados.
+Apta à avaliação humana experimental; aprovação estética final permanece humana.
+Nenhum push, PR, merge, publicação ou alteração do GitHub foi realizado.
 
-## Execução isolada
+## Alterações
 
-Aplicativo: **Flui 2.1**. Bundle ID: `com.guicunhasou.fluiuxmapa01`.
-Metro: porta **8116**; o aplicativo de referência continua na **8106**.
+- Filtros rápidos começam recolhidos. Botão independente mostra apenas chevron
+  para baixo/cima; filtro completo e seleção dos atalhos foram preservados.
+  Recolher devolve toda a altura ao mapa.
+- À esquerda: viagem e sugestões. À direita: zoom vertical agrupado e
+  centralização. Colunas alinhadas, alvos48pt. Contraste invertido conforme tema:
+  roxo escuro/ícones claros no claro; lavanda/ícones escuros no escuro.
+- Sugestões reutilizam catálogo/cartões existentes em popup com fundo escurecido,
+  X fixo e fechamento ao tocar fora. Tocar dentro não fecha; ficha e retorno
+  funcionam. O antigo comportamento de recolher o painel foi substituído por
+  esse acesso, a pedido do usuário.
+- Centralização deixou de compensar o antigo painel; usa diretamente latitude e
+  longitude da origem demonstrativa e atualiza a referência utilizada pelo zoom.
+  Continua sendo origem demonstrativa, preservando o comportamento de localização.
+- Mapa desenha até a parte inferior. Insets reais do iOS foram mantidos; Orb
+  recebe afastamento inferior calculado. Removidos8pt do padding interno superior.
+  A marcação vermelha dos insets, solicitada para inspeção, foi removida.
+- Orb nativa de128pt, sem disco escuro ou moldura. Variante do mapa alterna
+  `#2B0055`/`#C797FF`, com núcleo sempre visível. Ciclo3,6s: escuro0,2s,
+  transição ao claro1,35s, claro1,1s e retorno0,95s. Transparência do centro
+  varia20%–40%; região externa chega a60%, com dissolução da borda.
+  Raio com estrelinhas reutiliza FluiAiIcon, em primeiro plano, sem nome.
+- Expansão parte da posição medida da Orb; conversa aparece progressivamente em
+  tela cheia. Mapa permanece montado. Histórico/motor/ações conversacionais
+  existentes foram reaproveitados; fechamento mantém a reinicialização anterior
+  da conversa. Movimento reduzido elimina a transição e congela o shader.
+  Animação pausa em segundo plano, tela inativa ou popup aberto.
+- No final dos Ajustes: Flui2.1.0 e identificação de revisão local. Versão vem
+  do package.json, alinhada ao binário; evita metadados estáticos desatualizados.
+
+## Arquivos e Reacticx
+
+Principais: HomeMapScreen.tsx/.styles.ts, mapExperimentLayout.ts,
+FluiAssistantSheet.tsx, OrbAssistantModal.tsx, MapEnergyOrb* e reacticx/*;
+SettingsScreen.tsx; app.config.js; package.json/lock; testes e scripts de validação.
+Lista completa na evidência `arquivos-modificados.json`.
+
+Renderer originário de `flui-local-isolado`, checkpointf23c69c,
+upstreamReacticx `4e11fcfe04e0bd7054574acc1557320911d70e4c`, MIT.
+Licença integral e adaptações em `src/features/assistant/reacticx/`.
+Somente Skia2.2.12 e nós ausentes foram adicionados. Entradas de dependências
+existentes da consolidação/P1 foram preservadas; não se importou a branch inteira.
+Shader da variante do mapa foi adaptado para paleta, transparência e ritmo
+solicitados; estados conversacionais continuam usando a apresentação existente.
+Web/SSR usa SVG, sem CanvasKit/CDN: não comprova visual ou desempenho do shader.
+
+## Validação
+
+Evidências absolutas:
+`/Users/guicunha/.codex/.chatgpt-projects/g-p-69f512a9480481918bb9b34c4162ae65/output/ux-mapa-01-20261022`.
+
+- TypeScript aprovado; ESLint zero erros, aviso herdado ConnectivityContext:48.
+- Suíte completa150/150;7 testes direcionados aprovados após ajustes da Orb.
+- npm ls sem problemas. Verificação Expo local/offline aprovou versões;
+  modo offline não comprova metadados remotos mais recentes.
+- Exportação estática14rotas.
+- Matriz web30/30:320,375,393,481,768px; fontes padrão/ampliada;
+  claro,escuro,alto contraste. Geometria, filtros e Orb128pt conferidos.
+- Uma imagem teve ERR_CONNECTION_RESET no servidor temporário. Recurso respondeu
+  200 na conferência; os12casos pendentes passaram na retomada. Falha original
+  preservada em layout-web-primeira-execucao-final.json; não atribuída ao app.
+- Fluxos web: sugestões/ficha/retorno, planejador, filtros completos, zoom e
+  centralização acionáveis na prévia, conversa, Plano B e retorno ao mapa.
+- Popup5cenários: limites da tela, alvoX44pt, toque interno, fechamento externo
+  e ficha/retorno. ModalFluIA4cenários: fontes/temas/movimento reduzido.
+- Contraste dos ícones dos controles:11,95:1 a17,65:1 nas quatro combinações.
+  Não constitui certificação de acessibilidade.
+- Debug iOS compilado/instalado no iPhone16. runtime-ios.json confirmou Hermes,
+  SkiaApi e appID próprio na porta8116. Capturas físicas reais disponíveis.
+- Humano confirmou abertura/fechamento da FluIA, mapa preservado, teclado/envio/
+  resposta e identificação em Ajustes. Depois confirmou popup, chevron e
+  centralização. Orb recebeu os refinamentos estéticos posteriores solicitados.
+
+## Inicialização nativa e limitações
+
+Foi necessária nova compilação porque a referência não continha Skia. Motivo
+explicado previamente. `ios/` ignorado foi copiado do preparo nativo validado
+flui-consolidado-iphone16-build, sem alterar a origem; preserva GoogleMaps8.4.0,
+Utils5.0.0 e UIScene do iOS27. Identidade, nome e Metro são exclusivos.
+
+Nas primeiras aberturas, RCTBundleURLProvider retornou URL nula. Endpoint Debug
+LAN explícito mostrou falha real de transporte. Diagnóstico em primeiro plano
+registrou URLSession-1009; depois de acrescentar conexão TCP por NWConnection,
+o próximo lançamento teve TCPready, status200 e carregamento normal. A causa
+subjacente da recusa inicial não foi isolada. Nenhuma política ATS, firewall ou
+configuração do iPhone foi alterada automaticamente. A abordagem segue a
+[nota técnica Apple TN3179](https://developer.apple.com/documentation/technotes/tn3179-understanding-local-network-privacy).
+
+Diagnóstico temporário permanece apenas no Debug local; não deve ser incorporado
+automaticamente a Release ou à candidata. Fontes nativas de reprodução sem chave
+estão em nativo-reproducao/. Credencial permanece local/ignorada, sem valor nos
+commits ou neste relatório.
+
+Houve erro transitório de importação duplicada X durante Fast Refresh; corrigido,
+com TypeScript/lint/suíte aprovados depois. CoreDevice não suporta gravação de
+vídeo neste aparelho; a tentativa foi interrompida, usando capturas e retorno humano.
+Avisos nativos herdados de textura de marcadores/eventos foram observados,
+sem bloqueio comprovado nos fluxos conferidos.
+
+Sem certificação de FPS, VoiceOver, Android, Release ou acessibilidade humana.
+Temas/fontes/redução de movimento têm testes web/automatizados; não equivalem a
+uma auditoria física completa. Controles flutuantes podem encobrir parcialmente
+um marcador durante gestos; fichas também permanecem acessíveis pelo popup.
+
+## Executar e retomar
+
+Abrir **Flui2.1** no iPhone, na mesma LAN do Mac, com Mac acordado e Metro8116
+ativo. Cabo USB não é necessário para servir JavaScript. Alterações JS/estilos
+usam Fast Refresh; futuras mudanças nativas podem exigir nova compilação isolada.
 
 ```sh
 cd /Users/guicunha/.codex/.chatgpt-projects/g-p-69f512a9480481918bb9b34c4162ae65/flui-ux-mapa-01
 EXPO_NO_DOTENV=1 EXPO_OFFLINE=1 ./node_modules/.bin/expo start --go --lan --port 8116 --max-workers 2
 ```
 
-O binário Debug separado contém Skia e Google Maps. Expo Go não substitui esse
-binário. Alterações JS/estilos posteriores podem usar Fast Refresh na porta8116.
-O comando não carrega `.env.local` no manifesto LAN; a configuração Google já
-está no projeto nativo local ignorado. Não exibir nem versionar credenciais.
-
-A pedido do usuário, o nome instalado é Flui 2.1 (versão 2.1.0). O final dos
-Ajustes mostra versão e identificação do experimento; o número vem de
-package.json, alinhado à versão nativa 2.1.0; a candidata original não foi alterada.
-
-## Configuração nativa local
-
-`ios/` permanece ignorado. Foi copiado da preparação nativa validada em
-`flui-consolidado-iphone16-build`, sem modificar a origem. Mantém Google Maps
-8.4.0, Utils5.0.0 e a adaptação UIScene de iOS27. `pod install` acrescentou Skia
-(95 Pods). Alterações isoladas: Info.plist (nome e esquema), projeto Xcode
-(bundle ID próprio) e AppDelegate (Metro8116/log UX-MAPA-01). Assinatura local
-usa a equipe já configurada; não há distribuição/publicação.
-
-Para reconstruir, usar `ios/fluichargemap.xcworkspace`, esquema `fluichargemap`,
-Debug e destino iPhone16; definir `RCT_METRO_PORT=8116`, `SKIP_BUNDLING=1` e
-DerivedData na pasta de evidências desta tarefa. Não executar prebuild sobre a
-cópia de referência. Se a chave Google estiver restrita a bundle IDs, o novo
-identificador precisa constar entre os permitidos antes do mapa funcionar.
-
-## Validação e evidências
-
-Pasta absoluta:
-`/Users/guicunha/.codex/.chatgpt-projects/g-p-69f512a9480481918bb9b34c4162ae65/output/ux-mapa-01-20261022`.
-
-- `check-final.log`: TypeScript aprovado, ESLint zero erros/aviso herdado em
-  ConnectivityContext, 149/149 testes (6 novos de layout, expansão e movimento).
-- `layout-web.json`: 30 combinações: 320,375,393,481,768px; fonte padrão/ampliada;
-  claro,escuro,alto contraste. Alinhamento, alvos, posição da Orb, seleção dos
-  filtros e recuperação de altura conferidos por geometria/DOM real.
-- `fluxos-web.json`: sugestões/ficha/retorno; planejador; busca/filtro completo;
-  zoom/centralização acionáveis na prévia; conversa, fechamento, recomendação
-  e Plano B. Nenhuma exceção/erro/requisição falha na execução aprovada.
-- `npm-ls.json`: sem problemas na árvore. `build-ios-endpoint.log`: BUILD SUCCEEDED.
-- Capturas web em `capturas/`. Web é prévia e não valida mapa/zoom nativos,
-  desempenho físico, teclado iOS ou VoiceOver.
-
-As primeiras falhas do roteiro web eram de asserção (`aria-selected` em vez
- de `aria-pressed`) e de esperar Plano B após restringir o catálogo a uma única
-estação. Foram diagnosticadas e corrigidas no roteiro; não motivaram alteração
-no motor de filtros/conversa. Houve uma falha de rede isolada na primeira
-execução; não reapareceu na execução completa aprovada.
-
-Estado físico e relatório final devem ser consultados na pasta de evidências.
-A instalação/compilação, por si só, não comprova funcionamento no iPhone.
-Android, Release, auditoria humana de acessibilidade e medições de FPS não
-fazem parte da comprovação disponível.
-
-## Inicialização física e limitação de rede
-
-As primeiras aberturas falharam antes da execução JS. A cópia nativa recebeu
-um endpoint Debug LAN explícito, verificado em `/status` e no bundle. Um
-diagnóstico URLSession em primeiro plano registrou -1009. Uma conexão TCP
-via Network.NWConnection, conforme orientação Apple TN3179, foi acrescentada
-somente ao projeto nativo local ignorado. Na abertura seguinte, TCP ficou
-ready, `/status` retornou200 e o aplicativo executou no iPhone. O motivo
-subjacente da primeira recusa não foi isolado; não atribuir a falha à Reacticx
-ou a ATS sem prova. Não houve mudança de firewall, rede, nem política ATS.
-
-O diagnóstico temporário permanece no Debug local, sem dados pessoais ou
-credenciais na requisição. Código nativo de reprodução sem chave está em
-`nativo-reproducao/` na pasta de evidências. Não importar esse diagnóstico
-automaticamente para a candidata consolidada ou para Release.
-
-`runtime-ios.json` confirma Hermes e SkiaApi no iPhone, appID exclusivo e
-Metro8116. Capturas físicas comprovam mapa Google, marcadores, distribuição
-e novas cores. O shader real é visualmente distinto do fallback SVG web.
-
-Gravação de tela via CoreDevice foi tentada uma vez e informou recurso não
-suportado no dispositivo; não foi produzido vídeo. Capturas e retorno humano
-são as evidências físicas disponíveis.
-
-Confirmação humana em22/10: a FluIA abre e fecha corretamente e o mapa
-preserva sua posição ao voltar. `iphone-fluia-tela-cheia.png` registra a
-conversa em tela cheia no iPhone16; `iphone-cores-controles.png` registra o
-mapa com as cores atualizadas. Não houve medição de FPS.
-
-Contraste dos ícones nos controles web finais: claro16,77:1, escuro11,95:1,
-claro/alto contraste17,65:1, escuro/alto contraste15,33:1. As medições não
-constituem certificação de acessibilidade. VoiceOver e ajustes do sistema
-continuam sujeitos à revisão humana.
+App Debug usa192.168.0.130:8116. Se IP/rede mudar, revisar essa configuração
+local antes de recompilar. Expo Go não substitui este binário. Não reiniciar8106.
+Encerrar somente o Metro experimental identificado pela porta8116, quando desejado.
+Push continua bloqueado por remote disabled:// e hook local pre-push.

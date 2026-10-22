@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   topArea: {
     backgroundColor: colors.background,
     paddingHorizontal: 20,
-    paddingTop: Platform.OS === "android" ? 18 : 8,
+    paddingTop: Platform.OS === "android" ? 18 : 0,
     paddingBottom: 10,
     zIndex: 10,
   },
@@ -565,8 +565,13 @@ const styles = StyleSheet.create({
 
   leftMapControls: { position: "absolute", left: 16, top: 16, gap: 8, alignItems: "center", zIndex: 12 },
   fixedMapControls: { position: "absolute", right: 16, top: 16, width: 48, gap: 8, alignItems: "center", zIndex: 12 },
-  mapOrbAnchor: { position: "absolute", left: "50%", marginLeft: -32, width: 64, height: 64, zIndex: 16 },
-  mapOrbButton: { width: 64, height: 64, borderRadius: 32, overflow: "hidden", borderWidth: 1, borderColor: "#6D43A3", backgroundColor: "#160D24", shadowColor: "#2B0055", shadowOpacity: 0.16, shadowRadius: 8, shadowOffset: { width: 0, height: 3 }, elevation: 6 },
+  mapOrbAnchor: { position: "absolute", left: "50%", marginLeft: -64, width: 128, height: 128, zIndex: 16 },
+  mapOrbButton: { width: 128, height: 128, borderRadius: 64, overflow: "hidden" },
+  recommendationsOverlay: { flex: 1, justifyContent: "center", alignItems: "center", paddingHorizontal: 20 },
+  recommendationsBackdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(7, 12, 18, 0.62)" },
+  recommendationsPopup: { width: "100%", maxWidth: 560, maxHeight: "100%", borderRadius: 28, overflow: "hidden", backgroundColor: colors.background, borderWidth: 1, borderColor: colors.border },
+  recommendationsHeader: { flexDirection: "row", alignItems: "center", gap: 12, paddingLeft: 18, paddingRight: 10, paddingVertical: 10 },
+  recommendationsClose: { width: 44, height: 44, borderRadius: 22, alignItems: "center", justifyContent: "center", backgroundColor: colors.white, borderWidth: 1, borderColor: colors.border },
 
   mapControlsCompact: {
     top: 12,

@@ -12,12 +12,12 @@ const STATE_EFFECTS: Record<FluiaState, { speed: number; intensity: number; glow
   alerta: { speed: 0, intensity: 1.3, glowRadius: 0.44 },
 };
 
-export function getReacticxOrbPresentation(state: FluiaState, reducedMotion: boolean, active: boolean) {
+export function getReacticxOrbPresentation(state: FluiaState, reducedMotion: boolean, active: boolean, mapVariant = false) {
   const colors = ENERGY_ORB_COLORS[state];
   const effect = STATE_EFFECTS[state];
   return {
     ...effect,
-    colors: [colors.core, colors.light, colors.rim],
+    colors: mapVariant ? ["#2B0055", "#C797FF", "#6F2DC4"] : [colors.core, colors.light, colors.rim],
     animate: active && !reducedMotion && effect.speed > 0,
   };
 }

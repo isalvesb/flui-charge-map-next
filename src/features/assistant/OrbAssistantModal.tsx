@@ -28,7 +28,7 @@ export function OrbAssistantModal({ visible, origin, reducedMotion, onClose, onD
     <View style={styles.viewport} accessibilityViewIsModal>
       <Animated.View pointerEvents="none" style={[styles.circle, { left: geometry.x - geometry.size / 2, top: geometry.y - geometry.size / 2, width: geometry.size, height: geometry.size, borderRadius: geometry.size / 2, transform: [{ scale: progress.interpolate({ inputRange: [0, 1], outputRange: [1, geometry.scale] }) }] }]} />
       <Animated.View pointerEvents="none" style={{ position: "absolute", left: geometry.x - geometry.size / 2, top: geometry.y - geometry.size / 2, opacity: progress.interpolate({ inputRange: [0, 0.35, 1], outputRange: [1, 0, 0] }), transform: [{ scale: progress.interpolate({ inputRange: [0, 1], outputRange: [1, 2] }) }] }}>
-        <MapEnergyOrb size={geometry.size} state="repouso" active={mounted && !ready} reducedMotion={reducedMotion} />
+        <MapEnergyOrb mapVariant size={geometry.size} state="repouso" active={mounted && !ready} reducedMotion={reducedMotion} />
       </Animated.View>
       <Animated.View testID="fluia-tela-cheia" pointerEvents={ready ? "auto" : "none"} accessibilityElementsHidden={!ready} importantForAccessibility={ready ? "auto" : "no-hide-descendants"} style={{ flex: 1, opacity: progress.interpolate({ inputRange: [0, 0.45, 1], outputRange: [0, 0, 1] }), transform: [{ translateY: progress.interpolate({ inputRange: [0, 1], outputRange: [10, 0] }) }] }}>
         {children}

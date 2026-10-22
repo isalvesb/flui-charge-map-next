@@ -2,6 +2,7 @@
 // Fonte: 4e11fcfe04e0bd7054574acc1557320911d70e4c. Licença integral em ./LICENSE.
 import React, { memo, useEffect, useMemo } from "react";
 import { View } from "react-native";
+import { FluiAiIcon } from "../FluiAiIcon";
 import { Canvas, Fill, Shader, Skia, type Uniforms } from "@shopify/react-native-skia";
 import { useDerivedValue, useFrameCallback, useSharedValue } from "react-native-reanimated";
 import type { ReacticxOrbProps } from "../MapEnergyOrb.types";
@@ -12,8 +13,8 @@ import { parseColor } from "./helper";
 const source = Skia.RuntimeEffect.Make(SHADER_SOURCE);
 if (!source) throw new Error("Não foi possível compilar o shader Reacticx neste ambiente.");
 
-export const EnergyOrbSkia = memo(function EnergyOrbSkia({ state, reducedMotion, active, size }: ReacticxOrbProps) {
-  const effect = useMemo(() => getReacticxOrbPresentation(state, reducedMotion, active), [state, reducedMotion, active]);
+export const EnergyOrbSkia = memo(function EnergyOrbSkia({ state, reducedMotion, active, size, mapVariant = false }: ReacticxOrbProps) {
+  const effect = useMemo(() => getReacticxOrbPresentation(state, reducedMotion, active, mapVariant), [state, reducedMotion, active, mapVariant]);
   const colors = useMemo(() => effect.colors.map(parseColor), [effect.colors]);
   const time = useSharedValue(1.2);
   const pendingMs = useSharedValue(0);
@@ -40,10 +41,14 @@ export const EnergyOrbSkia = memo(function EnergyOrbSkia({ state, reducedMotion,
     uColor1: colors[1],
     uColor2: colors[2],
     uGlowRadius: effect.glowRadius,
+    uMapMode: mapVariant ? 1 : 0,
   }));
   return <View accessible={false} accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={{ width: size, height: size }}>
-    <Canvas pointerEvents="none" style={{ width: size, height: size, backgroundColor: "#0D0A16", borderRadius: size / 2 }}>
+    <Canvas pointerEvents="none" style={{ width: size, height: size, borderRadius: size / 2 }}>
       <Fill><Shader source={source} uniforms={uniforms} /></Fill>
     </Canvas>
+    {mapVariant ? <View pointerEvents="none" style={{ position: "absolute", top: 0, bottom: 0, left: 0, right: 0, alignItems: "center", justifyContent: "center" }}>
+      <FluiAiIcon size={size * 0.3} color="#2B0055" />
+    </View> : null}
   </View>;
 });

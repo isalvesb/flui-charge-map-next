@@ -1,9 +1,7 @@
-export const MAP_ORB_SIZE = 64;
+export const MAP_ORB_SIZE = 128;
 
-export function getMapExperimentLayout(mapHeight: number, bottomInset: number) {
-  const orbBottom = Math.max(12, bottomInset) + 10;
-  const panelBottom = orbBottom + MAP_ORB_SIZE + 12;
-  return { orbBottom, panelBottom, panelMaxHeight: Math.max(80, mapHeight - panelBottom - 196) };
+export function getMapExperimentLayout(bottomInset: number) {
+  return { orbBottom: Math.max(12, bottomInset) + 10 };
 }
 
 export type OrbOrigin = { x: number; y: number; size: number };

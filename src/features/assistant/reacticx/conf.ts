@@ -11,10 +11,26 @@ const SHADER_SOURCE = /*wgsl*/ `
   uniform vec3 uColor1;
   uniform vec3 uColor2;
   uniform float uGlowRadius;
+  uniform float uMapMode;
 
   vec4 main(vec2 fragCoord) {
     vec2 uv = (fragCoord - 0.5 * iResolution) / iResolution.y;
     float r = length(uv);
+
+    // UX-MAPA-01: corpo roxo sempre visível, sem disco de fundo.
+    // Ciclo suave de 3,6 s: escuro curto e revelação gradual da marca.
+    if (uMapMode > 0.5) {
+      float phase = mod(iTime, 3.6);
+      float pulse = phase < 1.55 ? smoothstep(0.2, 1.55, phase)
+        : 1.0 - smoothstep(2.65, 3.6, phase);
+      vec3 hue = mix(uColor0, uColor1, pulse);
+      hue = mix(hue, uColor2, smoothstep(0.12, 0.5, r) * 0.25);
+      // Centro: transparência de 20% a 40%. Região externa: até 60%.
+      // A borda se dissolve suavemente no mapa.
+      float lightOpacity = mix(0.6, 0.4, smoothstep(0.18, 0.35, r));
+      float alpha = mix(0.8, lightOpacity, pulse) * (1.0 - smoothstep(0.35, 0.5, r));
+      return vec4(clamp(hue, vec3(0.0), vec3(1.0)) * alpha, alpha);
+    }
 
     // Flui: mantém um nível mínimo de brilho, evitando desaparecer no repouso.
     float wave = sin(r * 2.0 - iTime * uSpeed) * 0.35 + 0.65;

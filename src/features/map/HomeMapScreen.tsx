@@ -39,7 +39,6 @@ import {
   Crosshair,
   ChevronDown,
   ChevronUp,
-  ListFilter,
   List,
   Milestone,
   Plug,
@@ -73,21 +72,12 @@ import { useReducedMotion } from "../../hooks/useReducedMotion";
 import { useAppPreferences } from "../../context/PreferencesContext";
 import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
 import { identificacaoDados } from "../../data/identificacaoDados";
-import { getMapPanelLayout, getMapVerticalFocusOffset, getMapHorizontalFocusOffset } from "./mapLayout";
 import { FluiAssistantSheet } from "../assistant/FluiAssistantSheet";
 import { MapEnergyOrb } from "../assistant/MapEnergyOrb";
 import { useIsFocused } from "@react-navigation/native";
 import { getMapExperimentLayout, MAP_ORB_SIZE, type OrbOrigin } from "./mapExperimentLayout";
 
 const FEEDBACK_DURATION = 1500;
-const SHEET_VISIBLE_HANDLE = 30;
-const SHEET_OCULTO_MARGEM_EXTRA = 40;
-const HANDLE_HINT_DISTANCE = 4;
-
-const chevronControleBaixoXml = `<svg width="28" height="12" viewBox="0 0 28 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 4.25L14 8.25L22 4.25" stroke="#BECAC5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-
-const chevronControleCimaXml = `<svg width="28" height="12" viewBox="0 0 28 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 7.75L14 3.75L22 7.75" stroke="#BECAC5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-
 const logoFluiXml = `
 <svg width="1115" height="516" viewBox="0 0 1115 516" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path fill-rule="evenodd" clip-rule="evenodd" d="M706 14L702 11L694 9L660 6L659 5H649L648 4H637L636 3L606 2L605 1H582L581 0H524L523 1H505L504 2H491L490 3L464 5L428 11L407 16L372 27L367 30L355 34L308 58L269 84L212 128L181 148L155 161L120 174L92 181L55 187L19 188L17 189L14 193V202L12 209L11 222L2 268L0 273V278L3 281H67L69 283L55 309L49 324L43 345L40 362V395L42 407L49 430L62 454L69 463L86 480L106 494L124 503L138 508L171 515L200 516L201 515H212L231 512L265 501L281 493L295 484L305 476L324 457L336 441L348 419L357 393L361 368L360 336L356 317L350 300L342 285V282L343 281H410L412 280L415 276L426 236L428 233L430 224L440 197V192L435 188H305L304 187L305 184L314 173L337 151L367 131L403 115L442 104L477 98L507 96L508 95H526L527 94H578L579 95H600L601 96L628 97L639 99H654L658 96L670 78L706 29L708 25V18L706 14ZM425 436L426 437V452L430 472L434 482L444 496L456 505L469 510L480 512L506 511L523 506L536 500L560 483L583 460L592 448L594 449V457L597 471L604 486L612 496L623 504L638 510L649 512H667L683 508L692 504L705 495L727 473L751 439L765 415L766 416L765 420V449L767 462L773 481L779 491L788 500L805 509L821 512H838L853 509L871 501L883 493L897 481L928 445L929 446V456L931 468L934 477L943 493L953 502L964 508L980 512H1000L1014 509L1034 500L1048 490L1066 473L1076 461L1088 444L1100 423L1115 387L1114 379L1111 376L1105 375L1102 377L1090 399L1076 421L1054 448L1043 458L1032 464H1025L1020 459L1018 453V443L1025 413L1048 350L1093 241V231L1085 223L1071 218L1050 215H1033L1032 216L1018 217L1009 220L1000 225L991 234L984 247L963 303L943 362L933 397L917 422L906 436L884 457L870 464H863L857 460L854 451L855 435L859 419L875 374L903 306L925 258L926 250L924 245L918 240L908 237L893 236L892 235H859L841 239L828 246L817 257L810 267L796 298L774 356L740 417L727 436L708 457L699 463L691 464L685 459L683 454V440L687 420L715 341L745 267L752 253V244L748 238L741 234L723 230L677 229L661 233L653 237L647 242L638 254L634 263L611 334L610 341L602 367L594 408L574 433L556 450L545 458L535 463L520 464L513 457L512 445L515 428L523 399L540 350L570 274L571 269L618 155L619 144L616 140L612 138H513L509 140L505 149L501 163L497 171L495 179L473 237L447 316L431 380L426 414L425 436ZM228 287L240 292L252 300L262 310L271 324L276 338L278 348L277 371L271 390L258 411L242 427L222 439L206 444L193 446L173 445L159 441L143 432L132 422L123 409L119 400L115 385V362L120 343L126 331L136 317L147 306L163 295L182 287L197 284H214L228 287Z" fill="#2B0055"/>
@@ -432,19 +422,17 @@ const criarRegiaoDoMapa = (
   };
 };
 
-const criarRegiaoComFocoVisivel = (
+const criarRegiaoCentralizada = (
   latitude: number,
   longitude: number,
   aproxima = true,
-  fracaoDeDeslocamento = 0.08,
-  fracaoHorizontal = 0,
 ): Region => {
   const latitudeDelta = aproxima ? 0.014 : 0.026;
   const longitudeDelta = aproxima ? 0.014 : 0.026;
 
   return {
-    latitude: latitude - latitudeDelta * fracaoDeDeslocamento,
-    longitude: longitude - longitudeDelta * fracaoHorizontal,
+    latitude,
+    longitude,
     latitudeDelta,
     longitudeDelta,
   };
@@ -707,9 +695,6 @@ export default function HomeMapScreen() {
   const margemHorizontalConteudo = isTelaLarga
     ? Math.max(16, (larguraJanela - MAX_CONTENT_WIDTH) / 2)
     : 20;
-  const margemHorizontalSheet = isTelaLarga
-    ? Math.max(16, (larguraJanela - MAX_CONTENT_WIDTH) / 2)
-    : 16;
   const alturaMaximaListaPontos = Math.max(
     180,
     Math.min(320, alturaJanela * 0.32),
@@ -720,22 +705,14 @@ export default function HomeMapScreen() {
   const mapRef = useRef<MapViewHandle | null>(null);
   const searchInputRef = useRef<TextInput>(null);
   const currentMapRegionRef = useRef<Region | null>(null);
-  const sheetTranslateY = useRef(new Animated.Value(0)).current;
-  const sheetHintTranslateY = useRef(new Animated.Value(0)).current;
   const userLocationPulseProgress = useRef(new Animated.Value(0)).current;
-  const sheetPositionRef = useRef(0);
   const localizacaoUsuario = demoOrigin;
   const [isLocatingUser, setIsLocatingUser] = useState(false);
-  const [isSheetCollapsed, setIsSheetCollapsed] = useState(false);
   const [painelTotalmenteOculto, setPainelTotalmenteOculto] = useState(true);
-  const [sheetHeight, setSheetHeight] = useState(0);
   const [mapAreaHeight, setMapAreaHeight] = useState(0);
-  const [mapAreaWidth, setMapAreaWidth] = useState(0);
-  const layout = getMapPanelLayout(larguraJanela, alturaJanela, mapAreaHeight, fontScale * escalaFonteSistema, sheetHeight);
-  const experimentLayout = getMapExperimentLayout(mapAreaHeight, insets.bottom);
+  const experimentLayout = getMapExperimentLayout(insets.bottom);
   const cabecalhoCompacto = larguraJanela <= 360 || fontScale * escalaFonteSistema > 1.3;
   const [alturaCardPonto, setAlturaCardPonto] = useState<number | null>(null);
-  const [hasInteractedWithSheet, setHasInteractedWithSheet] = useState(true);
   const [filtrosRapidos, setFiltrosRapidos] = useState<FiltrosRapidos>(
     filtrosRapidosIniciais,
   );
@@ -779,10 +756,6 @@ export default function HomeMapScreen() {
     outputRange: [0.34, 0.1],
   });
 
-  const sheetCollapsedTranslateY = useMemo(() => {
-    return Math.max(sheetHeight - SHEET_VISIBLE_HANDLE, 0);
-  }, [sheetHeight]);
-
   useEffect(() => {
     setSearchTerm(routeSearchTerm);
   }, [routeSearchTerm]);
@@ -816,45 +789,6 @@ export default function HomeMapScreen() {
       userLocationPulseProgress.setValue(0);
     };
   }, [reduceMotionEnabled, userLocationPulseProgress]);
-
-  useEffect(() => {
-    if (hasInteractedWithSheet || reduceMotionEnabled) {
-      sheetHintTranslateY.stopAnimation();
-      sheetHintTranslateY.setValue(0);
-      return;
-    }
-
-    const hintOffset = isSheetCollapsed
-      ? -HANDLE_HINT_DISTANCE
-      : HANDLE_HINT_DISTANCE;
-    const hintAnimation = Animated.loop(
-      Animated.sequence([
-        Animated.timing(sheetHintTranslateY, {
-          toValue: hintOffset,
-          duration: 420,
-          useNativeDriver: true,
-        }),
-        Animated.timing(sheetHintTranslateY, {
-          toValue: 0,
-          duration: 520,
-          useNativeDriver: true,
-        }),
-        Animated.delay(1400),
-      ]),
-    );
-
-    hintAnimation.start();
-
-    return () => {
-      hintAnimation.stop();
-      sheetHintTranslateY.setValue(0);
-    };
-  }, [
-    hasInteractedWithSheet,
-    isSheetCollapsed,
-    reduceMotionEnabled,
-    sheetHintTranslateY,
-  ]);
 
   const appliedFilters = useMemo(() => {
     return parseRouteFilters(filtersParam);
@@ -948,25 +882,6 @@ export default function HomeMapScreen() {
   const hasNoResults = estacoesRecomendadas.length === 0;
   const hasSearchTerm = searchTerm.trim().length > 0;
 
-  const fracaoDeDeslocamentoVertical = getMapVerticalFocusOffset(
-    layout.horizontal,
-    mapAreaHeight,
-    isSheetCollapsed ? SHEET_VISIBLE_HANDLE : sheetHeight,
-    painelTotalmenteOculto,
-  );
-
-  const fracaoDeDeslocamentoHorizontal = getMapHorizontalFocusOffset(
-    layout.horizontal,
-    mapAreaWidth,
-    layout.panelWidth ?? 0,
-    painelTotalmenteOculto || isSheetCollapsed,
-  );
-  const fracaoDeDeslocamentoHorizontalRef = useRef(fracaoDeDeslocamentoHorizontal);
-  fracaoDeDeslocamentoHorizontalRef.current = fracaoDeDeslocamentoHorizontal;
-
-  const fracaoDeDeslocamentoVerticalRef = useRef(fracaoDeDeslocamentoVertical);
-  fracaoDeDeslocamentoVerticalRef.current = fracaoDeDeslocamentoVertical;
-
   const mapRegion = useMemo(() => {
     const firstVisibleStation =
       visibleStations[0]?.station ?? demoStations[0];
@@ -976,20 +891,14 @@ export default function HomeMapScreen() {
     }
 
     if (localizacaoUsuario) {
-      return criarRegiaoComFocoVisivel(
+      return criarRegiaoCentralizada(
         localizacaoUsuario.latitude,
         localizacaoUsuario.longitude,
         true,
-        fracaoDeDeslocamentoVerticalRef.current,
-        fracaoDeDeslocamentoHorizontalRef.current,
       );
     }
 
     return criarRegiaoDoMapa(firstVisibleStation, false);
-    // fracaoDeDeslocamentoVertical é lido via ref de propósito: ela só
-    // reflete o layout (sheet/mapArea) se estabilizando, e recalcular a
-    // região a cada ajuste fazia o mapa reanimar várias vezes seguidas
-    // logo na abertura, deixando o carregamento visivelmente mais lento.
   }, [hasFiltersApplied, hasSearchTerm, localizacaoUsuario, visibleStations, demoStations]);
 
   const isPrimeiraRegiaoRef = useRef(true);
@@ -1033,7 +942,7 @@ export default function HomeMapScreen() {
       return;
     }
 
-    if (!mapaPronto || mapAreaHeight <= 0 || sheetHeight <= 0) {
+    if (!mapaPronto || mapAreaHeight <= 0) {
       return;
     }
 
@@ -1043,12 +952,10 @@ export default function HomeMapScreen() {
 
     ajusteInicialDeCentralizacaoRef.current = true;
 
-    const regiaoCentralizada = criarRegiaoComFocoVisivel(
+    const regiaoCentralizada = criarRegiaoCentralizada(
       localizacaoUsuario.latitude,
       localizacaoUsuario.longitude,
       true,
-      fracaoDeDeslocamentoVertical,
-      fracaoDeDeslocamentoHorizontal,
     );
 
     currentMapRegionRef.current = regiaoCentralizada;
@@ -1057,15 +964,12 @@ export default function HomeMapScreen() {
       reduceMotionEnabled ? 0 : 400,
     );
   }, [
-    fracaoDeDeslocamentoHorizontal,
-    fracaoDeDeslocamentoVertical,
     hasFiltersApplied,
     hasSearchTerm,
     localizacaoUsuario,
     mapAreaHeight,
     mapaPronto,
     reduceMotionEnabled,
-    sheetHeight,
   ]);
 
   const alterarZoomMapa = (direction: "aproximar" | "afastar") => {
@@ -1130,65 +1034,6 @@ export default function HomeMapScreen() {
     setSeletorBateriaAberto(false);
   };
 
-  const moverPainelDePontosPara = useCallback(
-    (destino: number) => {
-      sheetPositionRef.current = destino;
-
-      sheetTranslateY.stopAnimation();
-
-      if (reduceMotionEnabled) {
-        sheetTranslateY.setValue(destino);
-        return;
-      }
-
-      Animated.spring(sheetTranslateY, {
-        toValue: destino,
-        useNativeDriver: true,
-        friction: 8,
-        tension: 58,
-      }).start();
-    },
-    [reduceMotionEnabled, sheetTranslateY],
-  );
-
-  const alternarModalDePontos = useCallback(
-    (shouldCollapse: boolean) => {
-      setPainelTotalmenteOculto(false);
-      setIsSheetCollapsed(shouldCollapse);
-      moverPainelDePontosPara(shouldCollapse ? sheetCollapsedTranslateY : 0);
-    },
-    [moverPainelDePontosPara, sheetCollapsedTranslateY],
-  );
-
-  const ocultarPainelDePontosCompletamente = useCallback(() => {
-    setPainelTotalmenteOculto(true);
-    moverPainelDePontosPara(sheetHeight + SHEET_OCULTO_MARGEM_EXTRA);
-  }, [moverPainelDePontosPara, sheetHeight]);
-
-  useEffect(() => {
-    if (sheetHeight <= 0) {
-      return;
-    }
-
-    if (painelTotalmenteOculto) {
-      const destinoOculto = sheetHeight + SHEET_OCULTO_MARGEM_EXTRA;
-      sheetTranslateY.setValue(destinoOculto);
-      sheetPositionRef.current = destinoOculto;
-      return;
-    }
-
-    if (isSheetCollapsed) {
-      sheetTranslateY.setValue(sheetCollapsedTranslateY);
-      sheetPositionRef.current = sheetCollapsedTranslateY;
-    }
-  }, [
-    isSheetCollapsed,
-    painelTotalmenteOculto,
-    sheetCollapsedTranslateY,
-    sheetHeight,
-    sheetTranslateY,
-  ]);
-
   const openStationDetails = (stationId: string, startRoute = false) => {
     if (isOpeningDetails) {
       return;
@@ -1199,6 +1044,7 @@ export default function HomeMapScreen() {
       params: { stationId, ...(startRoute ? { startRoute: "1" } : {}) },
     } as Href;
 
+    setPainelTotalmenteOculto(true);
     setIsOpeningDetails(true);
 
     setTimeout(() => {
@@ -1208,6 +1054,7 @@ export default function HomeMapScreen() {
   };
 
   const abrirBusca = () => {
+    setPainelTotalmenteOculto(true);
     router.push("/search" as Href);
   };
 
@@ -1216,16 +1063,6 @@ export default function HomeMapScreen() {
       ...filtrosAtuais,
       [filterId]: !filtrosAtuais[filterId],
     }));
-  };
-
-  const renderizarChevronDeControle = (apontaParaCima: boolean) => {
-    return (
-      <SvgXml
-        xml={apontaParaCima ? chevronControleCimaXml : chevronControleBaixoXml}
-        width={28}
-        height={12}
-      />
-    );
   };
 
   const openProfile = () => {
@@ -1257,20 +1094,9 @@ export default function HomeMapScreen() {
 
     const nextLocation = demoOrigin;
 
-    mapRef.current?.animateToRegion(
-      criarRegiaoComFocoVisivel(
-        nextLocation.latitude,
-        nextLocation.longitude,
-        true,
-        fracaoDeDeslocamentoVertical,
-        getMapHorizontalFocusOffset(
-          layout.horizontal,
-          mapAreaWidth,
-          layout.panelWidth ?? 0,
-        ),
-      ),
-      reduceMotionEnabled ? 0 : 500,
-    );
+    const centeredRegion = criarRegiaoCentralizada(nextLocation.latitude, nextLocation.longitude, true);
+    currentMapRegionRef.current = centeredRegion;
+    mapRef.current?.animateToRegion(centeredRegion, reduceMotionEnabled ? 0 : 500);
 
     showLocationFeedback(`Origem demonstrativa centralizada: ${demoOrigin.nome}`);
 
@@ -1403,8 +1229,7 @@ export default function HomeMapScreen() {
               />
             </PressableScale>
             <PressableScale accessibilityRole="button" accessibilityLabel={quickFiltersVisible ? "Recolher filtros rápidos" : "Mostrar filtros rápidos"} accessibilityState={{ expanded: quickFiltersVisible, selected: hasFiltrosRapidosAtivos(filtrosRapidos) }} accessibilityHint="Mostra ou oculta os atalhos sem limpar os filtros selecionados." style={styles.filterButton} onPress={() => setQuickFiltersVisible(value => !value)}>
-              <ListFilter size={21} color={colors.primary} strokeWidth={2} />
-              {quickFiltersVisible ? <ChevronUp size={12} color={colors.primary} /> : <ChevronDown size={12} color={colors.primary} />}
+              {quickFiltersVisible ? <ChevronUp size={22} color={colors.primary} /> : <ChevronDown size={22} color={colors.primary} />}
             </PressableScale>
           </View>
 
@@ -1459,7 +1284,6 @@ export default function HomeMapScreen() {
           style={styles.mapArea}
           onLayout={(event) => {
             setMapAreaHeight(event.nativeEvent.layout.height);
-            setMapAreaWidth(event.nativeEvent.layout.width);
           }}
         >
           <MapView
@@ -1614,7 +1438,7 @@ export default function HomeMapScreen() {
             >
               <Milestone size={22} color={colors.white} strokeWidth={2.2} />
             </PressableScale>
-            <PressableScale accessibilityRole="button" accessibilityLabel={painelTotalmenteOculto ? "Mostrar pontos de recarga" : "Ocultar sugestões de pontos"} accessibilityState={{ expanded: !painelTotalmenteOculto }} accessibilityHint="Abre a lista existente de sugestões locais." style={styles.mapControlButton} onPress={() => { setHasInteractedWithSheet(true); if (painelTotalmenteOculto) alternarModalDePontos(false); else ocultarPainelDePontosCompletamente(); }}>
+            <PressableScale accessibilityRole="button" accessibilityLabel={painelTotalmenteOculto ? "Mostrar pontos de recarga" : "Ocultar sugestões de pontos"} accessibilityState={{ expanded: !painelTotalmenteOculto }} accessibilityHint="Abre a lista existente de sugestões locais." style={styles.mapControlButton} onPress={() => setPainelTotalmenteOculto(false)}>
               <List size={22} color={colors.white} strokeWidth={2.2} />
             </PressableScale>
           </View>
@@ -1624,62 +1448,26 @@ export default function HomeMapScreen() {
               searchInputRef.current?.blur(); Keyboard.dismiss();
               orbRef.current?.measureInWindow((x, y, width, height) => { setOrbOrigin({ x: x + width / 2, y: y + height / 2, size: MAP_ORB_SIZE }); setAssistenteFluiApresentado(true); setAssistenteFluiAberto(true); });
             }}>
-              <MapEnergyOrb state="repouso" size={MAP_ORB_SIZE} active={isFocused && !assistenteFluiApresentado} reducedMotion={reduceMotionEnabled} />
+              <MapEnergyOrb mapVariant state="repouso" size={MAP_ORB_SIZE} active={isFocused && !assistenteFluiApresentado && painelTotalmenteOculto} reducedMotion={reduceMotionEnabled} />
             </PressableScale>
           </View> : null}
 
-          <Animated.View
-            pointerEvents={painelTotalmenteOculto ? "none" : "auto"}
-            aria-hidden={painelTotalmenteOculto}
-            accessibilityElementsHidden={painelTotalmenteOculto}
-            importantForAccessibility={painelTotalmenteOculto ? "no-hide-descendants" : "auto"}
-            style={[
-              styles.bottomSheet,
-              {
-                left: layout.horizontal ? 16 : margemHorizontalSheet,
-                right: layout.horizontal ? undefined : margemHorizontalSheet,
-                width: layout.panelWidth,
-                bottom: experimentLayout.panelBottom,
-                opacity: painelTotalmenteOculto ? 0 : 1,
-                transform: [{ translateY: sheetTranslateY }],
-              },
-            ]}
-          >
-            <ScrollView
-              // Recalcular os textos nativos quando o Dynamic Type mudar durante a sessão.
-              key={`painel-${fontScale}-${escalaFonteSistema}`}
-              tabIndex={-1}
-              nestedScrollEnabled
-              style={[styles.bottomSheetCard, { maxHeight: experimentLayout.panelMaxHeight }]}
-              contentContainerStyle={styles.bottomSheetContent}
-              onLayout={(event) => {
-                setSheetHeight(event.nativeEvent.layout.height);
-              }}
-            >
-              <PressableScale
-                accessibilityRole="button"
-                accessibilityLabel="Minimizar pontos de recarga para ver o mapa inteiro"
-                tabIndex={painelTotalmenteOculto ? -1 : 0}
-                accessibilityHint="Esconde completamente o painel, deixando só um atalho para trazê-lo de volta."
-                hitSlop={{ top: 10, right: 44, bottom: 10, left: 44 }}
-                pressedScale={0.94}
-                style={styles.sheetHandleArea}
-                onPress={() => {
-                  setHasInteractedWithSheet(true);
-                  ocultarPainelDePontosCompletamente();
-                }}
-              >
-                <Animated.View
-                  style={{ transform: [{ translateY: sheetHintTranslateY }] }}
+          <Modal transparent visible={!painelTotalmenteOculto} animationType={reduceMotionEnabled ? "none" : "fade"} statusBarTranslucent presentationStyle="overFullScreen" onRequestClose={() => setPainelTotalmenteOculto(true)}>
+            <View style={[styles.recommendationsOverlay, { paddingTop: insets.top + 24, paddingBottom: insets.bottom + 24 }]}>
+              <Pressable testID="recomendacoes-fundo" accessibilityRole="button" accessibilityLabel="Fechar recomendações tocando fora" style={styles.recommendationsBackdrop} onPress={() => setPainelTotalmenteOculto(true)} />
+              <View testID="recomendacoes-popup" style={styles.recommendationsPopup} accessibilityViewIsModal>
+                <View style={styles.recommendationsHeader}>
+                  <Text style={[styles.sheetTitle, { flex: 1 }]}>{sheetTitle}</Text>
+                  <PressableScale accessibilityRole="button" accessibilityLabel="Fechar recomendações" style={styles.recommendationsClose} onPress={() => setPainelTotalmenteOculto(true)}>
+                    <X size={22} color={colors.primary} />
+                  </PressableScale>
+                </View>
+                <ScrollView
+                  key={`painel-${fontScale}-${escalaFonteSistema}`}
+                  nestedScrollEnabled
+                  style={{ flexShrink: 1 }}
+                  contentContainerStyle={styles.bottomSheetContent}
                 >
-                  <View style={styles.sheetChevronButton}>
-                    {renderizarChevronDeControle(isSheetCollapsed)}
-                  </View>
-                </Animated.View>
-              </PressableScale>
-              <View style={styles.sheetHeader}>
-                <Text style={styles.sheetTitle}>{sheetTitle}</Text>
-              </View>
               <Text style={styles.originDescription}>
                 {identificacaoDados.catalogo.aviso}{"\n"}
                 Origem: {demoOrigin.nome} · distâncias em linha reta, sem cálculo de percurso
@@ -1845,7 +1633,9 @@ export default function HomeMapScreen() {
               </ScrollView>
               )}
             </ScrollView>
-          </Animated.View>
+              </View>
+            </View>
+          </Modal>
 
         </View>
 
