@@ -2,6 +2,13 @@ import { formatAssistantDistance, type FluiAssistantRecommendation } from "./flu
 import type { UserPreferences } from "../../types";
 import { getBatterySourceLabels } from "../../utils/batteryData";
 
+export function summarizeAssistantContext(
+  preferences: Pick<UserPreferences, "vehicleName" | "batteryPercent">,
+  originName: string,
+) {
+  return `${preferences.vehicleName} · bateria ${preferences.batteryPercent}%\nOrigem demonstrativa: ${originName}`;
+}
+
 export function describeAssistantContext(
   preferences: Pick<UserPreferences, "vehicleName" | "vehicleRangeKm" | "batteryPercent" | "batterySource" | "batteryUpdatedAt">,
   originName: string,

@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { recommendStations } from "../src/features/assistant/fluiAssistant";
-import { describeAssistantContext, summarizeSuggestion } from "../src/features/assistant/assistantPresentation";
+import { describeAssistantContext, summarizeAssistantContext, summarizeSuggestion } from "../src/features/assistant/assistantPresentation";
 import { createStation } from "./fixtures";
 
 test("resumo preserva os valores do motor e os limites de segurança", () => {
@@ -33,4 +33,11 @@ test("contexto não atribui bateria demonstrativa ou antiga a telemetria real", 
     assert.ok(text.includes("consulta: 0"));
     assert.ok(text.includes("não confirma disponibilidade real"));
   }
+});
+
+test("resumo contextual compacto preserva veículo, bateria e caráter demonstrativo da origem", () => {
+  const preferences = { vehicleName: "Veículo com nome longo para leitura ampliada", batteryPercent: 42 };
+  const before = JSON.stringify(preferences);
+  assert.equal(summarizeAssistantContext(preferences, "Vila Mariana"), `${preferences.vehicleName} · bateria 42%\nOrigem demonstrativa: Vila Mariana`);
+  assert.equal(JSON.stringify(preferences), before);
 });

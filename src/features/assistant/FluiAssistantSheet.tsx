@@ -17,7 +17,9 @@ import {
   Armchair,
   BatteryLow,
   BatteryMedium,
+  ChevronDown,
   ChevronRight,
+  ChevronUp,
   Coffee,
   MapPin,
   Plug,
@@ -46,7 +48,7 @@ import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperi
 import { identificacaoDados } from "../../data/identificacaoDados";
 import { EnergyOrb } from "./EnergyOrb";
 import { answerMessage, RECOMMENDATION_DISCLAIMER } from "./chatEngine";
-import { describeAssistantContext, summarizeSuggestion } from "./assistantPresentation";
+import { describeAssistantContext, summarizeAssistantContext, summarizeSuggestion } from "./assistantPresentation";
 
 import {
   FLUIA_STATE_LABELS,
@@ -128,6 +130,7 @@ export function FluiAssistantSheet({
   const chatTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const nextMessageId = useRef(0);
   const chatScrollRef = useRef<ScrollView>(null);
+  const lastScrolledMessageId = useRef<number | null>(null);
 
   const stateTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [voiceEnabled, setVoiceEnabled] = useState(true);
@@ -203,7 +206,9 @@ export function FluiAssistantSheet({
     setSelectedIntent(null);
     setIsAnalyzing(false);
     setShowExplanation(false);
+    setShowContext(false);
     setExpandedMessageId(null);
+    lastScrolledMessageId.current = null;
   };
 
   const closeAssistant = () => {
@@ -303,6 +308,14 @@ export function FluiAssistantSheet({
     }
   };
 
+  const scrollToNewMessage = () => {
+    const lastId = messages.at(-1)?.id;
+    if (lastId !== undefined && lastId !== lastScrolledMessageId.current) {
+      lastScrolledMessageId.current = lastId;
+      scrollToLatestMessage();
+    }
+  };
+
   const chooseStation = (stationId: string) => {
     closeAssistant();
     onSelectStation(stationId);
@@ -353,7 +366,6 @@ export function FluiAssistantSheet({
                 <Text style={styles.title}>FluIA</Text>
                 <Text
                   style={styles.stateText}
-                  numberOfLines={1}
                   accessibilityLiveRegion="polite"
                   accessibilityLabel={`Estado da FluIA: ${FLUIA_STATE_LABELS[displayedState]}`}
                 >
@@ -391,7 +403,7 @@ export function FluiAssistantSheet({
             style={styles.chatMessages}
             contentContainerStyle={styles.bodyContent}
             keyboardShouldPersistTaps="handled"
-            onContentSizeChange={scrollToLatestMessage}
+            onContentSizeChange={scrollToNewMessage}
             onLayout={scrollToLatestMessage}
           >
             <Text style={styles.subtitle}>
@@ -399,6 +411,37 @@ export function FluiAssistantSheet({
                 ? "Recomendação simulada com os dados do protótipo."
                 : identificacaoDados.fluia.aviso}
             </Text>
+            <View style={styles.contextCard}>
+              <PressableScale
+                accessibilityRole="button"
+                accessibilityLabel="Contexto atual para novas consultas"
+                accessibilityHint="Mostra a origem dos dados e atalhos para ajustar as próximas consultas."
+                accessibilityState={{ expanded: showContext }}
+                style={styles.contextToggle}
+                onPress={() => setShowContext((current) => !current)}
+              >
+                <View style={styles.contextSummary}>
+                  <Text style={styles.contextTitle}>Contexto da consulta</Text>
+                  <Text style={styles.contextText}>{summarizeAssistantContext({ ...userPreferences, batteryPercent }, demoOrigin.nome)}</Text>
+                </View>
+                {showContext ? <ChevronUp size={18} color={theme.primary} /> : <ChevronDown size={18} color={theme.primary} />}
+              </PressableScale>
+              {showContext ? (
+                <View style={styles.contextDetails}>
+                  <Text style={styles.contextText}>{describeAssistantContext({ ...userPreferences, batteryPercent, vehicleRangeKm }, demoOrigin.nome, stations.length)}</Text>
+                  {[
+                    { label: "Editar configurações", path: "/settings" },
+                    { label: "Consultar favoritos", path: "/profile" },
+                    { label: "Abrir planejador", path: "/trip-planner" },
+                  ].map((action) => (
+                    <PressableScale key={action.path} accessibilityRole="button" accessibilityLabel={action.label} style={styles.contextLink} onPress={() => { closeAssistant(); router.push(action.path as Href); }}>
+                      <Text style={styles.contextLinkText}>{action.label}</Text>
+                      <ChevronRight size={16} color={theme.primary} />
+                    </PressableScale>
+                  ))}
+                </View>
+              ) : null}
+            </View>
             {isAnalyzing ? (
               <View
                 style={styles.analyzingCard}
@@ -548,7 +591,7 @@ export function FluiAssistantSheet({
                     </View>
                     <View style={styles.backupText}>
                       <Text style={styles.backupTitle}>Plano B</Text>
-                      <Text style={styles.backupDescription} numberOfLines={1}>
+                      <Text style={styles.backupDescription}>
                         {recommendation.backup.name} ·{" "}
                         {formatAssistantDistance(
                           recommendation.backup.distanceKm,
@@ -611,26 +654,6 @@ export function FluiAssistantSheet({
               </View>
             ) : null}
             <View style={styles.chatBox}>
-              <Text style={styles.subtitle}>
-                {userPreferences.vehicleName} · origem demonstrativa: {demoOrigin.nome}.
-              </Text>
-              <PressableScale accessibilityRole="button" accessibilityLabel="Contexto atual para novas consultas" accessibilityState={{ expanded: showContext }} style={styles.chatButton} onPress={() => setShowContext((current) => !current)}>
-                <Text style={styles.chatButtonText}>{showContext ? "Ocultar contexto" : "Ver contexto atual"}</Text>
-              </PressableScale>
-              {showContext ? (
-                <View style={styles.fluiBubble}>
-                  <Text style={styles.bubbleText}>{describeAssistantContext({ ...userPreferences, batteryPercent, vehicleRangeKm }, demoOrigin.nome, stations.length)}</Text>
-                  {[
-                    { label: "Editar configurações", path: "/settings" },
-                    { label: "Consultar favoritos", path: "/profile" },
-                    { label: "Abrir planejador", path: "/trip-planner" },
-                  ].map((action) => (
-                    <PressableScale key={action.path} accessibilityRole="button" accessibilityLabel={action.label} style={styles.chatButton} onPress={() => { closeAssistant(); router.push(action.path as Href); }}>
-                      <Text style={styles.chatButtonText}>{action.label}</Text>
-                    </PressableScale>
-                  ))}
-                </View>
-              ) : null}
               <View style={styles.messagesContent}>
                 {messages.map((message) => (
                   <View
@@ -762,7 +785,7 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean, h
     handle: {
       width: 42,
       height: 4,
-      marginBottom: 16,
+      marginBottom: 10,
       alignSelf: "center",
       borderRadius: 2,
       backgroundColor: purple.border,
@@ -773,7 +796,7 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean, h
       gap: 10,
     },
     headerText: { flex: 1, paddingTop: 1 },
-    titleRow: { flexDirection: "row", alignItems: "center", gap: 6 },
+    titleRow: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", columnGap: 6 },
     stateText: {
       color: theme.textMuted,
       fontSize: font(11),
@@ -804,23 +827,32 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean, h
       borderWidth: 1,
       borderColor: purple.border,
     },
-    optionsScroll: { marginTop: 18 },
-    optionsContent: { gap: 10, paddingBottom: 4 },
+    contextCard: { marginTop: 10, borderWidth: 1, borderColor: purple.border, borderRadius: 16 },
+    contextToggle: { minHeight: 44, padding: 10, flexDirection: "row", alignItems: "center", gap: 8 },
+    contextSummary: { flex: 1, minWidth: 0, gap: 2 },
+    contextTitle: { color: theme.text, fontSize: font(12), lineHeight: font(17), fontWeight: "800" },
+    contextText: { color: theme.textMuted, fontSize: font(12), lineHeight: font(18) },
+    contextDetails: { padding: 10, paddingTop: 0, gap: 8 },
+    contextLink: { minHeight: 44, paddingHorizontal: 10, paddingVertical: 8, borderRadius: 12, borderWidth: 1, borderColor: purple.border, flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 8 },
+    contextLinkText: { flexShrink: 1, color: theme.primary, fontSize: font(13), lineHeight: font(18), fontWeight: "700" },
+    optionsScroll: { marginTop: 12 },
+    optionsContent: { gap: 8, paddingBottom: 4 },
     optionCard: {
-      minHeight: 58,
+      minHeight: 52,
       paddingHorizontal: 12,
+      paddingVertical: 8,
       borderRadius: 18,
       flexDirection: "row",
       alignItems: "center",
-      gap: 12,
+      gap: 10,
       backgroundColor: purple.surface,
       borderWidth: 1,
       borderColor: purple.border,
     },
     optionIcon: {
-      width: 40,
-      height: 40,
-      borderRadius: 20,
+      width: 32,
+      height: 32,
+      borderRadius: 16,
       alignItems: "center",
       justifyContent: "center",
       backgroundColor: purple.soft,
@@ -1014,10 +1046,7 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean, h
       fontWeight: "800",
     },
     chatBox: {
-      marginTop: 12,
-      paddingTop: 12,
-      borderTopWidth: 1,
-      borderColor: purple.border,
+      marginTop: 8,
     },
     chatMessages: { flex: 1, minHeight: 0 },
     bodyContent: { paddingBottom: 12 },
@@ -1032,7 +1061,7 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean, h
     },
     fluiBubble: {
       alignSelf: "flex-start",
-      maxWidth: "85%",
+      maxWidth: "95%",
       marginBottom: 8,
       padding: 10,
       borderRadius: 16,
