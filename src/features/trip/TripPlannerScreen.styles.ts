@@ -307,8 +307,14 @@ export const styles = StyleSheet.create({
 
   statItem: {
     flex: 1,
+    minWidth: 0,
+    paddingHorizontal: 4,
     alignItems: "center",
   },
+
+  statsStack: { flexDirection: "column", gap: spacing.sm },
+  statItemStack: { flex: 0, width: "100%" },
+  statDividerStack: { width: "100%", height: 1 },
 
   statDivider: {
     width: 1,
@@ -320,12 +326,14 @@ export const styles = StyleSheet.create({
     fontSize: typography.sizes.md,
     fontWeight: typography.weights.bold,
     marginTop: spacing.xxs,
+    textAlign: "center",
   },
 
   statLabel: {
     color: colors.textMuted,
     fontSize: typography.sizes.xs,
     marginTop: 1,
+    textAlign: "center",
   },
 
   timelineRow: {
@@ -367,6 +375,8 @@ export const styles = StyleSheet.create({
 
   timelineContent: {
     flex: 1,
+    minWidth: 0,
+    paddingLeft: spacing.xs,
     paddingBottom: spacing.md,
   },
 
@@ -379,18 +389,22 @@ export const styles = StyleSheet.create({
   timelineMeta: {
     color: colors.textMuted,
     fontSize: typography.sizes.sm,
-    marginTop: 1,
+    lineHeight: 20,
+    marginTop: 4,
   },
 
   timelineBatteryRow: {
     flexDirection: "row",
+    flexWrap: "wrap",
     alignItems: "center",
     marginTop: spacing.xs,
   },
 
   timelineBatteryText: {
+    flexShrink: 1,
     color: colors.text,
     fontSize: typography.sizes.sm,
+    lineHeight: 20,
     fontWeight: typography.weights.semibold,
   },
 

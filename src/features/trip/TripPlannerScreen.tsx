@@ -88,7 +88,7 @@ function calcularRegiaoDoMapa(pontos: Coordenada[]): Region {
 export default function TripPlannerScreen() {
   const { styles, colors, isDarkMode, fontScale } = useTelaComPreferencias(baseStyles);
   const { width, fontScale: systemFontScale } = useWindowDimensions();
-  const { stacked } = getTripReadingLayout(width, fontScale, systemFontScale);
+  const { stacked, stackedStats } = getTripReadingLayout(width, fontScale, systemFontScale);
   const reducedMotion = useReducedMotion();
   const [footerHeight, setFooterHeight] = useState(140);
   const { userPreferences, demoOrigin } = useAppPreferences();
@@ -452,10 +452,10 @@ export default function TripPlannerScreen() {
                 </View>
                 <View style={styles.routeCardTitleText}>
                   <Text style={styles.routeCardTitle}>
-                    Rota de viagem
+                    Resumo da viagem
                   </Text>
                   <Text style={styles.routeCardSubtitle}>
-                    Com paradas de recarga e autonomia
+                    Estimativas em linha reta
                   </Text>
                 </View>
               </View>
@@ -471,8 +471,8 @@ export default function TripPlannerScreen() {
               </Pressable>
             </View>
 
-            <View style={styles.statsRow}>
-              <View style={styles.statItem}>
+            <View style={[styles.statsRow, stackedStats && styles.statsStack]}>
+              <View style={[styles.statItem, stackedStats && styles.statItemStack]}>
                 <Milestone size={16} color={colors.textMuted} strokeWidth={2} />
                 <Text style={styles.statValue}>
                   {plano.distanciaTotalKm} km
@@ -480,9 +480,9 @@ export default function TripPlannerScreen() {
                 <Text style={styles.statLabel}>Distância total</Text>
               </View>
 
-              <View style={styles.statDivider} />
+              <View style={[styles.statDivider, stackedStats && styles.statDividerStack]} />
 
-              <View style={styles.statItem}>
+              <View style={[styles.statItem, stackedStats && styles.statItemStack]}>
                 <Clock3 size={16} color={colors.textMuted} strokeWidth={2} />
                 <Text style={styles.statValue}>
                   {formatarDuracao(plano.tempoEstimadoMin)}
@@ -490,9 +490,9 @@ export default function TripPlannerScreen() {
                 <Text style={styles.statLabel}>Deslocamento estimado</Text>
               </View>
 
-              <View style={styles.statDivider} />
+              <View style={[styles.statDivider, stackedStats && styles.statDividerStack]} />
 
-              <View style={styles.statItem}>
+              <View style={[styles.statItem, stackedStats && styles.statItemStack]}>
                 <Zap size={16} color={colors.textMuted} strokeWidth={2} />
                 <Text style={styles.statValue}>{plano.paradas.length}</Text>
                 <Text style={styles.statLabel}>
@@ -539,13 +539,13 @@ export default function TripPlannerScreen() {
                     <Text
                       style={[styles.timelineBatteryText, { color: corDaBateria }]}
                     >
-                      {batteryPercent}%
+                      Saída {batteryPercent}%
                     </Text>
                   </View>
                 </View>
               </View>
 
-              {plano.paradas.map((parada, index) => (
+              {plano.paradas.map((parada) => (
                 <View key={parada.id} style={styles.timelineRow}>
                   <View style={styles.timelineRail}>
                     <View
@@ -563,7 +563,7 @@ export default function TripPlannerScreen() {
                     </Text>
                     <View style={styles.timelineBatteryRow}>
                       <Text style={styles.timelineBatteryText}>
-                        {parada.bateriaChegadaPercent}% → {parada.bateriaSaidaPercent}%
+                        Chegada {parada.bateriaChegadaPercent}% → saída {parada.bateriaSaidaPercent}%
                       </Text>
                     </View>
                   </View>
@@ -583,11 +583,11 @@ export default function TripPlannerScreen() {
                 </View>
                 <View style={styles.timelineContent}>
                   <Text style={styles.timelineName}>{destinoSelecionado.nome}</Text>
-                  {podeIniciar ? (
+                  {podeIniciar && plano.paradas.length > 0 ? (
                     <Text style={styles.timelineMeta}>
-                      Último trecho: ≈{plano.trechoFinal.distanciaKm} km em linha reta · {formatarDuracao(plano.trechoFinal.tempoMin)} de deslocamento. Saída estimada: {plano.trechoFinal.bateriaSaidaPercent}%.
+                      Último trecho · ≈{plano.trechoFinal.distanciaKm} km · {formatarDuracao(plano.trechoFinal.tempoMin)}
                     </Text>
-                  ) : null}
+                  ) : podeIniciar ? <Text style={styles.timelineMeta}>Trecho direto · sem paradas de recarga</Text> : null}
                   <View style={styles.timelineBatteryRow}>
                     <Text
                       style={[
@@ -596,7 +596,7 @@ export default function TripPlannerScreen() {
                       ]}
                     >
                       {podeIniciar
-                        ? `${plano.bateriaChegadaDestinoPercent}% na chegada`
+                        ? `Chegada estimada · ${plano.bateriaChegadaDestinoPercent}%`
                         : "Viagem bloqueada · reserva mínima de 5%"}
                     </Text>
                   </View>
