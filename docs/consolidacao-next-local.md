@@ -1,4 +1,4 @@
-# Consolidação NEXT — checkpoint de validação
+# Consolidação NEXT — candidata local validada
 
 Base exata 77ea55a. Cópia independente flui-consolidado-next, branch local/consolidacao-next-20261022.
 
@@ -12,6 +12,12 @@ Execução real no simulador exclusivo iPhone 17e/iOS 27.0/Expo Go 54.0.7: avali
 
 Limitação herdada confirmada por comparação com 77ea55a: abrir ficha não grava viewed_station; salvar avaliação grava sent_review. Não corrigida, pois está fora das três correções autorizadas.
 
-Pendências deste checkpoint: concluir diagnóstico visual de Fast Refresh web, conferir preservação dos originais e registrar relatório/commit finais. Android, Release, aparelho físico e avaliação humana de acessibilidade permanecem sem comprovação.
+Fast Refresh visual aprovado no Chromium conectado ao Metro: texto A → B e contador 2 preservado. Isso não comprova Fast Refresh nativo. Rota e módulo temporários removidos; a exportação final tem somente as 14 rotas esperadas.
+
+Conferência final: HEAD, branch, refs, configuração, estado Git e hashes dos arquivos rastreados dos seis ambientes originais permaneceram iguais. Servidores exclusivos 8130/8131 e simulador exclusivo encerrados. A porta 8106 não recebeu intervenção; já não havia listener na conferência inicial. Bloqueios de push permanecem ativos nesta candidata.
+
+Parecer: APTA COM RESSALVAS para iniciar revisão humana controlada. Nenhuma regressão introduzida pela consolidação foi comprovada nos cenários concluídos. Favorito/FluIA/Fast Refresh nativos, Android, Release, aparelho físico e avaliação humana de acessibilidade permanecem sem comprovação. Não promover a candidata para o ambiente de apresentação sem autorização expressa.
+
+Retomada: começar pelo relatório final e pelos resultados existentes, sem repetir instalação, matriz web ou os quatro cenários nativos aprovados se o código continuar igual. Antes de novo trabalho, obter o próximo objetivo humano. Para retomar automação nativa, reavaliar o menu do Expo/hit testing; não repetir os mesmos toques que falharam.
 
 Evidências e marcos: output/consolidacao-next-20261022. Push bloqueado. Originais preservados. Sem integração posterior ou publicação autorizadas.
