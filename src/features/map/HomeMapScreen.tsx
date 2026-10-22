@@ -1599,7 +1599,7 @@ export default function HomeMapScreen() {
               onPress={centralizarLocalizacaoUsuario}
               disabled={isLocatingUser}
             >
-              <Crosshair size={25} color={colors.primary} strokeWidth={2.2} />
+              <Crosshair size={25} color={colors.white} strokeWidth={2.2} />
             </PressableScale>
 
           </View>
@@ -1612,10 +1612,10 @@ export default function HomeMapScreen() {
               style={styles.mapControlButton}
               onPress={abrirPlanejadorDeViagens}
             >
-              <Milestone size={22} color={colors.primary} strokeWidth={2.2} />
+              <Milestone size={22} color={colors.white} strokeWidth={2.2} />
             </PressableScale>
             <PressableScale accessibilityRole="button" accessibilityLabel={painelTotalmenteOculto ? "Mostrar pontos de recarga" : "Ocultar sugestões de pontos"} accessibilityState={{ expanded: !painelTotalmenteOculto }} accessibilityHint="Abre a lista existente de sugestões locais." style={styles.mapControlButton} onPress={() => { setHasInteractedWithSheet(true); if (painelTotalmenteOculto) alternarModalDePontos(false); else ocultarPainelDePontosCompletamente(); }}>
-              <List size={22} color={colors.primary} strokeWidth={2.2} />
+              <List size={22} color={colors.white} strokeWidth={2.2} />
             </PressableScale>
           </View>
 

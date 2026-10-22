@@ -591,9 +591,9 @@ const styles = StyleSheet.create({
     borderRadius: 26,
     alignItems: "center",
     overflow: "hidden",
-    backgroundColor: colors.white,
+    backgroundColor: colors.primary,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: colors.primary,
     ...shadow,
   },
 
@@ -605,13 +605,14 @@ const styles = StyleSheet.create({
   },
 
   zoomPillButtonActive: {
-    backgroundColor: colors.primarySoft,
+    opacity: 0.8,
   },
 
   zoomPillDivider: {
     width: 28,
     height: 1,
-    backgroundColor: colors.border,
+    backgroundColor: colors.white,
+    opacity: 0.35,
   },
 
   mapControlButton: {
@@ -620,15 +621,14 @@ const styles = StyleSheet.create({
     borderRadius: 26,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: colors.white,
+    backgroundColor: colors.primary,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: colors.primary,
     ...shadow,
   },
 
   mapControlButtonActive: {
-    backgroundColor: colors.primarySoft,
-    borderColor: colors.primarySoftStrong,
+    opacity: 0.8,
   },
 
   mapControlButtonLoading: {
@@ -636,7 +636,7 @@ const styles = StyleSheet.create({
   },
 
   mapControlText: {
-    color: colors.primary,
+    color: colors.white,
     fontSize: 28,
     fontWeight: "800",
     lineHeight: 31,
