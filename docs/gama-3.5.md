@@ -18,8 +18,9 @@ A ação externa à moldura apenas abre o mapa já existente do aplicativo.
 
 Verificações: TypeScript, lint sem erros (aviso herdado), 130 testes aprovados;
 teste de proporções em larguras 280, 350, 768 e 1920. Device Hub / iPhone 17e / iOS 27.0 /
-Expo Go: navegação até a área e seleção horizontal/vertical; capturas locais em
-`.validation/gama-avancada/3.5-*.png`. Conferência web final registrada no checkpoint integrado.
+Expo Go: navegação até a área e seleção dos três formatos; capturas locais em
+`.validation/gama-avancada/3.5-*.png`. Exportação integrada aprovada com 14 rotas;
+carregamento e legibilidade da página Auto Experience observados também no navegador local.
 
 Limites: a moldura representa uma proposta de estudo, sem homologação automotiva,
 CarPlay ou Android Auto. Não testa uso ao dirigir, hardware real, desempenho em

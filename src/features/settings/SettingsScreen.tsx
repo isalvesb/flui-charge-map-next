@@ -474,6 +474,12 @@ export default function SettingsScreen() {
                   <Text style={styles.optionDescription}>Compare formatos de central. Simulação visual, sem integração com veículos.</Text>
                 </View>
               </PressableScale>
+              <PressableScale accessibilityRole="button" accessibilityLabel="Abrir laboratório da Energy Orb" style={styles.optionButton} onPress={() => router.push("/orb-lab")}>
+                <View style={styles.optionInfo}>
+                  <Text style={styles.optionTitle}>Laboratório da Energy Orb</Text>
+                  <Text style={styles.optionDescription}>Compare a versão atual e os efeitos propostos. Não modifica a Orb do chat.</Text>
+                </View>
+              </PressableScale>
             </View>
           </View>
         </ScrollView>
