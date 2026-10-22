@@ -6,6 +6,7 @@ import { ArrowLeft, BatteryMedium, Check, ChevronRight, MapPin, MessageCircle, Z
 import Svg, { Circle, Path, Rect } from "react-native-svg";
 import { PressableScale } from "../../components";
 import { useAppPreferences } from "../../context/PreferencesContext";
+import { formatarDistanciaDemonstrativa } from "../../utils/demonstracao";
 import { getStationStatusInfo } from "../stations/stationPresentation";
 import { AUTO_FORMATS, getAutoPreviewLayout } from "./autoPresentation";
 
@@ -63,13 +64,13 @@ export default function AutoExperienceScreen() {
                   <Text style={[text, { fontSize: scale(20), lineHeight: scale(26), fontWeight: "800" }]}>{station.name}</Text>
                   <Text style={[small, { color: theme.text }]}>{getStationStatusInfo(station).label} nos dados locais</Text>
                   <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
-                    <Text style={[small, { color: theme.primary, fontWeight: "800" }]}>≈{station.distanceKm.toFixed(1)} km</Text>
+                    <Text style={[small, { color: theme.primary, fontWeight: "800" }]}>{formatarDistanciaDemonstrativa(station.distanceKm)}</Text>
                     <Text style={small}>em linha reta · {station.powerKw} kW</Text>
                   </View>
                   <Text style={small}>Confirme funcionamento e compatibilidade.</Text>
                 </View>
                 <View accessible accessibilityLabel={`Mapa ilustrativo. Origem demonstrativa: ${demoOrigin.nome}. Sem percurso real.`} style={{ flex: 1, minHeight: 170, backgroundColor: theme.primarySoft, overflow: "hidden" }}>
-                  <Svg height="100%" width="100%" style={{ position: "absolute" }} viewBox="0 0 600 300" preserveAspectRatio="xMidYMid slice" accessible={false}>
+                  <Svg height="100%" width="100%" style={{ position: "absolute" }} viewBox="0 0 600 300" preserveAspectRatio="xMidYMid meet" accessible={false}>
                     <Rect x={0} y={0} width={600} height={300} fill={theme.primarySoft} />
                     <Rect x={330} y={20} width={140} height={95} rx={28} fill={theme.primarySoftStrong} />
                     <Rect x={30} y={195} width={165} height={80} rx={24} fill={theme.primarySoftStrong} />
