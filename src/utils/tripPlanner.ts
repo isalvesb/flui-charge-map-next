@@ -26,6 +26,11 @@ export type PlanoDeViagem = {
   paradas: ParadaDeViagem[];
   bateriaChegadaDestinoPercent: number;
   nivelDeAlcance: NivelDeAlcance;
+  trechoFinal: {
+    distanciaKm: number;
+    tempoMin: number;
+    bateriaSaidaPercent: number;
+  };
 };
 
 const MARGEM_SEGURANCA_PERCENT = 20;
@@ -140,6 +145,12 @@ export function planejarViagem(
 
   return {
     distanciaTotalKm: Math.round(distanciaTotalKm),
+    // Expõe os valores já calculados; não redefine o trajeto nem a reserva.
+    trechoFinal: {
+      distanciaKm: Math.round(trechoFinalKm),
+      tempoMin: calcularTempoMin(trechoFinalKm),
+      bateriaSaidaPercent: bateriaAtual,
+    },
     tempoEstimadoMin: calcularTempoMin(distanciaTotalKm),
     paradas,
     bateriaChegadaDestinoPercent:

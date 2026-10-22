@@ -123,3 +123,26 @@ test("recarga alcançável permite alternativa que preserva a reserva no destino
   assert.equal(plano.bateriaChegadaDestinoPercent, 7);
   assert.equal(podeIniciarViagem(plano), true);
 });
+
+test("último trecho expõe a saída da última recarga em viagem com três paradas", () => {
+  const destino = obterDestinoDemonstrativo("campos-do-jordao");
+  const plano = planejarViagem(origem, destino, 80, 70);
+  assert.equal(plano.paradas.length, 3);
+  const ultima = plano.paradas.at(-1)!;
+  assert.equal(plano.trechoFinal.bateriaSaidaPercent, ultima.bateriaSaidaPercent);
+  assert.equal(plano.trechoFinal.distanciaKm, Math.round(calcularDistanciaGeograficaKm(ultima, destino)));
+  assert.equal(plano.bateriaChegadaDestinoPercent, 53);
+  assert.equal(podeIniciarViagem(plano), true);
+  for (const parada of plano.paradas) assert.ok(parada.bateriaChegadaPercent >= 5);
+});
+
+test("sem paradas, o último trecho parte da bateria informada e acompanha a configuração", () => {
+  const plano = planejarViagem(origem, campinas, 400, 70);
+  assert.equal(plano.paradas.length, 0);
+  assert.equal(plano.trechoFinal.bateriaSaidaPercent, 70);
+  assert.equal(plano.trechoFinal.distanciaKm, plano.distanciaTotalKm);
+  assert.equal(plano.trechoFinal.tempoMin, plano.tempoEstimadoMin);
+  const reduzido = planejarViagem(origem, campinas, 50, 70);
+  assert.equal(podeIniciarViagem(reduzido), false);
+  assert.notEqual(plano.bateriaChegadaDestinoPercent, reduzido.bateriaChegadaDestinoPercent);
+});

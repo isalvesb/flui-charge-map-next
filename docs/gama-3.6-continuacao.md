@@ -26,3 +26,8 @@ Android, aparelho físico ou Release. O teste numérico de fonte do sistema não
 equivale a uma validação visual de todas as categorias máximas do iOS.
 
 Conferência iOS: iPhone 17e / iOS 27.0 / Expo Go 54.0.7, alto contraste e fonte maior. As capturas antes/depois comprovam os rótulos de autonomia e bateria completos. A árvore acessível contém título e subtítulo completos. A rolagem automatizada do Device Hub não permitiu enquadrar o resumo; após tentativas sem progresso, essa abordagem foi interrompida. A inspeção visual do resumo e dos tamanhos extremos do sistema permanece pendente.
+
+Atualização no checkpoint 3.3: o atalho acessível para os trechos permitiu conferir
+também o resumo no iOS, sem reticências no título/subtítulo, com edição em linha
+própria e avisos desobstruídos. Evidência `3.3-trecho-final-e-resumo.png`.
+Permanece pendente a conferência visual dos tamanhos extremos de texto do sistema.

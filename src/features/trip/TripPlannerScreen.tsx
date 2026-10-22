@@ -103,7 +103,8 @@ export default function TripPlannerScreen() {
   const [seletorAberto, setSeletorAberto] = useState<SeletorAberto>(null);
   const [erroDeRota, setErroDeRota] = useState<string | null>(null);
   const [isIniciandoViagem, setIsIniciandoViagem] = useState(false);
-  const [mostrarDicaDeRolagem, setMostrarDicaDeRolagem] = useState(true);
+  const scrollRef = useRef<ScrollView>(null);
+  const routeCardTop = useRef(0);
 
   const origemSelecionada = useMemo(() => {
     return (
@@ -308,17 +309,9 @@ export default function TripPlannerScreen() {
 
         <ConnectionNotice />
         <ScrollView
+          ref={scrollRef}
           contentContainerStyle={[styles.scrollContent, { paddingBottom: footerHeight + 24 }]}
           showsVerticalScrollIndicator={false}
-          scrollEventThrottle={16}
-          onScroll={(event) => {
-            if (
-              mostrarDicaDeRolagem &&
-              event.nativeEvent.contentOffset.y > 24
-            ) {
-              setMostrarDicaDeRolagem(false);
-            }
-          }}
         >
           <View style={styles.card}>
             <Pressable
@@ -443,16 +436,15 @@ export default function TripPlannerScreen() {
             </MapView>
           </View>
 
-          {mostrarDicaDeRolagem ? (
-            <View style={styles.scrollHint}>
+            <PressableScale accessibilityRole="button" accessibilityLabel="Ver trechos da viagem" style={[styles.scrollHint, { minHeight: 48 }]}
+              onPress={() => scrollRef.current?.scrollTo({ y: routeCardTop.current, animated: !reducedMotion })}>
               <Text style={styles.scrollHintText}>
-                Role para ver a rota completa
+                Ver trechos da viagem
               </Text>
               <ChevronDown size={14} color={colors.textMuted} strokeWidth={2.4} />
-            </View>
-          ) : null}
+            </PressableScale>
 
-          <View style={styles.card}>
+          <View style={styles.card} onLayout={(event) => { routeCardTop.current = event.nativeEvent.layout.y; }}>
             <View style={[styles.routeCardHeader, stacked && styles.stackedRow]}>
               <View style={styles.routeCardTitleGroup}>
                 <View style={styles.routeCardIconBox}>
@@ -495,7 +487,7 @@ export default function TripPlannerScreen() {
                 <Text style={styles.statValue}>
                   {formatarDuracao(plano.tempoEstimadoMin)}
                 </Text>
-                <Text style={styles.statLabel}>Tempo estimado</Text>
+                <Text style={styles.statLabel}>Deslocamento estimado</Text>
               </View>
 
               <View style={styles.statDivider} />
@@ -591,6 +583,11 @@ export default function TripPlannerScreen() {
                 </View>
                 <View style={styles.timelineContent}>
                   <Text style={styles.timelineName}>{destinoSelecionado.nome}</Text>
+                  {podeIniciar ? (
+                    <Text style={styles.timelineMeta}>
+                      Último trecho: ≈{plano.trechoFinal.distanciaKm} km em linha reta · {formatarDuracao(plano.trechoFinal.tempoMin)} de deslocamento. Saída estimada: {plano.trechoFinal.bateriaSaidaPercent}%.
+                    </Text>
+                  ) : null}
                   <View style={styles.timelineBatteryRow}>
                     <Text
                       style={[
@@ -610,6 +607,7 @@ export default function TripPlannerScreen() {
 
           <Text style={styles.disclaimerText}>
             {identificacaoDados.viagem.aviso}
+            {"\n"}O tempo de deslocamento não inclui espera nem duração das recargas. Conectores e funcionamento das paradas não são confirmados por esta simulação.
           </Text>
 
           {erroDeRota ? (
