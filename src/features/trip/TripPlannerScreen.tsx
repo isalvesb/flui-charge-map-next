@@ -51,7 +51,7 @@ import {
   type ParadaDeViagem,
 } from "../../utils/tripPlanner";
 import { styles as baseStyles } from "./TripPlannerScreen.styles";
-import { getTripReadingLayout } from "./tripLayout";
+import { getTripReadingLayout, shouldStackTripStats } from "./tripLayout";
 import { useReducedMotion } from "../../hooks/useReducedMotion";
 
 type Coordenada = { latitude: number; longitude: number };
@@ -88,7 +88,11 @@ function calcularRegiaoDoMapa(pontos: Coordenada[]): Region {
 export default function TripPlannerScreen() {
   const { styles, colors, isDarkMode, fontScale } = useTelaComPreferencias(baseStyles);
   const { width, fontScale: systemFontScale } = useWindowDimensions();
-  const { stacked, stackedStats } = getTripReadingLayout(width, fontScale, systemFontScale);
+  const { stacked } = getTripReadingLayout(width, fontScale, systemFontScale);
+  // Começa empilhado tanto na exportação quanto na primeira renderização cliente.
+  // A largura medida muda os estilos em conjunto, depois da hidratação.
+  const [statsWidth, setStatsWidth] = useState(0);
+  const stackedStats = shouldStackTripStats(statsWidth, fontScale, systemFontScale);
   const reducedMotion = useReducedMotion();
   const [footerHeight, setFooterHeight] = useState(140);
   const { userPreferences, demoOrigin } = useAppPreferences();
@@ -471,7 +475,10 @@ export default function TripPlannerScreen() {
               </Pressable>
             </View>
 
-            <View style={[styles.statsRow, stackedStats && styles.statsStack]}>
+            <View
+              style={[styles.statsRow, stackedStats && styles.statsStack]}
+              onLayout={(event) => setStatsWidth(event.nativeEvent.layout.width)}
+            >
               <View style={[styles.statItem, stackedStats && styles.statItemStack]}>
                 <Milestone size={16} color={colors.textMuted} strokeWidth={2} />
                 <Text style={styles.statValue}>

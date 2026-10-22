@@ -306,22 +306,26 @@ export const styles = StyleSheet.create({
   },
 
   statItem: {
-    flex: 1,
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 0,
     minWidth: 0,
     paddingHorizontal: 4,
     alignItems: "center",
   },
 
   statsStack: { flexDirection: "column", gap: spacing.sm },
-  statItemStack: { flex: 0, width: "100%" },
+  statItemStack: { flexGrow: 0, flexShrink: 0, flexBasis: "auto", width: "100%" },
   statDividerStack: { width: "100%", height: 1 },
 
   statDivider: {
     width: 1,
+    flexShrink: 0,
     backgroundColor: colors.border,
   },
 
   statValue: {
+    alignSelf: "stretch",
     color: colors.text,
     fontSize: typography.sizes.md,
     fontWeight: typography.weights.bold,
@@ -330,6 +334,7 @@ export const styles = StyleSheet.create({
   },
 
   statLabel: {
+    alignSelf: "stretch",
     color: colors.textMuted,
     fontSize: typography.sizes.xs,
     marginTop: 1,
