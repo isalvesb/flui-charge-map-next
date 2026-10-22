@@ -27,7 +27,7 @@ Cópia: `flui-ux-mapa-01`, independente da consolidação.
 
 ## Execução isolada
 
-Aplicativo: **Flui Mapa 01**. Bundle ID: `com.guicunhasou.fluiuxmapa01`.
+Aplicativo: **Flui 2.1**. Bundle ID: `com.guicunhasou.fluiuxmapa01`.
 Metro: porta **8116**; o aplicativo de referência continua na **8106**.
 
 ```sh
@@ -39,6 +39,10 @@ O binário Debug separado contém Skia e Google Maps. Expo Go não substitui ess
 binário. Alterações JS/estilos posteriores podem usar Fast Refresh na porta8116.
 O comando não carrega `.env.local` no manifesto LAN; a configuração Google já
 está no projeto nativo local ignorado. Não exibir nem versionar credenciais.
+
+A pedido do usuário, o nome instalado é Flui 2.1 (versão 2.1.0). O final dos
+Ajustes mostra versão e identificação do experimento; o número vem de
+package.json, alinhado à versão nativa 2.1.0; a candidata original não foi alterada.
 
 ## Configuração nativa local
 
@@ -68,7 +72,7 @@ Pasta absoluta:
 - `fluxos-web.json`: sugestões/ficha/retorno; planejador; busca/filtro completo;
   zoom/centralização acionáveis na prévia; conversa, fechamento, recomendação
   e Plano B. Nenhuma exceção/erro/requisição falha na execução aprovada.
-- `npm-ls.json`: sem problemas na árvore. `build-ios.log`: BUILD SUCCEEDED.
+- `npm-ls.json`: sem problemas na árvore. `build-ios-endpoint.log`: BUILD SUCCEEDED.
 - Capturas web em `capturas/`. Web é prévia e não valida mapa/zoom nativos,
   desempenho físico, teclado iOS ou VoiceOver.
 

@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Platform, ScrollView, StatusBar, Text, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
+import appPackage from "../../../package.json";
 import {
   ArrowLeft,
   Check,
@@ -481,6 +482,11 @@ export default function SettingsScreen() {
                 </View>
               </PressableScale>
             </View>
+          </View>
+          <View style={styles.section} testID="identificacao-versao">
+            <Text style={styles.sectionTitle}>Sobre esta versão</Text>
+            <Text style={styles.sectionText}>Flui {appPackage.version}</Text>
+            <Text style={styles.sectionText}>Experimento do mapa · revisão local</Text>
           </View>
         </ScrollView>
 

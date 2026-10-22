@@ -7,9 +7,9 @@ const googleMapsApiKeyIos =
 
 module.exports = {
   expo: {
-    name: "flui-charge-map",
+    name: "Flui 2.1",
     slug: "flui-charge-map",
-    version: "1.0.0",
+    version: "2.1.0",
     orientation: "portrait",
     icon: "./src/assets/images/icon.png",
     scheme: "fluiuxmapa01",
@@ -19,7 +19,7 @@ module.exports = {
       bundleIdentifier: "com.guicunhasou.fluiuxmapa01",
       appleTeamId: "D982GJWNW4",
       buildNumber: "20261022",
-      infoPlist: { CFBundleDisplayName: "Flui Mapa 01" },
+      infoPlist: { CFBundleDisplayName: "Flui 2.1" },
       supportsTablet: true,
       config: {
         googleMapsApiKey: googleMapsApiKeyIos,
