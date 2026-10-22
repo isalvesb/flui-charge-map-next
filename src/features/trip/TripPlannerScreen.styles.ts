@@ -39,6 +39,9 @@ export const styles = StyleSheet.create({
   },
 
   headerTitle: {
+    flex: 1,
+    minWidth: 0,
+    textAlign: "center",
     color: colors.text,
     fontSize: 18,
     fontWeight: "800",
@@ -118,8 +121,15 @@ export const styles = StyleSheet.create({
     gap: spacing.md,
   },
 
+  stackedRow: {
+    flexDirection: "column",
+    alignItems: "stretch",
+    gap: spacing.md,
+  },
+
   autonomyTile: {
-    flex: 1,
+    flexGrow: 1,
+    flexBasis: "auto",
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: colors.primarySoft,
@@ -235,7 +245,8 @@ export const styles = StyleSheet.create({
   },
 
   routeCardTitleGroup: {
-    flex: 1,
+    flexGrow: 1,
+    flexShrink: 1,
     minWidth: 0,
     marginRight: spacing.sm,
     flexDirection: "row",
@@ -270,6 +281,7 @@ export const styles = StyleSheet.create({
   },
 
   editButton: {
+    minHeight: 48,
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: spacing.sm,
@@ -436,6 +448,8 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     gap: spacing.xs,
+    paddingHorizontal: 12,
+    paddingVertical: 12,
   },
 
   startButtonDisabled: {
@@ -448,6 +462,8 @@ export const styles = StyleSheet.create({
   },
 
   startButtonText: {
+    flexShrink: 1,
+    textAlign: "center",
     color: colors.white,
     fontSize: typography.sizes.md,
     fontWeight: typography.weights.bold,
@@ -477,6 +493,7 @@ export const styles = StyleSheet.create({
   },
 
   modalOption: {
+    minHeight: 48,
     paddingVertical: spacing.md,
     borderBottomWidth: 1,
     borderBottomColor: colors.border,
@@ -503,6 +520,8 @@ export const styles = StyleSheet.create({
   },
 
   modalCloseButton: {
+    minHeight: 48,
+    justifyContent: "center",
     marginTop: spacing.md,
     alignItems: "center",
     paddingVertical: spacing.sm,

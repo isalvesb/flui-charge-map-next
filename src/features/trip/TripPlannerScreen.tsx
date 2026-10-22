@@ -11,6 +11,7 @@ import {
   StatusBar,
   Text,
   View,
+  useWindowDimensions,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router, type Href } from "expo-router";
@@ -50,6 +51,8 @@ import {
   type ParadaDeViagem,
 } from "../../utils/tripPlanner";
 import { styles as baseStyles } from "./TripPlannerScreen.styles";
+import { getTripReadingLayout } from "./tripLayout";
+import { useReducedMotion } from "../../hooks/useReducedMotion";
 
 type Coordenada = { latitude: number; longitude: number };
 
@@ -83,7 +86,11 @@ function calcularRegiaoDoMapa(pontos: Coordenada[]): Region {
 }
 
 export default function TripPlannerScreen() {
-  const { styles, colors, isDarkMode } = useTelaComPreferencias(baseStyles);
+  const { styles, colors, isDarkMode, fontScale } = useTelaComPreferencias(baseStyles);
+  const { width, fontScale: systemFontScale } = useWindowDimensions();
+  const { stacked } = getTripReadingLayout(width, fontScale, systemFontScale);
+  const reducedMotion = useReducedMotion();
+  const [footerHeight, setFooterHeight] = useState(140);
   const { userPreferences, demoOrigin } = useAppPreferences();
   const { checkConnection } = useConnectivity();
   const vehicleRangeKm = userPreferences.vehicleRangeKm;
@@ -226,7 +233,7 @@ export default function TripPlannerScreen() {
       <Modal
         visible={seletorAberto !== null}
         transparent
-        animationType="slide"
+        animationType={reducedMotion ? "none" : "slide"}
         onRequestClose={() => setSeletorAberto(null)}
       >
         <View style={styles.modalBackdrop}>
@@ -301,7 +308,7 @@ export default function TripPlannerScreen() {
 
         <ConnectionNotice />
         <ScrollView
-          contentContainerStyle={styles.scrollContent}
+          contentContainerStyle={[styles.scrollContent, { paddingBottom: footerHeight + 24 }]}
           showsVerticalScrollIndicator={false}
           scrollEventThrottle={16}
           onScroll={(event) => {
@@ -359,13 +366,13 @@ export default function TripPlannerScreen() {
             </Pressable>
           </View>
 
-          <View style={[styles.card, styles.autonomyRow]}>
+          <View style={[styles.card, styles.autonomyRow, stacked && styles.stackedRow]}>
             <View style={styles.autonomyTile}>
               <View style={styles.autonomyIconBox}>
                 <BatteryFull size={18} color={colors.primary} strokeWidth={2.2} />
               </View>
               <View style={styles.autonomyTextGroup}>
-                <Text style={styles.autonomyLabel} numberOfLines={1}>
+                <Text style={styles.autonomyLabel}>
                   Autonomia estimada
                 </Text>
                 <Text style={styles.autonomyValue}>{autonomiaAtualKm} km</Text>
@@ -377,7 +384,7 @@ export default function TripPlannerScreen() {
                 <Zap size={18} color={corDaBateria} strokeWidth={2.2} />
               </View>
               <View style={styles.autonomyTextGroup}>
-                <Text style={styles.autonomyLabel} numberOfLines={1}>
+                <Text style={styles.autonomyLabel}>
                   Bateria atual
                 </Text>
                 <Text style={styles.autonomyValue}>{batteryPercent}%</Text>
@@ -446,16 +453,16 @@ export default function TripPlannerScreen() {
           ) : null}
 
           <View style={styles.card}>
-            <View style={styles.routeCardHeader}>
+            <View style={[styles.routeCardHeader, stacked && styles.stackedRow]}>
               <View style={styles.routeCardTitleGroup}>
                 <View style={styles.routeCardIconBox}>
                   <Milestone size={18} color={colors.primary} strokeWidth={2.2} />
                 </View>
                 <View style={styles.routeCardTitleText}>
-                  <Text style={styles.routeCardTitle} numberOfLines={1}>
+                  <Text style={styles.routeCardTitle}>
                     Rota de viagem
                   </Text>
-                  <Text style={styles.routeCardSubtitle} numberOfLines={1}>
+                  <Text style={styles.routeCardSubtitle}>
                     Com paradas de recarga e autonomia
                   </Text>
                 </View>
@@ -616,8 +623,8 @@ export default function TripPlannerScreen() {
         </ScrollView>
       </ScreenTransition>
 
-      <View style={styles.footer}>
-        <Text style={styles.footerCaption} numberOfLines={1}>
+      <View style={styles.footer} onLayout={(event) => setFooterHeight(event.nativeEvent.layout.height)}>
+        <Text style={styles.footerCaption}>
           {podeIniciar
             ? `Navegação até ${proximoDestinoNome}`
             : "Reserva mínima de 5% não preservada na chegada"}
