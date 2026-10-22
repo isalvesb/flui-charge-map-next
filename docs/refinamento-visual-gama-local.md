@@ -39,6 +39,7 @@ Os hooks locais, o destino de push inválido e `push.default=nothing` permanecem
   chegada de 34%. Com autonomia temporária de 80 km: três paradas,
   último trecho ≈21 km/18min, chegada de 53% na árvore acessível.
 - Temas claro, escuro e alto contraste escuro; fonte padrão/maior do app.
+  Após a retomada, alto contraste claro conferido na prévia automotiva 3:4.
   Ampliação nativa do iOS (`extra-extra-extra-large`) conferida na FluIA e
   no planejador: métricas empilhadas e textos sem truncamento nos trechos visíveis.
 - Redução de movimento **nativa** ativada nos Ajustes do simulador:
@@ -58,18 +59,28 @@ Não foi possível ativar o **teclado virtual**: o menu Controls do Device Hub
 não ofereceu essa opção e o Simulator separado não está disponível.
 Digitação/teclado físico não comprovam comportamento com teclado virtual.
 
-O Mac foi bloqueado ao tentar rolar além do resumo com três paradas.
-A chegada está na árvore acessível, mas a captura desse cenário ainda tem
-parte do conteúdo sob o rodapé; falta comprovar a leitura ao rolar até o fim.
-No trajeto direto, os avisos foram capturados integralmente acima do rodapé.
+O Mac foi bloqueado ao tentar rolar além do resumo com três paradas. Após o
+desbloqueio, levantar/ampliar a janela não resolveu o controle da rolagem:
+o Device Hub retornou `windowNotFoundAtPosition((16.0, 505.0))`.
+A abordagem foi interrompida após duas tentativas sem progresso. A chegada
+está na árvore acessível, mas falta comprovar sua leitura ao rolar até o fim.
+Não foi comprovado defeito do aplicativo nesse cenário. No trajeto direto,
+os avisos foram capturados integralmente acima do rodapé.
 
 O texto do iOS foi restaurado para `large`, e Reduzir Movimento foi restaurado
-para desligado. Ao ocorrer o bloqueio, o app de teste estava em tema claro,
-fonte padrão, contraste desligado e autonomia **80 km**; retornar a **400 km**,
-tema escuro, fonte maior e alto contraste ligado após desbloquear o Mac.
+para desligado. Após o desbloqueio, os valores originais do app foram
+restaurados e confirmados na árvore acessível: autonomia **400 km**, tema
+escuro, fonte maior e alto contraste ligado. Os mesmos valores foram
+confirmados após encerrar e reabrir o Expo Go. Registros:
+`retomada-configuracoes-restauradas.txt` e `retomada-configuracoes-apos-reabrir.txt`.
 Veículo, origem e bateria permaneceram BYD Dolphin Plus/FIAP/70% demonstrativos.
 
-Pendentes: teclado virtual, rolagem final com três paradas, alto contraste claro,
+A comparação panorâmica foi atualizada com a captura nativa do código final
+`3741141` (`auto-panoramica-final-escuro-contraste-ampliada.png`). Nesta retomada
+não houve mudança de código; testes e exportação finais continuam correspondendo
+ao mesmo código. Foram atualizados apenas documentação e evidências.
+
+Pendentes: teclado virtual, rolagem final com três paradas,
 leitura humana com VoiceOver, tamanhos extremos do sistema, aparelho físico,
 Android, Release e medição de desempenho/energia. Adoção do protótipo da Orb
 continua dependente de avaliação humana; a Orb principal permanece igual.
