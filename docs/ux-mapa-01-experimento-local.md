@@ -32,8 +32,8 @@ Nenhum push, PR, merge, publicação ou alteração do GitHub foi realizado.
   A marcação vermelha dos insets, solicitada para inspeção, foi removida.
 - Orb nativa de128pt, sem disco escuro ou moldura. Variante do mapa alterna
   `#2B0055`/`#C797FF`, com núcleo sempre visível. Ciclo3,6s: escuro0,2s,
-  transição ao claro1,35s, claro1,1s e retorno0,95s. Transparência do centro
-  varia20%–40%; região externa chega a60%, com dissolução da borda.
+  transição ao claro1,35s, claro1,1s e retorno0,95s. Transparência uniforme
+  de20%–40% em todo o corpo, com antialiasing discreto na borda.
   Raio com estrelinhas reutiliza FluiAiIcon, em primeiro plano, sem nome.
 - Expansão parte da posição medida da Orb; conversa aparece progressivamente em
   tela cheia. Mapa permanece montado. Histórico/motor/ações conversacionais
