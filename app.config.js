@@ -12,10 +12,14 @@ module.exports = {
     version: "1.0.0",
     orientation: "portrait",
     icon: "./src/assets/images/icon.png",
-    scheme: "fluichargemap",
+    scheme: "fluiuxmapa01",
     userInterfaceStyle: "automatic",
     newArchEnabled: true,
     ios: {
+      bundleIdentifier: "com.guicunhasou.fluiuxmapa01",
+      appleTeamId: "D982GJWNW4",
+      buildNumber: "20261022",
+      infoPlist: { CFBundleDisplayName: "Flui Mapa 01" },
       supportsTablet: true,
       config: {
         googleMapsApiKey: googleMapsApiKeyIos,

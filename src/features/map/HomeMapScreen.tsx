@@ -20,7 +20,7 @@ import {
   useWindowDimensions,
   View,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import MapView, {
   Marker,
   PROVIDER_GOOGLE,
@@ -37,7 +37,10 @@ import {
   ChevronRight,
   Clock3,
   Crosshair,
-  Maximize2,
+  ChevronDown,
+  ChevronUp,
+  ListFilter,
+  List,
   Milestone,
   Plug,
   Search,
@@ -72,14 +75,14 @@ import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperi
 import { identificacaoDados } from "../../data/identificacaoDados";
 import { getMapPanelLayout, getMapVerticalFocusOffset, getMapHorizontalFocusOffset } from "./mapLayout";
 import { FluiAssistantSheet } from "../assistant/FluiAssistantSheet";
-import { FluiAiIcon } from "../assistant/FluiAiIcon";
+import { MapEnergyOrb } from "../assistant/MapEnergyOrb";
+import { useIsFocused } from "@react-navigation/native";
+import { getMapExperimentLayout, MAP_ORB_SIZE, type OrbOrigin } from "./mapExperimentLayout";
 
 const FEEDBACK_DURATION = 1500;
 const SHEET_VISIBLE_HANDLE = 30;
 const SHEET_OCULTO_MARGEM_EXTRA = 40;
 const HANDLE_HINT_DISTANCE = 4;
-const ASSISTANT_SHEET_GAP = 4;
-const ASSISTANT_HIDDEN_BOTTOM = 20;
 
 const chevronControleBaixoXml = `<svg width="28" height="12" viewBox="0 0 28 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 4.25L14 8.25L22 4.25" stroke="#BECAC5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
@@ -687,6 +690,11 @@ export default function HomeMapScreen() {
   );
   const { userPreferences, updateBatteryPercent, demoOrigin, demoStations } = useAppPreferences();
   const reduceMotionEnabled = useReducedMotion();
+  const insets = useSafeAreaInsets();
+  const isFocused = useIsFocused();
+  const orbRef = useRef<View>(null);
+  const [orbOrigin, setOrbOrigin] = useState<OrbOrigin>({ x: 195, y: 760, size: MAP_ORB_SIZE });
+  const [quickFiltersVisible, setQuickFiltersVisible] = useState(false);
   const now = useCurrentTime();
   const batteryLabels = getBatterySourceLabels(userPreferences);
   const batteryPercent = userPreferences.batteryPercent;
@@ -719,14 +727,15 @@ export default function HomeMapScreen() {
   const localizacaoUsuario = demoOrigin;
   const [isLocatingUser, setIsLocatingUser] = useState(false);
   const [isSheetCollapsed, setIsSheetCollapsed] = useState(false);
-  const [painelTotalmenteOculto, setPainelTotalmenteOculto] = useState(false);
+  const [painelTotalmenteOculto, setPainelTotalmenteOculto] = useState(true);
   const [sheetHeight, setSheetHeight] = useState(0);
   const [mapAreaHeight, setMapAreaHeight] = useState(0);
   const [mapAreaWidth, setMapAreaWidth] = useState(0);
   const layout = getMapPanelLayout(larguraJanela, alturaJanela, mapAreaHeight, fontScale * escalaFonteSistema, sheetHeight);
+  const experimentLayout = getMapExperimentLayout(mapAreaHeight, insets.bottom);
   const cabecalhoCompacto = larguraJanela <= 360 || fontScale * escalaFonteSistema > 1.3;
   const [alturaCardPonto, setAlturaCardPonto] = useState<number | null>(null);
-  const [hasInteractedWithSheet, setHasInteractedWithSheet] = useState(false);
+  const [hasInteractedWithSheet, setHasInteractedWithSheet] = useState(true);
   const [filtrosRapidos, setFiltrosRapidos] = useState<FiltrosRapidos>(
     filtrosRapidosIniciais,
   );
@@ -770,28 +779,9 @@ export default function HomeMapScreen() {
     outputRange: [0.34, 0.1],
   });
 
-  const assistantWidth = Math.min(220, Math.max(132, 132 * fontScale * escalaFonteSistema));
-
   const sheetCollapsedTranslateY = useMemo(() => {
     return Math.max(sheetHeight - SHEET_VISIBLE_HANDLE, 0);
   }, [sheetHeight]);
-
-  const deslocamentoVerticalBotaoAssistente = sheetTranslateY.interpolate({
-    inputRange: [
-      0,
-      Math.max(sheetCollapsedTranslateY, 1),
-      Math.max(sheetHeight + SHEET_OCULTO_MARGEM_EXTRA, 2),
-    ],
-    outputRange: [
-      0,
-      sheetCollapsedTranslateY,
-      Math.max(
-        sheetHeight + ASSISTANT_SHEET_GAP - ASSISTANT_HIDDEN_BOTTOM,
-        0,
-      ),
-    ],
-    extrapolate: "clamp",
-  });
 
   useEffect(() => {
     setSearchTerm(routeSearchTerm);
@@ -1284,17 +1274,13 @@ export default function HomeMapScreen() {
 
     showLocationFeedback(`Origem demonstrativa centralizada: ${demoOrigin.nome}`);
 
-    if (isSheetCollapsed || painelTotalmenteOculto) {
-      alternarModalDePontos(false);
-    }
-
     setTimeout(() => {
       setIsLocatingUser(false);
     }, 450);
   };
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView edges={["top", "left", "right"]} style={styles.safeArea}>
       <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} />
 
       <ScreenTransition style={styles.screen}>
@@ -1416,9 +1402,13 @@ export default function HomeMapScreen() {
                 strokeWidth={2}
               />
             </PressableScale>
+            <PressableScale accessibilityRole="button" accessibilityLabel={quickFiltersVisible ? "Recolher filtros rápidos" : "Mostrar filtros rápidos"} accessibilityState={{ expanded: quickFiltersVisible, selected: hasFiltrosRapidosAtivos(filtrosRapidos) }} accessibilityHint="Mostra ou oculta os atalhos sem limpar os filtros selecionados." style={styles.filterButton} onPress={() => setQuickFiltersVisible(value => !value)}>
+              <ListFilter size={21} color={colors.primary} strokeWidth={2} />
+              {quickFiltersVisible ? <ChevronUp size={12} color={colors.primary} /> : <ChevronDown size={12} color={colors.primary} />}
+            </PressableScale>
           </View>
 
-          <View style={styles.quickFiltersArea}>
+          {quickFiltersVisible ? <View style={styles.quickFiltersArea}>
               <ScrollView
                 horizontal
                 tabIndex={-1}
@@ -1460,11 +1450,12 @@ export default function HomeMapScreen() {
                   );
                 })}
               </ScrollView>
-          </View>
+          </View> : null}
         </View>
 
         <ConnectionNotice />
         <View
+          testID="mapa-area"
           style={styles.mapArea}
           onLayout={(event) => {
             setMapAreaHeight(event.nativeEvent.layout.height);
@@ -1549,8 +1540,8 @@ export default function HomeMapScreen() {
             ]}
           />
 
-          <View pointerEvents="box-none" style={[styles.fixedMapControls, layout.compactControls && styles.mapControlsCompact]}>
-            <View style={[styles.zoomPill, layout.compactControls && styles.zoomPillCompact]}>
+          <View pointerEvents="box-none" testID="mapa-controles-direita" style={styles.fixedMapControls}>
+            <View style={styles.zoomPill}>
               <PressableScale
                 accessibilityRole="button"
                 accessibilityLabel="Aumentar zoom do mapa"
@@ -1569,7 +1560,7 @@ export default function HomeMapScreen() {
                 <Text allowFontScaling={false} style={styles.mapControlText}>+</Text>
               </PressableScale>
 
-              <View style={[styles.zoomPillDivider, layout.compactControls && styles.zoomDividerCompact]} />
+              <View style={styles.zoomPillDivider} />
 
               <PressableScale
                 accessibilityRole="button"
@@ -1611,6 +1602,8 @@ export default function HomeMapScreen() {
               <Crosshair size={25} color={colors.primary} strokeWidth={2.2} />
             </PressableScale>
 
+          </View>
+          <View pointerEvents="box-none" testID="mapa-controles-esquerda" style={styles.leftMapControls}>
             <PressableScale
               accessibilityRole="button"
               accessibilityLabel="Planejar viagem"
@@ -1621,49 +1614,22 @@ export default function HomeMapScreen() {
             >
               <Milestone size={22} color={colors.primary} strokeWidth={2.2} />
             </PressableScale>
+            <PressableScale accessibilityRole="button" accessibilityLabel={painelTotalmenteOculto ? "Mostrar pontos de recarga" : "Ocultar sugestões de pontos"} accessibilityState={{ expanded: !painelTotalmenteOculto }} accessibilityHint="Abre a lista existente de sugestões locais." style={styles.mapControlButton} onPress={() => { setHasInteractedWithSheet(true); if (painelTotalmenteOculto) alternarModalDePontos(false); else ocultarPainelDePontosCompletamente(); }}>
+              <List size={22} color={colors.primary} strokeWidth={2.2} />
+            </PressableScale>
           </View>
 
-          {funcionalidadesExperimentais.fluia && !assistenteFluiApresentado ? <Animated.View
-            style={[
-              styles.fluiAssistantFloating,
-              {
-                right: layout.horizontal ? 16 : undefined,
-                left: layout.horizontal ? undefined : "50%",
-                marginLeft: layout.horizontal ? 0 : -assistantWidth / 2,
-                top: layout.compactControls && !layout.horizontal ? 74 : undefined,
-                bottom: layout.compactControls ? (layout.horizontal ? 12 : undefined) : sheetHeight + ASSISTANT_SHEET_GAP,
-                transform: [
-                  { translateY: layout.compactControls ? 0 : deslocamentoVerticalBotaoAssistente },
-                ],
-              },
-            ]}
-          >
-            <Animated.View
-              style={[
-                styles.fluiAssistantAnimatedButton,
-                { width: assistantWidth },
-              ]}
-            >
-              <PressableScale
-                accessibilityRole="button"
-                accessibilityLabel="Abrir assistente Flui IA"
-                accessibilityHint="Abre opções de recomendação simulada para encontrar um ponto de recarga."
-                pressedScale={0.95}
-                style={styles.fluiAssistantButton}
-                onPress={() => {
-                  searchInputRef.current?.blur();
-                  Keyboard.dismiss();
-                  setAssistenteFluiApresentado(true);
-                  setAssistenteFluiAberto(true);
-                }}
-              >
-                <FluiAiIcon color={colors.white} size={21} />
-                <Text style={styles.fluiAssistantButtonText}>FluIA</Text>
-              </PressableScale>
-            </Animated.View>
-          </Animated.View> : null}
+          {funcionalidadesExperimentais.fluia && !assistenteFluiApresentado ? <View ref={orbRef} collapsable={false} style={[styles.mapOrbAnchor, { bottom: experimentLayout.orbBottom }]}>
+            <PressableScale accessibilityRole="button" accessibilityLabel="Abrir assistente Flui IA" accessibilityHint="Expande a Orb e abre a FluIA em tela cheia." style={styles.mapOrbButton} pressedScale={0.96} onPress={() => {
+              searchInputRef.current?.blur(); Keyboard.dismiss();
+              orbRef.current?.measureInWindow((x, y, width, height) => { setOrbOrigin({ x: x + width / 2, y: y + height / 2, size: MAP_ORB_SIZE }); setAssistenteFluiApresentado(true); setAssistenteFluiAberto(true); });
+            }}>
+              <MapEnergyOrb state="repouso" size={MAP_ORB_SIZE} active={isFocused && !assistenteFluiApresentado} reducedMotion={reduceMotionEnabled} />
+            </PressableScale>
+          </View> : null}
 
           <Animated.View
+            pointerEvents={painelTotalmenteOculto ? "none" : "auto"}
             aria-hidden={painelTotalmenteOculto}
             accessibilityElementsHidden={painelTotalmenteOculto}
             importantForAccessibility={painelTotalmenteOculto ? "no-hide-descendants" : "auto"}
@@ -1673,6 +1639,8 @@ export default function HomeMapScreen() {
                 left: layout.horizontal ? 16 : margemHorizontalSheet,
                 right: layout.horizontal ? undefined : margemHorizontalSheet,
                 width: layout.panelWidth,
+                bottom: experimentLayout.panelBottom,
+                opacity: painelTotalmenteOculto ? 0 : 1,
                 transform: [{ translateY: sheetTranslateY }],
               },
             ]}
@@ -1682,7 +1650,7 @@ export default function HomeMapScreen() {
               key={`painel-${fontScale}-${escalaFonteSistema}`}
               tabIndex={-1}
               nestedScrollEnabled
-              style={[styles.bottomSheetCard, { maxHeight: layout.panelMaxHeight }]}
+              style={[styles.bottomSheetCard, { maxHeight: experimentLayout.panelMaxHeight }]}
               contentContainerStyle={styles.bottomSheetContent}
               onLayout={(event) => {
                 setSheetHeight(event.nativeEvent.layout.height);
@@ -1879,37 +1847,17 @@ export default function HomeMapScreen() {
             </ScrollView>
           </Animated.View>
 
-          {painelTotalmenteOculto ? (
-            <View
-              pointerEvents="box-none"
-              style={styles.restaurarPainelWrapper}
-            >
-              <PressableScale
-                accessibilityRole="button"
-                accessibilityLabel="Mostrar pontos de recarga"
-                accessibilityHint="Traz de volta a lista de pontos recomendados."
-                pressedScale={0.94}
-                style={styles.restaurarPainelPill}
-                onPress={() => alternarModalDePontos(false)}
-              >
-                <Maximize2 size={16} color={colors.primary} strokeWidth={2.3} />
-                <Text style={styles.restaurarPainelPillText}>
-                  Pontos de recarga
-                </Text>
-              </PressableScale>
-            </View>
-          ) : null}
         </View>
 
         {funcionalidadesExperimentais.fluia ? <FluiAssistantSheet
           visible={assistenteFluiAberto}
+          orbOrigin={orbOrigin}
           stations={visibleStations.map(item => item.station)}
           now={now}
           batteryPercent={batteryPercent}
           vehicleRangeKm={vehicleRangeKm}
           onClose={() => {
             setAssistenteFluiAberto(false);
-            if (Platform.OS !== "ios") setAssistenteFluiApresentado(false);
           }}
           onDismiss={() => setAssistenteFluiApresentado(false)}
           onSelectStation={openStationDetails}

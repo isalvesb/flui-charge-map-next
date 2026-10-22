@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
     paddingHorizontal: 20,
     paddingTop: Platform.OS === "android" ? 18 : 8,
-    paddingBottom: 14,
+    paddingBottom: 10,
     zIndex: 10,
   },
 
@@ -317,7 +317,7 @@ const styles = StyleSheet.create({
   },
 
   searchBar: {
-    height: 58,
+    minHeight: 58,
     marginTop: 14,
     paddingLeft: 18,
     paddingRight: 10,
@@ -332,7 +332,8 @@ const styles = StyleSheet.create({
 
   searchText: {
     flex: 1,
-    marginLeft: 13,
+    marginLeft: 10,
+    minWidth: 0,
     color: colors.textMuted,
     fontSize: 15,
     fontWeight: "500",
@@ -562,15 +563,10 @@ const styles = StyleSheet.create({
     borderWidth: 5,
   },
 
-  fixedMapControls: {
-    position: "absolute",
-    right: 16,
-    top: 18,
-    width: 52,
-    alignItems: "center",
-    gap: 10,
-    zIndex: 12,
-  },
+  leftMapControls: { position: "absolute", left: 16, top: 16, gap: 8, alignItems: "center", zIndex: 12 },
+  fixedMapControls: { position: "absolute", right: 16, top: 16, width: 48, gap: 8, alignItems: "center", zIndex: 12 },
+  mapOrbAnchor: { position: "absolute", left: "50%", marginLeft: -32, width: 64, height: 64, zIndex: 16 },
+  mapOrbButton: { width: 64, height: 64, borderRadius: 32, overflow: "hidden", borderWidth: 1, borderColor: "#6D43A3", backgroundColor: "#160D24", shadowColor: "#2B0055", shadowOpacity: 0.16, shadowRadius: 8, shadowOffset: { width: 0, height: 3 }, elevation: 6 },
 
   mapControlsCompact: {
     top: 12,
@@ -590,8 +586,8 @@ const styles = StyleSheet.create({
   },
 
   zoomPill: {
-    width: 52,
-    height: 104,
+    width: 48,
+    height: 96,
     borderRadius: 26,
     alignItems: "center",
     overflow: "hidden",
@@ -602,8 +598,8 @@ const styles = StyleSheet.create({
   },
 
   zoomPillButton: {
-    width: 52,
-    height: 51,
+    width: 48,
+    height: 47,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -619,8 +615,8 @@ const styles = StyleSheet.create({
   },
 
   mapControlButton: {
-    width: 52,
-    height: 52,
+    width: 48,
+    height: 48,
     borderRadius: 26,
     alignItems: "center",
     justifyContent: "center",

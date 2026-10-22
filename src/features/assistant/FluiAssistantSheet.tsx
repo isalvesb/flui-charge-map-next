@@ -4,9 +4,7 @@ import {
   Easing,
   Keyboard,
   KeyboardAvoidingView,
-  Modal,
   Platform,
-  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -46,7 +44,10 @@ import {
 } from "./fluiAssistant";
 import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
 import { identificacaoDados } from "../../data/identificacaoDados";
-import { EnergyOrb } from "./EnergyOrb";
+import { MapEnergyOrb } from "./MapEnergyOrb";
+import { OrbAssistantModal } from "./OrbAssistantModal";
+import type { OrbOrigin } from "../map/mapExperimentLayout";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { answerMessage, RECOMMENDATION_DISCLAIMER } from "./chatEngine";
 import { describeAssistantContext, summarizeAssistantContext, summarizeSuggestion } from "./assistantPresentation";
 
@@ -58,6 +59,7 @@ import {
 
 type Props = {
   visible: boolean;
+  orbOrigin: OrbOrigin;
   stations: ChargingStation[];
   batteryPercent: number;
   vehicleRangeKm: number;
@@ -101,6 +103,7 @@ const options: {
 
 export function FluiAssistantSheet({
   visible,
+  orbOrigin,
   stations,
   batteryPercent,
   vehicleRangeKm,
@@ -112,6 +115,7 @@ export function FluiAssistantSheet({
 }: Props) {
   const { theme, fontScale, appearanceMode, highContrast, demoOrigin, userPreferences } = useAppPreferences();
   const reduceMotionEnabled = useReducedMotion();
+  const insets = useSafeAreaInsets();
   const styles = useMemo(
     () => createStyles(theme, fontScale, appearanceMode === "dark", highContrast),
     [appearanceMode, fontScale, highContrast, theme],
@@ -227,8 +231,6 @@ export function FluiAssistantSheet({
       chatTimeoutRef.current = null;
     }
     Keyboard.dismiss();
-    // No iOS, preserve o conteúdo durante a animação nativa de saída.
-    if (Platform.OS !== "ios") resetConversation();
     onClose();
   };
 
@@ -334,33 +336,15 @@ export function FluiAssistantSheet({
   if (!funcionalidadesExperimentais.fluia) return null;
 
   return (
-    <Modal
-      transparent
-      visible={visible}
-      animationType={reduceMotionEnabled ? "none" : "slide"}
-      statusBarTranslucent
-      onRequestClose={closeAssistant}
-      onDismiss={() => {
-        resetConversation();
-        onDismiss?.();
-      }}
-    >
+    <OrbAssistantModal visible={visible} origin={orbOrigin} reducedMotion={reduceMotionEnabled} onClose={closeAssistant} onDismiss={() => { resetConversation(); onDismiss?.(); }}>
       <KeyboardAvoidingView
         style={styles.overlay}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         accessibilityViewIsModal
       >
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel="Fechar assistente FluIA"
-          style={StyleSheet.absoluteFill}
-          onPress={closeAssistant}
-        />
-
-        <View style={styles.sheet}>
-          <View style={styles.handle} />
+        <View style={[styles.sheet, { paddingTop: insets.top + 12, paddingBottom: Math.max(insets.bottom, 12) }]}>
           <View style={styles.headerRow}>
-            <EnergyOrb state={displayedState} reducedMotion={reduceMotionEnabled} active={visible} />
+            <MapEnergyOrb size={44} state={displayedState} reducedMotion={reduceMotionEnabled} active={visible} />
             <View style={styles.headerText}>
               <View style={styles.titleRow}>
                 <Text style={styles.title}>FluIA</Text>
@@ -715,7 +699,7 @@ export function FluiAssistantSheet({
           </View>
         </View>
       </KeyboardAvoidingView>
-    </Modal>
+    </OrbAssistantModal>
   );
 }
 
@@ -763,16 +747,13 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean, h
       backgroundColor: "rgba(7, 12, 18, 0.42)",
     },
     sheet: {
-      height: "88%",
-      maxHeight: "90%",
+      flex: 1,
       width: "100%",
-      maxWidth: 560,
       alignSelf: "center",
       paddingHorizontal: 20,
       paddingTop: 10,
       paddingBottom: 34,
-      borderTopLeftRadius: 30,
-      borderTopRightRadius: 30,
+      borderRadius: 0,
       backgroundColor: purple.sheet,
       borderTopWidth: 1,
       borderColor: purple.border,
