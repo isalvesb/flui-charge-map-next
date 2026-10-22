@@ -600,7 +600,7 @@ export const styles = StyleSheet.create({
     lineHeight: 20,
     paddingHorizontal: 12,
     paddingVertical: 10,
-    backgroundColor: "#FFF3D6",
+    backgroundColor: colors.warningLight,
     borderRadius: 12,
   },
 

@@ -107,11 +107,11 @@ export function FluiAssistantSheet({
   onSelectStation,
   onStartRoute,
 }: Props) {
-  const { theme, fontScale, appearanceMode, demoOrigin, userPreferences } = useAppPreferences();
+  const { theme, fontScale, appearanceMode, highContrast, demoOrigin, userPreferences } = useAppPreferences();
   const reduceMotionEnabled = useReducedMotion();
   const styles = useMemo(
-    () => createStyles(theme, fontScale, appearanceMode === "dark"),
-    [appearanceMode, fontScale, theme],
+    () => createStyles(theme, fontScale, appearanceMode === "dark", highContrast),
+    [appearanceMode, fontScale, highContrast, theme],
   );
   const [selectedIntent, setSelectedIntent] =
     useState<FluiAssistantIntent | null>(null);
@@ -696,9 +696,11 @@ function Metric({
   );
 }
 
-function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean) {
+function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean, highContrast: boolean) {
   const font = (size: number) => scaleFontSize(size, fontScale);
-  const purple = isDarkMode
+  const purple = highContrast
+    ? { sheet: theme.background, surface: theme.surface, soft: theme.primarySoft, border: theme.border }
+    : isDarkMode
     ? {
         sheet: "#1B1028",
         surface: "#28183A",

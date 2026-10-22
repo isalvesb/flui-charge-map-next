@@ -33,6 +33,7 @@ import {
 type PreferencesContextValue = {
   userPreferences: UserPreferences;
   appearanceMode: AppearanceMode;
+  highContrast: boolean;
   fontSize: FontSizePreference;
   theme: AppTheme;
   fontScale: number;
@@ -41,6 +42,7 @@ type PreferencesContextValue = {
   preferencesError: string | null;
   reloadPreferences: () => Promise<UserPreferences | null>;
   updateAppearanceMode: (appearanceMode: AppearanceMode) => Promise<void>;
+  updateHighContrast: (highContrast: boolean) => Promise<void>;
   updateFontSize: (fontSize: FontSizePreference) => Promise<void>;
   updateBatteryPercent: (batteryPercent: number) => Promise<void>;
   updateDemoConfiguration: (config: ConfiguracaoDemonstrativa) => Promise<void>;
@@ -66,6 +68,7 @@ const defaultUserPreferences: UserPreferences = {
   },
   hasSeenOnboarding: false,
   appearanceMode: "light",
+  highContrast: false,
   fontSize: "default",
   ...normalizarConfiguracaoDemonstrativa(),
   ...normalizeBatteryData(),
@@ -137,6 +140,13 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
     [savePreferences],
   );
 
+  const updateHighContrast = useCallback(
+    async (highContrast: boolean) => {
+      await savePreferences({ highContrast });
+    },
+    [savePreferences],
+  );
+
   const updateBatteryPercent = useCallback(
     async (batteryPercent: number) => {
       await savePreferences({
@@ -163,9 +173,13 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
     [demoOrigin],
   );
   const appearanceMode = userPreferences.appearanceMode;
+  const highContrast = userPreferences.highContrast;
   const fontSize = userPreferences.fontSize;
 
-  const theme = useMemo(() => getAppTheme(appearanceMode), [appearanceMode]);
+  const theme = useMemo(
+    () => getAppTheme(appearanceMode, highContrast),
+    [appearanceMode, highContrast],
+  );
   const fontScale = useMemo(() => getFontScale(fontSize), [fontSize]);
 
   const scale = useCallback(
@@ -179,6 +193,7 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
     () => ({
       userPreferences,
       appearanceMode,
+      highContrast,
       fontSize,
       theme,
       fontScale,
@@ -187,6 +202,7 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
       preferencesError,
       reloadPreferences,
       updateAppearanceMode,
+      updateHighContrast,
       updateFontSize,
       updateBatteryPercent,
       updateDemoConfiguration,
@@ -197,6 +213,7 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
     [
       userPreferences,
       appearanceMode,
+      highContrast,
       fontSize,
       theme,
       fontScale,
@@ -205,6 +222,7 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
       preferencesError,
       reloadPreferences,
       updateAppearanceMode,
+      updateHighContrast,
       updateFontSize,
       updateBatteryPercent,
       updateDemoConfiguration,

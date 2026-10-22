@@ -5,6 +5,7 @@ import { router } from "expo-router";
 import {
   ArrowLeft,
   Check,
+  Contrast,
   Moon,
   Sparkles,
   Sun,
@@ -45,12 +46,14 @@ export default function SettingsScreen() {
     theme,
     fontScale,
     appearanceMode,
+    highContrast,
     fontSize,
     isLoadingPreferences,
     isSavingPreferences,
     preferencesError,
     reloadPreferences,
     updateAppearanceMode,
+    updateHighContrast,
     updateFontSize,
     userPreferences,
     updateDemoConfiguration,
@@ -173,6 +176,16 @@ export default function SettingsScreen() {
       showSettingsFeedback(`${fontSizeLabels[nextFontSize]} salva`);
     } catch {
       showSettingsFeedback("Não foi possível salvar a fonte");
+    }
+  };
+
+  const toggleHighContrast = async () => {
+    if (isLoadingPreferences || isSavingPreferences) return;
+    try {
+      await updateHighContrast(!highContrast);
+      showSettingsFeedback(highContrast ? "Alto contraste desativado" : "Alto contraste ativado");
+    } catch {
+      showSettingsFeedback("Não foi possível salvar o contraste. Tente novamente.");
     }
   };
 
@@ -363,10 +376,30 @@ export default function SettingsScreen() {
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Acessibilidade</Text>
             <Text style={styles.sectionText}>
-              Ajuste o tamanho da fonte para melhorar a leitura.
+              Ajuste o contraste e o tamanho da fonte para melhorar a leitura.
             </Text>
 
             <View style={styles.optionsList}>
+              <PressableScale
+                accessibilityRole="switch"
+                accessibilityLabel="Alto contraste"
+                accessibilityHint="Reforça textos, contornos e indicadores no tema claro ou escuro."
+                accessibilityState={{ checked: highContrast, disabled: isLoadingPreferences || isSavingPreferences }}
+                disabled={isLoadingPreferences || isSavingPreferences}
+                style={[styles.optionButton, highContrast ? styles.optionButtonSelected : null]}
+                onPress={toggleHighContrast}
+              >
+                <View style={styles.optionIconBox}>
+                  <Contrast size={21} color={theme.primary} strokeWidth={2.1} />
+                </View>
+                <View style={styles.optionInfo}>
+                  <Text style={styles.optionTitle}>Alto contraste · {highContrast ? "Ativado" : "Desativado"}</Text>
+                  <Text style={styles.optionDescription}>
+                    Realça textos e contornos, mantendo o tema escolhido.
+                  </Text>
+                </View>
+                {renderOptionCheck(highContrast)}
+              </PressableScale>
               {fontSizeOptions.map((option) => {
                 const isSelected = option.value === fontSize;
 
