@@ -33,6 +33,6 @@ A incorporação é exclusiva da branch experimental; não altera a candidata
 consolidada nem substitui sua instalação de referência.
 
 Revisão física final UX-MAPA-01: Orb do mapa128pt, variante de paleta roxa
-e alfa próprio; ciclo3,6s com transições smoothstep. Transparência uniforme
-20%–40%, sem disco de fundo. Ícone FluiAiIcon original em
+e alfa próprio; ciclo3,6s com transições smoothstep. Transparência central
+20%–40%, externa até60%, sem disco de fundo. Ícone FluiAiIcon original em
 primeiro plano, sem nome. A variante conversacional mantém suas seis paletas.

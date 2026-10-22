@@ -25,8 +25,10 @@ const SHADER_SOURCE = /*wgsl*/ `
         : 1.0 - smoothstep(2.65, 3.6, phase);
       vec3 hue = mix(uColor0, uColor1, pulse);
       hue = mix(hue, uColor2, smoothstep(0.12, 0.5, r) * 0.25);
-      // Transparência uniforme de 20% a 40%, com antialiasing na borda.
-      float alpha = mix(0.8, 0.6, pulse) * (1.0 - smoothstep(0.49, 0.5, r));
+      // Centro: transparência de 20% a 40%. Região externa: até 60%.
+      // A borda se dissolve suavemente no mapa.
+      float lightOpacity = mix(0.6, 0.4, smoothstep(0.18, 0.35, r));
+      float alpha = mix(0.8, lightOpacity, pulse) * (1.0 - smoothstep(0.35, 0.5, r));
       return vec4(clamp(hue, vec3(0.0), vec3(1.0)) * alpha, alpha);
     }
 
