@@ -30,6 +30,7 @@ import {
 } from "lucide-react-native";
 
 import * as Speech from "expo-speech";
+import { router, type Href } from "expo-router";
 import { PressableScale } from "../../components";
 import { useAppPreferences } from "../../context/PreferencesContext";
 import { useReducedMotion } from "../../hooks/useReducedMotion";
@@ -45,7 +46,7 @@ import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperi
 import { identificacaoDados } from "../../data/identificacaoDados";
 import { EnergyOrb } from "./EnergyOrb";
 import { answerMessage, RECOMMENDATION_DISCLAIMER } from "./chatEngine";
-import { summarizeSuggestion } from "./assistantPresentation";
+import { describeAssistantContext, summarizeSuggestion } from "./assistantPresentation";
 
 import {
   FLUIA_STATE_LABELS,
@@ -121,6 +122,7 @@ export function FluiAssistantSheet({
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [draft, setDraft] = useState("");
   const [showExplanation, setShowExplanation] = useState(false);
+  const [showContext, setShowContext] = useState(false);
   const [expandedMessageId, setExpandedMessageId] = useState<number | null>(null);
   const [isChatThinking, setIsChatThinking] = useState(false);
   const chatTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -612,6 +614,23 @@ export function FluiAssistantSheet({
               <Text style={styles.subtitle}>
                 {userPreferences.vehicleName} · origem demonstrativa: {demoOrigin.nome}.
               </Text>
+              <PressableScale accessibilityRole="button" accessibilityLabel="Contexto atual para novas consultas" accessibilityState={{ expanded: showContext }} style={styles.chatButton} onPress={() => setShowContext((current) => !current)}>
+                <Text style={styles.chatButtonText}>{showContext ? "Ocultar contexto" : "Ver contexto atual"}</Text>
+              </PressableScale>
+              {showContext ? (
+                <View style={styles.fluiBubble}>
+                  <Text style={styles.bubbleText}>{describeAssistantContext({ ...userPreferences, batteryPercent, vehicleRangeKm }, demoOrigin.nome, stations.length)}</Text>
+                  {[
+                    { label: "Editar configurações", path: "/settings" },
+                    { label: "Consultar favoritos", path: "/profile" },
+                    { label: "Abrir planejador", path: "/trip-planner" },
+                  ].map((action) => (
+                    <PressableScale key={action.path} accessibilityRole="button" accessibilityLabel={action.label} style={styles.chatButton} onPress={() => { closeAssistant(); router.push(action.path as Href); }}>
+                      <Text style={styles.chatButtonText}>{action.label}</Text>
+                    </PressableScale>
+                  ))}
+                </View>
+              ) : null}
               <View style={styles.messagesContent}>
                 {messages.map((message) => (
                   <View

@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { recommendStations } from "../src/features/assistant/fluiAssistant";
-import { summarizeSuggestion } from "../src/features/assistant/assistantPresentation";
+import { describeAssistantContext, summarizeSuggestion } from "../src/features/assistant/assistantPresentation";
 import { createStation } from "./fixtures";
 
 test("resumo preserva os valores do motor e os limites de segurança", () => {
@@ -16,4 +16,21 @@ test("resumo preserva os valores do motor e os limites de segurança", () => {
   for (const warning of ["em linha reta", "Dados demonstrativos", "reserva de 5%", "Confirme funcionamento e compatibilidade"]) assert.ok(text.includes(warning));
   assert.equal(JSON.stringify(result), before);
   assert.ok(text.length < 300);
+});
+
+test("contexto distingue bateria manual, origem demonstrativa e conjunto recebido sem alterar entradas", () => {
+  const preferences = { vehicleName: "Veículo de teste", vehicleRangeKm: 330, batteryPercent: 42, batterySource: "manual" as const, batteryUpdatedAt: "2026-10-22T12:00:00.000Z" };
+  const before = JSON.stringify(preferences);
+  const text = describeAssistantContext(preferences, "Vila Mariana", 3);
+  for (const expected of ["330 km", "42%", "Informado manualmente", "Origem demonstrativa: Vila Mariana", "não usa sua localização real", "consulta: 3", "Sem telemetria"]) assert.ok(text.includes(expected));
+  assert.equal(JSON.stringify(preferences), before);
+});
+
+test("contexto não atribui bateria demonstrativa ou antiga a telemetria real", () => {
+  for (const batterySource of ["demo", "unknown"] as const) {
+    const text = describeAssistantContext({ vehicleName: "Exemplo", vehicleRangeKm: 400, batteryPercent: 70, batterySource, batteryUpdatedAt: null }, "FIAP", 0);
+    assert.ok(text.includes(batterySource === "demo" ? "Bateria demonstrativa" : "Origem não registrada"));
+    assert.ok(text.includes("consulta: 0"));
+    assert.ok(text.includes("não confirma disponibilidade real"));
+  }
 });
