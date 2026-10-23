@@ -10,7 +10,8 @@
     "web": "expo start --web",
     "lint": "expo lint",
     "test": "node --import tsx --test tests/*.test.ts",
-    "check": "npm run typecheck && npm run lint && npm test"
+    "check": "npm run typecheck && npm run lint && npm test",
+    "export:web:offline": "EXPO_NO_DOTENV=1 EXPO_OFFLINE=1 expo export --platform web --max-workers 2 && node scripts/prepare-offline-assets.cjs dist"
   },
   "dependencies": {
     "@lottiefiles/dotlottie-react": "^0.13.5",

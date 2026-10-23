@@ -19,6 +19,14 @@ self.addEventListener("install", (event) => {
         if (url.origin === self.location.origin) assets.add(url.href);
       }
     }));
+    const manifestResponse = await fetch("/offline-assets.json", { cache: "reload" });
+    if (!manifestResponse.ok) throw new Error("Exportação sem manifesto de fotos offline.");
+    const manifest = await manifestResponse.json();
+    if (manifest.version !== 1 || !Array.isArray(manifest.assets) || !manifest.assets.length) throw new Error("Manifesto de fotos inválido.");
+    for (const asset of manifest.assets) {
+      if (typeof asset !== "string" || !/^\/assets\/src\/assets\/(?:user|stations)\/[^/]+\.(?:webp|png|jpe?g)$/i.test(asset)) throw new Error("Foto fora do catálogo local.");
+      assets.add(new URL(asset, self.location.origin).href);
+    }
     await cache.addAll([...assets]);
     await self.skipWaiting();
   })());

@@ -71,7 +71,7 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 | 27 | P2 | Identificação de catálogo sem repetição | Implementado; revisão física pendente | stations; identificacaoDados | Depende da identificação geral em 03/23/25. |
 | 28 | P3 | Cartões Estimativas e Conectores | Implementado; revisão física pendente | stations/PointDetailsScreen | Depende de 26; não modificar 29. |
 | 29 | — | Preservar conteúdo de Comodidades próximas e Avaliações | Títulos com fundo autorizados em feedback; conteúdo preservado | stations/PointDetailsScreen | Nenhuma alteração sem defeito comprovado ou autorização adicional. |
-| 30 | P1 | Persistência offline de fotos e favoritos | Investigar cache existente | assets; storage; service-worker | Não introduzir armazenamento remoto; distinguir assets empacotados e cache web. |
+| 30 | P1 | Persistência offline de fotos e favoritos | Cache web corrigido; teste físico/build offline pendente | assets; storage; service-worker | Não introduzir armazenamento remoto; distinguir assets empacotados e cache web. |
 | 31 | P3 | Pesquisa catálogo/Supabase | Pesquisa pendente | docs | Sem migrar arquitetura, custos ou apresentar dados como verificados. |
 | 32 | P2 | Proposta de área interna | Proposta pendente | docs; settings | Controles fictícios separados; não implementar integralmente antes da decisão sobre proposta. |
 | 33 | P2 | Referência inicial de localização | Implementado; revisão física pendente | data/demonstracao; LocationContext | -23.540405908671097,-46.73414831818115; padrão simulado, não substituir GPS autorizado. |
@@ -298,3 +298,13 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Diagnóstico reproduzível: padrão 400 km/70% na Referência NEXT calcula zero paradas nos três destinos. Assim, a numeração do CP01 não aparece; isso não comprova falha de atualização nem permite presumir os dados atuais do iPhone.
 - Novo resumo visível antes do mapa distingue viagem sem paradas, nenhuma parada alcançável e plano com paradas numeradas/nominadas na ordem. Não inventa recarga desnecessária. Marcadores e timeline mantêm correspondência.
 - Verificações: TypeScript, ESLint e 15 testes do planejador (`fb06-*`), incluindo três paradas e limites exatos de reserva. Conferência humana deste novo resumo pendente.
+
+### CP20 — 30: preparação offline das fotos locais
+
+- Diagnóstico: `30-cache-inicial.json`: 14/14 fotos de usuário/estações fora do CacheStorage após preparação inicial, sem visitar fichas; nenhum erro de página. Páginas e bundles já eram cacheados, mas imagens referidas pelo conteúdo React não eram necessariamente aquecidas.
+- Arquivos: `public/offline-worker.js`, `scripts/prepare-offline-assets.cjs`, `package.json` (somente script), `tests/offlineWorker.test.ts`, `tests/offlineAssets.test.ts`.
+- Manifesto gerado após exportação lista somente fotos públicas locais de usuário/estações; instalação do worker prepara todas, inclusive favoritas nunca abertas. Falha de preparação não ativa versão incompleta. Serviços externos e dados privados não entram no manifesto.
+- Nova exportação: `npm run export:web:offline`; para saída própria: exportar e executar `node scripts/prepare-offline-assets.cjs <pasta>`. Sem dependências novas ou mudança de armazenamento pessoal.
+- Verificações: TypeScript, ESLint, testes do worker/manifesto e navegação offline em contexto web isolado (`20-*`, resultado físico não inferido).
+- iOS: fotos atuais vêm de requires locais e favoritos/dados de AsyncStorage + catálogo. Isso não comprova empacotamento offline na Development Build. Artefato histórico Debug inspecionado não contém WebP avulsos; não autoriza inferir formato do binário instalado. Cold start sem Metro e permanência das imagens no iPhone ainda precisam de validação física/build autorizado. Nenhuma compilação/instalação realizada.
+- FB04 `52676a5`, FB05 `748991b`; FB06 registrado no próximo checkpoint.
