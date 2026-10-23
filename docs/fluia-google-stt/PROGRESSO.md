@@ -187,3 +187,8 @@
 - Extensão autorizada registrada em **`140a121`**. Usuário achou 1 s curto; adotados aproximadamente **2 s** como ajuste incremental. Sincronizados detector PCM, timeout Google, timer de fim de atividade e textos de consentimento/acessibilidade. Limite absoluto de 30 s e finalização por toque continuam iguais.
 - **31/31 testes do intermediário passaram** com os novos prazos; TypeScript, ESLint dirigido e diff passaram. Logs `.validation/silence-two-seconds-*`. Esses testes não consomem reconhecimento real; novo prazo físico ainda pendente.
 - Usuário perguntou sobre dispensar código: explicado pareamento único seguro como possibilidade futura. **Pareamento automático não foi implementado** nem o intermediário foi aberto sem autenticação. A retenção atual em memória já evita redigitação ao ir para segundo plano, mas novo processo/JS ou reinício do intermediário podem exigir código novo.
+
+### Aplicação dos ajustes e proteção da pressão longa
+
+- Pausa de dois segundos: **`5d751f3`**. Intermediário reiniciado somente após conferir cwd/porta e ausência de conexão ativa; PID atual **3446**, Metro preservado **2360**. Health confirmou streaming, ledger **20/576** intacto e tetos autorizados **23/666**. Novo código copiado temporariamente, sem exibição, para reativação única após esse reinício. Nenhuma nova transcrição na aplicação.
+- Na revisão do gesto, mantida a presença de `onLongPress` mesmo quando o cancelamento muda o estado: o Pressability instalado só suprime o toque curto na soltura se o handler continuar presente. Isso evita iniciar outra escuta ao soltar a Orb depois de cancelar. Cancelamento sem sessão é inócuo. Conferência física do gesto continua pendente.

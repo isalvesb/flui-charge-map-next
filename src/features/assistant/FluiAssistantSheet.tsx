@@ -428,7 +428,7 @@ export function FluiAssistantSheet({
                 accessibilityActions={captureBusy ? [{ name: "cancel", label: "Cancelar escuta ou transcrição" }] : undefined}
                 onAccessibilityAction={({ nativeEvent }) => { if (captureBusy && nativeEvent.actionName === "cancel") liveVoice.cancel(); }}
                 onAccessibilityEscape={captureBusy ? liveVoice.cancel : undefined}
-                onLongPress={captureBusy ? liveVoice.cancel : undefined}
+                onLongPress={liveVoice.cancel}
                 accessibilityState={{ disabled: !liveVoice.supported || isChatThinking || isAnalyzing, busy: captureBusy }}
                 disabled={!liveVoice.supported || isChatThinking || isAnalyzing} onPress={liveVoice.press}>
                 <MapEnergyOrb mapVariant size={128} state={displayedState} visualStatus={visualStatus} reducedMotion={reduceMotionEnabled} active={visible} />
