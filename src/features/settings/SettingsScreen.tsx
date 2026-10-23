@@ -260,123 +260,114 @@ export default function SettingsScreen() {
           ) : null}
 
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Aparência</Text>
-            <Text style={styles.sectionText}>
-              Escolha o tema visual do app.
-            </Text>
-
-            <View style={styles.optionsList}>
-              {appearanceOptions.map((option) => {
-                const isSelected = option.value === appearanceMode;
-
-                return (
-                  <PressableScale
-                    key={option.value}
-                    accessibilityRole="button"
-                    accessibilityLabel={`Selecionar tema ${option.label.toLowerCase()}`}
-                    accessibilityState={{ selected: isSelected }}
-                    style={[
-                      styles.optionButton,
-                      isSelected ? styles.optionButtonSelected : null,
-                    ]}
-                    onPress={() => saveAppearanceMode(option.value)}
-                  >
-                    <View style={styles.optionIconBox}>{option.icon}</View>
-
-                    <View style={styles.optionInfo}>
-                      <Text style={styles.optionTitle}>{option.label}</Text>
-                      <Text style={styles.optionDescription}>
-                        {option.description}
-                      </Text>
-                    </View>
-
-                    {renderOptionCheck(isSelected)}
-                  </PressableScale>
-                );
-              })}
-            </View>
-          </View>
-
-          <View style={styles.section}>
             <Text style={styles.sectionTitle}>Acessibilidade</Text>
             <Text style={styles.sectionText}>
               Escolha os ajustes mais confortáveis para usar o Flui.
             </Text>
 
             <View style={styles.accessibilityCards}>
-            <View style={styles.accessibilityCard} testID="acessibilidade-contraste">
-            <View style={styles.accessibilityToggleRow}>
-              <Text style={styles.accessibilityTitle}>Alto contraste</Text>
-              <Switch
-                style={styles.accessibilitySwitch}
-                accessibilityLabel="Alto contraste"
-                accessibilityHint="Reforça textos e contornos, mantendo o tema escolhido."
-                value={highContrast}
-                disabled={isLoadingPreferences || isSavingPreferences}
-                onValueChange={() => void toggleHighContrast()}
-                trackColor={{ false: theme.border, true: theme.primary }}
-                thumbColor={highContrast ? theme.onPrimary : theme.surface}
-              />
-            </View>
-              <Text style={styles.accessibilityDescription}>Reforça textos e contornos, mantendo o tema escolhido.</Text>
-            </View>
-            <View style={styles.accessibilityCard} testID="acessibilidade-fonte">
-            <Text style={styles.accessibilityTitle}>Tamanho da fonte</Text>
-            <View accessibilityRole="radiogroup" accessibilityLabel="Tamanho da fonte" style={styles.fontSizeRow}>
-              {fontSizeOptions.map((option, index) => {
-                const isSelected = option.value === fontSize;
-                return (
-                  <View key={option.value} style={styles.fontSizeItem}>
-                  <PressableScale
-                    accessibilityRole="radio"
-                    accessibilityLabel={`Fonte ${option.label.toLowerCase()}`}
-                    accessibilityHint={option.description}
-                    accessibilityState={{ checked: isSelected, disabled: isLoadingPreferences || isSavingPreferences }}
+              <View style={styles.accessibilityCard} testID="acessibilidade-fonte">
+                <Text style={styles.accessibilityTitle}>Tamanho da fonte</Text>
+                <View accessibilityRole="radiogroup" accessibilityLabel="Tamanho da fonte" style={styles.fontSizeRow}>
+                  {fontSizeOptions.map((option, index) => {
+                    const isSelected = option.value === fontSize;
+                    return (
+                      <View key={option.value} style={styles.fontSizeItem}>
+                        <PressableScale
+                          accessibilityRole="radio"
+                          accessibilityLabel={`Fonte ${option.label.toLowerCase()}`}
+                          accessibilityHint={option.description}
+                          accessibilityState={{ checked: isSelected, disabled: isLoadingPreferences || isSavingPreferences }}
+                          disabled={isLoadingPreferences || isSavingPreferences}
+                          style={[styles.fontSizeCard, isSelected ? styles.optionButtonSelected : null]}
+                          onPress={() => saveFontSize(option.value)}
+                        >
+                          <View style={styles.fontSizeIconSlot}><Type accessible={false} size={18 + index * 4} color={theme.primary} /></View>
+                          <Text style={styles.fontSizeLabel}>{option.label}</Text>
+                          <View style={styles.fontSizeCheckSlot}>{renderOptionCheck(isSelected, true)}</View>
+                        </PressableScale>
+                      </View>
+                    );
+                  })}
+                </View>
+              </View>
+
+              <View style={styles.accessibilityCard} testID="acessibilidade-aparencia">
+                <Text style={styles.accessibilityTitle}>Aparência</Text>
+                <View accessibilityRole="radiogroup" accessibilityLabel="Aparência" style={styles.fontSizeRow}>
+                  {appearanceOptions.map((option) => {
+                    const isSelected = option.value === appearanceMode;
+                    return (
+                      <View key={option.value} style={styles.fontSizeItem}>
+                        <PressableScale
+                          accessibilityRole="radio"
+                          accessibilityLabel={`Tema ${option.label.toLowerCase()}`}
+                          accessibilityHint={option.description}
+                          accessibilityState={{ checked: isSelected, disabled: isLoadingPreferences || isSavingPreferences }}
+                          disabled={isLoadingPreferences || isSavingPreferences}
+                          style={[styles.fontSizeCard, isSelected ? styles.optionButtonSelected : null]}
+                          onPress={() => saveAppearanceMode(option.value)}
+                        >
+                          <View style={styles.appearanceIconSlot}>{option.icon}</View>
+                          <Text style={styles.fontSizeLabel}>{option.label}</Text>
+                          <View style={styles.fontSizeCheckSlot}>{renderOptionCheck(isSelected, true)}</View>
+                        </PressableScale>
+                      </View>
+                    );
+                  })}
+                </View>
+              </View>
+
+              <View style={styles.accessibilityCard} testID="acessibilidade-contraste">
+                <View style={styles.accessibilityToggleRow}>
+                  <Text style={styles.accessibilityToggleTitle}>Alto contraste</Text>
+                  <Switch
+                    style={styles.accessibilitySwitch}
+                    accessibilityLabel="Alto contraste"
+                    accessibilityHint="Reforça textos e contornos, mantendo o tema escolhido."
+                    value={highContrast}
                     disabled={isLoadingPreferences || isSavingPreferences}
-                    style={[styles.fontSizeCard, isSelected ? styles.optionButtonSelected : null]}
-                    onPress={() => saveFontSize(option.value)}
-                  >
-                    <View style={styles.fontSizeIconSlot}><Type accessible={false} size={18 + index * 4} color={theme.primary} /></View>
-                    <Text style={styles.fontSizeLabel}>{option.label}</Text>
-                    <View style={styles.fontSizeCheckSlot}>{renderOptionCheck(isSelected, true)}</View>
-                  </PressableScale>
-                  </View>
-                );
-              })}
-            </View>
-            </View>
-            <View style={styles.accessibilityCard} testID="acessibilidade-movimento">
-              <View style={styles.accessibilityToggleRow}>
-                <Text style={styles.accessibilityTitle}>Reduzir movimento</Text>
-                <Switch
-                  style={styles.accessibilitySwitch}
-                  accessibilityLabel="Reduzir movimento"
-                  accessibilityHint="Reduz animações, movimentos da Orb e transições do app."
-                  value={userPreferences.reduceMotion || systemReducedMotion}
-                  disabled={systemReducedMotion || isLoadingPreferences || isSavingPreferences}
-                  onValueChange={(enabled) => void saveReducedMotion(enabled)}
-                  trackColor={{ false: theme.border, true: theme.primary }}
-                  thumbColor={userPreferences.reduceMotion || systemReducedMotion ? theme.onPrimary : theme.surface}
-                />
+                    onValueChange={() => void toggleHighContrast()}
+                    trackColor={{ false: theme.border, true: theme.primary }}
+                    thumbColor={highContrast ? theme.onPrimary : theme.surface}
+                  />
+                </View>
+                <Text style={styles.accessibilityDescription}>Reforça textos e contornos, mantendo o tema escolhido.</Text>
               </View>
-              <Text style={styles.accessibilityDescription}>{systemReducedMotion ? "Ativado nas configurações de acessibilidade do dispositivo." : "Reduz animações, movimentos da Orb e transições do app."}</Text>
-            </View>
-            <View style={styles.accessibilityCard} testID="acessibilidade-vibracao">
-              <View style={styles.accessibilityToggleRow}>
-                <Text style={styles.accessibilityTitle}>Vibração nos toques</Text>
-                <Switch
-                  style={styles.accessibilitySwitch}
-                  accessibilityLabel="Vibração nos toques"
-                  accessibilityHint="Ativa ou desativa o retorno tátil dos botões do Flui."
-                  value={userPreferences.hapticsEnabled}
-                  disabled={isLoadingPreferences || isSavingPreferences}
-                  onValueChange={(enabled) => void saveHaptics(enabled)}
-                  trackColor={{ false: theme.border, true: theme.primary }}
-                  thumbColor={userPreferences.hapticsEnabled ? theme.onPrimary : theme.surface}
-                />
+
+              <View style={styles.accessibilityCard} testID="acessibilidade-movimento">
+                <View style={styles.accessibilityToggleRow}>
+                  <Text style={styles.accessibilityToggleTitle}>Reduzir movimento</Text>
+                  <Switch
+                    style={styles.accessibilitySwitch}
+                    accessibilityLabel="Reduzir movimento"
+                    accessibilityHint="Reduz animações, movimentos da Orb e transições do app."
+                    value={userPreferences.reduceMotion || systemReducedMotion}
+                    disabled={systemReducedMotion || isLoadingPreferences || isSavingPreferences}
+                    onValueChange={(enabled) => void saveReducedMotion(enabled)}
+                    trackColor={{ false: theme.border, true: theme.primary }}
+                    thumbColor={userPreferences.reduceMotion || systemReducedMotion ? theme.onPrimary : theme.surface}
+                  />
+                </View>
+                <Text style={styles.accessibilityDescription}>{systemReducedMotion ? "Ativado nas configurações de acessibilidade do dispositivo." : "Reduz animações, movimentos da Orb e transições do app."}</Text>
               </View>
-              <Text style={styles.accessibilityDescription}>Ativa ou desativa o retorno tátil dos botões do Flui.</Text>
-            </View>
+
+              <View style={styles.accessibilityCard} testID="acessibilidade-vibracao">
+                <View style={styles.accessibilityToggleRow}>
+                  <Text style={styles.accessibilityToggleTitle}>Vibração nos toques</Text>
+                  <Switch
+                    style={styles.accessibilitySwitch}
+                    accessibilityLabel="Vibração nos toques"
+                    accessibilityHint="Ativa ou desativa o retorno tátil dos botões do Flui."
+                    value={userPreferences.hapticsEnabled}
+                    disabled={isLoadingPreferences || isSavingPreferences}
+                    onValueChange={(enabled) => void saveHaptics(enabled)}
+                    trackColor={{ false: theme.border, true: theme.primary }}
+                    thumbColor={userPreferences.hapticsEnabled ? theme.onPrimary : theme.surface}
+                  />
+                </View>
+                <Text style={styles.accessibilityDescription}>Ativa ou desativa o retorno tátil dos botões do Flui.</Text>
+              </View>
             </View>
           </View>
 
