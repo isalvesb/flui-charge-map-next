@@ -93,13 +93,17 @@ const styles = StyleSheet.create({
     gap: 8,
   },
 
-  vehicleInfo: {
-    flexShrink: 1,
-    alignItems: "flex-end",
-    gap: 1,
+  vehicleVisual: {
+    minWidth: 76,
+    height: 40,
+    alignItems: "center",
+    justifyContent: "flex-end",
   },
+  vehicleBatteryOverlay: { zIndex: 1 },
 
   vehicleImage: {
+    position: "absolute",
+    top: 0,
     width: 60,
     height: 40,
   },
@@ -146,21 +150,6 @@ const styles = StyleSheet.create({
   vehicleBatteryText: {
     fontSize: 10,
     fontWeight: "900",
-  },
-
-  vehicleBatterySource: {
-    maxWidth: 116,
-    color: colors.textLight,
-    fontSize: 11,
-    lineHeight: 14,
-    fontWeight: "700",
-  },
-
-  vehicleBatteryUpdatedAt: {
-    color: colors.textLight,
-    fontSize: 10,
-    lineHeight: 13,
-    fontWeight: "600",
   },
 
   batterySheetOverlay: {

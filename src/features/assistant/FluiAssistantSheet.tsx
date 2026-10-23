@@ -6,6 +6,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
+  StatusBar,
   StyleSheet,
   Text,
   TextInput,
@@ -13,11 +14,10 @@ import {
 } from "react-native";
 import {
   Armchair,
+  ArrowLeft,
   BatteryLow,
   BatteryMedium,
-  ChevronDown,
   ChevronRight,
-  ChevronUp,
   Coffee,
   MapPin,
   Plug,
@@ -25,16 +25,14 @@ import {
   Users,
   Volume2,
   VolumeX,
-  X,
   Zap,
 } from "lucide-react-native";
 
 import * as Speech from "expo-speech";
-import { router, type Href } from "expo-router";
 import { PressableScale } from "../../components";
 import { useAppPreferences } from "../../context/PreferencesContext";
+import { useConnectivity } from "../../context/ConnectivityContext";
 import { useReducedMotion } from "../../hooks/useReducedMotion";
-import type { AppTheme } from "../../theme/appTheme";
 import { scaleFontSize } from "../../theme/appTheme";
 import type { ChargingStation } from "../../types";
 import {
@@ -43,16 +41,17 @@ import {
   type FluiAssistantIntent,
 } from "./fluiAssistant";
 import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
-import { identificacaoDados } from "../../data/identificacaoDados";
+import { FLUIA_STATUS_PREVIEW_ENABLED } from "../../config/fluiaStatusPreview";
 import { MapEnergyOrb } from "./MapEnergyOrb";
 import { OrbAssistantModal } from "./OrbAssistantModal";
 import type { OrbOrigin } from "../map/mapExperimentLayout";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { answerMessage, RECOMMENDATION_DISCLAIMER } from "./chatEngine";
-import { describeAssistantContext, summarizeAssistantContext, summarizeSuggestion } from "./assistantPresentation";
+import { summarizeSuggestion } from "./assistantPresentation";
+import { getFluiaScreenTheme, type FluiaScreenTheme } from "./fluiaScreenTheme";
+import { FLUIA_VISUAL_PRESENTATION, getFluiaPreviewState, getFluiaVisualStatus, nextFluiaVisualStatus, type FluiaVisualStatus } from "./fluiaVisualStatus";
 
 import {
-  FLUIA_STATE_LABELS,
   tempoDeExibicaoFluia,
   type FluiaState,
 } from "./fluiaState";
@@ -113,12 +112,14 @@ export function FluiAssistantSheet({
   onSelectStation,
   onStartRoute,
 }: Props) {
-  const { theme, fontScale, appearanceMode, highContrast, demoOrigin, userPreferences } = useAppPreferences();
+  const { theme: baseTheme, fontScale, highContrast, demoOrigin, userPreferences } = useAppPreferences();
+  const { status: connectionStatus } = useConnectivity();
+  const theme = useMemo(() => getFluiaScreenTheme(baseTheme, highContrast), [baseTheme, highContrast]);
   const reduceMotionEnabled = useReducedMotion();
   const insets = useSafeAreaInsets();
   const styles = useMemo(
-    () => createStyles(theme, fontScale, appearanceMode === "dark", highContrast),
-    [appearanceMode, fontScale, highContrast, theme],
+    () => createStyles(theme, fontScale),
+    [fontScale, theme],
   );
   const [selectedIntent, setSelectedIntent] =
     useState<FluiAssistantIntent | null>(null);
@@ -128,7 +129,6 @@ export function FluiAssistantSheet({
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [draft, setDraft] = useState("");
   const [showExplanation, setShowExplanation] = useState(false);
-  const [showContext, setShowContext] = useState(false);
   const [expandedMessageId, setExpandedMessageId] = useState<number | null>(null);
   const [isChatThinking, setIsChatThinking] = useState(false);
   const chatTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -139,7 +139,7 @@ export function FluiAssistantSheet({
   const stateTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [voiceEnabled, setVoiceEnabled] = useState(true);
   const [fluiaState, setFluiaState] = useState<FluiaState>("repouso");
-  const displayedState: FluiaState = isAnalyzing ? "pensando" : fluiaState;
+  const [previewStatus, setPreviewStatus] = useState<FluiaVisualStatus | null>(null);
 
   const recommendation = useMemo(() => {
     if (!funcionalidadesExperimentais.fluia || !selectedIntent || isAnalyzing) return null;
@@ -158,6 +158,13 @@ export function FluiAssistantSheet({
     vehicleRangeKm,
     now,
   ]);
+
+  const actualState: FluiaState = isAnalyzing ? "pensando" : selectedIntent ? recommendation ? "respondendo" : "aviso" : fluiaState;
+  const visualStatus = FLUIA_STATUS_PREVIEW_ENABLED && previewStatus ? previewStatus : getFluiaVisualStatus(actualState, connectionStatus);
+  const displayedState: FluiaState = FLUIA_STATUS_PREVIEW_ENABLED && previewStatus
+    ? getFluiaPreviewState(visualStatus)
+    : actualState;
+  const statusPresentation = FLUIA_VISUAL_PRESENTATION[visualStatus];
 
   useEffect(() => {
     return () => {
@@ -204,13 +211,13 @@ export function FluiAssistantSheet({
   };
 
   const resetConversation = () => {
+    setPreviewStatus(null);
     setMessages([]);
     setDraft("");
     setIsChatThinking(false);
     setSelectedIntent(null);
     setIsAnalyzing(false);
     setShowExplanation(false);
-    setShowContext(false);
     setExpandedMessageId(null);
     lastScrolledMessageId.current = null;
   };
@@ -235,6 +242,7 @@ export function FluiAssistantSheet({
   };
 
   const chooseIntent = (intent: FluiAssistantIntent) => {
+    setPreviewStatus(null);
     setShowExplanation(false);
     setSelectedIntent(intent);
     setIsAnalyzing(true);
@@ -250,6 +258,7 @@ export function FluiAssistantSheet({
   const sendMessage = () => {
     const text = draft.trim();
     if (!text || isChatThinking) return;
+    setPreviewStatus(null);
     if (stateTimeoutRef.current) {
       clearTimeout(stateTimeoutRef.current);
       stateTimeoutRef.current = null;
@@ -342,21 +351,13 @@ export function FluiAssistantSheet({
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         accessibilityViewIsModal
       >
-        <View style={[styles.sheet, { paddingTop: insets.top + 12, paddingBottom: Math.max(insets.bottom, 12) }]}>
+        {visible ? <StatusBar barStyle="light-content" /> : null}
+        <View testID="fluia-pagina" style={[styles.sheet, { paddingTop: insets.top + 8, paddingBottom: Math.max(insets.bottom, 12) }]}>
           <View style={styles.headerRow}>
-            <MapEnergyOrb size={44} state={displayedState} reducedMotion={reduceMotionEnabled} active={visible} />
-            <View style={styles.headerText}>
-              <View style={styles.titleRow}>
-                <Text style={styles.title}>FluIA</Text>
-                <Text
-                  style={styles.stateText}
-                  accessibilityLiveRegion="polite"
-                  accessibilityLabel={`Estado da FluIA: ${FLUIA_STATE_LABELS[displayedState]}`}
-                >
-                  {FLUIA_STATE_LABELS[displayedState]}
-                </Text>
-              </View>
-            </View>
+            <PressableScale accessibilityRole="button" accessibilityLabel="Voltar ao mapa" style={styles.closeButton} onPress={closeAssistant}>
+              <ArrowLeft size={24} color={theme.text} strokeWidth={2.3} />
+            </PressableScale>
+            <Text accessibilityRole="header" style={styles.title}>FluIA</Text>
             <PressableScale
               accessibilityRole="button"
               accessibilityLabel={
@@ -371,14 +372,6 @@ export function FluiAssistantSheet({
                 <VolumeX size={22} color={theme.textMuted} strokeWidth={2.2} />
               )}
             </PressableScale>
-            <PressableScale
-              accessibilityRole="button"
-              accessibilityLabel="Fechar assistente"
-              style={styles.closeButton}
-              onPress={closeAssistant}
-            >
-              <X size={22} color={theme.textMuted} strokeWidth={2.2} />
-            </PressableScale>
           </View>
 
           <ScrollView
@@ -390,42 +383,15 @@ export function FluiAssistantSheet({
             onContentSizeChange={scrollToNewMessage}
             onLayout={scrollToLatestMessage}
           >
-            <Text style={styles.subtitle}>
-              {selectedIntent
-                ? "Recomendação simulada com os dados do protótipo."
-                : identificacaoDados.fluia.aviso}
-            </Text>
-            <View style={styles.contextCard}>
-              <PressableScale
-                accessibilityRole="button"
-                accessibilityLabel="Contexto atual para novas consultas"
-                accessibilityHint="Mostra a origem dos dados e atalhos para ajustar as próximas consultas."
-                accessibilityState={{ expanded: showContext }}
-                style={styles.contextToggle}
-                onPress={() => setShowContext((current) => !current)}
-              >
-                <View style={styles.contextSummary}>
-                  <Text style={styles.contextTitle}>Contexto da consulta</Text>
-                  <Text style={styles.contextText}>{summarizeAssistantContext({ ...userPreferences, batteryPercent }, demoOrigin.nome)}</Text>
-                </View>
-                {showContext ? <ChevronUp size={18} color={theme.primary} /> : <ChevronDown size={18} color={theme.primary} />}
+            <View testID="fluia-orb-fixa" style={styles.hero}>
+              <PressableScale testID="fluia-orb-status" accessibilityRole={FLUIA_STATUS_PREVIEW_ENABLED ? "button" : "image"}
+                accessibilityLabel={`Orb da FluIA: ${statusPresentation.label}`}
+                accessibilityHint={FLUIA_STATUS_PREVIEW_ENABLED ? "Teste visual: toque para alternar os estados. Não ativa microfone nem simula uma falha real." : undefined}
+                disabled={!FLUIA_STATUS_PREVIEW_ENABLED} onPress={() => setPreviewStatus(nextFluiaVisualStatus(visualStatus))}>
+                <MapEnergyOrb mapVariant size={128} state={displayedState} visualStatus={visualStatus} reducedMotion={reduceMotionEnabled} active={visible} />
               </PressableScale>
-              {showContext ? (
-                <View style={styles.contextDetails}>
-                  <Text style={styles.contextText}>{describeAssistantContext({ ...userPreferences, batteryPercent, vehicleRangeKm }, demoOrigin.nome, stations.length)}</Text>
-                  {[
-                    { label: "Editar configurações", path: "/settings" },
-                    { label: "Consultar favoritos", path: "/profile" },
-                    { label: "Abrir planejador", path: "/trip-planner" },
-                  ].map((action) => (
-                    <PressableScale key={action.path} accessibilityRole="button" accessibilityLabel={action.label} style={styles.contextLink} onPress={() => { closeAssistant(); router.push(action.path as Href); }}>
-                      <Text style={styles.contextLinkText}>{action.label}</Text>
-                      <ChevronRight size={16} color={theme.primary} />
-                    </PressableScale>
-                  ))}
-                </View>
-              ) : null}
             </View>
+            <Text testID="fluia-status" accessibilityLiveRegion="polite" style={[styles.heroPrompt, { color: statusPresentation.color }]}>{statusPresentation.label}</Text>
             {isAnalyzing ? (
               <View
                 style={styles.analyzingCard}
@@ -722,29 +688,15 @@ function Metric({
   );
 }
 
-function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean, highContrast: boolean) {
+function createStyles(theme: FluiaScreenTheme, fontScale: number) {
   const font = (size: number) => scaleFontSize(size, fontScale);
-  const purple = highContrast
-    ? { sheet: theme.background, surface: theme.surface, soft: theme.primarySoft, border: theme.border }
-    : isDarkMode
-    ? {
-        sheet: "#1B1028",
-        surface: "#28183A",
-        soft: "#362149",
-        border: "#54386D",
-      }
-    : {
-        sheet: "#F8F2FF",
-        surface: "#FFFDFE",
-        soft: "#EFE3FF",
-        border: "#DCC5F5",
-      };
+  const purple = { sheet: theme.background, surface: theme.surface, soft: theme.primarySoft, border: theme.border };
 
   return StyleSheet.create({
     overlay: {
       flex: 1,
       justifyContent: "flex-end",
-      backgroundColor: "rgba(7, 12, 18, 0.42)",
+      backgroundColor: theme.background,
     },
     sheet: {
       flex: 1,
@@ -763,41 +715,25 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean, h
       shadowRadius: 22,
       elevation: 16,
     },
-    handle: {
-      width: 42,
-      height: 4,
-      marginBottom: 10,
-      alignSelf: "center",
-      borderRadius: 2,
-      backgroundColor: purple.border,
-    },
     headerRow: {
       flexDirection: "row",
-      alignItems: "flex-start",
-      gap: 10,
-    },
-    headerText: { flex: 1, paddingTop: 1 },
-    titleRow: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", columnGap: 6 },
-    stateText: {
-      color: theme.textMuted,
-      fontSize: font(11),
-      fontWeight: "700",
-      flexShrink: 1,
+      alignItems: "center",
+      gap: 12,
+      minHeight: 48,
+      marginBottom: 8,
     },
     title: {
+      flex: 1,
+      minWidth: 0,
+      textAlign: "center",
       color: theme.text,
-      fontSize: font(21),
+      fontSize: font(18),
       lineHeight: font(26),
       fontWeight: "900",
       letterSpacing: -0.35,
     },
-    subtitle: {
-      marginTop: 3,
-      color: theme.textMuted,
-      fontSize: font(13),
-      lineHeight: font(18),
-      fontWeight: "600",
-    },
+    hero: { alignItems: "center", paddingTop: 4, paddingBottom: 8 },
+    heroPrompt: { color: theme.text, textAlign: "center", fontSize: font(18), lineHeight: font(24), fontWeight: "700", marginBottom: 28 },
     closeButton: {
       width: 44,
       height: 44,
@@ -808,14 +744,6 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean, h
       borderWidth: 1,
       borderColor: purple.border,
     },
-    contextCard: { marginTop: 10, borderWidth: 1, borderColor: purple.border, borderRadius: 16 },
-    contextToggle: { minHeight: 44, padding: 10, flexDirection: "row", alignItems: "center", gap: 8 },
-    contextSummary: { flex: 1, minWidth: 0, gap: 2 },
-    contextTitle: { color: theme.text, fontSize: font(12), lineHeight: font(17), fontWeight: "800" },
-    contextText: { color: theme.textMuted, fontSize: font(12), lineHeight: font(18) },
-    contextDetails: { padding: 10, paddingTop: 0, gap: 8 },
-    contextLink: { minHeight: 44, paddingHorizontal: 10, paddingVertical: 8, borderRadius: 12, borderWidth: 1, borderColor: purple.border, flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 8 },
-    contextLinkText: { flexShrink: 1, color: theme.primary, fontSize: font(13), lineHeight: font(18), fontWeight: "700" },
     optionsScroll: { marginTop: 12 },
     optionsContent: { gap: 8, paddingBottom: 4 },
     optionCard: {
@@ -1076,6 +1004,7 @@ function createStyles(theme: AppTheme, fontScale: number, isDarkMode: boolean, h
       fontWeight: "600",
     },
     inputRow: {
+      paddingTop: 10,
       flexDirection: "row",
       alignItems: "center",
       gap: 8,

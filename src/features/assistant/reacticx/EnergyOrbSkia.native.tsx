@@ -12,8 +12,8 @@ import { parseColor } from "./helper";
 const source = Skia.RuntimeEffect.Make(SHADER_SOURCE);
 if (!source) throw new Error("Não foi possível compilar o shader Reacticx neste ambiente.");
 
-export const EnergyOrbSkia = memo(function EnergyOrbSkia({ state, reducedMotion, active, size, mapVariant = false }: ReacticxOrbProps) {
-  const effect = useMemo(() => getReacticxOrbPresentation(state, reducedMotion, active, mapVariant), [state, reducedMotion, active, mapVariant]);
+export const EnergyOrbSkia = memo(function EnergyOrbSkia({ state, reducedMotion, active, size, mapVariant = false, visualStatus }: ReacticxOrbProps) {
+  const effect = useMemo(() => getReacticxOrbPresentation(state, reducedMotion, active, mapVariant, visualStatus), [state, reducedMotion, active, mapVariant, visualStatus]);
   const colors = useMemo(() => effect.colors.map(parseColor), [effect.colors]);
   const time = useSharedValue(1.2);
   const pendingMs = useSharedValue(0);
@@ -43,6 +43,7 @@ export const EnergyOrbSkia = memo(function EnergyOrbSkia({ state, reducedMotion,
     uGlowRadius: effect.glowRadius,
     uMapMode: mapVariant ? 1 : 0,
     uMapPulse: mapPulse.value,
+    uStatusMode: effect.statusMode ? 1 : 0,
   }));
   return <View accessible={false} accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={{ width: size, height: size }}>
     <Canvas pointerEvents="none" style={{ width: size, height: size, borderRadius: size / 2 }}>

@@ -1,2 +1,3 @@
 import type { FluiaState } from "./fluiaState";
-export type ReacticxOrbProps = { state: FluiaState; reducedMotion: boolean; active: boolean; size: number; mapVariant?: boolean };
+import type { FluiaVisualStatus } from "./fluiaVisualStatus";
+export type ReacticxOrbProps = { state: FluiaState; reducedMotion: boolean; active: boolean; size: number; mapVariant?: boolean; visualStatus?: FluiaVisualStatus };

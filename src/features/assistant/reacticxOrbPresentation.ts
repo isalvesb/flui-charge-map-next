@@ -1,9 +1,10 @@
 import type { FluiaState } from "./fluiaState";
 import { ENERGY_ORB_COLORS } from "./energyOrbPresentation";
+import { FLUIA_VISUAL_PRESENTATION, MAP_ORB_PALETTE, type FluiaVisualStatus } from "./fluiaVisualStatus";
 
 export const REACTICX_SHADER_INTERVAL_MS = 1000 / 30;
 
-// Um único pulso para a cor do shader e a cor do ícone, no mesmo relógio UI.
+// Pulso do fundo da esfera, no relógio UI.
 export function getMapOrbPulse(seconds: number) {
   "worklet";
   const phase = seconds % 3.6;
@@ -22,13 +23,16 @@ const STATE_EFFECTS: Record<FluiaState, { speed: number; intensity: number; glow
   alerta: { speed: 0, intensity: 1.3, glowRadius: 0.44 },
 };
 
-export function getReacticxOrbPresentation(state: FluiaState, reducedMotion: boolean, active: boolean, mapVariant = false) {
+export function getReacticxOrbPresentation(state: FluiaState, reducedMotion: boolean, active: boolean, mapVariant = false, visualStatus?: FluiaVisualStatus) {
   const colors = ENERGY_ORB_COLORS[state];
   const effect = STATE_EFFECTS[state];
+  const statusColors = visualStatus ? FLUIA_VISUAL_PRESENTATION[visualStatus] : null;
+  const statusStatic = visualStatus === "erro" || visualStatus === "atencao" || visualStatus === "offline";
   return {
     ...effect,
-    colors: mapVariant ? ["#2B0055", "#C797FF", "#6F2DC4"] : [colors.core, colors.light, colors.rim],
-    animate: active && !reducedMotion && effect.speed > 0,
+    colors: mapVariant ? statusColors ? [MAP_ORB_PALETTE[0], statusColors.light, statusColors.core] : [...MAP_ORB_PALETTE] : [colors.core, colors.light, colors.rim],
+    statusMode: !!visualStatus && visualStatus !== "pronta",
+    animate: active && !reducedMotion && effect.speed > 0 && !statusStatic,
   };
 }
 

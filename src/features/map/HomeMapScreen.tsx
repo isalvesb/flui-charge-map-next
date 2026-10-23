@@ -711,7 +711,6 @@ export default function HomeMapScreen() {
   const [painelTotalmenteOculto, setPainelTotalmenteOculto] = useState(true);
   const [mapAreaHeight, setMapAreaHeight] = useState(0);
   const [mapAreaWidth, setMapAreaWidth] = useState(0);
-  const cabecalhoCompacto = larguraJanela <= 360 || fontScale * escalaFonteSistema > 1.3;
   const [alturaCardPonto, setAlturaCardPonto] = useState<number | null>(null);
   const [filtrosRapidos, setFiltrosRapidos] = useState<FiltrosRapidos>(
     filtrosRapidosIniciais,
@@ -1127,10 +1126,13 @@ export default function HomeMapScreen() {
                 style={styles.vehicleButton}
                 onPress={abrirSeletorDeBateria}
               >
-                <View style={styles.vehicleInfo}>
+                <View testID="cabecalho-carro-bateria" style={styles.vehicleVisual}>
+                  <Image testID="cabecalho-imagem-carro" source={imagemCarroUsuario} style={styles.vehicleImage} resizeMode="contain" />
                   <View
+                    testID="cabecalho-bateria-pill"
                     style={[
                       styles.vehicleBatteryPill,
+                      styles.vehicleBatteryOverlay,
                       { borderColor: corBateriaAtual + "55" },
                     ]}
                   >
@@ -1169,19 +1171,8 @@ export default function HomeMapScreen() {
                     </Text>
                   </View>
 
-                  <Text style={styles.vehicleBatterySource} numberOfLines={1}>
-                    {batteryLabels.source}
-                  </Text>
-                  <Text style={styles.vehicleBatteryUpdatedAt}>
-                    {batteryLabels.detail}
-                  </Text>
                 </View>
 
-                <Image
-                  source={imagemCarroUsuario}
-                  style={[styles.vehicleImage, cabecalhoCompacto && { display: "none" }]}
-                  resizeMode="cover"
-                />
               </PressableScale>
 
               <PressableScale
@@ -1191,6 +1182,7 @@ export default function HomeMapScreen() {
                 onPress={openProfile}
               >
                 <Image
+                  testID="cabecalho-imagem-perfil"
                   source={imagemPerfilUsuario}
                   style={styles.profileImage}
                   resizeMode="cover"

@@ -13,6 +13,7 @@ const SHADER_SOURCE = /*wgsl*/ `
   uniform float uGlowRadius;
   uniform float uMapMode;
   uniform float uMapPulse;
+  uniform float uStatusMode;
 
   // Quadrado explícito: pow(x, 2) não é definido para x negativo em GLSL.
   float gaussian(float x) { return exp(-x * x); }
@@ -24,7 +25,7 @@ const SHADER_SOURCE = /*wgsl*/ `
     float radius = length(p);
     float feather = 1.0 - smoothstep(0.72, 1.05, radius);
     float z = sqrt(max(0.0, 1.0 - dot(p, p)));
-    float t = iTime * 0.95;
+    float t = iTime * (uStatusMode > 0.5 ? 0.7 + uSpeed * 0.7 : 0.95);
     float envelope = pow(max(0.0, 1.0 - p.x * p.x), 0.65);
     float morph = 0.5 + 0.5 * cos(t * 1.05);
     float frequency = mix(1.4, 5.6, morph);
@@ -47,8 +48,10 @@ const SHADER_SOURCE = /*wgsl*/ `
       float glow = gaussian(d / max(0.06, width * 1.6));
       float volume = 0.65 + 0.35 * cos((p.y - center) / max(0.03, width) * 1.7 + phase);
       vec3 hue = mix(uColor2, uColor1, 0.3 + float(i) * 0.25);
-      if (i == 1) hue = vec3(0.82, 0.34, 0.98);
-      if (i == 2) hue = vec3(0.55, 0.52, 1.0);
+      if (uStatusMode < 0.5) {
+        if (i == 1) hue = vec3(0.82, 0.34, 0.98);
+        if (i == 2) hue = vec3(0.55, 0.52, 1.0);
+      }
       light += hue * (sheet * volume * 0.85 + glow * 0.14)
         + mix(hue, vec3(1.0), 0.45) * edge * 0.08;
       energy += sheet * 0.78 + glow * 0.14 + edge * 0.08;
@@ -74,7 +77,8 @@ const SHADER_SOURCE = /*wgsl*/ `
       + vec3(0.95, 0.88, 1.0) * highlight * 0.4;
     vec3 waveColor = clamp(hue * opacity, vec3(0.0), vec3(waveAlpha));
     float alpha = (waveAlpha + glass * (1.0 - waveAlpha)) * feather;
-    vec3 glassColor = mix(uColor0, uColor1, mix(0.12, 0.23, uMapPulse));
+    vec3 glassLight = uStatusMode > 0.5 ? vec3(0.780392, 0.592157, 1.0) : uColor1;
+    vec3 glassColor = mix(uColor0, glassLight, mix(0.12, 0.23, uMapPulse));
     vec3 color = (waveColor + glassColor * glass * (1.0 - waveAlpha)) * feather;
 
     // Reflexo de vidro sobre o gradiente: arco parcial fino e brilho em órbita lenta.
