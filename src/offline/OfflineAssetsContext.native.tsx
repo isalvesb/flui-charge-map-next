@@ -19,6 +19,7 @@ const sources: Record<string, ImageSourcePropType> = {
   profile: require("../assets/user/profile1.webp"),
   "profile-alternative": require("../assets/user/profile2.webp"),
   "vehicle-alternative": require("../assets/user/car2.webp"),
+  "vehicle-alternative-cutout": require("../assets/user/car2-transparent-v1.png"),
   "vehicle-portrait": require("../assets/user/car1.webp"),
   "vehicle-header": require("../assets/user/car1.png"),
   ...stationImages,

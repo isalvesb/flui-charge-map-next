@@ -104,4 +104,10 @@ export const offlineImageMetadata: (OfflineAsset & { sourceFile: string })[] = [
     "md5": "68a03895c19065fbfb443af3897b82a8",
     "type": "webp"
   },
+  {
+    "id": "vehicle-alternative-cutout",
+    "sourceFile": "src/assets/user/car2-transparent-v1.png",
+    "md5": "8037d42a43c6ec5e620bb5eb013f8bdb",
+    "type": "png"
+  },
 ];

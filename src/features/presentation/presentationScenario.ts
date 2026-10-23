@@ -10,6 +10,7 @@ export type PresentationConfig = Pick<UserPreferences, "vehicleName" | "vehicleR
 };
 export type PresentationState = {
   version: 1;
+  profileId: "urban" | "travel" | null;
   enabled: boolean;
   config: PresentationConfig;
   favoriteStationIds: string[];
@@ -22,7 +23,7 @@ const text = (value: unknown, fallback: string, max: number) => typeof value ===
 const validRating = (value: unknown): value is number => typeof value === "number" && Number.isInteger(value) && value >= 1 && value <= 5;
 
 export function createPresentationState(): PresentationState {
-  return { version: 1, enabled: false, config: { ...normalizarConfiguracaoDemonstrativa(), ...normalizeBatteryData(), driverName: "Caio Duarte", profileImage: "profile1", vehicleImage: "car1" }, favoriteStationIds: [], sentReviews: [], recentHistory: [] };
+  return { version: 1, profileId: null, enabled: false, config: { ...normalizarConfiguracaoDemonstrativa(), ...normalizeBatteryData(), driverName: "Caio Duarte", profileImage: "profile1", vehicleImage: "car1" }, favoriteStationIds: [], sentReviews: [], recentHistory: [] };
 }
 
 export function normalizePresentationState(input: unknown): PresentationState {
@@ -42,7 +43,7 @@ export function normalizePresentationState(input: unknown): PresentationState {
     history.push({ id: text(entry.id, `presentation-history-${station.id}`, 100), stationId: station.id, stationName: station.name, address: station.address, action: entry.action as RecentHistoryItem["action"], createdAt: entry.createdAt });
   }
   return {
-    version: 1, enabled: data.enabled === true,
+    version: 1, profileId: data.profileId === "urban" || data.profileId === "travel" ? data.profileId : null, enabled: data.enabled === true,
     config: { ...normalizarConfiguracaoDemonstrativa(config), ...normalizeBatteryData(config), driverName: text(config.driverName, base.config.driverName, 60), profileImage: config.profileImage === "profile2" ? "profile2" : "profile1", vehicleImage: config.vehicleImage === "car2" ? "car2" : "car1" },
     favoriteStationIds: Array.isArray(data.favoriteStationIds) ? [...new Set(data.favoriteStationIds.filter((id): id is string => typeof id === "string" && stationById.has(id)))] : [],
     sentReviews: reviews, recentHistory: history,
