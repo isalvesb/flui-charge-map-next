@@ -43,8 +43,8 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 | ID | Prioridade | Ajuste | Estado | Arquivos/área | Dependências, pendências e limites |
 |---|---|---|---|---|---|
 | 01 | P1 | Paradas e trajetos | Implementado; revisão física pendente | trip/TripPlannerScreen; utils/tripPlanner | Conferir ordem, mapa e trechos; percursos continuam simulados. |
-| 02 | P3 | Subtexto do popup de estações | Pendente | map/HomeMapScreen | Preservar identificação geral da simulação. |
-| 03 | P2 | Linguagem e transparência | Pendente | data/identificacaoDados; telas | Transversal a 04, 23, 25, 27; evitar remoção indiscriminada. |
+| 02 | P3 | Subtexto do popup de estações | Implementado; revisão física pendente | map/HomeMapScreen | Preservar identificação geral da simulação. |
+| 03 | P2 | Linguagem e transparência | Implementado no escopo; revisão de linguagem pendente | data/identificacaoDados; telas | Transversal a 04, 23, 25, 27; evitar remoção indiscriminada. |
 | 04 | P2 | Origem do valor de bateria | Implementado; revisão física pendente | utils/batteryData | Distinguir manual, simulado e desconhecido. |
 | 05 | P2 | Ajuste de bateria por arraste | Implementado; revisão física pendente | map; componente de bateria | Sem dependência nativa nova; alternativa acessível e precisão. |
 | 06 | P2 | Abertura da Orb | Feito — informado pelo usuário | assistant; map | Não reimplementar. Revisão adicional somente se houver feedback. |
@@ -219,3 +219,11 @@ Cada entrada deve informar IDs, commit, arquivos, verificações e limites human
 - Verificações: TypeScript, ESLint, testes de início/fim/erro/cancelamento/callback obsoleto (`15-*`). API conferida nos tipos instalados do expo-speech SDK54; docs online redirecionaram para latest, não usados para presumir atualização de SDK.
 - Conferir: perguntar → parar/ouvir novamente → desativar voz durante espera → sair/retornar. Áudio, volume, interrupções reais e VoiceOver no iPhone pendentes.
 - CP13 `f3fdc0a`; commit de CP14 registrado no próximo checkpoint.
+
+### CP16 — 02 e 03: popup e linguagem dos dados
+
+- Arquivos: `src/features/map/HomeMapScreen.tsx`, `.styles.ts`, `src/features/settings/SettingsScreen.tsx`, `src/features/stations/stationPresentation.ts`.
+- Popup sem subtexto longo; identificação curta Simulação no cabeçalho. Distância em linha reta permanece nos cartões, contexto completo no rótulo acessível. Configurações → Sobre os dados concentra catálogo/perfil/carga/estimativas/FluIA.
+- Descrições de status usam “catálogo local”; linguagem da ficha/bateria/perfil já reduzida em 04/13/23/25/27. Avisos de rota, limites da estimativa e avaliações do catálogo não foram removidos indiscriminadamente.
+- Verificações: TypeScript, ESLint, testes de apresentação/filtragem/contexto (`16-*`). Comodidades e Avaliações preservadas.
+- Conferir: sugestões no mapa sem parágrafo abaixo do título; Sobre os dados nos ajustes. Revisão humana/física pendente. CP14 `4169756`; CP15 `9e9cd82`.

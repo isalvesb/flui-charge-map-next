@@ -725,6 +725,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
 
+  simulationBadge: { color: colors.primary, backgroundColor: colors.primarySoft, paddingHorizontal: 8, paddingVertical: 5, borderRadius: 10, fontSize: 11, fontWeight: "700" },
   originDescription: {
     color: colors.textLight,
     fontSize: 12,

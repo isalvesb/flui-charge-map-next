@@ -30,7 +30,7 @@ export function getStationStatusInfo(
   if (station.status === "unavailable") {
     return {
       label: "Status indisponível",
-      description: "Disponibilidade não confirmada nos dados demonstrativos",
+      description: "Disponibilidade não confirmada no catálogo local",
     };
   }
 
@@ -51,7 +51,7 @@ export function getStationStatusInfo(
     return {
       label: "Aberto agora",
       description: canChargeAt(station, date)
-        ? "Disponibilidade demonstrativa de carregadores"
+        ? "Disponibilidade de carregadores no catálogo local"
         : "Sem carregadores utilizáveis nos dados locais",
     };
   }
@@ -59,13 +59,13 @@ export function getStationStatusInfo(
   if (station.status === "busy") {
     return {
       label: "Ocupado agora",
-      description: "Ocupação indicada nos dados demonstrativos",
+      description: "Ocupação indicada no catálogo local",
     };
   }
 
   return {
     label: "Status indisponível",
-    description: "Disponibilidade não confirmada nos dados demonstrativos",
+    description: "Disponibilidade não confirmada no catálogo local",
   };
 }
 

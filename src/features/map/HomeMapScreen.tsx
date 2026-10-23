@@ -71,7 +71,6 @@ import { useTelaComPreferencias } from "../../hooks/useTelaComPreferencias";
 import { useReducedMotion } from "../../hooks/useReducedMotion";
 import { useAppPreferences } from "../../context/PreferencesContext";
 import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
-import { identificacaoDados } from "../../data/identificacaoDados";
 import { FluiAssistantSheet } from "../assistant/FluiAssistantSheet";
 import { BatteryLevelControl } from "../../components/BatteryLevelControl";
 import { DraggableMapOrb } from "./DraggableMapOrb";
@@ -1429,6 +1428,7 @@ export default function HomeMapScreen() {
               <View testID="recomendacoes-popup" style={styles.recommendationsPopup} accessibilityViewIsModal>
                 <View style={styles.recommendationsHeader}>
                   <Text style={[styles.sheetTitle, { flex: 1 }]}>{sheetTitle}</Text>
+                  <Text accessibilityLabel={`Catálogo de simulação. Origem: ${demoOrigin.nome}. Distâncias em linha reta. Status, notas e imagens sem verificação em campo nem atualização em tempo real.`} style={styles.simulationBadge}>Simulação</Text>
                   <PressableScale accessibilityRole="button" accessibilityLabel="Fechar recomendações" style={styles.recommendationsClose} onPress={() => setPainelTotalmenteOculto(true)}>
                     <X size={22} color={colors.primary} />
                   </PressableScale>
@@ -1439,11 +1439,6 @@ export default function HomeMapScreen() {
                   style={{ flexShrink: 1 }}
                   contentContainerStyle={styles.bottomSheetContent}
                 >
-              <Text style={styles.originDescription}>
-                {identificacaoDados.catalogo.aviso}{"\n"}
-                Origem: {demoOrigin.nome} · distâncias em linha reta, sem cálculo de percurso
-              </Text>
-
             {hasNoResults ? (
               <View style={styles.emptyCard}>
                 <Text style={styles.emptyTitle}>

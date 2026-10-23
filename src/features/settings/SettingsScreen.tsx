@@ -25,6 +25,7 @@ import type { AppearanceMode, FontSizePreference } from "../../types";
 import { createSettingsStyles } from "./SettingsScreen.styles";
 import { limiteNomeVeiculo, origensDemonstrativas, type OrigemDemonstrativaId } from "../../data/demonstracao";
 import { validarConfiguracaoDemonstrativa } from "../../utils/demonstracao";
+import { identificacaoDados } from "../../data/identificacaoDados";
 import { getBatterySourceLabels } from "../../utils/batteryData";
 
 const FEEDBACK_DURATION = 1500;
@@ -480,6 +481,9 @@ export default function SettingsScreen() {
             <Text style={styles.sectionTitle}>Sobre esta versão</Text>
             <Text style={styles.sectionText}>Flui {appPackage.version}</Text>
             <Text style={styles.sectionText}>Experimento do mapa · revisão local</Text>
+            <Text style={styles.fieldLabel}>Sobre os dados</Text>
+            <Text style={styles.sectionText}>{identificacaoDados.catalogo.resumo}</Text>
+            <Text style={styles.sectionText}>Perfil fictício, com fotos e veículo ilustrativos. A carga é informada manualmente ou usada como cenário de simulação; não é lida do veículo. Distância em linha reta e tempos são estimativas. Confirme funcionamento e compatibilidade antes de ir. A FluIA usa respostas e regras locais, sem IA generativa.</Text>
           </View>
           <View style={styles.section}>
             <PressableScale
