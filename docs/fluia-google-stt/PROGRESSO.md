@@ -192,3 +192,9 @@
 
 - Pausa de dois segundos: **`5d751f3`**. Intermediário reiniciado somente após conferir cwd/porta e ausência de conexão ativa; PID atual **3446**, Metro preservado **2360**. Health confirmou streaming, ledger **20/576** intacto e tetos autorizados **23/666**. Novo código copiado temporariamente, sem exibição, para reativação única após esse reinício. Nenhuma nova transcrição na aplicação.
 - Na revisão do gesto, mantida a presença de `onLongPress` mesmo quando o cancelamento muda o estado: o Pressability instalado só suprime o toque curto na soltura se o handler continuar presente. Isso evita iniciar outra escuta ao soltar a Orb depois de cancelar. Cancelamento sem sessão é inócuo. Conferência física do gesto continua pendente.
+
+### Retenção após bloqueio confirmada no iPhone
+
+- Proteção do gesto registrada em **`f993079`**; TypeScript, ESLint dirigido e diff passaram, sem nova transcrição para verificar código.
+- Usuário reativou com o código novo, bloqueou/desbloqueou o aparelho e confirmou **“Sim, permanece ativa após bloquear.”** Retenção exclusivamente em memória após bloqueio agora tem evidência humana no iPhone. Término do app, mudança de rede e matriz completa não foram homologados.
+- Solicitado um único teste de fala com pequena pausa no meio da frase, para verificar dois segundos/resultado completo/leitura única. Resultado ainda pendente. Código retirado do clipboard somente se ainda fosse o valor copiado; conteúdo novo preservado.
