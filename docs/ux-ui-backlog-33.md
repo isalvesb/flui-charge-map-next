@@ -954,3 +954,11 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Arquivos: expandedChargingStations.ts, expandedStationExperience.ts, expandedCatalog.test.ts e docs/catalogo-next-e-supabase.md. TypeScript/lint sem erros (aviso herdado) e 240/240 testes aprovados em check-fichas-72.log, incluindo campos comparados com a ficha original, 180 IDs únicos/estação correspondente/critério/data/autor e preservação das regras do planejador.
 - validacao-72-fichas-completas.json aprovada, zero erros: 72 marcadores sem texto, recuperação após raio explícito, Copacabana/Petrópolis com foto/nota/três comentários, sem vazio antigo e sem rolagem horizontal em 320/393 fonte Maior. Regressão da voz padrão/Explicando também passou. Inspector físico de leitura em iphone-mapa-72-sem-raio.json; não substitui visualização humana dos pontos no Google Maps.
 - Disponível no mesmo Metro via Fast Refresh; nenhum módulo, serviço, build/instalação, publicação ou alteração na consolidação. Commit deste bloco registrado no fechamento seguinte.
+
+
+### Fechamento S43/S44
+
+- Commits locais `4c8b775` (catálogo no mapa sem busca obrigatória) e `7355c44` (60 fichas completas, notas/comentários/horários). Registro atualizado; sem publicação.
+- Leitura do cliente iPhone conectado confirmou 72 entradas, 60 adicionais e 180 comentários adicionais (iphone-fichas-72.json). MapView recebeu 72 marcadores (iphone-mapa-72-sem-raio.json), sem limite implícito de 10 km. Isso comprova entrega dos componentes/dados, não conferência humana dos pixels nem desempenho medido.
+- Para conferir fisicamente: busca vazia e filtros sem raio explícito → afastar o zoom e arrastar de SP ao RJ; abrir qualquer ponto novo e conferir nota, três comentários e horários. A abertura continua próxima da FIAP. Todos os 72 não cabem no enquadramento urbano inicial, mas permanecem disponíveis sem pesquisa.
+- 240/240 testes e conferência web aprovados, um aviso de lint herdado sem erros. Sem alteração em dependências, serviços, armazenamento pessoal, instalações nativas ou consolidação. Revisão humana destes incrementos pendente.
