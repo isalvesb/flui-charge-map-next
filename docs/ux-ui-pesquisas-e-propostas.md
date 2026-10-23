@@ -126,3 +126,10 @@ Enquanto ativo, o cenário fornece uma visão temporária dos dados; desativar v
 4. Verificar reset exclusivo do cenário, migração versionada, ausência de exposição pública e preservação dos dados originais.
 
 Conferência obrigatória da proposta: identidade desejada, imagens disponíveis/autorizadas e regra de precedência de bateria/localização. Não foi implementada a camada nova de persistência nem habilitado envio de dados.
+
+
+## Atualização de 23/10 — base simulada ampliada
+
+Após escolha explícita do usuário, catálogo local ampliado de 12 para 66 estações (54 novas, total 47 em SP e 19 no RJ). Dados anteriores preservados; novos pontos são fictícios, sem avaliações/fotos/favoritos atribuídos e sem fontes externas. Não representa base operacional verificada nem migração Supabase. Planejador ainda usa paradas próprias de destinosViagem e será revisado depois desta base, por instrução humana. Ver checkpoints S06/S09 no registro UX/UI.
+
+Relato físico novo: offline não funcionou no iPhone. Sintomas solicitados, sem confirmação ainda. Fonte nativa de desenvolvimento depende do Metro; evidência de cache web não prova arranque ou fotos offline no iPhone. Nenhuma recompilação/instalação realizada.
