@@ -6,6 +6,12 @@ Referência: 22/10/2026, America/Recife. Propostas para decisão; não autorizam
 
 Pedido: baixar a região de 5 km, reduzindo o raio se o volume for excessivo. Ainda não implementado; não confundir com as 15 imagens preparadas no armazenamento persistente.
 
+**Atualização posterior do usuário:** primeiro tentar a área visível no zoom normal **mais uma margem mínima de 1 km para fora de cada borda**. Esse recorte substitui os 5 km como alvo inicial. Referência é o viewport efetivo do mapa, não um círculo de raio 1 km nem uma mudança permanente do zoom. Proposta de 5/3/2/1 km abaixo fica histórica, não representa a seleção atual.
+
+Conferência do código instalado: MapView.d.ts identifica cacheEnabled como iOS Apple Maps apenas; sua finalidade é exibir imagem em lugar do mapa interativo, não preparar uma região Google offline. O gerenciador iOS Google de UrlTile exporta urlTemplate, zIndex, maximumZ, minimumZ e flipY, sem exportar controle de armazenamento offline. Não ativar uma propriedade sem efeito para anunciar sucesso nem inserir mapas ocultos para forçar downloads. Não existe tamanho mínimo que habilite uma API ausente.
+
+Teste sem mudança de integração: usuário pode visualizar online a região ampliada, retornar ao zoom habitual, cortar a conexão mantendo o app aberto e conferir o trecho já carregado. É somente observação da sessão do SDK; não oferece arquivo/região persistente, indicador de download concluído, cobertura garantida ou funcionamento após reiniciar. Nenhum teste físico desse recorte foi realizado nesta etapa.
+
 ### Limite da integração atual
 
 Mapa e planejador usam `PROVIDER_GOOGLE` em react-native-maps 1.20.1 no iPhone. A API atual não oferece gerenciamento de regiões offline do mapa Google. A [referência de GMSMapView](https://developers.google.com/maps/documentation/ios-sdk/reference/objc/Classes/GMSMapView) não fornece download de regiões; a [política do SDK iOS](https://developers.google.com/maps/documentation/ios-sdk/policies) remete às restrições de armazenamento. Os [termos Google Maps Platform, 3.2.3(a/b)](https://cloud.google.com/maps-platform/terms) restringem pré-download/armazenamento de conteúdo e download em massa de tiles. Portanto, não implementar um coletor de tiles Google nem apresentar o cache ocasional do SDK como região garantida offline. Diminuir para 1 km não cria suporte nem resolve essa restrição.
