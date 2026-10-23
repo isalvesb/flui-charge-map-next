@@ -330,3 +330,50 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Diferencia claramente a reordenação já autorizada em 19/21 do novo sistema proposto. Sem novos dados fictícios misturados aos favoritos/comentários do usuário.
 - Verificação: revisão de cobertura dos campos e das restrições; não há código novo a testar.
 - Decisão necessária antes de implementar novos campos/armazenamento do cenário. CP22 `368bd84`.
+
+## Situação consolidada por item — solicitação de andamento
+
+“Feito” = implementado; não significa aprovação visual ou validação física completa. São 27 itens implementados (4 pré-existentes), 2 análises concluídas, 1 proposta aguardando decisão, 2 parciais e 1 conteúdo preservado com títulos autorizados.
+
+| ID | Estado | Resultado / falta | Commits de referência |
+|---|---|---|---|
+| 01 | Feito; conferência pendente | Paradas numeradas e resumo explícito de zero/uma/várias paradas. Revisado após usuário não perceber mudança. | b856e1d; a660b6d |
+| 02 | Feito | Subtexto removido; identificação curta de simulação preservada. | bcc4ddb |
+| 03 | Feito no escopo | Repetições reduzidas em mapa, perfil, bateria e ficha; transparência mantida. | bcc4ddb; 894aea3 |
+| 04 | Feito | Textos de carga manual/simulação mais naturais. | abf1c44 |
+| 05 | Feito; revisão física pendente | Arraste, entrada exata e alternativa acessível; fundo com fade separado do painel. | 8a7549f; 748991b |
+| 06 | Feito anteriormente | Abertura da Orb confirmada como feita pelo usuário; não reimplementada. | b720c5a (estado inicial) |
+| 07 | Feito anteriormente | Página roxa em tela cheia, confirmada pelo usuário. | e3f4da5 |
+| 08 | Feito anteriormente | Orb centralizada na página, confirmada pelo usuário. | e3f4da5 |
+| 09 | Feito anteriormente | Título FluIA padronizado, confirmado pelo usuário. | e3f4da5 |
+| 10 | Feito; teclado físico pendente | Recolher teclado e retomar última mensagem sem perder leitura do histórico. | 4169756 |
+| 11 | Feito; áudio físico pendente | Parar/repetir leitura e tratar falhas/cancelamento. Não captura fala. | 9e9cd82 |
+| 12 | Análise concluída | Opções Apple/Google, custo, privacidade e piloto documentados; integração exige decisão. | 6c4b501 |
+| 13 | Feito | Subtextos do perfil removidos. | 695ef45 |
+| 14 | Feito | Atalhos úteis removidos. | 695ef45 |
+| 15 | Feito | Configurações em largura total no perfil. | 228300f |
+| 16 | Feito; revisado por feedback | Saída vermelha antes da versão; aviso com fundo distinto. Saída permanece informativa. | 228300f; 6912348 |
+| 17 | Feito; revisão visual pendente | Escalas 100%, 110% e 125%, mantendo escala do sistema. | cea62de |
+| 18 | Feito; revisado por feedback | Fontes dividem toda largura; alto contraste com título e Switch. | f3fdc0a; fe751f5 |
+| 19 | Feito | Laboratório fora dos ajustes comuns e protegido em produção; código preservado. | 94cab38; a69d5d9 |
+| 20 | Proposta pronta; implementação a fazer | Marca/modelo, geometria e direitos de imagens pesquisados; falta decidir/aprovar piloto. | a973a57 |
+| 21 | Feito | Controles existentes transferidos para apresentação interna em desenvolvimento. | a69d5d9 |
+| 22 | Feito | Nome/endereço aproximados com espaçamento ajustado. | 6f19aba |
+| 23 | Feito | Status e avaliações em pills com identificação geral da simulação. | 6f19aba |
+| 24 | Feito; revisado por feedback | Aviso dispensável menor/mais escuro e estimativas resumidas sincronizadas com bateria. | b3dade0; 8ef9d3f |
+| 25 | Feito; revisado por feedback | Exemplo removido; confirmação investigada/preservada e destacada em faixa. | 894aea3; 52676a5 |
+| 26 | Feito | Cartões com cabeçalho e corpo; distância mantém aproximação. | ac2c863 |
+| 27 | Feito | Aviso duplicado substituído por identificação única do catálogo. | 894aea3 |
+| 28 | Feito | Estimativas e Conectores em cartões próprios. | a33abd9 |
+| 29 | Preservado com alteração autorizada | Conteúdo intacto; títulos com fundo/ícone por nova autorização humana. | 52676a5 |
+| 30 | Parcial | Cache web das fotos corrigido; persistência/arranque sem Metro no iPhone ainda não comprovados. | c7899e2 |
+| 31 | Análise concluída | Ampliação local/fonte externa/Supabase comparados; sem migração ou contratação. | 368bd84 |
+| 32 | Parcial; proposta pronta | Área interna básica existe; novos cenários com identidade/favoritos/avaliações separados dependem de decisão. | a69d5d9; c89a54a |
+| 33 | Feito | Referência NEXT como padrão; origem já salva e GPS autorizado preservados. | c8b611c |
+
+### Verificação técnica final em andamento
+
+- `check-final.log`: TypeScript aprovado, ESLint zero erros/um aviso herdado em ConnectivityContext:48, 173/173 testes aprovados.
+- `export-feedback.log`: exportação atual com 15 rotas. Manifesto de 15 fotos públicas locais gerado; quantidade mudou em relação à exportação diagnóstica anterior (14), sem inferência sobre fotos do iPhone.
+- `conferir-feedbacks.cjs`: roteiro novo de interface/geometria/cache em Chromium isolado. Resultado final será acrescentado após execução; não considerar aprovado antes disso.
+- Proteções e consolidação serão reconferidas no fechamento. CP19 `6c4b501`, CP23 `c89a54a`.
