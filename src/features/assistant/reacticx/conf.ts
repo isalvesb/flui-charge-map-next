@@ -76,6 +76,21 @@ const SHADER_SOURCE = /*wgsl*/ `
     float alpha = (waveAlpha + glass * (1.0 - waveAlpha)) * feather;
     vec3 glassColor = mix(uColor0, uColor1, mix(0.22, 0.34, uMapPulse));
     vec3 color = (waveColor + glassColor * glass * (1.0 - waveAlpha)) * feather;
+
+    // Reflexo de vidro sobre o gradiente: arco parcial fino e brilho em órbita lenta.
+    // A camada tem sua própria suavização para continuar visível na borda difusa.
+    float arc = pow(0.5 + 0.5 * cos(angle + 2.2 + sin(t * 0.22) * 0.12), 7.0);
+    float fineRim = gaussian((radius - 0.90) / 0.010);
+    float rimHalo = gaussian((radius - 0.90) / 0.045);
+    float orbit = t * 0.28 - 2.2;
+    vec2 pointOffset = p - vec2(cos(orbit), sin(orbit)) * 0.90;
+    float pointLight = exp(-dot(pointOffset, pointOffset) / 0.0014);
+    float edgeMask = 1.0 - smoothstep(0.98, 1.05, radius);
+    float edgeAlpha = clamp(fineRim * (0.025 + arc * 0.52)
+      + rimHalo * arc * 0.08 + pointLight * 0.72, 0.0, 0.82) * edgeMask;
+    vec3 edgeColor = mix(uColor1, vec3(1.0), 0.6);
+    color = edgeColor * edgeAlpha + color * (1.0 - edgeAlpha);
+    alpha = edgeAlpha + alpha * (1.0 - edgeAlpha);
     return vec4(clamp(color, vec3(0.0), vec3(alpha)), alpha);
   }
 
