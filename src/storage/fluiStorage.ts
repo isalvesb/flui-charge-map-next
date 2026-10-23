@@ -57,6 +57,7 @@ function createDefaultUserPreferences(): UserPreferences {
     hasSeenOnboarding: false,
     appearanceMode: "light",
     highContrast: false,
+    reduceMotion: false,
     fontSize: "default",
     ...normalizarConfiguracaoDemonstrativa(),
     ...normalizeBatteryData(),
@@ -108,6 +109,7 @@ function normalizeUserPreferences(
       ? preferences.appearanceMode
       : base.appearanceMode,
     highContrast: preferences.highContrast === true,
+    reduceMotion: preferences.reduceMotion === true,
     fontSize: isFontSizePreference(preferences.fontSize)
       ? preferences.fontSize
       : base.fontSize,

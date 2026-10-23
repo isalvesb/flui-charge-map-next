@@ -43,6 +43,7 @@ type PreferencesContextValue = {
   reloadPreferences: () => Promise<UserPreferences | null>;
   updateAppearanceMode: (appearanceMode: AppearanceMode) => Promise<void>;
   updateHighContrast: (highContrast: boolean) => Promise<void>;
+  updateReduceMotion: (reduceMotion: boolean) => Promise<void>;
   updateFontSize: (fontSize: FontSizePreference) => Promise<void>;
   updateBatteryPercent: (batteryPercent: number) => Promise<void>;
   updateDemoConfiguration: (config: ConfiguracaoDemonstrativa) => Promise<void>;
@@ -69,6 +70,7 @@ const defaultUserPreferences: UserPreferences = {
   hasSeenOnboarding: false,
   appearanceMode: "light",
   highContrast: false,
+  reduceMotion: false,
   fontSize: "default",
   ...normalizarConfiguracaoDemonstrativa(),
   ...normalizeBatteryData(),
@@ -147,6 +149,13 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
     [savePreferences],
   );
 
+  const updateReduceMotion = useCallback(
+    async (reduceMotion: boolean) => {
+      await savePreferences({ reduceMotion });
+    },
+    [savePreferences],
+  );
+
   const updateBatteryPercent = useCallback(
     async (batteryPercent: number) => {
       await savePreferences({
@@ -203,6 +212,7 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
       reloadPreferences,
       updateAppearanceMode,
       updateHighContrast,
+      updateReduceMotion,
       updateFontSize,
       updateBatteryPercent,
       updateDemoConfiguration,
@@ -223,6 +233,7 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
       reloadPreferences,
       updateAppearanceMode,
       updateHighContrast,
+      updateReduceMotion,
       updateFontSize,
       updateBatteryPercent,
       updateDemoConfiguration,

@@ -27,6 +27,7 @@ import { identificacaoDados } from "../../data/identificacaoDados";
 
 import OfflinePhotosStatus from "../../offline/OfflinePhotosStatus";
 import PresentationOriginPreference from "./PresentationOriginPreference";
+import { useSystemReducedMotion } from "../../hooks/useReducedMotion";
 
 const FEEDBACK_DURATION = 3200;
 
@@ -50,6 +51,7 @@ export default function SettingsScreen() {
     fontScale,
     appearanceMode,
     highContrast,
+    userPreferences,
     fontSize,
     isLoadingPreferences,
     isSavingPreferences,
@@ -57,6 +59,7 @@ export default function SettingsScreen() {
     reloadPreferences,
     updateAppearanceMode,
     updateHighContrast,
+    updateReduceMotion,
     updateFontSize,
   } = useAppPreferences();
 
@@ -66,6 +69,7 @@ export default function SettingsScreen() {
   );
 
   const isDarkMode = appearanceMode === "dark";
+  const systemReducedMotion = useSystemReducedMotion();
 
   const appearanceOptions = [
     {
@@ -162,6 +166,16 @@ export default function SettingsScreen() {
 
   const openOnboarding = () => {
     router.push("/onboarding?from=settings");
+  };
+
+  const saveReducedMotion = async (enabled: boolean) => {
+    if (systemReducedMotion || isLoadingPreferences || isSavingPreferences) return;
+    try {
+      await updateReduceMotion(enabled);
+      showSettingsFeedback(enabled ? "Movimento reduzido" : "Animações restauradas");
+    } catch {
+      showSettingsFeedback("Não foi possível salvar o ajuste de movimento. Tente novamente.");
+    }
   };
 
   const resetLocalData = async () => {
@@ -319,6 +333,22 @@ export default function SettingsScreen() {
                 );
               })}
             </View>
+            </View>
+            <View style={styles.accessibilityCard} testID="acessibilidade-movimento">
+              <View style={styles.accessibilityToggleRow}>
+                <Text style={styles.accessibilityTitle}>Reduzir movimento</Text>
+                <Switch
+                  style={styles.accessibilitySwitch}
+                  accessibilityLabel="Reduzir movimento"
+                  accessibilityHint="Reduz animações, movimentos da Orb e transições do app."
+                  value={userPreferences.reduceMotion || systemReducedMotion}
+                  disabled={systemReducedMotion || isLoadingPreferences || isSavingPreferences}
+                  onValueChange={(enabled) => void saveReducedMotion(enabled)}
+                  trackColor={{ false: theme.border, true: theme.primary }}
+                  thumbColor={userPreferences.reduceMotion || systemReducedMotion ? theme.onPrimary : theme.surface}
+                />
+              </View>
+              <Text style={styles.accessibilityDescription}>{systemReducedMotion ? "Ativado nas configurações de acessibilidade do dispositivo." : "Reduz animações, movimentos da Orb e transições do app."}</Text>
             </View>
             </View>
           </View>

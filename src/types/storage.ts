@@ -35,6 +35,7 @@ export type UserPreferences = {
   hasSeenOnboarding: boolean;
   appearanceMode: AppearanceMode;
   highContrast: boolean;
+  reduceMotion: boolean;
   fontSize: FontSizePreference;
   vehicleRangeKm: number;
   vehicleName: string;
