@@ -1,26 +1,50 @@
 import React from "react";
-import { Pressable, Text, View } from "react-native";
+import { ActivityIndicator, Pressable, StyleSheet, Text, View } from "react-native";
+import { AlertCircle, CheckCircle2 } from "lucide-react-native";
 import { useAppPreferences } from "../context/PreferencesContext";
 import { createSettingsStyles } from "../features/settings/SettingsScreen.styles";
 import { useOfflinePhotosStatus } from "./OfflineAssetsContext.native";
 import { offlineImageMetadata } from "./offlineImageMetadata";
+import { offlinePhotosPresentation } from "./offlinePhotosPresentation";
+import { scaleFontSize } from "../theme/appTheme";
 
 export default function OfflinePhotosStatus() {
   const { theme, fontScale } = useAppPreferences();
   const styles = createSettingsStyles(theme, fontScale);
   const { ready, preparing, supported, retry } = useOfflinePhotosStatus();
-  const complete = ready === offlineImageMetadata.length;
+  const total = offlineImageMetadata.length;
+  const state = offlinePhotosPresentation({ ready, total, preparing, supported });
+  const color = state.complete ? theme.success : preparing ? theme.primary : theme.warningText;
+  const backgroundColor = state.complete ? theme.successSoft : preparing ? theme.surface : theme.yellow;
   return <View style={styles.section}>
     <Text style={styles.sectionTitle}>Uso sem conexão</Text>
-    <Text accessibilityLiveRegion="polite" style={styles.sectionText}>
-      {!supported ? "A preparação de fotos não está disponível nesta instalação."
-        : complete ? "Fotos do perfil, veículo e catálogo preparadas neste dispositivo."
-          : preparing ? `Preparando fotos: ${ready} de ${offlineImageMetadata.length}. Mantenha a conexão durante a preparação.`
-            : "Algumas fotos ainda não foram preparadas. Conecte-se e tente novamente."}
-    </Text>
+    <View style={[cardStyles.card, { backgroundColor, borderColor: color }]}>
+      <View style={cardStyles.heading}>
+        {preparing && supported ? <ActivityIndicator color={color} accessibilityLabel={state.title} />
+          : state.complete ? <CheckCircle2 color={color} size={26} accessibilityElementsHidden importantForAccessibility="no" />
+            : <AlertCircle color={color} size={26} accessibilityElementsHidden importantForAccessibility="no" />}
+        <Text accessibilityLiveRegion="polite" style={[cardStyles.title, { color, fontSize: scaleFontSize(16, fontScale) }]}>{state.title}</Text>
+      </View>
+      <Text style={[styles.sectionText, { color: theme.text }]}>{state.description}</Text>
+      {supported ? <>
+        <Text style={[cardStyles.count, { color, fontSize: scaleFontSize(13, fontScale) }]}>{state.count} de {total} imagens</Text>
+        <View accessibilityRole="progressbar" accessibilityLabel="Imagens preparadas para uso sem conexão" accessibilityValue={{ min: 0, max: total, now: state.count, text: `${state.count} de ${total} imagens` }} style={[cardStyles.track, { backgroundColor: theme.border }]}>
+          <View style={[cardStyles.fill, { backgroundColor: color, width: `${state.progress * 100}%` }]} />
+        </View>
+      </> : null}
+    </View>
     <Text style={styles.sectionText}>Mapa de fundo e navegação externa precisam de conexão. A versão de desenvolvimento também precisa do servidor para iniciar o app.</Text>
-    {supported && !preparing && !complete ? <Pressable accessibilityRole="button" accessibilityLabel="Preparar fotos para uso sem conexão" style={[styles.optionButton, { marginTop: 12 }]} onPress={retry}>
+    {state.canRetry ? <Pressable accessibilityRole="button" accessibilityLabel="Preparar fotos para uso sem conexão" style={[styles.optionButton, { marginTop: 12 }]} onPress={retry}>
       <Text style={styles.optionTitle}>Preparar fotos</Text>
     </Pressable> : null}
   </View>;
 }
+
+const cardStyles = StyleSheet.create({
+  card: { marginTop: 12, padding: 16, borderRadius: 18, borderWidth: 1 },
+  heading: { flexDirection: "row", alignItems: "center", gap: 10 },
+  title: { flex: 1, fontWeight: "800", flexShrink: 1 },
+  count: { marginTop: 14, fontWeight: "700" },
+  track: { marginTop: 8, height: 7, borderRadius: 4, overflow: "hidden" },
+  fill: { height: "100%", borderRadius: 4 },
+});
