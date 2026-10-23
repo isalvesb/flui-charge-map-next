@@ -677,12 +677,6 @@ export default function HomeMapScreen() {
     baseColors,
   );
   const { userPreferences, updateBatteryPercent, demoOrigin, demoStations } = useAppPreferences();
-  const corPontoLogo = isDarkMode ? "#D8C7FF" : "#9B35F5";
-  const corIconeControlesMapa = userPreferences.highContrast ? colors.white : baseColors.primary;
-  const estiloCorControlesMapa = useMemo(() => {
-    const cor = userPreferences.highContrast ? colors.primary : corPontoLogo;
-    return { backgroundColor: cor, borderColor: cor };
-  }, [colors.primary, corPontoLogo, userPreferences.highContrast]);
   const reduceMotionEnabled = useReducedMotion();
   const insets = useSafeAreaInsets();
   const isFocused = useIsFocused();
@@ -746,9 +740,9 @@ export default function HomeMapScreen() {
   const logoFluiDoTema = useMemo(() => {
     return criarLogoFluiXml(
       isDarkMode ? "#F3E9FF" : colors.primary,
-      corPontoLogo,
+      isDarkMode ? "#D8C7FF" : "#9B35F5",
     );
-  }, [colors.primary, corPontoLogo, isDarkMode]);
+  }, [colors.primary, isDarkMode]);
 
   const usarMapaEscuro = Platform.OS === "android" && isDarkMode;
 
@@ -1371,7 +1365,7 @@ export default function HomeMapScreen() {
           />
 
           <View pointerEvents="box-none" testID="mapa-controles-direita" style={styles.fixedMapControls}>
-            <View style={[styles.zoomPill, estiloCorControlesMapa]}>
+            <View style={styles.zoomPill}>
               <PressableScale
                 accessibilityRole="button"
                 accessibilityLabel="Aumentar zoom do mapa"
@@ -1387,10 +1381,10 @@ export default function HomeMapScreen() {
                 onPressOut={() => setControleMapaAtivo(null)}
                 onPress={() => alterarZoomMapa("aproximar")}
               >
-                <Text allowFontScaling={false} style={[styles.mapControlText, { color: corIconeControlesMapa }]}>+</Text>
+                <Text allowFontScaling={false} style={styles.mapControlText}>+</Text>
               </PressableScale>
 
-              <View style={[styles.zoomPillDivider, { backgroundColor: corIconeControlesMapa }]} />
+              <View style={styles.zoomPillDivider} />
 
               <PressableScale
                 accessibilityRole="button"
@@ -1407,7 +1401,7 @@ export default function HomeMapScreen() {
                 onPressOut={() => setControleMapaAtivo(null)}
                 onPress={() => alterarZoomMapa("afastar")}
               >
-                <Text allowFontScaling={false} style={[styles.mapControlText, { color: corIconeControlesMapa }]}>−</Text>
+                <Text allowFontScaling={false} style={styles.mapControlText}>−</Text>
               </PressableScale>
             </View>
 
@@ -1419,7 +1413,6 @@ export default function HomeMapScreen() {
               pressedScale={0.94}
               style={[
                 styles.mapControlButton,
-                estiloCorControlesMapa,
                 controleMapaAtivo === "centralizar"
                   ? styles.mapControlButtonActive
                   : null,
@@ -1430,7 +1423,7 @@ export default function HomeMapScreen() {
               onPress={centralizarLocalizacaoUsuario}
               disabled={isLocatingUser}
             >
-              <Crosshair size={25} color={corIconeControlesMapa} strokeWidth={2.2} />
+              <Crosshair size={25} color={colors.white} strokeWidth={2.2} />
             </PressableScale>
 
           </View>
@@ -1440,13 +1433,13 @@ export default function HomeMapScreen() {
               accessibilityLabel="Planejar viagem"
               accessibilityHint="Abre o planejador de rota com paradas de recarga estimadas."
               pressedScale={0.94}
-              style={[styles.mapControlButton, estiloCorControlesMapa]}
+              style={styles.mapControlButton}
               onPress={abrirPlanejadorDeViagens}
             >
-              <Milestone size={22} color={corIconeControlesMapa} strokeWidth={2.2} />
+              <Milestone size={22} color={colors.white} strokeWidth={2.2} />
             </PressableScale>
-            <PressableScale accessibilityRole="button" accessibilityLabel={painelTotalmenteOculto ? "Mostrar pontos de recarga" : "Ocultar sugestões de pontos"} accessibilityState={{ expanded: !painelTotalmenteOculto }} accessibilityHint="Abre a lista existente de sugestões locais." style={[styles.mapControlButton, estiloCorControlesMapa]} onPress={() => setPainelTotalmenteOculto(false)}>
-              <List size={22} color={corIconeControlesMapa} strokeWidth={2.2} />
+            <PressableScale accessibilityRole="button" accessibilityLabel={painelTotalmenteOculto ? "Mostrar pontos de recarga" : "Ocultar sugestões de pontos"} accessibilityState={{ expanded: !painelTotalmenteOculto }} accessibilityHint="Abre a lista existente de sugestões locais." style={styles.mapControlButton} onPress={() => setPainelTotalmenteOculto(false)}>
+              <List size={22} color={colors.white} strokeWidth={2.2} />
             </PressableScale>
           </View>
 
