@@ -595,7 +595,10 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 14,
+    gap: 16,
   },
+  ratingPanelStacked: { flexDirection: "column", alignItems: "stretch" },
+  ratingPanelColumn: { width: "100%", flex: 0 },
 
   ratingPanelLeft: {
     width: 110,

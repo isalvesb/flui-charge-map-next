@@ -713,8 +713,8 @@ export default function PointDetailsScreen() {
             </View>
             <View style={styles.infoCardBody}>
             {hasCatalogReviews ? <>
-            <View style={styles.ratingPanel}>
-              <View style={styles.ratingPanelLeft}>
+            <View style={[styles.ratingPanel, stackInfoCards ? styles.ratingPanelStacked : null]}>
+              <View style={[styles.ratingPanelLeft, stackInfoCards ? styles.ratingPanelColumn : null]}>
                 <Text style={styles.bigRating}>
                   {station.rating.toFixed(1)}
                 </Text>
@@ -728,45 +728,45 @@ export default function PointDetailsScreen() {
                 </Text>
               </View>
 
-              <View style={styles.ratingPanelRight}>
+              <View style={[styles.ratingPanelRight, stackInfoCards ? styles.ratingPanelColumn : null]}>
                 <View style={styles.ratingLine}>
-                  <Text style={styles.ratingLineLabel}>5 ★</Text>
+                  <Text style={[styles.ratingLineLabel, { width: Math.ceil(32 * fontScale * systemFontScale) }]}>5 ★</Text>
                   <View style={styles.ratingTrack}>
                     <View style={styles.ratingBarLarge} />
                   </View>
-                  <Text style={styles.ratingPercent}>85%</Text>
+                  <Text style={[styles.ratingPercent, { width: Math.ceil(36 * fontScale * systemFontScale) }]}>85%</Text>
                 </View>
 
                 <View style={styles.ratingLine}>
-                  <Text style={styles.ratingLineLabel}>4 ★</Text>
+                  <Text style={[styles.ratingLineLabel, { width: Math.ceil(32 * fontScale * systemFontScale) }]}>4 ★</Text>
                   <View style={styles.ratingTrack}>
                     <View style={styles.ratingBarSmall} />
                   </View>
-                  <Text style={styles.ratingPercent}>10%</Text>
+                  <Text style={[styles.ratingPercent, { width: Math.ceil(36 * fontScale * systemFontScale) }]}>10%</Text>
                 </View>
 
                 <View style={styles.ratingLine}>
-                  <Text style={styles.ratingLineLabel}>3 ★</Text>
+                  <Text style={[styles.ratingLineLabel, { width: Math.ceil(32 * fontScale * systemFontScale) }]}>3 ★</Text>
                   <View style={styles.ratingTrack}>
                     <View style={styles.ratingBarTiny} />
                   </View>
-                  <Text style={styles.ratingPercent}>3%</Text>
+                  <Text style={[styles.ratingPercent, { width: Math.ceil(36 * fontScale * systemFontScale) }]}>3%</Text>
                 </View>
 
                 <View style={styles.ratingLine}>
-                  <Text style={styles.ratingLineLabel}>2 ★</Text>
+                  <Text style={[styles.ratingLineLabel, { width: Math.ceil(32 * fontScale * systemFontScale) }]}>2 ★</Text>
                   <View style={styles.ratingTrack}>
                     <View style={styles.ratingBarMinimal} />
                   </View>
-                  <Text style={styles.ratingPercent}>1%</Text>
+                  <Text style={[styles.ratingPercent, { width: Math.ceil(36 * fontScale * systemFontScale) }]}>1%</Text>
                 </View>
 
                 <View style={styles.ratingLine}>
-                  <Text style={styles.ratingLineLabel}>1 ★</Text>
+                  <Text style={[styles.ratingLineLabel, { width: Math.ceil(32 * fontScale * systemFontScale) }]}>1 ★</Text>
                   <View style={styles.ratingTrack}>
                     <View style={styles.ratingBarMinimal} />
                   </View>
-                  <Text style={styles.ratingPercent}>1%</Text>
+                  <Text style={[styles.ratingPercent, { width: Math.ceil(36 * fontScale * systemFontScale) }]}>1%</Text>
                 </View>
               </View>
             </View>
