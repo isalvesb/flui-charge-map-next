@@ -8,15 +8,24 @@ export function isAuthorized(headers, token) {
   return a.length === b.length && timingSafeEqual(a, b);
 }
 
-export function createStreamingBudget({ initial = { requests: 0, reservedSeconds: 0 }, recordUsage }) {
-  if (!Number.isInteger(initial.requests) || !Number.isInteger(initial.reservedSeconds) || initial.requests < 0 || initial.requests > 20 || initial.reservedSeconds < 0 || initial.reservedSeconds > 600) throw new Error('Orçamento inválido.');
+// Explicit one-time authorization on 23/10/2026: preserve the 20/576 ledger,
+// allow only three additional 30-second reservations, never renew on restart.
+export function streamingBudgetLimits(env = {}, initial) {
+  if (env.STT_APPROVED_VALIDATION_EXTENSION === undefined) return { requests: 20, reservedSeconds: 600 };
+  if (env.STT_APPROVED_VALIDATION_EXTENSION !== '23/666' || !initial || initial.requests < 20 || initial.reservedSeconds < 576) throw new Error('Extensão exige o ledger e os limites autorizados.');
+  return { requests: 23, reservedSeconds: 666 };
+}
+
+export function createStreamingBudget({ initial = { requests: 0, reservedSeconds: 0 }, recordUsage, limits = { requests: 20, reservedSeconds: 600 } }) {
+  const approved = (limits.requests === 20 && limits.reservedSeconds === 600) || (limits.requests === 23 && limits.reservedSeconds === 666);
+  if (!approved || !Number.isInteger(initial.requests) || !Number.isInteger(initial.reservedSeconds) || initial.requests < 0 || initial.requests > limits.requests || initial.reservedSeconds < 0 || initial.reservedSeconds > limits.reservedSeconds) throw new Error('Orçamento inválido.');
   const usage = { ...initial };
   let busy = false;
   return {
     snapshot: () => ({ ...usage }),
     async reserve() {
       if (busy) throw new SttError('BUSY', 429);
-      if (usage.requests >= 20 || usage.reservedSeconds + 30 > 600) throw new SttError('SESSION_LIMIT', 429);
+      if (usage.requests >= limits.requests || usage.reservedSeconds + 30 > limits.reservedSeconds) throw new SttError('SESSION_LIMIT', 429);
       busy = true;
       usage.requests++; usage.reservedSeconds += 30;
       try { await recordUsage({ ...usage }); }

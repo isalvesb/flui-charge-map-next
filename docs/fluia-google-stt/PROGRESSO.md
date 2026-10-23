@@ -173,3 +173,11 @@
 - Removida somente a limpeza automática da conexão em background. Captura/stream e leitura continuam cancelados ao sair do primeiro plano; o retorno não inicia escuta sozinho. Código continua exclusivamente na memória do processo, sem AsyncStorage, arquivo ou variável pública; término do processo e desativação removem a sessão. Recarregamento completo do JavaScript ou reinício do intermediário ainda podem exigir nova ativação.
 - Configurações agora mantém **“Voz ativa nesta sessão.”** visível enquanto ativa, oculta código/Ativar e conserva Desativar. Antes, campo vazio após limpar o texto secreto podia parecer desconexão mesmo com estado ativo, como no print do usuário. Informação de privacidade atualizada para a política escolhida.
 - TypeScript e ESLint dirigidos passaram após o ajuste; cancelamento, resposta única e limpeza explícita permanecem cobertos pelos 13 testes dirigidos aprovados nesta rodada. Persistência de sessão após bloqueio ainda precisa de conferência no aparelho. Nenhuma retomada automática nem credencial persistida foi introduzida.
+
+### Extensão pontual de consumo autorizada
+
+- Commits dos ajustes anteriores: rodapé **`58322bf`**; retenção apenas em memória/estado ativo claro **`1dbfdee`**.
+- Antes do reinício controlado, ledger alcançou **20 chamadas/576 s reservados**. Nenhuma escuta estava ativa; processo próprio encerrado após confirmar cwd, PID e conexões, preservando Metro e ledger. Histórico separado permanece 1/4.
+- Usuário autorizou expressamente **até 3 chamadas/90 s adicionais**, com **tetos absolutos 23 chamadas/666 s no mesmo ledger**, sem mudança de faturamento ou repetição. Isso substitui somente o limite desta validação; não constitui autorização de gastos contínuos ou TTS.
+- Extensão exige flag explícita `STT_APPROVED_VALIDATION_EXTENSION=23/666` e ledger existente a partir de 20/576. Padrão continua 20/600; valores arbitrários são recusados. Reiniciar com a extensão não renova o saldo. Sem zerar, trocar ou criar ledger para contornar o limite.
+- **31/31 testes simulados do intermediário passaram**, incluindo uso exato de 21/606, 22/636, 23/666 e recusa da quarta chamada também após reinício. Log `.validation/approved-extension-tests.log`. Nenhuma chamada Google no teste.

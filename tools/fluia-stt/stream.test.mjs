@@ -3,7 +3,7 @@ import test from 'node:test';
 import { createServer } from 'node:http';
 import { once, EventEmitter } from 'node:events';
 import { WebSocket } from 'ws';
-import { attachStreamGateway, createStreamingBudget } from './stream-gateway.mjs';
+import { attachStreamGateway, createStreamingBudget, streamingBudgetLimits } from './stream-gateway.mjs';
 import { googleStreamProvider } from './google-stream.mjs';
 
 const token = 'test-session-capability-'.repeat(3);
@@ -84,6 +84,25 @@ test('limites e falha de registro bloqueiam Google antes de abrir stream', async
   const budget = createStreamingBudget({ recordUsage: async usage => used.push(usage) });
   const release = await budget.reserve(); release();
   assert.deepEqual(budget.snapshot(), { requests: 1, reservedSeconds: 30 });
+});
+
+test('extensão autorizada preserva ledger e só permite três chamadas, inclusive após reinício', async () => {
+  const initial = { requests: 20, reservedSeconds: 576 };
+  const env = { STT_APPROVED_VALIDATION_EXTENSION: '23/666' };
+  const limits = streamingBudgetLimits(env, initial);
+  const records = [];
+  const budget = createStreamingBudget({ initial, limits, recordUsage: async value => records.push(value) });
+  for (let i = 0; i < 3; i++) { const release = await budget.reserve(); release(); }
+  assert.deepEqual(records, [{ requests: 21, reservedSeconds: 606 }, { requests: 22, reservedSeconds: 636 }, { requests: 23, reservedSeconds: 666 }]);
+  await assert.rejects(budget.reserve(), /SESSION_LIMIT/);
+  const restarted = createStreamingBudget({ initial: budget.snapshot(), limits: streamingBudgetLimits(env, budget.snapshot()), recordUsage: async () => assert.fail('não deve registrar outra chamada') });
+  await assert.rejects(restarted.reserve(), /SESSION_LIMIT/);
+  assert.deepEqual(initial, { requests: 20, reservedSeconds: 576 });
+  assert.deepEqual(streamingBudgetLimits({}), { requests: 20, reservedSeconds: 600 });
+  assert.throws(() => streamingBudgetLimits(env), /ledger/);
+  assert.throws(() => streamingBudgetLimits(env, { requests: 19, reservedSeconds: 546 }), /ledger/);
+  assert.throws(() => streamingBudgetLimits({ STT_APPROVED_VALIDATION_EXTENSION: '100/3000' }, initial), /ledger/);
+  assert.throws(() => createStreamingBudget({ initial, limits: { requests: 24, reservedSeconds: 696 }, recordUsage: async () => {} }), /Orçamento/);
 });
 
 test('provedor Google configura resultados parciais/pausa 1 s e não repete chamada', async () => {
