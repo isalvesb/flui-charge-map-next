@@ -109,7 +109,7 @@ test("destino inválido interrompe o fluxo antes de consultar ou abrir o navegad
   assert.match(error!, /não possui coordenadas/);
 });
 
-test("Google Maps e Waze preservam URLs e não recebem origem demonstrativa no fallback", async () => {
+test("Google Maps e Waze preservam URLs e não recebem origem do cenário no fallback", async () => {
   for (const provider of ["google", "waze"] as const) {
     for (const origin of [position.coords, undefined]) {
       let checked = "";

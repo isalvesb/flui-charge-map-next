@@ -567,7 +567,7 @@ export default function SearchFiltersScreen() {
             </View>
 
             <Text style={styles.distanceDescription}>
-              Em linha reta desde {demoOrigin.nome}, origem demonstrativa. Sem cálculo de percurso.
+              Em linha reta desde {demoOrigin.nome}, origem do cenário. Sem cálculo de percurso.
             </Text>
             <View style={styles.chipRow}>
               {distanceOptions.map((distance) => (

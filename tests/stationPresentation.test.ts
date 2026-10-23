@@ -66,7 +66,7 @@ test("aviso da rota acompanha o limite de fechamento e não promete dados reais"
   } });
   const before = getStationRouteNotice(station, new Date("2026-10-16T22:59:59Z"));
   assert.match(before, /Aberto agora/);
-  assert.match(before, /carregadores livres são demonstrativos/);
+  assert.match(before, /carregadores livres são simulados/);
   const closed = getStationRouteNotice(station, new Date("2026-10-16T23:00:00Z"));
   assert.match(closed, /Fechado agora/);
   assert.match(closed, /recarga não está confirmada/);

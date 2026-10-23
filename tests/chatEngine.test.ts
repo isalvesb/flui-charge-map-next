@@ -66,7 +66,7 @@ test("chat respeita o horário recebido da tela nas duas intenções", () => {
     assert.equal(before.recommendation?.primary.id, station.id);
     assert.equal(after.recommendation, undefined);
     assert.equal(after.state, "alerta");
-    assert.match(after.text, /dados demonstrativos/);
+    assert.match(after.text, /catálogo de simulação/);
   }
 });
 
@@ -76,7 +76,7 @@ test("bateria baixa não atribui indisponibilidade exclusivamente ao alcance", (
   });
   assert.equal(response.recommendation, undefined);
   assert.match(response.text, /em manutenção no cadastro/);
-  assert.match(response.text, /dados demonstrativos/);
+  assert.match(response.text, /catálogo de simulação/);
   assert.doesNotMatch(response.text, /não há margem/);
 });
 
@@ -103,7 +103,7 @@ for (const [intent, synonyms] of Object.entries(questions)) {
       assert.deepEqual(result.recommendation,
         recommendStations({ ...fullContext, intent: intent as FluiAssistantIntent }), question);
       assert.equal(result.state, "respondendo");
-      assert.match(result.text, /No exemplo, Ponto Completo/);
+      assert.match(result.text, /Na simulação, Ponto Completo/);
       assert.match(result.text, /compatibilidade não confirmada/);
       assert.ok(!result.text.includes(RECOMMENDATION_DISCLAIMER));
       assert.ok(!result.text.includes(identificacaoDados.fluia.aviso));
@@ -173,7 +173,7 @@ test("ausência de estações não inventa causa em filtros, bateria ou horário
     assert.equal(response.state, "alerta");
     assert.equal(response.recommendation, undefined);
     assert.match(response.text, /Não recebi estações/);
-    assert.match(response.text, /dados demonstrativos/);
+    assert.match(response.text, /catálogo de simulação/);
     assert.doesNotMatch(response.text, /filtros|todas.*fechadas|não há margem/);
   }
 });

@@ -89,13 +89,13 @@ function createExplanation(
       ? "1 carregador livre"
       : `${availableChargers} carregadores livres`;
   if (intent === "lowBattery")
-    return `Está ao alcance estimado, fica a ${formatAssistantDistance(station.distanceKm)} e tem ${chargerLabel} nos dados demonstrativos.`;
+    return `Está ao alcance estimado, fica a ${formatAssistantDistance(station.distanceKm)} e tem ${chargerLabel} no catálogo local.`;
   if (intent === "fastCharge")
-    return `Oferece até ${powerKw} kW nos conectores utilizáveis e ${chargerLabel} nos dados demonstrativos.`;
+    return `Oferece até ${powerKw} kW nos conectores utilizáveis e ${chargerLabel} no catálogo local.`;
   if (intent === "avoidQueues")
     return "Combina disponibilidade cadastrada e distância; não há previsão de fila em tempo real.";
   if (intent === "coffeeAndRestroom")
-    return "Reúne banheiro e café cadastrados, considerando alcance estimado e disponibilidade demonstrativa.";
+    return "Reúne banheiro e café cadastrados, considerando alcance estimado e disponibilidade do catálogo.";
   return `Combina avaliação e ${station.amenities.length} comodidade(s) cadastrada(s); a espera não é monitorada.`;
 }
 

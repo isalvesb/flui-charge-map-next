@@ -16,9 +16,9 @@ export function getStationRouteNotice(
 ) {
   const status = getStationStatusInfo(station, date);
   const availability = canChargeAt(station, date)
-    ? "A abertura e os carregadores livres são demonstrativos."
+    ? "A abertura e os carregadores livres são simulados."
     : `${status.description}. A recarga não está confirmada neste ponto.`;
-  return `Nos dados demonstrativos: ${status.label}. ${availability} Abrir a rota não garante atendimento; confirme o funcionamento e a compatibilidade antes de ir.`;
+  return `No catálogo local: ${status.label}. ${availability} Abrir a rota não garante atendimento; confirme o funcionamento e a compatibilidade antes de ir.`;
 }
 
 type RoutingModalRoutesType = {

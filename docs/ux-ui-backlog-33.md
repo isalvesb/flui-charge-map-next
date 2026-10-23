@@ -487,3 +487,12 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Verificações: TypeScript, ESLint, testes de proporção e medição web dirigida antes do checkpoint.
 
 - R12: medição real em viewport 320 px confirmou molduras de 280×157,5, 280×373,33 e 280×105; largura útil e três proporções preservadas.
+
+### R13 — 03: linguagem restante nos fluxos
+
+- Nova passada em mapa, busca, viagem, FluIA, onboarding, rota e Auto Experience: usa “origem do cenário”, “catálogo local”, “dados simulados” e identificação real da origem da bateria; evita repetir “demonstrativo” e o termo técnico “sem telemetria” no Auto.
+- Avisos de disponibilidade não confirmada, linha reta, compatibilidade, reserva de 5% e distinção de GPS permanecem. Conteúdo das avaliações da ficha (29) não foi alterado.
+- Metadados internos/tipos/nomes de função não foram renomeados. Testes de texto acompanham a terminologia mantendo asserções de segurança.
+- Verificações: TypeScript, ESLint e suíte completa (`r13-*`). Nova revisão humana ainda necessária; não marcar 03 aprovado apenas por essa revisão de código.
+
+- R13: suíte inicial encontrou expectativas textuais antigas em resumo/chat/flag; atualizadas para exigir identificação explícita da simulação na nova terminologia, sem remover verificações de disponibilidade/alcance. Log inicial preservado em `r13-check.log`; resultado final em `r13-check-final.log`.

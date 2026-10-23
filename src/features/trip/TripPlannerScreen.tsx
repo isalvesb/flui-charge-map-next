@@ -214,7 +214,7 @@ export default function TripPlannerScreen() {
     const opcoesOrigem = origensDemonstrativas.map((origem) => ({
       id: origem.id,
       titulo: origem.nome,
-      subtitulo: "Origem demonstrativa",
+      subtitulo: "Origem do cenário",
       selecionado: origem.id === originId,
       onPress: () => {
         setOriginId(origem.id);
@@ -322,7 +322,7 @@ export default function TripPlannerScreen() {
             <Pressable
               accessibilityRole="button"
               accessibilityLabel={`Origem: ${origemSelecionada.nome}`}
-              accessibilityHint="Toque para escolher outra origem demonstrativa."
+              accessibilityHint="Toque para escolher outra origem do cenário."
               style={({ pressed }) => [
                 styles.routeField,
                 pressed ? styles.routeFieldPressed : null,
@@ -345,7 +345,7 @@ export default function TripPlannerScreen() {
             <Pressable
               accessibilityRole="button"
               accessibilityLabel={`Destino: ${destinoSelecionado.nome}`}
-              accessibilityHint="Toque para escolher outro destino demonstrativo."
+              accessibilityHint="Toque para escolher outro destino do cenário."
               style={({ pressed }) => [
                 styles.routeField,
                 pressed ? styles.routeFieldPressed : null,
@@ -537,7 +537,7 @@ export default function TripPlannerScreen() {
                 <Text style={[styles.warningText, { color: tomDoAlcance.fg }]}>
                   {plano.nivelDeAlcance === "apertado"
                     ? `Autonomia limitada: chegada estimada com ${plano.bateriaChegadaDestinoPercent}% de bateria.`
-                    : "A viagem não preserva a reserva mínima de 5% na chegada com as paradas demonstrativas disponíveis."}
+                    : "A viagem não preserva a reserva mínima de 5% na chegada com as paradas disponíveis no cenário."}
                 </Text>
               </View>
             ) : null}
@@ -653,7 +653,7 @@ export default function TripPlannerScreen() {
           accessibilityHint={
             podeIniciar
               ? `Abre o aplicativo de navegação até ${proximoDestinoNome}.`
-              : "A viagem não preserva a reserva mínima de 5% com as paradas demonstrativas disponíveis."
+              : "A viagem não preserva a reserva mínima de 5% com as paradas disponíveis no cenário."
           }
           accessibilityState={{ disabled: !podeIniciar }}
           disabled={!podeIniciar || isIniciandoViagem}

@@ -28,7 +28,7 @@ const onboardingSteps: OnboardingStep[] = [
   {
     title: "Encontre pontos próximos",
     description:
-      "Explore estações demonstrativas no mapa, com disponibilidade simulada e distâncias aproximadas em linha reta.",
+      "Explore estações do catálogo de simulação no mapa, com disponibilidade simulada e distâncias aproximadas em linha reta.",
     image: require("../../assets/onboarding/1.webp"),
   },
   {
@@ -40,7 +40,7 @@ const onboardingSteps: OnboardingStep[] = [
   {
     title: "Escolha com confiança",
     description:
-      "Compare notas e comentários demonstrativos. Eles não representam experiências verificadas de outros motoristas.",
+      "Compare notas e comentários simulados. Eles não representam experiências verificadas de outros motoristas.",
     image: require("../../assets/onboarding/3.webp"),
   },
   {

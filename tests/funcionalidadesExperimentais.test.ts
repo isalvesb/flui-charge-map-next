@@ -17,7 +17,7 @@ test("FluIA fica habilitada por padrão e mantém sugestões locais", () => {
   assert.ok(recommendStations({ ...contexto, intent: "fastCharge" }));
   const resposta = answerMessage("quero carregar rápido", contexto);
   assert.ok(resposta.recommendation);
-  assert.match(resposta.text, /dados demonstrativos/);
+  assert.match(resposta.text, /simulação/);
 });
 
 test("controle desabilitado bloqueia sugestões e todas as respostas do motor", () => {
@@ -41,6 +41,6 @@ test("falta de opção no exemplo não afirma indisponibilidade real", () => {
   const resposta = answerMessage("carregar rápido", { ...contexto, batteryPercent: 0 });
   assert.equal(resposta.state, "alerta");
   assert.equal(resposta.recommendation, undefined);
-  assert.match(resposta.text, /dados demonstrativos/);
+  assert.match(resposta.text, /simulação/);
   assert.match(resposta.text, /reserva mínima de 5%/);
 });

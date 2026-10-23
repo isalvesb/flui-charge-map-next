@@ -1217,7 +1217,7 @@ export default function HomeMapScreen() {
                       key={filter.id}
                       accessibilityRole="button"
                       accessibilityLabel={`${filter.label}${filter.active ? ", filtro ativo" : ""}`}
-                      accessibilityHint="Filtra os pontos do catálogo demonstrativo."
+                      accessibilityHint="Filtra os pontos do catálogo de simulação."
                       accessibilityState={{ selected: filter.active }}
                       pressedScale={0.96}
                       style={[
@@ -1280,7 +1280,7 @@ export default function HomeMapScreen() {
                   latitude: localizacaoUsuario.latitude,
                   longitude: localizacaoUsuario.longitude,
                 }}
-                title={`Origem demonstrativa: ${demoOrigin.nome}`}
+                title={`Origem do cenário: ${demoOrigin.nome}`}
                 description="Localização simulada para demonstração."
                 anchor={{ x: 0.5, y: 0.5 }}
                 tracksViewChanges={!reduceMotionEnabled}
@@ -1318,7 +1318,7 @@ export default function HomeMapScreen() {
                   accessible
                   accessibilityRole="button"
                   accessibilityLabel={`Abrir ficha de ${getStationNameById(stationId)}`}
-                  accessibilityHint={`${getStationStatus(item.station, now)}. Mostra detalhes e dados demonstrativos do ponto.`}
+                  accessibilityHint={`${getStationStatus(item.station, now)}. Mostra detalhes e dados do catálogo do ponto.`}
                   icon={markerIcon}
                   tracksViewChanges={false}
                 />
@@ -1377,7 +1377,7 @@ export default function HomeMapScreen() {
 
             <PressableScale
               accessibilityRole="button"
-              accessibilityLabel={`Centralizar origem demonstrativa: ${demoOrigin.nome}`}
+              accessibilityLabel={`Centralizar origem do cenário: ${demoOrigin.nome}`}
               accessibilityHint="Centraliza na origem selecionada nas configurações. Sem GPS."
               accessibilityState={{ busy: isLocatingUser }}
               pressedScale={0.94}

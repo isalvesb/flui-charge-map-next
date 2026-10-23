@@ -160,12 +160,12 @@ export function answerMessage(text: string, context: AssistantContext): ChatResp
     const recommendation = recommendStations({ ...context, intent: rule.intent });
     if (!recommendation) {
       return {
-        text: `${rule.unavailable} nos dados demonstrativos. ${explainNoRecommendation(context, rule.intent)}`,
+        text: `${rule.unavailable} no catálogo de simulação. ${explainNoRecommendation(context, rule.intent)}`,
         state: "alerta",
       };
     }
     return {
-      text: `No exemplo, ${recommendation.primary.name}: ${recommendation.explanation}\nEstimativa em linha reta com reserva de ${MIN_ARRIVAL_BATTERY_PERCENT}%; compatibilidade não confirmada. Confirme o funcionamento antes de sair.`,
+      text: `Na simulação, ${recommendation.primary.name}: ${recommendation.explanation}\nEstimativa em linha reta com reserva de ${MIN_ARRIVAL_BATTERY_PERCENT}%; compatibilidade não confirmada. Confirme o funcionamento antes de sair.`,
       state: "respondendo",
       recommendation,
     };

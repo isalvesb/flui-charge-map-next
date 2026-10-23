@@ -13,16 +13,16 @@ test("resumo preserva os valores do motor e os limites de segurança", () => {
   assert.ok(text.includes(result.primary.name));
   assert.ok(text.includes(`chegada ≈${result.arrivalBatteryPercent}%`));
   assert.ok(text.includes(`${result.powerKw} kW`));
-  for (const warning of ["em linha reta", "Dados demonstrativos", "reserva de 5%", "Confirme funcionamento e compatibilidade"]) assert.ok(text.includes(warning));
+  for (const warning of ["em linha reta", "Dados simulados", "reserva de 5%", "Confirme funcionamento e compatibilidade"]) assert.ok(text.includes(warning));
   assert.equal(JSON.stringify(result), before);
   assert.ok(text.length < 300);
 });
 
-test("contexto distingue bateria manual, origem demonstrativa e conjunto recebido sem alterar entradas", () => {
+test("contexto distingue bateria manual, origem do cenário e conjunto recebido sem alterar entradas", () => {
   const preferences = { vehicleName: "Veículo de teste", vehicleRangeKm: 330, batteryPercent: 42, batterySource: "manual" as const, batteryUpdatedAt: "2026-10-22T12:00:00.000Z" };
   const before = JSON.stringify(preferences);
   const text = describeAssistantContext(preferences, "Vila Mariana", 3);
-  for (const expected of ["330 km", "42%", "Informado manualmente", "Origem demonstrativa: Vila Mariana", "não usa sua localização real", "consulta: 3", "Sem telemetria"]) assert.ok(text.includes(expected));
+  for (const expected of ["330 km", "42%", "Informado manualmente", "Origem do cenário: Vila Mariana", "não usa sua localização real", "consulta: 3", "Sem telemetria"]) assert.ok(text.includes(expected));
   assert.equal(JSON.stringify(preferences), before);
 });
 
@@ -38,6 +38,6 @@ test("contexto não atribui bateria demonstrativa ou antiga a telemetria real", 
 test("resumo contextual compacto preserva veículo, bateria e caráter demonstrativo da origem", () => {
   const preferences = { vehicleName: "Veículo com nome longo para leitura ampliada", batteryPercent: 42 };
   const before = JSON.stringify(preferences);
-  assert.equal(summarizeAssistantContext(preferences, "Vila Mariana"), `${preferences.vehicleName} · bateria 42%\nOrigem demonstrativa: Vila Mariana`);
+  assert.equal(summarizeAssistantContext(preferences, "Vila Mariana"), `${preferences.vehicleName} · bateria 42%\nOrigem do cenário: Vila Mariana`);
   assert.equal(JSON.stringify(preferences), before);
 });

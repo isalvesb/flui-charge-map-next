@@ -498,7 +498,7 @@ export function FluiAssistantSheet({
                 >
                   <View style={styles.bestChoiceBadge}>
                     <Text style={styles.bestChoiceText}>
-                      Sugestão demonstrativa
+                      Sugestão do catálogo
                     </Text>
                   </View>
                   <Text style={styles.stationName}>
@@ -560,7 +560,7 @@ export function FluiAssistantSheet({
                   {showExplanation ? <Text style={styles.explanationText}>
                     {recommendation.explanation}
                     {"\n"}
-                    {userPreferences.vehicleName} · origem demonstrativa: {demoOrigin.nome}.
+                    {userPreferences.vehicleName} · origem do cenário: {demoOrigin.nome}.
                     {"\n"}
                     {RECOMMENDATION_DISCLAIMER}
                   </Text> : null}

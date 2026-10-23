@@ -8,6 +8,7 @@ import { PressableScale } from "../../components";
 import { useAppPreferences } from "../../context/PreferencesContext";
 import { formatarDistanciaDemonstrativa } from "../../utils/demonstracao";
 import { getStationStatusInfo } from "../stations/stationPresentation";
+import { getBatterySourceLabels } from "../../utils/batteryData";
 import { AUTO_FORMATS, getAutoPreviewLayout } from "./autoPresentation";
 
 export default function AutoExperienceScreen() {
@@ -19,6 +20,7 @@ export default function AutoExperienceScreen() {
   const availableWidth = Math.max(0, Math.min(1100, previewWidth));
   const frame = getAutoPreviewLayout(availableWidth, format, fontScale, systemFontScale);
   const station = demoStations[0];
+  const batteryLabels = getBatterySourceLabels(userPreferences);
   const text = { color: theme.text, fontSize: scale(15), lineHeight: scale(22) };
   const small = { ...text, fontSize: scale(12), lineHeight: scale(18), color: theme.textMuted };
   const button = { minHeight: 48, padding: 14, borderRadius: 16, borderWidth: 1, borderColor: theme.border, backgroundColor: theme.surface };
@@ -32,7 +34,7 @@ export default function AutoExperienceScreen() {
           </PressableScale>
           <Text accessibilityRole="header" style={[text, { flex: 1, fontSize: scale(22), fontWeight: "800" }]}>Flui Auto Experience</Text>
         </View>
-        <Text style={[small, { width: "100%", maxWidth: 1100, color: theme.primary, fontWeight: "800" }]}>SIMULAÇÃO VISUAL · DADOS DEMONSTRATIVOS</Text>
+        <Text style={[small, { width: "100%", maxWidth: 1100, color: theme.primary, fontWeight: "800" }]}>PRÉVIA COM DADOS SIMULADOS</Text>
         <View style={{ width: "100%", maxWidth: 1100, flexDirection: "row", gap: 8 }}>
           {AUTO_FORMATS.map((item) => (
             <Pressable key={item.id} accessibilityRole="button" accessibilityLabel={`Formato ${item.label}, ${item.proportion}`} accessibilityState={{ selected: item.id === formatId }}
@@ -56,7 +58,7 @@ export default function AutoExperienceScreen() {
                 <Text style={[text, { fontSize: scale(21), fontWeight: "900", color: theme.primary }]}>Flui</Text>
                 <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
                   <BatteryMedium size={20} color={theme.primary} />
-                  <Text style={[small, { color: theme.text }]}>{userPreferences.batteryPercent}% · sem telemetria</Text>
+                  <Text style={[small, { color: theme.text }]}>{userPreferences.batteryPercent}% · {batteryLabels.source}</Text>
                 </View>
               </View>
               <View style={{ flex: 1, minHeight: frame.stacked ? 300 : 190, flexDirection: frame.stacked ? "column" : "row" }}>
@@ -70,7 +72,7 @@ export default function AutoExperienceScreen() {
                   </View>
                   <Text style={small}>Confirme funcionamento e compatibilidade.</Text>
                 </View>
-                <View accessible accessibilityLabel={`Mapa ilustrativo. Origem demonstrativa: ${demoOrigin.nome}. Sem percurso real.`} style={{ flex: 1, minHeight: 170, backgroundColor: theme.primarySoft, overflow: "hidden" }}>
+                <View accessible accessibilityLabel={`Mapa ilustrativo. Origem do cenário: ${demoOrigin.nome}. Sem percurso real.`} style={{ flex: 1, minHeight: 170, backgroundColor: theme.primarySoft, overflow: "hidden" }}>
                   <Svg height="100%" width="100%" style={{ position: "absolute" }} viewBox="0 0 600 300" preserveAspectRatio="xMidYMid meet" accessible={false}>
                     <Rect x={0} y={0} width={600} height={300} fill={theme.primarySoft} />
                     <Rect x={330} y={20} width={140} height={95} rx={28} fill={theme.primarySoftStrong} />
@@ -81,7 +83,7 @@ export default function AutoExperienceScreen() {
                     <Circle cx={465} cy={90} r={16} fill={theme.primary} stroke={theme.surface} strokeWidth={4} />
                     <Path d="M466 80L459 91H466L463 101L473 88H466Z" fill={theme.onPrimary} />
                   </Svg>
-                  <Text style={[small, { alignSelf: "flex-start", margin: 10, paddingHorizontal: 10, paddingVertical: 6, borderRadius: 12, color: theme.text, backgroundColor: theme.surface }]}>Origem demo · {demoOrigin.nome}</Text>
+                  <Text style={[small, { alignSelf: "flex-start", margin: 10, paddingHorizontal: 10, paddingVertical: 6, borderRadius: 12, color: theme.text, backgroundColor: theme.surface }]}>Origem · {demoOrigin.nome}</Text>
                 </View>
               </View>
               <View accessibilityLabel="Barra ilustrativa: Mapa, Recarga e FluIA. Sem ações nesta prévia." style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "space-around", padding: 10, gap: 12, borderTopWidth: 1, borderColor: theme.border }}>
@@ -95,7 +97,7 @@ export default function AutoExperienceScreen() {
         <View style={{ width: "100%", maxWidth: 1100, padding: 16, borderWidth: 1, borderColor: theme.border, borderRadius: 18, gap: 8 }}>
           <Text style={[text, { fontWeight: "800" }]}>Estudo de interface, sem integração automotiva</Text>
           <Text style={small}>Sem conexão com veículos, CarPlay ou Android Auto. Proporções ilustrativas; use com o veículo parado. A prévia não inicia rotas nem envia comandos.</Text>
-          <Text style={small}>{userPreferences.vehicleName} · autonomia configurada {userPreferences.vehicleRangeKm} km. Bateria informada para estimativas, sem telemetria.</Text>
+          <Text style={small}>{userPreferences.vehicleName} · autonomia configurada {userPreferences.vehicleRangeKm} km. Carga de referência para estimativas, sem leitura automática do veículo.</Text>
           <PressableScale accessibilityRole="button" accessibilityLabel="Abrir o mapa real do aplicativo" style={button} onPress={() => router.push("/map")}>
             <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
               <Text style={[text, { flex: 1, color: theme.primary, fontWeight: "700" }]}>Abrir mapa do aplicativo</Text>
