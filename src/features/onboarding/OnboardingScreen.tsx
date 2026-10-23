@@ -1,6 +1,7 @@
 import { router, useLocalSearchParams } from "expo-router";
 import React, { useMemo, useRef, useState } from "react";
 import {
+  Alert,
   Image,
   type ImageSourcePropType,
   NativeScrollEvent,
@@ -80,13 +81,16 @@ export default function OnboardingScreen() {
     try {
       setIsFinishing(true);
       await fluiStorage.updateUserPreferences({ hasSeenOnboarding: true });
-    } finally {
       if (shouldReturnToSettings) {
         router.back();
         return;
       }
 
       router.replace("/loading");
+    } catch {
+      Alert.alert("Não foi possível salvar", "Seus dados não foram alterados. Tente novamente em alguns instantes.");
+    } finally {
+      setIsFinishing(false);
     }
   };
 

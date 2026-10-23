@@ -216,6 +216,7 @@ export default function PointDetailsScreen() {
     favoriteStationIds,
     sentReviews,
     isLoadingStorage,
+    storageError,
     reloadStorage,
     toggleFavoriteStation,
   } = useFluiStorage();
@@ -244,7 +245,7 @@ export default function PointDetailsScreen() {
   const isFavorite = station ? favoriteStationIds.includes(station.id) : false;
 
   async function handleToggleFavorite() {
-    if (!station || isLoadingAction || isLoadingStorage) {
+    if (!station || isLoadingAction || isLoadingStorage || !!storageError) {
       return;
     }
 
@@ -487,7 +488,7 @@ export default function PointDetailsScreen() {
               }
               accessibilityState={{
                 selected: isFavorite,
-                disabled: isLoadingAction || isLoadingStorage,
+                disabled: isLoadingAction || isLoadingStorage || !!storageError,
               }}
               style={({ pressed, hovered }: PressableVisualState) => [
                 styles.iconButton,
@@ -495,7 +496,7 @@ export default function PointDetailsScreen() {
                 hovered && !pressed ? styles.hoverFeedback : null,
                 pressed ? styles.iconButtonPressed : null,
               ]}
-              disabled={isLoadingAction || isLoadingStorage}
+              disabled={isLoadingAction || isLoadingStorage || !!storageError}
               onPress={handleToggleFavorite}
             >
               <Heart
@@ -601,6 +602,12 @@ export default function PointDetailsScreen() {
             <Text style={styles.resumoTitle}>{recomendacaoDoPonto}</Text>
           ) : null}
           <ConnectionNotice />
+          {storageError ? <View style={{ paddingHorizontal: 20, paddingVertical: 8, backgroundColor: colors.surface }}>
+            <Text accessibilityRole="alert" style={{ color: colors.text }}>{storageError} Seus registros não foram alterados.</Text>
+            <Pressable accessibilityRole="button" accessibilityLabel="Recarregar favoritos e avaliações locais" style={{ minHeight: 44, justifyContent: "center" }} onPress={() => void reloadStorage()}>
+              <Text style={{ color: colors.primary, fontWeight: "700" }}>Tentar novamente</Text>
+            </Pressable>
+          </View> : null}
           <View style={styles.infoGrid} onLayout={(event) => setInfoWidth(event.nativeEvent.layout.width)}>
             <View style={[styles.infoRow, stackInfoCards ? { flexDirection: "column" } : null]}>
               <View style={styles.infoCard}>

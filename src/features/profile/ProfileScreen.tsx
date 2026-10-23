@@ -134,8 +134,11 @@ export default function ProfileScreen() {
     sentReviews,
     recentHistory,
     storageError,
+    isLoadingStorage,
     reloadStorage,
   } = useFluiStorage();
+
+  const storageCount = (count: number) => count > 0 ? count : isLoadingStorage ? "…" : storageError ? "—" : count;
 
   useFocusEffect(
     useCallback(() => {
@@ -384,23 +387,26 @@ export default function ProfileScreen() {
 
           {storageError ? (
             <View style={styles.errorCard}>
-              <Text style={styles.errorText}>{storageError}</Text>
+              <Text accessibilityRole="alert" style={styles.errorText}>{storageError}</Text>
+              <PressableScale accessibilityRole="button" accessibilityLabel="Tentar carregar dados locais novamente" style={{ minHeight: 44, justifyContent: "center", marginTop: 6 }} onPress={() => void reloadStorage()}>
+                <Text style={{ color: theme.primary, fontWeight: "700" }}>Tentar novamente</Text>
+              </PressableScale>
             </View>
           ) : null}
 
           <View style={styles.statsRow}>
             <View style={styles.statCard}>
-              <Text style={styles.statNumber}>{favoriteStations.length}</Text>
+              <Text style={styles.statNumber}>{storageCount(favoriteStations.length)}</Text>
               <Text style={styles.statLabel}>favoritos</Text>
             </View>
 
             <View style={styles.statCard}>
-              <Text style={styles.statNumber}>{recentStations.length}</Text>
+              <Text style={styles.statNumber}>{storageCount(recentStations.length)}</Text>
               <Text style={styles.statLabel}>histórico</Text>
             </View>
 
             <View style={styles.statCard}>
-              <Text style={styles.statNumber}>{reviewedStations.length}</Text>
+              <Text style={styles.statNumber}>{storageCount(reviewedStations.length)}</Text>
               <Text style={styles.statLabel}>avaliações</Text>
             </View>
           </View>
@@ -506,7 +512,8 @@ export default function ProfileScreen() {
                       activeTab === "favorites" ? "favorite" : "history",
                     ),
                   )
-                : emptyContent}
+                : isLoadingStorage ? <Text accessibilityLiveRegion="polite" style={styles.sectionText}>Carregando dados salvos…</Text>
+                : storageError ? null : emptyContent}
             </View>
           </View>
 
@@ -521,7 +528,8 @@ export default function ProfileScreen() {
               <View style={styles.cardsList}>
                 {reviewedStations.length > 0
                   ? reviewedStations.map(renderReviewCard)
-                  : renderEmptyCard(
+                  : isLoadingStorage ? <Text style={styles.sectionText}>Carregando avaliações salvas…</Text>
+                  : storageError ? null : renderEmptyCard(
                       <Star
                         size={21}
                         color={theme.primary}
