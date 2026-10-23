@@ -382,7 +382,6 @@ export default function SettingsScreen() {
             </PressableScale>
           </View>
           <View style={styles.versionFooter} testID="identificacao-versao">
-            <Text style={styles.sectionText}>Experimento do mapa · revisão local</Text>
             <Text style={styles.versionText}>Flui {appPackage.version}</Text>
           </View>
         </ScrollView>

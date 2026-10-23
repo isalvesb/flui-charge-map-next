@@ -411,3 +411,10 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Arquivos: `FluiAssistantSheet.tsx`, `fluiaVisualStatus.ts`, `tests/fluiaVisualStatus.test.ts`.
 - Estado de reprodução tem prioridade sobre temporizador de resposta, preview visual e conexão enquanto a voz está efetivamente falando. Ao concluir/parar, volta ao estado aplicável.
 - Verificações: TypeScript, ESLint e testes de voz/estados (`../output/ux-feedback-20261023/r01-*`). Confirmação de áudio físico após correção pendente.
+
+### R02 — 15/16: cores, alinhamento e revisão 2.2
+
+- Arquivos: perfil `.tsx/.styles.ts`, configurações `.tsx/.styles.ts`, `package.json`, `package-lock.json` (só metadados de versão), `app.config.js` (só versão).
+- Configurações do perfil em amarelo com texto/ícone contrastantes. Sair da conta centraliza grupo ícone/texto com 14 pt de espaço. Rodapé contém somente Flui 2.2.0.
+- Versão do código/configuração agora 2.2.0; nenhuma dependência/SDK alterada. Binário físico instalado continua com nome/metadados anteriores até compilação autorizada, que não foi executada. Não confundir versão da interface servida pelo Metro com instalação nova.
+- Verificações: TypeScript, ESLint, diff e comparação das dependências antes/depois (`r02-*`). Revisão humana após ajuste pendente.

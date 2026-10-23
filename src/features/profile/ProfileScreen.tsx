@@ -414,7 +414,7 @@ export default function ProfileScreen() {
               >
                 <SettingsIcon
                   size={19}
-                  color={theme.primary}
+                  color={theme.warningText}
                   strokeWidth={2.1}
                 />
                 <Text style={styles.profileActionText}>Configurações</Text>

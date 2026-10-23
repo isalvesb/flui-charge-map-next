@@ -9,7 +9,7 @@ module.exports = {
   expo: {
     name: "Flui 2.1",
     slug: "flui-charge-map",
-    version: "2.1.0",
+    version: "2.2.0",
     orientation: "portrait",
     icon: "./src/assets/images/icon.png",
     scheme: "fluiuxmapa01",

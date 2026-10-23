@@ -224,7 +224,7 @@ export function createSettingsStyles(colors: AppTheme, fontScale: number) {
       paddingHorizontal: 24,
     },
 
-    logoutButton: { backgroundColor: colors.dangerSoft, borderColor: colors.dangerText },
+    logoutButton: { backgroundColor: colors.dangerSoft, borderColor: colors.dangerText, justifyContent: "center", gap: 14 },
     versionFooter: { marginTop: 28, alignItems: "center", gap: 6 },
     versionText: { color: colors.textMuted, fontSize: s(13), fontWeight: "700" },
     feedbackToastCard: {
