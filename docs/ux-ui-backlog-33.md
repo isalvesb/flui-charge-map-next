@@ -56,8 +56,8 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 | 12 | P2 | Pesquisa de reconhecimento de fala | Pesquisa pendente | docs | Não contratar serviço, instalar dependência nativa nem introduzir credenciais. |
 | 13 | P3 | Textos secundários do perfil | Implementado; revisão física pendente | profile/ProfileScreen | Preservar origem fictícia em identificação acessível/geral. |
 | 14 | P3 | Remoção de atalhos úteis | Implementado; revisão física pendente | profile/ProfileScreen | Mapa/filtros mantêm acessos próprios. |
-| 15 | P3 | Configurações em largura total | Pendente | profile/ProfileScreen | Depende de 16 para transferência da saída. |
-| 16 | P2 | Saída no fim de configurações | Pendente | profile; settings | Saída atual é apenas visual; não inventar autenticação. |
+| 15 | P3 | Configurações em largura total | Implementado; revisão física pendente | profile/ProfileScreen | Depende de 16 para transferência da saída. |
+| 16 | P2 | Saída no fim de configurações | Implementado; revisão física pendente | profile; settings | Saída atual é apenas visual; não inventar autenticação. |
 | 17 | P2 | Nova escala tipográfica | Pendente | theme/appTheme | Menor=antigo padrão; padrão=antigo grande; maior=novo superior. |
 | 18 | P2 | Cartões de acessibilidade | Parcial existente | settings/SettingsScreen | Seção já existe; reorganizar fontes horizontalmente. Depende de 17. |
 | 19 | P2 | Laboratório fora de configurações comuns | Pendente | settings; orb-lab | Preservar implementação e acesso interno. |
@@ -113,3 +113,11 @@ Cada entrada deve informar IDs, commit, arquivos, verificações e limites human
 - Revisão física/humana: pendente; nenhuma aprovação presumida.
 
 - Correção durante CP02: a primeira checagem encontrou importação ainda necessária à identificação geral do perfil; restaurada antes de prosseguir. Checkpoint local corrigido com novas verificações.
+
+### CP03 — 15 e 16: acesso às configurações e saída
+
+- Arquivos: `src/features/profile/ProfileScreen.tsx`, `src/features/settings/SettingsScreen.tsx`.
+- Configurações ocupa toda a largura útil no perfil. Saída transferida para o fim dos ajustes; continua apenas informativa, sem autenticação real, sem apagar dados.
+- Verificações: TypeScript, ESLint dirigido e diff, logs `03-*`.
+- Conferir: perfil → Configurações → final da página → Sair da conta; mensagem explica perfil local.
+- Revisão física/humana pendente. Checkpoints anteriores: CP01 `b856e1d`, CP02 `695ef45`.

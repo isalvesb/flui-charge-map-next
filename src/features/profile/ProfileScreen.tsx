@@ -1,8 +1,6 @@
 import React, {
   useCallback,
-  useEffect,
   useMemo,
-  useRef,
   useState,
 } from "react";
 import { Image, ScrollView, StatusBar, Text, View } from "react-native";
@@ -14,7 +12,6 @@ import {
   ChevronRight,
   Heart,
   History,
-  LogOut,
   MapPin,
   Settings as SettingsIcon,
   Star,
@@ -31,7 +28,6 @@ import { createProfileStyles } from "./ProfileScreen.styles";
 type ProfileTab = "favorites" | "history";
 type Station = (typeof chargingStations)[number];
 
-const FEEDBACK_DURATION = 1500;
 const nomeMotorista = "Caio Duarte";
 const imagemPerfilUsuario = require("../../assets/user/profile1.webp");
 const imagemCarroUsuario = require("../../assets/user/car1.webp");
@@ -132,14 +128,6 @@ export default function ProfileScreen() {
   const isDarkMode = appearanceMode === "dark";
 
   const [activeTab, setActiveTab] = useState<ProfileTab>("favorites");
-  const [profileFeedbackMessage, setProfileFeedbackMessage] = useState<
-    string | null
-  >(null);
-
-  const profileFeedbackTimeoutRef = useRef<ReturnType<
-    typeof setTimeout
-  > | null>(null);
-
   const {
     favoriteStationIds,
     sentReviews,
@@ -147,14 +135,6 @@ export default function ProfileScreen() {
     storageError,
     reloadStorage,
   } = useFluiStorage();
-
-  useEffect(() => {
-    return () => {
-      if (profileFeedbackTimeoutRef.current) {
-        clearTimeout(profileFeedbackTimeoutRef.current);
-      }
-    };
-  }, []);
 
   useFocusEffect(
     useCallback(() => {
@@ -200,18 +180,6 @@ export default function ProfileScreen() {
     } as Href;
 
     router.push(route);
-  };
-
-  const showProfileFeedback = (message: string) => {
-    if (profileFeedbackTimeoutRef.current) {
-      clearTimeout(profileFeedbackTimeoutRef.current);
-    }
-
-    setProfileFeedbackMessage(message);
-
-    profileFeedbackTimeoutRef.current = setTimeout(() => {
-      setProfileFeedbackMessage(null);
-    }, FEEDBACK_DURATION);
   };
 
   const renderEmptyCard = (
@@ -413,12 +381,6 @@ export default function ProfileScreen() {
             <Text style={styles.profileVehicle}>{userPreferences.vehicleName}</Text>
           </View>
 
-          {profileFeedbackMessage ? (
-            <View style={styles.feedbackBadge}>
-              <Text style={styles.feedbackText}>{profileFeedbackMessage}</Text>
-            </View>
-          ) : null}
-
           {storageError ? (
             <View style={styles.errorCard}>
               <Text style={styles.errorText}>{storageError}</Text>
@@ -459,18 +421,6 @@ export default function ProfileScreen() {
               </PressableScale>
             </View>
 
-            <View style={styles.profileActionItem}>
-              <PressableScale
-                accessibilityRole="button"
-                accessibilityLabel="Sair da conta"
-                accessibilityHint="Exibe um aviso visual, sem encerrar a sessão nesta versão."
-                style={styles.logoutButton}
-                onPress={() => showProfileFeedback("Logout apenas visual")}
-              >
-                <LogOut size={19} color={theme.primary} strokeWidth={2.1} />
-                <Text style={styles.profileActionText}>Sair da conta</Text>
-              </PressableScale>
-            </View>
           </View>
 
           <View style={styles.segmentedControl}>

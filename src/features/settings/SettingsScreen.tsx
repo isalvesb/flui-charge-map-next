@@ -7,6 +7,7 @@ import {
   ArrowLeft,
   Check,
   Contrast,
+  LogOut,
   Moon,
   Sparkles,
   Sun,
@@ -487,6 +488,18 @@ export default function SettingsScreen() {
             <Text style={styles.sectionTitle}>Sobre esta versão</Text>
             <Text style={styles.sectionText}>Flui {appPackage.version}</Text>
             <Text style={styles.sectionText}>Experimento do mapa · revisão local</Text>
+          </View>
+          <View style={styles.section}>
+            <PressableScale
+              accessibilityRole="button"
+              accessibilityLabel="Sair da conta"
+              accessibilityHint="Esta versão usa um perfil local, sem sessão conectada. Não apaga dados."
+              style={styles.optionButton}
+              onPress={() => showSettingsFeedback("Perfil local: não há uma sessão conectada para encerrar.")}
+            >
+              <LogOut size={21} color={theme.primary} />
+              <Text style={styles.optionTitle}>Sair da conta</Text>
+            </PressableScale>
           </View>
         </ScrollView>
 
