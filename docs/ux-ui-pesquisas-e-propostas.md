@@ -83,3 +83,46 @@ Na [orientação de segurança](https://supabase.com/docs/guides/database/secure
 Para o NEXT, manter fonte local e finalizar a experiência/cache antes de ampliar o volume. Se mais cenários forem necessários, propor primeiro um lote fictício pequeno, identificado e auditável (carga rápida, indisponibilidade, conectores variados, cobertura de bairros). Se o objetivo passar a ser informação operacional real, definir fonte, licença, atualização e operação antes de escolher banco.
 
 Não foi criado projeto Supabase, migrado armazenamento ou substituído dado fictício por alegação real. Aprovar origem/licença e escopo antes de iniciar importação ou banco remoto.
+
+## 32 — proposta de configurações avançadas de apresentação
+
+### O que foi feito e o que esta proposta acrescentaria
+
+Os itens 19/21 apenas transferiram controles existentes de veículo/autonomia/origem/bateria e laboratório para uma tela interna protegida por `__DEV__`. Esses controles mantêm a persistência histórica de preferências do app. Isso ainda não constitui um sistema de cenários isolados.
+
+A proposta abaixo acrescentaria uma camada de cenário fictício separada. Ela exige decisão sobre persistência e experiência antes de implementar novos campos. Nenhum nome, foto, favorito ou avaliação foi sobrescrito nesta etapa.
+
+### Organização visual proposta
+
+**Apresentação interna**
+
+- **Cenário:** nome do cenário e estado ativo/inativo. Ativar deve explicar quais dados serão apresentados; voltar ao uso comum restaura a leitura dos dados do usuário.
+- **Perfil fictício:** nome e fotografia de uma lista local com origem/autorização conhecidas.
+- **Veículo:** marca/modelo de apresentação, imagem local e autonomia usada no cenário, sem presumir especificação oficial.
+- **Favoritos do cenário:** seleção explícita de IDs existentes no catálogo, com fotos locais preparadas para offline.
+- **Comentários e avaliações simulados:** dados com autoria e origem fictícias; não entram na coleção de avaliações pessoais nem são publicados.
+- **Condições iniciais:** carga inicial, origem escolhida/coordenada de referência e indicação clara de que não substituem GPS autorizado.
+
+Ação principal **Aplicar cenário** mostra resumo do que será exibido. Ação **Encerrar apresentação** desativa o cenário sem apagar favoritos, histórico, foto ou comentários do usuário. Evitar um botão genérico que limpe todo o armazenamento.
+
+### Separação e precedência propostas
+
+| Informação | Dados pessoais/atuais | Cenário fictício proposto |
+|---|---|---|
+| Nome/foto/veículo | Leitura atual preservada | Registro próprio de identidade/veículo do cenário |
+| Favoritos | `@flui:favoriteStationIds` preservado | Lista de IDs específica do cenário |
+| Comentários/avaliações | Coleção local existente preservada | Coleção separada, sempre classificada como simulação |
+| Bateria | Valor manual e sua data/origem preservados | Carga inicial com origem simulação; edição durante cenário não altera o valor pessoal salvo |
+| Localização | GPS autorizado mantém sua finalidade | Origem de simulação explícita; sem sobrescrever `LocationContext` |
+| Armazenamento | Chaves atuais inalteradas | Chave versionada nova, por exemplo `@flui:presentationScenario:v1`, apenas após decisão |
+
+Enquanto ativo, o cenário fornece uma visão temporária dos dados; desativar volta à visão original. A nova estrutura precisa manter validação de IDs, limite de nomes, 0–100% e autonomia positiva; imagens vêm de assets locais permitidos. Não usar `clearAll()` para trocar ou encerrar cenário. Bloqueio `__DEV__` é limite de distribuição, não autenticação de um serviço remoto.
+
+### Entrega incremental sugerida após decisão
+
+1. Aprovar campos, separação e aparência da tela.
+2. Implementar um cenário local com nome/foto/veículo, sem tocar em favoritos/comentários existentes; validar ativar/encerrar/reabrir/offline.
+3. Acrescentar favoritos fictícios e, em outro incremento, avaliações simuladas com identificação própria.
+4. Verificar reset exclusivo do cenário, migração versionada, ausência de exposição pública e preservação dos dados originais.
+
+Conferência obrigatória da proposta: identidade desejada, imagens disponíveis/autorizadas e regra de precedência de bateria/localização. Não foi implementada a camada nova de persistência nem habilitado envio de dados.

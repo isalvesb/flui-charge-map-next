@@ -73,7 +73,7 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 | 29 | — | Preservar conteúdo de Comodidades próximas e Avaliações | Títulos com fundo autorizados em feedback; conteúdo preservado | stations/PointDetailsScreen | Nenhuma alteração sem defeito comprovado ou autorização adicional. |
 | 30 | P1 | Persistência offline de fotos e favoritos | Cache web corrigido; teste físico/build offline pendente | assets; storage; service-worker | Não introduzir armazenamento remoto; distinguir assets empacotados e cache web. |
 | 31 | P3 | Pesquisa catálogo/Supabase | Pesquisa concluída; ampliação/migração depende de decisão | docs | Sem migrar arquitetura, custos ou apresentar dados como verificados. |
-| 32 | P2 | Proposta de área interna | Proposta pendente | docs; settings | Controles fictícios separados; não implementar integralmente antes da decisão sobre proposta. |
+| 32 | P2 | Proposta de área interna | Proposta entregue; expansão depende de decisão | docs; settings | Controles fictícios separados; não implementar integralmente antes da decisão sobre proposta. |
 | 33 | P2 | Referência inicial de localização | Implementado; revisão física pendente | data/demonstracao; LocationContext | -23.540405908671097,-46.73414831818115; padrão simulado, não substituir GPS autorizado. |
 
 ## Checkpoints
@@ -322,3 +322,11 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Comparados ampliação fictícia local, fonte externa e Supabase/PostGIS; evidência de necessidade de migração não encontrada nesta etapa. Fonte/atribuição/cache/sincronização tratados separadamente de veracidade operacional.
 - Verificação: referências oficiais de Open Charge Map/Supabase e leitura do armazenamento atual; não se aplica teste executável.
 - Sem conta, credencial, migração, custo ou catálogo real introduzido. Próximo passo depende de decisão sobre fonte/escopo. CP20 `c7899e2`, CP21 `a973a57`.
+
+### CP23 — 32: proposta de cenários separados
+
+- Arquivo: `docs/ux-ui-pesquisas-e-propostas.md`, seção 32.
+- Campos solicitados, fluxo Aplicar/Encerrar, persistência fictícia independente, precedência de bateria/localização, proteção de dados e etapas de implementação definidos para revisão.
+- Diferencia claramente a reordenação já autorizada em 19/21 do novo sistema proposto. Sem novos dados fictícios misturados aos favoritos/comentários do usuário.
+- Verificação: revisão de cobertura dos campos e das restrições; não há código novo a testar.
+- Decisão necessária antes de implementar novos campos/armazenamento do cenário. CP22 `368bd84`.
