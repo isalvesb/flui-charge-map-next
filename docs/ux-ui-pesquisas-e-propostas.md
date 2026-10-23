@@ -2,6 +2,24 @@
 
 Referência: 22/10/2026, America/Recife. Propostas para decisão; não autorizam contratação, migração ou compilação nativa. Continuidade e commits em `ux-ui-backlog-33.md`.
 
+## 30 — pedido de mapa offline em raio de 5 km (23/10/2026)
+
+Pedido: baixar a região de 5 km, reduzindo o raio se o volume for excessivo. Ainda não implementado; não confundir com as 15 imagens preparadas no armazenamento persistente.
+
+### Limite da integração atual
+
+Mapa e planejador usam `PROVIDER_GOOGLE` em react-native-maps 1.20.1 no iPhone. A API atual não oferece gerenciamento de regiões offline do mapa Google. A [referência de GMSMapView](https://developers.google.com/maps/documentation/ios-sdk/reference/objc/Classes/GMSMapView) não fornece download de regiões; a [política do SDK iOS](https://developers.google.com/maps/documentation/ios-sdk/policies) remete às restrições de armazenamento. Os [termos Google Maps Platform, 3.2.3(a/b)](https://cloud.google.com/maps-platform/terms) restringem pré-download/armazenamento de conteúdo e download em massa de tiles. Portanto, não implementar um coletor de tiles Google nem apresentar o cache ocasional do SDK como região garantida offline. Diminuir para 1 km não cria suporte nem resolve essa restrição.
+
+### Proposta concreta para uma etapa separada
+
+1. Avaliar fonte licenciada para armazenamento offline e integração de mapas que gerencie regiões. Como referência de capacidade, a [documentação Mapbox iOS](https://docs.mapbox.com/ios/maps/guides/offline/) oferece regiões e níveis de zoom offline; não foi escolhido, contratado ou instalado. Comparar custos/licença, suporte ao SDK54 e impacto de substituir o provedor antes de decidir.
+2. Região inicial proposta: círculo de 5 km em torno da origem salva, sem ativar GPS ou substituir posição real. Manter marcadores do catálogo separados do fundo cartográfico.
+3. Definir níveis de zoom e limite de armazenamento; estimar com os dados do provedor e medir bytes efetivos. Raio sozinho não determina tamanho: detalhes/zoom/estilo também contam. Ainda não existe estimativa confiável em MB para esta integração.
+4. Se ultrapassar o limite acordado, avaliar 3, 2 e 1 km, exibindo raio e volume reais antes de confirmar a preparação. Não anunciar 5 km preparados se apenas parte ficou salva.
+5. Mostrar progresso, conclusão, data de atualização, falha recuperável e remoção apenas do pacote cartográfico. Validar no iPhone sem rede, incluindo limites da região e dados desatualizados.
+
+Troca relevante do provedor/arquitetura e eventual módulo/build nativos dependem da decisão humana já exigida pelo protocolo. Nenhuma dependência, credencial, compra, download de mapa ou instalação foi alterada nesta etapa. O mapa offline permanece pendente dessa decisão; o indicador de imagens continua independente e não promete cobertura cartográfica.
+
 ## 12 — tocar para falar
 
 ### Estado constatado
