@@ -2,6 +2,7 @@ import {
   useCallback,
   useEffect,
   useImperativeHandle,
+  useLayoutEffect,
   useRef,
   useState,
 } from "react";
@@ -16,16 +17,32 @@ import { SvgXml } from "react-native-svg";
 import { Maximize2 } from "lucide-react-native";
 
 import { PressableScale } from "../../../components";
+import { useAskLocation } from "../../../context/AskLocationContext";
 import { useMapArea } from "../../../context/MapContext";
-import { identificacaoDados } from "../../../data/identificacaoDados";
+import { fetchNearbyPlaces, type NearbyPlace } from "../../assistant/askPlaces";
 import { useReducedMotion } from "../../../hooks/useReducedMotion";
 import { useTelaComPreferencias } from "../../../hooks/useTelaComPreferencias";
-import { PointCard } from "./PointCard";
+import { formatarDistanciaDemonstrativa } from "../../../utils/demonstracao";
 import baseStyles, { colors as baseColors } from "./PointsSheet.styles";
 
 const SHEET_VISIBLE_HANDLE = 30;
 const SHEET_OCULTO_MARGEM_EXTRA = 40;
 const HANDLE_HINT_DISTANCE = 4;
+
+function sheetTitle(category: string | null, empty: boolean) {
+  if (empty) return "Nenhum ponto disponível";
+  if (category === "coffee") return "Cafeterias";
+  if (category === "gas_station") return "Postos de gasolina";
+  return "Pontos de recarga";
+}
+
+function placeStatus(status: string) {
+  if (status === "available") return "Disponível";
+  if (status === "busy") return "Ocupado";
+  if (status === "maintenance") return "Em manutenção";
+  if (status === "unavailable") return "Indisponível";
+  return "";
+}
 
 const chevronControleBaixoXml = `<svg width="28" height="12" viewBox="0 0 28 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 4.25L14 8.25L22 4.25" stroke="#BECAC5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
@@ -34,12 +51,7 @@ const chevronControleCimaXml = `<svg width="28" height="12" viewBox="0 0 28 12" 
 export function PointsSheet() {
   const reduceMotion = useReducedMotion();
   const {
-    state: {
-      recommendedStations: stations,
-      origin: { nome: originName },
-      horizontalInset,
-    },
-    actions: { openStation, adjustSearch },
+    state: { horizontalInset },
     viewport: {
       horizontal,
       panelWidth,
@@ -55,8 +67,11 @@ export function PointsSheet() {
   );
   const { height: alturaJanela, fontScale: escalaFonteSistema } =
     useWindowDimensions();
+  const askedLocation = useAskLocation();
+  const [defaults, setDefaults] = useState<NearbyPlace[]>([]);
   const [isSheetCollapsed, setIsSheetCollapsed] = useState(false);
-  const [painelTotalmenteOculto, setPainelTotalmenteOculto] = useState(false);
+  const [painelTotalmenteOculto, setPainelTotalmenteOculto] = useState(true);
+  const [placed, setPlaced] = useState(false);
   const [sheetHeight, setSheetHeight] = useState(0);
   const [alturaCardPonto, setAlturaCardPonto] = useState<number | null>(null);
   const [hasInteractedWithSheet, setHasInteractedWithSheet] = useState(false);
@@ -77,7 +92,10 @@ export function PointsSheet() {
   const alturaListaComDoisCards = alturaCardPonto
     ? alturaCardPonto * 2
     : Math.min(alturaMaximaListaPontos, 250);
-  const hasNoResults = stations.length === 0;
+  const places =
+    askedLocation.askedCards.length > 0 ? askedLocation.askedCards : defaults;
+  const hasNoResults = places.length === 0;
+  const seenDrawerToken = useRef(0);
 
   const moverPainelDePontosPara = useCallback(
     (destino: number) => {
@@ -126,6 +144,28 @@ export function PointsSheet() {
   );
 
   useEffect(() => {
+    if (!askedLocation.fix || askedLocation.askedCards.length > 0) return;
+    let alive = true;
+    void fetchNearbyPlaces({
+      category: "ev_charging",
+      latitude: askedLocation.fix.latitude,
+      longitude: askedLocation.fix.longitude,
+    }).then((next) => {
+      if (alive) setDefaults(next);
+    });
+    return () => {
+      alive = false;
+    };
+  }, [askedLocation.askedCards.length, askedLocation.fix]);
+
+  useEffect(() => {
+    if (askedLocation.drawerToken === seenDrawerToken.current) return;
+    seenDrawerToken.current = askedLocation.drawerToken;
+    if (askedLocation.drawerToken === 0) return;
+    alternarModalDePontos(false);
+  }, [alternarModalDePontos, askedLocation.drawerToken]);
+
+  useLayoutEffect(() => {
     if (sheetHeight <= 0) {
       return;
     }
@@ -133,6 +173,7 @@ export function PointsSheet() {
     if (painelTotalmenteOculto) {
       translateY.setValue(hiddenOffset);
       sheetPositionRef.current = hiddenOffset;
+      setPlaced(true);
       return;
     }
 
@@ -140,6 +181,7 @@ export function PointsSheet() {
       translateY.setValue(sheetCollapsedTranslateY);
       sheetPositionRef.current = sheetCollapsedTranslateY;
     }
+    setPlaced(true);
   }, [
     hiddenOffset,
     isSheetCollapsed,
@@ -212,6 +254,7 @@ export function PointsSheet() {
   return (
     <>
       <Animated.View
+        pointerEvents={placed && !painelTotalmenteOculto ? "auto" : "none"}
         aria-hidden={painelTotalmenteOculto}
         accessibilityElementsHidden={painelTotalmenteOculto}
         importantForAccessibility={
@@ -223,6 +266,7 @@ export function PointsSheet() {
             left: horizontal ? 16 : horizontalInset,
             right: horizontal ? undefined : horizontalInset,
             width: panelWidth,
+            opacity: placed ? 1 : 0,
             transform: [{ translateY }],
           },
         ]}
@@ -268,49 +312,31 @@ export function PointsSheet() {
           </PressableScale>
           <View style={styles.sheetHeader}>
             <Text style={styles.sheetTitle}>
-              {hasNoResults ? "Nenhum ponto disponível" : "Pontos de recarga"}
+              {sheetTitle(places[0]?.category ?? null, hasNoResults)}
             </Text>
           </View>
           <Text style={styles.originDescription}>
-            {identificacaoDados.catalogo.aviso}
-            {"\n"}
-            Origem: {originName} · distâncias em linha reta, sem cálculo de percurso
+            Perto de você · distâncias em linha reta
           </Text>
 
           {hasNoResults ? (
             <View style={styles.emptyCard}>
               <Text style={styles.emptyTitle}>
-                Não encontramos pontos com esses critérios.
+                Não encontramos pontos perto de você.
               </Text>
-
-              <Text style={styles.emptyText}>
-                Tente limpar alguns filtros ou buscar por outro endereço.
-              </Text>
-
-              <PressableScale
-                accessibilityRole="button"
-                accessibilityLabel="Ajustar busca"
-                tabIndex={painelTotalmenteOculto ? -1 : 0}
-                style={styles.emptyButton}
-                onPress={adjustSearch}
-              >
-                <Text style={styles.emptyButtonText}>Ajustar busca</Text>
-              </PressableScale>
             </View>
           ) : (
             <ScrollView
               tabIndex={-1}
               style={[styles.pointsScroll, { height: alturaListaComDoisCards }]}
               contentContainerStyle={styles.pointsScrollContent}
-              showsVerticalScrollIndicator={stations.length > 2}
+              showsVerticalScrollIndicator={places.length > 2}
               nestedScrollEnabled
             >
-              {stations.map((item, pointIndex) => (
-                <PointCard
-                  key={item.station.id}
-                  station={item.station}
-                  hidden={painelTotalmenteOculto}
-                  onPress={() => openStation(item.station.id)}
+              {places.map((place, pointIndex) => (
+                <View
+                  key={`${place.category}-${place.latitude}-${place.longitude}`}
+                  style={styles.placeCard}
                   onLayout={
                     pointIndex === 0
                       ? (event) => {
@@ -324,7 +350,29 @@ export function PointsSheet() {
                         }
                       : undefined
                   }
-                />
+                >
+                  <Text style={styles.placeName}>{place.name}</Text>
+                  {place.address ? (
+                    <Text style={styles.placeMeta}>{place.address}</Text>
+                  ) : null}
+                  <Text style={styles.placeMeta}>
+                    {place.distanceKm > 0
+                      ? `${formatarDistanciaDemonstrativa(place.distanceKm)} em linha reta`
+                      : `${place.latitude.toFixed(5)}, ${place.longitude.toFixed(5)}`}
+                  </Text>
+                  <Text style={styles.placeMeta}>
+                    {[
+                      placeStatus(place.status),
+                      place.rating > 0
+                        ? place.rating.toFixed(1).replace(".", ",")
+                        : "",
+                      place.powerKw != null ? `${place.powerKw} kW` : "",
+                      place.openingHours,
+                    ]
+                      .filter(Boolean)
+                      .join(" · ")}
+                  </Text>
+                </View>
               ))}
             </ScrollView>
           )}

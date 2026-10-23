@@ -172,6 +172,30 @@ const styles = StyleSheet.create({
   pointsScrollContent: {
     paddingBottom: 0,
   },
+
+  placeCard: {
+    marginTop: 10,
+    padding: 13,
+    borderRadius: 17,
+    backgroundColor: colors.white,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+
+  placeName: {
+    color: colors.text,
+    fontSize: 17,
+    fontWeight: "800",
+    lineHeight: 22,
+  },
+
+  placeMeta: {
+    marginTop: 4,
+    color: colors.textMuted,
+    fontSize: 13,
+    fontWeight: "500",
+    lineHeight: 18,
+  },
 });
 
 export default styles;

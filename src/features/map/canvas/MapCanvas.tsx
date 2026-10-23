@@ -1,10 +1,11 @@
 import { useEffect, useRef } from "react";
-import { Animated, View } from "react-native";
+import { Animated, Text, View } from "react-native";
 
 import MapView, {
   Marker,
   PROVIDER_GOOGLE,
 } from "../../../components/MapSurface";
+import { useAskLocation } from "../../../context/AskLocationContext";
 import { useMapArea } from "../../../context/MapContext";
 import { useTelaComPreferencias } from "../../../hooks/useTelaComPreferencias";
 import { useReducedMotion } from "../../../hooks/useReducedMotion";
@@ -14,6 +15,7 @@ import { estiloEscuroDoMapa, obterIconeDoMarcador } from "./MapCanvas.utils";
 
 export function MapCanvas() {
   const { styles } = useTelaComPreferencias(baseStyles, baseColors);
+  const askedLocation = useAskLocation();
   const reduceMotion = useReducedMotion();
   const {
     state: { visibleStations, origin, now, dark },
@@ -104,6 +106,30 @@ export function MapCanvas() {
             <View style={styles.userLocationDot} />
           </View>
         </Marker>
+
+        {askedLocation.places.map((place, index) => (
+          <Marker
+            key={`${place.latitude}-${place.longitude}-${index}`}
+            coordinate={{
+              latitude: place.latitude,
+              longitude: place.longitude,
+            }}
+            title={place.name}
+            description={`${place.latitude.toFixed(5)}, ${place.longitude.toFixed(5)}`}
+            anchor={{ x: 0.5, y: 1 }}
+            tracksViewChanges
+            accessible
+            accessibilityRole="button"
+            accessibilityLabel={`${place.name}: ${place.latitude.toFixed(5)}, ${place.longitude.toFixed(5)}`}
+          >
+            <View collapsable={false} style={styles.askedPlace}>
+              <Text style={styles.askedPlaceCoordinates}>
+                {`${place.latitude.toFixed(5)}, ${place.longitude.toFixed(5)}`}
+              </Text>
+              <View style={styles.askedPlaceDot} />
+            </View>
+          </Marker>
+        ))}
 
         {visibleStations.map((item) => {
           const station = item.station;

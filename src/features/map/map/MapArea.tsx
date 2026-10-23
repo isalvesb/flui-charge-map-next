@@ -8,6 +8,7 @@ import {
 import { Animated, useWindowDimensions, View } from "react-native";
 
 import type { MapViewHandle, Region } from "../../../components/MapSurface";
+import { useAskLocation } from "../../../context/AskLocationContext";
 import { MapProvider, useMapContext } from "../../../context/MapContext";
 import { useTelaComPreferencias } from "../../../hooks/useTelaComPreferencias";
 import { useReducedMotion } from "../../../hooks/useReducedMotion";
@@ -18,6 +19,7 @@ import baseStyles from "./MapArea.styles";
 import {
   criarRegiaoComFocoVisivel,
   criarRegiaoDoMapa,
+  criarRegiaoDosLugares,
   getMapHorizontalFocusOffset,
   getMapPanelLayout,
   getMapVerticalFocusOffset,
@@ -35,6 +37,7 @@ export function MapArea({ children }: MapAreaProps) {
     searchTerm,
   } = state;
   const { styles, fontScale } = useTelaComPreferencias(baseStyles);
+  const askedLocation = useAskLocation();
   const reduceMotionEnabled = useReducedMotion();
   const { width: larguraJanela, height: alturaJanela, fontScale: escalaFonteSistema } =
     useWindowDimensions();
@@ -158,6 +161,18 @@ export function MapArea({ children }: MapAreaProps) {
     mapRef.current?.animateToRegion(mapRegion, reduceMotionEnabled ? 0 : 450);
   }, [filters, mapRegion, origin, reduceMotionEnabled, searchTerm]);
 
+  useEffect(() => {
+    if (!mapaPronto || askedLocation.places.length === 0) return;
+
+    const region = criarRegiaoDosLugares(
+      askedLocation.places,
+      fracaoDeDeslocamentoVerticalRef.current,
+      fracaoDeDeslocamentoHorizontalRef.current,
+    );
+    currentMapRegionRef.current = region;
+    mapRef.current?.animateToRegion(region, reduceMotionEnabled ? 0 : 450);
+  }, [askedLocation.places, mapaPronto, reduceMotionEnabled]);
+
   const ajusteInicialDeCentralizacaoRef = useRef(false);
 
   useEffect(() => {
@@ -169,7 +184,7 @@ export function MapArea({ children }: MapAreaProps) {
       return;
     }
 
-    if (hasFilters || hasSearch || !origin) {
+    if (hasFilters || hasSearch || !origin || askedLocation.places.length > 0) {
       return;
     }
 
@@ -196,6 +211,7 @@ export function MapArea({ children }: MapAreaProps) {
     mapAreaHeight,
     mapaPronto,
     ocupacao.sheetHeight,
+    askedLocation.places,
     origin,
     reduceMotionEnabled,
   ]);

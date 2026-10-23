@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
+  ActivityIndicator,
   Modal,
   Platform,
   ScrollView,
@@ -67,6 +68,7 @@ export function FluiAssistantOverlay({
   const [asking, setAsking] = useState(false);
   const [reply, setReply] = useState<string | null>(null);
   const askingRef = useRef(false);
+  const closeAssistantRef = useRef<() => void>(() => {});
   const transcriptRef = useRef(voice.transcript);
   const listeningRef = useRef(voice.listening);
   const sendPending = useRef(false);
@@ -82,16 +84,20 @@ export function FluiAssistantOverlay({
     askingRef.current = true;
     setAsking(true);
     setReply(null);
+    voice.stop();
     const result = await askPlaces({
       text: trimmed,
       latitude: location.fix.latitude,
       longitude: location.fix.longitude,
     });
     askingRef.current = false;
+    if (result.ok) {
+      location.showPlaces(result.places);
+      closeAssistantRef.current();
+      return;
+    }
     setAsking(false);
-    setReply(
-      result.ok ? JSON.stringify(result.places, null, 2) : result.message,
-    );
+    setReply(result.message);
   };
   const reveal = useCircularReveal({
     visible,
@@ -105,9 +111,17 @@ export function FluiAssistantOverlay({
   const canAsk = location.ready && !asking;
   const askRef = useRef(ask);
   askRef.current = ask;
+  closeAssistantRef.current = () => {
+    voice.stop();
+    reveal.requestClose();
+  };
 
   useEffect(() => {
-    if (!shown) voice.stop();
+    if (shown) return;
+    voice.stop();
+    setAsking(false);
+    setReply(null);
+    askingRef.current = false;
   }, [shown, voice.stop]);
 
   useEffect(() => {
@@ -210,18 +224,24 @@ export function FluiAssistantOverlay({
                 style={styles.promptScroll}
                 contentContainerStyle={styles.promptContent}
               >
-                <Text
-                  style={styles.prompt}
-                  accessibilityLiveRegion="polite"
-                >
-                  {promptCopy(
-                    voice.unavailable,
-                    voice.transcript,
-                    voice.listening,
-                    asking,
-                    reply,
-                  )}
-                </Text>
+                {asking ? (
+                  <View style={styles.thinking} accessibilityLiveRegion="polite">
+                    <ActivityIndicator color={colors.white} />
+                    <Text style={styles.prompt}>Pensando</Text>
+                  </View>
+                ) : (
+                  <Text
+                    style={styles.prompt}
+                    accessibilityLiveRegion="polite"
+                  >
+                    {promptCopy(
+                      voice.unavailable,
+                      voice.transcript,
+                      voice.listening,
+                      reply,
+                    )}
+                  </Text>
+                )}
               </ScrollView>
             </Animated.View>
             <Animated.View style={reveal.orbStyle}>
@@ -325,7 +345,6 @@ function promptCopy(
   unavailable: FluiVoiceStatus | null,
   transcript: string,
   listening: boolean,
-  asking: boolean,
   reply: string | null,
 ) {
   if (unavailable === "not-allowed") {
@@ -337,7 +356,6 @@ function promptCopy(
   if (unavailable === "service-not-allowed" || unavailable === "unavailable") {
     return "O reconhecimento de voz não está disponível aqui.";
   }
-  if (asking) return "Buscando…";
   if (reply) return reply;
   if (transcript) return transcript;
   if (listening) return "Ouvindo…";
@@ -458,6 +476,12 @@ function createStyles(fontScale: number) {
     },
     promptContent: {
       alignItems: "center",
+    },
+    thinking: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: spacing.sm,
     },
     prompt: {
       ...typography.body,

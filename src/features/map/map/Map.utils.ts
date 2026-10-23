@@ -18,6 +18,28 @@ export function criarRegiaoDoMapa(
   };
 }
 
+export function criarRegiaoDosLugares(
+  places: { latitude: number; longitude: number }[],
+  fracaoDeDeslocamento = 0.08,
+  fracaoHorizontal = 0,
+): Region {
+  const latitudes = places.map((place) => place.latitude);
+  const longitudes = places.map((place) => place.longitude);
+  const minLat = Math.min(...latitudes);
+  const maxLat = Math.max(...latitudes);
+  const minLng = Math.min(...longitudes);
+  const maxLng = Math.max(...longitudes);
+  const latitudeDelta = Math.max(0.02, (maxLat - minLat) * 1.8);
+  const longitudeDelta = Math.max(0.02, (maxLng - minLng) * 1.8);
+
+  return {
+    latitude: (minLat + maxLat) / 2 - latitudeDelta * fracaoDeDeslocamento,
+    longitude: (minLng + maxLng) / 2 - longitudeDelta * fracaoHorizontal,
+    latitudeDelta,
+    longitudeDelta,
+  };
+}
+
 export function criarRegiaoComFocoVisivel(
   latitude: number,
   longitude: number,

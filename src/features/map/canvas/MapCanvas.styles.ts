@@ -62,6 +62,35 @@ const styles = StyleSheet.create({
     borderColor: colors.white,
     ...shadow,
   },
+
+  askedPlace: {
+    alignItems: "center",
+    flexShrink: 0,
+  },
+
+  askedPlaceCoordinates: {
+    flexShrink: 0,
+    backgroundColor: colors.white,
+    color: colors.text,
+    borderRadius: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    fontSize: 12,
+    lineHeight: 16,
+    fontWeight: "600",
+    textAlign: "center",
+    ...shadow,
+  },
+
+  askedPlaceDot: {
+    width: 12,
+    height: 12,
+    marginTop: 4,
+    borderRadius: 6,
+    backgroundColor: colors.primary,
+    borderWidth: 2,
+    borderColor: colors.white,
+  },
 });
 
 export default styles;
