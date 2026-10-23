@@ -19,7 +19,7 @@ const SHADER_SOURCE = /*wgsl*/ `
   vec4 mapOrb(vec2 uv) {
     vec2 p = uv / 0.46;
     float radius = length(p);
-    float feather = 1.0 - smoothstep(0.88, 1.05, radius);
+    float feather = 1.0 - smoothstep(0.72, 1.05, radius);
     float z = sqrt(max(0.0, 1.0 - dot(p, p)));
     float t = iTime * 1.15;
     float envelope = pow(max(0.0, 1.0 - p.x * p.x), 0.65);
@@ -44,7 +44,7 @@ const SHADER_SOURCE = /*wgsl*/ `
       energy += ribbon * 0.65 + edge * 0.24 + glow * 0.12;
     }
 
-    // Interior violeta escuro para destacar a luz, com contorno macio e reflexos.
+    // Interior alterna suavemente entre dois violetas, com contorno macio e reflexos.
     float rim = exp(-pow((radius - 0.96) / 0.025, 2.0));
     float angle = atan(p.y, p.x);
     float glint = pow(0.5 + 0.5 * cos(angle * 3.0 + t * 0.45), 12.0);
@@ -56,7 +56,8 @@ const SHADER_SOURCE = /*wgsl*/ `
       + vec3(0.95, 0.88, 1.0) * highlight * 0.4;
     vec3 waveColor = clamp(hue * opacity, vec3(0.0), vec3(waveAlpha));
     float alpha = (waveAlpha + glass * (1.0 - waveAlpha)) * feather;
-    vec3 color = (waveColor + uColor0 * 0.2 * glass * (1.0 - waveAlpha)) * feather;
+    vec3 glassColor = mix(uColor0, uColor1, mix(0.22, 0.48, uMapPulse));
+    vec3 color = (waveColor + glassColor * glass * (1.0 - waveAlpha)) * feather;
     return vec4(clamp(color, vec3(0.0), vec3(alpha)), alpha);
   }
 
