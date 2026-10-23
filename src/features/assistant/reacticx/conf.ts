@@ -14,6 +14,9 @@ const SHADER_SOURCE = /*wgsl*/ `
   uniform float uMapMode;
   uniform float uMapPulse;
 
+  // Quadrado explícito: pow(x, 2) não é definido para x negativo em GLSL.
+  float gaussian(float x) { return exp(-x * x); }
+
   // UX-MAPA-01: esfera de vidro com três fitas de luz, inspirada na referência
   // visual fornecida pelo usuário. Tudo é procedural, sem vídeo ou textura.
   vec4 mapOrb(vec2 uv) {
@@ -21,31 +24,46 @@ const SHADER_SOURCE = /*wgsl*/ `
     float radius = length(p);
     float feather = 1.0 - smoothstep(0.72, 1.05, radius);
     float z = sqrt(max(0.0, 1.0 - dot(p, p)));
-    float t = iTime * 1.15;
+    float t = iTime * 0.95;
     float envelope = pow(max(0.0, 1.0 - p.x * p.x), 0.65);
-    float breath = 0.72 + 0.22 * sin(t * 0.85);
+    float morph = 0.5 + 0.5 * cos(t * 1.05);
+    float frequency = mix(1.4, 5.6, morph);
+    float amplitude = 0.35 + 0.40 * (0.5 + 0.5 * sin(t * 0.85 + 0.4));
     vec3 light = vec3(0.0);
     float energy = 0.0;
 
-    // Fitas largas com bordas finas: cruzam-se e mudam de volume suavemente.
+    // Lâminas preenchidas: o número de lobos muda e as superfícies se dobram.
+    // A referência alterna entre várias ondas e um volume largo ao centro.
     for (int i = 0; i < 3; i++) {
       float phase = float(i) * 2.094395;
-      float center = sin(p.x * 4.2 + t + phase) * 0.52 * envelope * breath;
-      float width = (0.065 + 0.22 * (0.5 + 0.5 * sin(p.x * 3.0 - t * 0.8 + phase))) * envelope;
+      float carrier = p.x * frequency + t * 0.65 + phase;
+      float front = sin(carrier) * amplitude * envelope;
+      float back = sin(carrier + 1.35) * amplitude * envelope;
+      float center = (front + back) * 0.5;
+      float width = abs(front - back) * 0.5 + 0.055 * envelope;
       float d = abs(p.y - center);
-      float ribbon = exp(-pow(d / max(0.025, width), 2.0) * 1.6);
-      float edge = exp(-pow((d - width * 0.8) / 0.018, 2.0));
-      float core = exp(-pow(d / 0.025, 2.0));
-      float glow = exp(-pow(d / max(0.055, width * 1.9), 2.0) * 1.5);
-      vec3 hue = mix(uColor2, uColor1, 0.5 + 0.5 * sin(phase + p.x * 1.7 - t * 0.3));
-      hue = mix(hue, vec3(0.78, 0.42, 1.0), float(i) * 0.16);
-      light += mix(hue, vec3(0.94, 0.82, 1.0), ribbon * 0.4) * (ribbon * 0.72 + edge * 0.28 + glow * 0.11)
-        + mix(uColor1, vec3(1.0), 0.65) * core * 0.16;
-      energy += ribbon * 0.65 + edge * 0.24 + glow * 0.12;
+      float sheet = 1.0 - smoothstep(width * 0.7, width + 0.025, d);
+      float edge = gaussian((d - width) / 0.018);
+      float glow = gaussian(d / max(0.06, width * 1.6));
+      float volume = 0.65 + 0.35 * cos((p.y - center) / max(0.03, width) * 1.7 + phase);
+      vec3 hue = mix(uColor2, uColor1, 0.3 + float(i) * 0.25);
+      if (i == 1) hue = vec3(0.82, 0.34, 0.98);
+      if (i == 2) hue = vec3(0.55, 0.52, 1.0);
+      light += hue * (sheet * volume * 0.85 + glow * 0.14)
+        + mix(hue, vec3(1.0), 0.45) * edge * 0.08;
+      energy += sheet * 0.78 + glow * 0.14 + edge * 0.08;
     }
 
+    // Faixa clara contínua na região equatorial, com espessura e curva suaves.
+    float axis = sin(p.x * 2.4 - t * 0.55) * 0.045 * envelope;
+    float beamWidth = (0.028 + 0.085 * (1.0 - morph)) * envelope + 0.012;
+    float beam = gaussian((p.y - axis) / beamWidth);
+    float beamGlow = gaussian((p.y - axis) / (beamWidth * 2.4));
+    light += vec3(0.93, 0.88, 1.0) * (beam * 0.95 + beamGlow * 0.18);
+    energy += beam * 1.1 + beamGlow * 0.18;
+
     // Interior alterna suavemente entre dois violetas, com contorno macio e reflexos.
-    float rim = exp(-pow((radius - 0.96) / 0.025, 2.0));
+    float rim = gaussian((radius - 0.96) / 0.025);
     float angle = atan(p.y, p.x);
     float glint = pow(0.5 + 0.5 * cos(angle * 3.0 + t * 0.45), 12.0);
     float highlight = exp(-dot(p - vec2(-0.30, -0.68), p - vec2(-0.30, -0.68)) / 0.007);
