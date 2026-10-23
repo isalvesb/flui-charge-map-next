@@ -31,9 +31,6 @@ export default function PresentationOriginPreference({ onFeedback }: { onFeedbac
 
   return (
     <View style={styles.section}>
-        <Text accessibilityRole="header" style={styles.sectionTitle}>Origem da apresentação</Text>
-        <Text style={styles.sectionText}>Ponto de partida do cenário. A escolha é salva automaticamente.</Text>
-        <Text style={styles.fieldLabel}>Origem</Text>
         <Pressable accessibilityRole="button" accessibilityLabel={`Origem: ${origin?.nome ?? "Selecionar"}`} accessibilityState={{ expanded: originMenuOpen, disabled }} disabled={disabled}
           style={[styles.optionButton, { minHeight: 56, justifyContent: "space-between" }]} onPress={() => setOriginMenuOpen(true)}>
           <Text style={styles.optionTitle}>{origin?.nome}</Text>
