@@ -74,7 +74,7 @@ const SHADER_SOURCE = /*wgsl*/ `
       + vec3(0.95, 0.88, 1.0) * highlight * 0.4;
     vec3 waveColor = clamp(hue * opacity, vec3(0.0), vec3(waveAlpha));
     float alpha = (waveAlpha + glass * (1.0 - waveAlpha)) * feather;
-    vec3 glassColor = mix(uColor0, uColor1, mix(0.22, 0.34, uMapPulse));
+    vec3 glassColor = mix(uColor0, uColor1, mix(0.12, 0.23, uMapPulse));
     vec3 color = (waveColor + glassColor * glass * (1.0 - waveAlpha)) * feather;
 
     // Reflexo de vidro sobre o gradiente: arco parcial fino e brilho em órbita lenta.
