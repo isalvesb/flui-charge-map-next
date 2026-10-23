@@ -445,3 +445,10 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - FIAP volta à primeira opção e ao padrão para preferências sem origem. Coordenada alternativa permanece como escolha explícita, renomeada de Referência NEXT para NEXT conforme item 21.
 - Escolhas já salvas são preservadas; se um aparelho tiver NEXT escolhido, usar Origem → FIAP → Salvar aplica a troca sem limpar outros dados. GPS não modificado.
 - Verificações: TypeScript, ESLint e testes de origem/planejador (`r06-*`).
+
+### R07 — 21: menu interno conforme novo detalhamento
+
+- Arquivo: `src/features/settings/InternalPresentationScreen.tsx`.
+- Retirados campos editáveis de veículo/autonomia, resumo/botão de bateria e laboratório. Origem em menu suspenso com NEXT/FIAP e demais opções; Salvar usa ação primária roxa de largura total.
+- Ao salvar origem, preserva veículo/autonomia já configurados para o perfil. Não inventa novos perfis nem afirma que seleção completa do item 32 já exista; associação de novos perfis continua a fazer.
+- Verificações: TypeScript, ESLint e testes de configuração (`r07-*`). Menu de desenvolvimento terá teste web separado, sem instalar aplicativo.
