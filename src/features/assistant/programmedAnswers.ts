@@ -62,7 +62,7 @@ export const programmedAnswers: ProgrammedAnswer[] = [
   },
   {
     keywords: [], pattern: /\b(?:mudar (?:a |sua )?voz|trocar (?:a |sua )?voz|escolher (?:a |uma )?voz|voz da fluia)\b/,
-    answer: "Entre em Configurações, na seção Acessibilidade, e abra Voz da FluIA. Escolha uma voz em português disponível no aparelho e toque em Ouvir exemplo para testar. A escolha é salva para as próximas respostas; você pode voltar à voz padrão quando quiser.",
+    answer: "Uso a voz padrão do dispositivo em português. Você pode ligar ou desligar a leitura pelo botão de som no topo da conversa e interromper uma resposta pelo botão de parar. Nesta versão não há seleção de outra voz nem serviço de voz do Google Cloud integrado.",
   },
   {
     keywords: [], pattern: /\b(?:voce (?:me )?ouve|voce (?:me )?escuta|microfone|reconhecimento de (?:voz|fala)|comando de voz|falar com voce)\b/, takesPrecedence: true,

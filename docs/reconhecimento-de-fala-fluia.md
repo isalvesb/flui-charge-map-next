@@ -1,4 +1,4 @@
-# 12 — Reconhecimento de fala na FluIA
+# 12/35 — Reconhecimento de fala e voz da FluIA
 
 Investigação em 23/10/2026. Nenhum serviço contratado, API ativada, áudio capturado ou dependência instalada. A FluIA continua sem reconhecimento de fala.
 
@@ -39,6 +39,24 @@ O [FAQ de uso de dados V1](https://docs.cloud.google.com/speech-to-text/docs/v1/
 
 Não se promete latência: medir no iPhone desde tocar até início da captura, do fim da fala até transcrição final e da confirmação até resposta. Proposta de aceitação da experiência, não resultado medido: transcrição aparecer em até três segundos após o fim da fala na maior parte dos testes de frases curtas. Testar pt-BR com ruído, números/porcentagens e nomes de estações; se não atender, manter digitação disponível.
 
-## Decisão e próximo passo
+## Decisão inicial (anterior ao feedback sobre voz)
 
 Investigação concluída. Recomendo primeiro testar reconhecimento nativo com tocar para falar e revisão do texto. Isso depende de autorização específica para a biblioteca nativa/configuração e nova Development Build, preservando a instalação e os dados atuais. Google Cloud fica como alternativa futura se os testes justificarem qualidade/latência/idiomas e houver aprovação de custos, privacidade e backend. Não criei botão inoperante, serviço fictício, fluxo que pede credenciais ou estado Ouvindo que sugira uma captura já pronta.
+
+
+## Atualização 35 — voz mais natural e integração com a tarefa 12
+
+Feedback de 23/10: usuário rejeitou a qualidade das vozes disponíveis no aparelho e solicitou remover a escolha de voz. Seletor e exemplos retirados de Configurações; a leitura da FluIA volta ao padrão pt-BR do dispositivo. A identificação antiga eventualmente salva não é usada na reprodução, mas permanece no armazenamento para compatibilidade e preservação dos dados. Som/Parar leitura e estado Explicando continuam. A resposta preparada sobre trocar voz foi atualizada para não indicar um menu removido.
+
+Google Cloud pode atender duas funções distintas:
+
+- **Text-to-Speech (saída):** converte a resposta já preparada pelo motor local em áudio. [Chirp 3 HD](https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd?hl=pt-br) oferece vozes com foco em realismo e tem suporte a pt-BR. É candidato para avaliar naturalidade, sem garantir preferência subjetiva ou pronúncia dos nomes do Flui antes de ouvir. Isso não transforma o motor de conversa em IA generativa nem acrescenta respostas novas. A página oficial tem amostras para comparação; não selecionada uma voz arbitrariamente.
+- **Speech-to-Text V2 (entrada):** transcreve a fala do usuário em texto. [A lista oficial](https://docs.cloud.google.com/speech-to-text/docs/speech-to-text-supported-languages?hl=pt-BR) contempla pt-BR conforme modelo/região; o fluxo continua tocar para falar → revisar transcrição → enviar para o motor existente. Sintetizar uma voz não habilita microfone/transcrição automaticamente.
+
+Proposta concreta, ainda não implementada: botão de captura de até 15 segundos, com Parar/Cancelar → backend autenticado limita áudio e solicita transcrição → usuário revisa o texto → resposta determinística local → backend solicita síntese pt-BR → app reproduz o áudio com Explicando e Parar. Interrupção ao sair/ir ao segundo plano, proteção contra respostas antigas, tempo excedido, falha de rede e teclado disponível continuam critérios obrigatórios. Reutilizar áudios de respostas estáticas pode reduzir latência/custo, mas nomes, percentuais e recomendações dinâmicos exigem política própria; não criado cache de áudio remoto nesta etapa.
+
+Síntese e reconhecimento são serviços separados e faturáveis. [Preços TTS](https://cloud.google.com/text-to-speech/pricing?hl=pt-BR) variam por modelo/caracteres; a tabela tem franquias, mas requer billing habilitado. STT segue a cobrança própria indicada acima; backend e tráfego também entram na avaliação. Não assumir gratuidade permanente nem ausência de custos por existir uma franquia. Não foram feitos testes faturáveis ou ativação de API.
+
+**Recomendação atual:** comparar primeiro amostras oficiais de Chirp 3 HD em pt-BR para definir se a voz resolve a reclamação. Se houver escolha/decisão de integração, aprovar custo e backend antes de implementar Cloud. A escolha de reconhecimento nativo versus Cloud continua independente: ambos podem alimentar o mesmo motor. A proposta nativa anterior pode servir para reduzir dependência de rede, mas não resolve por si só a qualidade da voz de saída rejeitada pelo usuário.
+
+Integração completa exige servidor/controle de acesso e autorização de custos; captura também exige módulo/permissões e nova Development Build. Não há módulo de gravação/reconhecimento no pacote atual, e a capacidade de tocar áudio remoto precisa ser definida antes de prometer entrega só por Fast Refresh. Credenciais ficam no backend, nunca no bundle ou na chave do Maps. Captura, naturalidade, latência e funcionamento offline continuam sem medição no iPhone. Nenhuma credencial, serviço, dependência ou instalação introduzida por esta investigação.

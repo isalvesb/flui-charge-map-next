@@ -15,6 +15,7 @@ test("leitura informa início, conclusão e falha sem perder texto", async () =>
   const speech = f.utterances[0];
   assert.equal(speech.text, "Resposta preservada");
   assert.equal(speech.options.language, "pt-BR");
+  assert.equal(speech.options.voice, undefined);
   speech.options.onStart();
   assert.equal(f.states.at(-1), "speaking");
   speech.options.onDone();
