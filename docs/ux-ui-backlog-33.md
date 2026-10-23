@@ -418,3 +418,9 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Configurações do perfil em amarelo com texto/ícone contrastantes. Sair da conta centraliza grupo ícone/texto com 14 pt de espaço. Rodapé contém somente Flui 2.2.0.
 - Versão do código/configuração agora 2.2.0; nenhuma dependência/SDK alterada. Binário físico instalado continua com nome/metadados anteriores até compilação autorizada, que não foi executada. Não confundir versão da interface servida pelo Metro com instalação nova.
 - Verificações: TypeScript, ESLint, diff e comparação das dependências antes/depois (`r02-*`). Revisão humana após ajuste pendente.
+
+### R03 — 17: alinhamento dos cartões de fonte
+
+- Arquivos: `SettingsScreen.tsx`, `.styles.ts`.
+- Ícones T de tamanhos diferentes agora ficam em áreas iguais de 32 pt; seleção ocupa slot igual de 24 pt e textos usam a mesma altura de linha. Bordas/radius continuam uniformes, sem deslocar o conteúdo selecionado.
+- Verificações: TypeScript, ESLint e diff (`r03-*`). Geometria web e inspeção visual serão conferidas no fechamento desta rodada; aprovação humana após correção pendente.

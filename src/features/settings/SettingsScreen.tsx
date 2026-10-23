@@ -301,9 +301,9 @@ export default function SettingsScreen() {
                     style={[styles.fontSizeCard, isSelected ? styles.optionButtonSelected : null]}
                     onPress={() => saveFontSize(option.value)}
                   >
-                    <Type accessible={false} size={18 + index * 4} color={theme.primary} />
+                    <View style={styles.fontSizeIconSlot}><Type accessible={false} size={18 + index * 4} color={theme.primary} /></View>
                     <Text style={styles.fontSizeLabel}>{option.label}</Text>
-                    {renderOptionCheck(isSelected)}
+                    <View style={styles.fontSizeCheckSlot}>{renderOptionCheck(isSelected)}</View>
                   </PressableScale>
                   </View>
                 );
