@@ -1,3 +1,4 @@
+import { getMapSearchScope } from "./mapSearchScope";
 import { presentationImages } from "../presentation/presentationImages";
 import { OfflineImage as Image } from "../../offline/OfflineImage";
 import { ConnectionNotice } from "../../components/ConnectionNotice";
@@ -828,10 +829,17 @@ export default function HomeMapScreen() {
     ];
   }, [filtrosRapidos]);
 
+  const searchScopeFilters = useMemo(() => getMapSearchScope(filtrosDoMapa, searchTerm, !!getRouteParamAsString(filtersParam).trim()), [filtrosDoMapa, searchTerm, filtersParam]);
+  const clearMapSearch = () => {
+    setSearchTerm("");
+    setFiltrosRapidos({ ...filtrosRapidosIniciais });
+    router.setParams({ filters: "", query: "" });
+  };
+
   const visibleStations = useMemo(() => {
     const filtradas = filtrarEstacoes({
       estacoes: demoStations,
-      filtros: filtrosDoMapa,
+      filtros: searchScopeFilters,
       termoBusca: searchTerm,
       agora: now,
     });
@@ -843,7 +851,7 @@ export default function HomeMapScreen() {
       })),
       filtrosRapidos,
     );
-  }, [filtrosDoMapa, filtrosRapidos, searchTerm, now, demoStations]);
+  }, [searchScopeFilters, filtrosRapidos, searchTerm, now, demoStations]);
 
   const estacoesRecomendadas = useMemo(() => {
     return visibleStations.filter((item) => canChargeAt(item.station, now));
@@ -1186,6 +1194,7 @@ export default function HomeMapScreen() {
               returnKeyType="search"
             />
 
+            {searchTerm.length ? <PressableScale accessibilityRole="button" accessibilityLabel="Limpar texto da busca" style={styles.filterButton} onPress={() => { setSearchTerm(""); router.setParams({ query: "" }); }}><X size={20} color={colors.primary} /></PressableScale> : null}
             <View style={styles.searchDivider} />
 
             <PressableScale
@@ -1205,6 +1214,10 @@ export default function HomeMapScreen() {
             </PressableScale>
           </View>
 
+          {visibleStations.length === 0 ? <View style={styles.searchFeedback}>
+            <Text accessibilityLiveRegion="polite" style={styles.searchFeedbackText}>Nenhum ponto corresponde à busca e aos filtros.</Text>
+            <PressableScale accessibilityRole="button" accessibilityLabel="Limpar busca e filtros" style={styles.searchResetButton} onPress={clearMapSearch}><Text style={styles.searchResetText}>Limpar busca e filtros</Text></PressableScale>
+          </View> : searchTerm.trim() && searchScopeFilters !== filtrosDoMapa ? <Text style={styles.searchFeedbackText}>Busca em todo o catálogo</Text> : null}
           {quickFiltersVisible ? <View style={styles.quickFiltersArea}>
               <ScrollView
                 horizontal

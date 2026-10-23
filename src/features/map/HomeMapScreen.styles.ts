@@ -43,6 +43,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
 
+  searchFeedback: { marginTop: 8, gap: 6 },
+  searchFeedbackText: { color: colors.textMuted, fontSize: 12, marginTop: 6 },
+  searchResetButton: { minHeight: 44, alignSelf: "flex-start", justifyContent: "center", paddingHorizontal: 12, borderRadius: 12, backgroundColor: colors.primary },
+  searchResetText: { color: colors.white, fontSize: 13, fontWeight: "700" },
   topArea: {
     backgroundColor: colors.background,
     paddingHorizontal: 20,
