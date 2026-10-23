@@ -271,3 +271,9 @@
 - Usuário enviou tela vermelha: `Requiring unknown module "3709"`, na resolução do WebSocket pelo `liveTransport`. Intermediário continuava saudável; não houve indicação de falha Google nesse erro de carregamento JavaScript.
 - Não foram reinstaladas dependências/build, alterado o transporte ou reiniciado o Metro. Conferidos clientes do próprio Metro e enviada recarga JavaScript apenas ao cliente iOS; outro cliente preservado. Usuário confirmou **“Voltou à Home”**. Erro de carregamento superado após recarga; causa precisa da inconsistência de módulos não foi comprovada.
 - Checkpoint posterior de leitura: STT **28/816** (teto 33/966), TTS **3 chamadas/620 caracteres** (teto 10/10.000). Duas sínteses adicionais chegaram pelo app; isso não comprova som audível. Solicitada confirmação da nova voz uma única vez; se o usuário já testou, não repetir só para obter confirmação.
+
+### Reprodução da Zephyr confirmada pelo usuário
+
+- Após informar que a resposta escrita apareceu sem som, o usuário esclareceu em seguida **“demorou mas funcionou”**. Reprodução da nova voz no iPhone confirmada; o relato inicial correspondia à espera, sem defeito persistente de saída de áudio comprovado.
+- Item **42 implementado e conferido no iPhone**, com ressalva de atraso percebido antes da fala. O intervalo físico completo não foi medido; os 2,2 s anteriores são do teste sintético no Mac, não latência garantida no aparelho. Sem novas tentativas pagas pelo agente para investigar um erro que o usuário depois informou resolvido.
+- Cancelamento, arquivos temporários e proteção contra respostas tardias permanecem cobertos pelos testes locais, sem homologação física completa desses cenários. Item 43 ainda depende do Mac; item 46 segue em análise, sem IA generativa de respostas conectada.

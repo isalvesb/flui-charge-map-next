@@ -8,7 +8,7 @@ Exceção específica ao bloqueio anterior somente para enviar esta branch e cri
 
 ## Atualização — item 42 retomado expressamente
 
-Após abrir a PR, o usuário pediu **“42 agora”** e autorizou **10 sínteses/10.000 caracteres**. Backend Zephyr privado e reprodução MP3 implementados; uma síntese real Google aprovada, reprodução no iPhone pendente. API já estava habilitada; não houve alteração de faturamento. Backend atual **5904**, Metro **2360** preservado, sessão e ledger STT mantidos. Primeiro checkpoint TTS: **1 chamada/62 caracteres**; STT **26/756**, teto **33/966**. Conferir consumo/processos antes de agir. TTS usa `.validation/stt/tts-consumo.json`, sem reset ao reiniciar. Voz sem Mac (43) continua adiada; item 46, IA nas respostas, está em análise. Detalhes em `PROGRESSO.md`.
+Após abrir a PR, o usuário pediu **“42 agora”** e autorizou **10 sínteses/10.000 caracteres**. Backend Zephyr privado e reprodução MP3 implementados; síntese real Google aprovada e reprodução no iPhone confirmada pelo usuário (**“demorou mas funcionou”**). Há atraso antes da fala, sem medição física. API já estava habilitada; não houve alteração de faturamento. Backend atual **5904**, Metro **2360** preservado, sessão e ledger STT mantidos. Checkpoint posterior: TTS **3 chamadas/620 caracteres**, STT **28/816**, teto STT **33/966**. Conferir consumo/processos antes de agir. TTS usa `.validation/stt/tts-consumo.json`, teto **10/10.000**, sem reset ao reiniciar. Voz sem Mac (43) continua adiada; item 46, IA nas respostas, está em análise. Detalhes em `PROGRESSO.md`.
 
 ## Estado anterior — voz adiada por decisão do usuário
 
