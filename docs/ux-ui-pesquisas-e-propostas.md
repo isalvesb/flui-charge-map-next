@@ -31,3 +31,31 @@ Latência e precisão ainda não medidas. Piloto futuro: frases curtas em pt-BR,
 ### Decisão proposta
 
 Concluir primeiro avaliação do reconhecimento nativo em uma build experimental separada, somente após autorização de dependência/compilação. Google Cloud fica como alternativa com orçamento e arquitetura aprovados. Nenhum serviço pago, microfone, módulo ou credencial foi adicionado.
+
+## 20 — seleção de veículo no Auto Experience
+
+### Referências verificadas e incertezas
+
+| Referência oficial | O que a fonte sustenta | O que ainda não está comprovado |
+|---|---|---|
+| [BYD Dolphin Plus Brasil](https://www.byd.com/br/car/dolphin-plus) | Central rotativa de 12,8 polegadas | Resolução útil/proporção exata, ano/versão do veículo alvo e margens reservadas pelo sistema |
+| [Renault Megane E-Tech Brasil](https://www.renault.com.br/electric-vehicles/megane-e-tech/monte-o-seu.html) | Central OpenR de 9 polegadas na configuração consultada | Viewport útil, variações por mercado/ano e orientação do modelo alvo |
+
+Polegadas não determinam proporção. Não mapear automaticamente esses veículos aos formatos 16:9/9:16/panorâmico atuais. Registrar fonte, mercado, ano/versão, orientação, dimensão útil medida e data da conferência por modelo.
+
+As páginas oferecem referências visuais públicas; licença para incorporar fotos/logos no aplicativo não foi estabelecida. Proposta inicial usa ilustrações esquemáticas próprias ou material fornecido com autorização. Links de referência não equivalem a autorização de reutilização de imagens. Nenhuma imagem foi copiada.
+
+### Proposta para revisão antes de implementar
+
+1. Selecionar marca e modelo, com ano/versão explícitos e busca curta.
+2. Mostrar ficha do modelo escolhido: referência da central, orientação suportada e estado da evidência (verificado ou aproximação).
+3. Abrir a prévia Flui no viewport confirmado. Modelo sem dimensão útil confirmada exibe “Prévia aproximada” e mantém a seleção manual de formato como alternativa.
+4. Comparar mapa, estação e instruções da FluIA sem trocar o veículo/autonomia usados nos cálculos pessoais. A preferência visual do carro fica separada do veículo do cenário.
+
+Exemplo de sequência: **Marca → Modelo/versão → Central de referência → Prévia Flui**. Primeiro piloto sugerido: Dolphin Plus, apenas após confirmar ano e geometria; Megane como segundo contraste de interface. Não há reprodução integral de painéis ou simulação de dirigibilidade.
+
+A [documentação Apple de CarPlay](https://developer.apple.com/carplay/) usa categorias, templates e entitlement próprio. Esta proposta é uma prévia visual local, sem integração ou certificação CarPlay.
+
+### Decisão necessária
+
+Escolher modelo/ano do piloto e aprovar a proposta visual antes de substituir os seletores atuais. Implementação integral, fotos licenciadas e integração automotiva permanecem fora desta execução. O Auto Experience atual foi preservado.

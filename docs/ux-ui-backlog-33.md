@@ -61,7 +61,7 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 | 17 | P2 | Nova escala tipográfica | Implementado; matriz visual pendente | theme/appTheme | Menor=antigo padrão; padrão=antigo grande; maior=novo superior. |
 | 18 | P2 | Cartões de acessibilidade | Implementado; revisão física pendente | settings/SettingsScreen | Seção já existe; reorganizar fontes horizontalmente. Depende de 17. |
 | 19 | P2 | Laboratório fora de configurações comuns | Implementado; código experimental preservado | settings; orb-lab | Preservar implementação e acesso interno. |
-| 20 | P3 | Proposta Auto Experience | Proposta pendente | docs; auto | Exige proposta prévia; sem promessa de CarPlay real ou uso de imagens sem direitos. |
+| 20 | P3 | Proposta Auto Experience | Proposta entregue; decisão sobre piloto pendente | docs; auto | Exige proposta prévia; sem promessa de CarPlay real ou uso de imagens sem direitos. |
 | 21 | P2 | Demonstração NEXT fora dos ajustes comuns | Implementado; controles internos preservados | settings | Preservar controles em acesso interno; depende do desenho mínimo de 32. |
 | 22 | P3 | Nome e endereço da estação | Implementado; revisão física pendente | stations/PointDetailsScreen | Manter 29. |
 | 23 | P2 | Pills de status e avaliação | Implementado; revisão física pendente | stations/PointDetailsScreen | Transparência alinhada a 03; manter conteúdo da seção Avaliações. |
@@ -308,3 +308,10 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Verificações: TypeScript, ESLint, testes do worker/manifesto e navegação offline em contexto web isolado (`20-*`, resultado físico não inferido).
 - iOS: fotos atuais vêm de requires locais e favoritos/dados de AsyncStorage + catálogo. Isso não comprova empacotamento offline na Development Build. Artefato histórico Debug inspecionado não contém WebP avulsos; não autoriza inferir formato do binário instalado. Cold start sem Metro e permanência das imagens no iPhone ainda precisam de validação física/build autorizado. Nenhuma compilação/instalação realizada.
 - FB04 `52676a5`, FB05 `748991b`; FB06 registrado no próximo checkpoint.
+
+### CP21 — 20: proposta por marca/modelo
+
+- Arquivo: `docs/ux-ui-pesquisas-e-propostas.md`, seção 20.
+- Referências primárias BYD/Renault; dimensões em polegadas não usadas para inventar proporções. Proposta distingue seleção visual, dados de cálculo e CarPlay; direitos de imagens não presumidos.
+- Verificação: leitura das fontes e revisão de dependências; não há alteração executável nem imagem incorporada.
+- Decisão necessária: modelo/ano, geometria e proposta visual antes da implementação integral. Demais ajustes não dependem desta decisão. FB06 `a660b6d`; CP20 registrado no próximo checkpoint.
