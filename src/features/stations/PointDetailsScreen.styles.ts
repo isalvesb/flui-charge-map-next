@@ -133,7 +133,6 @@ export const styles = StyleSheet.create({
   },
 
   riskBanner: { flexDirection: "row", alignItems: "center", gap: 8, padding: 12, borderRadius: 16, borderWidth: 1, borderColor: colors.danger, backgroundColor: "#FBE5E2", marginBottom: 12 },
-  sectionHeaderBackground: { borderRadius: 14, borderWidth: 1, borderColor: colors.border, marginBottom: 12 },
   unconfirmedBanner: { paddingHorizontal: 14, paddingVertical: 12, borderWidth: 1, borderRadius: 14, marginBottom: 12 },
   unconfirmedText: { fontSize: 14, lineHeight: 20, fontWeight: "700" },
   riskTitle: { color: "#10221E", fontSize: 15, lineHeight: 20, fontWeight: "700", marginBottom: 4 },

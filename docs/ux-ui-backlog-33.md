@@ -464,3 +464,10 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Arquivos: `PointDetailsScreen.tsx`, `.styles.ts`, `stationLayout.ts`, `tests/stationLayout.test.ts`.
 - Limiar de leitura ajustado para permitir dois cartões no iPhone com fonte padrão/maior do app; ampliação nativa e telas estreitas continuam podendo empilhar. Títulos de 12/600 para 16/800, sem margem que desalinhava ícones; cabeçalho com altura mínima consistente.
 - Verificações: TypeScript, ESLint e testes de largura/escala (`r09-*`). Geometria e render web serão conferidos no fechamento; revisão humana pendente.
+
+### R10 — 29: mesmo cartão completo das demais seções
+
+- Arquivos: `PointDetailsScreen.tsx`, `.styles.ts`.
+- Comodidades e Avaliações agora usam contorno/radius do cartão, cabeçalho integrado e corpo com padding, iguais a Estimativas/Conectores. Antes só os títulos tinham uma faixa avulsa.
+- Textos, dados, listas, notas e interações dessas seções permanecem sem alteração; nova autorização humana permite padronizar o contêiner.
+- Verificações: TypeScript, ESLint, diff dirigido e testes de apresentação (`r10-*`). Revisão visual posterior pendente.

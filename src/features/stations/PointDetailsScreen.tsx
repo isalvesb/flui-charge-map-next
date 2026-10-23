@@ -695,12 +695,13 @@ export default function PointDetailsScreen() {
             </View>
           </View>
 
-          <View style={styles.section}>
-            <View style={[styles.infoCardHeader, styles.sectionHeaderBackground]}>
+          <View style={styles.detailCard}>
+            <View style={styles.infoCardHeader}>
               <Coffee size={20} color={colors.primaryBright} />
               <Text accessibilityRole="header" style={styles.infoLabel}>Comodidades próximas</Text>
             </View>
 
+            <View style={styles.infoCardBody}>
             <View style={styles.amenitiesGrid}>
               {station.amenities.map((amenity) => {
                 const IconeComodidade = getAmenityIcon(amenity);
@@ -722,13 +723,15 @@ export default function PointDetailsScreen() {
                 );
               })}
             </View>
+            </View>
           </View>
 
-          <View style={styles.section}>
-            <View style={[styles.infoCardHeader, styles.sectionHeaderBackground]}>
+          <View style={styles.detailCard}>
+            <View style={styles.infoCardHeader}>
               <Star size={20} color={colors.primaryBright} />
               <Text accessibilityRole="header" style={styles.infoLabel}>Avaliações</Text>
             </View>
+            <View style={styles.infoCardBody}>
             <Text style={styles.resumoDescription}>
               {identificacaoDados.avaliacoesExemplo.aviso}
             </Text>
@@ -863,6 +866,7 @@ export default function PointDetailsScreen() {
                 </Text>
               </View>
             )}
+            </View>
           </View>
         </View>
       </ScrollView>
