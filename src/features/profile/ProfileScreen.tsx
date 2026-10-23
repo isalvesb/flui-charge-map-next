@@ -15,9 +15,7 @@ import {
   Heart,
   History,
   LogOut,
-  Map as MapIcon,
   MapPin,
-  Search,
   Settings as SettingsIcon,
   Star,
   Zap,
@@ -204,10 +202,6 @@ export default function ProfileScreen() {
     router.push(route);
   };
 
-  const abrirRota = (pathname: Href) => {
-    router.push(pathname);
-  };
-
   const showProfileFeedback = (message: string) => {
     if (profileFeedbackTimeoutRef.current) {
       clearTimeout(profileFeedbackTimeoutRef.current);
@@ -233,30 +227,6 @@ export default function ProfileScreen() {
           <Text style={styles.stationName}>{title}</Text>
           <Text style={styles.sectionText}>{description}</Text>
         </View>
-      </View>
-    );
-  };
-
-  const renderShortcutCard = (
-    icon: React.ReactNode,
-    title: string,
-    description: string,
-    route: Href,
-  ) => {
-    return (
-      <View key={title} style={styles.shortcutItem}>
-        <PressableScale
-          accessibilityRole="button"
-          accessibilityLabel={`Abrir ${title.toLowerCase()}`}
-          accessibilityHint={description}
-          style={styles.shortcutCard}
-          onPress={() => abrirRota(route)}
-        >
-          <View style={styles.shortcutIconBox}>{icon}</View>
-
-          <Text style={styles.shortcutTitle}>{title}</Text>
-          <Text style={styles.shortcutText}>{description}</Text>
-        </PressableScale>
       </View>
     );
   };
@@ -421,7 +391,7 @@ export default function ProfileScreen() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.content}
         >
-          <View style={styles.profileHeader}>
+          <View style={styles.profileHeader} accessible accessibilityLabel={`Perfil fictício: ${nomeMotorista}. ${userPreferences.vehicleName}. Autonomia informada: ${userPreferences.vehicleRangeKm} km. Origem da simulação: ${demoOrigin.nome}. Imagens ilustrativas.`}>
             <View style={styles.profileHeroCard}>
               <Image
                 source={imagemCarroUsuario}
@@ -440,12 +410,7 @@ export default function ProfileScreen() {
             </View>
 
             <Text style={styles.profileName}>{nomeMotorista}</Text>
-            <Text style={styles.profileVehicle}>{identificacaoDados.perfil.rotulo}</Text>
             <Text style={styles.profileVehicle}>{userPreferences.vehicleName}</Text>
-            <Text style={styles.sectionText}>
-              Veículo demonstrativo · {userPreferences.vehicleRangeKm} km com bateria cheia
-              {"\n"}Origem demonstrativa: {demoOrigin.nome} · imagem ilustrativa
-            </Text>
           </View>
 
           {profileFeedbackMessage ? (
@@ -505,30 +470,6 @@ export default function ProfileScreen() {
                 <LogOut size={19} color={theme.primary} strokeWidth={2.1} />
                 <Text style={styles.profileActionText}>Sair da conta</Text>
               </PressableScale>
-            </View>
-          </View>
-
-          <View style={styles.quickActionsSection}>
-            <Text style={styles.sectionTitle}>Atalhos úteis</Text>
-            <Text style={styles.sectionText}>
-              Acesse rapidamente as áreas mais importantes antes de escolher
-              onde carregar.
-            </Text>
-
-            <View style={styles.quickActionsGrid}>
-              {renderShortcutCard(
-                <MapIcon size={21} color={theme.primary} strokeWidth={2.1} />,
-                "Mapa",
-                "Ver pontos",
-                "/map" as Href,
-              )}
-
-              {renderShortcutCard(
-                <Search size={21} color={theme.primary} strokeWidth={2.1} />,
-                "Filtros",
-                "Refinar busca",
-                "/search" as Href,
-              )}
             </View>
           </View>
 

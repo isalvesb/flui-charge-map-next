@@ -54,8 +54,8 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 | 10 | P2 | Teclado e histórico | Pendente | assistant/FluiAssistantSheet | Conferir rolagem e alvos acessíveis no iPhone. |
 | 11 | P2 | Resposta por voz | Pendente | assistant/FluiAssistantSheet; fluiaState | Preservar TTS; distinguir falha, interrupção e conclusão. |
 | 12 | P2 | Pesquisa de reconhecimento de fala | Pesquisa pendente | docs | Não contratar serviço, instalar dependência nativa nem introduzir credenciais. |
-| 13 | P3 | Textos secundários do perfil | Pendente | profile/ProfileScreen | Preservar origem fictícia em identificação acessível/geral. |
-| 14 | P3 | Remoção de atalhos úteis | Pendente | profile/ProfileScreen | Mapa/filtros mantêm acessos próprios. |
+| 13 | P3 | Textos secundários do perfil | Implementado; revisão física pendente | profile/ProfileScreen | Preservar origem fictícia em identificação acessível/geral. |
+| 14 | P3 | Remoção de atalhos úteis | Implementado; revisão física pendente | profile/ProfileScreen | Mapa/filtros mantêm acessos próprios. |
 | 15 | P3 | Configurações em largura total | Pendente | profile/ProfileScreen | Depende de 16 para transferência da saída. |
 | 16 | P2 | Saída no fim de configurações | Pendente | profile; settings | Saída atual é apenas visual; não inventar autenticação. |
 | 17 | P2 | Nova escala tipográfica | Pendente | theme/appTheme | Menor=antigo padrão; padrão=antigo grande; maior=novo superior. |
@@ -103,3 +103,13 @@ Cada entrada deve informar IDs, commit, arquivos, verificações e limites human
 - Verificações: TypeScript, ESLint dirigido, testes do planejador (incluindo catálogo invertido/coordenadas) e diff. Logs `01-*`.
 - Conferir: mapa → viagem → Campos do Jordão; com autonomia 80 km e bateria 70%, cenário histórico tem três paradas. Não alterar dados do usuário automaticamente para o teste.
 - Limites: posições continuam interpoladas em linha reta, não são localização verificada dos carregadores; navegação externa continua só até o próximo ponto. Sem nova validação humana física.
+
+### CP02 — 13 e 14: perfil simplificado
+
+- Arquivo: `src/features/profile/ProfileScreen.tsx`.
+- Removidos textos secundários entre nome/veículo e abaixo do carro; origem fictícia permanece no rótulo acessível do cabeçalho e na identificação geral do aplicativo. Removida seção Atalhos úteis; mapa/filtros mantêm navegação própria.
+- Verificações: TypeScript, ESLint dirigido e diff (`02-*`). Mudança reversível de conteúdo, sem testes artificiais de texto.
+- Conferir: mapa → foto do perfil. Nome seguido diretamente pelo veículo; favoritos/histórico/avaliações preservados.
+- Revisão física/humana: pendente; nenhuma aprovação presumida.
+
+- Correção durante CP02: a primeira checagem encontrou importação ainda necessária à identificação geral do perfil; restaurada antes de prosseguir. Checkpoint local corrigido com novas verificações.
