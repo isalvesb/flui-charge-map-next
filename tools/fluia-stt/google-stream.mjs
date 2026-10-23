@@ -18,9 +18,16 @@ export function googleStreamProvider(client, project, metrics = {}) {
     signal.throwIfAborted();
     const call = client._streamingRecognize({ timeout: 38_000, retry: null, otherArgs: { headers: { 'x-goog-user-project': project } } });
     const final = [];
-    let done = false;
+    let latestRecognized = '';
+    let done = false, ending = false;
     let endTimer, startTimer, heardSpeech = false;
-    const finish = () => { clearTimeout(endTimer); clearTimeout(startTimer); if (!done) call.end(); };
+    const finish = () => {
+      clearTimeout(endTimer);
+      clearTimeout(startTimer);
+      if (done || ending) return;
+      ending = true;
+      call.end();
+    };
     let settle;
     const settled = new Promise(resolve => { settle = resolve; });
     call.on('data', data => {
@@ -40,9 +47,9 @@ export function googleStreamProvider(client, project, metrics = {}) {
         if (text) (result.isFinal ? final : interim).push(text);
       }
       const text = [...final, ...interim].join(' ');
-      if (text) { heardSpeech = true; clearTimeout(startTimer); partial(text); }
+      if (text) { latestRecognized = text; heardSpeech = true; clearTimeout(startTimer); partial(text); }
     });
-    call.on('end', () => { clearTimeout(endTimer); clearTimeout(startTimer); settle(); if (!done) { done = true; completed(final.join(' ')); } });
+    call.on('end', () => { clearTimeout(endTimer); clearTimeout(startTimer); settle(); if (!done) { done = true; completed(latestRecognized || final.join(' ')); } });
     call.on('error', error => {
       settle();
       clearTimeout(endTimer); clearTimeout(startTimer);

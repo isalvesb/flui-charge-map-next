@@ -1,6 +1,7 @@
 import { timingSafeEqual } from 'node:crypto';
 import { WebSocketServer } from 'ws';
 import { SttError } from './handler.mjs';
+import { createPcmSilenceDetector } from './pcm-silence.mjs';
 
 export function isAuthorized(headers, token) {
   const a = Buffer.from(headers.authorization ?? ''), b = Buffer.from(`Bearer ${token}`);
@@ -36,6 +37,8 @@ export function attachStreamGateway(server, { token, budget, openRecognition, ti
   });
   sockets.on('connection', ws => {
     let started = false, closed = false, finishing = false, cloud, opening;
+    let heardSpeech = false;
+    const silence = createPcmSilenceDetector();
     const controller = new AbortController();
     let release, bytes = 0, sequence = 0;
     const send = message => { if (ws.readyState === 1 && ws.bufferedAmount < 65_536) ws.send(JSON.stringify(message)); };
@@ -66,7 +69,7 @@ export function attachStreamGateway(server, { token, budget, openRecognition, ti
           if (closed) { release(); return; }
           opening = Promise.resolve(openRecognition({
             signal: controller.signal,
-            partial: text => { if (!closed) send({ type: 'transcript', text: text.slice(0, 6000) }); },
+            partial: text => { if (!closed) { heardSpeech = true; send({ type: 'transcript', text: text.slice(0, 6000) }); } },
             completed: text => {
               if (closed) return;
               if (!text.trim()) { close('NO_SPEECH'); return; }
@@ -85,12 +88,13 @@ export function attachStreamGateway(server, { token, budget, openRecognition, ti
           if (!finishing) { finishing = true; cloud.finish(); }
           return;
         }
-        if (message.type !== 'audio' || finishing || message.sequence !== sequence || typeof message.content !== 'string' || message.content.length > 6000 || !/^[A-Za-z0-9+/]+={0,2}$/.test(message.content) || message.content.length % 4) throw new SttError('INVALID_AUDIO');
+        if (message.type === 'audio' && finishing) return;
+        if (message.type !== 'audio' || message.sequence !== sequence || typeof message.content !== 'string' || message.content.length > 6000 || !/^[A-Za-z0-9+/]+={0,2}$/.test(message.content) || message.content.length % 4) throw new SttError('INVALID_AUDIO');
         const pcm = Buffer.from(message.content, 'base64');
         if (pcm.length < 2 || pcm.length > 4096 || pcm.length % 2 || bytes + pcm.length > 960000) throw new SttError('AUDIO_DURATION');
         sequence++; bytes += pcm.length;
         if (!cloud.write(pcm)) throw new SttError('BACKPRESSURE');
-        if (bytes === 960000) { finishing = true; cloud.finish(); }
+        if (bytes === 960000 || silence.observe(pcm, heardSpeech)) { finishing = true; cloud.finish(); }
       } catch (error) { close(error instanceof SttError ? error.code : 'UPSTREAM_UNAVAILABLE'); }
     });
   });

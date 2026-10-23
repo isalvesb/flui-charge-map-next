@@ -119,3 +119,183 @@ test('evento de fim da voz conclui após 1 s e voz retomada cancela esse prazo',
   call.emit('data', { speechEventType: 3 }); t.mock.timers.tick(1000); assert.equal(finished, 1);
   await stream.cancel();
 });
+
+
+test('silêncio PCM conclui uma vez e ignora áudio tardio', async t => {
+  const f = await fixture(t);
+  const c = await f.open();
+  c.send({ type: 'start', id: 'silence-stream-123' });
+  assert.equal((await c.next()).type, 'ready');
+
+  const speech = Buffer.alloc(3200);
+  for (let i = 0; i < speech.length; i += 2) {
+    speech.writeInt16LE(2000, i);
+  }
+  const quiet = Buffer.alloc(3200);
+
+  async function write(sequence, pcm) {
+    const written = once(f.calls[0].events, 'write');
+    c.send({
+      type: 'audio',
+      sequence,
+      content: pcm.toString('base64')
+    });
+    await written;
+  }
+
+  await write(0, speech);
+  f.calls[0].callbacks.partial('Quero recarregar');
+  assert.equal((await c.next()).type, 'transcript');
+
+  for (let i = 1; i <= 9; i++) {
+    await write(i, quiet);
+    assert.equal(f.calls[0].finishes, 0);
+  }
+
+  await write(10, quiet);
+  assert.equal(f.calls[0].finishes, 1);
+
+  c.send({
+    type: 'audio',
+    sequence: 11,
+    content: quiet.toString('base64')
+  });
+
+  await new Promise(resolve => setTimeout(resolve, 20));
+  assert.equal(f.calls[0].writes, 11);
+  assert.equal(f.calls[0].finishes, 1);
+  assert.equal(c.ws.readyState, WebSocket.OPEN);
+
+  f.calls[0].callbacks.completed('Quero recarregar');
+  assert.equal((await c.next()).type, 'done');
+});
+
+
+test('parcial preservada sem resultado definitivo', async () => {
+  const call = new EventEmitter();
+  call.write = () => true;
+  call.end = () => call.emit('end');
+  call.cancel = () => call.emit('end');
+
+  const partials = [], finals = [], failures = [];
+  const provider = googleStreamProvider({
+    initialize: async () => {},
+    _streamingRecognize: () => call
+  }, 'test-project');
+
+  const stream = await provider({
+    signal: new AbortController().signal,
+    partial: text => partials.push(text),
+    completed: text => finals.push(text),
+    failed: code => failures.push(code)
+  });
+
+  call.emit('data', {
+    results: [{
+      alternatives: [{ transcript: 'Quero' }],
+      isFinal: false
+    }]
+  });
+
+  call.emit('data', {
+    results: [{
+      alternatives: [{ transcript: 'Quero recarregar' }],
+      isFinal: false
+    }]
+  });
+
+  assert.deepEqual(finals, []);
+  stream.finish();
+
+  assert.deepEqual(partials, ['Quero', 'Quero recarregar']);
+  assert.deepEqual(finals, ['Quero recarregar']);
+  assert.deepEqual(failures, []);
+
+  call.emit('end');
+  assert.equal(finals.length, 1);
+});
+
+
+test('finish do Google é idempotente mesmo com evento de voz', async t => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+
+  const call = new EventEmitter();
+  let endings = 0;
+
+  call.write = () => true;
+  call.end = () => { endings++; };
+  call.cancel = () => call.emit('end');
+
+  const provider = googleStreamProvider({
+    initialize: async () => {},
+    _streamingRecognize: () => call
+  }, 'test-project');
+
+  const stream = await provider({
+    signal: new AbortController().signal,
+    partial: () => {},
+    completed: () => {},
+    failed: () => {}
+  });
+
+  call.emit('data', { speechEventType: 3 });
+  stream.finish();
+  stream.finish();
+
+  t.mock.timers.tick(1000);
+  assert.equal(endings, 1);
+
+  call.emit('data', { speechEventType: 3 });
+  t.mock.timers.tick(1000);
+  assert.equal(endings, 1);
+
+  await stream.cancel();
+});
+
+
+test('transcrição mista preserva a frase completa', async () => {
+  const call = new EventEmitter();
+  call.write = () => true;
+  call.end = () => call.emit('end');
+  call.cancel = () => call.emit('end');
+
+  const partials = [];
+  const finals = [];
+  const failures = [];
+
+  const provider = googleStreamProvider({
+    initialize: async () => {},
+    _streamingRecognize: () => call
+  }, 'test-project');
+
+  const stream = await provider({
+    signal: new AbortController().signal,
+    partial: text => partials.push(text),
+    completed: text => finals.push(text),
+    failed: code => failures.push(code)
+  });
+
+  call.emit('data', {
+    results: [{
+      alternatives: [{ transcript: 'Quero' }],
+      isFinal: true
+    }]
+  });
+
+  call.emit('data', {
+    results: [{
+      alternatives: [{ transcript: 'ir à estação' }],
+      isFinal: false
+    }]
+  });
+
+  assert.equal(partials.at(-1), 'Quero ir à estação');
+
+  stream.finish();
+
+  assert.deepEqual(finals, ['Quero ir à estação']);
+  assert.deepEqual(failures, []);
+
+  call.emit('end');
+  assert.equal(finals.length, 1);
+});
