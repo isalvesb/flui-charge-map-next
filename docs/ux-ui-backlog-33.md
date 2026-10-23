@@ -600,3 +600,9 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Arquivos: assistantPresentation.ts, tests/assistantPresentation.test.ts. O chat exibe resumo por padrão; revisar só chatEngine deixava as frases novas sob Ver explicação completa. Resumo agora começa Sugiro, explica a prioridade escolhida e mostra chegada/distância de forma direta.
 - Cinco prioridades geram motivos diferentes; potência não é promessa de velocidade e disponibilidade cadastrada não é fila real. Simulação, reserva de 5% e confirmação de funcionamento/compatibilidade permanecem.
 - Verificações: TypeScript, ESLint e testes de resumo/chat/motor. Captura da resposta resumida e expandida será conferida no desenvolvimento; ainda sem validação humana.
+
+### S11 — 31/29: não atribuir notas a estações sem avaliações
+
+- Evidência visual em ficha-nova-393.png: a ficha mostrava nota 0,0 e o gráfico fixo de distribuição de estrelas, apesar de nenhum dado de avaliação nos pontos novos. Correção necessária para não atribuir estatística inexistente à base ampliada.
+- Arquivo: PointDetailsScreen.tsx. Sem avaliações no catálogo, pill e seção informam ausência e não exibem distribuição fictícia; avaliar localmente continua disponível. As 12 estações antigas mantêm o conteúdo e a distribuição existentes, conforme preservação do item 29.
+- Verificações: TypeScript/ESLint dirigido, diff e conferência visual de ponto novo vs antigo. Não gera avaliações ou altera dados do usuário.

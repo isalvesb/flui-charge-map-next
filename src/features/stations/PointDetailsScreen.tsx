@@ -368,6 +368,7 @@ export default function PointDetailsScreen() {
   );
 
   const chargingConfirmed = canChargeAt(station, now);
+  const hasCatalogReviews = station.reviewCount > 0;
   const connectorLabels = station.connectors
     .map((connector) => connector.label)
     .join(", ");
@@ -558,11 +559,12 @@ export default function PointDetailsScreen() {
               <Star
                 size={19}
                 color={colors.yellowDark}
-                fill={colors.yellowDark}
+                fill={hasCatalogReviews ? colors.yellowDark : "transparent"}
                 strokeWidth={2}
                 style={styles.starIcon}
               />
 
+              {hasCatalogReviews ? <>
               <Text style={styles.ratingValue}>
                 {station.rating.toFixed(1)}
               </Text>
@@ -570,6 +572,7 @@ export default function PointDetailsScreen() {
               <Text style={styles.reviewCount}>
                 ({station.reviewCount} avaliações)
               </Text>
+              </> : <Text style={styles.reviewCount}>Sem avaliações</Text>}
             </View>
           </View>
 
@@ -731,6 +734,7 @@ export default function PointDetailsScreen() {
               <Text accessibilityRole="header" style={styles.infoLabel}>Avaliações</Text>
             </View>
             <View style={styles.infoCardBody}>
+            {hasCatalogReviews ? <>
             <Text style={styles.resumoDescription}>
               {identificacaoDados.avaliacoesExemplo.aviso}
             </Text>
@@ -792,6 +796,8 @@ export default function PointDetailsScreen() {
                 </View>
               </View>
             </View>
+
+            </> : <Text style={styles.resumoDescription}>Esta estação ainda não tem avaliações no catálogo.</Text>}
 
             <Pressable
               accessibilityRole="button"
