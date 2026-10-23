@@ -556,3 +556,20 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Retiradas construções como comodidade(s)/cadastrada(s). Disponibilidade do cadastro não é anunciada como fila real. Reserva mínima exata, identificação da simulação e confirmação de funcionamento/compatibilidade preservadas.
 - Sem mudar pontuação, filtros, regras de intenção ou motor determinístico; primeira passada editorial, ainda sem aprovação humana. Item 12 continua sem captura de fala.
 - Verificações: TypeScript, ESLint e testes de chat/motor, incluindo correspondência da chegada e avisos nas cinco prioridades. S04 `9114bf2`.
+
+### S06 — 31: ampliar primeiro a base simulada (nova prioridade humana)
+
+- Usuário pediu adiar item 01 até haver paradas suficientes na base e escolheu explicitamente ampliar simulação para NEXT. Item 01 fica pendente; expansão anterior dos destinos em S04 é preservada, sem nova tentativa de resolver seu planejamento.
+- Fonte atual: 12 estações simuladas, concentradas em bairros de São Paulo. Planejador continua separado, usando destinosViagem.paradas; simples adição no mapa não o conecta automaticamente à nova base. Integração será reavaliada depois da base, sem alegar solução do 01.
+- Arquivos: fixtures/expandedChargingStations.ts, chargingStations.ts, tests/expandedCatalog.test.ts. Adicionados 54 pontos, total 66 (47 SP, 19 RJ), incluindo entorno do NEXT, interior, Vale do Paraíba, litoral, Rio e Região dos Lagos.
+- Pontos novos são fictícios, com coordenadas de cenário e endereços identificados. Não representam postos/rodovias verificados. Sem novos favoritos, fotos atribuídas a estabelecimentos, comentários ou avaliações. Ilustração vetorial existente atende pontos sem imagem, sem rede.
+- IDs, imagens, avaliações, dados e favoritos das 12 estações existentes preservados; sem migração, Supabase, serviços pagos ou dependências novas. Estados e conectores variados, calendário estruturado e distâncias desde origem atual.
+- Verificações: TypeScript, ESLint, integridade/IDs, cobertura, filtros e bloqueio de manutenção; conferência web posterior. Desempenho/mapa nativo com base ampliada ainda sem confirmação física.
+- S05 `269999c`; revisão editorial inicial das respostas, sem aprovação humana inferida.
+
+### S07 — 19: confirmação de origem em toast escuro
+
+- Arquivos: PresentationOriginPreference.tsx, SettingsScreen.tsx/.styles.ts. Sucesso/falha da origem usam o toast flutuante existente das Configurações (3,2 s), com fundo roxo escuro fixo e texto branco, inclusive no tema escuro. Removida mensagem permanente entre os campos.
+- Indicador de gravação único no nível da tela; componente não duplica overlay. Salvamento automático continua, sem botão Salvar.
+- Verificações: TypeScript/ESLint dirigidos e diff; teste de sucesso/falha e cor do toast web no fechamento.
+- Nova classificação humana: emojis indicam esforço, não aprovação. Offline 30 falhou no iPhone segundo usuário; sintomas/percurso solicitados sem bloquear demais tarefas. Não tratar evidência web como solução nativa.

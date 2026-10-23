@@ -235,9 +235,9 @@ export function createSettingsStyles(colors: AppTheme, fontScale: number) {
       paddingHorizontal: 16,
       borderRadius: 18,
       paddingVertical: 12,
-      backgroundColor: colors.primary,
+      backgroundColor: "#241038",
       borderWidth: 1,
-      borderColor: colors.primary,
+      borderColor: "#563973",
       flexDirection: "row",
       alignItems: "center",
       gap: 9,
@@ -259,7 +259,7 @@ export function createSettingsStyles(colors: AppTheme, fontScale: number) {
 
     feedbackToastText: {
       flexShrink: 1,
-      color: colors.onPrimary,
+      color: "#FFFFFF",
       fontSize: s(14),
       fontWeight: "800",
       letterSpacing: -0.1,

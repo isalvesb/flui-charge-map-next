@@ -356,7 +356,7 @@ export default function SettingsScreen() {
               </PressableScale>
             </View>
           </View>
-          {__DEV__ ? <PresentationOriginPreference /> : null}
+          {__DEV__ ? <PresentationOriginPreference onFeedback={showSettingsFeedback} /> : null}
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Sobre os dados</Text>
             <Text style={styles.sectionText}>{identificacaoDados.catalogo.resumo}</Text>

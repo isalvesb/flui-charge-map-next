@@ -1,14 +1,12 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Modal, Pressable, Text, View } from "react-native";
 import { Check, ChevronDown, X } from "lucide-react-native";
-import { LoadingOverlay } from "../../components";
 import { useAppPreferences } from "../../context/PreferencesContext";
 import { origensDemonstrativas, type OrigemDemonstrativaId } from "../../data/demonstracao";
 import { createSettingsStyles } from "./SettingsScreen.styles";
 
-export default function PresentationOriginPreference() {
+export default function PresentationOriginPreference({ onFeedback }: { onFeedback: (message: string) => void }) {
   const { theme, fontScale, userPreferences, updateDemoConfiguration, isLoadingPreferences, isSavingPreferences } = useAppPreferences();
-  const [feedback, setFeedback] = useState<string | null>(null);
   const [origemId, setOrigemId] = useState<OrigemDemonstrativaId>(userPreferences.demoOriginId);
   const [originMenuOpen, setOriginMenuOpen] = useState(false);
   const styles = useMemo(() => createSettingsStyles(theme, fontScale), [theme, fontScale]);
@@ -21,14 +19,13 @@ export default function PresentationOriginPreference() {
     setOriginMenuOpen(false);
     if (nextOrigin === userPreferences.demoOriginId) return;
     setOrigemId(nextOrigin);
-    setFeedback(null);
     try {
       // Veículo/autonomia pertencem à configuração do perfil; não são editáveis aqui.
       await updateDemoConfiguration({ vehicleName: userPreferences.vehicleName, vehicleRangeKm: userPreferences.vehicleRangeKm, demoOriginId: nextOrigin });
-      setFeedback("Origem salva neste dispositivo.");
+      onFeedback("Origem salva neste dispositivo.");
     } catch {
       setOrigemId(userPreferences.demoOriginId);
-      setFeedback("Não foi possível salvar a origem. Sua seleção anterior foi mantida. Tente novamente.");
+      onFeedback("Não foi possível salvar a origem. Sua seleção anterior foi mantida. Tente novamente.");
     }
   };
 
@@ -42,7 +39,6 @@ export default function PresentationOriginPreference() {
           <Text style={styles.optionTitle}>{origin?.nome}</Text>
           <ChevronDown size={22} color={theme.primary} />
         </Pressable>
-        {feedback ? <Text accessibilityLiveRegion="polite" style={[styles.sectionText, { backgroundColor: theme.primarySoft, padding: 14, borderRadius: 14, marginTop: 16 }]}>{feedback}</Text> : null}
       <Modal visible={originMenuOpen} transparent animationType="fade" onRequestClose={() => setOriginMenuOpen(false)}>
         <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "rgba(0,0,0,0.4)" }} accessibilityViewIsModal>
           <Pressable accessibilityRole="button" accessibilityLabel="Fechar opções de origem" style={{ position: "absolute", inset: 0 }} onPress={() => setOriginMenuOpen(false)} />
@@ -62,7 +58,6 @@ export default function PresentationOriginPreference() {
           </View>
         </View>
       </Modal>
-      <LoadingOverlay visible={disabled} message={isSavingPreferences ? "Salvando..." : "Carregando..."} />
     </View>
   );
 }
