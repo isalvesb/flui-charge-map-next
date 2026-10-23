@@ -251,3 +251,14 @@ Cada entrada deve informar IDs, commit, arquivos, verificações e limites human
 - Comparados reconhecimento nativo e Google Cloud, permissões, integração por texto editável ao motor, custos exemplificativos, privacidade, falhas e latência ainda não medida.
 - Verificação: revisão das referências e do escopo; não se aplica teste de código. Próxima implementação exige decisão sobre módulo nativo/servidor/custo; não bloqueia demais itens.
 - CP17 `94cab38`; CP18 `a69d5d9`. Sem nova confirmação visual humana.
+
+## Feedback humano recebido durante execução
+
+Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão deve ser último elemento e saída vermelha; (3) aviso de saída se confunde com conteúdo; (4) fundo da bateria deve fazer fade separado da subida; (5) título do aviso grande/textos pouco escuros; (6) estimativa com informação excessiva; (7) recarga não confirmada precisa fundo; (8) autoriza fundo nos títulos de Comodidades e Avaliações; (9) três fontes devem ocupar toda largura; (10) alto contraste deve ter título menor e toggle. Feedback é evidência de observação parcial da interface; não é aprovação global.
+
+### FB01 — ajustes 15/16: saída, aviso e rodapé (comentários 2–3)
+
+- Arquivos: `src/features/settings/SettingsScreen.tsx`, `.styles.ts`.
+- Versão passa a ser o último texto da página; saída volta ao vermelho. Toast com fundo roxo contrastante, texto claro, quebra de linha e tempo de leitura ampliado.
+- Verificações: TypeScript, ESLint dirigido e diff (`fb01-*`). Conferir final dos ajustes e tocar Sair da conta.
+- Revisão humana: correção solicitada; retorno após esta alteração ainda pendente.

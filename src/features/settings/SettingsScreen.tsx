@@ -25,7 +25,7 @@ import type { AppearanceMode, FontSizePreference } from "../../types";
 import { createSettingsStyles } from "./SettingsScreen.styles";
 import { identificacaoDados } from "../../data/identificacaoDados";
 
-const FEEDBACK_DURATION = 1500;
+const FEEDBACK_DURATION = 3200;
 
 const fontSizeLabels: Record<FontSizePreference, string> = {
   small: "Fonte menor",
@@ -374,11 +374,8 @@ export default function SettingsScreen() {
               </PressableScale>
             </View>
           ) : null}
-          <View style={styles.section} testID="identificacao-versao">
-            <Text style={styles.sectionTitle}>Sobre esta versão</Text>
-            <Text style={styles.sectionText}>Flui {appPackage.version}</Text>
-            <Text style={styles.sectionText}>Experimento do mapa · revisão local</Text>
-            <Text style={styles.fieldLabel}>Sobre os dados</Text>
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Sobre os dados</Text>
             <Text style={styles.sectionText}>{identificacaoDados.catalogo.resumo}</Text>
             <Text style={styles.sectionText}>Perfil fictício, com fotos e veículo ilustrativos. A carga é informada manualmente ou usada como cenário de simulação; não é lida do veículo. Distância em linha reta e tempos são estimativas. Confirme funcionamento e compatibilidade antes de ir. A FluIA usa respostas e regras locais, sem IA generativa.</Text>
           </View>
@@ -387,12 +384,16 @@ export default function SettingsScreen() {
               accessibilityRole="button"
               accessibilityLabel="Sair da conta"
               accessibilityHint="Esta versão usa um perfil local, sem sessão conectada. Não apaga dados."
-              style={styles.optionButton}
+              style={[styles.optionButton, styles.logoutButton]}
               onPress={() => showSettingsFeedback("Perfil local: não há uma sessão conectada para encerrar.")}
             >
-              <LogOut size={21} color={theme.primary} />
-              <Text style={styles.optionTitle}>Sair da conta</Text>
+              <LogOut size={21} color={theme.dangerText} />
+              <Text style={[styles.optionTitle, { color: theme.dangerText }]}>Sair da conta</Text>
             </PressableScale>
+          </View>
+          <View style={styles.versionFooter} testID="identificacao-versao">
+            <Text style={styles.sectionText}>Experimento do mapa · revisão local</Text>
+            <Text style={styles.versionText}>Flui {appPackage.version}</Text>
           </View>
         </ScrollView>
 
@@ -407,7 +408,7 @@ export default function SettingsScreen() {
 
         {settingsFeedbackMessage ? (
           <View pointerEvents="none" style={styles.feedbackToastOverlay}>
-            <View style={styles.feedbackToastCard}>
+            <View accessibilityLiveRegion="polite" style={styles.feedbackToastCard}>
               <Text style={styles.feedbackToastIcon}>i</Text>
               <Text style={styles.feedbackToastText}>
                 {settingsFeedbackMessage}

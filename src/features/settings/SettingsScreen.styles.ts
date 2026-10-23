@@ -222,13 +222,17 @@ export function createSettingsStyles(colors: AppTheme, fontScale: number) {
       paddingHorizontal: 24,
     },
 
+    logoutButton: { backgroundColor: colors.dangerSoft, borderColor: colors.dangerText },
+    versionFooter: { marginTop: 28, alignItems: "center", gap: 6 },
+    versionText: { color: colors.textMuted, fontSize: s(13), fontWeight: "700" },
     feedbackToastCard: {
       minHeight: 52,
       paddingHorizontal: 16,
-      borderRadius: 999,
-      backgroundColor: colors.surface,
+      borderRadius: 18,
+      paddingVertical: 12,
+      backgroundColor: colors.primary,
       borderWidth: 1,
-      borderColor: colors.border,
+      borderColor: colors.primary,
       flexDirection: "row",
       alignItems: "center",
       gap: 9,
@@ -249,7 +253,8 @@ export function createSettingsStyles(colors: AppTheme, fontScale: number) {
     },
 
     feedbackToastText: {
-      color: colors.text,
+      flexShrink: 1,
+      color: colors.onPrimary,
       fontSize: s(14),
       fontWeight: "800",
       letterSpacing: -0.1,
