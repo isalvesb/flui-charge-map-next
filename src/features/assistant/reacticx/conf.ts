@@ -44,18 +44,20 @@ const SHADER_SOURCE = /*wgsl*/ `
       energy += ribbon * 0.65 + edge * 0.24 + glow * 0.12;
     }
 
-    // Refração discreta, contorno macio e reflexos localizados, sem disco preto.
+    // Interior violeta escuro para destacar a luz, com contorno macio e reflexos.
     float rim = exp(-pow((radius - 0.96) / 0.025, 2.0));
     float angle = atan(p.y, p.x);
     float glint = pow(0.5 + 0.5 * cos(angle * 3.0 + t * 0.45), 12.0);
     float highlight = exp(-dot(p - vec2(-0.30, -0.68), p - vec2(-0.30, -0.68)) / 0.007);
-    float glass = (0.13 + z * 0.12) * (1.0 - smoothstep(0.9, 1.03, radius));
+    float glass = (0.94 + z * 0.03) * (1.0 - smoothstep(0.9, 1.03, radius));
     float opacity = mix(0.8, 0.6, uMapPulse);
-    float alpha = clamp(glass + energy * 0.72 + rim * (0.23 + glint * 0.45) + highlight * 0.4, 0.0, 1.0) * opacity * feather;
-    vec3 hue = mix(uColor0, uColor1, 0.18 + uMapPulse * 0.18) * glass
-      + light * 0.72 + uColor1 * rim * (0.23 + glint * 0.45)
+    float waveAlpha = clamp(energy * 0.72 + rim * (0.23 + glint * 0.45) + highlight * 0.4, 0.0, 1.0) * opacity;
+    vec3 hue = light * 0.72 + uColor1 * rim * (0.23 + glint * 0.45)
       + vec3(0.95, 0.88, 1.0) * highlight * 0.4;
-    return vec4(clamp(hue * opacity * feather, vec3(0.0), vec3(alpha)), alpha);
+    vec3 waveColor = clamp(hue * opacity, vec3(0.0), vec3(waveAlpha));
+    float alpha = (waveAlpha + glass * (1.0 - waveAlpha)) * feather;
+    vec3 color = (waveColor + uColor0 * 0.2 * glass * (1.0 - waveAlpha)) * feather;
+    return vec4(clamp(color, vec3(0.0), vec3(alpha)), alpha);
   }
 
   vec4 main(vec2 fragCoord) {
