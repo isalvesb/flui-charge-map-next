@@ -229,3 +229,10 @@
 - Preparação: **271/271 testes do app**, TypeScript, lint sem erros (um aviso preexistente), **exportação web de 15 rotas**. Intermediário mantém a rodada aprovada de **40/40**. Nenhuma captura/chamada paga repetida para preparar PR.
 - Conferidos 686 blobs novos no histórico para padrões de segredo/arquivos protegidos, sem achados pelos padrões usados. Credenciais/valores de ambiente não exibidos. Bloqueio permanente de push da origem local e hook original serão preservados; eventual envio usa exceção única restrita à branch autorizada.
 - Matriz atual e limitações para o grupo: `docs/ENTREGA-UX-FLUIA-2.3.md`.
+
+### PR de revisão aberta
+
+- **PR #103:** https://github.com/isalvesb/flui-charge-map-next/pull/103 — **Flui 2.3 | Consolida UX/UI e experimento de voz da FluIA**, aberta em rascunho para `main`.
+- Branch remota nova: `review/flui-2.3-ux-fluia-20261023`, envio inicial `8fa3fcb`. GitHub confirmou a base `94c862e`, o head enviado e ausência de conflitos na conferência; sem merge realizado. CI remota ainda não foi comprovada concluída; checks locais aprovados estão descritos na entrega.
+- Push feito por URL explícita com guarda temporária restrita à branch/commit autorizados. Hook permanente e `origin.pushurl=disabled://ux-mapa-publicacao-bloqueada` conferidos intactos. Main, consolidação, outras worktrees e serviços existentes não foram alterados para publicar.
+- PR anexada à conversa. Itens 36–41 implementados; 42 pendente; 43 de conexão parcial por dependência do Mac. Não iniciar novas funcionalidades de voz a partir da publicação.

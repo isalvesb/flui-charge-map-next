@@ -1,5 +1,11 @@
 # FluIA — continuidade dos itens 36–42
 
+## Publicação de revisão autorizada posteriormente
+
+Usuário pediu explicitamente uma PR: **https://github.com/isalvesb/flui-charge-map-next/pull/103**, aberta em rascunho para `main`, pela branch remota `review/flui-2.3-ux-fluia-20261023`. Envio inicial `8fa3fcb`; inclui a base UX 2.3 acumulada, pois main ainda estava em `94c862e`. Matriz atual em `docs/ENTREGA-UX-FLUIA-2.3.md`. Checks locais: 271 testes do app, TypeScript/lint sem erros (aviso preexistente), web com 15 rotas; backend mantém 40 testes aprovados. CI remota pendente de confirmação nesta publicação.
+
+Exceção específica ao bloqueio anterior somente para enviar esta branch e criar a PR. Bloqueios permanentes de origem/hook foram preservados; não há autorização para merge, outras branches, issues/Projects ou publicação de app/site. Desenvolvimento de voz sem Mac/Zephyr permanece adiado; a abertura da PR não retoma essa implementação.
+
 ## Estado mais recente — voz adiada por decisão do usuário
 
 O usuário decidiu deixar a voz para depois e priorizar outros ajustes. **Não retomar automaticamente investigação/implementação Apple, hospedagem Google ou testes físicos pendentes.** Preservar este experimento e aguardar o próximo objetivo. Não houve migração do reconhecimento nem implantação de serviço externo.
