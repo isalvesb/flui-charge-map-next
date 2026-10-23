@@ -515,3 +515,15 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Manifesto offline da nova exportação contém 15 fotos locais. Teste efetivo offline anterior permanece evidência web, sem equivalência ao iPhone. Usuário fará a conferência física do item 30 posteriormente.
 - Consolidação reconferida limpa em `abd5dfacaf51350b32fa77066ee849dbfcc9fbdc`; servidores 8106/8116/8118 com PIDs preservados; bloqueios de push intactos. Sem publicação, ações GitHub ou instalação/recompilação nativa.
 - Itens 12, parte principal de 20, 31 e 32 continuam a fazer. Próxima decisão útil: escopo do piloto de fala e escolha dos perfis/modelos/dados dos cenários; não criar serviços ou arquitetura automaticamente. 03 aguarda retorno sobre a nova linguagem. Silêncio não equivale a aprovação.
+
+## Segunda revisão humana de 23/10 — backlog agora com 34 itens
+
+- 01: ampliar destinos, incluindo RJ; origem da viagem pode ser a configurada, sem seletor independente. Não forçar contagem de paradas: depende da carga/autonomia e da distância.
+- 12, seleção completa de veículos em 20, ampliação em 31 e cenários completos em 32 continuam a fazer. Item 30 será testado pelo usuário depois.
+- 17: usuário ainda percebe desalinhamento; 19/21 mover origem para Configurações com salvamento imediato, sem botão Salvar (esclarecimento recebido).
+- 22: levar identificação Dados simulados ao final da ficha. 26: reduzir ligeiramente título para fonte grande. Novo 34: melhorar textos das respostas da FluIA, sem alterar regras ou alegar IA generativa.
+
+### S01 — 17: corrigir deslocamento real do indicador
+
+- Arquivos: SettingsScreen.tsx/.styles.ts. Círculos herdavam marginLeft de 10 pt dos cartões de aparência, ficando deslocados à direita dentro do slot centralizado. Removida a margem só para fontes; slot do indicador com largura fixa. Ícones T agora compartilham a linha inferior, apesar dos tamanhos diferentes.
+- Verificações: TypeScript, ESLint dirigido e diff. Geometria web será conferida após exportação; iPhone ainda depende de revisão humana.

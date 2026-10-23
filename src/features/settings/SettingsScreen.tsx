@@ -174,13 +174,13 @@ export default function SettingsScreen() {
     }
   };
 
-  const renderOptionCheck = (isSelected: boolean) => {
+  const renderOptionCheck = (isSelected: boolean, centered = false) => {
     return isSelected ? (
-      <View style={styles.checkCircle}>
+      <View style={[styles.checkCircle, centered && styles.fontSizeCheckCircle]}>
         <Check size={14} color={theme.onPrimary} strokeWidth={2.4} />
       </View>
     ) : (
-      <View style={styles.emptyCheckCircle} />
+      <View style={[styles.emptyCheckCircle, centered && styles.fontSizeCheckCircle]} />
     );
   };
 
@@ -303,7 +303,7 @@ export default function SettingsScreen() {
                   >
                     <View style={styles.fontSizeIconSlot}><Type accessible={false} size={18 + index * 4} color={theme.primary} /></View>
                     <Text style={styles.fontSizeLabel}>{option.label}</Text>
-                    <View style={styles.fontSizeCheckSlot}>{renderOptionCheck(isSelected)}</View>
+                    <View style={styles.fontSizeCheckSlot}>{renderOptionCheck(isSelected, true)}</View>
                   </PressableScale>
                   </View>
                 );

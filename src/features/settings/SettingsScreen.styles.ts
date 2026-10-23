@@ -129,8 +129,9 @@ export function createSettingsStyles(colors: AppTheme, fontScale: number) {
     fontSizeItem: { flex: 1, minWidth: 0 },
     fontSizeRow: { width: "100%", alignSelf: "stretch", flexDirection: "row", gap: 8, alignItems: "stretch" },
     fontSizeCard: { width: "100%", minWidth: 0, minHeight: 112, alignItems: "center", justifyContent: "center", gap: 10, paddingHorizontal: 4, paddingVertical: 12, borderRadius: 16, borderWidth: 1, borderColor: colors.border, backgroundColor: colors.surface },
-    fontSizeIconSlot: { height: 32, width: 32, alignItems: "center", justifyContent: "center" },
-    fontSizeCheckSlot: { height: 24, alignItems: "center", justifyContent: "center" },
+    fontSizeIconSlot: { height: 32, width: 32, alignItems: "center", justifyContent: "flex-end" },
+    fontSizeCheckSlot: { height: 24, width: 24, alignItems: "center", justifyContent: "center" },
+    fontSizeCheckCircle: { marginLeft: 0 },
     fontSizeLabel: { color: colors.text, fontSize: s(12), lineHeight: s(18), fontWeight: "700", textAlign: "center" },
     fieldLabel: {
       marginTop: 16,
