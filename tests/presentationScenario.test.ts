@@ -34,3 +34,11 @@ test("ativar, editar favoritos/avaliação/histórico e sair não altera nenhum 
 test("falha de leitura não é tratada como cenário vazio para sobrescrita",async()=>{
  let wrote=false;const store=createPresentationStore(async()=>{throw new Error("leitura falhou");},async()=>{wrote=true;});await assert.rejects(store.update(s=>({...s,enabled:true})),/leitura falhou/);assert.equal(wrote,false);
 });
+
+
+test("avaliação/histórico inválidos são rejeitados antes de substituir o cenário salvo",async()=>{
+ memory.clear();const input={stationId:"station-01",stationName:"cenário",rating:4,quality:4,cleaning:4,availability:4,amenities:4,comment:"Preservar",wouldReturn:true,recommend:true};
+ await presentationActivityStorage.addSentReview(input);await presentationActivityStorage.addRecentHistory({stationId:"station-01",stationName:"nome",address:"endereço",action:"viewed_station"});const before=memory.get(PRESENTATION_STORAGE_KEY);
+ await assert.rejects(presentationActivityStorage.addSentReview({...input,rating:9}),/inválida/);assert.equal(memory.get(PRESENTATION_STORAGE_KEY),before);
+ await assert.rejects(presentationActivityStorage.addRecentHistory({stationId:"desconhecida",stationName:"nome",address:"endereço",action:"viewed_station"}),/inválido/);assert.equal(memory.get(PRESENTATION_STORAGE_KEY),before);
+});

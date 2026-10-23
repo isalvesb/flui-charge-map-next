@@ -36,14 +36,23 @@ export const presentationActivityStorage = {
   },
   async addSentReview(input: CreateLocalReviewInput) {
     const createdAt = new Date().toISOString();
-    const state = await presentationStore.update(current => ({ ...current, sentReviews: [{ ...input, id: `presentation-review-${input.stationId}`, createdAt, updatedAt: createdAt, isSynced: false }, ...current.sentReviews.filter(review => review.stationId !== input.stationId)] }));
+    const state = await presentationStore.update(current => {
+      const next = normalizePresentationState({ ...current, sentReviews: [{ ...input, id: `presentation-review-${input.stationId}`, createdAt, updatedAt: createdAt, isSynced: false }, ...current.sentReviews.filter(review => review.stationId !== input.stationId)] });
+      if (!next.sentReviews.some(review => review.stationId === input.stationId)) throw new Error("Avaliação de cenário inválida.");
+      return next;
+    });
     const review = state.sentReviews.find(item => item.stationId === input.stationId);
     if (!review) throw new Error("Avaliação de cenário inválida.");
     return review;
   },
   async addRecentHistory(input: CreateRecentHistoryInput) {
     const createdAt = new Date().toISOString();
-    const state = await presentationStore.update(current => ({ ...current, recentHistory: [{ ...input, id: `presentation-history-${input.action}-${input.stationId}`, createdAt }, ...current.recentHistory.filter(item => item.stationId !== input.stationId || item.action !== input.action)] }));
+    const state = await presentationStore.update(current => {
+      const id = `presentation-history-${input.action}-${input.stationId}`;
+      const next = normalizePresentationState({ ...current, recentHistory: [{ ...input, id, createdAt }, ...current.recentHistory.filter(item => item.stationId !== input.stationId || item.action !== input.action)] });
+      if (next.recentHistory[0]?.id !== id) throw new Error("Histórico de cenário inválido.");
+      return next;
+    });
     const history = state.recentHistory[0];
     if (!history) throw new Error("Histórico de cenário inválido.");
     return history;
