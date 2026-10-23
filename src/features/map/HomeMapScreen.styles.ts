@@ -94,30 +94,34 @@ const styles = StyleSheet.create({
   },
 
   vehicleVisual: {
-    minWidth: 76,
-    height: 40,
+    minWidth: 64,
     alignItems: "center",
-    justifyContent: "flex-end",
   },
-  vehicleBatteryOverlay: { zIndex: 1 },
 
   vehicleImage: {
-    position: "absolute",
-    top: 0,
     width: 60,
-    height: 40,
+    height: 32,
+    zIndex: 1,
+    transform: [{ translateY: -4 }],
   },
 
   vehicleBatteryPill: {
-    minHeight: 20,
-    paddingHorizontal: 7,
-    borderRadius: 10,
+    minWidth: 64,
+    minHeight: 46,
+    paddingHorizontal: 2,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  vehicleBatterySummary: {
+    position: "absolute",
+    bottom: 2,
+    alignSelf: "center",
+    zIndex: 2,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     gap: 5,
-    backgroundColor: colors.white,
-    borderWidth: 1,
   },
 
   vehicleBatteryIconRow: {
