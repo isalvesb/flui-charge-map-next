@@ -59,3 +59,27 @@ A [documentação Apple de CarPlay](https://developer.apple.com/carplay/) usa ca
 ### Decisão necessária
 
 Escolher modelo/ano do piloto e aprovar a proposta visual antes de substituir os seletores atuais. Implementação integral, fotos licenciadas e integração automotiva permanecem fora desta execução. O Auto Experience atual foi preservado.
+
+## 31 — ampliação de catálogo e avaliação do Supabase
+
+### Arquitetura constatada
+
+Catálogo de 12 estações incluído no aplicativo, com imagens locais, dados de exemplo e cálculos em linha reta. Favoritos, preferências, avaliações do usuário e histórico ficam no AsyncStorage; não existe confirmação remota de disponibilidade. O problema de fotos web do item 30 estava na preparação do cache, não em falta de banco remoto.
+
+| Caminho | Benefício | Custo de mudança e decisão |
+|---|---|---|
+| Ampliar conjunto fictício local | Mais variedade de conectores, bairros e casos de apresentação, preservando funcionamento local | Exige curadoria/identificação e testes de consistência; não melhora veracidade dos dados |
+| Importar fonte externa licenciada para consulta local | Pode ampliar cobertura geográfica | Exige conferir licença por fonte, atribuição, atualização, deduplicação e marcação de dados não verificados |
+| Usar Supabase para catálogo administrado | Postgres/PostGIS, edição central e políticas de acesso | Muda arquitetura/operação: autenticação, RLS, disponibilidade remota, custos e estratégia offline próprios |
+
+[Open Charge Map](https://www.openchargemap.org/develop/api) oferece API mediante cadastro/chave. O [guia do projeto](https://github.com/openchargemap/ocm-docs/blob/master/System/DeveloperGuide.md) distingue dados abertos e condições de origem; o filtro `opendata=true` é candidato a avaliar. Não foram solicitadas chaves nem importados dados. Licença por fonte e atribuição ainda precisam ser verificadas antes de qualquer distribuição. Catálogo externo também não comprova que um carregador está funcionando agora.
+
+O [PostGIS no Supabase](https://supabase.com/docs/guides/database/extensions/postgis) oferece consultas geográficas úteis para um catálogo maior. Isso não resolve sozinho persistência local ou conferência de disponibilidade. A integração [PowerSync apresentada pelo Supabase](https://supabase.com/partners/catalog/powersync) ilustra uma camada adicional de sincronização Postgres/SQLite para uso offline, que precisaria ser avaliada separadamente.
+
+Na [orientação de segurança](https://supabase.com/docs/guides/database/secure-data), acesso a dados precisa de políticas adequadas; credenciais privilegiadas não devem estar no cliente. Não há motivação demonstrada nesta etapa para assumir nova infraestrutura, conta ou custo recorrente apenas para ampliar 12 exemplos.
+
+### Recomendação e próximo passo autorizado somente após decisão
+
+Para o NEXT, manter fonte local e finalizar a experiência/cache antes de ampliar o volume. Se mais cenários forem necessários, propor primeiro um lote fictício pequeno, identificado e auditável (carga rápida, indisponibilidade, conectores variados, cobertura de bairros). Se o objetivo passar a ser informação operacional real, definir fonte, licença, atualização e operação antes de escolher banco.
+
+Não foi criado projeto Supabase, migrado armazenamento ou substituído dado fictício por alegação real. Aprovar origem/licença e escopo antes de iniciar importação ou banco remoto.

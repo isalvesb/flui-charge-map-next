@@ -72,7 +72,7 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 | 28 | P3 | Cartões Estimativas e Conectores | Implementado; revisão física pendente | stations/PointDetailsScreen | Depende de 26; não modificar 29. |
 | 29 | — | Preservar conteúdo de Comodidades próximas e Avaliações | Títulos com fundo autorizados em feedback; conteúdo preservado | stations/PointDetailsScreen | Nenhuma alteração sem defeito comprovado ou autorização adicional. |
 | 30 | P1 | Persistência offline de fotos e favoritos | Cache web corrigido; teste físico/build offline pendente | assets; storage; service-worker | Não introduzir armazenamento remoto; distinguir assets empacotados e cache web. |
-| 31 | P3 | Pesquisa catálogo/Supabase | Pesquisa pendente | docs | Sem migrar arquitetura, custos ou apresentar dados como verificados. |
+| 31 | P3 | Pesquisa catálogo/Supabase | Pesquisa concluída; ampliação/migração depende de decisão | docs | Sem migrar arquitetura, custos ou apresentar dados como verificados. |
 | 32 | P2 | Proposta de área interna | Proposta pendente | docs; settings | Controles fictícios separados; não implementar integralmente antes da decisão sobre proposta. |
 | 33 | P2 | Referência inicial de localização | Implementado; revisão física pendente | data/demonstracao; LocationContext | -23.540405908671097,-46.73414831818115; padrão simulado, não substituir GPS autorizado. |
 
@@ -315,3 +315,10 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Referências primárias BYD/Renault; dimensões em polegadas não usadas para inventar proporções. Proposta distingue seleção visual, dados de cálculo e CarPlay; direitos de imagens não presumidos.
 - Verificação: leitura das fontes e revisão de dependências; não há alteração executável nem imagem incorporada.
 - Decisão necessária: modelo/ano, geometria e proposta visual antes da implementação integral. Demais ajustes não dependem desta decisão. FB06 `a660b6d`; CP20 registrado no próximo checkpoint.
+
+### CP22 — 31: fontes e banco remoto
+
+- Arquivo: `docs/ux-ui-pesquisas-e-propostas.md`, seção 31.
+- Comparados ampliação fictícia local, fonte externa e Supabase/PostGIS; evidência de necessidade de migração não encontrada nesta etapa. Fonte/atribuição/cache/sincronização tratados separadamente de veracidade operacional.
+- Verificação: referências oficiais de Open Charge Map/Supabase e leitura do armazenamento atual; não se aplica teste executável.
+- Sem conta, credencial, migração, custo ou catálogo real introduzido. Próximo passo depende de decisão sobre fonte/escopo. CP20 `c7899e2`, CP21 `a973a57`.
