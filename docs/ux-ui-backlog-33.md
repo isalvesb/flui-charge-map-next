@@ -360,8 +360,8 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 | 21 | Feito | Controles existentes transferidos para apresentação interna em desenvolvimento. | a69d5d9 |
 | 22 | Feito | Nome/endereço aproximados com espaçamento ajustado. | 6f19aba |
 | 23 | Feito | Status e avaliações em pills com identificação geral da simulação. | 6f19aba |
-| 24 | Feito; revisado por feedback | Aviso dispensável menor/mais escuro e estimativas resumidas sincronizadas com bateria. | b3dade0; 8ef9d3f |
-| 25 | Feito; revisado por feedback | Exemplo removido; confirmação investigada/preservada e destacada em faixa. | 894aea3; 52676a5 |
+| 24 | Feito; revisado por feedback | Aviso dispensável menor/mais escuro e estimativas resumidas sincronizadas com bateria. | b3dade0; 8ef9d3f; 30ad83f |
+| 25 | Feito; revisado por feedback | Exemplo removido; confirmação investigada/preservada e destacada em faixa. | 894aea3; 52676a5; 30ad83f |
 | 26 | Feito | Cartões com cabeçalho e corpo; distância mantém aproximação. | ac2c863 |
 | 27 | Feito | Aviso duplicado substituído por identificação única do catálogo. | 894aea3 |
 | 28 | Feito | Estimativas e Conectores em cartões próprios. | a33abd9 |
@@ -384,3 +384,15 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Captura da estação em manutenção mostrou status com token claro de borda e indicação junto à quantidade ainda sem fundo. Status/estimativas passam a usar tokens de texto contrastantes; faixa âmbar aplicada ao próprio grupo de carregadores sempre que `canChargeAt` é falso. Removida repetição da mesma recomendação em outro bloco.
 - Verificações: TypeScript, ESLint e casos de status/conectores/horário da apresentação e filtragem (`fb07-*`); nova exportação para conferência dirigida da faixa/status.
 - Não altera condições de recarga, regras de cálculo ou conteúdo protegido do item 29. Retorno humano após ajuste pendente.
+
+### Fechamento técnico desta execução
+
+- Suíte completa: 173/173, TypeScript aprovado, ESLint zero erros e um aviso herdado. Último complemento `30ad83f` passou em TypeScript/ESLint e apresentação/filtragem dirigidos após a suíte completa.
+- `validacao-feedbacks-web.json`: aprovado, zero erros de página. Três configurações (320 px/fonte maior/claro, 393 px/padrão/claro, 393 px/maior/escuro/alto contraste), distribuição total das fontes, Switch, rodapé final, toast, aviso dispensável que reaparece, títulos com fundo e resumo de viagem sem paradas.
+- Fluxos dirigidos: arraste/digitação/cancelar/salvar bateria; popup simplificado; consulta/retorno da FluIA; rotas internas redirecionadas em produção; três paradas com numeração/nome correspondentes.
+- Offline Chromium: todas as 15 fotos públicas do manifesto carregaram efetivamente sem rede; perfil reabriu/recarregou; requisição sem cache falhou como esperado. Não equivale a offline no iPhone.
+- `validacao-ficha-final.json`: complemento aprovado para status de manutenção com cor de texto e faixa âmbar no próprio grupo de carregadores. Captura `ficha-contraste-final.png` inspecionada.
+- Capturas web de ficha, aviso de saída e conversa inspecionadas. Não comprovam render Skia, teclado/voz nativos, desempenho ou VoiceOver humano.
+- Consolidação reconferida limpa em `abd5dfacaf51350b32fa77066ee849dbfcc9fbdc`. Metros 8106/8116 e servidor 8118 mantidos com PIDs iniciais; bloqueio de push e hooks preservados. Nenhuma operação remota, nova dependência, compilação ou instalação.
+- Todos os dez comentários foram tratados nos checkpoints FB01–FB07; não foi recebida aprovação humana global após as correções. Próximas decisões: reconhecimento de fala/novo binário (12), piloto automotivo/imagens (20), cenários completos e armazenamento separado (32), prova física de offline (30).
+- Registro de estados solicitado pelo usuário preenchido acima, com commits de cada item. Nenhum item parcial foi classificado como validado.
