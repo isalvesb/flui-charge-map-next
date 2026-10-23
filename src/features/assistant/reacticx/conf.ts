@@ -14,7 +14,7 @@ const SHADER_SOURCE = /*wgsl*/ `
   uniform float uMapMode;
   uniform float uMapPulse;
 
-  // UX-MAPA-01: esfera de vidro com três fitas roxas, inspirada na referência
+  // UX-MAPA-01: esfera de vidro com três fitas de luz, inspirada na referência
   // visual fornecida pelo usuário. Tudo é procedural, sem vídeo ou textura.
   vec4 mapOrb(vec2 uv) {
     vec2 p = uv / 0.46;
@@ -37,13 +37,14 @@ const SHADER_SOURCE = /*wgsl*/ `
       float edge = exp(-pow((d - width * 0.8) / 0.018, 2.0));
       float core = exp(-pow(d / 0.025, 2.0));
       float glow = exp(-pow(d / max(0.055, width * 1.9), 2.0) * 1.5);
-      vec3 hue = mix(uColor0, uColor2, 0.35 + 0.25 * sin(phase + p.x * 1.7 - t * 0.3));
-      light += hue * (ribbon * 0.72 + edge * 0.28 + glow * 0.11)
-        + uColor0 * core * 0.16;
+      vec3 hue = mix(uColor2, uColor1, 0.5 + 0.5 * sin(phase + p.x * 1.7 - t * 0.3));
+      hue = mix(hue, vec3(0.78, 0.42, 1.0), float(i) * 0.16);
+      light += mix(hue, vec3(0.94, 0.82, 1.0), ribbon * 0.4) * (ribbon * 0.72 + edge * 0.28 + glow * 0.11)
+        + mix(uColor1, vec3(1.0), 0.65) * core * 0.16;
       energy += ribbon * 0.65 + edge * 0.24 + glow * 0.12;
     }
 
-    // Interior lilás claro com ondas escuras, contorno macio e reflexos.
+    // Interior alterna suavemente entre dois violetas, com contorno macio e reflexos.
     float rim = exp(-pow((radius - 0.96) / 0.025, 2.0));
     float angle = atan(p.y, p.x);
     float glint = pow(0.5 + 0.5 * cos(angle * 3.0 + t * 0.45), 12.0);
@@ -55,7 +56,7 @@ const SHADER_SOURCE = /*wgsl*/ `
       + vec3(0.95, 0.88, 1.0) * highlight * 0.4;
     vec3 waveColor = clamp(hue * opacity, vec3(0.0), vec3(waveAlpha));
     float alpha = (waveAlpha + glass * (1.0 - waveAlpha)) * feather;
-    vec3 glassColor = mix(uColor1, vec3(1.0), mix(0.30, 0.54, uMapPulse));
+    vec3 glassColor = mix(uColor0, uColor1, mix(0.22, 0.48, uMapPulse));
     vec3 color = (waveColor + glassColor * glass * (1.0 - waveAlpha)) * feather;
     return vec4(clamp(color, vec3(0.0), vec3(alpha)), alpha);
   }
