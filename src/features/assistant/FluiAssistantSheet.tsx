@@ -27,7 +27,6 @@ import {
   Users,
   Volume2,
   VolumeX,
-  Square,
   Zap,
 } from "lucide-react-native";
 
@@ -694,12 +693,7 @@ export function FluiAssistantSheet({
           {voicePlaybackState === "error" ? <Text accessibilityRole="alert" style={styles.voiceNotice}>Não foi possível ler a resposta. O texto continua disponível; tente ouvir novamente.</Text> : null}
           <View style={styles.composerTools}>
             {captureBusy ? <PressableScale accessibilityRole="button" accessibilityLabel="Cancelar escuta ou transcrição" style={styles.composerToolButton} onPress={liveVoice.cancel}><Text style={styles.secondaryButtonText}>Cancelar escuta</Text></PressableScale> : null}
-            {voicePlaybackState === "speaking" ? (
-              <PressableScale accessibilityRole="button" accessibilityLabel="Parar leitura da resposta" style={styles.composerToolButton} onPress={() => speechPlayback.stop()}>
-                <Square size={16} color={theme.primary} />
-                <Text accessibilityLiveRegion="polite" style={styles.secondaryButtonText}>Parar leitura</Text>
-              </PressableScale>
-            ) : voiceEnabled && messages.some(message => message.from === "flui") ? (
+            {voicePlaybackState !== "speaking" && voiceEnabled && messages.some(message => message.from === "flui") ? (
               <PressableScale accessibilityRole="button" accessibilityLabel="Ouvir última resposta" accessibilityState={{ disabled: captureBusy }} disabled={captureBusy} style={styles.composerToolButton} onPress={() => { const last = [...messages].reverse().find(message => message.from === "flui"); if (last) void speechPlayback.speak(last.text); }}>
                 <Volume2 size={18} color={theme.primary} />
                 <Text style={styles.secondaryButtonText}>Ouvir resposta</Text>
