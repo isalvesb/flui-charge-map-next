@@ -1,3 +1,4 @@
+import { presentationImages } from "../presentation/presentationImages";
 import { OfflineImage as Image } from "../../offline/OfflineImage";
 import { ConnectionNotice } from "../../components/ConnectionNotice";
 import React, {
@@ -85,8 +86,6 @@ const logoFluiXml = `
 </svg>
 `;
 
-const imagemPerfilUsuario = require("../../assets/user/profile1.webp");
-const imagemCarroUsuario = require("../../assets/user/car1.png");
 const iconeMarcadorVerde = require("../../assets/map/marker-green.png");
 const iconeMarcadorAmarelo = require("../../assets/map/marker-yellow.png");
 const iconeMarcadorVermelho = require("../../assets/map/marker-red.png");
@@ -676,7 +675,11 @@ export default function HomeMapScreen() {
     baseStyles,
     baseColors,
   );
-  const { userPreferences, updateBatteryPercent, demoOrigin, demoStations } = useAppPreferences();
+  const { userPreferences, updateBatteryPercent, demoOrigin, demoStations, presentationState } = useAppPreferences();
+  const scenarioConfig = __DEV__ && presentationState.enabled ? presentationState.config : null;
+  const imagemPerfilUsuario = presentationImages[scenarioConfig?.profileImage ?? "profile1"];
+  const imagemCarroUsuario = scenarioConfig ? presentationImages[scenarioConfig.vehicleImage] : presentationImages.carHeader;
+
   const reduceMotionEnabled = useReducedMotion();
   const insets = useSafeAreaInsets();
   const isFocused = useIsFocused();

@@ -101,7 +101,7 @@ test("não aceita descritor fora do escopo nem retorno de URL remota como arquiv
   assert.equal(state.files.size, 0);
 });
 
-test("as 15 fotos públicas persistem em disco após recriar o cache e bloquear downloads", async () => {
+test("as 17 fotos públicas persistem em disco após recriar o cache e bloquear downloads", async () => {
   const root = await mkdtemp(join(tmpdir(), "flui-offline-assets-"));
   let downloads = 0;
   let online = true;
@@ -123,10 +123,10 @@ test("as 15 fotos públicas persistem em disco após recriar o cache e bloquear 
   try {
     // Unrelated data survives; only the cache's own directory is written.
     await writeFile(join(root, "user-preferences.json"), '{"batteryPercent":42}');
-    assert.equal(offlineImageMetadata.length, 15);
+    assert.equal(offlineImageMetadata.length, 17);
     const first = createOfflineAssetCache(io);
     const prepared = await Promise.all(offlineImageMetadata.map(item => first.prepare(item)));
-    assert.equal(downloads, 15);
+    assert.equal(downloads, 17);
     for (const [index, item] of offlineImageMetadata.entries()) {
       const source = await readFile(join(process.cwd(), item.sourceFile));
       assert.equal(md5(source), item.md5, `fingerprint outdated: ${item.id}`);
@@ -135,7 +135,7 @@ test("as 15 fotos públicas persistem em disco após recriar o cache e bloquear 
     online = false;
     const nextSession = createOfflineAssetCache(io);
     assert.deepEqual(await Promise.all(offlineImageMetadata.map(item => nextSession.prepare(item))), prepared);
-    assert.equal(downloads, 15, "nenhuma requisição após preparar os arquivos");
+    assert.equal(downloads, 17, "nenhuma requisição após preparar os arquivos");
     assert.equal(await readFile(join(root, "user-preferences.json"), "utf8"), '{"batteryPercent":42}');
   } finally { await rm(root, { recursive: true, force: true }); }
 });

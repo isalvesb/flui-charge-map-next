@@ -1,3 +1,5 @@
+import { createPresentationState, presentationPreferenceKeys, resolvePresentationPreferences, type PresentationState } from "../features/presentation/presentationScenario";
+import { presentationStore } from "../features/presentation/presentationStorage";
 import { normalizeBatteryData } from "../utils/batteryData";
 import { setHapticsEnabled } from "../utils/interaction";
 import { chargingStations } from "../data/fixtures/chargingStations";
@@ -15,6 +17,7 @@ import React, {
   useEffect,
   useMemo,
   useState,
+  useRef,
 } from "react";
 
 import { defaultFilters } from "../data/filterOptions";
@@ -33,6 +36,9 @@ import {
 
 type PreferencesContextValue = {
   userPreferences: UserPreferences;
+  presentationState: PresentationState;
+  savePresentation: (state: PresentationState) => Promise<void>;
+  updateUserPreferences: (patch: Partial<UserPreferences>) => Promise<UserPreferences>;
   appearanceMode: AppearanceMode;
   highContrast: boolean;
   fontSize: FontSizePreference;
@@ -82,9 +88,12 @@ const defaultUserPreferences: UserPreferences = {
 const PreferencesContext = createContext<PreferencesContextValue | null>(null);
 
 export function PreferencesProvider({ children }: { children: React.ReactNode }) {
-  const [userPreferences, setUserPreferences] = useState<UserPreferences>(
+  const [basePreferences, setUserPreferences] = useState<UserPreferences>(
     defaultUserPreferences,
   );
+  const [presentationState, setPresentationState] = useState(createPresentationState);
+  const presentationReady = useRef(!__DEV__);
+  const userPreferences = useMemo(() => resolvePresentationPreferences(basePreferences, presentationState, __DEV__), [basePreferences, presentationState]);
   const [isLoadingPreferences, setIsLoadingPreferences] = useState(true);
   const [isSavingPreferences, setIsSavingPreferences] = useState(false);
   const [preferencesError, setPreferencesError] = useState<string | null>(null);
@@ -97,9 +106,14 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
     try {
       setPreferencesError(null);
       setIsLoadingPreferences(true);
+      presentationReady.current = !__DEV__;
 
-      const preferences = await fluiStorage.getUserPreferences();
-
+      const [preferences, presentation] = await Promise.all([
+        fluiStorage.getUserPreferences(),
+        __DEV__ ? presentationStore.getState() : Promise.resolve(createPresentationState()),
+      ]);
+      presentationReady.current = true;
+      setPresentationState(presentation);
       setUserPreferences(preferences);
 
       return preferences;
@@ -121,10 +135,19 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
         setPreferencesError(null);
         setIsSavingPreferences(true);
 
-        const nextPreferences =
-          await fluiStorage.updateUserPreferences(preferences);
-
+        if (!presentationReady.current) throw new Error("Cenário interno indisponível.");
+        const scenarioPatch: Partial<UserPreferences> = {}, basePatch: Partial<UserPreferences> = {};
+        for (const [key, value] of Object.entries(preferences)) {
+          Object.assign(__DEV__ && presentationState.enabled && presentationPreferenceKeys.includes(key as typeof presentationPreferenceKeys[number]) ? scenarioPatch : basePatch, { [key]: value });
+        }
+        const nextPreferences = Object.keys(basePatch).length ? await fluiStorage.updateUserPreferences(basePatch) : basePreferences;
+        let nextPresentation = presentationState;
+        if (Object.keys(scenarioPatch).length) {
+          nextPresentation = await presentationStore.update(current => ({ ...current, config: { ...current.config, ...scenarioPatch } }));
+          setPresentationState(nextPresentation);
+        }
         setUserPreferences(nextPreferences);
+        return resolvePresentationPreferences(nextPreferences, nextPresentation, __DEV__);
       } catch {
         setPreferencesError("Não foi possível salvar as preferências.");
         throw new Error("Não foi possível salvar as preferências.");
@@ -132,8 +155,17 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
         setIsSavingPreferences(false);
       }
     },
-    [],
+    [basePreferences, presentationState],
   );
+
+  const savePresentation = useCallback(async (state: PresentationState) => {
+    if (!__DEV__ || !presentationReady.current) throw new Error("Ferramenta interna indisponível.");
+    setIsSavingPreferences(true);
+    try {
+      const saved = await presentationStore.update(() => state);
+      setPresentationState(saved);
+    } finally { setIsSavingPreferences(false); }
+  }, []);
 
   const updateAppearanceMode = useCallback(
     async (appearanceMode: AppearanceMode) => {
@@ -215,6 +247,9 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
   const value = useMemo(
     () => ({
       userPreferences,
+      presentationState,
+      savePresentation,
+      updateUserPreferences: savePreferences,
       appearanceMode,
       highContrast,
       fontSize,
@@ -237,6 +272,9 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
     }),
     [
       userPreferences,
+      presentationState,
+      savePresentation,
+      savePreferences,
       appearanceMode,
       highContrast,
       fontSize,

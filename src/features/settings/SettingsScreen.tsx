@@ -52,6 +52,7 @@ export default function SettingsScreen() {
     appearanceMode,
     highContrast,
     userPreferences,
+    presentationState,
     fontSize,
     isLoadingPreferences,
     isSavingPreferences,
@@ -404,7 +405,14 @@ export default function SettingsScreen() {
             </View>
           </View>
           <OfflinePhotosStatus />
-          {__DEV__ ? <PresentationOriginPreference onFeedback={showSettingsFeedback} /> : null}
+          {__DEV__ ? <>
+            <PresentationOriginPreference onFeedback={showSettingsFeedback} />
+            <View style={styles.optionsList}>
+              <PressableScale accessibilityRole="button" accessibilityLabel="Cenários internos de apresentação" accessibilityHint="Configura dados fictícios separados dos registros normais deste dispositivo." style={styles.optionButton} onPress={() => router.push("/presentation")}>
+                <View style={styles.optionInfo}><Text style={styles.optionTitle}>Cenários de apresentação</Text><Text style={styles.optionDescription}>{presentationState.enabled ? "Cenário ativo · dados separados" : "Ferramenta interna"}</Text></View>
+              </PressableScale>
+            </View>
+          </> : null}
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Sobre os dados</Text>
             <Text style={styles.sectionText}>{identificacaoDados.catalogo.resumo}</Text>

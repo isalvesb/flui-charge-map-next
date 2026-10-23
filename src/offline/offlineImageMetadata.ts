@@ -91,5 +91,17 @@ export const offlineImageMetadata: (OfflineAsset & { sourceFile: string })[] = [
     "sourceFile": "src/assets/stations/station-12.webp",
     "md5": "d8efb912f1756b96c058fd016efda4b8",
     "type": "webp"
-  }
+  },
+  {
+    "id": "profile-alternative",
+    "sourceFile": "src/assets/user/profile2.webp",
+    "md5": "9e1d8b6c632be58cafc57b72b4564756",
+    "type": "webp"
+  },
+  {
+    "id": "vehicle-alternative",
+    "sourceFile": "src/assets/user/car2.webp",
+    "md5": "68a03895c19065fbfb443af3897b82a8",
+    "type": "webp"
+  },
 ];

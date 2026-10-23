@@ -1,3 +1,4 @@
+import { presentationImages } from "../presentation/presentationImages";
 import { OfflineImage as Image } from "../../offline/OfflineImage";
 import React, {
   useCallback,
@@ -29,9 +30,6 @@ import { createProfileStyles } from "./ProfileScreen.styles";
 type ProfileTab = "favorites" | "history";
 type Station = (typeof chargingStations)[number];
 
-const nomeMotorista = "Caio Duarte";
-const imagemPerfilUsuario = require("../../assets/user/profile1.webp");
-const imagemCarroUsuario = require("../../assets/user/car1.webp");
 
 const toRecord = (value: unknown): Record<string, unknown> => {
   return typeof value === "object" && value !== null
@@ -119,7 +117,12 @@ const formatarDataCurta = (value: unknown) => {
 };
 
 export default function ProfileScreen() {
-  const { theme, fontScale, appearanceMode, userPreferences, demoOrigin } = useAppPreferences();
+  const { theme, fontScale, appearanceMode, userPreferences, demoOrigin, presentationState, demoStations } = useAppPreferences();
+
+  const scenarioConfig = __DEV__ && presentationState.enabled ? presentationState.config : null;
+  const nomeMotorista = scenarioConfig?.driverName ?? "Caio Duarte";
+  const imagemPerfilUsuario = presentationImages[scenarioConfig?.profileImage ?? "profile1"];
+  const imagemCarroUsuario = presentationImages[scenarioConfig?.vehicleImage ?? "car1"];
 
   const styles = useMemo(
     () => createProfileStyles(theme, fontScale),
@@ -147,8 +150,8 @@ export default function ProfileScreen() {
   );
 
   const stationsById = useMemo(() => {
-    return new Map(chargingStations.map((station) => [station.id, station]));
-  }, []);
+    return new Map(demoStations.map((station) => [station.id, station]));
+  }, [demoStations]);
 
   const favoriteStations = useMemo(() => {
     return favoriteStationIds

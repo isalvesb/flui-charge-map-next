@@ -1,3 +1,4 @@
+import { presentationImages } from "../presentation/presentationImages";
 import { OfflineImage as Image } from "../../offline/OfflineImage";
 import { ConnectionNotice } from "../../components/ConnectionNotice";
 import { useConnectivity } from "../../context/ConnectivityContext";
@@ -78,13 +79,11 @@ import {
 } from "./stationPresentation";
 import type { LocationObject } from "expo-location";
 
-const imagemPerfilUsuario = require("../../assets/user/profile1.webp");
 
 type Station = (typeof chargingStations)[number];
 
 type ReviewCardData = NonNullable<Station["reviews"]>[number];
 
-const nomeMotorista = "Caio Duarte";
 
 function normalizeParam(value?: string | string[]) {
   if (Array.isArray(value)) {
@@ -188,7 +187,11 @@ export default function PointDetailsScreen() {
   const { styles, colors, isDarkMode, fontScale } = useTelaComPreferencias(baseStyles);
   const stackInfoCards = shouldStackStationCards(infoWidth, fontScale, systemFontScale);
   const amenityMinWidth = Math.min(Math.max(120, 110 * fontScale * systemFontScale), Math.max(120, infoWidth - 34));
-  const { userPreferences, demoStations, demoOrigin } = useAppPreferences();
+  const { userPreferences, demoStations, demoOrigin, presentationState } = useAppPreferences();
+  const scenarioConfig = __DEV__ && presentationState.enabled ? presentationState.config : null;
+  const nomeMotorista = scenarioConfig?.driverName ?? "Caio Duarte";
+  const imagemPerfilUsuario = presentationImages[scenarioConfig?.profileImage ?? "profile1"];
+
   const { stationId, startRoute } = useLocalSearchParams<{
     stationId?: string | string[];
     startRoute?: string | string[];
