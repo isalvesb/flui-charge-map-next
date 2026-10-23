@@ -20,7 +20,7 @@ test("catálogo de 80 preserva as 12 estações iniciais e reutiliza suas imagen
   for (const station of expandedChargingStations) {
     assert.ok(station.reviewCount >= 3);
     assert.ok(station.rating >= 1 && station.rating <= 5);
-    assert.equal(station.reviews?.length, 3);
+    assert.equal(station.reviews?.length, station.id === "next-acesso-next" ? 4 : 3);
     assert.equal(station.isFavorite, false);
     assert.match(station.imageKey!, /^station-(?:0[1-9]|1[0-2])$/);
     assert.equal(station.imageUrl, undefined);
@@ -90,9 +90,9 @@ test("68 fichas têm comentários completos, IDs próprios e dados disponíveis 
       assert.ok(Number.isFinite(Date.parse(review.createdAt)) && new Date(review.createdAt) < now);
       if (station.status === "maintenance" || station.status === "unavailable") assert.equal(review.recommend, false);
     }
-    assert.equal(authors.size, 3);
+    assert.equal(authors.size, station.id === "next-acesso-next" ? 4 : 3);
   }
-  assert.equal(reviewIds.size, 204);
+  assert.equal(reviewIds.size, 205);
 });
 
 
@@ -102,7 +102,14 @@ test("oito pontos adicionais ficam até 2 km do NEXT com a mesma ficha completa"
   for (const id of ids) {
     const station = nearNext.find(s => s.id === id)!;
     assert.ok(station && station.distanceKm > 0 && station.distanceKm <= 2, id);
-    assert.equal(station.reviews?.length, 3);
+    assert.equal(station.reviews?.length, station.id === "next-acesso-next" ? 4 : 3);
     assert.ok(station.imageKey && station.reviewCount >= 3);
   }
+});
+
+
+test("Flui Arca tem somente os quatro comentaristas definidos para o NEXT", () => {
+  const station = chargingStations.find(s => s.id === "next-acesso-next")!;
+  assert.equal(station.name, "Flui Arca");
+  assert.deepEqual(station.reviews!.map(r => r.userName), ["Bruno Maia", "Joseffe Barroso", "Wagner Sanchez", "John Paul"]);
 });

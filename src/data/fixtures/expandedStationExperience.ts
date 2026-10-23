@@ -53,11 +53,13 @@ export function criarExperienciaDaEstacao(id: string, local: string, city: strin
         : busy ? `O CCS2 de até ${powerKw} kW atende meu carro, mas o movimento pede uma margem de tempo para esperar.`
           : `Usei o CCS2 de até ${powerKw} kW. A potência variou durante a sessão, então deixei uma margem no tempo da parada.`,
   ];
+  const autoresArca = id === "next-acesso-next" ? ["Bruno Maia", "Joseffe Barroso", "Wagner Sanchez", "John Paul"] : null;
+  if (autoresArca) comments.push("A pausa na Arca foi confortável. Aproveitei a estrutura do local enquanto acompanhava o andamento da recarga.");
   const baseScore = maintenance || unavailable ? 3 : busy ? 4 : Math.round(rating);
   const reviews: ChargingStationReview[] = comments.map((comment, reviewIndex) => ({
     id: `${id}-catalog-review-${reviewIndex + 1}`,
     stationId: id,
-    userName: nomes[(index * 3 + reviewIndex + Math.floor(index / 4)) % nomes.length],
+    userName: autoresArca?.[reviewIndex] ?? nomes[(index * 3 + reviewIndex + Math.floor(index / 4)) % nomes.length],
     rating: reviewIndex === 1 ? Math.min(5, baseScore + 1) : baseScore,
     quality: maintenance || unavailable ? 3 : Math.min(5, baseScore + 1),
     cleaning: 4 + ((index + reviewIndex) % 2),

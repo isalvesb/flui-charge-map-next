@@ -1005,3 +1005,11 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Arquivos: chargingStations.ts e expandedChargingStations.ts. ESLint dirigido/diff e 16 testes de catálogo/mapa/planejador aprovados após renomear. Suíte completa 242/242 do S48 não repetida por alteração textual. Perfil já resolve favoritos/histórico/avaliações pelo ID contra catálogo atual, sem regravar textos antigos salvos.
 - Navegador confirmou 80 marcadores, todos começando por Flui. Fluxo completo de três fichas no mesmo roteiro não concluído: primeira tentativa teve marcador web sobreposto; segunda encontrou dois campos de busca de telas retidas no histórico. Abordagem interrompida após duas tentativas e reavaliada; não tratar como defeito nativo comprovado nem declarar fluxo aprovado. Testes de abertura das paradas do S47 continuam válidos no escopo original.
 - Auditoria geográfica agora prioritária; preservar este checkpoint de nomes solicitados antes de comparar com limites oficiais. Não deslocar coordenadas silenciosamente. Sem alteração nativa, publicação ou consolidação. Commit deste bloco registrado na auditoria.
+
+
+### S50 — 31: comentaristas exclusivos da Flui Arca
+
+- Nomes S49: `f8cbdd8`. Flui Arca (next-acesso-next) agora tem somente Bruno Maia, Joseffe Barroso, Wagner Sanchez e John Paul como autores dos comentários do catálogo. Quatro comentários: três textos/IDs anteriores preservados, um texto adicional para o quarto autor. Grafia conforme pedido, sem reutilizar a variante Sanchez/Sanches automaticamente.
+- Outras 67 fichas adicionais continuam com três comentários; total adicional passa de 204 para 205. Comentários do cenário permanecem identificados como tais; avaliações próprias e perfis não são alterados. Nota/total agregado e localização da Arca preservados.
+- Arquivos: expandedStationExperience.ts e expandedCatalog.test.ts. ESLint dirigido/diff e sete testes de catálogo aprovados em arca-comentaristas-tests.log, incluindo autores exatos, integridade de 205 comentários e 80 pontos. Suíte completa não repetida após mudança restrita à ficha Arca.
+- Mesmo Metro/Fast Refresh, sem instalação/publicação. Auditoria geográfica segue em paralelo por leitura de dados oficiais IBGE/GeoSampa/Rio; ainda não aplicada qualquer correção de posição. Commit deste bloco registrado no relatório de auditoria.
