@@ -74,7 +74,7 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 | 30 | P1 | Persistência offline de fotos e favoritos | Investigar cache existente | assets; storage; service-worker | Não introduzir armazenamento remoto; distinguir assets empacotados e cache web. |
 | 31 | P3 | Pesquisa catálogo/Supabase | Pesquisa pendente | docs | Sem migrar arquitetura, custos ou apresentar dados como verificados. |
 | 32 | P2 | Proposta de área interna | Proposta pendente | docs; settings | Controles fictícios separados; não implementar integralmente antes da decisão sobre proposta. |
-| 33 | P2 | Referência inicial de localização | Pendente | data/demonstracao; LocationContext | -23.540405908671097,-46.73414831818115; padrão simulado, não substituir GPS autorizado. |
+| 33 | P2 | Referência inicial de localização | Implementado; revisão física pendente | data/demonstracao; LocationContext | -23.540405908671097,-46.73414831818115; padrão simulado, não substituir GPS autorizado. |
 
 ## Checkpoints
 
@@ -136,3 +136,12 @@ Cada entrada deve informar IDs, commit, arquivos, verificações e limites human
 - Verificações: TypeScript, ESLint dirigido, testes de limites/precisão/layout inválido e bateria (`05-*`). Sem novas bibliotecas nativas.
 - Conferir: tocar bateria → arrastar régua → digitar valor exato → Definir carga; reabrir e cancelar outra alteração. Inspecionar também rolagem/teclado e VoiceOver.
 - Limites: gesto e teclado numérico dependem da revisão física; não alegar VoiceOver humano validado.
+
+### CP06 — 33: origem inicial NEXT
+
+- Arquivos: `src/data/demonstracao.ts`, `tests/demonstracao.test.ts`.
+- Nova origem “Referência NEXT” com as coordenadas exatas solicitadas, padrão de instalação/configuração sem origem válida. Origens já salvas são preservadas; selecionar Referência NEXT nos controles existentes altera o cenário manualmente.
+- GPS autorizado e `LocationContext` não foram modificados. Centralizar continua usando a origem de simulação escolhida.
+- Verificações: TypeScript, ESLint, testes de demonstração, planejador e falhas de rota (`06-*`), incluindo preservação de origem salva.
+- Revisão humana/física pendente. Não limpar dados do iPhone para observar novo padrão.
+- Checkpoints: CP03 `228300f`, CP04 `abf1c44`, CP05 `8a7549f`.

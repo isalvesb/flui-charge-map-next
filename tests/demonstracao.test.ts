@@ -17,10 +17,10 @@ import { recommendStations } from "../src/features/assistant/fluiAssistant";
 import { getStationArrivalPresentation } from "../src/features/stations/stationPresentation";
 import { createStation } from "./fixtures";
 
-test("preferências antigas recebem FIAP e veículo padrão sem perder autonomia e origem da bateria", () => {
+test("preferências sem origem recebem referência NEXT e veículo padrão sem perder autonomia e origem da bateria", () => {
   const antigo = { vehicleRangeKm: 320, batteryPercent: 35, batterySource: "manual" as const, batteryUpdatedAt: "2026-10-16T12:00:00Z" };
   const migrado = { ...normalizarConfiguracaoDemonstrativa(antigo), ...normalizeBatteryData(antigo) };
-  assert.equal(migrado.demoOriginId, "fiap");
+  assert.equal(migrado.demoOriginId, "next");
   assert.equal(migrado.vehicleName, demonstracaoPadrao.vehicleName);
   assert.equal(migrado.vehicleRangeKm, 320);
   assert.equal(migrado.batterySource, "manual");
@@ -98,4 +98,12 @@ test("cortes de filtro e reserva mantêm precisão anterior ao arredondamento vi
   assert.equal(formatarDistanciaDemonstrativa(station.distanceKm), "≈500 m");
   assert.equal(filtrarEstacoes({ estacoes: [station], filtros: { ...defaultFilters, distance: { maxKm: 0.5 } } }).length, 0);
   assert.equal(recommendStations({ stations: [station], intent: "lowBattery", vehicleRangeKm: 10, batteryPercent: 10 }), null);
+});
+
+
+test("origem inicial NEXT usa coordenadas solicitadas e preserva escolha já salva", () => {
+  const initial = obterOrigemDemonstrativa(normalizarConfiguracaoDemonstrativa().demoOriginId);
+  assert.equal(initial.latitude, -23.540405908671097);
+  assert.equal(initial.longitude, -46.73414831818115);
+  assert.equal(normalizarConfiguracaoDemonstrativa({ demoOriginId: "fiap" }).demoOriginId, "fiap");
 });
