@@ -12,10 +12,11 @@ import { AUTO_FORMATS, getAutoPreviewLayout } from "./autoPresentation";
 
 export default function AutoExperienceScreen() {
   const { theme, scale, fontScale, userPreferences, demoOrigin, demoStations } = useAppPreferences();
-  const { width, fontScale: systemFontScale } = useWindowDimensions();
+  const { fontScale: systemFontScale } = useWindowDimensions();
+  const [previewWidth, setPreviewWidth] = useState(0);
   const [formatId, setFormatId] = useState<string>("horizontal");
   const format = AUTO_FORMATS.find((item) => item.id === formatId)!;
-  const availableWidth = Math.max(0, Math.min(1100, width - 40));
+  const availableWidth = Math.max(0, Math.min(1100, previewWidth));
   const frame = getAutoPreviewLayout(availableWidth, format, fontScale, systemFontScale);
   const station = demoStations[0];
   const text = { color: theme.text, fontSize: scale(15), lineHeight: scale(22) };
@@ -48,7 +49,7 @@ export default function AutoExperienceScreen() {
           <Text accessibilityRole="header" style={[text, { fontWeight: "800" }]}>{format.label} · {format.proportion}</Text>
           <Text style={small}>Prévia ajustada à largura disponível. Role verticalmente dentro dela se precisar.</Text>
         </View>
-        <View style={{ width: availableWidth, height: frame.height + 12 }}>
+        <View onLayout={event => setPreviewWidth(event.nativeEvent.layout.width)} style={{ width: "100%", maxWidth: 1100, height: frame.height + 12 }}>
           <View testID="auto-moldura" style={{ width: frame.width, height: frame.height, backgroundColor: theme.surface, borderWidth: 6, borderColor: theme.border, borderRadius: 24, overflow: "hidden" }}>
             <ScrollView nestedScrollEnabled contentContainerStyle={{ flexGrow: 1, backgroundColor: theme.surface }}>
               <View style={{ padding: 12, flexDirection: "row", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 8, borderBottomWidth: 1, borderColor: theme.border }}>

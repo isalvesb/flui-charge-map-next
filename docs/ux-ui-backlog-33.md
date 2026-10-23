@@ -477,3 +477,13 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Arquivos: `autoPresentation.ts`, `AutoExperienceScreen.tsx`, `tests/autoPresentation.test.ts`.
 - Removidas larguras mínimas que forçavam exploração lateral. Moldura em cada proporção fica limitada à largura útil, preservando razão largura/altura; rolagem horizontal removida. Conteúdo pode rolar verticalmente, sem reduzir fonte.
 - Verificações: TypeScript, ESLint e matriz de proporções/larguras/fontes (`r11-*`). Parte de seleção por marca/modelo e imagens continua a fazer; não declarada concluída.
+
+### R12 — 20: largura medida após carregamento
+
+- Arquivo: `AutoExperienceScreen.tsx`.
+- Conferência web detectou largura de 12 px (apenas bordas) na moldura. Diagnóstico: HTML estático tinha width=0 e primeira renderização cliente calculava outra largura; mudanças de formato atualizavam altura, mas atributo de largura permanecia antigo.
+- Área passa a ser medida com onLayout, com estado inicial consistente no servidor/cliente. Depois da medição, a mudança real de largura atualiza a moldura. Sem forçar largura mínima ou scroll lateral.
+- Roteiro inicial também procurava subtítulo no nome acessível do destino; corrigido para conferir nome e texto separadamente. Falhas preservadas nos JSONs de primeira execução; não atribuídas todas ao app.
+- Verificações: TypeScript, ESLint, testes de proporção e medição web dirigida antes do checkpoint.
+
+- R12: medição real em viewport 320 px confirmou molduras de 280×157,5, 280×373,33 e 280×105; largura útil e três proporções preservadas.
