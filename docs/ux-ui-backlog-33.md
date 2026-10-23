@@ -693,3 +693,10 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Somente leitura do mapa e interfaces/nativo da versão instalada. cacheEnabled não é preparação Google offline no iPhone; a integração atual não expõe pacote offline dessa área. Conferidas documentação primária da biblioteca e política Google. Nenhuma falsa indicação de mapa preparado, alteração de zoom/gestos, captura persistente ou prefetch introduzido.
 - Possível conferir manualmente a permanência do trecho visualizado durante a sessão, sem rede, mas isso não é download persistente. Resultado físico não observado, recurso de mapa offline continua não implementado. Decisão sobre outra integração ainda pendente; recorte menor não elimina essa dependência.
 - Verificação proporcional: leitura de código/tipos e diff documental. Sem mudança de aplicativo, sem repetir testes, sem mudar dependências, build, instalação ou servidores.
+
+### S17 — 30: relato físico de cobertura offline ampla
+
+- Usuário informou: “o mapa offline cobre uma área gigantesca”. Evidência humana de cobertura ampla no teste atual do iPhone, posterior à orientação de conferir a região já carregada. Extensão/zoom não medidos; não atribuir tamanho exato ou mecanismo de armazenamento a esse relato.
+- Ampliação/download adicional fica em espera: preservar o funcionamento existente, sem trocar provedor ou alterar zoom por esse motivo. Não foi implementado pacote cartográfico pelo Flui.
+- Não há confirmação específica de persistência após encerrar/reabrir o app ou reiniciar o aparelho. Esse limite permanece sem testar, sem invalidar a cobertura observada. Fotos, favoritos e dados essenciais do item 30 mantêm seus próprios estados; relato sobre mapa não os valida automaticamente.
+- Apenas registro de continuidade e conferência do diff; nenhum código, servidor, dependência, instalação ou dado do usuário alterado. Nenhum teste repetido.

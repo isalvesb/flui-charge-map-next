@@ -8,6 +8,8 @@ Pedido: baixar a região de 5 km, reduzindo o raio se o volume for excessivo. Ai
 
 **Atualização posterior do usuário:** primeiro tentar a área visível no zoom normal **mais uma margem mínima de 1 km para fora de cada borda**. Esse recorte substitui os 5 km como alvo inicial. Referência é o viewport efetivo do mapa, não um círculo de raio 1 km nem uma mudança permanente do zoom. Proposta de 5/3/2/1 km abaixo fica histórica, não representa a seleção atual.
 
+**Resultado humano posterior:** usuário relatou que o mapa offline cobre uma área gigantesca no iPhone. Ampliação adicional em espera, preservando a integração atual. A cobertura foi relatada, não medida; persistência após encerrar/reabrir continua sem confirmação. A proposta de outra integração abaixo permanece como referência futura, sem necessidade de executá-la para ampliar a sessão atual.
+
 Conferência do código instalado: MapView.d.ts identifica cacheEnabled como iOS Apple Maps apenas; sua finalidade é exibir imagem em lugar do mapa interativo, não preparar uma região Google offline. O gerenciador iOS Google de UrlTile exporta urlTemplate, zIndex, maximumZ, minimumZ e flipY, sem exportar controle de armazenamento offline. Não ativar uma propriedade sem efeito para anunciar sucesso nem inserir mapas ocultos para forçar downloads. Não existe tamanho mínimo que habilite uma API ausente.
 
 Teste sem mudança de integração: usuário pode visualizar online a região ampliada, retornar ao zoom habitual, cortar a conexão mantendo o app aberto e conferir o trecho já carregado. É somente observação da sessão do SDK; não oferece arquivo/região persistente, indicador de download concluído, cobertura garantida ou funcionamento após reiniciar. Nenhum teste físico desse recorte foi realizado nesta etapa.
