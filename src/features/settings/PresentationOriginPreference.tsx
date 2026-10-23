@@ -31,11 +31,14 @@ export default function PresentationOriginPreference({ onFeedback }: { onFeedbac
 
   return (
     <View style={styles.section}>
+      <Text accessibilityRole="header" style={styles.sectionTitle}>Localização inicial</Text>
+      <View style={styles.optionsList}>
         <Pressable accessibilityRole="button" accessibilityLabel={`Origem: ${origin?.nome ?? "Selecionar"}`} accessibilityState={{ expanded: originMenuOpen, disabled }} disabled={disabled}
           style={[styles.optionButton, { minHeight: 56, justifyContent: "space-between" }]} onPress={() => setOriginMenuOpen(true)}>
           <Text style={styles.optionTitle}>{origin?.nome}</Text>
           <ChevronDown size={22} color={theme.primary} />
         </Pressable>
+      </View>
       <Modal visible={originMenuOpen} transparent animationType="fade" onRequestClose={() => setOriginMenuOpen(false)}>
         <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "rgba(0,0,0,0.4)" }} accessibilityViewIsModal>
           <Pressable accessibilityRole="button" accessibilityLabel="Fechar opções de origem" style={{ position: "absolute", inset: 0 }} onPress={() => setOriginMenuOpen(false)} />
