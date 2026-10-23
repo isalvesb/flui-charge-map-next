@@ -575,3 +575,9 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Nova classificação humana: emojis indicam esforço, não aprovação. Offline 30 falhou no iPhone segundo usuário; sintomas/percurso solicitados sem bloquear demais tarefas. Não tratar evidência web como solução nativa.
 
 - S06: primeira checagem apontou nome incorreto do parâmetro de tempo no teste (agora). Depois, diagnóstico dirigido identificou duas expectativas do harness: 6 pontos novos (12 totais) dentro de 10 km de NEXT, e teste antigo de horários que também limitava distância a 10 km. Corrigidos os cenários para medir cobertura real e isolar horário com raio amplo; regras do aplicativo não foram relaxadas. Logs iniciais preservados.
+
+### S08 — 26: cabeçalho colorido mais baixo
+
+- Arquivo: PointDetailsScreen.styles.ts. Altura mínima de 72 para 52 pt; padding vertical de 12 para 8 pt. Conteúdo pode ampliar a altura quando exigido por acessibilidade; ícones/títulos mantêm alinhamento e fonte reduzida da S03.
+- Verificações: TypeScript, ESLint dirigido e diff; inspeção visual com fonte Maior após exportação.
+- S06 `0c537b1` (66 estações); S07 `1402257` (toast escuro).
