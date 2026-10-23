@@ -3,7 +3,7 @@ import test from "node:test";
 import { beginIosRecording } from "../src/features/assistant/voice/iosRecorder";
 
 type Load = NonNullable<Parameters<typeof beginIosRecording>[2]>;
-function fixture({ granted = true, prepare = async () => {}, readFails = false } = {}) {
+function fixture({ granted = true, canAskAgain = false, request = async () => ({ granted: true, canAskAgain: true }), prepare = async () => {}, readFails = false } = {}) {
   const events: string[] = [];
   let options: Record<string, unknown> = {};
   let listener: (status: { isFinished: boolean; hasError: boolean; url?: string }) => void = () => {};
@@ -21,7 +21,8 @@ function fixture({ granted = true, prepare = async () => {}, readFails = false }
     native: { AudioRecorder: Recorder },
     audio: {
       IOSOutputFormat: { LINEARPCM: "lpcm" }, AudioQuality: { HIGH: 96 },
-      getRecordingPermissionsAsync: async () => ({ granted, canAskAgain: false }),
+      getRecordingPermissionsAsync: async () => ({ granted, canAskAgain }),
+      requestRecordingPermissionsAsync: request,
       setAudioModeAsync: async (mode: { allowsRecording: boolean }) => { events.push(mode.allowsRecording ? "mode:record" : "mode:play"); },
     },
     fs: {
@@ -81,4 +82,18 @@ test("término nativo no limite transcreve; parada inesperada e erro interrompem
   }
   assert.equal(completed, 1);
   assert.equal(interrupted, 2);
+});
+
+test("somente o diálogo real de permissão recebe exceção de inatividade", async () => {
+  const shown: boolean[] = [];
+  const f = fixture({ granted: false, canAskAgain: true });
+  const recording = await beginIosRecording(new AbortController().signal, () => {}, f.load, () => {}, value => shown.push(value));
+  assert.deepEqual(shown, [true, false]);
+  await recording.dispose();
+  const controller = new AbortController();
+  const canceled = fixture({ granted: false, canAskAgain: true, request: async () => { controller.abort(); return { granted: true, canAskAgain: true }; } });
+  const canceledShown: boolean[] = [];
+  await assert.rejects(beginIosRecording(controller.signal, () => {}, canceled.load, () => {}, value => canceledShown.push(value)));
+  assert.deepEqual(canceledShown, [true, false]);
+  assert.equal(canceled.events.some(event => event.startsWith("record:")), false);
 });

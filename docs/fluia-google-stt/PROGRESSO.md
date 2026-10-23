@@ -56,3 +56,13 @@
 - iPhone voltou a estar disponível. Aplicativos Flui existentes conferidos por leitura: `fluiuxmapa01`, `fluinext2026`, `fluiteste25`. Identificador de voz ausente antes da instalação. O app UX apresenta metadados nativos 2.1.0, embora o código atual seja Flui 2.3; não confundir o wrapper instalado com a versão da experiência JavaScript.
 - Corrigida prioridade do status ao ouvir uma resposta depois de erro de captura: leitura mantém Explicando. Opções pré-prontas expõem estado desabilitado durante captura/transcrição. TypeScript e ESLint dirigidos passaram, **14/14 testes de estados/leitura aprovados**.
 - Encontrado comportamento nativo a corrigir antes de instalar: expo-audio 1.1.1 pausa gravadores na interrupção e pode retomá-los sem reaplicar o limite. Preparar correção estreita/reproduzível somente no experimento, fixada nessa versão; preservar SDK e outras worktrees.
+
+## 23/10/2026 — interrupções nativas bloqueadas, build assinada
+
+- Checkpoint anterior: **`53fb812`**. A assinatura normal da build própria passou, com perfil exclusivo; não foi necessário reutilizar/remover perfis existentes.
+- Confirmado no código expo-audio 1.1.1: interrupção e segundo plano pausavam o gravador, e a retomada podia chamar startRecording sem duração. Implementada correção restrita e reproduzível em `tools/fluia-stt/prepare-native.cjs`, aplicada automaticamente pelo plugin iOS durante prebuild.
+- A correção exige exatamente versão 1.1.1 e a fonte revisada; falha se houver divergência. Somente esta worktree é alterada, sem symlinks. Interrupção/segundo plano desarmam allowsRecording, param o gravador e emitem falha ao JS; uma chamada record após interrupção é recusada. Novo toque explícito prepara uma nova sessão. Nenhuma versão do SDK/dependência foi atualizada. Fonte do protótipo antigo conferida e mantida sem a correção local.
+- A exceção de inatividade do iOS agora vale apenas enquanto o diálogo real de permissão está aberto, em vez de toda a preparação. Ir ao fundo continua cancelando, inclusive durante permissão.
+- **12/12 testes de intermediário/correção e 19/19 de adaptador/sessão passaram**; TypeScript e ESLint dirigidos passaram. Testes de patch verificam aplicação/idempotência e rejeição de fonte diferente; não substituem teste físico de interrupções.
+- **Build iOS corrigida e assinada aprovada** (`.validation/native-sign-guarded.log`). Módulos compilados, perfil e bundle próprios. Nenhuma instalação havia sido feita até este checkpoint; teste físico de microfone e interrupções permanece pendente.
+- Consumo Google real permanece **1 chamada / 4 segundos reservados**, frase sintética no Mac; nenhuma captura humana ainda. Certificado de teste continua sem instalação no iPhone.

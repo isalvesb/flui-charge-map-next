@@ -18,7 +18,7 @@ async function loadIosDependencies() {
   return { audio, native, fs };
 }
 
-export async function beginIosRecording(signal: AbortSignal, interrupted: () => void, load = loadIosDependencies, completed: () => void = () => {}): Promise<Recording> {
+export async function beginIosRecording(signal: AbortSignal, interrupted: () => void, load = loadIosDependencies, completed: () => void = () => {}, permissionPrompt: (shown: boolean) => void = () => {}): Promise<Recording> {
   const { audio, native, fs } = await load();
   let recorder: AudioRecorder | undefined;
   const uris = new Set<string>();
@@ -43,7 +43,11 @@ export async function beginIosRecording(signal: AbortSignal, interrupted: () => 
   try {
     checkCanceled(signal);
     let permission = await audio.getRecordingPermissionsAsync();
-    if (!permission.granted && permission.canAskAgain) permission = await audio.requestRecordingPermissionsAsync();
+    if (!permission.granted && permission.canAskAgain) {
+      permissionPrompt(true);
+      try { permission = await audio.requestRecordingPermissionsAsync(); }
+      finally { permissionPrompt(false); }
+    }
     checkCanceled(signal);
     if (!permission.granted) throw new VoiceError("Microfone não autorizado. Ative o acesso em Ajustes > Privacidade e Segurança > Microfone, ou use o teclado.");
     await audio.setAudioModeAsync({ allowsRecording: true, shouldPlayInBackground: false, allowsBackgroundRecording: false });

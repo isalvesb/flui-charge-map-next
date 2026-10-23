@@ -48,7 +48,7 @@ Faça poucas tentativas. Cada envio ao Google reserva consumo antes da chamada, 
 
 - Branch exclusiva: `local/fluia-google-stt-atual-20261023`.
 - Certificados e saídas nativas ficam em `.validation/` ou `ios/`, ignorados pelo Git.
-- O prebuild usa somente as versões do SDK 54 já fixadas no package-lock.
+- O prebuild usa somente as versões do SDK 54 já fixadas no package-lock. O plugin aplica a correção nativa de interrupção, limitada ao expo-audio 1.1.1. Após reinstalar dependências, executar novamente o prebuild antes de compilar; a correção não altera outra worktree nem atualiza o pacote.
 - Neste Xcode, a compilação de teste passa `IPHONEOS_DEPLOYMENT_TARGET=15.1` a todos os alvos, incluindo bundles de recursos dos Pods. A primeira tentativa sem esse parâmetro falhou por mínimos antigos desses bundles. Isso não exige atualização do SDK.
 - A compilação sem assinatura usa `CODE_SIGNING_ALLOWED=NO`; ela não gera uma instalação válida para o iPhone por si só.
 - Antes de iniciar/encerrar servidores, conferir porta, diretório e propriedade. O servidor loopback do teste Google e o servidor web temporário foram encerrados após as verificações.

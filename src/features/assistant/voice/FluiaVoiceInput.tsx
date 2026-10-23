@@ -27,13 +27,13 @@ export function FluiaVoiceInput(props: Props) {
   const callbacks = useRef(props);
   callbacks.current = props;
   const mounted = useRef(false);
-  const phase = useRef<VoicePhase>("idle");
+  const permissionPrompt = useRef(false);
   const connection = useRef<{ endpoint: string; code: string } | null>(null);
   const session = useMemo(() => new VoiceSession({
     begin: async (signal, interrupted, completed) => {
       await callbacks.current.onBeforeRecording();
       checkCanceled(signal);
-      return beginIosRecording(signal, interrupted, undefined, completed);
+      return beginIosRecording(signal, interrupted, undefined, completed, shown => { permissionPrompt.current = shown; });
     },
     transcribe: (content, signal) => {
       if (!connection.current) throw new Error("Sessão encerrada");
@@ -41,7 +41,6 @@ export function FluiaVoiceInput(props: Props) {
     },
     received: (text) => { if (mounted.current && callbacks.current.visible) callbacks.current.onTranscript(text); },
     changed: (next) => {
-      phase.current = next.phase;
       if (!voiceBusy(next.phase)) connection.current = null;
       if (!mounted.current) return;
       setSnapshot(next);
@@ -57,7 +56,6 @@ export function FluiaVoiceInput(props: Props) {
     if (!visible) {
       void session.cancel().then(() => {
         if (mounted.current && !callbacks.current.visible) {
-          phase.current = "idle";
           setSnapshot({ phase: "idle", message: "" });
           callbacks.current.onPhase("idle");
         }
@@ -69,7 +67,7 @@ export function FluiaVoiceInput(props: Props) {
   useEffect(() => {
     const subscription = AppState.addEventListener("change", (state) => {
       // The iOS permission dialog itself makes the app inactive.
-      if (state === "background" || (state === "inactive" && phase.current !== "requesting")) {
+      if (state === "background" || (state === "inactive" && !permissionPrompt.current)) {
         void session.cancel("Gravação interrompida ao sair do aplicativo.");
         if (state === "background") setCode("");
       }
