@@ -1,6 +1,6 @@
 export type SpeechPlaybackState = "idle" | "speaking" | "error";
-type SpeechOptions = { language: string; voice?: string; onStart: () => void; onDone: () => void; onStopped: () => void; onError: (error: Error) => void };
-type SpeechEngine = { stop: () => Promise<void>; speak: (text: string, options: SpeechOptions) => void };
+export type SpeechOptions = { language: string; voice?: string; onStart: () => void; onDone: () => void; onStopped: () => void; onError: (error: Error) => void };
+export type SpeechEngine = { stop: () => Promise<void>; speak: (text: string, options: SpeechOptions) => void | Promise<void> };
 
 // Cada leitura tem sua geração: callbacks antigos não alteram a leitura atual.
 export function createSpeechPlayback(engine: SpeechEngine, onState: (state: SpeechPlaybackState) => void, resolveVoice: () => Promise<string | undefined> = async () => undefined) {
@@ -25,7 +25,7 @@ export function createSpeechPlayback(engine: SpeechEngine, onState: (state: Spee
         if (current !== generation) return;
         const voice = await resolveVoice();
         if (current !== generation) return;
-        engine.speak(text, {
+        await engine.speak(text, {
           language: "pt-BR",
           ...(voice ? { voice } : {}),
           onStart: () => publish("speaking"),

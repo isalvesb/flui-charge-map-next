@@ -32,6 +32,9 @@ import {
 
 import * as Speech from "expo-speech";
 import { createSpeechPlayback, type SpeechPlaybackState } from "./speechPlayback";
+import { createZephyrSpeechEngine, synthesizeZephyr } from "./voice/zephyrSpeech";
+import { prepareZephyrAudio } from "./voice/zephyrAudio";
+import { voiceConnection } from "./voice/connectionStore";
 import { useLiveVoice } from "./voice/useLiveVoice";
 import { voiceBusy } from "./voice/voiceSession";
 import { getVoiceVisualStatus } from "./voice/voicePresentation";
@@ -147,7 +150,11 @@ export function FluiAssistantSheet({
   const [voiceEnabled, setVoiceEnabled] = useState(true);
   const voiceEnabledRef = useRef(true);
   const [voicePlaybackState, setVoicePlaybackState] = useState<SpeechPlaybackState>("idle");
-  const speechPlayback = useMemo(() => createSpeechPlayback(Speech, setVoicePlaybackState), []);
+  const speechPlayback = useMemo(() => createSpeechPlayback(createZephyrSpeechEngine(Speech, {
+    connection: () => __DEV__ && Platform.OS === "ios" && voiceConnection.getSnapshot().ready ? voiceConnection.read() : null,
+    synthesize: synthesizeZephyr,
+    prepare: prepareZephyrAudio,
+  }), setVoicePlaybackState), []);
   const [fluiaState, setFluiaState] = useState<FluiaState>("repouso");
   const voiceSubmit = useRef<(text: string) => void>(() => {});
   const liveVoice = useLiveVoice({

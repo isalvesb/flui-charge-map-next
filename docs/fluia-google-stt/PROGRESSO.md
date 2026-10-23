@@ -248,3 +248,12 @@
 - Item **45** esclarecido pelo usuário: Reduzir movimento estava ligado; comportamento previsto, sem alteração de código.
 - Item **46** solicitado: investigar conexão de IA generativa para respostas. Em análise, sem novo modelo/serviço/credencial/consumo ativado; priorizada a conclusão da voz Zephyr.
 - Referências oficiais: https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd ; https://cloud.google.com/text-to-speech/pricing . Preço consultado: US$30/milhão de caracteres após franquia; 10.000 caracteres equivalem a US$0,30 de síntese antes de eventuais créditos/impostos.
+
+### Reprodução Zephyr preparada no app
+
+- Backend registrado em **`ce8419b`**. App consulta capacidade de síntese no mesmo HTTPS privado antes de enviar texto; backend antigo/desativado mantém a voz do iPhone. Com Zephyr anunciada, falhas não trocam a voz silenciosamente nem repetem Google; o texto da resposta permanece disponível.
+- MP3 temporário em cache exclusivo; cancelamento impede áudio tardio, libera player e remove arquivo. Conclusão e interrupção também removem o áudio; resíduos de encerramento forçado são limpos na próxima reprodução. Nenhum token/texto aparece em URL, arquivo público ou log.
+- Orb/saída da página/segundo plano/desativação usam o mecanismo de parada existente. Antes de ouvir, a captura aguarda a liberação da reprodução. Estado Explicando acompanha o início real da reprodução; sem restaurar botões removidos. Consentimento de envio do texto para síntese adicionado às Configurações.
+- **285/285 testes do app aprovados**, TypeScript e lint sem erros (um aviso preexistente); 14 novos testes de transporte, cancelamento e player, além dos testes anteriores de fala. Logs `.validation/zephyr-check.log`, `zephyr-app-tests.log`.
+- Consulta autenticada somente de leitura confirmou **API Text-to-Speech já habilitada** no projeto. Não houve ativação de serviço, alteração de faturamento ou síntese real nesta consulta. Solicitada autorização específica para até 10 sínteses/10.000 caracteres; enquanto pendente, processo atual permanece sem TTS e STT mantém seu ledger.
+- **Autorização recebida:** até 10 sínteses/10.000 caracteres (até US$0,30 de síntese pela tarifa consultada, antes de créditos/impostos), sem alterar faturamento. API de síntese já habilitada antes desta execução; nenhuma API adicional foi ativada pelo agente. Bundle iOS JavaScript exportado com sucesso (`.validation/zephyr-ios`), sem nova compilação/instalação nativa. Próximo: aplicar ao próprio intermediário preservando sessão/ledger e verificar uma síntese curta real.

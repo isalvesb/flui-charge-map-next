@@ -6,7 +6,11 @@ Usuário pediu explicitamente uma PR: **https://github.com/isalvesb/flui-charge-
 
 Exceção específica ao bloqueio anterior somente para enviar esta branch e criar a PR. Bloqueios permanentes de origem/hook foram preservados; não há autorização para merge, outras branches, issues/Projects ou publicação de app/site. Desenvolvimento de voz sem Mac/Zephyr permanece adiado; a abertura da PR não retoma essa implementação.
 
-## Estado mais recente — voz adiada por decisão do usuário
+## Atualização — item 42 retomado expressamente
+
+Após abrir a PR, o usuário pediu **“42 agora”**. Backend Zephyr privado e reprodução MP3 foram preparados localmente; ver os checkpoints mais recentes de `PROGRESSO.md`. Consulta autenticada somente de leitura confirmou Text-to-Speech já habilitada no projeto. Síntese real e teto proposto de 10 chamadas/10.000 caracteres aguardam autorização específica. Nenhuma ativação/reinício do processo ocorreu nesta preparação. Voz sem Mac (43) continua adiada; item 46, IA nas respostas, está em análise.
+
+## Estado anterior — voz adiada por decisão do usuário
 
 O usuário decidiu deixar a voz para depois e priorizar outros ajustes. **Não retomar automaticamente investigação/implementação Apple, hospedagem Google ou testes físicos pendentes.** Preservar este experimento e aguardar o próximo objetivo. Não houve migração do reconhecimento nem implantação de serviço externo.
 
