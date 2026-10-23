@@ -2,7 +2,7 @@ import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperi
 import type { ChargingStation } from "../../types";
 import { canChargeAt } from "../../utils/stationAvailability";
 import { getStationOpeningState } from "../../utils/stationHours";
-import { programmedAnswers } from "./programmedAnswers";
+import { programmedAnswers, matchesProgrammedAnswer } from "./programmedAnswers";
 import {
   type FluiAssistantIntent,
   type FluiAssistantRecommendation,
@@ -129,12 +129,21 @@ export function answerMessage(text: string, context: AssistantContext): ChatResp
 
   const message = normalize(text);
   const matches = intentRules.filter((rule) => rule.pattern.test(message));
-  const programmed = programmedAnswers.find((item) =>
-    item.keywords.some((keyword) => new RegExp(`\\b${keyword}\\b`).test(message)),
-  );
+  const programmedMatches = programmedAnswers.filter(item => matchesProgrammedAnswer(item, message));
+  const programmed = programmedMatches.find(item => item.takesPrecedence) ?? programmedMatches[0];
   const isExplanation = /\b(?:o que e|o que significa|como funciona|explique)\b/.test(message) ||
     (/\b(?:quanto tempo|quanto demora)\b/.test(message) && matches.every((rule) => rule.intent === "fastCharge"));
-  if (programmed && (isExplanation || !matches.length)) {
+  if (/^(?:qual (?:e )?(?:a )?minha (?:bateria|carga|autonomia)|quanta bateria (?:eu )?tenho|quanto tenho de bateria)(?: agora| atual)?$/.test(message)) {
+    if (!Number.isFinite(context.batteryPercent) || context.batteryPercent < 0 || context.batteryPercent > 100 || !Number.isFinite(context.vehicleRangeKm) || context.vehicleRangeKm <= 0) {
+      return { text: "Não consegui calcular com os valores atuais. Confira a bateria e a autonomia nas configurações do aplicativo.", state: "aviso" };
+    }
+    return { text: `A consulta usa ${context.batteryPercent}% de bateria e ${context.vehicleRangeKm} km de autonomia com carga cheia. O alcance linear estimado é de ${Math.round(context.vehicleRangeKm * context.batteryPercent / 100)} km, antes da reserva de 5%. São valores informados no app, sem leitura do carro ou cálculo de percurso.`, state: "respondendo" };
+  }
+  if (/\b(?:quantas estacoes|quantos (?:postos|pontos)|tamanho do catalogo)\b/.test(message)) {
+    const count = context.stations.length;
+    return { text: `Recebi ${count} ${count === 1 ? "estação" : "estações"} nesta consulta. Esse é o conjunto disponível para a comparação atual; pode ser diferente do catálogo completo. Os pontos desta apresentação são simulados.`, state: "respondendo" };
+  }
+  if (programmed && (programmed.takesPrecedence || isExplanation || !matches.length)) {
     // O aviso geral já está no cabeçalho. Mantém as ressalvas específicas da
     // resposta, sem repetir o parágrafo experimental em cada mensagem.
     return { text: programmed.answer, state: "respondendo" };
@@ -173,7 +182,7 @@ export function answerMessage(text: string, context: AssistantContext): ChatResp
 
   const wantsRecommendation = /\b(?:recomendacao|recomende|recomenda|sugestao|sugira|indique|indica|onde (?:posso )?carregar)\b/.test(message);
   return {
-    text: `${wantsRecommendation ? "Para recomendar, preciso saber sua prioridade." : "Posso ajudar a escolher onde recarregar."} O que é mais importante agora: preservar bateria, recarga rápida, esperar menos, café e banheiro ou esperar com conforto?`,
+    text: `${wantsRecommendation ? "Para recomendar, preciso saber sua prioridade." : "Não tenho uma resposta preparada para essa pergunta. Posso ajudar a escolher onde recarregar ou explicar os recursos do Flui."} O que é mais importante agora: preservar bateria, recarga rápida, esperar menos, café e banheiro ou esperar com conforto?`,
     state: "respondendo",
   };
 }
