@@ -151,7 +151,7 @@ export function answerMessage(text: string, context: AssistantContext): ChatResp
 
   if (matches.length > 1) {
     return {
-      text: `Identifiquei mais de uma prioridade: ${matches.map((rule) => rule.label).join(", ")}. Qual delas você quer priorizar nesta consulta?`,
+      text: `Você citou mais de uma prioridade: ${matches.map((rule) => rule.label).join(", ")}. Por qual delas começamos?`,
       state: "respondendo",
     };
   }
@@ -165,7 +165,7 @@ export function answerMessage(text: string, context: AssistantContext): ChatResp
       };
     }
     return {
-      text: `Na simulação, ${recommendation.primary.name}: ${recommendation.explanation}\nEstimativa em linha reta com reserva de ${MIN_ARRIVAL_BATTERY_PERCENT}%; compatibilidade não confirmada. Confirme o funcionamento antes de sair.`,
+      text: `Minha sugestão é ${recommendation.primary.name}.\n${recommendation.explanation}\nChegada estimada: ${recommendation.arrivalBatteryPercent}% de bateria, em linha reta.\nCenário de simulação com reserva mínima de ${MIN_ARRIVAL_BATTERY_PERCENT}%. Confirme funcionamento e compatibilidade antes de sair.`,
       state: "respondendo",
       recommendation,
     };
@@ -173,7 +173,7 @@ export function answerMessage(text: string, context: AssistantContext): ChatResp
 
   const wantsRecommendation = /\b(?:recomendacao|recomende|recomenda|sugestao|sugira|indique|indica|onde (?:posso )?carregar)\b/.test(message);
   return {
-    text: `${wantsRecommendation ? "Para recomendar, preciso saber sua prioridade." : "Posso ajudar com as opções de recarga do exemplo."} Você quer preservar bateria, recarga rápida, esperar menos, café e banheiro ou esperar com conforto?`,
+    text: `${wantsRecommendation ? "Para recomendar, preciso saber sua prioridade." : "Posso ajudar a escolher onde recarregar."} O que é mais importante agora: preservar bateria, recarga rápida, esperar menos, café e banheiro ou esperar com conforto?`,
     state: "respondendo",
   };
 }

@@ -89,14 +89,14 @@ function createExplanation(
       ? "1 carregador livre"
       : `${availableChargers} carregadores livres`;
   if (intent === "lowBattery")
-    return `Está ao alcance estimado, fica a ${formatAssistantDistance(station.distanceKm)} e tem ${chargerLabel} no catálogo local.`;
+    return `Fica a ${formatAssistantDistance(station.distanceKm)} e está dentro do alcance estimado. O cadastro indica ${chargerLabel}.`;
   if (intent === "fastCharge")
-    return `Oferece até ${powerKw} kW nos conectores utilizáveis e ${chargerLabel} no catálogo local.`;
+    return `O cadastro indica potência de até ${powerKw} kW e ${chargerLabel}. A velocidade de recarga também depende do veículo.`;
   if (intent === "avoidQueues")
-    return "Combina disponibilidade cadastrada e distância; não há previsão de fila em tempo real.";
+    return `O cadastro indica ${chargerLabel}. Isso ajuda a comparar as opções, mas não informa a fila em tempo real.`;
   if (intent === "coffeeAndRestroom")
-    return "Reúne banheiro e café cadastrados, considerando alcance estimado e disponibilidade do catálogo.";
-  return `Combina avaliação e ${station.amenities.length} comodidade(s) cadastrada(s); a espera não é monitorada.`;
+    return "Tem café e banheiro no cadastro e está dentro do alcance estimado.";
+  return `Reúne ${station.amenities.length} ${station.amenities.length === 1 ? "comodidade cadastrada" : "comodidades cadastradas"} para a espera. A avaliação ajuda a comparar; não há informação da espera em tempo real.`;
 }
 
 export function recommendStations({

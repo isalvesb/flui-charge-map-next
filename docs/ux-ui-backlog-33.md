@@ -1,4 +1,4 @@
-# Flui NEXT 2026 — acompanhamento UX/UI (33 itens)
+# Flui NEXT 2026 — acompanhamento UX/UI (34 itens)
 
 Atualizado em 23/10/2026 (America/Recife). Evento: 24/10/2026.
 
@@ -75,6 +75,7 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 | 31 | P3 | Pesquisa catálogo/Supabase | A fazer: ampliação; pesquisa disponível, nenhuma migração | docs | Sem importar fontes, ampliar catálogo ou migrar arquitetura; pesquisa não conclui o objetivo. |
 | 32 | P2 | Proposta de área interna | A fazer: cenários completos; área interna básica disponível | docs; settings | Faltam perfis com usuário/foto/veículo/favoritos/comentários/avaliações e armazenamento separado. |
 | 33 | P2 | Referência inicial de localização | Feito: FIAP padrão restaurada; escolhas salvas preservadas | data/demonstracao; LocationContext | FIAP usada quando não há escolha; origem já salva e GPS preservados. NEXT continua opção explícita. |
+| 34 | P2 provisória | Textos de respostas da FluIA | Primeira revisão implementada; revisão humana pendente | assistant/chatEngine; fluiAssistant; programmedAnswers | Linguagem direta, chegada estimada e explicação da prioridade. Motor local e limites preservados; sem captura de fala. |
 
 
 ## Checkpoints
@@ -548,3 +549,10 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Com FIAP/400 km/70%, Campinas exige 0, Rio exige 1 e Cabo Frio/Búzios exigem 2 paradas no modelo; carga/autonomia diferentes mudam esses resultados. Todas as paradas aparecem em resumo/mapa/lista na ordem calculada.
 - Verificações: TypeScript, ESLint e testes de planejamento, incluindo novos destinos, bateria zerada bloqueada e ausência de paradas quando alcance basta.
 - S02 `6484277`; S03 `814833b`. Validação humana posterior pendente.
+
+### S05 — 34: primeira revisão das respostas da FluIA
+
+- Arquivos: chatEngine.ts, fluiAssistant.ts, programmedAnswers.ts, tests/chatEngine.test.ts. Recomendações começam pela sugestão, explicam a prioridade e mostram a chegada calculada com a bateria atual; perguntas explicativas usam linguagem mais direta.
+- Retiradas construções como comodidade(s)/cadastrada(s). Disponibilidade do cadastro não é anunciada como fila real. Reserva mínima exata, identificação da simulação e confirmação de funcionamento/compatibilidade preservadas.
+- Sem mudar pontuação, filtros, regras de intenção ou motor determinístico; primeira passada editorial, ainda sem aprovação humana. Item 12 continua sem captura de fala.
+- Verificações: TypeScript, ESLint e testes de chat/motor, incluindo correspondência da chegada e avisos nas cinco prioridades. S04 `9114bf2`.
