@@ -341,6 +341,7 @@ export const styles = StyleSheet.create({
   infoCard: {
     flex: 1, minWidth: 0, borderRadius: 18, backgroundColor: "#FCFEFA", borderWidth: 1, borderColor: "#DDE8E3", overflow: "hidden",
   },
+  detailCard: { borderRadius: 18, backgroundColor: "#FCFEFA", borderWidth: 1, borderColor: "#DDE8E3", overflow: "hidden", marginBottom: 14 },
   infoCardHeader: { flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 14, paddingVertical: 12, backgroundColor: colors.primarySoft, borderBottomWidth: 1, borderBottomColor: colors.border },
   infoCardBody: { padding: 14, gap: 6 },
   infoIconBox: {

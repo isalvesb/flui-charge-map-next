@@ -637,15 +637,23 @@ export default function PointDetailsScreen() {
             </View>
           </View>
 
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Estimativas de recarga</Text>
-            <Text style={styles.infoDescription}>Espera simulada: {orientacaoDeEspera} · Carga: {tempoEstimadoCarga}</Text>
-            <Text style={styles.infoDescription}>{perfilDoPonto}. Confirme funcionamento e compatibilidade antes de ir.</Text>
+          <View style={styles.detailCard}>
+            <View style={styles.infoCardHeader}>
+              <BatteryCharging size={20} color={colors.primaryBright} />
+              <Text style={styles.infoLabel}>Estimativas</Text>
+            </View>
+            <View style={styles.infoCardBody}>
+              <Text style={styles.infoDescription}>Espera simulada: {orientacaoDeEspera} · Carga: {tempoEstimadoCarga}</Text>
+              <Text style={styles.infoDescription}>{perfilDoPonto}. Confirme funcionamento e compatibilidade antes de ir.</Text>
+            </View>
           </View>
 
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Conectores do ponto</Text>
-
+          <View style={styles.detailCard}>
+            <View style={styles.infoCardHeader}>
+              <Plug size={20} color={colors.primaryBright} />
+              <Text style={styles.infoLabel}>Conectores</Text>
+            </View>
+            <View style={styles.infoCardBody}>
             {station.connectors.map((connector) => {
               const ConnectorIcon = getConnectorIcon(connector.type);
 
@@ -675,6 +683,7 @@ export default function PointDetailsScreen() {
                 </View>
               );
             })}
+            </View>
           </View>
 
           <View style={styles.section}>

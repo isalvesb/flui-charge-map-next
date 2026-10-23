@@ -69,7 +69,7 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 | 25 | P2 | Carregadores e confirmação | Implementado; confirmação preservada | stations; stationPresentation | Entender Recarga não confirmada e manter função de segurança. |
 | 26 | P3 | Padrão dos cartões da ficha | Implementado; revisão física pendente | stations/PointDetailsScreen | Ícone/título com área distinta; distância continua aproximada. |
 | 27 | P2 | Identificação de catálogo sem repetição | Implementado; revisão física pendente | stations; identificacaoDados | Depende da identificação geral em 03/23/25. |
-| 28 | P3 | Cartões Estimativas e Conectores | Pendente | stations/PointDetailsScreen | Depende de 26; não modificar 29. |
+| 28 | P3 | Cartões Estimativas e Conectores | Implementado; revisão física pendente | stations/PointDetailsScreen | Depende de 26; não modificar 29. |
 | 29 | — | Preservar Comodidades próximas e Avaliações | Preservação obrigatória | stations/PointDetailsScreen | Nenhuma alteração sem defeito comprovado ou autorização adicional. |
 | 30 | P1 | Persistência offline de fotos e favoritos | Investigar cache existente | assets; storage; service-worker | Não introduzir armazenamento remoto; distinguir assets empacotados e cache web. |
 | 31 | P3 | Pesquisa catálogo/Supabase | Pesquisa pendente | docs | Sem migrar arquitetura, custos ou apresentar dados como verificados. |
@@ -178,3 +178,10 @@ Cada entrada deve informar IDs, commit, arquivos, verificações e limites human
 - Cartões com cabeçalho destacado (ícone + título) e corpo separado. Potência, conectores, funcionamento e distância seguem o padrão. “Distância” mantém símbolo ≈ e explicação em linha reta.
 - Empilha cartões quando a largura de leitura, considerando fonte do app/sistema, é insuficiente. Medição após layout preserva render inicial consistente.
 - Verificações: TypeScript, ESLint e diff (`10-*`). Conferir ficha em duas fontes e temas; revisão visual/física pendente.
+
+### CP11 — 28: cartões completos de estimativas e conectores
+
+- Arquivos: `src/features/stations/PointDetailsScreen.tsx`, `.styles.ts`.
+- Estimativas (título simplificado) e Conectores com cabeçalho ícone/texto e corpo no padrão de 26. Mantidos tempos simplificados, confirmação e contagens por conector.
+- Verificações: TypeScript, ESLint, diff (`11-*`) e comparação literal do trecho de Comodidades próximas/Avaliações com a base inicial: preservado.
+- Conferir: abrir ficha e rolar até os novos cartões; revisão física pendente. CP09 `894aea3`, CP10 `ac2c863`.
