@@ -62,6 +62,7 @@ import {
   triggerImpact,
   type PressableVisualState,
 } from "../../utils/interaction";
+import { canChargeAt } from "../../utils/stationAvailability";
 import { isStationOpenAt } from "../../utils/stationHours";
 import {
   RoutingModalPermission,
@@ -365,6 +366,7 @@ export default function PointDetailsScreen() {
     0,
   );
 
+  const chargingConfirmed = canChargeAt(station, now);
   const connectorLabels = station.connectors
     .map((connector) => connector.label)
     .join(", ");
@@ -412,13 +414,13 @@ export default function PointDetailsScreen() {
     : (station.reviews ?? []);
   const statusColor =
     station.status === "maintenance"
-      ? colors.dangerBorder
+      ? colors.dangerText
       : !isStationOpenAt(station, now)
         ? colors.textLight
         : station.status === "available"
           ? colors.success
           : station.status === "busy"
-            ? colors.yellowDark
+            ? colors.warningText
             : colors.textLight;
 
   const IconeAlcance = obterIconeDeAlcance(avaliacaoAlcance.nivel);
@@ -429,9 +431,9 @@ export default function PointDetailsScreen() {
   );
   const corAlcance =
     apresentacaoAlcance.tone === "danger"
-      ? colors.dangerBorder
+      ? colors.dangerText
       : apresentacaoAlcance.tone === "warning"
-        ? colors.yellowDark
+        ? colors.warningText
         : apresentacaoAlcance.tone === "success"
           ? colors.success
           : colors.textLight;
@@ -572,7 +574,7 @@ export default function PointDetailsScreen() {
 
           <Text style={styles.dataOriginLabel}>{identificacaoDados.catalogo.resumo}</Text>
 
-          <View style={styles.availableRow}>
+          <View style={[styles.availableRow, !chargingConfirmed ? [styles.unconfirmedBanner, { backgroundColor: colors.warningLight, borderColor: colors.warningText }] : null]}>
             <View style={styles.availableIconBox}>
               <Zap
                 size={17}
@@ -582,7 +584,7 @@ export default function PointDetailsScreen() {
               />
             </View>
 
-            <Text style={styles.availableText}>
+            <Text style={[styles.availableText, !chargingConfirmed ? { color: colors.warningText } : null]}>
               {getStationChargerCountLabel(
                 station,
                 availableChargers,
@@ -592,10 +594,8 @@ export default function PointDetailsScreen() {
             </Text>
           </View>
 
-          {recomendacaoDoPonto !== "Evite este ponto por enquanto" ? (
-            <View style={recomendacaoDoPonto.startsWith("Recarga não confirmada") ? [styles.unconfirmedBanner, { backgroundColor: colors.warningLight, borderColor: colors.warningText }] : null}>
-              <Text style={recomendacaoDoPonto.startsWith("Recarga não confirmada") ? [styles.unconfirmedText, { color: colors.warningText }] : styles.resumoTitle}>{recomendacaoDoPonto}</Text>
-            </View>
+          {recomendacaoDoPonto !== "Evite este ponto por enquanto" && !recomendacaoDoPonto.startsWith("Recarga não confirmada") ? (
+            <Text style={styles.resumoTitle}>{recomendacaoDoPonto}</Text>
           ) : null}
           <ConnectionNotice />
           <View style={styles.infoGrid} onLayout={(event) => setInfoWidth(event.nativeEvent.layout.width)}>

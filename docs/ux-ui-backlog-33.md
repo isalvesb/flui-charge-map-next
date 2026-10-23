@@ -377,3 +377,10 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - `export-feedback.log`: exportação atual com 15 rotas. Manifesto de 15 fotos públicas locais gerado; quantidade mudou em relação à exportação diagnóstica anterior (14), sem inferência sobre fotos do iPhone.
 - `conferir-feedbacks.cjs`: roteiro novo de interface/geometria/cache em Chromium isolado. Resultado final será acrescentado após execução; não considerar aprovado antes disso.
 - Proteções e consolidação serão reconferidas no fechamento. CP19 `6c4b501`, CP23 `c89a54a`.
+
+### FB07 — 24/25: complemento após inspeção visual
+
+- Arquivo: `src/features/stations/PointDetailsScreen.tsx`.
+- Captura da estação em manutenção mostrou status com token claro de borda e indicação junto à quantidade ainda sem fundo. Status/estimativas passam a usar tokens de texto contrastantes; faixa âmbar aplicada ao próprio grupo de carregadores sempre que `canChargeAt` é falso. Removida repetição da mesma recomendação em outro bloco.
+- Verificações: TypeScript, ESLint e casos de status/conectores/horário da apresentação e filtragem (`fb07-*`); nova exportação para conferência dirigida da faixa/status.
+- Não altera condições de recarga, regras de cálculo ou conteúdo protegido do item 29. Retorno humano após ajuste pendente.
