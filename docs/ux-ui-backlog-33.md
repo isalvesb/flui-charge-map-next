@@ -60,7 +60,7 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 | 16 | P2 | Saída no fim de configurações | Implementado; revisão física pendente | profile; settings | Saída atual é apenas visual; não inventar autenticação. |
 | 17 | P2 | Nova escala tipográfica | Implementado; matriz visual pendente | theme/appTheme | Menor=antigo padrão; padrão=antigo grande; maior=novo superior. |
 | 18 | P2 | Cartões de acessibilidade | Implementado; revisão física pendente | settings/SettingsScreen | Seção já existe; reorganizar fontes horizontalmente. Depende de 17. |
-| 19 | P2 | Laboratório fora de configurações comuns | Pendente | settings; orb-lab | Preservar implementação e acesso interno. |
+| 19 | P2 | Laboratório fora de configurações comuns | Implementado; código experimental preservado | settings; orb-lab | Preservar implementação e acesso interno. |
 | 20 | P3 | Proposta Auto Experience | Proposta pendente | docs; auto | Exige proposta prévia; sem promessa de CarPlay real ou uso de imagens sem direitos. |
 | 21 | P2 | Demonstração NEXT fora dos ajustes comuns | Pendente | settings | Preservar controles em acesso interno; depende do desenho mínimo de 32. |
 | 22 | P3 | Nome e endereço da estação | Implementado; revisão física pendente | stations/PointDetailsScreen | Manter 29. |
@@ -227,3 +227,10 @@ Cada entrada deve informar IDs, commit, arquivos, verificações e limites human
 - Descrições de status usam “catálogo local”; linguagem da ficha/bateria/perfil já reduzida em 04/13/23/25/27. Avisos de rota, limites da estimativa e avaliações do catálogo não foram removidos indiscriminadamente.
 - Verificações: TypeScript, ESLint, testes de apresentação/filtragem/contexto (`16-*`). Comodidades e Avaliações preservadas.
 - Conferir: sugestões no mapa sem parágrafo abaixo do título; Sobre os dados nos ajustes. Revisão humana/física pendente. CP14 `4169756`; CP15 `9e9cd82`.
+
+### CP17 — 19: laboratório fora dos ajustes comuns
+
+- Arquivo: `src/features/settings/SettingsScreen.tsx`.
+- Removido acesso ao laboratório da seção comum. Implementação e rota `/orb-lab` preservadas; serão reunidas com os controles internos já existentes no checkpoint 21.
+- Verificações: TypeScript, ESLint dirigido e diff (`17-*`). Não modifica a Orb em uso ou o preview temporário.
+- Conferir: Configurações deixa de mostrar Laboratório da Energy Orb. CP16 `bcc4ddb`.
