@@ -1,4 +1,5 @@
 import { ChargingStation, ChargingStationReview } from '../../types';
+import { expandedChargingStations } from './expandedChargingStations';
 
 type DadosAvaliacao = Pick<
   ChargingStationReview,
@@ -885,4 +886,5 @@ export const chargingStations: ChargingStation[] = [
       }),
     ],
   },
+  ...expandedChargingStations,
 ];

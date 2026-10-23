@@ -573,3 +573,5 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Indicador de gravação único no nível da tela; componente não duplica overlay. Salvamento automático continua, sem botão Salvar.
 - Verificações: TypeScript/ESLint dirigidos e diff; teste de sucesso/falha e cor do toast web no fechamento.
 - Nova classificação humana: emojis indicam esforço, não aprovação. Offline 30 falhou no iPhone segundo usuário; sintomas/percurso solicitados sem bloquear demais tarefas. Não tratar evidência web como solução nativa.
+
+- S06: primeira checagem apontou nome incorreto do parâmetro de tempo no teste (agora). Depois, diagnóstico dirigido identificou duas expectativas do harness: 6 pontos novos (12 totais) dentro de 10 km de NEXT, e teste antigo de horários que também limitava distância a 10 km. Corrigidos os cenários para medir cobertura real e isolar horário com raio amplo; regras do aplicativo não foram relaxadas. Logs iniciais preservados.
