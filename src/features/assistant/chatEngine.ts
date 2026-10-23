@@ -1,3 +1,4 @@
+import { answerPlayfulMessage } from "./playfulAnswers";
 import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
 import type { ChargingStation } from "../../types";
 import { canChargeAt } from "../../utils/stationAvailability";
@@ -128,6 +129,8 @@ export function answerMessage(text: string, context: AssistantContext): ChatResp
     return { text: "FluIA desabilitada nesta versão.", state: "aviso" };
 
   const message = normalize(text);
+  const playful = answerPlayfulMessage(message);
+  if (playful) return { text: playful, state: "respondendo" };
   const matches = intentRules.filter((rule) => rule.pattern.test(message));
   const programmedMatches = programmedAnswers.filter(item => matchesProgrammedAnswer(item, message));
   const programmed = programmedMatches.find(item => item.takesPrecedence) ?? programmedMatches[0];
