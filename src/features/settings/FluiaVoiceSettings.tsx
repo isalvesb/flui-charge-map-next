@@ -45,7 +45,7 @@ export function FluiaVoiceSettings() {
   return <View style={styles.section} testID="fluia-configuracao-voz">
     <Text accessibilityRole="header" style={styles.sectionTitle}>Voz da FluIA</Text>
     <View style={[styles.accessibilityCard, local.card]}>
-      <Text style={styles.sectionText}>Ao ativar, abrir a FluIA inicia uma escuta e envia o áudio ao Google Cloud. Após uma pausa de 1 segundo ou um toque na Orb, a pergunta é enviada e respondida automaticamente.</Text>
+      <Text style={styles.sectionText}>Ao ativar, abrir a FluIA inicia uma escuta e envia o áudio ao Google Cloud. Após uma pausa de 2 segundos ou um toque na Orb, a pergunta é enviada e respondida automaticamente.</Text>
       <TextInput accessibilityLabel="Endereço HTTPS privado do Mac" value={endpoint} onChangeText={setEndpoint} placeholder="https://endereço-do-mac:8787" autoCapitalize="none" autoCorrect={false} autoComplete="off" keyboardType="url" editable={!busy && !state.ready} placeholderTextColor={theme.textMuted} style={[local.field, { color: theme.text, borderColor: theme.border, fontSize: font(13) }]} />
       {!state.ready ? <TextInput accessibilityLabel="Código temporário da sessão" value={code} onChangeText={setCode} placeholder="Código da sessão" autoCapitalize="none" autoCorrect={false} autoComplete="off" secureTextEntry textContentType="none" maxLength={64} editable={!busy} placeholderTextColor={theme.textMuted} style={[local.field, { color: theme.text, borderColor: theme.border, fontSize: font(13) }]} /> : null}
       <Text style={styles.sectionText}>O código fica somente na memória até fechar o aplicativo ou desativar a voz. A escuta para ao bloquear a tela ou trocar de app e não recomeça sozinha.</Text>

@@ -1,7 +1,7 @@
 export function createPcmSilenceDetector({
   sampleRate = 16000,
   thresholdRms = 400,
-  silenceMs = 1000,
+  silenceMs = 2000,
 } = {}) {
   const target = Math.ceil(sampleRate * silenceMs / 1000);
   let silentSamples = 0;

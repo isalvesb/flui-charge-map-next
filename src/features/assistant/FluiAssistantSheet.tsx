@@ -424,7 +424,7 @@ export function FluiAssistantSheet({
             <View testID="fluia-orb-fixa" style={styles.hero}>
               <PressableScale testID="fluia-orb-status" accessibilityRole={liveVoice.supported ? "button" : "image"}
                 accessibilityLabel={liveVoice.phase === "recording" ? "Concluir fala e pedir resposta" : captureBusy ? "Cancelar escuta ou transcrição" : isSpeaking ? "Interromper resposta e falar" : "Falar com a FluIA"}
-                accessibilityHint={captureBusy ? "Uma pausa de um segundo conclui a fala. Mantenha a Orb pressionada para cancelar sem enviar." : "Inicia uma escuta. A pergunta é enviada ao terminar de falar."}
+                accessibilityHint={captureBusy ? "Uma pausa de dois segundos conclui a fala. Mantenha a Orb pressionada para cancelar sem enviar." : "Inicia uma escuta. A pergunta é enviada ao terminar de falar."}
                 accessibilityActions={captureBusy ? [{ name: "cancel", label: "Cancelar escuta ou transcrição" }] : undefined}
                 onAccessibilityAction={({ nativeEvent }) => { if (captureBusy && nativeEvent.actionName === "cancel") liveVoice.cancel(); }}
                 onAccessibilityEscape={captureBusy ? liveVoice.cancel : undefined}

@@ -181,3 +181,9 @@
 - Usuário autorizou expressamente **até 3 chamadas/90 s adicionais**, com **tetos absolutos 23 chamadas/666 s no mesmo ledger**, sem mudança de faturamento ou repetição. Isso substitui somente o limite desta validação; não constitui autorização de gastos contínuos ou TTS.
 - Extensão exige flag explícita `STT_APPROVED_VALIDATION_EXTENSION=23/666` e ledger existente a partir de 20/576. Padrão continua 20/600; valores arbitrários são recusados. Reiniciar com a extensão não renova o saldo. Sem zerar, trocar ou criar ledger para contornar o limite.
 - **31/31 testes simulados do intermediário passaram**, incluindo uso exato de 21/606, 22/636, 23/666 e recusa da quarta chamada também após reinício. Log `.validation/approved-extension-tests.log`. Nenhuma chamada Google no teste.
+
+### Pausa ampliada para dois segundos
+
+- Extensão autorizada registrada em **`140a121`**. Usuário achou 1 s curto; adotados aproximadamente **2 s** como ajuste incremental. Sincronizados detector PCM, timeout Google, timer de fim de atividade e textos de consentimento/acessibilidade. Limite absoluto de 30 s e finalização por toque continuam iguais.
+- **31/31 testes do intermediário passaram** com os novos prazos; TypeScript, ESLint dirigido e diff passaram. Logs `.validation/silence-two-seconds-*`. Esses testes não consomem reconhecimento real; novo prazo físico ainda pendente.
+- Usuário perguntou sobre dispensar código: explicado pareamento único seguro como possibilidade futura. **Pareamento automático não foi implementado** nem o intermediário foi aberto sem autenticação. A retenção atual em memória já evita redigitação ao ir para segundo plano, mas novo processo/JS ou reinício do intermediário podem exigir código novo.

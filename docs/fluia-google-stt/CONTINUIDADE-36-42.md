@@ -1,5 +1,18 @@
 # FluIA — continuidade dos itens 36–42
 
+## Atualização posterior — estabilidade, sessão e pausa
+
+Esta seção prevalece sobre as anteriores: usuário confirmou um percurso de voz funcionando no iPhone, seguido de quedas recorrentes; **estabilidade ainda não homologada**. “Parar leitura” deixou de aparecer por confirmação humana. Mensagem depois identificada: “Ative a voz da FluIA nas Configurações”. Print de Configurações mostrava sessão ativa com campo vazio, não uma falha Google comprovada.
+
+- `f72a9a3`: reproduzido em teste e corrigido áudio tardio enviado após encerramento iniciado pelo próprio Google. Não atribuir todas as quedas a esse defeito.
+- `58322bf`: removidos controles de rodapé Cancelar escuta/Ouvir resposta/Última mensagem; pressão longa e ação acessível na Orb cancelam sem enviar. Toque curto conclui; voltar cancela. Conferência física dessas mudanças pendente.
+- `1dbfdee`: usuário autorizou manter código **somente em memória até fechar o app ou desativar**. Apagar ao ir para segundo plano deixou de ser requisito. Captura/leitura continuam canceladas em inatividade/fundo, sem reinício automático. Configurações exibe Voz ativa, sem pedir código enquanto ativa. Recarregamento completo/reinício do intermediário ainda exige reativação.
+- `140a121`: o ledger alcançou **20 chamadas/576 s reservados**, mais 1/4 histórico. Usuário autorizou **3 chamadas/90 s adicionais**, com tetos fixos **23/666 no mesmo ledger**. Ativar com `STT_APPROVED_VALIDATION_EXTENSION=23/666` e `STT_USAGE_FILE` original; o saldo não renova ao reiniciar. Padrão do código continua 20/600 e extensão sem ledger é recusada. Não ampliar além disso sem nova decisão.
+- Pausa ampliada de 1 para **2 s** no PCM, Google e instruções. 31/31 testes simulados do intermediário, 13/13 de sessão/leitura, TypeScript e ESLint dirigidos aprovados nesta rodada; novos controles, retenção e prazo físico ainda pendentes. Não repetida a matriz completa.
+- Pareamento sem digitar código foi apenas discutido como próximo ajuste; **não está implementado**. Não remover autenticação nem colocar token em variável pública/URL/log para contornar.
+
+Conferir PIDs atuais antes de agir: houve reinício do próprio intermediário para aplicar correções; Metro 8117/PID 2360 foi preservado. Nenhuma nova build/dependência/SDK, API TTS ou serviço público.
+
 ## Atualização da retomada — 23/10/2026, após `5872b52`
 
 Esta atualização prevalece sobre o checkpoint histórico abaixo. Branch autorizada conferida em `5872b52188124a123d3ddc043700e5cc00d4ef84`, inicialmente limpa. `50d56cb` acrescenta detecção de aproximadamente 1 s de silêncio PCM, proteção contra finish duplicado/quadros tardios e preservação da parcial/segmentos; 29/29 testes do intermediário informados no handoff, sem repetir essa suíte na conferência inicial. Correção implementada, **ainda sem homologação física nesta retomada**. `5872b52` remove “Parar leitura”; o ícone de som, a nova escuta pela Orb (com conexão ativa) e a saída da tela continuam interrompendo a leitura, conforme inspeção de código.

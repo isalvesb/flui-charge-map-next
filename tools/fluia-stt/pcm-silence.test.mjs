@@ -15,10 +15,10 @@ test('não conclui antes de detectar fala', () => {
   }
 });
 
-test('conclui após um segundo de silêncio PCM', () => {
+test('conclui após dois segundos de silêncio PCM, sem cortar uma pausa de um segundo', () => {
   const detector = createPcmSilenceDetector();
   detector.observe(voice, true);
-  for (let i = 0; i < 9; i++) {
+  for (let i = 0; i < 19; i++) {
     assert.equal(detector.observe(silence, true), false);
   }
   assert.equal(detector.observe(silence, true), true);
@@ -31,7 +31,7 @@ test('fala retomada reinicia a contagem', () => {
     detector.observe(silence, true);
   }
   assert.equal(detector.observe(voice, true), false);
-  for (let i = 0; i < 9; i++) {
+  for (let i = 0; i < 19; i++) {
     assert.equal(detector.observe(silence, true), false);
   }
   assert.equal(detector.observe(silence, true), true);

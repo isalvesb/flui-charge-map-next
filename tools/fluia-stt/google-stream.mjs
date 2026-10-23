@@ -7,7 +7,7 @@ export const streamingConfig = project => ({
     },
     streamingFeatures: {
       interimResults: true, enableVoiceActivityEvents: true,
-      voiceActivityTimeout: { speechStartTimeout: { seconds: 8 }, speechEndTimeout: { seconds: 1 } },
+      voiceActivityTimeout: { speechStartTimeout: { seconds: 8 }, speechEndTimeout: { seconds: 2 } },
     },
   },
 });
@@ -39,7 +39,7 @@ export function googleStreamProvider(client, project, metrics = {}) {
         metrics.speechBegins = (metrics.speechBegins ?? 0) + 1;
       } else if (event === 3 || event === 'SPEECH_ACTIVITY_END') {
         metrics.speechEnds = (metrics.speechEnds ?? 0) + 1;
-        clearTimeout(endTimer); endTimer = setTimeout(finish, 1000);
+        clearTimeout(endTimer); endTimer = setTimeout(finish, 2000);
       } else if (event === 1 || event === 'END_OF_SINGLE_UTTERANCE') finish();
       const interim = [];
       for (const result of data.results ?? []) {

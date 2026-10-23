@@ -105,7 +105,7 @@ test('extensão autorizada preserva ledger e só permite três chamadas, inclusi
   assert.throws(() => createStreamingBudget({ initial, limits: { requests: 24, reservedSeconds: 696 }, recordUsage: async () => {} }), /Orçamento/);
 });
 
-test('provedor Google configura resultados parciais/pausa 1 s e não repete chamada', async () => {
+test('provedor Google configura resultados parciais/pausa 2 s e não repete chamada', async () => {
   const call = new EventEmitter(); const writes = [];
   call.write = value => { writes.push(value); return true; };
   call.end = () => call.emit('end');
@@ -116,7 +116,7 @@ test('provedor Google configura resultados parciais/pausa 1 s e não repete cham
   const provider = googleStreamProvider(client, 'test-project');
   const stream = await provider({ signal: new AbortController().signal, partial: value => partials.push(value), completed: value => finals.push(value), failed: value => failures.push(value) });
   assert.equal(options.retry, null);
-  assert.equal(writes[0].streamingConfig.streamingFeatures.voiceActivityTimeout.speechEndTimeout.seconds, 1);
+  assert.equal(writes[0].streamingConfig.streamingFeatures.voiceActivityTimeout.speechEndTimeout.seconds, 2);
   assert.equal(writes[0].streamingConfig.streamingFeatures.interimResults, true);
   call.emit('data', { results: [{ alternatives: [{ transcript: 'Quero' }], isFinal: false }] });
   assert.deepEqual(finals, []);
@@ -127,15 +127,15 @@ test('provedor Google configura resultados parciais/pausa 1 s e não repete cham
   assert.equal(initialized, 2); // Init is local; aborted path never opens another RPC.
 });
 
-test('evento de fim da voz conclui após 1 s e voz retomada cancela esse prazo', async t => {
+test('evento de fim da voz conclui após 2 s e voz retomada cancela esse prazo', async t => {
   t.mock.timers.enable({ apis: ['setTimeout'] });
   const call = new EventEmitter(); let finished = 0;
   call.write = () => true; call.end = () => { finished++; }; call.cancel = () => call.emit('error', { code: 1 });
   const provider = googleStreamProvider({ initialize: async () => {}, _streamingRecognize: () => call }, 'test-project');
   const stream = await provider({ signal: new AbortController().signal, partial: () => {}, completed: () => {}, failed: () => {} });
-  call.emit('data', { speechEventType: 3 }); t.mock.timers.tick(999); assert.equal(finished, 0);
-  call.emit('data', { speechEventType: 2 }); t.mock.timers.tick(1000); assert.equal(finished, 0);
-  call.emit('data', { speechEventType: 3 }); t.mock.timers.tick(1000); assert.equal(finished, 1);
+  call.emit('data', { speechEventType: 3 }); t.mock.timers.tick(1999); assert.equal(finished, 0);
+  call.emit('data', { speechEventType: 2 }); t.mock.timers.tick(2000); assert.equal(finished, 0);
+  call.emit('data', { speechEventType: 3 }); t.mock.timers.tick(2000); assert.equal(finished, 1);
   await stream.cancel();
 });
 
@@ -157,7 +157,7 @@ test('fim iniciado pelo Google descarta PCM tardio enquanto aguarda a transcriç
   stream.write(Buffer.alloc(3200));
   call.emit('data', { results: [{ alternatives: [{ transcript: 'Quero café' }], isFinal: false }] });
   call.emit('data', { speechEventType: 3 });
-  t.mock.timers.tick(1000);
+  t.mock.timers.tick(2000);
   assert.equal(ending, true);
   const before = writes.length;
   assert.equal(stream.write(Buffer.alloc(3200)), true);
@@ -196,22 +196,22 @@ test('silêncio PCM conclui uma vez e ignora áudio tardio', async t => {
   f.calls[0].callbacks.partial('Quero recarregar');
   assert.equal((await c.next()).type, 'transcript');
 
-  for (let i = 1; i <= 9; i++) {
+  for (let i = 1; i <= 19; i++) {
     await write(i, quiet);
     assert.equal(f.calls[0].finishes, 0);
   }
 
-  await write(10, quiet);
+  await write(20, quiet);
   assert.equal(f.calls[0].finishes, 1);
 
   c.send({
     type: 'audio',
-    sequence: 11,
+    sequence: 21,
     content: quiet.toString('base64')
   });
 
   await new Promise(resolve => setTimeout(resolve, 20));
-  assert.equal(f.calls[0].writes, 11);
+  assert.equal(f.calls[0].writes, 21);
   assert.equal(f.calls[0].finishes, 1);
   assert.equal(c.ws.readyState, WebSocket.OPEN);
 
@@ -291,11 +291,11 @@ test('finish do Google é idempotente mesmo com evento de voz', async t => {
   stream.finish();
   stream.finish();
 
-  t.mock.timers.tick(1000);
+  t.mock.timers.tick(2000);
   assert.equal(endings, 1);
 
   call.emit('data', { speechEventType: 3 });
-  t.mock.timers.tick(1000);
+  t.mock.timers.tick(2000);
   assert.equal(endings, 1);
 
   await stream.cancel();
