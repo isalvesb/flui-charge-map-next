@@ -3,6 +3,16 @@ import { ENERGY_ORB_COLORS } from "./energyOrbPresentation";
 
 export const REACTICX_SHADER_INTERVAL_MS = 1000 / 30;
 
+// Um único pulso para a cor do shader e a cor do ícone, no mesmo relógio UI.
+export function getMapOrbPulse(seconds: number) {
+  "worklet";
+  const phase = seconds % 3.6;
+  const progress = phase < 1.55 ? (phase - 0.2) / 1.35 : (phase - 2.65) / 0.95;
+  const t = Math.min(1, Math.max(0, progress));
+  const smooth = t * t * (3 - 2 * t);
+  return phase < 1.55 ? smooth : 1 - smooth;
+}
+
 const STATE_EFFECTS: Record<FluiaState, { speed: number; intensity: number; glowRadius: number }> = {
   repouso: { speed: 0.25, intensity: 1.1, glowRadius: 0.42 },
   digitando: { speed: 0.65, intensity: 1.3, glowRadius: 0.4 },

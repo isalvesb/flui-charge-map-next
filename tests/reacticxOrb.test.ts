@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { FLUIA_STATE_LABELS, type FluiaState } from "../src/features/assistant/fluiaState";
 import { ENERGY_ORB_COLORS } from "../src/features/assistant/energyOrbPresentation";
-import { clampOrbFrameDelta, getReacticxOrbPresentation, REACTICX_SHADER_INTERVAL_MS } from "../src/features/assistant/reacticxOrbPresentation";
+import { clampOrbFrameDelta, getMapOrbPulse, getReacticxOrbPresentation, REACTICX_SHADER_INTERVAL_MS } from "../src/features/assistant/reacticxOrbPresentation";
 import { parseColor } from "../src/features/assistant/reacticx/helper";
 
 const states = Object.keys(FLUIA_STATE_LABELS) as FluiaState[];
@@ -44,4 +44,20 @@ test("Orb do mapa usa roxos e respeita redução de movimento e foco", () => {
     assert.equal(getReacticxOrbPresentation(state, false, false, true).animate, false);
   }
   assert.notDeepEqual(getReacticxOrbPresentation("repouso", false, true).colors, map.colors);
+});
+
+test("pulso compartilhado mantém os patamares e transições contínuas no ciclo", () => {
+  assert.equal(getMapOrbPulse(0.1), 0);
+  assert.equal(getMapOrbPulse(1.8), 1);
+  assert.equal(getMapOrbPulse(2.5), 1);
+  assert.ok(getMapOrbPulse(0.8) < getMapOrbPulse(1.2));
+  assert.ok(getMapOrbPulse(2.9) > getMapOrbPulse(3.3));
+  for (let t = 0; t <= 10; t += 1 / 30) {
+    const pulse = getMapOrbPulse(t);
+    assert.ok(pulse >= 0 && pulse <= 1);
+    assert.ok(Math.abs(pulse - getMapOrbPulse(t + 3.6)) < 1e-10);
+  }
+  for (const boundary of [0.2, 1.55, 2.65, 3.6]) {
+    assert.ok(Math.abs(getMapOrbPulse(boundary - 0.00001) - getMapOrbPulse(boundary + 0.00001)) < 0.00001);
+  }
 });
