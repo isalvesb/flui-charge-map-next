@@ -42,6 +42,11 @@ import {
 import { useTelaComPreferencias } from "../../hooks/useTelaComPreferencias";
 import { getStationImageSource } from "../../assets/stations";
 import { triggerImpact, type PressableVisualState } from "../../utils/interaction";
+import { RECOMPENSAS_ENABLED } from "../rewards/flag";
+import { criarVisitaId } from "../rewards/checkIn";
+import { creditarVisita } from "../rewards/points";
+import { atualizarPontos } from "../rewards/storage";
+import { BonusCard, CheckInCard } from "../rewards/components/CheckInCard";
 
 type CriteriaKey = "quality" | "cleaning" | "availability" | "amenities";
 
@@ -216,6 +221,16 @@ export default function ReviewScreen() {
 
   const isFavorite = station ? favoriteStationIds.includes(station.id) : false;
 
+  // Visita do check-in simulado: só existe quando ainda não há avaliação do posto.
+  // Editar uma avaliação existente não cria visita, então não pontua de novo.
+  const visitaId = useMemo(() => {
+    if (!RECOMPENSAS_ENABLED || !station || isLoadingStorage || existingReview) {
+      return null;
+    }
+    return criarVisitaId(station.id, Date.now());
+  }, [station, isLoadingStorage, existingReview]);
+  const [chipsSelecionados, setChipsSelecionados] = useState<string[]>([]);
+
   useEffect(() => {
     if (!existingReview || hasFilledExistingReviewRef.current) {
       return;
@@ -236,6 +251,12 @@ export default function ReviewScreen() {
 
     hasFilledExistingReviewRef.current = true;
   }, [existingReview]);
+
+  function alternarChip(chip: string) {
+    setChipsSelecionados((atual) =>
+      atual.includes(chip) ? atual.filter((item) => item !== chip) : [...atual, chip],
+    );
+  }
 
   function updateCriterionRating(key: CriteriaKey, rating: number) {
     setCriteriaRatings((currentRatings) => ({
@@ -277,6 +298,8 @@ export default function ReviewScreen() {
     ) {
       return;
     }
+
+    const visitaParaPontos = visitaId;
 
     const hasEmptyCriterion = Object.values(criteriaRatings).some(
       (rating) => rating === 0,
@@ -322,6 +345,17 @@ export default function ReviewScreen() {
         address: formatAddress(station),
         action: "sent_review",
       });
+
+      // A avaliação já foi salva. Se os pontos falharem, a avaliação continua válida.
+      if (visitaParaPontos) {
+        try {
+          await atualizarPontos((atual) =>
+            creditarVisita(atual, visitaParaPontos, new Date().toISOString(), `mov-${visitaParaPontos}`).pontos,
+          );
+        } catch {
+          // Pontos não concedidos; a avaliação segue salva.
+        }
+      }
 
       setIsSubmitting(false);
       setIsSuccessFeedbackVisible(true);
@@ -454,6 +488,13 @@ export default function ReviewScreen() {
             keyboardShouldPersistTaps="handled"
             contentContainerStyle={styles.scrollContent}
           >
+            {RECOMPENSAS_ENABLED && visitaId ? (
+              <CheckInCard
+                agora={new Date()}
+                chips={chipsSelecionados}
+                onToggleChip={alternarChip}
+              />
+            ) : null}
             <View style={styles.stationCard}>
               <Image
                 source={getStationImageSource(station.imageKey)}
@@ -822,6 +863,7 @@ export default function ReviewScreen() {
                 </Text>
               </View>
             </View>
+            {RECOMPENSAS_ENABLED && visitaId ? <BonusCard /> : null}
           </ScrollView>
 
           <SafeAreaView edges={["bottom"]} style={styles.bottomActions}>
