@@ -15,7 +15,7 @@ export default function AutoExperienceScreen() {
   const { width, fontScale: systemFontScale } = useWindowDimensions();
   const [formatId, setFormatId] = useState<string>("horizontal");
   const format = AUTO_FORMATS.find((item) => item.id === formatId)!;
-  const availableWidth = Math.min(1100, width - 40);
+  const availableWidth = Math.max(0, Math.min(1100, width - 40));
   const frame = getAutoPreviewLayout(availableWidth, format, fontScale, systemFontScale);
   const station = demoStations[0];
   const text = { color: theme.text, fontSize: scale(15), lineHeight: scale(22) };
@@ -46,10 +46,10 @@ export default function AutoExperienceScreen() {
         </View>
         <View style={{ width: "100%", maxWidth: 1100, gap: 4 }}>
           <Text accessibilityRole="header" style={[text, { fontWeight: "800" }]}>{format.label} · {format.proportion}</Text>
-          <Text style={small}>{frame.scrollsHorizontally ? "Deslize a prévia para os lados. " : ""}Role dentro dela se precisar. Textos mantêm o tamanho escolhido.</Text>
+          <Text style={small}>Prévia ajustada à largura disponível. Role verticalmente dentro dela se precisar.</Text>
         </View>
-        <ScrollView horizontal nestedScrollEnabled style={{ width: availableWidth, flexGrow: 0 }} contentContainerStyle={{ height: frame.height + 12 }} showsHorizontalScrollIndicator={frame.scrollsHorizontally}>
-          <View style={{ width: frame.width, height: frame.height, backgroundColor: theme.surface, borderWidth: 6, borderColor: theme.border, borderRadius: 24, overflow: "hidden" }}>
+        <View style={{ width: availableWidth, height: frame.height + 12 }}>
+          <View testID="auto-moldura" style={{ width: frame.width, height: frame.height, backgroundColor: theme.surface, borderWidth: 6, borderColor: theme.border, borderRadius: 24, overflow: "hidden" }}>
             <ScrollView nestedScrollEnabled contentContainerStyle={{ flexGrow: 1, backgroundColor: theme.surface }}>
               <View style={{ padding: 12, flexDirection: "row", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 8, borderBottomWidth: 1, borderColor: theme.border }}>
                 <Text style={[text, { fontSize: scale(21), fontWeight: "900", color: theme.primary }]}>Flui</Text>
@@ -90,7 +90,7 @@ export default function AutoExperienceScreen() {
               </View>
             </ScrollView>
           </View>
-        </ScrollView>
+        </View>
         <View style={{ width: "100%", maxWidth: 1100, padding: 16, borderWidth: 1, borderColor: theme.border, borderRadius: 18, gap: 8 }}>
           <Text style={[text, { fontWeight: "800" }]}>Estudo de interface, sem integração automotiva</Text>
           <Text style={small}>Sem conexão com veículos, CarPlay ou Android Auto. Proporções ilustrativas; use com o veículo parado. A prévia não inicia rotas nem envia comandos.</Text>

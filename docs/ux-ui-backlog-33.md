@@ -471,3 +471,9 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Comodidades e Avaliações agora usam contorno/radius do cartão, cabeçalho integrado e corpo com padding, iguais a Estimativas/Conectores. Antes só os títulos tinham uma faixa avulsa.
 - Textos, dados, listas, notas e interações dessas seções permanecem sem alteração; nova autorização humana permite padronizar o contêiner.
 - Verificações: TypeScript, ESLint, diff dirigido e testes de apresentação (`r10-*`). Revisão visual posterior pendente.
+
+### R11 — 20: proporções sem scroll horizontal
+
+- Arquivos: `autoPresentation.ts`, `AutoExperienceScreen.tsx`, `tests/autoPresentation.test.ts`.
+- Removidas larguras mínimas que forçavam exploração lateral. Moldura em cada proporção fica limitada à largura útil, preservando razão largura/altura; rolagem horizontal removida. Conteúdo pode rolar verticalmente, sem reduzir fonte.
+- Verificações: TypeScript, ESLint e matriz de proporções/larguras/fontes (`r11-*`). Parte de seleção por marca/modelo e imagens continua a fazer; não declarada concluída.
