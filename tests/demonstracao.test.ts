@@ -17,10 +17,10 @@ import { recommendStations } from "../src/features/assistant/fluiAssistant";
 import { getStationArrivalPresentation } from "../src/features/stations/stationPresentation";
 import { createStation } from "./fixtures";
 
-test("preferências sem origem recebem referência NEXT e veículo padrão sem perder autonomia e origem da bateria", () => {
+test("preferências sem origem recebem FIAP e veículo padrão sem perder autonomia e origem da bateria", () => {
   const antigo = { vehicleRangeKm: 320, batteryPercent: 35, batterySource: "manual" as const, batteryUpdatedAt: "2026-10-16T12:00:00Z" };
   const migrado = { ...normalizarConfiguracaoDemonstrativa(antigo), ...normalizeBatteryData(antigo) };
-  assert.equal(migrado.demoOriginId, "next");
+  assert.equal(migrado.demoOriginId, "fiap");
   assert.equal(migrado.vehicleName, demonstracaoPadrao.vehicleName);
   assert.equal(migrado.vehicleRangeKm, 320);
   assert.equal(migrado.batterySource, "manual");
@@ -101,9 +101,11 @@ test("cortes de filtro e reserva mantêm precisão anterior ao arredondamento vi
 });
 
 
-test("origem inicial NEXT usa coordenadas solicitadas e preserva escolha já salva", () => {
+test("FIAP volta ao padrão e NEXT continua uma opção explícita", () => {
   const initial = obterOrigemDemonstrativa(normalizarConfiguracaoDemonstrativa().demoOriginId);
-  assert.equal(initial.latitude, -23.540405908671097);
-  assert.equal(initial.longitude, -46.73414831818115);
-  assert.equal(normalizarConfiguracaoDemonstrativa({ demoOriginId: "fiap" }).demoOriginId, "fiap");
+  assert.equal(initial.id, "fiap");
+  assert.equal(initial.latitude, -23.564304);
+  assert.equal(initial.longitude, -46.652537);
+  assert.equal(obterOrigemDemonstrativa("next").nome, "NEXT");
+  assert.equal(normalizarConfiguracaoDemonstrativa({ demoOriginId: "paulista" }).demoOriginId, "paulista");
 });

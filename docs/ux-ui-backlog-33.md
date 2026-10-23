@@ -438,3 +438,10 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Removidos rota `/orb-lab`, `OrbLabScreen`, protótipo exclusivo `EnergyOrbPrototype`, apresentação exclusiva e testes desse protótipo. Acesso interno removido. Busca de dependências confirmou uso restrito ao laboratório.
 - Orb ativa, Reacticx/Skia, gestos e preview de estados da FluIA preservados. Registros históricos permanecem como histórico, sem recursos executáveis do laboratório.
 - Verificações: TypeScript, ESLint do menu e busca sem referências executáveis (`r05-*`). Sem recompilar ou alterar dependências nativas.
+
+### R06 — 33: FIAP como origem padrão
+
+- Arquivos: `src/data/demonstracao.ts`, `tests/demonstracao.test.ts`.
+- FIAP volta à primeira opção e ao padrão para preferências sem origem. Coordenada alternativa permanece como escolha explícita, renomeada de Referência NEXT para NEXT conforme item 21.
+- Escolhas já salvas são preservadas; se um aparelho tiver NEXT escolhido, usar Origem → FIAP → Salvar aplica a troca sem limpar outros dados. GPS não modificado.
+- Verificações: TypeScript, ESLint e testes de origem/planejador (`r06-*`).
