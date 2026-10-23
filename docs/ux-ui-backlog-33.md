@@ -396,3 +396,18 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Consolidação reconferida limpa em `abd5dfacaf51350b32fa77066ee849dbfcc9fbdc`. Metros 8106/8116 e servidor 8118 mantidos com PIDs iniciais; bloqueio de push e hooks preservados. Nenhuma operação remota, nova dependência, compilação ou instalação.
 - Todos os dez comentários foram tratados nos checkpoints FB01–FB07; não foi recebida aprovação humana global após as correções. Próximas decisões: reconhecimento de fala/novo binário (12), piloto automotivo/imagens (20), cenários completos e armazenamento separado (32), prova física de offline (30).
 - Registro de estados solicitado pelo usuário preenchido acima, com commits de cada item. Nenhum item parcial foi classificado como validado.
+
+## Revisão humana de 23/10/2026 — instrução vigente
+
+- Usuário aprovou explicitamente 02, 04–10, 13, 14, 18, 23–25, 27 e 28. Isso registra o feedback desses itens; não certifica Android/Release/VoiceOver/desempenho.
+- 01: usuário informou que ainda não foi compreendido. Suspensas novas alterações; a implementação anterior apenas identificou paradas calculadas e não mudou desenho/seleção do percurso. Pergunta de esclarecimento enviada.
+- 03 incompleto; 12 e 31 permanecem A FAZER na perspectiva do objetivo final, apesar de pesquisas feitas. 20 e 32 também incompletos. Não classificar pesquisa/proposta como implementação concluída.
+- 21: menu precisa de nova definição; esclarecimento solicitado. 22: usuário aprovou espaçamento, mas pediu retirar texto de demonstração; frase exata em esclarecimento.
+- 30: usuário testará depois; não executar mudanças/testes no iPhone automaticamente.
+- Mudanças objetivas autorizadas: 11 status durante fala; 15 cor; 16 alinhamento/rodapé/versão; 17 alinhamento; 19 exclusão total do laboratório; 20 largura sem scroll horizontal; 26 dois cartões quando couberem/títulos maiores e bold; 29 padrão igual aos demais; 33 retorno à FIAP.
+
+### R01 — 11: Explicando durante fala
+
+- Arquivos: `FluiAssistantSheet.tsx`, `fluiaVisualStatus.ts`, `tests/fluiaVisualStatus.test.ts`.
+- Estado de reprodução tem prioridade sobre temporizador de resposta, preview visual e conexão enquanto a voz está efetivamente falando. Ao concluir/parar, volta ao estado aplicável.
+- Verificações: TypeScript, ESLint e testes de voz/estados (`../output/ux-feedback-20261023/r01-*`). Confirmação de áudio físico após correção pendente.

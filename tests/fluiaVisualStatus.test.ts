@@ -70,3 +70,13 @@ test("texto e ações da FluIA têm contraste legível e paleta local não alter
     }
   }
 });
+
+
+test("leitura por voz mantém Explicando até terminar, inclusive offline", () => {
+  for (const connection of ["connected", "offline", "unknown"] as const) {
+    assert.equal(getFluiaVisualStatus("repouso", connection, true), "explicando");
+    assert.equal(getFluiaVisualStatus("alerta", connection, true), "explicando");
+  }
+  assert.equal(getFluiaVisualStatus("repouso", "connected", false), "pronta");
+  assert.equal(getFluiaVisualStatus("repouso", "offline", false), "offline");
+});

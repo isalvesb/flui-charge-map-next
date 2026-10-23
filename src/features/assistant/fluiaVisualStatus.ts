@@ -15,7 +15,8 @@ export const FLUIA_VISUAL_PRESENTATION = {
   offline: { label: "Offline", color: "#8E9AAF", light: "#C6CFDD", core: "#8E9AAF" },
 } as const;
 
-export function getFluiaVisualStatus(state: FluiaState, connection: ConnectionStatus): FluiaVisualStatus {
+export function getFluiaVisualStatus(state: FluiaState, connection: ConnectionStatus, isSpeaking = false): FluiaVisualStatus {
+  if (isSpeaking) return "explicando";
   if (connection === "offline") return "offline";
   if (state === "pensando") return "pensando";
   if (state === "respondendo") return "explicando";

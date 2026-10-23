@@ -175,9 +175,10 @@ export function FluiAssistantSheet({
     return () => { show.remove(); hide.remove(); };
   }, []);
 
-  const actualState: FluiaState = isAnalyzing ? "pensando" : selectedIntent ? recommendation ? "respondendo" : "aviso" : fluiaState;
-  const visualStatus = FLUIA_STATUS_PREVIEW_ENABLED && previewStatus ? previewStatus : getFluiaVisualStatus(actualState, connectionStatus);
-  const displayedState: FluiaState = FLUIA_STATUS_PREVIEW_ENABLED && previewStatus
+  const isSpeaking = voicePlaybackState === "speaking";
+  const actualState: FluiaState = isSpeaking ? "respondendo" : isAnalyzing ? "pensando" : selectedIntent ? recommendation ? "respondendo" : "aviso" : fluiaState;
+  const visualStatus = isSpeaking ? getFluiaVisualStatus(actualState, connectionStatus, true) : FLUIA_STATUS_PREVIEW_ENABLED && previewStatus ? previewStatus : getFluiaVisualStatus(actualState, connectionStatus);
+  const displayedState: FluiaState = isSpeaking ? "respondendo" : FLUIA_STATUS_PREVIEW_ENABLED && previewStatus
     ? getFluiaPreviewState(visualStatus)
     : actualState;
   const statusPresentation = FLUIA_VISUAL_PRESENTATION[visualStatus];
