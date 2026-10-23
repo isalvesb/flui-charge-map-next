@@ -533,6 +533,16 @@ export default function PointDetailsScreen() {
 
 
           <View style={styles.summaryRow}>
+            <View style={styles.statusGroup}>
+              <View
+                accessible={false}
+                style={[styles.statusDot, { backgroundColor: statusColor }]}
+              />
+
+              <Text style={[styles.statusText, { color: statusColor }]}>
+                {statusInfo.label}
+              </Text>
+            </View>
             <View style={styles.ratingGroup}>
               <Star
                 size={19}
@@ -547,21 +557,12 @@ export default function PointDetailsScreen() {
               </Text>
 
               <Text style={styles.reviewCount}>
-                ({station.reviewCount} avaliações demonstrativas)
-              </Text>
-            </View>
-
-            <View style={styles.statusGroup}>
-              <View
-                accessible={false}
-                style={[styles.statusDot, { backgroundColor: statusColor }]}
-              />
-
-              <Text style={[styles.statusText, { color: statusColor }]}>
-                {statusInfo.label}
+                ({station.reviewCount} avaliações)
               </Text>
             </View>
           </View>
+
+          <Text style={styles.dataOriginLabel}>Status e notas do catálogo de simulação</Text>
 
           <View style={styles.availableRow}>
             <View style={styles.availableIconBox}>

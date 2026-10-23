@@ -63,8 +63,8 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 | 19 | P2 | Laboratório fora de configurações comuns | Pendente | settings; orb-lab | Preservar implementação e acesso interno. |
 | 20 | P3 | Proposta Auto Experience | Proposta pendente | docs; auto | Exige proposta prévia; sem promessa de CarPlay real ou uso de imagens sem direitos. |
 | 21 | P2 | Demonstração NEXT fora dos ajustes comuns | Pendente | settings | Preservar controles em acesso interno; depende do desenho mínimo de 32. |
-| 22 | P3 | Nome e endereço da estação | Pendente | stations/PointDetailsScreen | Manter 29. |
-| 23 | P2 | Pills de status e avaliação | Pendente | stations/PointDetailsScreen | Transparência alinhada a 03; manter conteúdo da seção Avaliações. |
+| 22 | P3 | Nome e endereço da estação | Implementado; revisão física pendente | stations/PointDetailsScreen | Manter 29. |
+| 23 | P2 | Pills de status e avaliação | Implementado; revisão física pendente | stations/PointDetailsScreen | Transparência alinhada a 03; manter conteúdo da seção Avaliações. |
 | 24 | P1 | Banner e estimativas sincronizadas | Implementado; revisão física pendente | stations; utils/autonomia | Dispensa limitada à condição; reserva exata de 5%; depende da bateria compartilhada. |
 | 25 | P2 | Carregadores e confirmação | Investigar antes de alterar | stations; stationPresentation | Entender Recarga não confirmada e manter função de segurança. |
 | 26 | P3 | Padrão dos cartões da ficha | Pendente | stations/PointDetailsScreen | Ícone/título com área distinta; distância continua aproximada. |
@@ -156,3 +156,10 @@ Cada entrada deve informar IDs, commit, arquivos, verificações e limites human
 - CP06: `c8b611c`. Consulta de módulos do iPhone sem cliente em duas tentativas: abordagem interrompida; conexão inicial não é prova de Fast Refresh atual. Nenhuma reinstalação/recompilação efetuada.
 
 - Ajustes de verificação CP07: corrigidos tokens de cor ausentes no tema base; testes antigos de texto passaram a esperar “Autonomia disponível”, preservando asserções de cálculo/status/imutabilidade.
+
+### CP08 — 22 e 23: identificação e pills da estação
+
+- Arquivos: `src/features/stations/PointDetailsScreen.tsx`, `.styles.ts`.
+- Nome/endereço aproximados com respiro abaixo. Status em primeira pill, nota/contagem em outra ao lado, com quebra flexível em fontes grandes. Uma identificação conjunta explica simulação de status/notas, evitando repetir o termo em cada valor.
+- Verificações: TypeScript, ESLint dirigido, diff (`08-*`). Seções Comodidades próximas e Avaliações preservadas.
+- Conferir: abrir ficha, comparar grupo nome/endereço e pills em claro/escuro e fonte ampliada. Revisão física pendente.

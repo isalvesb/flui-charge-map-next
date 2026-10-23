@@ -139,26 +139,28 @@ export const styles = StyleSheet.create({
     fontSize: 29,
     fontWeight: "600",
     letterSpacing: -0.8,
-    marginBottom: 8,
+    marginBottom: 2,
   },
 
   address: {
     color: "#3F554F",
     fontSize: 14,
     lineHeight: 20,
-    marginBottom: 14,
+    marginBottom: 12,
   },
 
   summaryRow: {
     flexDirection: "row",
     flexWrap: "wrap",
     alignItems: "center",
-    justifyContent: "space-between",
-    gap: 12,
-    marginBottom: 16,
+    justifyContent: "flex-start",
+    gap: 8,
+    marginBottom: 4,
   },
 
+  dataOriginLabel: { color: "#3F554F", fontSize: 12, lineHeight: 18, marginBottom: 14 },
   ratingGroup: {
+    paddingHorizontal: 10, paddingVertical: 8, borderRadius: 16, borderWidth: 1, borderColor: colors.border, backgroundColor: colors.primarySoft,
     flexDirection: "row",
     flexWrap: "wrap",
     maxWidth: "100%",
@@ -190,6 +192,7 @@ export const styles = StyleSheet.create({
   },
 
   statusGroup: {
+    maxWidth: "100%", flexShrink: 1, paddingHorizontal: 10, paddingVertical: 8, borderRadius: 16, borderWidth: 1, borderColor: colors.border, backgroundColor: colors.primarySoft,
     flexDirection: "row",
     alignItems: "center",
   },
@@ -202,6 +205,7 @@ export const styles = StyleSheet.create({
   },
 
   statusText: {
+    flexShrink: 1,
     color: "#1FA971",
     fontSize: 14,
     fontWeight: "700",
