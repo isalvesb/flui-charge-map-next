@@ -146,3 +146,10 @@
 - Ambos os servidores estavam parados. Após conferir portas livres, iniciados só os serviços desta worktree: Metro 8117/PID 2360 e streaming privado 8787/PID 2352. Cwd/IP conferidos; Metro e health HTTPS autenticado aprovados, sem reconhecimento/áudio.
 - Ledger encontrado **8 chamadas/216 s reservados**, e separado histórico **1/4**: total **9/220**. Preservado no reinício; diverge dos 3/66 informados no prompt. Não é custo faturado. Sem chamada nova nesta conferência.
 - Novo código copiado temporariamente sob autorização já concedida, sem exibição. Usuário solicitado a ativar em Configurações e informar o resultado antes do teste de abertura/escuta. Não considerar o novo fluxo homologado ainda.
+
+### Ativação confirmada e primeiro teste desta retomada
+
+- Usuário confirmou **“Voz ativa nesta sessão.”** nas Configurações. Metro lista conexões do bundle correto `com.guicunhasou.fluiavozlocal` no iPhone.
+- Orientado teste Home → FluIA → falar frase curta → silêncio sem tocar na Orb. Health registrou áudio e respostas Google: 24 frames, 4 respostas e 1 início de fala na consulta, sem conteúdo registrado. Ledger observado após esse início: **9 chamadas/246 s reservados**, mais 1/4 histórico: **10/250** no total registrado.
+- **Ainda sem resultado humano do encerramento por silêncio, leitura única e remoção visual de “Parar leitura”.** Cancelamento, segundo plano e rascunho permanecem pendentes no aparelho. Não inferir homologação dos contadores ou da ativação.
+- Código retirado do clipboard após a confirmação de colagem, somente porque o conteúdo ainda era exatamente o código; conteúdo novo seria preservado. Relatório local sem conteúdo de fala/segredos: `.validation/validacao-iphone-retomada.json`.
