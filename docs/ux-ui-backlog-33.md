@@ -67,7 +67,7 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 | 23 | P2 | Pills de status e avaliação | Implementado; revisão física pendente | stations/PointDetailsScreen | Transparência alinhada a 03; manter conteúdo da seção Avaliações. |
 | 24 | P1 | Banner e estimativas sincronizadas | Implementado; revisão física pendente | stations; utils/autonomia | Dispensa limitada à condição; reserva exata de 5%; depende da bateria compartilhada. |
 | 25 | P2 | Carregadores e confirmação | Implementado; confirmação preservada | stations; stationPresentation | Entender Recarga não confirmada e manter função de segurança. |
-| 26 | P3 | Padrão dos cartões da ficha | Pendente | stations/PointDetailsScreen | Ícone/título com área distinta; distância continua aproximada. |
+| 26 | P3 | Padrão dos cartões da ficha | Implementado; revisão física pendente | stations/PointDetailsScreen | Ícone/título com área distinta; distância continua aproximada. |
 | 27 | P2 | Identificação de catálogo sem repetição | Implementado; revisão física pendente | stations; identificacaoDados | Depende da identificação geral em 03/23/25. |
 | 28 | P3 | Cartões Estimativas e Conectores | Pendente | stations/PointDetailsScreen | Depende de 26; não modificar 29. |
 | 29 | — | Preservar Comodidades próximas e Avaliações | Preservação obrigatória | stations/PointDetailsScreen | Nenhuma alteração sem defeito comprovado ou autorização adicional. |
@@ -171,3 +171,10 @@ Cada entrada deve informar IDs, commit, arquivos, verificações e limites human
 - Removido “no exemplo” das quantidades. Identificação única junto ao resumo informa simulação, ausência de verificação/tempo real e possível desatualização; eliminado o bloco duplicado antes das estimativas.
 - Verificações: TypeScript, ESLint, testes de apresentação e filtragem, incluindo mudança de horário e conectores inválidos (`09-*`).
 - Conferir: ficha de ponto disponível e indisponível; comparar quantidade/status/aviso. Seções de comodidades/avaliações intactas. Revisão física pendente. CP07 `b3dade0`, CP08 `6f19aba`.
+
+### CP10 — 26: cartões de informações
+
+- Arquivos: `src/features/stations/PointDetailsScreen.tsx`, `.styles.ts`.
+- Cartões com cabeçalho destacado (ícone + título) e corpo separado. Potência, conectores, funcionamento e distância seguem o padrão. “Distância” mantém símbolo ≈ e explicação em linha reta.
+- Empilha cartões quando a largura de leitura, considerando fonte do app/sistema, é insuficiente. Medição após layout preserva render inicial consistente.
+- Verificações: TypeScript, ESLint e diff (`10-*`). Conferir ficha em duas fontes e temas; revisão visual/física pendente.

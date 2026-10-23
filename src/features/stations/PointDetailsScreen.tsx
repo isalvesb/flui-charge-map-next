@@ -41,6 +41,7 @@ import {
   StatusBar,
   Text,
   View,
+  useWindowDimensions,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { getStationImageSource } from "../../assets/stations";
@@ -193,7 +194,10 @@ function obterIconeDeAlcance(
 
 export default function PointDetailsScreen() {
   const now = useCurrentTime();
-  const { styles, colors, isDarkMode } = useTelaComPreferencias(baseStyles);
+  const { fontScale: systemFontScale } = useWindowDimensions();
+  const [infoWidth, setInfoWidth] = useState(0);
+  const { styles, colors, isDarkMode, fontScale } = useTelaComPreferencias(baseStyles);
+  const stackInfoCards = infoWidth / Math.max(1, fontScale * systemFontScale) < 340;
   const { userPreferences, demoStations, demoOrigin } = useAppPreferences();
   const { stationId, startRoute } = useLocalSearchParams<{
     stationId?: string | string[];
@@ -586,80 +590,48 @@ export default function PointDetailsScreen() {
 
           {recomendacaoDoPonto !== "Evite este ponto por enquanto" ? <Text style={styles.resumoTitle}>{recomendacaoDoPonto}</Text> : null}
           <ConnectionNotice />
-          <View style={styles.infoGrid}>
-            <View style={styles.infoRow}>
+          <View style={styles.infoGrid} onLayout={(event) => setInfoWidth(event.nativeEvent.layout.width)}>
+            <View style={[styles.infoRow, stackInfoCards ? { flexDirection: "column" } : null]}>
               <View style={styles.infoCard}>
-                <View style={styles.infoIconBox}>
-                  <Gauge
-                    size={20}
-                    color={colors.primaryBright}
-                    strokeWidth={2.2}
-                  />
-                </View>
-
-                <View style={styles.infoTextBox}>
+                <View style={styles.infoCardHeader}>
+                  <Gauge size={20} color={colors.primaryBright} strokeWidth={2.2} />
                   <Text style={styles.infoLabel}>Potência</Text>
+                </View>
+                <View style={styles.infoCardBody}>
                   <Text style={styles.infoValue}>{station.powerKw} kW</Text>
-                  <Text style={styles.infoDescription}>
-                    Velocidade de carga
-                  </Text>
+                  <Text style={styles.infoDescription}>Velocidade de carga</Text>
                 </View>
               </View>
-
               <View style={styles.infoCard}>
-                <View style={styles.infoIconBox}>
-                  <Plug
-                    size={20}
-                    color={colors.primaryBright}
-                    strokeWidth={2.2}
-                  />
-                </View>
-
-                <View style={styles.infoTextBox}>
+                <View style={styles.infoCardHeader}>
+                  <Plug size={20} color={colors.primaryBright} strokeWidth={2.2} />
                   <Text style={styles.infoLabel}>Conectores</Text>
+                </View>
+                <View style={styles.infoCardBody}>
                   <Text style={styles.infoValue}>{connectorLabels}</Text>
                   <Text style={styles.infoDescription}>Tipos compatíveis</Text>
                 </View>
               </View>
             </View>
-
-            <View style={styles.infoRow}>
+            <View style={[styles.infoRow, stackInfoCards ? { flexDirection: "column" } : null]}>
               <View style={styles.infoCard}>
-                <View style={styles.infoIconBox}>
-                  <AlarmClock
-                    size={20}
-                    color={colors.primaryBright}
-                    strokeWidth={2.2}
-                  />
-                </View>
-
-                <View style={styles.infoTextBox}>
+                <View style={styles.infoCardHeader}>
+                  <AlarmClock size={20} color={colors.primaryBright} strokeWidth={2.2} />
                   <Text style={styles.infoLabel}>Funcionamento</Text>
+                </View>
+                <View style={styles.infoCardBody}>
                   <Text style={styles.infoValue}>{station.openingHours}</Text>
-                  <Text style={styles.infoDescription}>
-                    {statusInfo.description}
-                  </Text>
+                  <Text style={styles.infoDescription}>{statusInfo.description}</Text>
                 </View>
               </View>
-
               <View style={styles.infoCard}>
-                <View style={styles.infoIconBox}>
-                  <Navigation2
-                    size={20}
-                    color={colors.primaryBright}
-                    strokeWidth={2.2}
-                  />
+                <View style={styles.infoCardHeader}>
+                  <Navigation2 size={20} color={colors.primaryBright} strokeWidth={2.2} />
+                  <Text style={styles.infoLabel}>Distância</Text>
                 </View>
-
-                <View style={styles.infoTextBox}>
-                  <Text style={styles.infoLabel}>Distância aproximada</Text>
-                  <Text style={styles.infoValue}>
-                    {formatarDistanciaDemonstrativa(station.distanceKm)}
-                  </Text>
-                  <Text style={styles.infoDescription}>
-                    Em linha reta desde {demoOrigin.nome}. Não é distância de
-                    percurso.
-                  </Text>
+                <View style={styles.infoCardBody}>
+                  <Text style={styles.infoValue}>{formatarDistanciaDemonstrativa(station.distanceKm)}</Text>
+                  <Text style={styles.infoDescription}>Em linha reta desde {demoOrigin.nome}. Não é distância de percurso.</Text>
                 </View>
               </View>
             </View>
