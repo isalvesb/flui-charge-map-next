@@ -1,8 +1,15 @@
 import type { Amenity, ChargingStationReview, StationStatus, Weekday } from "../../types";
 
-// Conteúdo escrito para o cenário NEXT. Não são depoimentos de pessoas reais.
+// Comentários escritos para o cenário NEXT; nomes definidos para a apresentação.
+// Não são depoimentos verificados das pessoas nomeadas.
 // IDs independentes mantêm avaliações locais e perfis de apresentação separados.
-const nomes = ["Camila Duarte", "Rafael Menezes", "Luiza Andrade", "Pedro Nogueira", "Beatriz Tavares", "Diego Azevedo", "Helena Martins", "André Campos", "Juliana Pires", "Felipe Rocha", "Clara Moreira", "Lucas Freitas"];
+const nomes = ["Camila Duarte", "Rafael Menezes", "Luiza Andrade", "Pedro Nogueira", "Beatriz Tavares", "Diego Azevedo", "Helena Martins", "André Campos", "Juliana Pires", "Felipe Rocha", "Clara Moreira", "Lucas Freitas",
+  "Alexandre Barcelos", "André Tritiack", "Anderson Rodrigues", "Antonio Sérgio",
+  "Artur Coelho", "Bruna Matos", "Daniel Corrêa", "Gabriel Wulfrick",
+  "Heloiza Gabriolli", "Leonardo Romão", "Luís Carlos", "Luiz Gustavo",
+  "Marcos Crivelaro", "Mauricio Viana", "Paula Regina", "Rafael Piassa",
+  "Raíssa Fregolent", "Thiago Keller", "Thiago Yamamoto", "Victor Atui Filho",
+];
 const chegadas = [
   "A entrada está bem sinalizada e consegui encontrar as vagas sem dar voltas.",
   "O acesso é simples e o espaço ajuda na hora de posicionar o carro junto ao conector.",
