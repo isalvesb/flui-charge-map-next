@@ -534,3 +534,9 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Seleção no menu salva imediatamente, sem botão Salvar. Mantém bloqueio durante gravação; falha restaura seleção anterior e informa erro. Veículo/autonomia/bateria/favoritos não são modificados.
 - Verificações: TypeScript, ESLint dirigido e testes de configuração; interação e persistência web de desenvolvimento serão conferidas após checkpoint.
 - S01 `3b02d0e`; indicador centralizado depende de nova revisão física, sem inferir aprovação pelo silêncio.
+
+### S03 — 22/26: identificação no final e títulos mais compactos
+
+- Arquivos: PointDetailsScreen.tsx/.styles.ts. Dados simulados retirado do topo e movido após todas as seções da ficha. Detalhe acessível e Sobre os dados preservados.
+- Títulos de 16 para 14 pt, mantendo bold 800 e alinhamento dos ícones; altura de linha 20. Redução pequena para evitar quebra na fonte Maior sem remover escala nativa.
+- Verificações: TypeScript, ESLint dirigido e diff. Conferir cartões com fonte maior na matriz web e no iPhone.

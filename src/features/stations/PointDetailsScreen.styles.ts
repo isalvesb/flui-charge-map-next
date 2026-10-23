@@ -372,8 +372,8 @@ export const styles = StyleSheet.create({
   infoLabel: {
     flexShrink: 1,
     color: "#10221E",
-    fontSize: 16,
-    lineHeight: 22,
+    fontSize: 14,
+    lineHeight: 20,
     fontWeight: "800",
   },
 
