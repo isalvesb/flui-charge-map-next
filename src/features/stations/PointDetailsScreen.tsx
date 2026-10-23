@@ -572,7 +572,7 @@ export default function PointDetailsScreen() {
             </View>
           </View>
 
-          <Text style={styles.dataOriginLabel}>{identificacaoDados.catalogo.resumo}</Text>
+          <Text style={styles.dataOriginLabel} accessibilityLabel={identificacaoDados.catalogo.resumo}>Dados simulados</Text>
 
           <View style={[styles.availableRow, !chargingConfirmed ? [styles.unconfirmedBanner, { backgroundColor: colors.warningLight, borderColor: colors.warningText }] : null]}>
             <View style={styles.availableIconBox}>

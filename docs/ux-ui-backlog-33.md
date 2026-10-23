@@ -452,3 +452,9 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Retirados campos editáveis de veículo/autonomia, resumo/botão de bateria e laboratório. Origem em menu suspenso com NEXT/FIAP e demais opções; Salvar usa ação primária roxa de largura total.
 - Ao salvar origem, preserva veículo/autonomia já configurados para o perfil. Não inventa novos perfis nem afirma que seleção completa do item 32 já exista; associação de novos perfis continua a fazer.
 - Verificações: TypeScript, ESLint e testes de configuração (`r07-*`). Menu de desenvolvimento terá teste web separado, sem instalar aplicativo.
+
+### R08 — 22: retirar parágrafo do catálogo
+
+- Arquivo: `src/features/stations/PointDetailsScreen.tsx`.
+- Confirmação humana identificou o texto “Catálogo de simulação…”. Parágrafo removido da apresentação visual; identificação curta Dados simulados permanece, com detalhes no rótulo acessível e em Sobre os dados.
+- Verificações: TypeScript, ESLint dirigido e diff (`r08-*`). Item 03 permanece aberto a nova revisão, sem alegar eliminação completa de toda repetição.
