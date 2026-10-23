@@ -52,7 +52,7 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 | 08 | P2 | Orb centralizada no alto | Feito — informado pelo usuário | assistant/FluiAssistantSheet | Não reimplementar. |
 | 09 | P3 | Título FluIA | Feito — informado pelo usuário | assistant/FluiAssistantSheet | Não reimplementar. |
 | 10 | P2 | Teclado e histórico | Implementado; revisão física pendente | assistant/FluiAssistantSheet | Conferir rolagem e alvos acessíveis no iPhone. |
-| 11 | P2 | Resposta por voz | Pendente | assistant/FluiAssistantSheet; fluiaState | Preservar TTS; distinguir falha, interrupção e conclusão. |
+| 11 | P2 | Resposta por voz | Implementado; áudio físico pendente | assistant/FluiAssistantSheet; fluiaState | Preservar TTS; distinguir falha, interrupção e conclusão. |
 | 12 | P2 | Pesquisa de reconhecimento de fala | Pesquisa pendente | docs | Não contratar serviço, instalar dependência nativa nem introduzir credenciais. |
 | 13 | P3 | Textos secundários do perfil | Implementado; revisão física pendente | profile/ProfileScreen | Preservar origem fictícia em identificação acessível/geral. |
 | 14 | P3 | Remoção de atalhos úteis | Implementado; revisão física pendente | profile/ProfileScreen | Mapa/filtros mantêm acessos próprios. |
@@ -210,3 +210,12 @@ Cada entrada deve informar IDs, commit, arquivos, verificações e limites human
 - Histórico deixa de saltar ao fim ao redimensionar se usuário estiver lendo acima. Botão Última mensagem retorna ao final; novo envio retoma acompanhamento automático. Respostas recebidas respeitam leitura anterior.
 - Verificações: TypeScript, ESLint dirigido e testes existentes de estados/motor (`14-*`). Sem reconhecimento de voz novo, sem alteração do preview temporário de estados.
 - Conferir: enviar pergunta, rolar histórico, abrir/recolher teclado, expandir resposta e usar Última mensagem. Revisão de gestos/teclado no iPhone pendente.
+
+### CP15 — 11: controles e falhas da leitura por voz
+
+- Arquivos: `src/features/assistant/FluiAssistantSheet.tsx`, `speechPlayback.ts`, `tests/speechPlayback.test.ts`.
+- Voz em português com início/fim/erro; Parar leitura e Ouvir resposta. Falhas mantêm texto legível e opção de tentar novamente. Rótulo do controle explica volume/modo silencioso.
+- Corrigida corrida: desligar voz durante espera da resposta ou fechar antes da preparação de áudio concluir não inicia fala tardia; callbacks antigos não afetam leitura nova. Leitura para ao sair/segundo plano. Sem captura de microfone.
+- Verificações: TypeScript, ESLint, testes de início/fim/erro/cancelamento/callback obsoleto (`15-*`). API conferida nos tipos instalados do expo-speech SDK54; docs online redirecionaram para latest, não usados para presumir atualização de SDK.
+- Conferir: perguntar → parar/ouvir novamente → desativar voz durante espera → sair/retornar. Áudio, volume, interrupções reais e VoiceOver no iPhone pendentes.
+- CP13 `f3fdc0a`; commit de CP14 registrado no próximo checkpoint.

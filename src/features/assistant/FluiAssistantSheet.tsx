@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   Animated,
+  AppState,
   Easing,
   Keyboard,
   KeyboardAvoidingView,
@@ -26,10 +27,12 @@ import {
   Users,
   Volume2,
   VolumeX,
+  Square,
   Zap,
 } from "lucide-react-native";
 
 import * as Speech from "expo-speech";
+import { createSpeechPlayback, type SpeechPlaybackState } from "./speechPlayback";
 import { PressableScale } from "../../components";
 import { useAppPreferences } from "../../context/PreferencesContext";
 import { useConnectivity } from "../../context/ConnectivityContext";
@@ -142,6 +145,9 @@ export function FluiAssistantSheet({
 
   const stateTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [voiceEnabled, setVoiceEnabled] = useState(true);
+  const voiceEnabledRef = useRef(true);
+  const [voicePlaybackState, setVoicePlaybackState] = useState<SpeechPlaybackState>("idle");
+  const speechPlayback = useMemo(() => createSpeechPlayback(Speech, setVoicePlaybackState), []);
   const [fluiaState, setFluiaState] = useState<FluiaState>("repouso");
   const [previewStatus, setPreviewStatus] = useState<FluiaVisualStatus | null>(null);
 
@@ -181,9 +187,14 @@ export function FluiAssistantSheet({
       if (analysisTimeoutRef.current) clearTimeout(analysisTimeoutRef.current);
       if (chatTimeoutRef.current) clearTimeout(chatTimeoutRef.current);
       if (stateTimeoutRef.current) clearTimeout(stateTimeoutRef.current);
-      Speech.stop();
+      speechPlayback.cancel();
     };
-  }, []);
+  }, [speechPlayback]);
+
+  useEffect(() => {
+    const listener = AppState.addEventListener("change", state => { if (state !== "active") speechPlayback.stop(); });
+    return () => listener.remove();
+  }, [speechPlayback]);
 
   useEffect(() => {
     thinkingProgress.stopAnimation();
@@ -235,7 +246,7 @@ export function FluiAssistantSheet({
   };
 
   const closeAssistant = () => {
-    Speech.stop();
+    speechPlayback.stop();
     if (stateTimeoutRef.current) {
       clearTimeout(stateTimeoutRef.current);
       stateTimeoutRef.current = null;
@@ -275,6 +286,7 @@ export function FluiAssistantSheet({
       clearTimeout(stateTimeoutRef.current);
       stateTimeoutRef.current = null;
     }
+    speechPlayback.stop();
     setFluiaState("pensando");
 
     followLatestRef.current = true;
@@ -305,10 +317,7 @@ export function FluiAssistantSheet({
             summary: response.recommendation ? summarizeSuggestion(response.recommendation) : undefined,
           },
         ]);
-        if (voiceEnabled) {
-          Speech.stop();
-          Speech.speak(response.text, { language: "pt-BR" });
-        }
+        if (voiceEnabledRef.current) void speechPlayback.speak(response.text);
         const nextState: FluiaState = response.state;
         setFluiaState(nextState);
         const duration = tempoDeExibicaoFluia(nextState);
@@ -355,8 +364,10 @@ export function FluiAssistantSheet({
   };
 
   const toggleVoice = () => {
-    if (voiceEnabled) Speech.stop();
-    setVoiceEnabled((current) => !current);
+    const next = !voiceEnabledRef.current;
+    voiceEnabledRef.current = next;
+    setVoiceEnabled(next);
+    if (!next) speechPlayback.stop();
   };
 
   if (!funcionalidadesExperimentais.fluia) return null;
@@ -380,6 +391,8 @@ export function FluiAssistantSheet({
               accessibilityLabel={
                 voiceEnabled ? "Desativar voz da FluIA" : "Ativar voz da FluIA"
               }
+              accessibilityState={{ selected: voiceEnabled }}
+              accessibilityHint="Lê as próximas respostas em português. Confira volume e modo silencioso do iPhone."
               style={styles.closeButton}
               onPress={toggleVoice}
             >
@@ -665,7 +678,19 @@ export function FluiAssistantSheet({
             </View>
           </ScrollView>
 
+          {voicePlaybackState === "error" ? <Text accessibilityRole="alert" style={styles.voiceNotice}>Não foi possível ler a resposta. O texto continua disponível; tente ouvir novamente.</Text> : null}
           <View style={styles.composerTools}>
+            {voicePlaybackState === "speaking" ? (
+              <PressableScale accessibilityRole="button" accessibilityLabel="Parar leitura da resposta" style={styles.composerToolButton} onPress={() => speechPlayback.stop()}>
+                <Square size={16} color={theme.primary} />
+                <Text accessibilityLiveRegion="polite" style={styles.secondaryButtonText}>Parar leitura</Text>
+              </PressableScale>
+            ) : voiceEnabled && messages.some(message => message.from === "flui") ? (
+              <PressableScale accessibilityRole="button" accessibilityLabel="Ouvir última resposta" style={styles.composerToolButton} onPress={() => { const last = [...messages].reverse().find(message => message.from === "flui"); if (last) void speechPlayback.speak(last.text); }}>
+                <Volume2 size={18} color={theme.primary} />
+                <Text style={styles.secondaryButtonText}>Ouvir resposta</Text>
+              </PressableScale>
+            ) : null}
             {showLatestMessage ? (
               <PressableScale accessibilityRole="button" accessibilityLabel="Ir para a última mensagem" style={styles.composerToolButton} onPress={scrollToLatestMessage}>
                 <Text style={styles.secondaryButtonText}>Última mensagem</Text>
@@ -1041,6 +1066,7 @@ function createStyles(theme: FluiaScreenTheme, fontScale: number) {
       fontSize: font(13),
       fontWeight: "600",
     },
+    voiceNotice: { color: theme.text, fontSize: font(13), lineHeight: font(19), paddingVertical: 8 },
     composerTools: { flexDirection: "row", flexWrap: "wrap", justifyContent: "flex-end", gap: 8 },
     composerToolButton: { minHeight: 44, paddingHorizontal: 8, flexDirection: "row", alignItems: "center", gap: 4 },
     inputRow: {
