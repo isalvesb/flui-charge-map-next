@@ -970,3 +970,12 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Arquivo: expandedStationExperience.ts. Comentários continuam conteúdo do cenário, sem atribuir depoimentos verificados. Textos, IDs, notas, datas, contagens e 12 fichas originais preservados; nenhuma gravação nas avaliações/favoritos pessoais.
 - ESLint dirigido, diff e cinco testes de catálogo aprovados. Conferência dos dados gerados confirmou todos os 20 nomes presentes nos 180 comentários, sem duplicação de autor na mesma ficha. Exemplo para conferir: Flui Campinas contém Alexandre Barcelos. Suíte completa anterior 240/240 não repetida para esta alteração de nomes.
 - Atualização de dados JavaScript no mesmo ambiente servido pelo Metro; disponível por Fast Refresh/recarregamento, sem instalar/recompilar. Visualização física dos novos nomes não declarada. Nenhuma publicação ou alteração na consolidação.
+
+
+### S46 — 33: novas localizações iniciais; NEXT no topo
+
+- Oito referências adicionadas às quatro anteriores: Campinas, Santos, São José dos Campos, Paraty, Rio de Janeiro — Centro, Rio de Janeiro — Barra, Cabo Frio e Búzios. Coordenadas de cenário já usadas no catálogo, sem GPS/geocodificação externa. NEXT é a primeira opção da lista; FIAP continua fallback/padrão e escolhas já salvas são preservadas.
+- Lista suspensa com altura máxima e rolagem para 12 opções; nomes longos ocupam largura flexível sem expulsar chevron/check. Salvamento automático e feedback existentes mantidos. Não alterados bateria/autonomia ou bases dos perfis.
+- Arquivos: data/demonstracao.ts, PresentationOriginPreference.tsx e demonstracao.test.ts. Tipos/lint/diff e 18 testes dirigidos de origem/perfis/cenários aprovados. Teste de estimativas passou a colocar a estação de teste perto de cada origem, evitando supor que todas as novas origens ficam em SP; não relaxada a reserva de bateria.
+- validacao-origens-novas.json passou: NEXT primeiro, 12 opções, FIAP salva preservada, seleção automática/persistência de Búzios/Rio/NEXT, bateria/autonomia mantidas e extremos da lista alcançáveis em 320/393 fonte Maior. Primeira conferência do harness incluiu radios de fonte; delimitada ao menu, sem alterar o produto por essa falha.
+- Mesmo ambiente/Metro, sem instalação ou publicação. Revisão física pendente. Commit deste bloco registrado no próximo checkpoint.

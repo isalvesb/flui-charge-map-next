@@ -81,7 +81,7 @@ test("origem atualiza os dados usados no raio de busca e na viabilidade da FluIA
 
 test("mapa, ficha e FluIA exibem a mesma estimativa de chegada para toda origem", () => {
   for (const origem of origensDemonstrativas) {
-    const stations = aplicarOrigemDemonstrativa([createStation()], origem);
+    const stations = aplicarOrigemDemonstrativa([createStation({ latitude: origem.latitude + 0.001, longitude: origem.longitude })], origem);
     const assessment = avaliarAlcance(stations[0].distanceKm, 275.5, 35);
     const recommendation = recommendStations({ stations, intent: "fastCharge", vehicleRangeKm: 275.5, batteryPercent: 35 });
     assert.ok(recommendation);
@@ -108,4 +108,16 @@ test("FIAP volta ao padrão e NEXT continua uma opção explícita", () => {
   assert.equal(initial.longitude, -46.652537);
   assert.equal(obterOrigemDemonstrativa("next").nome, "NEXT");
   assert.equal(normalizarConfiguracaoDemonstrativa({ demoOriginId: "paulista" }).demoOriginId, "paulista");
+});
+
+
+test("NEXT fica primeiro sem mudar FIAP como fallback; todas as origens são persistíveis", () => {
+  assert.equal(origensDemonstrativas[0].id, "next");
+  assert.equal(obterOrigemDemonstrativa("invalida" as never).id, "fiap");
+  assert.equal(new Set(origensDemonstrativas.map(o => o.id)).size, origensDemonstrativas.length);
+  for (const origin of origensDemonstrativas) {
+    const config = { ...demonstracaoPadrao, demoOriginId: origin.id };
+    assert.equal(validarConfiguracaoDemonstrativa(config), null);
+    assert.equal(normalizarConfiguracaoDemonstrativa(JSON.parse(JSON.stringify(config))).demoOriginId, origin.id);
+  }
 });
