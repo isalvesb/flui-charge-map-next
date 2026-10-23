@@ -598,7 +598,7 @@ export const styles = StyleSheet.create({
     gap: 16,
   },
   ratingPanelStacked: { flexDirection: "column", alignItems: "stretch" },
-  ratingPanelColumn: { width: "100%", flex: 0 },
+  ratingPanelColumn: { width: "100%", flexGrow: 0, flexShrink: 0, flexBasis: "auto" },
 
   ratingPanelLeft: {
     width: 110,
