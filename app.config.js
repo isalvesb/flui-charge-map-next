@@ -7,19 +7,22 @@ const googleMapsApiKeyIos =
 
 module.exports = {
   expo: {
-    name: "Flui 2.3",
+    name: "Flui Voz 2.3",
     slug: "flui-charge-map",
     version: "2.3.0",
     orientation: "portrait",
     icon: "./src/assets/images/icon.png",
-    scheme: "fluiuxmapa01",
+    scheme: "fluiavozlocal",
     userInterfaceStyle: "automatic",
     newArchEnabled: true,
     ios: {
-      bundleIdentifier: "com.guicunhasou.fluiuxmapa01",
+      bundleIdentifier: "com.guicunhasou.fluiavozlocal",
       appleTeamId: "D982GJWNW4",
       buildNumber: "20261022",
-      infoPlist: { CFBundleDisplayName: "Flui 2.3" },
+      infoPlist: {
+        CFBundleDisplayName: "Flui Voz 2.3",
+        NSLocalNetworkUsageDescription: "Conectar ao Mac na mesma rede para transcrever o áudio da FluIA com Google Cloud.",
+      },
       supportsTablet: true,
       config: {
         googleMapsApiKey: googleMapsApiKeyIos,
@@ -44,6 +47,9 @@ module.exports = {
       favicon: "./src/assets/images/favicon.png",
     },
     plugins: [
+      ["expo-dev-client", { launchMode: "launcher" }],
+      ["expo-audio", { recordAudioAndroid: false, enableBackgroundRecording: false, microphonePermission: "Permitir que a FluIA grave sua voz ao tocar em Gravar. O áudio será enviado ao Google Cloud para transcrição." }],
+      "./plugins/withFluiaSttPrivacy",
       "expo-router",
       [
         "expo-splash-screen",

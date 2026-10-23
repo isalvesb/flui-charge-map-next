@@ -65,3 +65,20 @@ test("cancelar enquanto consulta a voz impede reprodução tardia", async () => 
   const player=createSpeechPlayback({stop:async()=>{},speak:()=>{count++;}},()=>{},()=>pending);
   const speaking=player.speak("Não reproduzir");await Promise.resolve();player.stop();release("pt-br-test");await speaking;assert.equal(count,0);
 });
+
+test("captura pode aguardar a liberação da leitura e ignorar callbacks antigos", async () => {
+  let release!: () => void;
+  const f = fixture();
+  await f.player.speak("Resposta");
+  f.utterances[0].options.onStart();
+  const events: string[] = [];
+  const player = createSpeechPlayback({ stop: () => new Promise<void>(resolve => { release = resolve; }), speak: () => {} }, state => events.push(state));
+  const stopped = player.stopAndWait().then(() => events.push("released"));
+  assert.deepEqual(events, ["idle"]);
+  release();
+  await stopped;
+  assert.deepEqual(events, ["idle", "released"]);
+  await f.player.stopAndWait();
+  f.utterances[0].options.onStart();
+  assert.equal(f.states.at(-1), "idle");
+});

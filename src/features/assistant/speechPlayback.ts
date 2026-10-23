@@ -9,6 +9,12 @@ export function createSpeechPlayback(engine: SpeechEngine, onState: (state: Spee
   return {
     cancel,
     stop() { cancel(); onState("idle"); },
+    async stopAndWait() {
+      generation += 1;
+      onState("idle");
+      // Recording starts only after the output engine has released its audio.
+      await engine.stop();
+    },
     async speak(text: string) {
       if (!text.trim()) return;
       const current = ++generation;
