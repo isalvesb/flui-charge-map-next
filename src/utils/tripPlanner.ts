@@ -35,9 +35,9 @@ export type PlanoDeViagem = {
 
 const MARGEM_SEGURANCA_PERCENT = 20;
 // Mesma reserva mínima usada nas recomendações da FluIA.
-const RESERVA_MINIMA_PARADA_PERCENT = 5;
-const BATERIA_ALVO_PARADA_PERCENT = 80;
-const VELOCIDADE_MEDIA_KMH = 70;
+export const RESERVA_MINIMA_PARADA_PERCENT = 5;
+export const BATERIA_ALVO_PARADA_PERCENT = 80;
+export const VELOCIDADE_MEDIA_KMH = 70;
 
 function interpolarCoordenada(
   origem: Coordenada,
@@ -178,6 +178,6 @@ export function describeTripStops(plan: PlanoDeViagem) {
   const count = plan.paradas.length;
   if (!podeIniciarViagem(plan)) return count
     ? `Plano inviável · ${count} parada${count === 1 ? "" : "s"} ${count === 1 ? "alcançável" : "alcançáveis"}`
-    : "Plano inviável · nenhuma parada alcançável";
+    : "Plano inviável · sem sequência de recargas viável";
   return count ? `${count} parada${count === 1 ? "" : "s"} de recarga necessária${count === 1 ? "" : "s"}` : "Sem paradas de recarga necessárias";
 }

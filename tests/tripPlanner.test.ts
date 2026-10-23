@@ -171,7 +171,7 @@ test("seletor e resumo descrevem paradas necessárias calculadas, não candidata
   assert.equal(describeTripStops(stops), "3 paradas de recarga necessárias");
   assert.deepEqual(stops.paradas.map(p => p.nome), destination.paradas.map(p => p.nome));
   const blocked = planejarViagem(origem, destination, 80, 0);
-  assert.equal(describeTripStops(blocked), "Plano inviável · nenhuma parada alcançável");
+  assert.equal(describeTripStops(blocked), "Plano inviável · sem sequência de recargas viável");
 });
 
 

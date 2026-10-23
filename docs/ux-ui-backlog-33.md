@@ -623,3 +623,15 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Consolidação reconferida limpa em abd5dfacaf51350b32fa77066ee849dbfcc9fbdc; bloqueio de push/hooks intactos. Sem ações remotas, publicação, novas dependências, migração, build/instalação ou alteração do código nativo.
 - Para conferir a cobertura no iPhone: Busca → Limpar busca → Raio 1000 km → Ver pontos no mapa. Filtros adicionais podem reduzir os resultados; distâncias são em linha reta, não alcance da bateria.
 - Próximo ponto consistente: base ampliada pronta; item 01 continua pendente de revisão da ligação entre catálogo e planejamento. 12/20/32 ainda precisam de implementação e decisões específicas; 30 aguarda sintomas para diagnóstico. Revisão 34 está disponível para feedback, sem aprovação presumida.
+
+### S12 — 01: retomar após base pronta, usando o catálogo do mapa
+
+- Etapa posterior à ampliação/conferência da base, respeitando a ordem pedida. Arquivos: utils/catalogTripPlanner.ts, utils/tripPlanner.ts (constantes compartilhadas/descrição inviável), TripPlannerScreen.tsx e testes.
+- Planejador e seletor usam as mesmas estações do mapa, seus IDs, nomes e coordenadas; não interpolam novas paradas fictícias entre extremos. Origem permanece a preferência configurada. Catálogo completo é considerado para viagem, sem aplicar raio/filtros da busca de proximidade.
+- Busca local prioriza menos recargas; empate por menor distância. Cada trecho precisa preservar 5% exatos antes de arredondar e só aceita recarga possível segundo horário/status/conectores do cadastro. Alvo de saída 80% preservado. Linha reta, tempo sem trânsito/espera/recarga e compatibilidade não confirmada continuam explícitos.
+- Viagem direta com 5–20% na chegada é exibida como apertada, sem impor uma parada desnecessária apenas para chegar a 20%. Contagem não é forçada para parecer haver várias paradas.
+- Nos cenários FIAP/70%, Cabo Frio exige 1 parada com autonomia 400 km e 3 com 200 km; 150 km exige 5. Resultado depende dos dados/horários atuais, não representa um roteiro rodoviário validado.
+- Atualização de horário não recentraliza o mapa quando as coordenadas do plano continuam iguais. Plano sem sequência suficiente fica inviável; não inventa recarga ou afirma que não existe nenhuma estação alcançável.
+- Verificações: TypeScript, ESLint e testes de rota direta, três paradas, menor número de recargas, manutenção/fechamento, reserva exata, entradas inválidas e correspondência com a base SP/RJ. Conferência web dirigida e revisão humana ainda pendentes.
+
+- S12: primeira suíte dirigida detectou fixture de teste que ainda mantinha calendário estruturado 24h enquanto trocava só o texto de horário. Cenário fechado corrigido para testar fallback e calendário fechado separadamente; precedência do calendário e motor não alterados. Log inicial preservado.

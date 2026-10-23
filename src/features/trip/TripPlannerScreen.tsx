@@ -45,13 +45,14 @@ import {
 import { identificacaoDados } from "../../data/identificacaoDados";
 import { calcularAutonomiaAtualKm } from "../../utils/autonomia";
 import {
-  planejarViagem,
   describeTripStops,
   podeIniciarViagem,
   type ParadaDeViagem,
 } from "../../utils/tripPlanner";
 import { styles as baseStyles } from "./TripPlannerScreen.styles";
 import { getTripReadingLayout, shouldStackTripStats } from "./tripLayout";
+import { planejarViagemNoCatalogo } from "../../utils/catalogTripPlanner";
+import { useCurrentTime } from "../../hooks/useCurrentTime";
 import { useReducedMotion } from "../../hooks/useReducedMotion";
 
 type Coordenada = { latitude: number; longitude: number };
@@ -93,7 +94,8 @@ export default function TripPlannerScreen() {
   const stackedStats = shouldStackTripStats(statsWidth, fontScale, systemFontScale);
   const reducedMotion = useReducedMotion();
   const [footerHeight, setFooterHeight] = useState(140);
-  const { userPreferences, demoOrigin } = useAppPreferences();
+  const { userPreferences, demoOrigin, demoStations } = useAppPreferences();
+  const now = useCurrentTime();
   const { checkConnection } = useConnectivity();
   const vehicleRangeKm = userPreferences.vehicleRangeKm;
   const batteryPercent = userPreferences.batteryPercent;
@@ -114,13 +116,15 @@ export default function TripPlannerScreen() {
   }, [destinationId]);
 
   const plano = useMemo(() => {
-    return planejarViagem(
+    return planejarViagemNoCatalogo(
       origemSelecionada,
       destinoSelecionado,
       vehicleRangeKm,
       batteryPercent,
+      demoStations,
+      now,
     );
-  }, [origemSelecionada, destinoSelecionado, vehicleRangeKm, batteryPercent]);
+  }, [origemSelecionada, destinoSelecionado, vehicleRangeKm, batteryPercent, demoStations, now]);
 
   const podeIniciar = podeIniciarViagem(plano);
 
@@ -138,6 +142,7 @@ export default function TripPlannerScreen() {
 
   const mapRef = useRef<MapViewHandle | null>(null);
   const isPrimeiraRegiaoRef = useRef(true);
+  const previousRegionRef = useRef(regiaoDoMapa);
 
   useEffect(() => {
     if (isPrimeiraRegiaoRef.current) {
@@ -145,6 +150,10 @@ export default function TripPlannerScreen() {
       return;
     }
 
+    const previous = previousRegionRef.current;
+    if (previous.latitude === regiaoDoMapa.latitude && previous.longitude === regiaoDoMapa.longitude
+      && previous.latitudeDelta === regiaoDoMapa.latitudeDelta && previous.longitudeDelta === regiaoDoMapa.longitudeDelta) return;
+    previousRegionRef.current = regiaoDoMapa;
     mapRef.current?.animateToRegion(regiaoDoMapa, 400);
   }, [regiaoDoMapa]);
 
@@ -203,7 +212,7 @@ export default function TripPlannerScreen() {
 
   const renderizarSeletor = () => {
     const opcoesDestino = destinosDemonstrativos.map((destino) => {
-      const preview = planejarViagem(origemSelecionada, destino, vehicleRangeKm, batteryPercent);
+      const preview = planejarViagemNoCatalogo(origemSelecionada, destino, vehicleRangeKm, batteryPercent, demoStations, now);
       return {
         id: destino.id,
         titulo: destino.nome,
@@ -397,7 +406,7 @@ export default function TripPlannerScreen() {
                   key={parada.id}
                   coordinate={parada}
                   title={`Parada ${index + 1}: ${parada.nome}`}
-                  description={`Chegada ${parada.bateriaChegadaPercent}% · saída ${parada.bateriaSaidaPercent}% · posição simulada`}
+                  description={`Chegada ${parada.bateriaChegadaPercent}% · saída ${parada.bateriaSaidaPercent}% · local do catálogo de simulação`}
                   accessibilityLabel={`Parada ${index + 1} de ${plano.paradas.length}: ${parada.nome}`}
                 >
                   <View style={styles.markerStop}>
@@ -599,7 +608,7 @@ export default function TripPlannerScreen() {
 
           <Text style={styles.disclaimerText}>
             {identificacaoDados.viagem.aviso}
-            {"\n"}O tempo de deslocamento não inclui espera nem duração das recargas. Conectores e funcionamento das paradas não são confirmados por esta simulação.
+            {"\n"}Paradas escolhidas no mesmo catálogo do mapa. O tempo de deslocamento não inclui espera nem duração das recargas. Conectores e funcionamento das paradas não são confirmados por esta simulação.
           </Text>
 
           {erroDeRota ? (
