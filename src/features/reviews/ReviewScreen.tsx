@@ -1,7 +1,7 @@
+import { OfflineImage as Image } from "../../offline/OfflineImage";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   Alert,
-  Image,
   KeyboardAvoidingView,
   Platform,
   Pressable,

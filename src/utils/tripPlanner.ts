@@ -26,13 +26,18 @@ export type PlanoDeViagem = {
   paradas: ParadaDeViagem[];
   bateriaChegadaDestinoPercent: number;
   nivelDeAlcance: NivelDeAlcance;
+  trechoFinal: {
+    distanciaKm: number;
+    tempoMin: number;
+    bateriaSaidaPercent: number;
+  };
 };
 
 const MARGEM_SEGURANCA_PERCENT = 20;
 // Mesma reserva mínima usada nas recomendações da FluIA.
-const RESERVA_MINIMA_PARADA_PERCENT = 5;
-const BATERIA_ALVO_PARADA_PERCENT = 80;
-const VELOCIDADE_MEDIA_KMH = 70;
+export const RESERVA_MINIMA_PARADA_PERCENT = 5;
+export const BATERIA_ALVO_PARADA_PERCENT = 80;
+export const VELOCIDADE_MEDIA_KMH = 70;
 
 function interpolarCoordenada(
   origem: Coordenada,
@@ -140,6 +145,12 @@ export function planejarViagem(
 
   return {
     distanciaTotalKm: Math.round(distanciaTotalKm),
+    // Expõe os valores já calculados; não redefine o trajeto nem a reserva.
+    trechoFinal: {
+      distanciaKm: Math.round(trechoFinalKm),
+      tempoMin: calcularTempoMin(trechoFinalKm),
+      bateriaSaidaPercent: bateriaAtual,
+    },
     tempoEstimadoMin: calcularTempoMin(distanciaTotalKm),
     paradas,
     bateriaChegadaDestinoPercent:
@@ -160,3 +171,13 @@ export function podeIniciarViagem(
 }
 
 export const MARGEM_SEGURANCA_PARADAS_PERCENT = MARGEM_SEGURANCA_PERCENT;
+
+
+// Mesma descrição no seletor de destino e no resumo, sempre do plano calculado.
+export function describeTripStops(plan: PlanoDeViagem) {
+  const count = plan.paradas.length;
+  if (!podeIniciarViagem(plan)) return count
+    ? `Plano inviável · ${count} parada${count === 1 ? "" : "s"} ${count === 1 ? "alcançável" : "alcançáveis"}`
+    : "Plano inviável · sem sequência de recargas viável";
+  return count ? `${count} parada${count === 1 ? "" : "s"} de recarga necessária${count === 1 ? "" : "s"}` : "Sem paradas de recarga necessárias";
+}

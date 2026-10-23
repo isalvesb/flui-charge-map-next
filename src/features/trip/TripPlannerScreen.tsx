@@ -11,6 +11,7 @@ import {
   StatusBar,
   Text,
   View,
+  useWindowDimensions,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router, type Href } from "expo-router";
@@ -36,7 +37,6 @@ import MapView, {
 import { PressableScale, ScreenTransition } from "../../components";
 import { useAppPreferences } from "../../context/PreferencesContext";
 import { useTelaComPreferencias } from "../../hooks/useTelaComPreferencias";
-import { origensDemonstrativas } from "../../data/demonstracao";
 import {
   destinosDemonstrativos,
   obterDestinoDemonstrativo,
@@ -45,15 +45,17 @@ import {
 import { identificacaoDados } from "../../data/identificacaoDados";
 import { calcularAutonomiaAtualKm } from "../../utils/autonomia";
 import {
-  planejarViagem,
+  describeTripStops,
   podeIniciarViagem,
   type ParadaDeViagem,
 } from "../../utils/tripPlanner";
 import { styles as baseStyles } from "./TripPlannerScreen.styles";
+import { getTripReadingLayout, shouldStackTripStats } from "./tripLayout";
+import { planejarViagemNoCatalogo } from "../../utils/catalogTripPlanner";
+import { useCurrentTime } from "../../hooks/useCurrentTime";
+import { useReducedMotion } from "../../hooks/useReducedMotion";
 
 type Coordenada = { latitude: number; longitude: number };
-
-type SeletorAberto = "origem" | "destino" | null;
 
 function formatarDuracao(minutos: number) {
   const horas = Math.floor(minutos / 60);
@@ -83,40 +85,50 @@ function calcularRegiaoDoMapa(pontos: Coordenada[]): Region {
 }
 
 export default function TripPlannerScreen() {
-  const { styles, colors, isDarkMode } = useTelaComPreferencias(baseStyles);
-  const { userPreferences, demoOrigin } = useAppPreferences();
+  const { styles, colors, isDarkMode, fontScale } = useTelaComPreferencias(baseStyles);
+  const { width, fontScale: systemFontScale } = useWindowDimensions();
+  const { stacked } = getTripReadingLayout(width, fontScale, systemFontScale);
+  // Começa empilhado tanto na exportação quanto na primeira renderização cliente.
+  // A largura medida muda os estilos em conjunto, depois da hidratação.
+  const [statsWidth, setStatsWidth] = useState(0);
+  const stackedStats = shouldStackTripStats(statsWidth, fontScale, systemFontScale);
+  const reducedMotion = useReducedMotion();
+  const [footerHeight, setFooterHeight] = useState(140);
+  const { userPreferences, demoOrigin, demoStations } = useAppPreferences();
+  const now = useCurrentTime();
   const { checkConnection } = useConnectivity();
   const vehicleRangeKm = userPreferences.vehicleRangeKm;
   const batteryPercent = userPreferences.batteryPercent;
 
-  const [originId, setOriginId] = useState(demoOrigin.id);
   const [destinationId, setDestinationId] = useState(
     destinosDemonstrativos[0].id,
   );
-  const [seletorAberto, setSeletorAberto] = useState<SeletorAberto>(null);
+  const [seletorAberto, setSeletorAberto] = useState(false);
   const [erroDeRota, setErroDeRota] = useState<string | null>(null);
   const [isIniciandoViagem, setIsIniciandoViagem] = useState(false);
-  const [mostrarDicaDeRolagem, setMostrarDicaDeRolagem] = useState(true);
+  const scrollRef = useRef<ScrollView>(null);
+  const routeCardTop = useRef(0);
 
-  const origemSelecionada = useMemo(() => {
-    return (
-      origensDemonstrativas.find((origem) => origem.id === originId) ??
-      demoOrigin
-    );
-  }, [demoOrigin, originId]);
+  const origemSelecionada = demoOrigin;
 
   const destinoSelecionado = useMemo<DestinoViagem>(() => {
     return obterDestinoDemonstrativo(destinationId);
   }, [destinationId]);
 
   const plano = useMemo(() => {
-    return planejarViagem(
+    return planejarViagemNoCatalogo(
       origemSelecionada,
       destinoSelecionado,
       vehicleRangeKm,
       batteryPercent,
+      demoStations,
+      now,
     );
-  }, [origemSelecionada, destinoSelecionado, vehicleRangeKm, batteryPercent]);
+  }, [origemSelecionada, destinoSelecionado, vehicleRangeKm, batteryPercent, demoStations, now]);
+
+  const abrirFichaDaParada = (parada: ParadaDeViagem) => {
+    router.push({ pathname: "/point-details", params: { stationId: parada.id, returnTo: "trip-planner" } });
+  };
 
   const podeIniciar = podeIniciarViagem(plano);
 
@@ -134,6 +146,7 @@ export default function TripPlannerScreen() {
 
   const mapRef = useRef<MapViewHandle | null>(null);
   const isPrimeiraRegiaoRef = useRef(true);
+  const previousRegionRef = useRef(regiaoDoMapa);
 
   useEffect(() => {
     if (isPrimeiraRegiaoRef.current) {
@@ -141,6 +154,10 @@ export default function TripPlannerScreen() {
       return;
     }
 
+    const previous = previousRegionRef.current;
+    if (previous.latitude === regiaoDoMapa.latitude && previous.longitude === regiaoDoMapa.longitude
+      && previous.latitudeDelta === regiaoDoMapa.latitudeDelta && previous.longitudeDelta === regiaoDoMapa.longitudeDelta) return;
+    previousRegionRef.current = regiaoDoMapa;
     mapRef.current?.animateToRegion(regiaoDoMapa, 400);
   }, [regiaoDoMapa]);
 
@@ -198,49 +215,36 @@ export default function TripPlannerScreen() {
   };
 
   const renderizarSeletor = () => {
-    const opcoesOrigem = origensDemonstrativas.map((origem) => ({
-      id: origem.id,
-      titulo: origem.nome,
-      subtitulo: "Origem demonstrativa",
-      selecionado: origem.id === originId,
-      onPress: () => {
-        setOriginId(origem.id);
-        setSeletorAberto(null);
-      },
-    }));
+    const opcoesDestino = destinosDemonstrativos.map((destino) => {
+      const preview = planejarViagemNoCatalogo(origemSelecionada, destino, vehicleRangeKm, batteryPercent, demoStations, now);
+      return {
+        id: destino.id,
+        titulo: destino.nome,
+        subtitulo: describeTripStops(preview),
+        selecionado: destino.id === destinationId,
+        onPress: () => { setDestinationId(destino.id); setSeletorAberto(false); },
+      };
+    });
 
-    const opcoesDestino = destinosDemonstrativos.map((destino) => ({
-      id: destino.id,
-      titulo: destino.nome,
-      subtitulo: `${destino.paradas.length} parada${destino.paradas.length === 1 ? "" : "s"} de recarga no trajeto`,
-      selecionado: destino.id === destinationId,
-      onPress: () => {
-        setDestinationId(destino.id);
-        setSeletorAberto(null);
-      },
-    }));
-
-    const opcoes = seletorAberto === "origem" ? opcoesOrigem : opcoesDestino;
+    const opcoes = opcoesDestino;
 
     return (
       <Modal
-        visible={seletorAberto !== null}
+        visible={seletorAberto}
         transparent
-        animationType="slide"
-        onRequestClose={() => setSeletorAberto(null)}
+        animationType={reducedMotion ? "none" : "slide"}
+        onRequestClose={() => setSeletorAberto(false)}
       >
         <View style={styles.modalBackdrop}>
           <Pressable
             style={StyleSheet.absoluteFill}
             accessibilityRole="button"
             accessibilityLabel="Fechar seletor"
-            onPress={() => setSeletorAberto(null)}
+            onPress={() => setSeletorAberto(false)}
           />
           <View style={styles.modalSheet} accessibilityViewIsModal>
             <Text style={styles.modalTitle} accessibilityRole="header">
-              {seletorAberto === "origem"
-                ? "Escolher origem"
-                : "Escolher destino"}
+              Escolher destino
             </Text>
 
             <ScrollView showsVerticalScrollIndicator={false}>
@@ -269,7 +273,7 @@ export default function TripPlannerScreen() {
             <Pressable
               accessibilityRole="button"
               style={styles.modalCloseButton}
-              onPress={() => setSeletorAberto(null)}
+              onPress={() => setSeletorAberto(false)}
             >
               <Text style={styles.modalCloseButtonText}>Cancelar</Text>
             </Pressable>
@@ -301,28 +305,15 @@ export default function TripPlannerScreen() {
 
         <ConnectionNotice />
         <ScrollView
-          contentContainerStyle={styles.scrollContent}
+          ref={scrollRef}
+          contentContainerStyle={[styles.scrollContent, { paddingBottom: footerHeight + 24 }]}
           showsVerticalScrollIndicator={false}
-          scrollEventThrottle={16}
-          onScroll={(event) => {
-            if (
-              mostrarDicaDeRolagem &&
-              event.nativeEvent.contentOffset.y > 24
-            ) {
-              setMostrarDicaDeRolagem(false);
-            }
-          }}
         >
           <View style={styles.card}>
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel={`Origem: ${origemSelecionada.nome}`}
-              accessibilityHint="Toque para escolher outra origem demonstrativa."
-              style={({ pressed }) => [
-                styles.routeField,
-                pressed ? styles.routeFieldPressed : null,
-              ]}
-              onPress={() => setSeletorAberto("origem")}
+            <View
+              accessible
+              accessibilityLabel={`Origem configurada: ${origemSelecionada.nome}`}
+              style={styles.routeField}
             >
               <View style={styles.routeDotWrap}>
                 <View style={styles.routeDotOrigin} />
@@ -333,19 +324,19 @@ export default function TripPlannerScreen() {
                   {origemSelecionada.nome}
                 </Text>
               </View>
-            </Pressable>
+            </View>
 
             <View style={styles.routeDivider} />
 
             <Pressable
               accessibilityRole="button"
               accessibilityLabel={`Destino: ${destinoSelecionado.nome}`}
-              accessibilityHint="Toque para escolher outro destino demonstrativo."
+              accessibilityHint="Toque para escolher outro destino do cenário."
               style={({ pressed }) => [
                 styles.routeField,
                 pressed ? styles.routeFieldPressed : null,
               ]}
-              onPress={() => setSeletorAberto("destino")}
+              onPress={() => setSeletorAberto(true)}
             >
               <View style={styles.routeDotWrap}>
                 <MapPin size={18} color={colors.primary} strokeWidth={2.2} />
@@ -359,13 +350,13 @@ export default function TripPlannerScreen() {
             </Pressable>
           </View>
 
-          <View style={[styles.card, styles.autonomyRow]}>
+          <View style={[styles.card, styles.autonomyRow, stacked && styles.stackedRow]}>
             <View style={styles.autonomyTile}>
               <View style={styles.autonomyIconBox}>
                 <BatteryFull size={18} color={colors.primary} strokeWidth={2.2} />
               </View>
               <View style={styles.autonomyTextGroup}>
-                <Text style={styles.autonomyLabel} numberOfLines={1}>
+                <Text style={styles.autonomyLabel}>
                   Autonomia estimada
                 </Text>
                 <Text style={styles.autonomyValue}>{autonomiaAtualKm} km</Text>
@@ -377,7 +368,7 @@ export default function TripPlannerScreen() {
                 <Zap size={18} color={corDaBateria} strokeWidth={2.2} />
               </View>
               <View style={styles.autonomyTextGroup}>
-                <Text style={styles.autonomyLabel} numberOfLines={1}>
+                <Text style={styles.autonomyLabel}>
                   Bateria atual
                 </Text>
                 <Text style={styles.autonomyValue}>{batteryPercent}%</Text>
@@ -408,25 +399,33 @@ export default function TripPlannerScreen() {
             >
               <Marker
                 coordinate={origemSelecionada}
+                title={`Origem: ${origemSelecionada.nome}`}
                 accessibilityLabel={`Origem: ${origemSelecionada.nome}`}
               >
                 <View style={styles.markerOrigin} />
               </Marker>
 
-              {plano.paradas.map((parada) => (
+              {plano.paradas.map((parada, index) => (
                 <Marker
                   key={parada.id}
                   coordinate={parada}
-                  accessibilityLabel={`Parada de recarga: ${parada.nome}`}
+                  title={`Parada ${index + 1}: ${parada.nome}`}
+                  description={`Chegada ${parada.bateriaChegadaPercent}% · saída ${parada.bateriaSaidaPercent}% · local do catálogo de simulação`}
+                  accessibilityLabel={`Parada ${index + 1} de ${plano.paradas.length}: ${parada.nome}`}
+                  accessible
+                  accessibilityRole="button"
+                  accessibilityHint="Abre a ficha desta estação. Voltar retorna ao planejamento."
+                  onPress={() => abrirFichaDaParada(parada)}
                 >
                   <View style={styles.markerStop}>
-                    <Zap size={14} color={colors.white} strokeWidth={2.4} />
+                    <Text style={styles.stopNumber}>{index + 1}</Text>
                   </View>
                 </Marker>
               ))}
 
               <Marker
                 coordinate={destinoSelecionado}
+                title={`Destino: ${destinoSelecionado.nome}`}
                 accessibilityLabel={`Destino: ${destinoSelecionado.nome}`}
               >
                 <View style={styles.markerDestination}>
@@ -436,27 +435,26 @@ export default function TripPlannerScreen() {
             </MapView>
           </View>
 
-          {mostrarDicaDeRolagem ? (
-            <View style={styles.scrollHint}>
+            <PressableScale accessibilityRole="button" accessibilityLabel="Ver trechos da viagem" style={[styles.scrollHint, { minHeight: 48 }]}
+              onPress={() => scrollRef.current?.scrollTo({ y: routeCardTop.current, animated: !reducedMotion })}>
               <Text style={styles.scrollHintText}>
-                Role para ver a rota completa
+                Ver trechos da viagem
               </Text>
               <ChevronDown size={14} color={colors.textMuted} strokeWidth={2.4} />
-            </View>
-          ) : null}
+            </PressableScale>
 
-          <View style={styles.card}>
-            <View style={styles.routeCardHeader}>
+          <View style={styles.card} onLayout={(event) => { routeCardTop.current = event.nativeEvent.layout.y; }}>
+            <View style={[styles.routeCardHeader, stacked && styles.stackedRow]}>
               <View style={styles.routeCardTitleGroup}>
                 <View style={styles.routeCardIconBox}>
                   <Milestone size={18} color={colors.primary} strokeWidth={2.2} />
                 </View>
                 <View style={styles.routeCardTitleText}>
-                  <Text style={styles.routeCardTitle} numberOfLines={1}>
-                    Rota de viagem
+                  <Text style={styles.routeCardTitle}>
+                    Resumo da viagem
                   </Text>
-                  <Text style={styles.routeCardSubtitle} numberOfLines={1}>
-                    Com paradas de recarga e autonomia
+                  <Text style={styles.routeCardSubtitle}>
+                    Estimativas em linha reta
                   </Text>
                 </View>
               </View>
@@ -465,15 +463,28 @@ export default function TripPlannerScreen() {
                 accessibilityRole="button"
                 accessibilityLabel="Editar destino da viagem"
                 style={styles.editButton}
-                onPress={() => setSeletorAberto("destino")}
+                onPress={() => setSeletorAberto(true)}
               >
                 <Text style={styles.editButtonText}>Editar destino</Text>
                 <ChevronRight size={14} color={colors.primary} strokeWidth={2.4} />
               </Pressable>
             </View>
 
-            <View style={styles.statsRow}>
-              <View style={styles.statItem}>
+            <View testID="viagem-resumo-paradas" style={styles.stopsSummary} accessibilityLiveRegion="polite">
+              <Text style={styles.stopsSummaryTitle}>{describeTripStops(plano)}</Text>
+              {plano.paradas.map((parada, index) => (
+                <Pressable key={parada.id} accessibilityRole="button" accessibilityLabel={`Abrir ficha da parada ${index + 1}: ${parada.nome}`} onPress={() => abrirFichaDaParada(parada)} style={styles.stopSummaryLink}>
+                  <Text style={[styles.stopsSummaryText, { flex: 1 }]}>{index + 1}. {parada.nome}</Text>
+                  <ChevronRight size={18} color={colors.primary} />
+                </Pressable>
+              ))}
+            </View>
+
+            <View
+              style={[styles.statsRow, stackedStats && styles.statsStack]}
+              onLayout={(event) => setStatsWidth(event.nativeEvent.layout.width)}
+            >
+              <View style={[styles.statItem, stackedStats && styles.statItemStack]}>
                 <Milestone size={16} color={colors.textMuted} strokeWidth={2} />
                 <Text style={styles.statValue}>
                   {plano.distanciaTotalKm} km
@@ -481,19 +492,19 @@ export default function TripPlannerScreen() {
                 <Text style={styles.statLabel}>Distância total</Text>
               </View>
 
-              <View style={styles.statDivider} />
+              <View style={[styles.statDivider, stackedStats && styles.statDividerStack]} />
 
-              <View style={styles.statItem}>
+              <View style={[styles.statItem, stackedStats && styles.statItemStack]}>
                 <Clock3 size={16} color={colors.textMuted} strokeWidth={2} />
                 <Text style={styles.statValue}>
                   {formatarDuracao(plano.tempoEstimadoMin)}
                 </Text>
-                <Text style={styles.statLabel}>Tempo estimado</Text>
+                <Text style={styles.statLabel}>Deslocamento estimado</Text>
               </View>
 
-              <View style={styles.statDivider} />
+              <View style={[styles.statDivider, stackedStats && styles.statDividerStack]} />
 
-              <View style={styles.statItem}>
+              <View style={[styles.statItem, stackedStats && styles.statItemStack]}>
                 <Zap size={16} color={colors.textMuted} strokeWidth={2} />
                 <Text style={styles.statValue}>{plano.paradas.length}</Text>
                 <Text style={styles.statLabel}>
@@ -519,7 +530,7 @@ export default function TripPlannerScreen() {
                 <Text style={[styles.warningText, { color: tomDoAlcance.fg }]}>
                   {plano.nivelDeAlcance === "apertado"
                     ? `Autonomia limitada: chegada estimada com ${plano.bateriaChegadaDestinoPercent}% de bateria.`
-                    : "A viagem não preserva a reserva mínima de 5% na chegada com as paradas demonstrativas disponíveis."}
+                    : "A viagem não preserva a reserva mínima de 5% na chegada com as paradas disponíveis no cenário."}
                 </Text>
               </View>
             ) : null}
@@ -540,35 +551,35 @@ export default function TripPlannerScreen() {
                     <Text
                       style={[styles.timelineBatteryText, { color: corDaBateria }]}
                     >
-                      {batteryPercent}%
+                      Saída {batteryPercent}%
                     </Text>
                   </View>
                 </View>
               </View>
 
               {plano.paradas.map((parada, index) => (
-                <View key={parada.id} style={styles.timelineRow}>
+                <Pressable key={parada.id} style={[styles.timelineRow, { minHeight: 48 }]} accessibilityRole="button" accessibilityLabel={`Detalhes da parada ${index + 1}: ${parada.nome}`} accessibilityHint={`Chegada ${parada.bateriaChegadaPercent}%, saída ${parada.bateriaSaidaPercent}%. Abre a ficha da estação.`} onPress={() => abrirFichaDaParada(parada)}>
                   <View style={styles.timelineRail}>
                     <View
                       style={[styles.timelineIconCircle, styles.timelineIconStop]}
                     >
-                      <Zap size={13} color={colors.white} strokeWidth={2.4} />
+                      <Text style={styles.stopNumber}>{index + 1}</Text>
                     </View>
                     <View style={styles.timelineConnector} />
                   </View>
                   <View style={styles.timelineContent}>
-                    <Text style={styles.timelineName}>{parada.nome}</Text>
+                    <View style={styles.stopLinkTitle}><Text style={[styles.timelineName, { flex: 1 }]}>Parada {index + 1} · {parada.nome}</Text><ChevronRight size={18} color={colors.primary} /></View>
                     <Text style={styles.timelineMeta}>
                       {formatarDuracao(parada.tempoTrechoMin)} ·{" "}
                       {parada.distanciaTrechoKm} km · {parada.powerKw} kW
                     </Text>
                     <View style={styles.timelineBatteryRow}>
                       <Text style={styles.timelineBatteryText}>
-                        {parada.bateriaChegadaPercent}% → {parada.bateriaSaidaPercent}%
+                        Chegada {parada.bateriaChegadaPercent}% → saída {parada.bateriaSaidaPercent}%
                       </Text>
                     </View>
                   </View>
-                </View>
+                </Pressable>
               ))}
 
               <View style={styles.timelineRow}>
@@ -584,6 +595,11 @@ export default function TripPlannerScreen() {
                 </View>
                 <View style={styles.timelineContent}>
                   <Text style={styles.timelineName}>{destinoSelecionado.nome}</Text>
+                  {podeIniciar && plano.paradas.length > 0 ? (
+                    <Text style={styles.timelineMeta}>
+                      Último trecho · ≈{plano.trechoFinal.distanciaKm} km · {formatarDuracao(plano.trechoFinal.tempoMin)}
+                    </Text>
+                  ) : podeIniciar ? <Text style={styles.timelineMeta}>Trecho direto · sem paradas de recarga</Text> : null}
                   <View style={styles.timelineBatteryRow}>
                     <Text
                       style={[
@@ -592,7 +608,7 @@ export default function TripPlannerScreen() {
                       ]}
                     >
                       {podeIniciar
-                        ? `${plano.bateriaChegadaDestinoPercent}% na chegada`
+                        ? `Chegada estimada · ${plano.bateriaChegadaDestinoPercent}%`
                         : "Viagem bloqueada · reserva mínima de 5%"}
                     </Text>
                   </View>
@@ -603,6 +619,7 @@ export default function TripPlannerScreen() {
 
           <Text style={styles.disclaimerText}>
             {identificacaoDados.viagem.aviso}
+            {"\n"}Paradas escolhidas no mesmo catálogo do mapa. O tempo de deslocamento não inclui espera nem duração das recargas. Conectores e funcionamento das paradas não são confirmados por esta simulação.
           </Text>
 
           {erroDeRota ? (
@@ -616,8 +633,8 @@ export default function TripPlannerScreen() {
         </ScrollView>
       </ScreenTransition>
 
-      <View style={styles.footer}>
-        <Text style={styles.footerCaption} numberOfLines={1}>
+      <View style={styles.footer} onLayout={(event) => setFooterHeight(event.nativeEvent.layout.height)}>
+        <Text style={styles.footerCaption}>
           {podeIniciar
             ? `Navegação até ${proximoDestinoNome}`
             : "Reserva mínima de 5% não preservada na chegada"}
@@ -629,7 +646,7 @@ export default function TripPlannerScreen() {
           accessibilityHint={
             podeIniciar
               ? `Abre o aplicativo de navegação até ${proximoDestinoNome}.`
-              : "A viagem não preserva a reserva mínima de 5% com as paradas demonstrativas disponíveis."
+              : "A viagem não preserva a reserva mínima de 5% com as paradas disponíveis no cenário."
           }
           accessibilityState={{ disabled: !podeIniciar }}
           disabled={!podeIniciar || isIniciandoViagem}

@@ -1,4 +1,5 @@
 import { ChargingStation, ChargingStationReview } from '../../types';
+import { expandedChargingStations } from './expandedChargingStations';
 
 type DadosAvaliacao = Pick<
   ChargingStationReview,
@@ -26,7 +27,7 @@ export const chargingStations: ChargingStation[] = [
   {
     id: 'station-01',
     imageKey: "station-01",
-    name: 'Higienópolis Prime Charge',
+    name: 'Flui Higienópolis',
     address: 'Rua Alagoas, 974',
     neighborhood: 'Higienópolis',
     city: 'São Paulo',
@@ -108,7 +109,7 @@ export const chargingStations: ChargingStation[] = [
   {
     id: 'station-02',
     imageKey: "station-02",
-    name: 'Flui Express MASP',
+    name: 'Flui MASP',
     address: 'Av. Paulista, 1578',
     neighborhood: 'Bela Vista',
     city: 'São Paulo',
@@ -176,7 +177,7 @@ export const chargingStations: ChargingStation[] = [
   {
     id: 'station-03',
     imageKey: "station-03",
-    name: 'Plug & Café Consolação',
+    name: 'Flui Consolação',
     address: 'R. da Consolação, 2302',
     neighborhood: 'Consolação',
     city: 'São Paulo',
@@ -244,7 +245,7 @@ export const chargingStations: ChargingStation[] = [
   {
     id: 'station-04',
     imageKey: "station-04",
-    name: 'Charge City Jardins',
+    name: 'Flui Jardins',
     address: 'Alameda Santos, 2159',
     neighborhood: 'Jardim Paulista',
     city: 'São Paulo',
@@ -326,7 +327,7 @@ export const chargingStations: ChargingStation[] = [
   {
     id: 'station-05',
     imageKey: "station-05",
-    name: 'Estação Jardins Pamplona',
+    name: 'Flui Pamplona',
     address: 'R. Pamplona, 145',
     neighborhood: 'Jardim Paulista',
     city: 'São Paulo',
@@ -400,7 +401,7 @@ export const chargingStations: ChargingStation[] = [
   {
     id: 'station-06',
     imageKey: "station-06",
-    name: 'Flui Vila Mariana Lins',
+    name: 'Flui Lins de Vasconcelos',
     address: 'Av. Lins de Vasconcelos, 1264',
     neighborhood: 'Aclimação',
     city: 'São Paulo',
@@ -468,7 +469,7 @@ export const chargingStations: ChargingStation[] = [
   {
     id: 'station-07',
     imageKey: "station-07",
-    name: 'EcoCarga Parque Aclimação',
+    name: 'Flui Parque Aclimação',
     address: 'R. Muniz de Sousa, 1119',
     neighborhood: 'Aclimação',
     city: 'São Paulo',
@@ -528,7 +529,7 @@ export const chargingStations: ChargingStation[] = [
   {
     id: 'station-08',
     imageKey: "station-08",
-    name: 'Hub Paraíso Vergueiro',
+    name: 'Flui Paraíso',
     address: 'R. Vergueiro, 1000',
     neighborhood: 'Paraíso',
     city: 'São Paulo',
@@ -610,7 +611,7 @@ export const chargingStations: ChargingStation[] = [
   {
     id: 'station-09',
     imageKey: "station-09",
-    name: 'Mercado Charge Cambuci',
+    name: 'Flui Cambuci',
     address: 'R. Luís Gama, 650',
     neighborhood: 'Cambuci',
     city: 'São Paulo',
@@ -678,7 +679,7 @@ export const chargingStations: ChargingStation[] = [
   {
     id: 'station-10',
     imageKey: "station-10",
-    name: 'Garagem Liberdade Solar',
+    name: 'Flui Liberdade',
     address: 'R. da Glória, 700',
     neighborhood: 'Liberdade',
     city: 'São Paulo',
@@ -746,7 +747,7 @@ export const chargingStations: ChargingStation[] = [
   {
     id: 'station-11',
     imageKey: "station-11",
-    name: 'Fast Point Ana Rosa',
+    name: 'Flui Ana Rosa',
     address: 'R. Domingos de Morais, 770',
     neighborhood: 'Vila Mariana',
     city: 'São Paulo',
@@ -814,7 +815,7 @@ export const chargingStations: ChargingStation[] = [
   {
     id: 'station-12',
     imageKey: "station-12",
-    name: 'Garagem Verde Brigadeiro',
+    name: 'Flui Brigadeiro',
     address: 'Av. Brigadeiro Luís Antônio, 2500',
     neighborhood: 'Jardim Paulista',
     city: 'São Paulo',
@@ -885,4 +886,5 @@ export const chargingStations: ChargingStation[] = [
       }),
     ],
   },
+  ...expandedChargingStations,
 ];

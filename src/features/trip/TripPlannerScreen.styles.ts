@@ -39,6 +39,9 @@ export const styles = StyleSheet.create({
   },
 
   headerTitle: {
+    flex: 1,
+    minWidth: 0,
+    textAlign: "center",
     color: colors.text,
     fontSize: 18,
     fontWeight: "800",
@@ -118,8 +121,15 @@ export const styles = StyleSheet.create({
     gap: spacing.md,
   },
 
+  stackedRow: {
+    flexDirection: "column",
+    alignItems: "stretch",
+    gap: spacing.md,
+  },
+
   autonomyTile: {
-    flex: 1,
+    flexGrow: 1,
+    flexBasis: "auto",
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: colors.primarySoft,
@@ -168,6 +178,11 @@ export const styles = StyleSheet.create({
     borderRadius: 3,
   },
 
+  stopSummaryLink: { minHeight: 44, flexDirection: "row", alignItems: "center", gap: 8 },
+  stopLinkTitle: { flexDirection: "row", alignItems: "center", gap: 8 },
+  stopsSummary: { padding: 12, borderRadius: 14, backgroundColor: colors.primarySoft, marginBottom: 10 },
+  stopsSummaryTitle: { color: colors.primary, fontSize: 14, lineHeight: 20, fontWeight: "700" },
+  stopsSummaryText: { color: colors.textSecondary, fontSize: 12, lineHeight: 18, marginTop: 4 },
   mapCard: {
     height: 160,
     borderRadius: radius.lg,
@@ -205,6 +220,7 @@ export const styles = StyleSheet.create({
     borderColor: colors.white,
   },
 
+  stopNumber: { color: colors.white, fontSize: 14, lineHeight: 18, fontWeight: "800", textAlign: "center" },
   markerStop: {
     width: 30,
     height: 30,
@@ -235,7 +251,8 @@ export const styles = StyleSheet.create({
   },
 
   routeCardTitleGroup: {
-    flex: 1,
+    flexGrow: 1,
+    flexShrink: 1,
     minWidth: 0,
     marginRight: spacing.sm,
     flexDirection: "row",
@@ -270,6 +287,7 @@ export const styles = StyleSheet.create({
   },
 
   editButton: {
+    minHeight: 48,
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: spacing.sm,
@@ -294,26 +312,39 @@ export const styles = StyleSheet.create({
   },
 
   statItem: {
-    flex: 1,
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 0,
+    minWidth: 0,
+    paddingHorizontal: 4,
     alignItems: "center",
   },
 
+  statsStack: { flexDirection: "column", gap: spacing.sm },
+  statItemStack: { flexGrow: 0, flexShrink: 0, flexBasis: "auto", width: "100%" },
+  statDividerStack: { width: "100%", height: 1 },
+
   statDivider: {
     width: 1,
+    flexShrink: 0,
     backgroundColor: colors.border,
   },
 
   statValue: {
+    alignSelf: "stretch",
     color: colors.text,
     fontSize: typography.sizes.md,
     fontWeight: typography.weights.bold,
     marginTop: spacing.xxs,
+    textAlign: "center",
   },
 
   statLabel: {
+    alignSelf: "stretch",
     color: colors.textMuted,
     fontSize: typography.sizes.xs,
     marginTop: 1,
+    textAlign: "center",
   },
 
   timelineRow: {
@@ -355,6 +386,8 @@ export const styles = StyleSheet.create({
 
   timelineContent: {
     flex: 1,
+    minWidth: 0,
+    paddingLeft: spacing.xs,
     paddingBottom: spacing.md,
   },
 
@@ -367,18 +400,22 @@ export const styles = StyleSheet.create({
   timelineMeta: {
     color: colors.textMuted,
     fontSize: typography.sizes.sm,
-    marginTop: 1,
+    lineHeight: 20,
+    marginTop: 4,
   },
 
   timelineBatteryRow: {
     flexDirection: "row",
+    flexWrap: "wrap",
     alignItems: "center",
     marginTop: spacing.xs,
   },
 
   timelineBatteryText: {
+    flexShrink: 1,
     color: colors.text,
     fontSize: typography.sizes.sm,
+    lineHeight: 20,
     fontWeight: typography.weights.semibold,
   },
 
@@ -436,6 +473,8 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     gap: spacing.xs,
+    paddingHorizontal: 12,
+    paddingVertical: 12,
   },
 
   startButtonDisabled: {
@@ -448,6 +487,8 @@ export const styles = StyleSheet.create({
   },
 
   startButtonText: {
+    flexShrink: 1,
+    textAlign: "center",
     color: colors.white,
     fontSize: typography.sizes.md,
     fontWeight: typography.weights.bold,
@@ -477,6 +518,7 @@ export const styles = StyleSheet.create({
   },
 
   modalOption: {
+    minHeight: 48,
     paddingVertical: spacing.md,
     borderBottomWidth: 1,
     borderBottomColor: colors.border,
@@ -503,6 +545,8 @@ export const styles = StyleSheet.create({
   },
 
   modalCloseButton: {
+    minHeight: 48,
+    justifyContent: "center",
     marginTop: spacing.md,
     alignItems: "center",
     paddingVertical: spacing.sm,

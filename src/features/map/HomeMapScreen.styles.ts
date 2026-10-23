@@ -43,11 +43,15 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
 
+  searchFeedback: { marginTop: 8, gap: 6 },
+  searchFeedbackText: { color: colors.textMuted, fontSize: 12, marginTop: 6 },
+  searchResetButton: { minHeight: 44, alignSelf: "flex-start", justifyContent: "center", paddingHorizontal: 12, borderRadius: 12, backgroundColor: colors.primary },
+  searchResetText: { color: colors.white, fontSize: 13, fontWeight: "700" },
   topArea: {
     backgroundColor: colors.background,
     paddingHorizontal: 20,
-    paddingTop: Platform.OS === "android" ? 18 : 8,
-    paddingBottom: 14,
+    paddingTop: Platform.OS === "android" ? 18 : 0,
+    paddingBottom: 10,
     zIndex: 10,
   },
 
@@ -93,27 +97,35 @@ const styles = StyleSheet.create({
     gap: 8,
   },
 
-  vehicleInfo: {
-    flexShrink: 1,
-    alignItems: "flex-end",
-    gap: 1,
+  vehicleVisual: {
+    minWidth: 64,
+    alignItems: "center",
   },
 
   vehicleImage: {
     width: 60,
-    height: 40,
+    height: 32,
+    zIndex: 1,
+    transform: [{ translateY: -4 }],
   },
 
   vehicleBatteryPill: {
-    minHeight: 20,
-    paddingHorizontal: 7,
-    borderRadius: 10,
+    minWidth: 64,
+    minHeight: 46,
+    paddingHorizontal: 2,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  vehicleBatterySummary: {
+    position: "absolute",
+    bottom: 2,
+    alignSelf: "center",
+    zIndex: 2,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     gap: 5,
-    backgroundColor: colors.white,
-    borderWidth: 1,
   },
 
   vehicleBatteryIconRow: {
@@ -146,21 +158,6 @@ const styles = StyleSheet.create({
   vehicleBatteryText: {
     fontSize: 10,
     fontWeight: "900",
-  },
-
-  vehicleBatterySource: {
-    maxWidth: 116,
-    color: colors.textLight,
-    fontSize: 11,
-    lineHeight: 14,
-    fontWeight: "700",
-  },
-
-  vehicleBatteryUpdatedAt: {
-    color: colors.textLight,
-    fontSize: 10,
-    lineHeight: 13,
-    fontWeight: "600",
   },
 
   batterySheetOverlay: {
@@ -317,7 +314,7 @@ const styles = StyleSheet.create({
   },
 
   searchBar: {
-    height: 58,
+    minHeight: 58,
     marginTop: 14,
     paddingLeft: 18,
     paddingRight: 10,
@@ -332,7 +329,8 @@ const styles = StyleSheet.create({
 
   searchText: {
     flex: 1,
-    marginLeft: 13,
+    marginLeft: 10,
+    minWidth: 0,
     color: colors.textMuted,
     fontSize: 15,
     fontWeight: "500",
@@ -562,15 +560,13 @@ const styles = StyleSheet.create({
     borderWidth: 5,
   },
 
-  fixedMapControls: {
-    position: "absolute",
-    right: 16,
-    top: 18,
-    width: 52,
-    alignItems: "center",
-    gap: 10,
-    zIndex: 12,
-  },
+  leftMapControls: { position: "absolute", left: 16, top: 16, gap: 8, alignItems: "center", zIndex: 12 },
+  fixedMapControls: { position: "absolute", right: 16, top: 16, width: 48, gap: 8, alignItems: "center", zIndex: 12 },
+  recommendationsOverlay: { flex: 1, justifyContent: "center", alignItems: "center", paddingHorizontal: 20 },
+  recommendationsBackdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(7, 12, 18, 0.62)" },
+  recommendationsPopup: { width: "100%", maxWidth: 560, maxHeight: "100%", borderRadius: 28, overflow: "hidden", backgroundColor: colors.background, borderWidth: 1, borderColor: colors.border },
+  recommendationsHeader: { flexDirection: "row", alignItems: "center", gap: 12, paddingLeft: 18, paddingRight: 10, paddingVertical: 10 },
+  recommendationsClose: { width: 44, height: 44, borderRadius: 22, alignItems: "center", justifyContent: "center", backgroundColor: colors.white, borderWidth: 1, borderColor: colors.border },
 
   mapControlsCompact: {
     top: 12,
@@ -590,49 +586,49 @@ const styles = StyleSheet.create({
   },
 
   zoomPill: {
-    width: 52,
-    height: 104,
+    width: 48,
+    height: 96,
     borderRadius: 26,
     alignItems: "center",
     overflow: "hidden",
-    backgroundColor: colors.white,
+    backgroundColor: colors.primary,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: colors.primary,
     ...shadow,
   },
 
   zoomPillButton: {
-    width: 52,
-    height: 51,
+    width: 48,
+    height: 47,
     alignItems: "center",
     justifyContent: "center",
   },
 
   zoomPillButtonActive: {
-    backgroundColor: colors.primarySoft,
+    opacity: 0.8,
   },
 
   zoomPillDivider: {
     width: 28,
     height: 1,
-    backgroundColor: colors.border,
+    backgroundColor: colors.white,
+    opacity: 0.35,
   },
 
   mapControlButton: {
-    width: 52,
-    height: 52,
+    width: 48,
+    height: 48,
     borderRadius: 26,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: colors.white,
+    backgroundColor: colors.primary,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: colors.primary,
     ...shadow,
   },
 
   mapControlButtonActive: {
-    backgroundColor: colors.primarySoft,
-    borderColor: colors.primarySoftStrong,
+    opacity: 0.8,
   },
 
   mapControlButtonLoading: {
@@ -640,7 +636,7 @@ const styles = StyleSheet.create({
   },
 
   mapControlText: {
-    color: colors.primary,
+    color: colors.white,
     fontSize: 28,
     fontWeight: "800",
     lineHeight: 31,
@@ -733,6 +729,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
 
+  simulationBadge: { color: colors.primary, backgroundColor: colors.primarySoft, paddingHorizontal: 8, paddingVertical: 5, borderRadius: 10, fontSize: 11, fontWeight: "700" },
   originDescription: {
     color: colors.textLight,
     fontSize: 12,

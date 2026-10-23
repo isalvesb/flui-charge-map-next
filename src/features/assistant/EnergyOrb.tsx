@@ -3,15 +3,18 @@ import { Animated, Easing, StyleSheet, View } from "react-native";
 import Svg, { Circle, Defs, Ellipse, Path, RadialGradient, Stop } from "react-native-svg";
 import type { FluiaState } from "./fluiaState";
 import { ENERGY_ORB_COLORS, getEnergyOrbMotion } from "./energyOrbPresentation";
+import { FLUIA_VISUAL_PRESENTATION, type FluiaVisualStatus } from "./fluiaVisualStatus";
 
-type Props = { state: FluiaState; reducedMotion: boolean; active: boolean; size?: number };
+type Props = { state: FluiaState; reducedMotion: boolean; active: boolean; size?: number; visualStatus?: FluiaVisualStatus };
 
 /** Visual decorativo: o rótulo de estado da FluIA continua sendo a informação acessível. */
-export function EnergyOrb({ state, reducedMotion, active, size = 44 }: Props) {
+export function EnergyOrb({ state, reducedMotion, active, size = 44, visualStatus }: Props) {
   const progress = useRef(new Animated.Value(0)).current;
   const id = useId().replace(/:/g, "");
-  const colors = ENERGY_ORB_COLORS[state];
-  const { duration, amplitude, rotate } = getEnergyOrbMotion(state, reducedMotion, active);
+  const presentation = visualStatus ? FLUIA_VISUAL_PRESENTATION[visualStatus] : null;
+  const colors = presentation ? { light: presentation.light, core: presentation.core, rim: presentation.color } : ENERGY_ORB_COLORS[state];
+  const statusStatic = visualStatus === "erro" || visualStatus === "atencao" || visualStatus === "offline";
+  const { duration, amplitude, rotate } = getEnergyOrbMotion(state, reducedMotion, active && !statusStatic);
 
   useEffect(() => {
     progress.stopAnimation();

@@ -14,6 +14,7 @@ function worker() {
   let online = true;
   let serverError = false;
   let quotaExceeded = false;
+  let manifestAssets = ["/assets/src/assets/user/profile1.webp", "/assets/src/assets/stations/station-12.webp"];
   const key = (request: string | { url: string }) => new URL(typeof request === "string" ? request : request.url, origin).href;
   const cache = {
     match: async (request: string | { url: string }) => entries.get(key(request))?.clone(),
@@ -30,12 +31,14 @@ function worker() {
     fetch: async (request: string | { url: string }) => {
       requests.push(key(request));
       if (!online) throw Error("offline");
+      if (key(request).endsWith("/offline-assets.json")) return Response.json({ version: 1, assets: manifestAssets });
       return new Response(`<html><script src="/_expo/entry.js"></script><link href="/font.woff2"><img src="https://external.test/photo.jpg"></html>`, { status: serverError ? 503 : 200 });
     },
     URL, Response, AbortController, setTimeout, clearTimeout,
   });
   return {
     requests, entries, deleted,
+    setManifestAssets: (value: string[]) => { manifestAssets = value; },
     setOnline: (value: boolean) => { online = value; },
     setServerError: () => { serverError = true; },
     setQuotaExceeded: () => { quotaExceeded = true; },
@@ -51,7 +54,7 @@ function worker() {
 test("worker prepara páginas e assets locais, sem armazenar serviços externos", async () => {
   const app = worker();
   await app.lifecycle("install");
-  assert.equal(app.entries.size, 12); // dez páginas e dois assets da mesma origem
+  assert.equal(app.entries.size, 14); // dez páginas, dois assets e duas fotos locais
   assert.ok(app.entries.has("https://flui.test/loading"));
   assert.ok(app.entries.has("https://flui.test/trip-planner"));
   assert.ok(app.entries.has("https://flui.test/_expo/entry.js"));
@@ -93,4 +96,21 @@ test("falha de quota rejeita preparação sem impedir consulta online", async ()
   app.setQuotaExceeded();
   await assert.rejects(app.lifecycle("install"), /quota/);
   assert.equal((await app.request("/map"))?.status, 200);
+});
+
+
+test("prepara foto de estação nunca visitada e perfil antes de ficar offline", async () => {
+  const app = worker();
+  await app.lifecycle("install");
+  app.setOnline(false);
+  for (const url of ["/assets/src/assets/user/profile1.webp", "/assets/src/assets/stations/station-12.webp"]) {
+    assert.equal((await app.request(url, "cors", "image"))?.status, 200);
+  }
+});
+test("manifesto não permite cache de fotos externas ou caminhos fora dos assets", async () => {
+  for (const asset of ["https://external.test/photo.webp", "/private/profile.webp", "/assets/src/assets/user/../../profile.webp"]) {
+    const app = worker();
+    app.setManifestAssets([asset]);
+    await assert.rejects(app.lifecycle("install"), /Foto fora do catálogo local/);
+  }
 });

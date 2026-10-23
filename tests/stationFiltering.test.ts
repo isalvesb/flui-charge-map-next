@@ -134,7 +134,7 @@ test("filtro, ficha e FluIA concordam nos horários reais do catálogo sem calen
       const open = isStationOpenAt(station, agora);
       const filtered = filtrarEstacoes({
         estacoes: [station],
-        filtros: { ...defaultFilters, onlyOpenNow: true },
+        filtros: { ...defaultFilters, distance: { maxKm: 1000 }, onlyOpenNow: true },
         agora,
       });
       assert.equal(filtered.length > 0, open, station.id);
@@ -180,7 +180,7 @@ test("calendário estruturado prevalece sobre o texto e o filtro 24h usa a mesma
   assert.deepEqual(
     filtrarEstacoes({
       estacoes: [station],
-      filtros: { ...defaultFilters, onlyOpenNow: true },
+      filtros: { ...defaultFilters, distance: { maxKm: 1000 }, onlyOpenNow: true },
       agora,
     }),
     [],

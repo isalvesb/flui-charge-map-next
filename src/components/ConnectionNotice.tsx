@@ -10,8 +10,7 @@ export function ConnectionNotice() {
   return (
     <View style={[styles.notice, { backgroundColor: theme.surface }]}>
       <Text accessibilityLiveRegion="polite" style={{ color: theme.text, fontSize: scale(12), flex: 1 }}>
-        {status === "offline" ? "Sem conexão · consulta local disponível." : "Conexão não confirmada · consulta local disponível."}{"\n"}
-        Mapa de fundo e navegação externa podem não carregar.
+        {status === "offline" ? "Sem conexão · consulta local disponível." : "Conexão não confirmada · consulta local disponível."}
       </Text>
       <Pressable accessibilityRole="button" accessibilityLabel="Verificar conexão novamente" onPress={() => void checkConnection()} style={styles.retry}>
         <Text style={{ color: theme.primary, fontSize: scale(12), fontWeight: "700" }}>Verificar</Text>

@@ -30,7 +30,7 @@ export function getStationStatusInfo(
   if (station.status === "unavailable") {
     return {
       label: "Status indisponível",
-      description: "Disponibilidade não confirmada nos dados demonstrativos",
+      description: "Disponibilidade não confirmada no catálogo local",
     };
   }
 
@@ -51,7 +51,7 @@ export function getStationStatusInfo(
     return {
       label: "Aberto agora",
       description: canChargeAt(station, date)
-        ? "Disponibilidade demonstrativa de carregadores"
+        ? "Disponibilidade de carregadores no catálogo local"
         : "Sem carregadores utilizáveis nos dados locais",
     };
   }
@@ -59,13 +59,13 @@ export function getStationStatusInfo(
   if (station.status === "busy") {
     return {
       label: "Ocupado agora",
-      description: "Ocupação indicada nos dados demonstrativos",
+      description: "Ocupação indicada no catálogo local",
     };
   }
 
   return {
     label: "Status indisponível",
-    description: "Disponibilidade não confirmada nos dados demonstrativos",
+    description: "Disponibilidade não confirmada no catálogo local",
   };
 }
 
@@ -84,8 +84,8 @@ export function getStationChargerCountLabel(
   date = new Date(),
 ) {
   return canChargeAt(station, date)
-    ? `${availableChargers} de ${totalChargers} carregadores livres no exemplo`
-    : `${totalChargers} carregadores cadastrados no exemplo. Recarga não confirmada.`;
+    ? `${availableChargers} de ${totalChargers} carregadores livres`
+    : `${totalChargers} carregadores cadastrados. Recarga não confirmada.`;
 }
 
 export function getStationArrivalPresentation(
@@ -103,7 +103,7 @@ export function getStationArrivalPresentation(
       : canChargeAt(station, date) ? "success" : "neutral";
 
   return {
-    text: `Autonomia para chegar ao local\n${arrival}\nNão garante recarga no local.`,
+    text: `Autonomia disponível: ≈${Math.round(assessment.autonomiaAtualKm)} km\n${arrival}\nEstimativa em linha reta; confirme o funcionamento antes de ir.`,
     tone,
   } as const;
 }
@@ -111,9 +111,9 @@ export function getStationArrivalPresentation(
 export function getStationRouteNotice(station: ChargingStation, date = new Date()) {
   const status = getStationStatusInfo(station, date);
   const availability = canChargeAt(station, date)
-    ? "A abertura e os carregadores livres são demonstrativos."
+    ? "A abertura e os carregadores livres são simulados."
     : `${status.description}. A recarga não está confirmada neste ponto.`;
-  return `Nos dados demonstrativos: ${status.label}. ${availability} Abrir a rota não garante atendimento; confirme o funcionamento e a compatibilidade antes de ir.`;
+  return `No catálogo local: ${status.label}. ${availability} Abrir a rota não garante atendimento; confirme o funcionamento e a compatibilidade antes de ir.`;
 }
 
 export function getUserInitials(userName: string) {
@@ -164,11 +164,11 @@ export function getStationRecommendation(
     Math.max(...getUsableConnectors(station).map(connector => connector.powerKw)),
   );
   if (availableChargers > 0 && usablePowerKw >= 120) {
-    return "Opção com conector rápido no exemplo";
+    return "Opção com conector rápido";
   }
 
   if (availableChargers > 0) {
-    return "Opção de recarga nos dados demonstrativos";
+    return "Opção de recarga no catálogo";
   }
 
   return "Verifique a fila antes de ir";

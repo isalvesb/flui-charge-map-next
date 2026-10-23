@@ -1,8 +1,9 @@
+import { answerPlayfulMessage } from "./playfulAnswers";
 import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
 import type { ChargingStation } from "../../types";
 import { canChargeAt } from "../../utils/stationAvailability";
 import { getStationOpeningState } from "../../utils/stationHours";
-import { programmedAnswers } from "./programmedAnswers";
+import { programmedAnswers, matchesProgrammedAnswer } from "./programmedAnswers";
 import {
   type FluiAssistantIntent,
   type FluiAssistantRecommendation,
@@ -128,13 +129,24 @@ export function answerMessage(text: string, context: AssistantContext): ChatResp
     return { text: "FluIA desabilitada nesta versão.", state: "aviso" };
 
   const message = normalize(text);
+  const playful = answerPlayfulMessage(message);
+  if (playful) return { text: playful, state: "respondendo" };
   const matches = intentRules.filter((rule) => rule.pattern.test(message));
-  const programmed = programmedAnswers.find((item) =>
-    item.keywords.some((keyword) => new RegExp(`\\b${keyword}\\b`).test(message)),
-  );
+  const programmedMatches = programmedAnswers.filter(item => matchesProgrammedAnswer(item, message));
+  const programmed = programmedMatches.find(item => item.takesPrecedence) ?? programmedMatches[0];
   const isExplanation = /\b(?:o que e|o que significa|como funciona|explique)\b/.test(message) ||
     (/\b(?:quanto tempo|quanto demora)\b/.test(message) && matches.every((rule) => rule.intent === "fastCharge"));
-  if (programmed && (isExplanation || !matches.length)) {
+  if (/^(?:qual (?:e )?(?:a )?minha (?:bateria|carga|autonomia)|quanta bateria (?:eu )?tenho|quanto tenho de bateria)(?: agora| atual)?$/.test(message)) {
+    if (!Number.isFinite(context.batteryPercent) || context.batteryPercent < 0 || context.batteryPercent > 100 || !Number.isFinite(context.vehicleRangeKm) || context.vehicleRangeKm <= 0) {
+      return { text: "Não consegui calcular com os valores atuais. Confira a bateria e a autonomia nas configurações do aplicativo.", state: "aviso" };
+    }
+    return { text: `A consulta usa ${context.batteryPercent}% de bateria e ${context.vehicleRangeKm} km de autonomia com carga cheia. O alcance linear estimado é de ${Math.round(context.vehicleRangeKm * context.batteryPercent / 100)} km, antes da reserva de 5%. São valores informados no app, sem leitura do carro ou cálculo de percurso.`, state: "respondendo" };
+  }
+  if (/\b(?:quantas estacoes|quantos (?:postos|pontos)|tamanho do catalogo)\b/.test(message)) {
+    const count = context.stations.length;
+    return { text: `Recebi ${count} ${count === 1 ? "estação" : "estações"} nesta consulta. Esse é o conjunto disponível para a comparação atual; pode ser diferente do catálogo completo. Os pontos desta apresentação são simulados.`, state: "respondendo" };
+  }
+  if (programmed && (programmed.takesPrecedence || isExplanation || !matches.length)) {
     // O aviso geral já está no cabeçalho. Mantém as ressalvas específicas da
     // resposta, sem repetir o parágrafo experimental em cada mensagem.
     return { text: programmed.answer, state: "respondendo" };
@@ -151,7 +163,7 @@ export function answerMessage(text: string, context: AssistantContext): ChatResp
 
   if (matches.length > 1) {
     return {
-      text: `Identifiquei mais de uma prioridade: ${matches.map((rule) => rule.label).join(", ")}. Qual delas você quer priorizar nesta consulta?`,
+      text: `Você citou mais de uma prioridade: ${matches.map((rule) => rule.label).join(", ")}. Por qual delas começamos?`,
       state: "respondendo",
     };
   }
@@ -160,12 +172,12 @@ export function answerMessage(text: string, context: AssistantContext): ChatResp
     const recommendation = recommendStations({ ...context, intent: rule.intent });
     if (!recommendation) {
       return {
-        text: `${rule.unavailable} nos dados demonstrativos. ${explainNoRecommendation(context, rule.intent)}`,
+        text: `${rule.unavailable} no catálogo de simulação. ${explainNoRecommendation(context, rule.intent)}`,
         state: "alerta",
       };
     }
     return {
-      text: `No exemplo, ${recommendation.primary.name}: ${recommendation.explanation}\nEstimativa em linha reta com reserva de ${MIN_ARRIVAL_BATTERY_PERCENT}%; compatibilidade não confirmada. Confirme o funcionamento antes de sair.`,
+      text: `Minha sugestão é ${recommendation.primary.name}.\n${recommendation.explanation}\nChegada estimada: ${recommendation.arrivalBatteryPercent}% de bateria, em linha reta.\nCenário de simulação com reserva mínima de ${MIN_ARRIVAL_BATTERY_PERCENT}%. Confirme funcionamento e compatibilidade antes de sair.`,
       state: "respondendo",
       recommendation,
     };
@@ -173,7 +185,7 @@ export function answerMessage(text: string, context: AssistantContext): ChatResp
 
   const wantsRecommendation = /\b(?:recomendacao|recomende|recomenda|sugestao|sugira|indique|indica|onde (?:posso )?carregar)\b/.test(message);
   return {
-    text: `${wantsRecommendation ? "Para recomendar, preciso saber sua prioridade." : "Posso ajudar com as opções de recarga do exemplo."} Você quer preservar bateria, recarga rápida, esperar menos, café e banheiro ou esperar com conforto?`,
+    text: `${wantsRecommendation ? "Para recomendar, preciso saber sua prioridade." : "Não tenho uma resposta preparada para essa pergunta. Posso ajudar a escolher onde recarregar ou explicar os recursos do Flui."} O que é mais importante agora: preservar bateria, recarga rápida, esperar menos, café e banheiro ou esperar com conforto?`,
     state: "respondendo",
   };
 }

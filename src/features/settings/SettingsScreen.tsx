@@ -1,10 +1,13 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Platform, ScrollView, StatusBar, Text, TextInput, View } from "react-native";
+import { ScrollView, StatusBar, Switch, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
+import appPackage from "../../../package.json";
 import {
   ArrowLeft,
   Check,
+  Info,
+  LogOut,
   Moon,
   Sparkles,
   Sun,
@@ -20,11 +23,14 @@ import { useAppPreferences } from "../../context/PreferencesContext";
 import { fluiStorage } from "../../storage";
 import type { AppearanceMode, FontSizePreference } from "../../types";
 import { createSettingsStyles } from "./SettingsScreen.styles";
-import { limiteNomeVeiculo, origensDemonstrativas, type OrigemDemonstrativaId } from "../../data/demonstracao";
-import { validarConfiguracaoDemonstrativa } from "../../utils/demonstracao";
-import { getBatterySourceLabels } from "../../utils/batteryData";
+import { identificacaoDados } from "../../data/identificacaoDados";
 
-const FEEDBACK_DURATION = 1500;
+import OfflinePhotosStatus from "../../offline/OfflinePhotosStatus";
+import PresentationOriginPreference from "./PresentationOriginPreference";
+import { useSystemReducedMotion } from "../../hooks/useReducedMotion";
+import { FluiaVoiceSettings } from "./FluiaVoiceSettings";
+
+const FEEDBACK_DURATION = 3200;
 
 const fontSizeLabels: Record<FontSizePreference, string> = {
   small: "Fonte menor",
@@ -45,46 +51,20 @@ export default function SettingsScreen() {
     theme,
     fontScale,
     appearanceMode,
+    highContrast,
+    userPreferences,
+    presentationState,
     fontSize,
     isLoadingPreferences,
     isSavingPreferences,
     preferencesError,
     reloadPreferences,
     updateAppearanceMode,
+    updateHighContrast,
+    updateReduceMotion,
+    updateHapticsEnabled,
     updateFontSize,
-    userPreferences,
-    updateDemoConfiguration,
   } = useAppPreferences();
-
-  const [veiculo, setVeiculo] = useState(userPreferences.vehicleName);
-  const [autonomia, setAutonomia] = useState(String(userPreferences.vehicleRangeKm));
-  const [origemId, setOrigemId] = useState<OrigemDemonstrativaId>(userPreferences.demoOriginId);
-  const [erroDemonstracao, setErroDemonstracao] = useState<string | null>(null);
-  const bateria = getBatterySourceLabels(userPreferences);
-
-  useEffect(() => {
-    setVeiculo(userPreferences.vehicleName);
-    setAutonomia(String(userPreferences.vehicleRangeKm));
-    setOrigemId(userPreferences.demoOriginId);
-  }, [userPreferences.vehicleName, userPreferences.vehicleRangeKm, userPreferences.demoOriginId]);
-
-  const salvarDemonstracao = async () => {
-    if (isLoadingPreferences || isSavingPreferences) return;
-    const config = {
-      vehicleName: veiculo.trim(),
-      vehicleRangeKm: Number(autonomia.trim().replace(",", ".")),
-      demoOriginId: origemId,
-    };
-    const erro = validarConfiguracaoDemonstrativa(config);
-    setErroDemonstracao(erro);
-    if (erro) return;
-    try {
-      await updateDemoConfiguration(config);
-      showSettingsFeedback("Demonstração salva neste dispositivo");
-    } catch {
-      setErroDemonstracao("Não foi possível salvar a demonstração. Tente novamente.");
-    }
-  };
 
   const styles = useMemo(
     () => createSettingsStyles(theme, fontScale),
@@ -92,6 +72,7 @@ export default function SettingsScreen() {
   );
 
   const isDarkMode = appearanceMode === "dark";
+  const systemReducedMotion = useSystemReducedMotion();
 
   const appearanceOptions = [
     {
@@ -110,17 +91,17 @@ export default function SettingsScreen() {
 
   const fontSizeOptions = [
     {
-      label: "Fonte menor",
+      label: "Menor",
       description: "Mais conteúdo visível por tela.",
       value: "small" as FontSizePreference,
     },
     {
-      label: "Fonte padrão",
+      label: "Padrão",
       description: "Equilíbrio entre leitura e espaço.",
       value: "default" as FontSizePreference,
     },
     {
-      label: "Fonte maior",
+      label: "Maior",
       description: "Leitura mais confortável.",
       value: "large" as FontSizePreference,
     },
@@ -176,8 +157,38 @@ export default function SettingsScreen() {
     }
   };
 
+  const toggleHighContrast = async () => {
+    if (isLoadingPreferences || isSavingPreferences) return;
+    try {
+      await updateHighContrast(!highContrast);
+      showSettingsFeedback(highContrast ? "Alto contraste desativado" : "Alto contraste ativado");
+    } catch {
+      showSettingsFeedback("Não foi possível salvar o contraste. Tente novamente.");
+    }
+  };
+
   const openOnboarding = () => {
     router.push("/onboarding?from=settings");
+  };
+
+  const saveReducedMotion = async (enabled: boolean) => {
+    if (systemReducedMotion || isLoadingPreferences || isSavingPreferences) return;
+    try {
+      await updateReduceMotion(enabled);
+      showSettingsFeedback(enabled ? "Movimento reduzido" : "Animações restauradas");
+    } catch {
+      showSettingsFeedback("Não foi possível salvar o ajuste de movimento. Tente novamente.");
+    }
+  };
+
+  const saveHaptics = async (enabled: boolean) => {
+    if (isLoadingPreferences || isSavingPreferences) return;
+    try {
+      await updateHapticsEnabled(enabled);
+      showSettingsFeedback(enabled ? "Vibração dos toques ativada" : "Vibração dos toques desativada");
+    } catch {
+      showSettingsFeedback("Não foi possível salvar o ajuste de vibração. Tente novamente.");
+    }
   };
 
   const resetLocalData = async () => {
@@ -194,13 +205,13 @@ export default function SettingsScreen() {
     }
   };
 
-  const renderOptionCheck = (isSelected: boolean) => {
+  const renderOptionCheck = (isSelected: boolean, centered = false) => {
     return isSelected ? (
-      <View style={styles.checkCircle}>
+      <View style={[styles.checkCircle, centered && styles.fontSizeCheckCircle]}>
         <Check size={14} color={theme.onPrimary} strokeWidth={2.4} />
       </View>
     ) : (
-      <View style={styles.emptyCheckCircle} />
+      <View style={[styles.emptyCheckCircle, centered && styles.fontSizeCheckCircle]} />
     );
   };
 
@@ -251,152 +262,114 @@ export default function SettingsScreen() {
           ) : null}
 
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Demonstração NEXT</Text>
-            <Text style={styles.sectionText}>
-            Veículo e autonomia usados nas simulações. Sem GPS ou integração com o veículo. Catálogo incluído no app. Reconectar não atualiza estações nem envia dados locais.
-            {Platform.OS === "web" ? " Na web, abra com conexão antes do uso offline; o armazenamento depende do navegador." : ""}
-            </Text>
-            <Text style={styles.fieldLabel}>Veículo demonstrativo</Text>
-            <TextInput
-              accessibilityLabel="Veículo demonstrativo"
-              value={veiculo}
-              onChangeText={setVeiculo}
-              maxLength={limiteNomeVeiculo}
-              editable={!isLoadingPreferences && !isSavingPreferences}
-              style={styles.input}
-            />
-            <Text style={styles.fieldLabel}>Autonomia com bateria cheia (km)</Text>
-            <TextInput
-              accessibilityLabel="Autonomia com bateria cheia em quilômetros"
-              accessibilityHint="Valor usado para estimar o alcance; não é uma especificação verificada do veículo."
-              value={autonomia}
-              onChangeText={setAutonomia}
-              keyboardType="decimal-pad"
-              editable={!isLoadingPreferences && !isSavingPreferences}
-              style={styles.input}
-            />
-            <Text style={styles.fieldLabel}>Origem demonstrativa</Text>
-            <Text style={styles.sectionText}>
-              Distâncias em linha reta a partir da origem escolhida. Não representam percursos reais.
-            </Text>
-            <View style={styles.optionsList}>
-              {origensDemonstrativas.map((origem) => (
-                <PressableScale
-                  key={origem.id}
-                  accessibilityRole="button"
-                  accessibilityLabel={`Selecionar origem ${origem.nome}`}
-                  accessibilityState={{ selected: origemId === origem.id }}
-                  disabled={isLoadingPreferences || isSavingPreferences}
-                  style={[styles.optionButton, origemId === origem.id ? styles.optionButtonSelected : null]}
-                  onPress={() => setOrigemId(origem.id)}
-                >
-                  <Text style={[styles.optionTitle, styles.optionInfo]}>{origem.nome}</Text>
-                  {renderOptionCheck(origemId === origem.id)}
-                </PressableScale>
-              ))}
-            </View>
-            {erroDemonstracao ? (
-              <Text accessibilityRole="alert" style={styles.warningText}>{erroDemonstracao}</Text>
-            ) : null}
-            <PressableScale
-              accessibilityRole="button"
-              accessibilityLabel="Salvar demonstração"
-              disabled={isLoadingPreferences || isSavingPreferences}
-              style={[styles.optionButton, styles.optionsList]}
-              onPress={salvarDemonstracao}
-            >
-              <Check size={21} color={theme.primary} />
-              <Text style={styles.optionTitle}>Salvar demonstração</Text>
-            </PressableScale>
-            <Text style={styles.sectionText}>
-              Bateria: {userPreferences.batteryPercent}% · {bateria.source}. {bateria.detail}.
-              {"\n"}Para alterar, use o indicador de bateria no mapa.
-            </Text>
-            <PressableScale
-              accessibilityRole="button"
-              accessibilityLabel="Abrir mapa para editar bateria"
-              style={[styles.optionButton, styles.optionsList]}
-              onPress={() => router.push("/map")}
-            >
-              <Text style={styles.optionTitle}>Editar bateria no mapa</Text>
-            </PressableScale>
-          </View>
-
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Aparência</Text>
-            <Text style={styles.sectionText}>
-              Escolha o tema visual do app.
-            </Text>
-
-            <View style={styles.optionsList}>
-              {appearanceOptions.map((option) => {
-                const isSelected = option.value === appearanceMode;
-
-                return (
-                  <PressableScale
-                    key={option.value}
-                    accessibilityRole="button"
-                    accessibilityLabel={`Selecionar tema ${option.label.toLowerCase()}`}
-                    accessibilityState={{ selected: isSelected }}
-                    style={[
-                      styles.optionButton,
-                      isSelected ? styles.optionButtonSelected : null,
-                    ]}
-                    onPress={() => saveAppearanceMode(option.value)}
-                  >
-                    <View style={styles.optionIconBox}>{option.icon}</View>
-
-                    <View style={styles.optionInfo}>
-                      <Text style={styles.optionTitle}>{option.label}</Text>
-                      <Text style={styles.optionDescription}>
-                        {option.description}
-                      </Text>
-                    </View>
-
-                    {renderOptionCheck(isSelected)}
-                  </PressableScale>
-                );
-              })}
-            </View>
-          </View>
-
-          <View style={styles.section}>
             <Text style={styles.sectionTitle}>Acessibilidade</Text>
             <Text style={styles.sectionText}>
-              Ajuste o tamanho da fonte para melhorar a leitura.
+              Escolha os ajustes mais confortáveis para usar o Flui.
             </Text>
 
-            <View style={styles.optionsList}>
-              {fontSizeOptions.map((option) => {
-                const isSelected = option.value === fontSize;
+            <View style={styles.accessibilityCards}>
+              <View style={styles.accessibilityCard} testID="acessibilidade-fonte">
+                <Text style={styles.accessibilityTitle}>Tamanho da fonte</Text>
+                <View accessibilityRole="radiogroup" accessibilityLabel="Tamanho da fonte" style={styles.fontSizeRow}>
+                  {fontSizeOptions.map((option, index) => {
+                    const isSelected = option.value === fontSize;
+                    return (
+                      <View key={option.value} style={styles.fontSizeItem}>
+                        <PressableScale
+                          accessibilityRole="radio"
+                          accessibilityLabel={`Fonte ${option.label.toLowerCase()}`}
+                          accessibilityHint={option.description}
+                          accessibilityState={{ checked: isSelected, disabled: isLoadingPreferences || isSavingPreferences }}
+                          disabled={isLoadingPreferences || isSavingPreferences}
+                          style={[styles.fontSizeCard, isSelected ? styles.optionButtonSelected : null]}
+                          onPress={() => saveFontSize(option.value)}
+                        >
+                          <View style={styles.fontSizeIconSlot}><Type accessible={false} size={18 + index * 4} color={theme.primary} /></View>
+                          <Text style={styles.fontSizeLabel}>{option.label}</Text>
+                          <View style={styles.fontSizeCheckSlot}>{renderOptionCheck(isSelected, true)}</View>
+                        </PressableScale>
+                      </View>
+                    );
+                  })}
+                </View>
+              </View>
 
-                return (
-                  <PressableScale
-                    key={option.value}
-                    accessibilityRole="button"
-                    accessibilityLabel={`Selecionar ${option.label.toLowerCase()}`}
-                    accessibilityState={{ selected: isSelected }}
-                    style={[
-                      styles.optionButton,
-                      isSelected ? styles.optionButtonSelected : null,
-                    ]}
-                    onPress={() => saveFontSize(option.value)}
-                  >
-                    <View style={styles.optionIconBox}>
-                      <Type size={21} color={theme.primary} strokeWidth={2.1} />
-                    </View>
+              <View style={styles.accessibilityCard} testID="acessibilidade-aparencia">
+                <Text style={styles.accessibilityTitle}>Aparência</Text>
+                <View accessibilityRole="radiogroup" accessibilityLabel="Aparência" style={styles.fontSizeRow}>
+                  {appearanceOptions.map((option) => {
+                    const isSelected = option.value === appearanceMode;
+                    return (
+                      <View key={option.value} style={styles.fontSizeItem}>
+                        <PressableScale
+                          accessibilityRole="radio"
+                          accessibilityLabel={`Tema ${option.label.toLowerCase()}`}
+                          accessibilityHint={option.description}
+                          accessibilityState={{ checked: isSelected, disabled: isLoadingPreferences || isSavingPreferences }}
+                          disabled={isLoadingPreferences || isSavingPreferences}
+                          style={[styles.fontSizeCard, isSelected ? styles.optionButtonSelected : null]}
+                          onPress={() => saveAppearanceMode(option.value)}
+                        >
+                          <View style={styles.appearanceIconSlot}>{option.icon}</View>
+                          <Text style={styles.fontSizeLabel}>{option.label}</Text>
+                          <View style={styles.fontSizeCheckSlot}>{renderOptionCheck(isSelected, true)}</View>
+                        </PressableScale>
+                      </View>
+                    );
+                  })}
+                </View>
+              </View>
 
-                    <View style={styles.optionInfo}>
-                      <Text style={styles.optionTitle}>{option.label}</Text>
-                      <Text style={styles.optionDescription}>
-                        {option.description}
-                      </Text>
-                    </View>
+              <View style={styles.accessibilityCard} testID="acessibilidade-contraste">
+                <View style={styles.accessibilityToggleRow}>
+                  <Text style={styles.accessibilityToggleTitle}>Alto contraste</Text>
+                  <Switch
+                    style={styles.accessibilitySwitch}
+                    accessibilityLabel="Alto contraste"
+                    accessibilityHint="Reforça textos e contornos, mantendo o tema escolhido."
+                    value={highContrast}
+                    disabled={isLoadingPreferences || isSavingPreferences}
+                    onValueChange={() => void toggleHighContrast()}
+                    trackColor={{ false: theme.border, true: theme.primary }}
+                    thumbColor={highContrast ? theme.onPrimary : theme.surface}
+                  />
+                </View>
+                <Text style={styles.accessibilityDescription}>Reforça textos e contornos, mantendo o tema escolhido.</Text>
+              </View>
 
-                    {renderOptionCheck(isSelected)}
-                  </PressableScale>
-                );
-              })}
+              <View style={styles.accessibilityCard} testID="acessibilidade-movimento">
+                <View style={styles.accessibilityToggleRow}>
+                  <Text style={styles.accessibilityToggleTitle}>Reduzir movimento</Text>
+                  <Switch
+                    style={styles.accessibilitySwitch}
+                    accessibilityLabel="Reduzir movimento"
+                    accessibilityHint="Reduz animações, movimentos da Orb e transições do app."
+                    value={userPreferences.reduceMotion || systemReducedMotion}
+                    disabled={systemReducedMotion || isLoadingPreferences || isSavingPreferences}
+                    onValueChange={(enabled) => void saveReducedMotion(enabled)}
+                    trackColor={{ false: theme.border, true: theme.primary }}
+                    thumbColor={userPreferences.reduceMotion || systemReducedMotion ? theme.onPrimary : theme.surface}
+                  />
+                </View>
+                <Text style={styles.accessibilityDescription}>{systemReducedMotion ? "Ativado nas configurações de acessibilidade do dispositivo." : "Reduz animações, movimentos da Orb e transições do app."}</Text>
+              </View>
+
+              <View style={styles.accessibilityCard} testID="acessibilidade-vibracao">
+                <View style={styles.accessibilityToggleRow}>
+                  <Text style={styles.accessibilityToggleTitle}>Vibração nos toques</Text>
+                  <Switch
+                    style={styles.accessibilitySwitch}
+                    accessibilityLabel="Vibração nos toques"
+                    accessibilityHint="Ativa ou desativa o retorno tátil dos botões do Flui."
+                    value={userPreferences.hapticsEnabled}
+                    disabled={isLoadingPreferences || isSavingPreferences}
+                    onValueChange={(enabled) => void saveHaptics(enabled)}
+                    trackColor={{ false: theme.border, true: theme.primary }}
+                    thumbColor={userPreferences.hapticsEnabled ? theme.onPrimary : theme.surface}
+                  />
+                </View>
+                <Text style={styles.accessibilityDescription}>Ativa ou desativa o retorno tátil dos botões do Flui.</Text>
+              </View>
             </View>
           </View>
 
@@ -432,6 +405,36 @@ export default function SettingsScreen() {
               </PressableScale>
             </View>
           </View>
+          <OfflinePhotosStatus />
+          {__DEV__ ? <>
+            <FluiaVoiceSettings />
+            <PresentationOriginPreference onFeedback={showSettingsFeedback} />
+            <View style={styles.optionsList}>
+              <PressableScale accessibilityRole="button" accessibilityLabel="Cenários internos de apresentação" accessibilityHint="Configura dados fictícios separados dos registros normais deste dispositivo." style={styles.optionButton} onPress={() => router.push("/presentation")}>
+                <View style={styles.optionInfo}><Text style={styles.optionTitle}>Cenários de apresentação</Text><Text style={styles.optionDescription}>{presentationState.enabled ? "Cenário ativo · dados separados" : "Ferramenta interna"}</Text></View>
+              </PressableScale>
+            </View>
+          </> : null}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Sobre os dados</Text>
+            <Text style={styles.sectionText}>{identificacaoDados.catalogo.resumo}</Text>
+            <Text style={styles.sectionText}>Perfil fictício, com fotos e veículo ilustrativos. A carga é informada manualmente ou usada como cenário de simulação; não é lida do veículo. Distância em linha reta e tempos são estimativas. Confirme funcionamento e compatibilidade antes de ir. A FluIA usa respostas e regras locais, sem IA generativa.</Text>
+          </View>
+          <View style={styles.section}>
+            <PressableScale
+              accessibilityRole="button"
+              accessibilityLabel="Sair da conta"
+              accessibilityHint="Esta versão usa um perfil local, sem sessão conectada. Não apaga dados."
+              style={[styles.optionButton, styles.logoutButton]}
+              onPress={() => showSettingsFeedback("Perfil local: não há uma sessão conectada para encerrar.")}
+            >
+              <LogOut size={21} color={theme.dangerText} />
+              <Text style={[styles.optionTitle, { color: theme.dangerText }]}>Sair da conta</Text>
+            </PressableScale>
+          </View>
+          <View style={styles.versionFooter} testID="identificacao-versao">
+            <Text style={styles.versionText}>Flui {appPackage.version}</Text>
+          </View>
         </ScrollView>
 
         <LoadingOverlay
@@ -445,8 +448,10 @@ export default function SettingsScreen() {
 
         {settingsFeedbackMessage ? (
           <View pointerEvents="none" style={styles.feedbackToastOverlay}>
-            <View style={styles.feedbackToastCard}>
-              <Text style={styles.feedbackToastIcon}>i</Text>
+            <View accessibilityLiveRegion="polite" style={styles.feedbackToastCard}>
+              <View style={styles.feedbackToastIcon} accessible={false}>
+                <Info size={22} color="#FFFFFF" strokeWidth={2.2} />
+              </View>
               <Text style={styles.feedbackToastText}>
                 {settingsFeedbackMessage}
               </Text>

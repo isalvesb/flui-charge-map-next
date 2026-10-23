@@ -4,9 +4,10 @@ import test from "node:test";
 import { obterOrigemDemonstrativa } from "../src/data/demonstracao";
 import {
   obterDestinoDemonstrativo,
+  destinosDemonstrativos,
   type DestinoViagem,
 } from "../src/data/destinosViagem";
-import { planejarViagem, podeIniciarViagem } from "../src/utils/tripPlanner";
+import { planejarViagem, podeIniciarViagem, describeTripStops } from "../src/utils/tripPlanner";
 import { calcularDistanciaGeograficaKm } from "../src/utils/demonstracao";
 
 const origem = obterOrigemDemonstrativa("fiap");
@@ -122,4 +123,71 @@ test("recarga alcançável permite alternativa que preserva a reserva no destino
   assert.equal(plano.paradas[0].bateriaSaidaPercent, 80);
   assert.equal(plano.bateriaChegadaDestinoPercent, 7);
   assert.equal(podeIniciarViagem(plano), true);
+});
+
+test("último trecho expõe a saída da última recarga em viagem com três paradas", () => {
+  const destino = obterDestinoDemonstrativo("campos-do-jordao");
+  const plano = planejarViagem(origem, destino, 80, 70);
+  assert.equal(plano.paradas.length, 3);
+  const ultima = plano.paradas.at(-1)!;
+  assert.equal(plano.trechoFinal.bateriaSaidaPercent, ultima.bateriaSaidaPercent);
+  assert.equal(plano.trechoFinal.distanciaKm, Math.round(calcularDistanciaGeograficaKm(ultima, destino)));
+  assert.equal(plano.bateriaChegadaDestinoPercent, 53);
+  assert.equal(podeIniciarViagem(plano), true);
+  for (const parada of plano.paradas) assert.ok(parada.bateriaChegadaPercent >= 5);
+});
+
+test("sem paradas, o último trecho parte da bateria informada e acompanha a configuração", () => {
+  const plano = planejarViagem(origem, campinas, 400, 70);
+  assert.equal(plano.paradas.length, 0);
+  assert.equal(plano.trechoFinal.bateriaSaidaPercent, 70);
+  assert.equal(plano.trechoFinal.distanciaKm, plano.distanciaTotalKm);
+  assert.equal(plano.trechoFinal.tempoMin, plano.tempoEstimadoMin);
+  const reduzido = planejarViagem(origem, campinas, 50, 70);
+  assert.equal(podeIniciarViagem(reduzido), false);
+  assert.notEqual(plano.bateriaChegadaDestinoPercent, reduzido.bateriaChegadaDestinoPercent);
+});
+
+
+test("paradas retornam na ordem do percurso mesmo se o catálogo estiver invertido", () => {
+  const destino = obterDestinoDemonstrativo("campos-do-jordao");
+  const shuffled = { ...destino, paradas: [...destino.paradas].reverse() };
+  const plano = planejarViagem(origem, shuffled, 80, 70);
+  assert.deepEqual(plano.paradas.map(p => p.id), ["atibaia", "braganca", "sjcampos"]);
+  for (const [index, parada] of plano.paradas.entries()) {
+    const fracao = destino.paradas[index].fracaoRota;
+    assert.equal(parada.latitude, origem.latitude + (destino.latitude - origem.latitude) * fracao);
+    assert.equal(parada.longitude, origem.longitude + (destino.longitude - origem.longitude) * fracao);
+  }
+});
+
+
+test("seletor e resumo descrevem paradas necessárias calculadas, não candidatas do catálogo", () => {
+  const destination = obterDestinoDemonstrativo("campos-do-jordao");
+  const direct = planejarViagem(origem, destination, 400, 70);
+  assert.equal(destination.paradas.length, 3);
+  assert.equal(describeTripStops(direct), "Sem paradas de recarga necessárias");
+  const stops = planejarViagem(origem, destination, 80, 70);
+  assert.equal(describeTripStops(stops), "3 paradas de recarga necessárias");
+  assert.deepEqual(stops.paradas.map(p => p.nome), destination.paradas.map(p => p.nome));
+  const blocked = planejarViagem(origem, destination, 80, 0);
+  assert.equal(describeTripStops(blocked), "Plano inviável · sem sequência de recargas viável");
+});
+
+
+test("destinos no RJ ampliam cenários de zero, uma e duas paradas sem alterar a bateria", () => {
+  const ids = ["campinas", "rio-de-janeiro", "cabo-frio"];
+  const planos = ids.map(id => planejarViagem(origem, obterDestinoDemonstrativo(id), 400, 70));
+  assert.deepEqual(planos.map(plano => plano.paradas.length), [0, 1, 2]);
+  for (const plano of planos) {
+    assert.equal(podeIniciarViagem(plano), true);
+    for (const parada of plano.paradas) assert.ok(parada.bateriaChegadaPercent >= 5);
+  }
+  assert.ok(destinosDemonstrativos.filter(destino => destino.estado === "RJ").length >= 5);
+  const cabo = obterDestinoDemonstrativo("cabo-frio");
+  assert.deepEqual(planos[2].paradas.map(parada => parada.id), cabo.paradas.slice(0, 2).map(parada => parada.id));
+  const semCarga = planejarViagem(origem, cabo, 400, 0);
+  assert.equal(podeIniciarViagem(semCarga), false);
+  assert.deepEqual(semCarga.paradas, []);
+  assert.equal(planejarViagem(origem, cabo, 800, 100).paradas.length, 0);
 });

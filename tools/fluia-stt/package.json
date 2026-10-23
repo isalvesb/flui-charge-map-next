@@ -1,0 +1,17 @@
+{
+  "name": "fluia-stt-local",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test *.test.mjs"
+  },
+  "dependencies": {
+    "@google-cloud/speech": "8.2.1",
+    "google-auth-library": "^10.4.0",
+    "ws": "8.22.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

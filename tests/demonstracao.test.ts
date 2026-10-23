@@ -17,7 +17,7 @@ import { recommendStations } from "../src/features/assistant/fluiAssistant";
 import { getStationArrivalPresentation } from "../src/features/stations/stationPresentation";
 import { createStation } from "./fixtures";
 
-test("preferências antigas recebem FIAP e veículo padrão sem perder autonomia e origem da bateria", () => {
+test("preferências sem origem recebem FIAP e veículo padrão sem perder autonomia e origem da bateria", () => {
   const antigo = { vehicleRangeKm: 320, batteryPercent: 35, batterySource: "manual" as const, batteryUpdatedAt: "2026-10-16T12:00:00Z" };
   const migrado = { ...normalizarConfiguracaoDemonstrativa(antigo), ...normalizeBatteryData(antigo) };
   assert.equal(migrado.demoOriginId, "fiap");
@@ -81,7 +81,7 @@ test("origem atualiza os dados usados no raio de busca e na viabilidade da FluIA
 
 test("mapa, ficha e FluIA exibem a mesma estimativa de chegada para toda origem", () => {
   for (const origem of origensDemonstrativas) {
-    const stations = aplicarOrigemDemonstrativa([createStation()], origem);
+    const stations = aplicarOrigemDemonstrativa([createStation({ latitude: origem.latitude + 0.001, longitude: origem.longitude })], origem);
     const assessment = avaliarAlcance(stations[0].distanceKm, 275.5, 35);
     const recommendation = recommendStations({ stations, intent: "fastCharge", vehicleRangeKm: 275.5, batteryPercent: 35 });
     assert.ok(recommendation);
@@ -98,4 +98,26 @@ test("cortes de filtro e reserva mantêm precisão anterior ao arredondamento vi
   assert.equal(formatarDistanciaDemonstrativa(station.distanceKm), "≈500 m");
   assert.equal(filtrarEstacoes({ estacoes: [station], filtros: { ...defaultFilters, distance: { maxKm: 0.5 } } }).length, 0);
   assert.equal(recommendStations({ stations: [station], intent: "lowBattery", vehicleRangeKm: 10, batteryPercent: 10 }), null);
+});
+
+
+test("FIAP volta ao padrão e NEXT continua uma opção explícita", () => {
+  const initial = obterOrigemDemonstrativa(normalizarConfiguracaoDemonstrativa().demoOriginId);
+  assert.equal(initial.id, "fiap");
+  assert.equal(initial.latitude, -23.564304);
+  assert.equal(initial.longitude, -46.652537);
+  assert.equal(obterOrigemDemonstrativa("next").nome, "NEXT");
+  assert.equal(normalizarConfiguracaoDemonstrativa({ demoOriginId: "paulista" }).demoOriginId, "paulista");
+});
+
+
+test("NEXT fica primeiro sem mudar FIAP como fallback; todas as origens são persistíveis", () => {
+  assert.equal(origensDemonstrativas[0].id, "next");
+  assert.equal(obterOrigemDemonstrativa("invalida" as never).id, "fiap");
+  assert.equal(new Set(origensDemonstrativas.map(o => o.id)).size, origensDemonstrativas.length);
+  for (const origin of origensDemonstrativas) {
+    const config = { ...demonstracaoPadrao, demoOriginId: origin.id };
+    assert.equal(validarConfiguracaoDemonstrativa(config), null);
+    assert.equal(normalizarConfiguracaoDemonstrativa(JSON.parse(JSON.stringify(config))).demoOriginId, origin.id);
+  }
 });

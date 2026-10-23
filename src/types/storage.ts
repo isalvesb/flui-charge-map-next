@@ -34,6 +34,10 @@ export type UserPreferences = {
   savedFilters: StationFilters;
   hasSeenOnboarding: boolean;
   appearanceMode: AppearanceMode;
+  highContrast: boolean;
+  reduceMotion: boolean;
+  hapticsEnabled: boolean;
+  speechVoiceId: string | null;
   fontSize: FontSizePreference;
   vehicleRangeKm: number;
   vehicleName: string;

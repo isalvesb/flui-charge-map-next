@@ -42,7 +42,7 @@ test("bateria baixa usa o motor local e recusa bateria insuficiente", () => {
   assert.equal(viable.recommendation?.intent, "lowBattery");
   assert.equal(viable.recommendation?.primary.id, "near");
   assert.match(viable.text, /em linha reta/);
-  assert.match(viable.text, /compatibilidade não confirmada/);
+  assert.match(viable.text, /Confirme funcionamento e compatibilidade/);
   const insufficient = answerMessage("Tenho pouca bateria", { ...context, batteryPercent: 0 });
   assert.equal(insufficient.state, "alerta");
   assert.equal(insufficient.recommendation, undefined);
@@ -66,7 +66,7 @@ test("chat respeita o horário recebido da tela nas duas intenções", () => {
     assert.equal(before.recommendation?.primary.id, station.id);
     assert.equal(after.recommendation, undefined);
     assert.equal(after.state, "alerta");
-    assert.match(after.text, /dados demonstrativos/);
+    assert.match(after.text, /catálogo de simulação/);
   }
 });
 
@@ -76,7 +76,7 @@ test("bateria baixa não atribui indisponibilidade exclusivamente ao alcance", (
   });
   assert.equal(response.recommendation, undefined);
   assert.match(response.text, /em manutenção no cadastro/);
-  assert.match(response.text, /dados demonstrativos/);
+  assert.match(response.text, /catálogo de simulação/);
   assert.doesNotMatch(response.text, /não há margem/);
 });
 
@@ -103,8 +103,8 @@ for (const [intent, synonyms] of Object.entries(questions)) {
       assert.deepEqual(result.recommendation,
         recommendStations({ ...fullContext, intent: intent as FluiAssistantIntent }), question);
       assert.equal(result.state, "respondendo");
-      assert.match(result.text, /No exemplo, Ponto Completo/);
-      assert.match(result.text, /compatibilidade não confirmada/);
+      assert.match(result.text, /Minha sugestão é Ponto Completo/);
+      assert.match(result.text, /Confirme funcionamento e compatibilidade/);
       assert.ok(!result.text.includes(RECOMMENDATION_DISCLAIMER));
       assert.ok(!result.text.includes(identificacaoDados.fluia.aviso));
     }
@@ -117,7 +117,7 @@ test("acentos, caixa, pontuação e espaços não mudam a intenção", () => {
 });
 
 test("as cinco intenções explicam necessidades diferentes mesmo para a mesma estação", () => {
-  const expected = [/alcance estimado/, /kW nos conectores/, /não há previsão de fila em tempo real/, /banheiro e café cadastrados/, /comodidade\(s\)/];
+  const expected = [/alcance estimado/, /potência de até .* kW/, /não informa a fila em tempo real/, /café e banheiro no cadastro/, /comodidades cadastradas/];
   const responses = Object.values(questions).map((items) => answerMessage(items[0], fullContext));
   assert.equal(new Set(responses.map((response) => response.text)).size, 5);
   responses.forEach((response, index) => assert.match(response.text, expected[index]));
@@ -173,7 +173,7 @@ test("ausência de estações não inventa causa em filtros, bateria ou horário
     assert.equal(response.state, "alerta");
     assert.equal(response.recommendation, undefined);
     assert.match(response.text, /Não recebi estações/);
-    assert.match(response.text, /dados demonstrativos/);
+    assert.match(response.text, /catálogo de simulação/);
     assert.doesNotMatch(response.text, /filtros|todas.*fechadas|não há margem/);
   }
 });
@@ -251,4 +251,17 @@ test("diagnóstico não apresenta dados inválidos como falta de bateria", () =>
     assert.match(result.text, /não têm distância e potência válidas/);
   }
   assert.match(answerMessage("Esperar menos", { ...context, now: new Date(NaN) }).text, /horário da consulta é inválido/);
+});
+
+
+test("resposta revisada expõe chegada do motor e limites sem prometer dados em tempo real", () => {
+  for (const text of ["recarga rápida", "esperar menos", "preservar bateria", "café e banheiro", "esperar com conforto"]) {
+    const response = answerMessage(text, fullContext);
+    assert.ok(response.recommendation);
+    assert.ok(response.text.includes(`Chegada estimada: ${response.recommendation.arrivalBatteryPercent}%`));
+    assert.match(response.text, /Cenário de simulação com reserva mínima de 5%/);
+    assert.match(response.text, /em linha reta/);
+    assert.match(response.text, /Confirme funcionamento e compatibilidade/);
+    assert.doesNotMatch(response.text, /comodidade\(s\)|cadastrada\(s\)|fila garantida|reserva confirmada/);
+  }
 });
