@@ -37,6 +37,8 @@ import { useAppPreferences } from "../../context/PreferencesContext";
 import { useSearchContext } from "../../context/SearchContext";
 import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
 import { FluiAssistantSheet } from "../assistant/FluiAssistantSheet";
+import { LocationPermissionModal } from "./location/LocationPermissionModal";
+import { useAskLocation } from "../../context/AskLocationContext";
 import type { AssistantRevealOrigin } from "../assistant/coverRadius";
 import { FluiAiIcon } from "../assistant/FluiAiIcon";
 import {
@@ -199,6 +201,7 @@ export default function HomeMapScreen() {
     meta: { inputRef: searchInputRef },
   } = useSearchContext();
   const reduceMotionEnabled = useReducedMotion();
+  const location = useAskLocation();
   const [seletorBateriaAberto, setSeletorBateriaAberto] = useState(false);
   const [bateriaEmEdicao, setBateriaEmEdicao] = useState(batteryPercent);
   const { width: larguraJanela, height: alturaJanela } = useWindowDimensions();
@@ -346,6 +349,14 @@ export default function HomeMapScreen() {
             </View>
           </View>
         ) : null}
+
+        <LocationPermissionModal
+          visible={location.needsPrompt}
+          onAllow={() => {
+            void location.allow();
+          }}
+          onDecline={location.decline}
+        />
 
         {seletorBateriaAberto ? (
           <Modal

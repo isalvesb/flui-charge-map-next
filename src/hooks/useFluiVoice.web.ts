@@ -14,6 +14,7 @@ import { useFluiSpeechSession } from "./useFluiSpeechSession";
 export type FluiVoice = {
   listening: boolean;
   transcript: string;
+  settledUtterance: { id: number; text: string } | null;
   samples: SharedValue<number[]>;
   intensity: number;
   unavailable: FluiVoiceStatus | null;
@@ -141,6 +142,7 @@ export function useFluiVoice(reducedMotion: boolean): FluiVoice {
   return {
     listening: session.listening,
     transcript: session.transcript,
+    settledUtterance: session.settledUtterance,
     samples,
     intensity: reducedMotion ? REST_INTENSITY : intensity,
     unavailable: session.unavailable,

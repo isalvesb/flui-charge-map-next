@@ -4,13 +4,21 @@ import { useSpeechRecognitionEvent } from "./speechRecognition";
 
 import { applyTranscript, type FluiVoiceStatus } from "./fluiVoice";
 
+export type SettledUtterance = {
+  id: number;
+  text: string;
+};
+
 export function useFluiSpeechSession() {
   const [listening, setListening] = useState(false);
   const [transcript, setTranscript] = useState("");
   const [unavailable, setUnavailable] = useState<FluiVoiceStatus | null>(null);
+  const [settledUtterance, setSettledUtterance] =
+    useState<SettledUtterance | null>(null);
   const wantsListen = useRef(false);
   const committed = useRef("");
   const restart = useRef<(() => void) | null>(null);
+  const settledId = useRef(0);
 
   const markStopped = useCallback(() => {
     wantsListen.current = false;
@@ -20,6 +28,7 @@ export function useFluiSpeechSession() {
   const markStarted = useCallback(() => {
     committed.current = "";
     setTranscript("");
+    setSettledUtterance(null);
     setUnavailable(null);
     wantsListen.current = true;
     setListening(true);
@@ -33,6 +42,10 @@ export function useFluiSpeechSession() {
     );
     committed.current = next.committed;
     setTranscript(next.text);
+    if (event.isFinal && next.text.trim()) {
+      settledId.current += 1;
+      setSettledUtterance({ id: settledId.current, text: next.text });
+    }
   });
 
   useSpeechRecognitionEvent("error", (event) => {
@@ -65,6 +78,7 @@ export function useFluiSpeechSession() {
   return {
     listening,
     transcript,
+    settledUtterance,
     unavailable,
     setUnavailable,
     wantsListen,

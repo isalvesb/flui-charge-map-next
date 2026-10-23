@@ -1,7 +1,8 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Modal,
   Platform,
+  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
@@ -20,6 +21,8 @@ import { useReducedMotion } from "../../hooks/useReducedMotion";
 import { colors, radius, spacing, typography } from "../../theme";
 import { scaleFontSize } from "../../theme/appTheme";
 import { useAppPreferences } from "../../context/PreferencesContext";
+import { useAskLocation } from "../../context/AskLocationContext";
+import { askPlaces } from "./askPlaces";
 import type { ChargingStation } from "../../types";
 import type { AssistantRevealOrigin } from "./coverRadius";
 import { CircularReveal, useCircularReveal } from "./CircularReveal";
@@ -60,6 +63,36 @@ export function FluiAssistantOverlay({
   const waveWidth = Math.min(width - spacing.xl * 2, Math.round(disc * 2.4));
   const waveHeight = Math.round(disc * 0.72);
   const voice = useFluiVoice(reducedMotion);
+  const location = useAskLocation();
+  const [asking, setAsking] = useState(false);
+  const [reply, setReply] = useState<string | null>(null);
+  const askingRef = useRef(false);
+  const transcriptRef = useRef(voice.transcript);
+  const listeningRef = useRef(voice.listening);
+  const sendPending = useRef(false);
+  const handledUtterance = useRef(0);
+  const lastSent = useRef("");
+  transcriptRef.current = voice.transcript;
+  if (voice.listening) sendPending.current = true;
+
+  const ask = async (text: string) => {
+    if (!location.fix || askingRef.current) return;
+    const trimmed = text.trim();
+    if (!trimmed) return;
+    askingRef.current = true;
+    setAsking(true);
+    setReply(null);
+    const result = await askPlaces({
+      text: trimmed,
+      latitude: location.fix.latitude,
+      longitude: location.fix.longitude,
+    });
+    askingRef.current = false;
+    setAsking(false);
+    setReply(
+      result.ok ? JSON.stringify(result.places, null, 2) : result.message,
+    );
+  };
   const reveal = useCircularReveal({
     visible,
     origin,
@@ -69,10 +102,41 @@ export function FluiAssistantOverlay({
     onClosed: onClose,
   });
   const shown = visible && origin !== null;
+  const canAsk = location.ready && !asking;
+  const askRef = useRef(ask);
+  askRef.current = ask;
 
   useEffect(() => {
     if (!shown) voice.stop();
   }, [shown, voice.stop]);
+
+  useEffect(() => {
+    const wasListening = listeningRef.current;
+    listeningRef.current = voice.listening;
+    if (!wasListening && voice.listening) lastSent.current = "";
+    if (voice.listening) sendPending.current = true;
+    if (wasListening && !voice.listening) sendPending.current = true;
+
+    const utterance = voice.settledUtterance;
+    const text = voice.transcript.trim();
+    if (!sendPending.current || !text || text === lastSent.current) return;
+
+    // The browser keeps listening after the words are already on screen,
+    // and it often reports the end before that text is stored.
+    const timer = setTimeout(() => {
+      const latest = transcriptRef.current.trim();
+      if (!latest) return;
+      if (latest === lastSent.current) return;
+      if (utterance && utterance.id !== handledUtterance.current) {
+        handledUtterance.current = utterance.id;
+      }
+      lastSent.current = latest;
+      sendPending.current = false;
+      void askRef.current(latest);
+    }, voice.listening ? 700 : 300);
+
+    return () => clearTimeout(timer);
+  }, [voice.listening, voice.settledUtterance, voice.transcript]);
 
   return (
     <Modal
@@ -142,13 +206,23 @@ export function FluiAssistantOverlay({
               </View>
             </Animated.View>
             <Animated.View style={reveal.promptStyle}>
-              <Text
-                style={styles.prompt}
-                numberOfLines={4}
-                accessibilityLiveRegion="polite"
+              <ScrollView
+                style={styles.promptScroll}
+                contentContainerStyle={styles.promptContent}
               >
-                {promptCopy(voice.unavailable, voice.transcript, voice.listening)}
-              </Text>
+                <Text
+                  style={styles.prompt}
+                  accessibilityLiveRegion="polite"
+                >
+                  {promptCopy(
+                    voice.unavailable,
+                    voice.transcript,
+                    voice.listening,
+                    asking,
+                    reply,
+                  )}
+                </Text>
+              </ScrollView>
             </Animated.View>
             <Animated.View style={reveal.orbStyle}>
               <AssistantOrb
@@ -165,27 +239,39 @@ export function FluiAssistantOverlay({
             <Animated.View style={[styles.chips, reveal.chipsStyle]}>
               <PressableScale
                 accessibilityRole="button"
+                accessibilityState={{ disabled: !canAsk }}
                 pressedScale={0.96}
-                style={styles.chip}
-                onPress={() => undefined}
+                style={[styles.chip, canAsk ? null : styles.chipDisabled]}
+                disabled={!canAsk}
+                onPress={() => {
+                  void ask("Lugares que carregam carros elétricos");
+                }}
               >
-                <Text style={styles.chipText}>Onde carregar rápido</Text>
+                <Text style={styles.chipText}>Lugares que carregam carros elétricos</Text>
               </PressableScale>
               <PressableScale
                 accessibilityRole="button"
+                accessibilityState={{ disabled: !canAsk }}
                 pressedScale={0.96}
-                style={styles.chip}
-                onPress={() => undefined}
+                style={[styles.chip, canAsk ? null : styles.chipDisabled]}
+                disabled={!canAsk}
+                onPress={() => {
+                  void ask("Cafeterias perto");
+                }}
               >
-                <Text style={styles.chipText}>Com café por perto</Text>
+                <Text style={styles.chipText}>Cafeterias perto</Text>
               </PressableScale>
               <PressableScale
                 accessibilityRole="button"
+                accessibilityState={{ disabled: !canAsk }}
                 pressedScale={0.96}
-                style={styles.chip}
-                onPress={() => undefined}
+                style={[styles.chip, canAsk ? null : styles.chipDisabled]}
+                disabled={!canAsk}
+                onPress={() => {
+                  void ask("Postos de gasolina perto");
+                }}
               >
-                <Text style={styles.chipText}>Tô com pouca bateria</Text>
+                <Text style={styles.chipText}>Postos de gasolina perto</Text>
               </PressableScale>
             </Animated.View>
           </View>
@@ -208,13 +294,19 @@ export function FluiAssistantOverlay({
                     ? "Parar de falar com a FluIA"
                     : "Falar com a FluIA"
                 }
-                accessibilityState={{ selected: voice.listening }}
+                accessibilityState={{
+                  selected: voice.listening,
+                  disabled: !canAsk && !voice.listening,
+                }}
                 pressedScale={0.96}
+                disabled={!canAsk && !voice.listening}
                 style={[
                   styles.micButton,
                   voice.listening ? styles.micButtonListening : null,
+                  !canAsk && !voice.listening ? styles.micButtonDisabled : null,
                 ]}
                 onPress={() => {
+                  if (!canAsk && !voice.listening) return;
                   if (voice.listening) voice.stop();
                   else voice.start();
                 }}
@@ -233,6 +325,8 @@ function promptCopy(
   unavailable: FluiVoiceStatus | null,
   transcript: string,
   listening: boolean,
+  asking: boolean,
+  reply: string | null,
 ) {
   if (unavailable === "not-allowed") {
     return "O microfone precisa de permissão para a FluIA ouvir você.";
@@ -243,6 +337,8 @@ function promptCopy(
   if (unavailable === "service-not-allowed" || unavailable === "unavailable") {
     return "O reconhecimento de voz não está disponível aqui.";
   }
+  if (asking) return "Buscando…";
+  if (reply) return reply;
   if (transcript) return transcript;
   if (listening) return "Ouvindo…";
   return "Precisa de ajuda?";
@@ -356,6 +452,13 @@ function createStyles(fontScale: number) {
       lineHeight: scaleFontSize(typography.lineHeights.xl, fontScale),
       textAlign: "center",
     },
+    promptScroll: {
+      maxHeight: 180,
+      width: "100%",
+    },
+    promptContent: {
+      alignItems: "center",
+    },
     prompt: {
       ...typography.body,
       color: colors.white,
@@ -364,13 +467,18 @@ function createStyles(fontScale: number) {
       fontWeight: typography.weights.medium,
       textAlign: "center",
     },
+    chipDisabled: {
+      opacity: 0.4,
+    },
     chips: {
       alignItems: "center",
       gap: spacing.sm,
     },
     chip: {
+      maxWidth: "100%",
       minHeight: 44,
       paddingHorizontal: spacing.lg,
+      paddingVertical: spacing.xs,
       borderRadius: radius.pill,
       borderWidth: 1,
       borderColor: `${colors.white}B8`,
@@ -383,6 +491,7 @@ function createStyles(fontScale: number) {
       fontSize: scaleFontSize(typography.sizes.md, fontScale),
       lineHeight: scaleFontSize(typography.lineHeights.md, fontScale),
       fontWeight: typography.weights.medium,
+      textAlign: "center",
     },
     micSlot: {
       width: 120,
@@ -401,6 +510,9 @@ function createStyles(fontScale: number) {
     },
     micButtonListening: {
       backgroundColor: `${colors.white}55`,
+    },
+    micButtonDisabled: {
+      opacity: 0.4,
     },
   });
 }
