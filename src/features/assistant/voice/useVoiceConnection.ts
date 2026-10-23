@@ -1,12 +1,8 @@
-import { useEffect, useSyncExternalStore } from "react";
-import { AppState } from "react-native";
+import { useSyncExternalStore } from "react";
 import { voiceConnection } from "./connectionStore";
 
 export function useVoiceConnection() {
-  const state = useSyncExternalStore(voiceConnection.subscribe, voiceConnection.getSnapshot, voiceConnection.getSnapshot);
-  useEffect(() => {
-    const listener = AppState.addEventListener("change", value => { if (value === "background") voiceConnection.clear(); });
-    return () => listener.remove();
-  }, []);
-  return state;
+  // Capture is canceled independently on background; the authorized session
+  // stays only in this app process until explicit deactivation or termination.
+  return useSyncExternalStore(voiceConnection.subscribe, voiceConnection.getSnapshot, voiceConnection.getSnapshot);
 }
