@@ -47,6 +47,7 @@ import { identificacaoDados } from "../../data/identificacaoDados";
 import { calcularAutonomiaAtualKm } from "../../utils/autonomia";
 import {
   planejarViagem,
+  describeTripStops,
   podeIniciarViagem,
   type ParadaDeViagem,
 } from "../../utils/tripPlanner";
@@ -221,16 +222,16 @@ export default function TripPlannerScreen() {
       },
     }));
 
-    const opcoesDestino = destinosDemonstrativos.map((destino) => ({
-      id: destino.id,
-      titulo: destino.nome,
-      subtitulo: `Até ${destino.paradas.length} parada${destino.paradas.length === 1 ? "" : "s"} simulada${destino.paradas.length === 1 ? "" : "s"}; depende da bateria`,
-      selecionado: destino.id === destinationId,
-      onPress: () => {
-        setDestinationId(destino.id);
-        setSeletorAberto(null);
-      },
-    }));
+    const opcoesDestino = destinosDemonstrativos.map((destino) => {
+      const preview = planejarViagem(origemSelecionada, destino, vehicleRangeKm, batteryPercent);
+      return {
+        id: destino.id,
+        titulo: destino.nome,
+        subtitulo: describeTripStops(preview),
+        selecionado: destino.id === destinationId,
+        onPress: () => { setDestinationId(destino.id); setSeletorAberto(null); },
+      };
+    });
 
     const opcoes = seletorAberto === "origem" ? opcoesOrigem : opcoesDestino;
 
@@ -400,18 +401,6 @@ export default function TripPlannerScreen() {
             </View>
           </View>
 
-          <View testID="viagem-resumo-paradas" style={styles.stopsSummary} accessibilityLiveRegion="polite">
-            <Text style={styles.stopsSummaryTitle}>
-              {plano.paradas.length === 0
-                ? podeIniciar ? "Sem paradas de recarga com a carga atual" : "Nenhuma parada alcançável com a carga atual"
-                : `${plano.paradas.length} parada${plano.paradas.length === 1 ? "" : "s"} de recarga no plano`}
-            </Text>
-            <Text style={styles.stopsSummaryText}>
-              {plano.paradas.length > 0
-                ? plano.paradas.map((parada, index) => `${index + 1}. ${parada.nome}`).join(" → ")
-                : `${origemSelecionada.nome} → ${destinoSelecionado.nome}`}
-            </Text>
-          </View>
           <View style={styles.mapCard}>
             <MapView
               ref={mapRef}
@@ -489,6 +478,13 @@ export default function TripPlannerScreen() {
                 <Text style={styles.editButtonText}>Editar destino</Text>
                 <ChevronRight size={14} color={colors.primary} strokeWidth={2.4} />
               </Pressable>
+            </View>
+
+            <View testID="viagem-resumo-paradas" style={styles.stopsSummary} accessibilityLiveRegion="polite">
+              <Text style={styles.stopsSummaryTitle}>{describeTripStops(plano)}</Text>
+              {plano.paradas.map((parada, index) => (
+                <Text key={parada.id} style={styles.stopsSummaryText}>{index + 1}. {parada.nome}</Text>
+              ))}
             </View>
 
             <View

@@ -424,3 +424,10 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Arquivos: `SettingsScreen.tsx`, `.styles.ts`.
 - Ícones T de tamanhos diferentes agora ficam em áreas iguais de 32 pt; seleção ocupa slot igual de 24 pt e textos usam a mesma altura de linha. Bordas/radius continuam uniformes, sem deslocar o conteúdo selecionado.
 - Verificações: TypeScript, ESLint e diff (`r03-*`). Geometria web e inspeção visual serão conferidas no fechamento desta rodada; aprovação humana após correção pendente.
+
+### R04 — 01: correspondência entre destino e resumo (esclarecimento recebido)
+
+- Problema esclarecido: seletor anunciava paradas, mas resumo não correspondia nem identificava onde parar. Causa: contagem do seletor vinha das paradas candidatas do catálogo, enquanto resumo usava as exigidas pelo cálculo.
+- Arquivos: `TripPlannerScreen.tsx`, `utils/tripPlanner.ts`, `tests/tripPlanner.test.ts`.
+- Seletor calcula cada destino com origem/bateria/autonomia atuais. Resumo da viagem usa a mesma descrição e lista explicitamente os locais das paradas, dentro do próprio cartão. Cenário inviável não é anunciado como viagem completa com zero paradas.
+- Verificações: TypeScript, ESLint e testes do planejador, incluindo catálogo com 3 candidatas que exige 0 ou 3 conforme carga/autonomia (`r04-*`). Revisão humana após correção pendente.

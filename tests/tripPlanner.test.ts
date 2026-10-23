@@ -6,7 +6,7 @@ import {
   obterDestinoDemonstrativo,
   type DestinoViagem,
 } from "../src/data/destinosViagem";
-import { planejarViagem, podeIniciarViagem } from "../src/utils/tripPlanner";
+import { planejarViagem, podeIniciarViagem, describeTripStops } from "../src/utils/tripPlanner";
 import { calcularDistanciaGeograficaKm } from "../src/utils/demonstracao";
 
 const origem = obterOrigemDemonstrativa("fiap");
@@ -158,4 +158,17 @@ test("paradas retornam na ordem do percurso mesmo se o catálogo estiver inverti
     assert.equal(parada.latitude, origem.latitude + (destino.latitude - origem.latitude) * fracao);
     assert.equal(parada.longitude, origem.longitude + (destino.longitude - origem.longitude) * fracao);
   }
+});
+
+
+test("seletor e resumo descrevem paradas necessárias calculadas, não candidatas do catálogo", () => {
+  const destination = obterDestinoDemonstrativo("campos-do-jordao");
+  const direct = planejarViagem(origem, destination, 400, 70);
+  assert.equal(destination.paradas.length, 3);
+  assert.equal(describeTripStops(direct), "Sem paradas de recarga necessárias");
+  const stops = planejarViagem(origem, destination, 80, 70);
+  assert.equal(describeTripStops(stops), "3 paradas de recarga necessárias");
+  assert.deepEqual(stops.paradas.map(p => p.nome), destination.paradas.map(p => p.nome));
+  const blocked = planejarViagem(origem, destination, 80, 0);
+  assert.equal(describeTripStops(blocked), "Plano inviável · nenhuma parada alcançável");
 });

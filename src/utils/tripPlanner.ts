@@ -171,3 +171,13 @@ export function podeIniciarViagem(
 }
 
 export const MARGEM_SEGURANCA_PARADAS_PERCENT = MARGEM_SEGURANCA_PERCENT;
+
+
+// Mesma descrição no seletor de destino e no resumo, sempre do plano calculado.
+export function describeTripStops(plan: PlanoDeViagem) {
+  const count = plan.paradas.length;
+  if (!podeIniciarViagem(plan)) return count
+    ? `Plano inviável · ${count} parada${count === 1 ? "" : "s"} ${count === 1 ? "alcançável" : "alcançáveis"}`
+    : "Plano inviável · nenhuma parada alcançável";
+  return count ? `${count} parada${count === 1 ? "" : "s"} de recarga necessária${count === 1 ? "" : "s"}` : "Sem paradas de recarga necessárias";
+}
