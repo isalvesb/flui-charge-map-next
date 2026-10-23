@@ -120,6 +120,36 @@ test('evento de fim da voz conclui após 1 s e voz retomada cancela esse prazo',
   await stream.cancel();
 });
 
+test('fim iniciado pelo Google descarta PCM tardio enquanto aguarda a transcrição final', async t => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const call = new EventEmitter();
+  const writes = [], finals = [], failures = [];
+  let ending = false;
+  call.write = value => {
+    if (ending) throw new Error('ERR_STREAM_WRITE_AFTER_END');
+    writes.push(value); return true;
+  };
+  call.end = () => { ending = true; };
+  call.cancel = () => call.emit('error', { code: 1 });
+  const stream = await googleStreamProvider({ initialize: async () => {}, _streamingRecognize: () => call }, 'test-project')({
+    signal: new AbortController().signal,
+    partial: () => {}, completed: text => finals.push(text), failed: code => failures.push(code),
+  });
+  stream.write(Buffer.alloc(3200));
+  call.emit('data', { results: [{ alternatives: [{ transcript: 'Quero café' }], isFinal: false }] });
+  call.emit('data', { speechEventType: 3 });
+  t.mock.timers.tick(1000);
+  assert.equal(ending, true);
+  const before = writes.length;
+  assert.equal(stream.write(Buffer.alloc(3200)), true);
+  assert.equal(writes.length, before);
+  call.emit('end');
+  assert.deepEqual(finals, ['Quero café']);
+  assert.deepEqual(failures, []);
+  assert.equal(stream.write(Buffer.alloc(3200)), true);
+  assert.equal(writes.length, before);
+});
+
 
 test('silêncio PCM conclui uma vez e ignora áudio tardio', async t => {
   const f = await fixture(t);

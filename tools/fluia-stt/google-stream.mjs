@@ -58,9 +58,12 @@ export function googleStreamProvider(client, project, metrics = {}) {
     call.write(streamingConfig(project));
     return {
       write: audio => {
+        // Google can finish before the iPhone receives the final result and stops PCM.
+        // Discard those in-flight frames instead of writing after the RPC half-close.
+        if (done || ending) return true;
         if (!startTimer && !heardSpeech) startTimer = setTimeout(finish, 8000);
         metrics.audioFrames = (metrics.audioFrames ?? 0) + 1;
-        return !done && call.write({ audio });
+        return call.write({ audio });
       },
       finish,
       cancel: async () => {
