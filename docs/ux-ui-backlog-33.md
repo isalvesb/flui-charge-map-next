@@ -527,3 +527,10 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 
 - Arquivos: SettingsScreen.tsx/.styles.ts. Círculos herdavam marginLeft de 10 pt dos cartões de aparência, ficando deslocados à direita dentro do slot centralizado. Removida a margem só para fontes; slot do indicador com largura fixa. Ícones T agora compartilham a linha inferior, apesar dos tamanhos diferentes.
 - Verificações: TypeScript, ESLint dirigido e diff. Geometria web será conferida após exportação; iPhone ainda depende de revisão humana.
+
+### S02 — 19/21: origem diretamente nas Configurações
+
+- Função transferida para PresentationOriginPreference, embutida em Configurações apenas em desenvolvimento; removida a página intermediária Ferramentas internas. Rota antiga apenas redireciona para não quebrar links salvos.
+- Seleção no menu salva imediatamente, sem botão Salvar. Mantém bloqueio durante gravação; falha restaura seleção anterior e informa erro. Veículo/autonomia/bateria/favoritos não são modificados.
+- Verificações: TypeScript, ESLint dirigido e testes de configuração; interação e persistência web de desenvolvimento serão conferidas após checkpoint.
+- S01 `3b02d0e`; indicador centralizado depende de nova revisão física, sem inferir aprovação pelo silêncio.

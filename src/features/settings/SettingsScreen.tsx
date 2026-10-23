@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { ScrollView, StatusBar, Switch, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { router, type Href } from "expo-router";
+import { router } from "expo-router";
 import appPackage from "../../../package.json";
 import {
   ArrowLeft,
@@ -23,6 +23,8 @@ import { fluiStorage } from "../../storage";
 import type { AppearanceMode, FontSizePreference } from "../../types";
 import { createSettingsStyles } from "./SettingsScreen.styles";
 import { identificacaoDados } from "../../data/identificacaoDados";
+
+import PresentationOriginPreference from "./PresentationOriginPreference";
 
 const FEEDBACK_DURATION = 3200;
 
@@ -354,16 +356,7 @@ export default function SettingsScreen() {
               </PressableScale>
             </View>
           </View>
-          {__DEV__ ? (
-            <View style={styles.section}>
-              <PressableScale accessibilityRole="button" accessibilityLabel="Abrir ferramentas internas de apresentação" accessibilityHint="Controles do cenário local, disponíveis nesta versão de desenvolvimento." style={styles.optionButton} onPress={() => router.push("/internal-presentation" as Href)}>
-                <View style={styles.optionInfo}>
-                  <Text style={styles.optionTitle}>Ferramentas internas</Text>
-                  <Text style={styles.optionDescription}>Cenário de apresentação e laboratório.</Text>
-                </View>
-              </PressableScale>
-            </View>
-          ) : null}
+          {__DEV__ ? <PresentationOriginPreference /> : null}
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Sobre os dados</Text>
             <Text style={styles.sectionText}>{identificacaoDados.catalogo.resumo}</Text>
