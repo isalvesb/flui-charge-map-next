@@ -159,7 +159,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
     gap: 8,
-    marginBottom: 4,
+    marginBottom: 12,
   },
 
   dataOriginLabel: { color: "#3F554F", fontSize: 12, lineHeight: 18, marginBottom: 14 },
@@ -266,7 +266,6 @@ export const styles = StyleSheet.create({
   },
 
   alcanceBannerText: {
-    flex: 1,
     fontSize: 14,
     lineHeight: 21,
     fontWeight: "600",
@@ -334,21 +333,21 @@ export const styles = StyleSheet.create({
   },
 
   infoGrid: {
-    gap: 14,
-    marginBottom: 14,
+    gap: 16,
+    marginBottom: 18,
   },
 
   infoRow: {
     flexDirection: "row",
-    gap: 12,
+    gap: 14,
   },
 
   infoCard: {
     flex: 1, minWidth: 0, borderRadius: 18, backgroundColor: "#FCFEFA", borderWidth: 1, borderColor: "#DDE8E3", overflow: "hidden",
   },
-  detailCard: { borderRadius: 18, backgroundColor: "#FCFEFA", borderWidth: 1, borderColor: "#DDE8E3", overflow: "hidden", marginBottom: 14 },
+  detailCard: { borderRadius: 18, backgroundColor: "#FCFEFA", borderWidth: 1, borderColor: "#DDE8E3", overflow: "hidden", marginBottom: 18 },
   infoCardHeader: { minHeight: 52, flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 14, paddingVertical: 8, backgroundColor: colors.primarySoft, borderBottomWidth: 1, borderBottomColor: colors.border },
-  infoCardBody: { padding: 14, gap: 6 },
+  infoCardBody: { padding: 16, gap: 10 },
   infoIconBox: {
     width: 40,
     height: 40,
@@ -544,12 +543,15 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "center",
-    rowGap: 16,
-    columnGap: 10,
+    rowGap: 20,
+    columnGap: 14,
   },
 
   amenityItem: {
-    width: 92,
+    flexBasis: 120,
+    flexGrow: 1,
+    maxWidth: "100%",
+    paddingHorizontal: 4,
     alignItems: "center",
   },
 

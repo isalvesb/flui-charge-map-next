@@ -168,18 +168,6 @@ function calcularTempoEstimadoCarga(powerKw: number) {
   return "1h30 ou mais";
 }
 
-function montarPerfilDoPonto(station: Station) {
-  if (station.powerKw >= 120) {
-    return "Carga rápida";
-  }
-
-  if (station.amenities.length >= 4) {
-    return "Parada confortável";
-  }
-
-  return "Recarga essencial";
-}
-
 function obterIconeDeAlcance(
   nivel: ReturnType<typeof avaliarAlcance>["nivel"],
 ) {
@@ -200,6 +188,7 @@ export default function PointDetailsScreen() {
   const [infoWidth, setInfoWidth] = useState(0);
   const { styles, colors, isDarkMode, fontScale } = useTelaComPreferencias(baseStyles);
   const stackInfoCards = shouldStackStationCards(infoWidth, fontScale, systemFontScale);
+  const amenityMinWidth = Math.min(Math.max(120, 110 * fontScale * systemFontScale), Math.max(120, infoWidth - 34));
   const { userPreferences, demoStations, demoOrigin } = useAppPreferences();
   const { stationId, startRoute } = useLocalSearchParams<{
     stationId?: string | string[];
@@ -390,7 +379,6 @@ export default function PointDetailsScreen() {
   const orientacaoDeEspera = isStationOpenAt(station, now)
     ? getWaitingLevel(station.status, availableChargers)
     : "Indisponível";
-  const perfilDoPonto = montarPerfilDoPonto(station);
   const userStationReview = sentReviews.find(
     (review) => review.stationId === station.id,
   );
@@ -440,14 +428,6 @@ export default function PointDetailsScreen() {
         : apresentacaoAlcance.tone === "success"
           ? colors.success
           : colors.textLight;
-  const corFundoAlcance =
-    apresentacaoAlcance.tone === "danger"
-      ? colors.dangerSoft
-      : apresentacaoAlcance.tone === "warning"
-        ? colors.warningLight
-        : apresentacaoAlcance.tone === "success"
-          ? colors.successSoft
-          : colors.surface;
 
   return (
     <ScreenTransition style={styles.container}>
@@ -514,37 +494,6 @@ export default function PointDetailsScreen() {
 
           <Text style={styles.address}>{formatAddress(station)}</Text>
 
-          {showWarning ? (
-            <View style={styles.riskBanner}>
-              <TriangleAlert accessible={false} size={20} color={colors.dangerText} />
-              <View style={{ flex: 1 }}>
-                <Text accessibilityRole="alert" style={styles.riskTitle}>{recomendacaoDoPonto}</Text>
-                <Text style={styles.riskDescription}>Manutenção indicada no catálogo. Confirme o funcionamento ou escolha outro ponto.</Text>
-              </View>
-              <Pressable accessibilityRole="button" accessibilityLabel="Dispensar aviso desta visita" style={styles.dismissRiskButton} onPress={() => setDismissedWarningKey(warningKey)}>
-                <X size={22} color={colors.dangerText} />
-              </Pressable>
-            </View>
-          ) : null}
-          <View
-            accessible
-            accessibilityLabel={`${apresentacaoAlcance.text} Carga usada: ${userPreferences.batteryPercent}%.`}
-            style={[
-              styles.alcanceBanner,
-              { backgroundColor: corFundoAlcance, borderColor: corAlcance },
-            ]}
-          >
-            <IconeAlcance size={20} color={corAlcance} strokeWidth={2.3} />
-
-            <Text style={[styles.alcanceBannerText, { color: colors.text }]}>
-              Autonomia estimada ≈{Math.round(avaliacaoAlcance.autonomiaAtualKm)} km{"\n"}
-              {avaliacaoAlcance.nivel === "foraDeAlcance"
-                ? `Fora do alcance · faltam ≈${avaliacaoAlcance.kmFaltantes} km`
-                : `${avaliacaoAlcance.nivel === "apertado" ? "Autonomia limitada · " : ""}Chegada ≈${avaliacaoAlcance.bateriaAoChegarPercent}%`}
-            </Text>
-          </View>
-
-
           <View style={styles.summaryRow}>
             <View style={styles.statusGroup}>
               <View
@@ -601,6 +550,39 @@ export default function PointDetailsScreen() {
           {recomendacaoDoPonto !== "Evite este ponto por enquanto" && !recomendacaoDoPonto.startsWith("Recarga não confirmada") ? (
             <Text style={styles.resumoTitle}>{recomendacaoDoPonto}</Text>
           ) : null}
+          {showWarning ? (
+            <View style={styles.riskBanner}>
+              <TriangleAlert accessible={false} size={20} color={colors.dangerText} />
+              <View style={{ flex: 1 }}>
+                <Text accessibilityRole="alert" style={styles.riskTitle}>{recomendacaoDoPonto}</Text>
+                <Text style={styles.riskDescription}>Manutenção indicada no catálogo. Confirme o funcionamento ou escolha outro ponto.</Text>
+              </View>
+              <Pressable accessibilityRole="button" accessibilityLabel="Dispensar aviso desta visita" style={styles.dismissRiskButton} onPress={() => setDismissedWarningKey(warningKey)}>
+                <X size={22} color={colors.dangerText} />
+              </Pressable>
+            </View>
+          ) : null}
+          <View
+            accessible
+            accessibilityLabel={`${apresentacaoAlcance.text} Carga usada: ${userPreferences.batteryPercent}%. Espera simulada: ${orientacaoDeEspera}. Recarga estimada: ${tempoEstimadoCarga}. Confirme funcionamento e compatibilidade.`}
+            style={styles.detailCard}
+          >
+            <View style={styles.infoCardHeader}>
+              <IconeAlcance size={20} color={corAlcance} strokeWidth={2.3} />
+              <Text style={styles.infoLabel}>Estimativas</Text>
+            </View>
+            <View style={styles.infoCardBody}>
+              <Text style={[styles.alcanceBannerText, { color: colors.text }]}>
+                Autonomia estimada ≈{Math.round(avaliacaoAlcance.autonomiaAtualKm)} km{"\n"}
+                {avaliacaoAlcance.nivel === "foraDeAlcance"
+                  ? `Fora do alcance · faltam ≈${avaliacaoAlcance.kmFaltantes} km`
+                  : `${avaliacaoAlcance.nivel === "apertado" ? "Autonomia limitada · " : ""}Chegada ≈${avaliacaoAlcance.bateriaAoChegarPercent}%`}
+              </Text>
+              <Text style={styles.infoDescription}>Espera simulada: {orientacaoDeEspera}{"\n"}Recarga estimada: {tempoEstimadoCarga}</Text>
+              <Text style={styles.infoDescription}>Confirme funcionamento e compatibilidade antes de ir.</Text>
+            </View>
+          </View>
+
           <ConnectionNotice />
           {storageError ? <View style={{ paddingHorizontal: 20, paddingVertical: 8, backgroundColor: colors.surface }}>
             <Text accessibilityRole="alert" style={{ color: colors.text }}>{storageError} Seus registros não foram alterados.</Text>
@@ -657,17 +639,6 @@ export default function PointDetailsScreen() {
 
           <View style={styles.detailCard}>
             <View style={styles.infoCardHeader}>
-              <BatteryCharging size={20} color={colors.primaryBright} />
-              <Text style={styles.infoLabel}>Estimativas</Text>
-            </View>
-            <View style={styles.infoCardBody}>
-              <Text style={styles.infoDescription}>Espera simulada: {orientacaoDeEspera} · Carga: {tempoEstimadoCarga}</Text>
-              <Text style={styles.infoDescription}>{perfilDoPonto}. Confirme funcionamento e compatibilidade antes de ir.</Text>
-            </View>
-          </View>
-
-          <View style={styles.detailCard}>
-            <View style={styles.infoCardHeader}>
               <Plug size={20} color={colors.primaryBright} />
               <Text style={styles.infoLabel}>Conectores</Text>
             </View>
@@ -716,7 +687,7 @@ export default function PointDetailsScreen() {
                 const IconeComodidade = getAmenityIcon(amenity);
 
                 return (
-                  <View key={amenity} style={styles.amenityItem}>
+                  <View key={amenity} style={[styles.amenityItem, { minWidth: amenityMinWidth }]}>
                     <View style={styles.amenityIconBox}>
                       <IconeComodidade
                         size={18}
@@ -742,10 +713,6 @@ export default function PointDetailsScreen() {
             </View>
             <View style={styles.infoCardBody}>
             {hasCatalogReviews ? <>
-            <Text style={styles.resumoDescription}>
-              {identificacaoDados.avaliacoesExemplo.aviso}
-            </Text>
-
             <View style={styles.ratingPanel}>
               <View style={styles.ratingPanelLeft}>
                 <Text style={styles.bigRating}>
@@ -757,7 +724,7 @@ export default function PointDetailsScreen() {
                 </Text>
 
                 <Text style={styles.totalReviews}>
-                  {station.reviewCount} avaliações demonstrativas
+                  {station.reviewCount} avaliações
                 </Text>
               </View>
 
