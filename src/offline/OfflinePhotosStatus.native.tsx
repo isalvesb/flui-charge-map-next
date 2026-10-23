@@ -25,12 +25,6 @@ export default function OfflinePhotosStatus() {
         <Text accessibilityLiveRegion="polite" style={[cardStyles.title, { color: theme.text, fontSize: scaleFontSize(16, fontScale) }]}>{state.title}</Text>
       </View>
       <Text style={[styles.sectionText, { color: theme.text }]}>{state.description}</Text>
-      {supported ? <>
-        <Text style={[cardStyles.count, { color: theme.textMuted, fontSize: scaleFontSize(13, fontScale) }]}>{state.count} de {total} imagens</Text>
-        <View accessibilityRole="progressbar" accessibilityLabel="Imagens preparadas para uso sem conexão" accessibilityValue={{ min: 0, max: total, now: state.count, text: `${state.count} de ${total} imagens` }} style={[cardStyles.track, { backgroundColor: theme.border }]}>
-          <View style={[cardStyles.fill, { backgroundColor: theme.primary, width: `${state.progress * 100}%` }]} />
-        </View>
-      </> : null}
     </View>
     {__DEV__ ? <Text style={styles.sectionText}>A versão de desenvolvimento precisa do servidor para iniciar o app.</Text> : null}
     {state.canRetry ? <Pressable accessibilityRole="button" accessibilityLabel="Preparar fotos para uso sem conexão" style={[styles.optionButton, { marginTop: 12 }]} onPress={retry}>
@@ -43,7 +37,4 @@ const cardStyles = StyleSheet.create({
   card: { marginTop: 12, padding: 16, borderRadius: 18, borderWidth: 1 },
   heading: { flexDirection: "row", alignItems: "center", gap: 10 },
   title: { flex: 1, fontWeight: "800", flexShrink: 1 },
-  count: { marginTop: 14, fontWeight: "700" },
-  track: { marginTop: 8, height: 7, borderRadius: 4, overflow: "hidden" },
-  fill: { height: "100%", borderRadius: 4 },
 });

@@ -15,7 +15,6 @@ test("confirma imagens somente após concluir a verificação local de todas", (
 test("preparação parcial e instalação incompatível não anunciam conclusão", () => {
   const partial = offlinePhotosPresentation({ ready: 12, total: 15, supported: true, preparing: false });
   assert.equal(partial.complete, false);
-  assert.equal(partial.progress, 0.8);
   assert.equal(partial.canRetry, true);
   const unavailable = offlinePhotosPresentation({ ready: 15, total: 15, supported: false, preparing: false });
   assert.equal(unavailable.complete, false);
@@ -23,10 +22,10 @@ test("preparação parcial e instalação incompatível não anunciam conclusão
   assert.equal(unavailable.canRetry, false);
 });
 
-test("barra fica entre zero e cem e catálogo vazio não é anunciado como pronto", () => {
-  for (const ready of [-3, NaN, 17]) {
+test("contagem indisponível e catálogo vazio não são anunciados como prontos", () => {
+  for (const ready of [-3, NaN, 0]) {
     const state = offlinePhotosPresentation({ ready, total: 15, supported: true, preparing: true });
-    assert.ok(state.progress >= 0 && state.progress <= 1);
+    assert.equal(state.complete, false);
   }
   assert.equal(offlinePhotosPresentation({ ready: 0, total: 0, supported: true, preparing: false }).complete, false);
 });

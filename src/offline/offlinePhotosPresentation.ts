@@ -4,9 +4,7 @@ export function offlinePhotosPresentation({ ready, total, preparing, supported }
   const count = Number.isFinite(ready) ? Math.min(total, Math.max(0, Math.floor(ready))) : 0;
   const complete = supported && total > 0 && count === total && !preparing;
   return {
-    count,
     complete,
-    progress: total > 0 ? count / total : 0,
     title: !supported ? "Preparação indisponível"
       : complete ? "Imagens preparadas"
         : preparing ? count === total ? "Conferindo imagens" : "Preparando imagens"
