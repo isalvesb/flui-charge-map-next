@@ -146,3 +146,16 @@ test("sem paradas, o último trecho parte da bateria informada e acompanha a con
   assert.equal(podeIniciarViagem(reduzido), false);
   assert.notEqual(plano.bateriaChegadaDestinoPercent, reduzido.bateriaChegadaDestinoPercent);
 });
+
+
+test("paradas retornam na ordem do percurso mesmo se o catálogo estiver invertido", () => {
+  const destino = obterDestinoDemonstrativo("campos-do-jordao");
+  const shuffled = { ...destino, paradas: [...destino.paradas].reverse() };
+  const plano = planejarViagem(origem, shuffled, 80, 70);
+  assert.deepEqual(plano.paradas.map(p => p.id), ["atibaia", "braganca", "sjcampos"]);
+  for (const [index, parada] of plano.paradas.entries()) {
+    const fracao = destino.paradas[index].fracaoRota;
+    assert.equal(parada.latitude, origem.latitude + (destino.latitude - origem.latitude) * fracao);
+    assert.equal(parada.longitude, origem.longitude + (destino.longitude - origem.longitude) * fracao);
+  }
+});

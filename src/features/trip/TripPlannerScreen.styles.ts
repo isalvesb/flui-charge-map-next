@@ -215,6 +215,7 @@ export const styles = StyleSheet.create({
     borderColor: colors.white,
   },
 
+  stopNumber: { color: colors.white, fontSize: 14, lineHeight: 18, fontWeight: "800", textAlign: "center" },
   markerStop: {
     width: 30,
     height: 30,

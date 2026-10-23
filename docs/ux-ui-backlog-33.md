@@ -42,7 +42,7 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 
 | ID | Prioridade | Ajuste | Estado | Arquivos/área | Dependências, pendências e limites |
 |---|---|---|---|---|---|
-| 01 | P1 | Paradas e trajetos | Pendente | trip/TripPlannerScreen; utils/tripPlanner | Conferir ordem, mapa e trechos; percursos continuam simulados. |
+| 01 | P1 | Paradas e trajetos | Implementado; revisão física pendente | trip/TripPlannerScreen; utils/tripPlanner | Conferir ordem, mapa e trechos; percursos continuam simulados. |
 | 02 | P3 | Subtexto do popup de estações | Pendente | map/HomeMapScreen | Preservar identificação geral da simulação. |
 | 03 | P2 | Linguagem e transparência | Pendente | data/identificacaoDados; telas | Transversal a 04, 23, 25, 27; evitar remoção indiscriminada. |
 | 04 | P2 | Origem do valor de bateria | Pendente | utils/batteryData | Distinguir manual, simulado e desconhecido. |
@@ -94,4 +94,12 @@ Cada entrada deve informar IDs, commit, arquivos, verificações e limites human
 - Arquivos: `src/features/map/HomeMapScreen.tsx`, `HomeMapScreen.styles.ts` e este registro.
 - Escopo: registra as duas alterações pequenas preexistentes (cabeçalho carro/bateria e remoção do aviso de centralização), sem recriá-las ou revertê-las.
 - Verificações: TypeScript, ESLint dos dois arquivos e `git diff --check` aprovados. Logs `00-*`.
-- iPhone: app correto instalado e cliente conectado ao Metro; sem nova confirmação visual humana. Commit preenchido após gravação.
+- iPhone: app correto instalado e cliente conectado ao Metro; sem nova confirmação visual humana. Commit: `8593cd6`.
+
+### CP01 — 01: identificação das paradas
+
+- Alterados: `src/features/trip/TripPlannerScreen.tsx`, `.styles.ts`, `tests/tripPlanner.test.ts`.
+- Paradas numeradas pela mesma lista ordenada do plano no mapa e na linha do tempo. Toque no marcador identifica nome/ordem/chegada/saída. Origem/destino têm títulos próprios. Seletor distingue paradas candidatas das necessárias à bateria atual.
+- Verificações: TypeScript, ESLint dirigido, testes do planejador (incluindo catálogo invertido/coordenadas) e diff. Logs `01-*`.
+- Conferir: mapa → viagem → Campos do Jordão; com autonomia 80 km e bateria 70%, cenário histórico tem três paradas. Não alterar dados do usuário automaticamente para o teste.
+- Limites: posições continuam interpoladas em linha reta, não são localização verificada dos carregadores; navegação externa continua só até o próximo ponto. Sem nova validação humana física.

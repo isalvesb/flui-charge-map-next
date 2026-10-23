@@ -224,7 +224,7 @@ export default function TripPlannerScreen() {
     const opcoesDestino = destinosDemonstrativos.map((destino) => ({
       id: destino.id,
       titulo: destino.nome,
-      subtitulo: `${destino.paradas.length} parada${destino.paradas.length === 1 ? "" : "s"} de recarga no trajeto`,
+      subtitulo: `Até ${destino.paradas.length} parada${destino.paradas.length === 1 ? "" : "s"} simulada${destino.paradas.length === 1 ? "" : "s"}; depende da bateria`,
       selecionado: destino.id === destinationId,
       onPress: () => {
         setDestinationId(destino.id);
@@ -412,25 +412,29 @@ export default function TripPlannerScreen() {
             >
               <Marker
                 coordinate={origemSelecionada}
+                title={`Origem: ${origemSelecionada.nome}`}
                 accessibilityLabel={`Origem: ${origemSelecionada.nome}`}
               >
                 <View style={styles.markerOrigin} />
               </Marker>
 
-              {plano.paradas.map((parada) => (
+              {plano.paradas.map((parada, index) => (
                 <Marker
                   key={parada.id}
                   coordinate={parada}
-                  accessibilityLabel={`Parada de recarga: ${parada.nome}`}
+                  title={`Parada ${index + 1}: ${parada.nome}`}
+                  description={`Chegada ${parada.bateriaChegadaPercent}% · saída ${parada.bateriaSaidaPercent}% · posição simulada`}
+                  accessibilityLabel={`Parada ${index + 1} de ${plano.paradas.length}: ${parada.nome}`}
                 >
                   <View style={styles.markerStop}>
-                    <Zap size={14} color={colors.white} strokeWidth={2.4} />
+                    <Text style={styles.stopNumber}>{index + 1}</Text>
                   </View>
                 </Marker>
               ))}
 
               <Marker
                 coordinate={destinoSelecionado}
+                title={`Destino: ${destinoSelecionado.nome}`}
                 accessibilityLabel={`Destino: ${destinoSelecionado.nome}`}
               >
                 <View style={styles.markerDestination}>
@@ -552,18 +556,18 @@ export default function TripPlannerScreen() {
                 </View>
               </View>
 
-              {plano.paradas.map((parada) => (
+              {plano.paradas.map((parada, index) => (
                 <View key={parada.id} style={styles.timelineRow}>
                   <View style={styles.timelineRail}>
                     <View
                       style={[styles.timelineIconCircle, styles.timelineIconStop]}
                     >
-                      <Zap size={13} color={colors.white} strokeWidth={2.4} />
+                      <Text style={styles.stopNumber}>{index + 1}</Text>
                     </View>
                     <View style={styles.timelineConnector} />
                   </View>
                   <View style={styles.timelineContent}>
-                    <Text style={styles.timelineName}>{parada.nome}</Text>
+                    <Text style={styles.timelineName}>Parada {index + 1} · {parada.nome}</Text>
                     <Text style={styles.timelineMeta}>
                       {formatarDuracao(parada.tempoTrechoMin)} ·{" "}
                       {parada.distanciaTrechoKm} km · {parada.powerKw} kW
