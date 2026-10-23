@@ -979,3 +979,12 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Arquivos: data/demonstracao.ts, PresentationOriginPreference.tsx e demonstracao.test.ts. Tipos/lint/diff e 18 testes dirigidos de origem/perfis/cenários aprovados. Teste de estimativas passou a colocar a estação de teste perto de cada origem, evitando supor que todas as novas origens ficam em SP; não relaxada a reserva de bateria.
 - validacao-origens-novas.json passou: NEXT primeiro, 12 opções, FIAP salva preservada, seleção automática/persistência de Búzios/Rio/NEXT, bateria/autonomia mantidas e extremos da lista alcançáveis em 320/393 fonte Maior. Primeira conferência do harness incluiu radios de fonte; delimitada ao menu, sem alterar o produto por essa falha.
 - Mesmo ambiente/Metro, sem instalação ou publicação. Revisão física pendente. Commit deste bloco registrado no próximo checkpoint.
+
+
+### S47 — 01: abrir ficha das paradas pelo planejador
+
+- Localizações iniciais S46: `457d534`. Paradas calculadas agora abrem a ficha pelo marcador numerado do mapa, nome no resumo ou linha da parada. Todos encaminham o ID real da estação do catálogo, sem usar posição/índice como identificador.
+- Botão superior da ficha retorna ao planejador quando aberto por ele, preservando a tela/destino/paradas na pilha. Se não houver histórico, retorna à rota do planejador. Origem/destino não viraram estações clicáveis; botão Ver mapa da ficha permanece acesso explícito ao mapa. Nenhuma rota externa iniciada ao abrir detalhes.
+- Arquivos: TripPlannerScreen.tsx/.styles e PointDetailsScreen.tsx. Rótulos/pistas acessíveis, áreas tocáveis mínimas de 44/48 e chevron nas listas. Tipos/ESLint dirigido/diff e 24 testes do planejador aprovados.
+- validacao-paradas-ficha.json passou: resumo/marcador/linha abrem estação correta e voltam com destino Cabo Frio e mesmas paradas; bateria/autonomia preservadas, zero erros de página e sem rolagem horizontal em 320/393 fonte Maior. Conferência web, sem declarar gestos físicos/VoiceOver humano.
+- Disponível via JavaScript no mesmo Metro; sem build nativo/publicação ou mudança no motor de cálculo. Commit deste bloco registrado no próximo checkpoint.

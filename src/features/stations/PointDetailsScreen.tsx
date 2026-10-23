@@ -192,9 +192,10 @@ export default function PointDetailsScreen() {
   const nomeMotorista = scenarioConfig?.driverName ?? "Caio Duarte";
   const imagemPerfilUsuario = presentationImages[scenarioConfig?.profileImage ?? "profile1"];
 
-  const { stationId, startRoute } = useLocalSearchParams<{
+  const { stationId, startRoute, returnTo } = useLocalSearchParams<{
     stationId?: string | string[];
     startRoute?: string | string[];
+    returnTo?: string | string[];
   }>();
 
   const selectedStationId = normalizeParam(stationId) ?? "station-01";
@@ -294,6 +295,16 @@ export default function PointDetailsScreen() {
     requestedRouteRef.current = station.id;
     void handleStartRoute();
   }, [startRoute, station, handleStartRoute]);
+
+  const veioDoPlanejador = normalizeParam(returnTo) === "trip-planner";
+  function voltarParaTelaAnterior() {
+    if (veioDoPlanejador) {
+      if (router.canGoBack()) router.back();
+      else router.replace("/trip-planner" as Href);
+      return;
+    }
+    voltarAoMapa();
+  }
 
   function voltarAoMapa() {
     router.replace("/map" as Href);
@@ -457,13 +468,13 @@ export default function PointDetailsScreen() {
           <SafeAreaView edges={["top"]} style={styles.heroActions}>
             <Pressable
               accessibilityRole="button"
-              accessibilityLabel="Voltar ao mapa"
+              accessibilityLabel={veioDoPlanejador ? "Voltar ao planejador" : "Voltar ao mapa"}
               style={({ pressed, hovered }: PressableVisualState) => [
                 styles.iconButton,
                 hovered && !pressed ? styles.hoverFeedback : null,
                 pressed ? styles.iconButtonPressed : null,
               ]}
-              onPress={voltarAoMapa}
+              onPress={voltarParaTelaAnterior}
             >
               <ArrowLeft size={24} color={colors.text} strokeWidth={2.4} />
             </Pressable>

@@ -126,6 +126,10 @@ export default function TripPlannerScreen() {
     );
   }, [origemSelecionada, destinoSelecionado, vehicleRangeKm, batteryPercent, demoStations, now]);
 
+  const abrirFichaDaParada = (parada: ParadaDeViagem) => {
+    router.push({ pathname: "/point-details", params: { stationId: parada.id, returnTo: "trip-planner" } });
+  };
+
   const podeIniciar = podeIniciarViagem(plano);
 
   const autonomiaAtualKm = Math.round(
@@ -408,6 +412,10 @@ export default function TripPlannerScreen() {
                   title={`Parada ${index + 1}: ${parada.nome}`}
                   description={`Chegada ${parada.bateriaChegadaPercent}% · saída ${parada.bateriaSaidaPercent}% · local do catálogo de simulação`}
                   accessibilityLabel={`Parada ${index + 1} de ${plano.paradas.length}: ${parada.nome}`}
+                  accessible
+                  accessibilityRole="button"
+                  accessibilityHint="Abre a ficha desta estação. Voltar retorna ao planejamento."
+                  onPress={() => abrirFichaDaParada(parada)}
                 >
                   <View style={styles.markerStop}>
                     <Text style={styles.stopNumber}>{index + 1}</Text>
@@ -465,7 +473,10 @@ export default function TripPlannerScreen() {
             <View testID="viagem-resumo-paradas" style={styles.stopsSummary} accessibilityLiveRegion="polite">
               <Text style={styles.stopsSummaryTitle}>{describeTripStops(plano)}</Text>
               {plano.paradas.map((parada, index) => (
-                <Text key={parada.id} style={styles.stopsSummaryText}>{index + 1}. {parada.nome}</Text>
+                <Pressable key={parada.id} accessibilityRole="button" accessibilityLabel={`Abrir ficha da parada ${index + 1}: ${parada.nome}`} onPress={() => abrirFichaDaParada(parada)} style={styles.stopSummaryLink}>
+                  <Text style={[styles.stopsSummaryText, { flex: 1 }]}>{index + 1}. {parada.nome}</Text>
+                  <ChevronRight size={18} color={colors.primary} />
+                </Pressable>
               ))}
             </View>
 
@@ -547,7 +558,7 @@ export default function TripPlannerScreen() {
               </View>
 
               {plano.paradas.map((parada, index) => (
-                <View key={parada.id} style={styles.timelineRow}>
+                <Pressable key={parada.id} style={[styles.timelineRow, { minHeight: 48 }]} accessibilityRole="button" accessibilityLabel={`Detalhes da parada ${index + 1}: ${parada.nome}`} accessibilityHint={`Chegada ${parada.bateriaChegadaPercent}%, saída ${parada.bateriaSaidaPercent}%. Abre a ficha da estação.`} onPress={() => abrirFichaDaParada(parada)}>
                   <View style={styles.timelineRail}>
                     <View
                       style={[styles.timelineIconCircle, styles.timelineIconStop]}
@@ -557,7 +568,7 @@ export default function TripPlannerScreen() {
                     <View style={styles.timelineConnector} />
                   </View>
                   <View style={styles.timelineContent}>
-                    <Text style={styles.timelineName}>Parada {index + 1} · {parada.nome}</Text>
+                    <View style={styles.stopLinkTitle}><Text style={[styles.timelineName, { flex: 1 }]}>Parada {index + 1} · {parada.nome}</Text><ChevronRight size={18} color={colors.primary} /></View>
                     <Text style={styles.timelineMeta}>
                       {formatarDuracao(parada.tempoTrechoMin)} ·{" "}
                       {parada.distanciaTrechoKm} km · {parada.powerKw} kW
@@ -568,7 +579,7 @@ export default function TripPlannerScreen() {
                       </Text>
                     </View>
                   </View>
-                </View>
+                </Pressable>
               ))}
 
               <View style={styles.timelineRow}>

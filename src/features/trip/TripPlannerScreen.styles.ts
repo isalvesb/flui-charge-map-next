@@ -178,6 +178,8 @@ export const styles = StyleSheet.create({
     borderRadius: 3,
   },
 
+  stopSummaryLink: { minHeight: 44, flexDirection: "row", alignItems: "center", gap: 8 },
+  stopLinkTitle: { flexDirection: "row", alignItems: "center", gap: 8 },
   stopsSummary: { padding: 12, borderRadius: 14, backgroundColor: colors.primarySoft, marginBottom: 10 },
   stopsSummaryTitle: { color: colors.primary, fontSize: 14, lineHeight: 20, fontWeight: "700" },
   stopsSummaryText: { color: colors.textSecondary, fontSize: 12, lineHeight: 18, marginTop: 4 },
