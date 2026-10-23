@@ -10,18 +10,22 @@ import { canChargeAt } from "../src/utils/stationAvailability";
 
 const now = new Date("2026-10-23T15:00:00Z");
 
-test("expansão preserva estações antigas e não injeta favoritos, fotos ou avaliações", () => {
-  assert.equal(chargingStations.length, 66);
+test("catálogo de 72 preserva as 12 estações iniciais e reutiliza suas imagens sem inventar notas", () => {
+  assert.equal(chargingStations.length, 72);
   assert.deepEqual(chargingStations.slice(0, 12).map(s => s.id), Array.from({ length: 12 }, (_, i) => `station-${String(i + 1).padStart(2, "0")}`));
   assert.equal(new Set(chargingStations.map(s => s.id)).size, chargingStations.length);
+  assert.equal(expandedChargingStations.length, 60);
+  assert.equal(new Set(expandedChargingStations.map(s => s.imageKey)).size, 12);
+  for (const id of ["moema", "vila-olimpia", "santo-amaro", "copacabana", "tijuca", "petropolis"]) assert.ok(chargingStations.some(s => s.id === `next-${id}`));
   for (const station of expandedChargingStations) {
     assert.equal(station.reviewCount, 0);
     assert.equal(station.rating, 0);
     assert.deepEqual(station.reviews, []);
     assert.equal(station.isFavorite, false);
-    assert.equal(station.imageKey, undefined);
+    assert.match(station.imageKey!, /^station-(?:0[1-9]|1[0-2])$/);
     assert.equal(station.imageUrl, undefined);
-    assert.match(station.address, /fictício/);
+    assert.match(station.address, /, \d+$/);
+    assert.doesNotMatch(station.address, /fictício|cenário|NEXT/);
   }
 });
 

@@ -1,10 +1,13 @@
+import type { StationImageKey } from "../../assets/stations";
 import type { ChargingStation, StationStatus } from "../../types";
 import { obterOrigemDemonstrativa } from "../demonstracao";
 import { calcularDistanciaGeograficaKm } from "../../utils/demonstracao";
 
 // Cenários inteiramente fictícios autorizados para o NEXT. Coordenadas apenas
 // distribuem pontos pelo mapa; não localizam estabelecimentos ou rodovias reais.
-// Sem importação externa, fotos atribuídas a postos, avaliações ou favoritos novos.
+// Endereços plausíveis criados para a apresentação, não geocodificados/verificados.
+// As 12 fotos ilustrativas existentes são reutilizadas; não são fotos desses locais.
+// Sem importação externa, avaliações agregadas ou favoritos novos.
 type LocalDoCenario = [id: string, local: string, cidade: string, estado: "SP" | "RJ", latitude: number, longitude: number];
 
 const locais: LocalDoCenario[] = [
@@ -62,9 +65,17 @@ const locais: LocalDoCenario[] = [
   ["cabo-frio", "Cabo Frio", "Cabo Frio", "RJ", -22.879, -42.019],
   ["arraial", "Arraial do Cabo", "Arraial do Cabo", "RJ", -22.969, -42.027],
   ["buzios", "Búzios", "Armação dos Búzios", "RJ", -22.752, -41.887],
+  ["moema", "Moema", "São Paulo", "SP", -23.602, -46.664],
+  ["vila-olimpia", "Vila Olímpia", "São Paulo", "SP", -23.595, -46.683],
+  ["santo-amaro", "Santo Amaro", "São Paulo", "SP", -23.651, -46.708],
+  ["copacabana", "Copacabana", "Rio de Janeiro", "RJ", -22.972, -43.186],
+  ["tijuca", "Tijuca", "Rio de Janeiro", "RJ", -22.924, -43.233],
+  ["petropolis", "Petrópolis", "Petrópolis", "RJ", -22.505, -43.179],
 ];
 
 const origem = obterOrigemDemonstrativa("fiap");
+const ruasDoCenario = ["Avenida das Palmeiras", "Rua dos Ipês", "Avenida Central", "Rua das Acácias", "Alameda dos Jacarandás", "Rua do Bosque", "Avenida do Lago", "Rua das Paineiras", "Avenida do Sol", "Rua Bela Vista", "Avenida dos Pinhais", "Rua do Comércio"];
+const numerosDoCenario = [220, 145, 680, 315, 90, 470, 1250, 835, 540, 260, 720, 180];
 
 export const expandedChargingStations: ChargingStation[] = locais.map(
   ([slug, local, city, state, latitude, longitude], index) => {
@@ -75,7 +86,8 @@ export const expandedChargingStations: ChargingStation[] = locais.map(
     const isAvailable = status === "available";
     return {
       id, name: `Flui ${local}`, city, state, latitude, longitude,
-      address: "Local fictício para o cenário NEXT", neighborhood: local,
+      address: `${ruasDoCenario[index % ruasDoCenario.length]}, ${numerosDoCenario[index % numerosDoCenario.length] + Math.floor(index / 12) * 100}`, neighborhood: local,
+      imageKey: `station-${String(index % 12 + 1).padStart(2, "0")}` as StationImageKey,
       distanceKm: calcularDistanciaGeograficaKm(origem, { latitude, longitude }),
       rating: 0, reviewCount: 0, reviews: [], isFavorite: false,
       status, powerKw,

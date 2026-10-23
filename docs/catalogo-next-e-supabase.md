@@ -2,7 +2,15 @@
 
 Conferido em 23/10/2026, no Flui 2.3 experimental. Pesquisa e diagnóstico local, sem criação de serviço remoto.
 
-## Resultado
+## Atualização solicitada: 72 pontos e 12 imagens reutilizadas
+
+Em 23/10, após feedback no iPhone, o catálogo foi ampliado de 66 para 72 pontos (50 SP/22 RJ): Moema, Vila Olímpia, Santo Amaro, Copacabana, Tijuca e Petrópolis. Os 60 pontos adicionais reutilizam ciclicamente as 12 imagens originais, sem novas cópias ou downloads. São fotos ilustrativas; não documentam esses locais. As 12 entradas originais e todos os IDs anteriores foram preservados. Os novos pontos continuam sem notas/comentários agregados inventados.
+
+Endereços dos pontos adicionais agora seguem formato de rua e número plausível para o cenário, sem “Local fictício para Flui NEXT”. Não foram geocodificados ou confirmados; a identificação de dados simulados permanece no rodapé das fichas e em Sobre os dados. Catálogo completo e mapa local são contagens diferentes: os 16 marcadores observados antes eram o recorte de 10 km da FIAP, não o total de 66.
+
+TypeScript, ESLint dirigido e 14 testes de catálogo/planejador/escopo de busca aprovados. A matriz de 32 cenários abaixo é histórica, anterior a esta ampliação; não foi repetida integralmente.
+
+## Resultado anterior (66 pontos)
 
 A base já ampliada contém 66 estações fictícias: 47 em SP e 19 no RJ. As 54 novas não receberam fotos ou avaliações inventadas de estabelecimentos reais: usam a capa gráfica existente e não têm notas. As 12 originais preservam imagens e avaliações do cenário. IDs e registros locais foram mantidos.
 
