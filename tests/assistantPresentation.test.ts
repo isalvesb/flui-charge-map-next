@@ -29,7 +29,7 @@ test("contexto distingue bateria manual, origem demonstrativa e conjunto recebid
 test("contexto não atribui bateria demonstrativa ou antiga a telemetria real", () => {
   for (const batterySource of ["demo", "unknown"] as const) {
     const text = describeAssistantContext({ vehicleName: "Exemplo", vehicleRangeKm: 400, batteryPercent: 70, batterySource, batteryUpdatedAt: null }, "FIAP", 0);
-    assert.ok(text.includes(batterySource === "demo" ? "Bateria demonstrativa" : "Origem não registrada"));
+    assert.ok(text.includes(batterySource === "demo" ? "Valor de simulação" : "Origem não registrada"));
     assert.ok(text.includes("consulta: 0"));
     assert.ok(text.includes("não confirma disponibilidade real"));
   }

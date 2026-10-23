@@ -58,7 +58,7 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 | 14 | P3 | Remoção de atalhos úteis | Implementado; revisão física pendente | profile/ProfileScreen | Mapa/filtros mantêm acessos próprios. |
 | 15 | P3 | Configurações em largura total | Implementado; revisão física pendente | profile/ProfileScreen | Depende de 16 para transferência da saída. |
 | 16 | P2 | Saída no fim de configurações | Implementado; revisão física pendente | profile; settings | Saída atual é apenas visual; não inventar autenticação. |
-| 17 | P2 | Nova escala tipográfica | Pendente | theme/appTheme | Menor=antigo padrão; padrão=antigo grande; maior=novo superior. |
+| 17 | P2 | Nova escala tipográfica | Implementado; matriz visual pendente | theme/appTheme | Menor=antigo padrão; padrão=antigo grande; maior=novo superior. |
 | 18 | P2 | Cartões de acessibilidade | Parcial existente | settings/SettingsScreen | Seção já existe; reorganizar fontes horizontalmente. Depende de 17. |
 | 19 | P2 | Laboratório fora de configurações comuns | Pendente | settings; orb-lab | Preservar implementação e acesso interno. |
 | 20 | P3 | Proposta Auto Experience | Proposta pendente | docs; auto | Exige proposta prévia; sem promessa de CarPlay real ou uso de imagens sem direitos. |
@@ -185,3 +185,12 @@ Cada entrada deve informar IDs, commit, arquivos, verificações e limites human
 - Estimativas (título simplificado) e Conectores com cabeçalho ícone/texto e corpo no padrão de 26. Mantidos tempos simplificados, confirmação e contagens por conector.
 - Verificações: TypeScript, ESLint, diff (`11-*`) e comparação literal do trecho de Comodidades próximas/Avaliações com a base inicial: preservado.
 - Conferir: abrir ficha e rolar até os novos cartões; revisão física pendente. CP09 `894aea3`, CP10 `ac2c863`.
+
+### CP12 — 17: escala tipográfica
+
+- Arquivo: `src/theme/appTheme.ts`.
+- Menor = antigo padrão (1,00), Padrão = antigo grande (1,10), Maior = 1,25. Identificadores salvos mantidos; sem apagar preferências. Escala do sistema continua habilitada nos Text e TextInput.
+- Verificações: TypeScript, ESLint e suíte completa (`12-*`), incluindo layout/leitura/contraste. Não prova ausência de overflow visual; matriz web dirigida e conferência no iPhone ainda necessárias.
+- Conferir: Configurações → Acessibilidade → três tamanhos, depois mapa/ficha/viagem/FluIA. Nenhuma certificação de acessibilidade humana.
+
+- Suíte completa CP12: primeira execução 164/165, com uma expectativa antiga do texto de bateria (04) em `assistantPresentation.test.ts`; atualizada sem retirar as asserções contra telemetria inventada. Reexecução documentada em `12-test-final.log`. Aviso ESLint herdado em ConnectivityContext:48, zero erros.

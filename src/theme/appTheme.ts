@@ -118,9 +118,9 @@ export type AppTheme =
   | (typeof highContrastThemes)[AppearanceMode];
 
 export const fontScales: Record<FontSizePreference, number> = {
-  small: 0.94,
-  default: 1,
-  large: 1.1,
+  small: 1,
+  default: 1.1,
+  large: 1.25,
 };
 
 export function getAppTheme(appearanceMode: AppearanceMode, highContrast = false) {
