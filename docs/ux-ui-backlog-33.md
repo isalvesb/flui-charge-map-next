@@ -262,3 +262,10 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Versão passa a ser o último texto da página; saída volta ao vermelho. Toast com fundo roxo contrastante, texto claro, quebra de linha e tempo de leitura ampliado.
 - Verificações: TypeScript, ESLint dirigido e diff (`fb01-*`). Conferir final dos ajustes e tocar Sair da conta.
 - Revisão humana: correção solicitada; retorno após esta alteração ainda pendente.
+
+### FB02 — 18: largura das fontes e toggle de contraste (comentários 9–10)
+
+- Arquivos: `src/features/settings/SettingsScreen.tsx`, `.styles.ts`.
+- Causa comprovada em código: PressableScale aplica style ao conteúdo interno; o flex anterior não dividia a largura do pai. Adicionados três contêineres externos com flex igual; cartões ocupam 100% de cada coluna.
+- Alto contraste agora tem título do mesmo tamanho de Tamanho da fonte e Switch nativo, mantendo persistência e bloqueio durante salvamento.
+- Verificações: TypeScript, ESLint e testes de contraste/persistência (`fb02-*`). Conferência de geometria web será feita após exportar os feedbacks; revisão física após correção pendente. FB01 `6912348`.

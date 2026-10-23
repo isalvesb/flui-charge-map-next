@@ -1,12 +1,11 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { ScrollView, StatusBar, Text, View } from "react-native";
+import { ScrollView, StatusBar, Switch, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router, type Href } from "expo-router";
 import appPackage from "../../../package.json";
 import {
   ArrowLeft,
   Check,
-  Contrast,
   LogOut,
   Moon,
   Sparkles,
@@ -275,35 +274,25 @@ export default function SettingsScreen() {
               Ajuste o contraste e o tamanho da fonte para melhorar a leitura.
             </Text>
 
-            <View style={styles.optionsList}>
-              <PressableScale
-                accessibilityRole="switch"
+            <View style={styles.contrastRow}>
+              <Text style={[styles.fieldLabel, { marginTop: 0, marginBottom: 0 }]}>Alto contraste</Text>
+              <Switch
                 accessibilityLabel="Alto contraste"
-                accessibilityHint="Reforça textos, contornos e indicadores no tema claro ou escuro."
-                accessibilityState={{ checked: highContrast, disabled: isLoadingPreferences || isSavingPreferences }}
+                accessibilityHint="Reforça textos e contornos, mantendo o tema escolhido."
+                value={highContrast}
                 disabled={isLoadingPreferences || isSavingPreferences}
-                style={[styles.optionButton, highContrast ? styles.optionButtonSelected : null]}
-                onPress={toggleHighContrast}
-              >
-                <View style={styles.optionIconBox}>
-                  <Contrast size={21} color={theme.primary} strokeWidth={2.1} />
-                </View>
-                <View style={styles.optionInfo}>
-                  <Text style={styles.optionTitle}>Alto contraste · {highContrast ? "Ativado" : "Desativado"}</Text>
-                  <Text style={styles.optionDescription}>
-                    Realça textos e contornos, mantendo o tema escolhido.
-                  </Text>
-                </View>
-                {renderOptionCheck(highContrast)}
-              </PressableScale>
+                onValueChange={() => void toggleHighContrast()}
+                trackColor={{ false: theme.border, true: theme.primary }}
+                thumbColor={highContrast ? theme.onPrimary : theme.surface}
+              />
             </View>
             <Text style={styles.fieldLabel}>Tamanho da fonte</Text>
             <View accessibilityRole="radiogroup" accessibilityLabel="Tamanho da fonte" style={styles.fontSizeRow}>
               {fontSizeOptions.map((option, index) => {
                 const isSelected = option.value === fontSize;
                 return (
+                  <View key={option.value} style={styles.fontSizeItem}>
                   <PressableScale
-                    key={option.value}
                     accessibilityRole="radio"
                     accessibilityLabel={`Fonte ${option.label.toLowerCase()}`}
                     accessibilityHint={option.description}
@@ -316,6 +305,7 @@ export default function SettingsScreen() {
                     <Text style={styles.fontSizeLabel}>{option.label}</Text>
                     {renderOptionCheck(isSelected)}
                   </PressableScale>
+                  </View>
                 );
               })}
             </View>
