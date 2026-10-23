@@ -139,7 +139,6 @@ export function FluiAssistantSheet({
   const chatTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const nextMessageId = useRef(0);
   const [keyboardVisible, setKeyboardVisible] = useState(false);
-  const [showLatestMessage, setShowLatestMessage] = useState(false);
   const followLatestRef = useRef(true);
   const chatScrollRef = useRef<ScrollView>(null);
   const lastScrolledMessageId = useRef<number | null>(null);
@@ -247,7 +246,6 @@ export function FluiAssistantSheet({
     setExpandedMessageId(null);
     lastScrolledMessageId.current = null;
     followLatestRef.current = true;
-    setShowLatestMessage(false);
   };
 
   const closeAssistant = () => {
@@ -294,7 +292,6 @@ export function FluiAssistantSheet({
     setFluiaState("pensando");
 
     followLatestRef.current = true;
-    setShowLatestMessage(false);
     if (source === "typed") setDraft("");
     setMessages((current) => [
       ...current,
@@ -347,7 +344,6 @@ export function FluiAssistantSheet({
     if (messages.length > 0) {
       chatScrollRef.current?.scrollToEnd({ animated: !reduceMotionEnabled });
       followLatestRef.current = true;
-      setShowLatestMessage(false);
     }
   };
 
@@ -356,7 +352,6 @@ export function FluiAssistantSheet({
     if (lastId !== undefined && lastId !== lastScrolledMessageId.current) {
       lastScrolledMessageId.current = lastId;
       if (followLatestRef.current) scrollToLatestMessage();
-      else setShowLatestMessage(true);
     }
   };
 
@@ -423,14 +418,17 @@ export function FluiAssistantSheet({
             onScroll={({ nativeEvent: { contentOffset, contentSize, layoutMeasurement } }) => {
               const nearEnd = contentSize.height - contentOffset.y - layoutMeasurement.height < 80;
               followLatestRef.current = nearEnd;
-              setShowLatestMessage(!nearEnd && messages.length > 0);
             }}
             onLayout={() => { if (followLatestRef.current) scrollToLatestMessage(); }}
           >
             <View testID="fluia-orb-fixa" style={styles.hero}>
               <PressableScale testID="fluia-orb-status" accessibilityRole={liveVoice.supported ? "button" : "image"}
                 accessibilityLabel={liveVoice.phase === "recording" ? "Concluir fala e pedir resposta" : captureBusy ? "Cancelar escuta ou transcrição" : isSpeaking ? "Interromper resposta e falar" : "Falar com a FluIA"}
-                accessibilityHint={liveVoice.phase === "recording" ? "Uma pausa de um segundo também conclui a fala." : "Inicia uma escuta. A pergunta é enviada ao terminar de falar."}
+                accessibilityHint={captureBusy ? "Uma pausa de um segundo conclui a fala. Mantenha a Orb pressionada para cancelar sem enviar." : "Inicia uma escuta. A pergunta é enviada ao terminar de falar."}
+                accessibilityActions={captureBusy ? [{ name: "cancel", label: "Cancelar escuta ou transcrição" }] : undefined}
+                onAccessibilityAction={({ nativeEvent }) => { if (captureBusy && nativeEvent.actionName === "cancel") liveVoice.cancel(); }}
+                onAccessibilityEscape={captureBusy ? liveVoice.cancel : undefined}
+                onLongPress={captureBusy ? liveVoice.cancel : undefined}
                 accessibilityState={{ disabled: !liveVoice.supported || isChatThinking || isAnalyzing, busy: captureBusy }}
                 disabled={!liveVoice.supported || isChatThinking || isAnalyzing} onPress={liveVoice.press}>
                 <MapEnergyOrb mapVariant size={128} state={displayedState} visualStatus={visualStatus} reducedMotion={reduceMotionEnabled} active={visible} />
@@ -690,27 +688,13 @@ export function FluiAssistantSheet({
             </View>
           </ScrollView>
 
-          {voicePlaybackState === "error" ? <Text accessibilityRole="alert" style={styles.voiceNotice}>Não foi possível ler a resposta. O texto continua disponível; tente ouvir novamente.</Text> : null}
-          <View style={styles.composerTools}>
-            {captureBusy ? <PressableScale accessibilityRole="button" accessibilityLabel="Cancelar escuta ou transcrição" style={styles.composerToolButton} onPress={liveVoice.cancel}><Text style={styles.secondaryButtonText}>Cancelar escuta</Text></PressableScale> : null}
-            {voicePlaybackState !== "speaking" && voiceEnabled && messages.some(message => message.from === "flui") ? (
-              <PressableScale accessibilityRole="button" accessibilityLabel="Ouvir última resposta" accessibilityState={{ disabled: captureBusy }} disabled={captureBusy} style={styles.composerToolButton} onPress={() => { const last = [...messages].reverse().find(message => message.from === "flui"); if (last) void speechPlayback.speak(last.text); }}>
-                <Volume2 size={18} color={theme.primary} />
-                <Text style={styles.secondaryButtonText}>Ouvir resposta</Text>
-              </PressableScale>
-            ) : null}
-            {showLatestMessage ? (
-              <PressableScale accessibilityRole="button" accessibilityLabel="Ir para a última mensagem" style={styles.composerToolButton} onPress={scrollToLatestMessage}>
-                <Text style={styles.secondaryButtonText}>Última mensagem</Text>
-              </PressableScale>
-            ) : null}
-            {keyboardVisible ? (
+          {voicePlaybackState === "error" ? <Text accessibilityRole="alert" style={styles.voiceNotice}>Não foi possível ler a resposta. O texto continua disponível na conversa.</Text> : null}
+          {keyboardVisible ? <View style={styles.composerTools}>
               <PressableScale accessibilityRole="button" accessibilityLabel="Recolher teclado" accessibilityHint="Mantém o texto digitado e a conversa." style={styles.composerToolButton} onPress={() => Keyboard.dismiss()}>
                 <ChevronDown size={22} color={theme.primary} />
                 <Text style={styles.secondaryButtonText}>Recolher teclado</Text>
               </PressableScale>
-            ) : null}
-          </View>
+          </View> : null}
           <View style={styles.inputRow}>
             <TextInput
               value={draft}

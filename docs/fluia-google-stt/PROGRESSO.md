@@ -160,3 +160,9 @@
 - Servidores conferidos ativos e no cwd correto. Health autenticado aprovado. Ledger chegou a **17 chamadas/486 s reservados**, mais 1/4 histórico; nenhuma transcrição feita pelo agente na investigação. Solicitado evitar novas gravações até concluir o ajuste; não zerar o orçamento.
 - Identificado outro defeito concreto: quando o próprio Google iniciava o encerramento antes do fim da captura, `write` do provedor ainda encaminhava PCM tardio para o fluxo já encerrado. Regressão local reproduziu `ERR_STREAM_WRITE_AFTER_END`, sem Google. O provedor agora descarta esses quadros enquanto aguarda o resultado final, sem sinalizar backpressure/abrir nova chamada. A fonte não prova que todas as quedas relatadas tinham essa causa.
 - **30/30 testes do intermediário passaram**, incluindo a nova regressão; `.validation/stt-late-frames-tests.log`. Falha anterior registrada em `.validation/late-google-frame-before.log`. Correção ainda precisa chegar ao processo privado e ser conferida fisicamente; não houve migração de SDK, alteração de credencial ou ampliação de limite.
+
+### Rodapé da FluIA simplificado
+
+- Correção do intermediário: **`f72a9a3`**. Retirados os controles visuais “Cancelar escuta”, “Ouvir resposta” e “Última mensagem” apontados pelo usuário. Conversa continua rolável e o acompanhamento da mensagem nova respeita a posição de leitura; teclado conserva seu recolhimento.
+- Cancelamento sem envio preservado na Orb por pressão longa, ação acessível de cancelamento e escape; o botão voltar também encerra a sessão. Toque curto continua concluindo a fala. Essas interações novas ainda precisam conferência física/VoiceOver humano.
+- TypeScript e ESLint dirigidos passaram. **13/13 testes existentes de sessão/leitura passaram**, sem chamada Google; não foram apresentados como teste visual da tela. Logs `voice-controls-tests.log`, `voice-controls-typecheck.log`/`session-retention-typecheck.log` e lints correspondentes.
