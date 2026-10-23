@@ -18,6 +18,7 @@ import {
   BatteryLow,
   BatteryMedium,
   ChevronRight,
+  ChevronDown,
   Coffee,
   MapPin,
   Plug,
@@ -133,6 +134,9 @@ export function FluiAssistantSheet({
   const [isChatThinking, setIsChatThinking] = useState(false);
   const chatTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const nextMessageId = useRef(0);
+  const [keyboardVisible, setKeyboardVisible] = useState(false);
+  const [showLatestMessage, setShowLatestMessage] = useState(false);
+  const followLatestRef = useRef(true);
   const chatScrollRef = useRef<ScrollView>(null);
   const lastScrolledMessageId = useRef<number | null>(null);
 
@@ -158,6 +162,12 @@ export function FluiAssistantSheet({
     vehicleRangeKm,
     now,
   ]);
+
+  useEffect(() => {
+    const show = Keyboard.addListener(Platform.OS === "ios" ? "keyboardWillShow" : "keyboardDidShow", () => setKeyboardVisible(true));
+    const hide = Keyboard.addListener(Platform.OS === "ios" ? "keyboardWillHide" : "keyboardDidHide", () => setKeyboardVisible(false));
+    return () => { show.remove(); hide.remove(); };
+  }, []);
 
   const actualState: FluiaState = isAnalyzing ? "pensando" : selectedIntent ? recommendation ? "respondendo" : "aviso" : fluiaState;
   const visualStatus = FLUIA_STATUS_PREVIEW_ENABLED && previewStatus ? previewStatus : getFluiaVisualStatus(actualState, connectionStatus);
@@ -220,6 +230,8 @@ export function FluiAssistantSheet({
     setShowExplanation(false);
     setExpandedMessageId(null);
     lastScrolledMessageId.current = null;
+    followLatestRef.current = true;
+    setShowLatestMessage(false);
   };
 
   const closeAssistant = () => {
@@ -265,6 +277,8 @@ export function FluiAssistantSheet({
     }
     setFluiaState("pensando");
 
+    followLatestRef.current = true;
+    setShowLatestMessage(false);
     setDraft("");
     setMessages((current) => [
       ...current,
@@ -316,6 +330,8 @@ export function FluiAssistantSheet({
   const scrollToLatestMessage = () => {
     if (messages.length > 0) {
       chatScrollRef.current?.scrollToEnd({ animated: !reduceMotionEnabled });
+      followLatestRef.current = true;
+      setShowLatestMessage(false);
     }
   };
 
@@ -323,7 +339,8 @@ export function FluiAssistantSheet({
     const lastId = messages.at(-1)?.id;
     if (lastId !== undefined && lastId !== lastScrolledMessageId.current) {
       lastScrolledMessageId.current = lastId;
-      scrollToLatestMessage();
+      if (followLatestRef.current) scrollToLatestMessage();
+      else setShowLatestMessage(true);
     }
   };
 
@@ -381,7 +398,14 @@ export function FluiAssistantSheet({
             contentContainerStyle={styles.bodyContent}
             keyboardShouldPersistTaps="handled"
             onContentSizeChange={scrollToNewMessage}
-            onLayout={scrollToLatestMessage}
+            keyboardDismissMode={Platform.OS === "ios" ? "interactive" : "on-drag"}
+            scrollEventThrottle={100}
+            onScroll={({ nativeEvent: { contentOffset, contentSize, layoutMeasurement } }) => {
+              const nearEnd = contentSize.height - contentOffset.y - layoutMeasurement.height < 80;
+              followLatestRef.current = nearEnd;
+              setShowLatestMessage(!nearEnd && messages.length > 0);
+            }}
+            onLayout={() => { if (followLatestRef.current) scrollToLatestMessage(); }}
           >
             <View testID="fluia-orb-fixa" style={styles.hero}>
               <PressableScale testID="fluia-orb-status" accessibilityRole={FLUIA_STATUS_PREVIEW_ENABLED ? "button" : "image"}
@@ -641,6 +665,19 @@ export function FluiAssistantSheet({
             </View>
           </ScrollView>
 
+          <View style={styles.composerTools}>
+            {showLatestMessage ? (
+              <PressableScale accessibilityRole="button" accessibilityLabel="Ir para a última mensagem" style={styles.composerToolButton} onPress={scrollToLatestMessage}>
+                <Text style={styles.secondaryButtonText}>Última mensagem</Text>
+              </PressableScale>
+            ) : null}
+            {keyboardVisible ? (
+              <PressableScale accessibilityRole="button" accessibilityLabel="Recolher teclado" accessibilityHint="Mantém o texto digitado e a conversa." style={styles.composerToolButton} onPress={() => Keyboard.dismiss()}>
+                <ChevronDown size={22} color={theme.primary} />
+                <Text style={styles.secondaryButtonText}>Recolher teclado</Text>
+              </PressableScale>
+            ) : null}
+          </View>
           <View style={styles.inputRow}>
             <TextInput
               value={draft}
@@ -652,6 +689,7 @@ export function FluiAssistantSheet({
               placeholderTextColor={theme.textMuted}
               accessibilityLabel="Mensagem para a FluIA"
               returnKeyType="send"
+              blurOnSubmit={false}
               style={styles.input}
             />
             <PressableScale
@@ -1003,6 +1041,8 @@ function createStyles(theme: FluiaScreenTheme, fontScale: number) {
       fontSize: font(13),
       fontWeight: "600",
     },
+    composerTools: { flexDirection: "row", flexWrap: "wrap", justifyContent: "flex-end", gap: 8 },
+    composerToolButton: { minHeight: 44, paddingHorizontal: 8, flexDirection: "row", alignItems: "center", gap: 4 },
     inputRow: {
       paddingTop: 10,
       flexDirection: "row",

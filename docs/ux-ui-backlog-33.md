@@ -51,7 +51,7 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 | 07 | P2 | Página roxa da FluIA | Feito — informado pelo usuário | assistant/FluiAssistantSheet | Preservar contexto e comportamento existente. |
 | 08 | P2 | Orb centralizada no alto | Feito — informado pelo usuário | assistant/FluiAssistantSheet | Não reimplementar. |
 | 09 | P3 | Título FluIA | Feito — informado pelo usuário | assistant/FluiAssistantSheet | Não reimplementar. |
-| 10 | P2 | Teclado e histórico | Pendente | assistant/FluiAssistantSheet | Conferir rolagem e alvos acessíveis no iPhone. |
+| 10 | P2 | Teclado e histórico | Implementado; revisão física pendente | assistant/FluiAssistantSheet | Conferir rolagem e alvos acessíveis no iPhone. |
 | 11 | P2 | Resposta por voz | Pendente | assistant/FluiAssistantSheet; fluiaState | Preservar TTS; distinguir falha, interrupção e conclusão. |
 | 12 | P2 | Pesquisa de reconhecimento de fala | Pesquisa pendente | docs | Não contratar serviço, instalar dependência nativa nem introduzir credenciais. |
 | 13 | P3 | Textos secundários do perfil | Implementado; revisão física pendente | profile/ProfileScreen | Preservar origem fictícia em identificação acessível/geral. |
@@ -202,3 +202,11 @@ Cada entrada deve informar IDs, commit, arquivos, verificações e limites human
 - Cartões têm estado de seleção/leitura e bloqueiam toques enquanto preferências carregam/salvam; descrições preservadas como dicas acessíveis.
 - Verificações: TypeScript, ESLint dirigido e testes de persistência/contraste/leitura (`13-*`). Revisão visual e VoiceOver físico pendentes.
 - Conferir: perfil → Configurações → Acessibilidade. CP11 `a33abd9`; CP12 `cea62de`, suíte completa 165/165.
+
+### CP14 — 10: teclado e leitura da conversa
+
+- Arquivo: `src/features/assistant/FluiAssistantSheet.tsx`.
+- Botão explícito Recolher teclado enquanto teclado aberto; arraste interativo no iOS; texto e conversa preservados. Enviar mantém teclado disponível.
+- Histórico deixa de saltar ao fim ao redimensionar se usuário estiver lendo acima. Botão Última mensagem retorna ao final; novo envio retoma acompanhamento automático. Respostas recebidas respeitam leitura anterior.
+- Verificações: TypeScript, ESLint dirigido e testes existentes de estados/motor (`14-*`). Sem reconhecimento de voz novo, sem alteração do preview temporário de estados.
+- Conferir: enviar pergunta, rolar histórico, abrir/recolher teclado, expandir resposta e usar Última mensagem. Revisão de gestos/teclado no iPhone pendente.
