@@ -26,7 +26,6 @@ export default function OfflinePhotosStatus() {
       </View>
       <Text style={[styles.sectionText, { color: theme.text }]}>{state.description}</Text>
     </View>
-    {__DEV__ ? <Text style={styles.sectionText}>A versão de desenvolvimento precisa do servidor para iniciar o app.</Text> : null}
     {state.canRetry ? <Pressable accessibilityRole="button" accessibilityLabel="Preparar fotos para uso sem conexão" style={[styles.optionButton, { marginTop: 12 }]} onPress={retry}>
       <Text style={styles.optionTitle}>Preparar fotos</Text>
     </Pressable> : null}
