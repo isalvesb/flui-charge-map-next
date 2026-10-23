@@ -50,6 +50,7 @@ module.exports = {
       ["expo-dev-client", { launchMode: "launcher" }],
       ["expo-audio", { recordAudioAndroid: false, enableBackgroundRecording: false, microphonePermission: "Permitir que a FluIA grave sua voz ao tocar em Gravar. O áudio será enviado ao Google Cloud para transcrição." }],
       "./plugins/withFluiaSttPrivacy",
+      "./plugins/withFluiaIosScene",
       "expo-router",
       [
         "expo-splash-screen",
