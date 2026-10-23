@@ -10,8 +10,8 @@ test("bateria padrão é demonstrativa e não inventa atualização", () => {
   assert.equal(data.batterySource, "demo");
   assert.equal(data.batteryUpdatedAt, null);
   assert.deepEqual(getBatterySourceLabels(data), {
-    source: "Bateria demonstrativa",
-    detail: "Sem telemetria",
+    source: "Valor de simulação",
+    detail: "Informe a carga do painel para personalizar as estimativas",
   });
 });
 

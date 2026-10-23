@@ -49,8 +49,10 @@ export function getBatterySourceLabels(data: BatteryData) {
   return {
     source:
       data.batterySource === "demo"
-        ? "Bateria demonstrativa"
+        ? "Valor de simulação"
         : "Origem não registrada",
-    detail: "Sem telemetria",
+    detail: data.batterySource === "demo"
+      ? "Informe a carga do painel para personalizar as estimativas"
+      : "Confira a carga no painel e atualize este valor",
   };
 }

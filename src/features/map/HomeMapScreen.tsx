@@ -1662,7 +1662,7 @@ export default function HomeMapScreen() {
                     Bateria para estimativa
                   </Text>
                   <Text style={styles.batterySheetSubtitle}>
-                    ≈{autonomiaEmEdicaoKm} km estimados · sem telemetria
+                    ≈{autonomiaEmEdicaoKm} km estimados · carga informada por você
                   </Text>
                 </View>
 

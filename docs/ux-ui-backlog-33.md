@@ -45,7 +45,7 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 | 01 | P1 | Paradas e trajetos | Implementado; revisão física pendente | trip/TripPlannerScreen; utils/tripPlanner | Conferir ordem, mapa e trechos; percursos continuam simulados. |
 | 02 | P3 | Subtexto do popup de estações | Pendente | map/HomeMapScreen | Preservar identificação geral da simulação. |
 | 03 | P2 | Linguagem e transparência | Pendente | data/identificacaoDados; telas | Transversal a 04, 23, 25, 27; evitar remoção indiscriminada. |
-| 04 | P2 | Origem do valor de bateria | Pendente | utils/batteryData | Distinguir manual, simulado e desconhecido. |
+| 04 | P2 | Origem do valor de bateria | Implementado; revisão física pendente | utils/batteryData | Distinguir manual, simulado e desconhecido. |
 | 05 | P2 | Ajuste de bateria por arraste | Pendente | map; componente de bateria | Sem dependência nativa nova; alternativa acessível e precisão. |
 | 06 | P2 | Abertura da Orb | Feito — informado pelo usuário | assistant; map | Não reimplementar. Revisão adicional somente se houver feedback. |
 | 07 | P2 | Página roxa da FluIA | Feito — informado pelo usuário | assistant/FluiAssistantSheet | Preservar contexto e comportamento existente. |
@@ -121,3 +121,10 @@ Cada entrada deve informar IDs, commit, arquivos, verificações e limites human
 - Verificações: TypeScript, ESLint dirigido e diff, logs `03-*`.
 - Conferir: perfil → Configurações → final da página → Sair da conta; mensagem explica perfil local.
 - Revisão física/humana pendente. Checkpoints anteriores: CP01 `b856e1d`, CP02 `695ef45`.
+
+### CP04 — 04: linguagem da bateria
+
+- Arquivos: `src/utils/batteryData.ts`, `src/features/map/HomeMapScreen.tsx`, `tests/batteryData.test.ts`.
+- Valor padrão identificado como “Valor de simulação”; valor sem origem pede conferência no painel; edição manual mantém data/origem. Seletor deixa claro que a carga é informada pelo motorista. Sem alegação de leitura do veículo.
+- Verificações: TypeScript, ESLint dirigido, quatro testes da classificação/serialização de bateria e diff (`04-*`).
+- Conferir: tocar carro/bateria no cabeçalho; comparar identificação antes/depois de salvar uma carga. Revisão física pendente.
