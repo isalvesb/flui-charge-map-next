@@ -829,7 +829,7 @@ export default function HomeMapScreen() {
     ];
   }, [filtrosRapidos]);
 
-  const searchScopeFilters = useMemo(() => getMapSearchScope(filtrosDoMapa, searchTerm, !!getRouteParamAsString(filtersParam).trim()), [filtrosDoMapa, searchTerm, filtersParam]);
+  const searchScopeFilters = useMemo(() => getMapSearchScope(filtrosDoMapa, !!getRouteParamAsString(filtersParam).trim()), [filtrosDoMapa, filtersParam]);
   const clearMapSearch = () => {
     setSearchTerm("");
     setFiltrosRapidos({ ...filtrosRapidosIniciais });

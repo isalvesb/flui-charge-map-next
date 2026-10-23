@@ -6,14 +6,32 @@ import { filtrarEstacoes } from "../src/utils/filtrarEstacoes";
 import { chargingStations } from "../src/data/fixtures/chargingStations";
 import { aplicarOrigemDemonstrativa } from "../src/utils/demonstracao";
 import { obterOrigemDemonstrativa } from "../src/data/demonstracao";
+
 const catalog = aplicarOrigemDemonstrativa(chargingStations, obterOrigemDemonstrativa("fiap"));
-test("busca por cidade fora de 10 km não esvazia o mapa por um raio implícito",()=>{
- for(const city of ["Búzios","Rio de Janeiro","Cabo Frio"]){const filters=cloneDefaultFilters(),before=JSON.stringify(filters);const scope=getMapSearchScope(filters,city,false);assert.ok(filtrarEstacoes({estacoes:catalog,filtros:scope,termoBusca:city}).length>0,city);assert.equal(JSON.stringify(filters),before);}
+
+test("mapa sem busca inclui os 72 pontos, sem alterar filtros salvos ou origem", () => {
+  const filters = cloneDefaultFilters(), before = JSON.stringify(filters);
+  const result = filtrarEstacoes({ estacoes: catalog, filtros: getMapSearchScope(filters, false) });
+  assert.equal(result.length, 72);
+  assert.ok(result.some(s => s.id === "next-buzios"));
+  assert.equal(JSON.stringify(filters), before);
 });
-test("distância escolhida explicitamente e outros filtros continuam sendo respeitados",()=>{
- const filters=cloneDefaultFilters();assert.strictEqual(getMapSearchScope(filters,"Búzios",true),filters);assert.equal(filtrarEstacoes({estacoes:catalog,filtros:getMapSearchScope(filters,"Búzios",true),termoBusca:"Búzios"}).length,0);
- filters.rating.minRating=4.5;assert.equal(filtrarEstacoes({estacoes:catalog,filtros:getMapSearchScope(filters,"Búzios",false),termoBusca:"Búzios"}).length,0);
+
+test("busca distante e retorno à busca vazia usam o mesmo catálogo completo", () => {
+  const filters = getMapSearchScope(cloneDefaultFilters(), false);
+  for (const city of ["Búzios", "Rio de Janeiro", "Cabo Frio"]) {
+    assert.ok(filtrarEstacoes({ estacoes: catalog, filtros: filters, termoBusca: city }).length > 0, city);
+  }
+  assert.equal(filtrarEstacoes({ estacoes: catalog, filtros: filters, termoBusca: "  " }).length, 72);
 });
-test("sem busca textual o mapa volta ao raio normal com pontos perto da FIAP",()=>{
- const filters=cloneDefaultFilters();assert.strictEqual(getMapSearchScope(filters,"  ",false),filters);assert.ok(filtrarEstacoes({estacoes:catalog,filtros:filters}).length>0);
+
+test("raio explicitamente escolhido e filtros rápidos continuam limitando os pontos", () => {
+  const filters = cloneDefaultFilters();
+  assert.strictEqual(getMapSearchScope(filters, true), filters);
+  assert.equal(filtrarEstacoes({ estacoes: catalog, filtros: getMapSearchScope(filters, true), termoBusca: "Búzios" }).length, 0);
+  filters.statuses = ["maintenance"];
+  const result = filtrarEstacoes({ estacoes: catalog, filtros: getMapSearchScope(filters, false) });
+  assert.ok(result.length > 0 && result.length < 72);
+  assert.ok(result.some(s => s.state === "RJ"));
+  assert.ok(result.every(s => s.status === "maintenance"));
 });

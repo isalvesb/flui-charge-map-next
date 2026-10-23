@@ -936,3 +936,11 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Cliente iPhone conectado contém catálogo com 72 entradas, confirmado somente por leitura da árvore React; quantidade de marcadores montados não foi usada como prova visual. Bundle JavaScript iOS final HTTP200: novos locais, endereço atualizado, seletor ausente e FAQ atualizada (bundle-ios-72-sem-seletor.json). Não é instalação/build nativo ou audição da voz física.
 - Para conferir: buscar Copacabana/Petrópolis, abrir ficha e verificar foto/endereço; Configurações não deve mostrar Voz da FluIA. A leitura permanece padrão pt-BR. Naturalidade Google e reconhecimento do usuário ainda são propostas, não funcionalidades implementadas. Custos, backend e mudança nativa continuam dependentes de decisão humana específica.
 - Suíte final 239/239 aprovada, um aviso de lint herdado sem erros, QA web aprovada. Metro, consolidação protegida, candidata offline antiga, dados normais e bloqueios de publicação preservados. Revisão humana destes incrementos pendente.
+
+
+### S43 — 31: mapa sem limite de distância implícito
+
+- Usuário explicou que só vê os 18 locais e precisa buscar os demais. Retirado o raio implícito de 10 km no mapa livre, inclusive com busca vazia. Os 72 marcadores passam ao mapa; afastar o zoom/arrastar permite explorar outras cidades sem digitar. Zoom/origem inicial continuam na FIAP, sem enquadrar automaticamente SP/RJ inteiro.
+- Distância escolhida explicitamente na busca/filtros continua respeitada, assim como filtros rápidos e filtros de status/potência. Nenhuma preferência salva ou registro do usuário foi apagado. Defaults de outras telas preservados.
+- Arquivos: mapSearchScope.ts, HomeMapScreen.tsx, tests/mapSearchScope.test.ts. TypeScript/ESLint dirigido/diff e testes dirigidos de escopo/filtros aprovados (mapa-sem-raio-*.log). Casos cobrem todos os 72 sem texto, cidade distante, retorno à busca vazia, raio explícito e status.
+- Próximo bloco: completar experiência dos 60 novos pontos conforme pedido: notas, comentários de cenário e períodos de menor movimento. Não confundir esta mudança com aprovação física.
