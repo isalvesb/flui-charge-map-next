@@ -511,18 +511,19 @@ export default function PointDetailsScreen() {
 
           {showWarning ? (
             <View style={styles.riskBanner}>
-              <TriangleAlert accessible={false} size={22} color={colors.danger} />
+              <TriangleAlert accessible={false} size={20} color={colors.dangerText} />
               <View style={{ flex: 1 }}>
-                <Text accessibilityRole="alert" style={[styles.resumoTitle, { color: colors.danger }]}>{recomendacaoDoPonto}</Text>
-                <Text style={styles.infoDescription}>Manutenção indicada no catálogo. Confirme o funcionamento ou escolha outro ponto.</Text>
+                <Text accessibilityRole="alert" style={styles.riskTitle}>{recomendacaoDoPonto}</Text>
+                <Text style={styles.riskDescription}>Manutenção indicada no catálogo. Confirme o funcionamento ou escolha outro ponto.</Text>
               </View>
               <Pressable accessibilityRole="button" accessibilityLabel="Dispensar aviso desta visita" style={styles.dismissRiskButton} onPress={() => setDismissedWarningKey(warningKey)}>
-                <X size={22} color={colors.danger} />
+                <X size={22} color={colors.dangerText} />
               </Pressable>
             </View>
           ) : null}
           <View
             accessible
+            accessibilityLabel={`${apresentacaoAlcance.text} Carga usada: ${userPreferences.batteryPercent}%.`}
             style={[
               styles.alcanceBanner,
               { backgroundColor: corFundoAlcance, borderColor: corAlcance },
@@ -530,8 +531,11 @@ export default function PointDetailsScreen() {
           >
             <IconeAlcance size={20} color={corAlcance} strokeWidth={2.3} />
 
-            <Text style={[styles.alcanceBannerText, { color: corAlcance }]}>
-              {apresentacaoAlcance.text}{"\n"}Carga usada: {userPreferences.batteryPercent}%
+            <Text style={[styles.alcanceBannerText, { color: colors.text }]}>
+              Autonomia estimada ≈{Math.round(avaliacaoAlcance.autonomiaAtualKm)} km{"\n"}
+              {avaliacaoAlcance.nivel === "foraDeAlcance"
+                ? `Fora do alcance · faltam ≈${avaliacaoAlcance.kmFaltantes} km`
+                : `${avaliacaoAlcance.nivel === "apertado" ? "Autonomia limitada · " : ""}Chegada ≈${avaliacaoAlcance.bateriaAoChegarPercent}%`}
             </Text>
           </View>
 

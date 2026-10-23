@@ -133,6 +133,8 @@ export const styles = StyleSheet.create({
   },
 
   riskBanner: { flexDirection: "row", alignItems: "center", gap: 8, padding: 12, borderRadius: 16, borderWidth: 1, borderColor: colors.danger, backgroundColor: "#FBE5E2", marginBottom: 12 },
+  riskTitle: { color: "#10221E", fontSize: 15, lineHeight: 20, fontWeight: "700", marginBottom: 4 },
+  riskDescription: { color: "#3F554F", fontSize: 13, lineHeight: 18 },
   dismissRiskButton: { width: 44, height: 44, alignItems: "center", justifyContent: "center" },
   stationName: {
     color: "#10221E",
@@ -264,7 +266,8 @@ export const styles = StyleSheet.create({
   alcanceBannerText: {
     flex: 1,
     fontSize: 14,
-    fontWeight: "800",
+    lineHeight: 21,
+    fontWeight: "600",
     letterSpacing: -0.1,
   },
 

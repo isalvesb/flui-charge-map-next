@@ -269,3 +269,10 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Causa comprovada em código: PressableScale aplica style ao conteúdo interno; o flex anterior não dividia a largura do pai. Adicionados três contêineres externos com flex igual; cartões ocupam 100% de cada coluna.
 - Alto contraste agora tem título do mesmo tamanho de Tamanho da fonte e Switch nativo, mantendo persistência e bloqueio durante salvamento.
 - Verificações: TypeScript, ESLint e testes de contraste/persistência (`fb02-*`). Conferência de geometria web será feita após exportar os feedbacks; revisão física após correção pendente. FB01 `6912348`.
+
+### FB03 — 24: aviso menor e estimativa resumida (comentários 5–6)
+
+- Arquivos: `src/features/stations/PointDetailsScreen.tsx`, `.styles.ts`.
+- Título do aviso reduzido de 20 para 15 pt base, corpo com cor de texto mais escura no claro; mantém contraste adaptativo no escuro/alto contraste. X continua com alvo 44 pt.
+- Card de autonomia exibe apenas autonomia estimada e chegada (ou falta de alcance), preservando alerta de autonomia limitada. Carga usada e explicação completa ficam no rótulo acessível; linha reta/compatibilidade continuam explicitadas nos cartões/fluxo de rota.
+- Verificações: TypeScript, ESLint e testes de apresentação/origem/bateria (`fb03-*`). Sem alteração dos cálculos. Revisão física após correção pendente.
