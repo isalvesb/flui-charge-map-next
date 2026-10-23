@@ -62,7 +62,7 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 | 18 | P2 | Cartões de acessibilidade | Implementado; revisão física pendente | settings/SettingsScreen | Seção já existe; reorganizar fontes horizontalmente. Depende de 17. |
 | 19 | P2 | Laboratório fora de configurações comuns | Implementado; código experimental preservado | settings; orb-lab | Preservar implementação e acesso interno. |
 | 20 | P3 | Proposta Auto Experience | Proposta pendente | docs; auto | Exige proposta prévia; sem promessa de CarPlay real ou uso de imagens sem direitos. |
-| 21 | P2 | Demonstração NEXT fora dos ajustes comuns | Pendente | settings | Preservar controles em acesso interno; depende do desenho mínimo de 32. |
+| 21 | P2 | Demonstração NEXT fora dos ajustes comuns | Implementado; controles internos preservados | settings | Preservar controles em acesso interno; depende do desenho mínimo de 32. |
 | 22 | P3 | Nome e endereço da estação | Implementado; revisão física pendente | stations/PointDetailsScreen | Manter 29. |
 | 23 | P2 | Pills de status e avaliação | Implementado; revisão física pendente | stations/PointDetailsScreen | Transparência alinhada a 03; manter conteúdo da seção Avaliações. |
 | 24 | P1 | Banner e estimativas sincronizadas | Implementado; revisão física pendente | stations; utils/autonomia | Dispensa limitada à condição; reserva exata de 5%; depende da bateria compartilhada. |
@@ -234,3 +234,13 @@ Cada entrada deve informar IDs, commit, arquivos, verificações e limites human
 - Removido acesso ao laboratório da seção comum. Implementação e rota `/orb-lab` preservadas; serão reunidas com os controles internos já existentes no checkpoint 21.
 - Verificações: TypeScript, ESLint dirigido e diff (`17-*`). Não modifica a Orb em uso ou o preview temporário.
 - Conferir: Configurações deixa de mostrar Laboratório da Energy Orb. CP16 `bcc4ddb`.
+
+### CP18 — 21: transferência dos controles existentes
+
+- Arquivos: `src/features/settings/SettingsScreen.tsx`, `InternalPresentationScreen.tsx`, `app/internal-presentation.tsx`.
+- Seção Demonstração NEXT retirada da página comum e preservada em Apresentação interna, junto ao laboratório. Entrada e rota protegidas por `__DEV__`; acesso direto em produção redireciona para Configurações.
+- Mesmos campos/validação/persistência existentes (veículo, autonomia, origem e acesso à bateria). Sem nova edição de identidade/favoritos/comentários; expansão do item 32 exige decisão sobre proposta.
+- Verificações: TypeScript, ESLint dirigido e testes de configuração/persistência (`18-*`). Sem nova dependência, instalação ou migração de dados.
+- Conferir no Flui 2.1: Configurações → Ferramentas internas. Revisão física pendente.
+
+- Rota `/orb-lab` também protegida contra acesso público direto em produção. Tipagem local de rotas estava anterior à nova rota: utilizado `Href` conforme padrão existente; arquivo de rota real será conferido pela exportação, sem editar tipos gerados nem reiniciar Metro.
