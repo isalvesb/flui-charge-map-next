@@ -182,7 +182,7 @@ export function FluiAssistantSheet({
 
   const isSpeaking = voicePlaybackState === "speaking";
   const actualState: FluiaState = isSpeaking ? "respondendo" : isAnalyzing ? "pensando" : selectedIntent ? recommendation ? "respondendo" : "aviso" : fluiaState;
-  const captureStatus = getVoiceVisualStatus(voicePhase);
+  const captureStatus = getVoiceVisualStatus(voicePhase, isSpeaking);
   const visualStatus = captureStatus ?? (isSpeaking ? getFluiaVisualStatus(actualState, connectionStatus, true) : FLUIA_STATUS_PREVIEW_ENABLED && previewStatus ? previewStatus : getFluiaVisualStatus(actualState, connectionStatus));
   const displayedState: FluiaState = captureStatus ? getFluiaPreviewState(captureStatus) : isSpeaking ? "respondendo" : FLUIA_STATUS_PREVIEW_ENABLED && previewStatus
     ? getFluiaPreviewState(visualStatus)
@@ -631,6 +631,8 @@ export function FluiAssistantSheet({
                     key={id}
                     accessibilityRole="button"
                     accessibilityLabel={label}
+                    accessibilityState={{ disabled: captureBusy }}
+                    disabled={captureBusy}
                     accessibilityHint="Gera uma recomendação simulada com os dados do mapa."
                     style={styles.optionCard}
                     onPress={() => chooseIntent(id)}
