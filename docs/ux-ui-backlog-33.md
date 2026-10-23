@@ -458,3 +458,9 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Arquivo: `src/features/stations/PointDetailsScreen.tsx`.
 - Confirmação humana identificou o texto “Catálogo de simulação…”. Parágrafo removido da apresentação visual; identificação curta Dados simulados permanece, com detalhes no rótulo acessível e em Sobre os dados.
 - Verificações: TypeScript, ESLint dirigido e diff (`r08-*`). Item 03 permanece aberto a nova revisão, sem alegar eliminação completa de toda repetição.
+
+### R09 — 26: duas colunas e títulos maiores
+
+- Arquivos: `PointDetailsScreen.tsx`, `.styles.ts`, `stationLayout.ts`, `tests/stationLayout.test.ts`.
+- Limiar de leitura ajustado para permitir dois cartões no iPhone com fonte padrão/maior do app; ampliação nativa e telas estreitas continuam podendo empilhar. Títulos de 12/600 para 16/800, sem margem que desalinhava ícones; cabeçalho com altura mínima consistente.
+- Verificações: TypeScript, ESLint e testes de largura/escala (`r09-*`). Geometria e render web serão conferidos no fechamento; revisão humana pendente.

@@ -68,6 +68,7 @@ import {
   RoutingModalPermission,
   RoutingModalRoutes,
 } from "./components/RoutingModal";
+import { shouldStackStationCards } from "./stationLayout";
 import { styles as baseStyles } from "./PointDetailsScreen.styles";
 import {
   getStationArrivalPresentation,
@@ -198,7 +199,7 @@ export default function PointDetailsScreen() {
   const { fontScale: systemFontScale } = useWindowDimensions();
   const [infoWidth, setInfoWidth] = useState(0);
   const { styles, colors, isDarkMode, fontScale } = useTelaComPreferencias(baseStyles);
-  const stackInfoCards = infoWidth / Math.max(1, fontScale * systemFontScale) < 340;
+  const stackInfoCards = shouldStackStationCards(infoWidth, fontScale, systemFontScale);
   const { userPreferences, demoStations, demoOrigin } = useAppPreferences();
   const { stationId, startRoute } = useLocalSearchParams<{
     stationId?: string | string[];
