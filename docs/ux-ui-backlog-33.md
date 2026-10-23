@@ -1,6 +1,6 @@
 # Flui NEXT 2026 — acompanhamento UX/UI (33 itens)
 
-Atualizado em 22/10/2026 (America/Recife). Evento: 24/10/2026.
+Atualizado em 23/10/2026 (America/Recife). Evento: 24/10/2026.
 
 ## Ambiente e protocolo vigente
 
@@ -28,7 +28,7 @@ Atualizado em 22/10/2026 (America/Recife). Evento: 24/10/2026.
 2. 01: identificação das paradas e correspondência no mapa/linha do tempo.
 3. 13+14; depois 15+16: simplificação do perfil e transferência de saída.
 4. 04; 05; 33: bateria e origem simulada, sem GPS novo.
-5. 24; 22+23; 25+27; 26+28: ficha e estimativas. Item 29 é invariável.
+5. 24; 22+23; 25+27; 26+28: ficha e estimativas. Item 29 preserva conteúdo; padronização do contêiner autorizada no feedback de 23/10.
 6. 17; 18; 10; 11: leitura, teclado e resposta por voz.
 7. 02+03: linguagem restante com transparência centralizada.
 8. 30: investigar armazenamento offline e corrigir apenas lacunas demonstradas.
@@ -42,39 +42,40 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 
 | ID | Prioridade | Ajuste | Estado | Arquivos/área | Dependências, pendências e limites |
 |---|---|---|---|---|---|
-| 01 | P1 | Paradas e trajetos | Revisado após feedback; conferência física pendente | trip/TripPlannerScreen; utils/tripPlanner | Conferir ordem, mapa e trechos; percursos continuam simulados. |
-| 02 | P3 | Subtexto do popup de estações | Implementado; revisão física pendente | map/HomeMapScreen | Preservar identificação geral da simulação. |
-| 03 | P2 | Linguagem e transparência | Implementado no escopo; revisão de linguagem pendente | data/identificacaoDados; telas | Transversal a 04, 23, 25, 27; evitar remoção indiscriminada. |
-| 04 | P2 | Origem do valor de bateria | Implementado; revisão física pendente | utils/batteryData | Distinguir manual, simulado e desconhecido. |
-| 05 | P2 | Ajuste de bateria por arraste | Implementado; revisão física pendente | map; componente de bateria | Sem dependência nativa nova; alternativa acessível e precisão. |
+| 01 | P1 | Paradas e trajetos | Corrigido após esclarecimento; revisão humana pendente | trip/TripPlannerScreen; utils/tripPlanner | Seletor e resumo agora usam paradas exigidas pelo mesmo cálculo e nomes no resumo; simulação mantida. |
+| 02 | P3 | Subtexto do popup de estações | Feito; usuário respondeu ok | map/HomeMapScreen | Preservar identificação geral da simulação. |
+| 03 | P2 | Linguagem e transparência | Revisado novamente; usuário ainda não aprovou a redução | data/identificacaoDados; telas | Transversal a 04, 23, 25, 27; evitar remoção indiscriminada. |
+| 04 | P2 | Origem do valor de bateria | Feito; usuário respondeu ok | utils/batteryData | Distinguir manual, simulado e desconhecido. |
+| 05 | P2 | Ajuste de bateria por arraste | Feito; usuário respondeu ok | map; componente de bateria | Sem dependência nativa nova; alternativa acessível e precisão. |
 | 06 | P2 | Abertura da Orb | Feito — informado pelo usuário | assistant; map | Não reimplementar. Revisão adicional somente se houver feedback. |
 | 07 | P2 | Página roxa da FluIA | Feito — informado pelo usuário | assistant/FluiAssistantSheet | Preservar contexto e comportamento existente. |
 | 08 | P2 | Orb centralizada no alto | Feito — informado pelo usuário | assistant/FluiAssistantSheet | Não reimplementar. |
 | 09 | P3 | Título FluIA | Feito — informado pelo usuário | assistant/FluiAssistantSheet | Não reimplementar. |
-| 10 | P2 | Teclado e histórico | Implementado; revisão física pendente | assistant/FluiAssistantSheet | Conferir rolagem e alvos acessíveis no iPhone. |
-| 11 | P2 | Resposta por voz | Implementado; áudio físico pendente | assistant/FluiAssistantSheet; fluiaState | Preservar TTS; distinguir falha, interrupção e conclusão. |
-| 12 | P2 | Pesquisa de reconhecimento de fala | Pesquisa concluída; implementação depende de decisão | docs | Não contratar serviço, instalar dependência nativa nem introduzir credenciais. |
-| 13 | P3 | Textos secundários do perfil | Implementado; revisão física pendente | profile/ProfileScreen | Preservar origem fictícia em identificação acessível/geral. |
-| 14 | P3 | Remoção de atalhos úteis | Implementado; revisão física pendente | profile/ProfileScreen | Mapa/filtros mantêm acessos próprios. |
-| 15 | P3 | Configurações em largura total | Implementado; revisão física pendente | profile/ProfileScreen | Depende de 16 para transferência da saída. |
-| 16 | P2 | Saída no fim de configurações | Implementado; revisão física pendente | profile; settings | Saída atual é apenas visual; não inventar autenticação. |
-| 17 | P2 | Nova escala tipográfica | Implementado; matriz visual pendente | theme/appTheme | Menor=antigo padrão; padrão=antigo grande; maior=novo superior. |
-| 18 | P2 | Cartões de acessibilidade | Implementado; revisão física pendente | settings/SettingsScreen | Seção já existe; reorganizar fontes horizontalmente. Depende de 17. |
-| 19 | P2 | Laboratório fora de configurações comuns | Implementado; código experimental preservado | settings; orb-lab | Preservar implementação e acesso interno. |
-| 20 | P3 | Proposta Auto Experience | Proposta entregue; decisão sobre piloto pendente | docs; auto | Exige proposta prévia; sem promessa de CarPlay real ou uso de imagens sem direitos. |
-| 21 | P2 | Demonstração NEXT fora dos ajustes comuns | Implementado; controles internos preservados | settings | Preservar controles em acesso interno; depende do desenho mínimo de 32. |
-| 22 | P3 | Nome e endereço da estação | Implementado; revisão física pendente | stations/PointDetailsScreen | Manter 29. |
-| 23 | P2 | Pills de status e avaliação | Implementado; revisão física pendente | stations/PointDetailsScreen | Transparência alinhada a 03; manter conteúdo da seção Avaliações. |
-| 24 | P1 | Banner e estimativas sincronizadas | Implementado; revisão física pendente | stations; utils/autonomia | Dispensa limitada à condição; reserva exata de 5%; depende da bateria compartilhada. |
-| 25 | P2 | Carregadores e confirmação | Implementado; confirmação preservada | stations; stationPresentation | Entender Recarga não confirmada e manter função de segurança. |
-| 26 | P3 | Padrão dos cartões da ficha | Implementado; revisão física pendente | stations/PointDetailsScreen | Ícone/título com área distinta; distância continua aproximada. |
-| 27 | P2 | Identificação de catálogo sem repetição | Implementado; revisão física pendente | stations; identificacaoDados | Depende da identificação geral em 03/23/25. |
-| 28 | P3 | Cartões Estimativas e Conectores | Implementado; revisão física pendente | stations/PointDetailsScreen | Depende de 26; não modificar 29. |
-| 29 | — | Preservar conteúdo de Comodidades próximas e Avaliações | Títulos com fundo autorizados em feedback; conteúdo preservado | stations/PointDetailsScreen | Nenhuma alteração sem defeito comprovado ou autorização adicional. |
-| 30 | P1 | Persistência offline de fotos e favoritos | Cache web corrigido; teste físico/build offline pendente | assets; storage; service-worker | Não introduzir armazenamento remoto; distinguir assets empacotados e cache web. |
-| 31 | P3 | Pesquisa catálogo/Supabase | Pesquisa concluída; ampliação/migração depende de decisão | docs | Sem migrar arquitetura, custos ou apresentar dados como verificados. |
-| 32 | P2 | Proposta de área interna | Proposta entregue; expansão depende de decisão | docs; settings | Controles fictícios separados; não implementar integralmente antes da decisão sobre proposta. |
-| 33 | P2 | Referência inicial de localização | Implementado; revisão física pendente | data/demonstracao; LocationContext | -23.540405908671097,-46.73414831818115; padrão simulado, não substituir GPS autorizado. |
+| 10 | P2 | Teclado e histórico | Feito; usuário respondeu ok | assistant/FluiAssistantSheet | Conferir rolagem e alvos acessíveis no iPhone. |
+| 11 | P2 | Resposta por voz | Corrigido Explicando durante fala; áudio físico pendente | assistant/FluiAssistantSheet; fluiaState | Preservar TTS; distinguir falha, interrupção e conclusão. |
+| 12 | P2 | Pesquisa de reconhecimento de fala | A fazer: reconhecimento de fala; pesquisa disponível | docs | Integração/captura ainda inexistente; avaliar piloto e autorizar módulo/build/serviço antes de introduzi-los. |
+| 13 | P3 | Textos secundários do perfil | Feito; usuário respondeu ok | profile/ProfileScreen | Preservar origem fictícia em identificação acessível/geral. |
+| 14 | P3 | Remoção de atalhos úteis | Feito; usuário respondeu ok | profile/ProfileScreen | Mapa/filtros mantêm acessos próprios. |
+| 15 | P3 | Configurações em largura total | Feito; botão amarelo após feedback, revisão pendente | profile/ProfileScreen | Depende de 16 para transferência da saída. |
+| 16 | P2 | Saída no fim de configurações | Feito; alinhamento e versão 2.2 revisados, revisão pendente | profile; settings | Saída atual é apenas visual; não inventar autenticação. |
+| 17 | P2 | Nova escala tipográfica | Feito; alinhamento revisado, revisão humana pendente | theme/appTheme | Menor=antigo padrão; padrão=antigo grande; maior=novo superior. |
+| 18 | P2 | Cartões de acessibilidade | Feito; usuário respondeu ok | settings/SettingsScreen | Seção já existe; reorganizar fontes horizontalmente. Depende de 17. |
+| 19 | P2 | Laboratório fora de configurações comuns | Feito: laboratório excluído totalmente por nova instrução | settings; exclusão de orb-lab/protótipo | Rota, tela e protótipo exclusivo removidos; Orb ativa preservada. Nova instrução substitui preservação anterior. |
+| 20 | P3 | Proposta Auto Experience | Parcial: proporções cabem; marca/modelo/imagens a fazer | docs; auto | Largura medida e sem scroll lateral; piloto de veículos/imagens ainda exige proposta aprovada. |
+| 21 | P2 | Demonstração NEXT fora dos ajustes comuns | Menu revisado conforme instrução; revisão humana pendente | settings | Origem suspensa, NEXT e Salvar destacados; sem campos de veículo/autonomia ou atalhos de bateria/laboratório. |
+| 22 | P3 | Nome e endereço da estação | Feito; parágrafo do catálogo retirado, revisão pendente | stations/PointDetailsScreen | Nome/endereço próximos; somente identificação curta Dados simulados, detalhes acessíveis e Sobre os dados. |
+| 23 | P2 | Pills de status e avaliação | Feito; usuário respondeu ok | stations/PointDetailsScreen | Transparência alinhada a 03; manter conteúdo da seção Avaliações. |
+| 24 | P1 | Banner e estimativas sincronizadas | Feito; usuário respondeu ok | stations; utils/autonomia | Dispensa limitada à condição; reserva exata de 5%; depende da bateria compartilhada. |
+| 25 | P2 | Carregadores e confirmação | Feito; usuário respondeu ok | stations; stationPresentation | Entender Recarga não confirmada e manter função de segurança. |
+| 26 | P3 | Padrão dos cartões da ficha | Feito; duas colunas e títulos revisados, revisão pendente | stations/PointDetailsScreen | Ícone/título com área distinta; distância continua aproximada. |
+| 27 | P2 | Identificação de catálogo sem repetição | Feito; usuário respondeu ok | stations; identificacaoDados | Depende da identificação geral em 03/23/25. |
+| 28 | P3 | Cartões Estimativas e Conectores | Feito; usuário respondeu ok | stations/PointDetailsScreen | Depende de 26; não modificar 29. |
+| 29 | — | Preservar conteúdo de Comodidades próximas e Avaliações | Contêiner padronizado; conteúdo preservado, revisão pendente | stations/PointDetailsScreen | Cabeçalho, borda e corpo iguais aos cartões; textos/notas/listas e interações preservados. |
+| 30 | P1 | Persistência offline de fotos e favoritos | Parcial: cache web; usuário testará iPhone depois | assets; storage; service-worker | Não introduzir armazenamento remoto; distinguir assets empacotados e cache web. |
+| 31 | P3 | Pesquisa catálogo/Supabase | A fazer: ampliação; pesquisa disponível, nenhuma migração | docs | Sem importar fontes, ampliar catálogo ou migrar arquitetura; pesquisa não conclui o objetivo. |
+| 32 | P2 | Proposta de área interna | A fazer: cenários completos; área interna básica disponível | docs; settings | Faltam perfis com usuário/foto/veículo/favoritos/comentários/avaliações e armazenamento separado. |
+| 33 | P2 | Referência inicial de localização | Feito: FIAP padrão restaurada; escolhas salvas preservadas | data/demonstracao; LocationContext | FIAP usada quando não há escolha; origem já salva e GPS preservados. NEXT continua opção explícita. |
+
 
 ## Checkpoints
 
@@ -331,9 +332,9 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Verificação: revisão de cobertura dos campos e das restrições; não há código novo a testar.
 - Decisão necessária antes de implementar novos campos/armazenamento do cenário. CP22 `368bd84`.
 
-## Situação consolidada por item — solicitação de andamento
+## Histórico de 22/10 — situação anterior ao novo feedback
 
-“Feito” = implementado; não significa aprovação visual ou validação física completa. São 27 itens implementados (4 pré-existentes), 2 análises concluídas, 1 proposta aguardando decisão, 2 parciais e 1 conteúdo preservado com títulos autorizados.
+**Retrato histórico superado pela revisão de 23/10 e pela tabela inicial atualizada.** Pesquisa/proposta não equivale a funcionalidade implementada. As contagens desta etapa não representam a conclusão atual do backlog.
 
 | ID | Estado | Resultado / falta | Commits de referência |
 |---|---|---|---|
@@ -400,7 +401,7 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 ## Revisão humana de 23/10/2026 — instrução vigente
 
 - Usuário aprovou explicitamente 02, 04–10, 13, 14, 18, 23–25, 27 e 28. Isso registra o feedback desses itens; não certifica Android/Release/VoiceOver/desempenho.
-- 01: usuário informou que ainda não foi compreendido. Suspensas novas alterações; a implementação anterior apenas identificou paradas calculadas e não mudou desenho/seleção do percurso. Pergunta de esclarecimento enviada.
+- 01: usuário informou que ainda não foi compreendido. Naquele momento suspensas novas alterações; a implementação anterior apenas identificou paradas calculadas e não mudou desenho/seleção do percurso. Pergunta de esclarecimento enviada.
 - 03 incompleto; 12 e 31 permanecem A FAZER na perspectiva do objetivo final, apesar de pesquisas feitas. 20 e 32 também incompletos. Não classificar pesquisa/proposta como implementação concluída.
 - 21: menu precisa de nova definição; esclarecimento solicitado. 22: usuário aprovou espaçamento, mas pediu retirar texto de demonstração; frase exata em esclarecimento.
 - 30: usuário testará depois; não executar mudanças/testes no iPhone automaticamente.
@@ -500,4 +501,17 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 ### R14 — 26: legibilidade do cabeçalho em duas colunas
 
 - Inspeção das capturas mostrou Funcionamento comprimindo o ícone no cartão estreito. Título simplificado para Horário e ícones preservam sua largura nos cabeçalhos. Não muda horário/status nem dados.
-- Verificações: TypeScript, ESLint dirigido e diff; conferência visual dirigida após exportação.
+- Verificações: TypeScript, ESLint dirigido e diff aprovados; validacao-horario.json confirmou ícone de 20 px, separação de 8 px e título dentro do cabeçalho. Captura ficha-horario-final.png inspecionada após exportação.
+
+## Fechamento da revisão de 23/10
+
+- Esclarecimentos recebidos: 01 precisa corresponder paradas anunciadas ao resumo e mostrar os locais; 21 menu suspenso de origem/NEXT, Salvar destacado, sem veículo/autonomia/atalhos; 22 retirar especificamente Catálogo de simulação. Aplicados nos checkpoints R04/R07/R08.
+- Código/configuração em 2.2.0; instalação física continua Flui 2.1 até nova compilação autorizada. Dependências idênticas, nenhum SDK atualizado.
+- Commits: R01 `ed6e221`; R02 `8fda536`; R03 `d818560`; R04 `8efd3d0`; R05 `9e69aec`; R06 `4798e0d`; R07 `c22b890`; R08 `468b586`; R09 `ae01c15`; R10 `9aee492`; R11 `2e9acca`; R12 `4ada4ca`; R13 `9376081`; R14 `35a8037`.
+- Suíte final R13: 174/174; TypeScript aprovado; ESLint sem erros, um aviso herdado em ConnectivityContext:48. R14, apenas texto/ícones, passou em TypeScript/ESLint dirigidos sem repetir a suíte inteira.
+- `../output/ux-feedback-20261023/validacao-web.json`: aprovado em 320/393 px, zero erros de página. Confere alinhamento das fontes, rodapé, botão amarelo, seletor/resumo com zero e três paradas, ficha em duas colunas no padrão e três proporções automotivas sem scroll horizontal.
+- `validacao-menu-interno.json`: aprovado em desenvolvimento, sem erros; alternou FIAP/NEXT e salvou origem preservando veículo/autonomia/bateria do perfil de teste. Não alterou preferências do iPhone.
+- Inspeção de capturas web de fonte, ficha, avaliações, proporções e menu realizada. Falhas iniciais preservadas: expectativa incorreta do roteiro e largura de moldura após hidratação (corrigida R12). Nenhuma dessas evidências certifica mapa/voz/Skia/teclado/desempenho nativos.
+- Manifesto offline da nova exportação contém 15 fotos locais. Teste efetivo offline anterior permanece evidência web, sem equivalência ao iPhone. Usuário fará a conferência física do item 30 posteriormente.
+- Consolidação reconferida limpa em `abd5dfacaf51350b32fa77066ee849dbfcc9fbdc`; servidores 8106/8116/8118 com PIDs preservados; bloqueios de push intactos. Sem publicação, ações GitHub ou instalação/recompilação nativa.
+- Itens 12, parte principal de 20, 31 e 32 continuam a fazer. Próxima decisão útil: escopo do piloto de fala e escolha dos perfis/modelos/dados dos cenários; não criar serviços ou arquitetura automaticamente. 03 aguarda retorno sobre a nova linguagem. Silêncio não equivale a aprovação.
