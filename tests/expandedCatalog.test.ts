@@ -10,7 +10,7 @@ import { canChargeAt } from "../src/utils/stationAvailability";
 
 const now = new Date("2026-10-23T15:00:00Z");
 
-test("catálogo de 72 preserva as 12 estações iniciais e reutiliza suas imagens sem inventar notas", () => {
+test("catálogo de 72 preserva as 12 estações iniciais e reutiliza suas imagens com fichas completas de cenário", () => {
   assert.equal(chargingStations.length, 72);
   assert.deepEqual(chargingStations.slice(0, 12).map(s => s.id), Array.from({ length: 12 }, (_, i) => `station-${String(i + 1).padStart(2, "0")}`));
   assert.equal(new Set(chargingStations.map(s => s.id)).size, chargingStations.length);
@@ -18,9 +18,9 @@ test("catálogo de 72 preserva as 12 estações iniciais e reutiliza suas imagen
   assert.equal(new Set(expandedChargingStations.map(s => s.imageKey)).size, 12);
   for (const id of ["moema", "vila-olimpia", "santo-amaro", "copacabana", "tijuca", "petropolis"]) assert.ok(chargingStations.some(s => s.id === `next-${id}`));
   for (const station of expandedChargingStations) {
-    assert.equal(station.reviewCount, 0);
-    assert.equal(station.rating, 0);
-    assert.deepEqual(station.reviews, []);
+    assert.ok(station.reviewCount >= 3);
+    assert.ok(station.rating >= 1 && station.rating <= 5);
+    assert.equal(station.reviews?.length, 3);
     assert.equal(station.isFavorite, false);
     assert.match(station.imageKey!, /^station-(?:0[1-9]|1[0-2])$/);
     assert.equal(station.imageUrl, undefined);
@@ -68,4 +68,29 @@ test("raio amplo permite consultar o RJ sem mudar filtros padrão nem ignorar st
   const available = filtrarEstacoes({ estacoes: stations, filtros: { ...filters, onlyAvailableChargers: true }, agora: now });
   assert.ok(available.some(station => station.state === "RJ"));
   for (const station of available) assert.ok(canChargeAt(station, now));
+});
+
+
+test("60 fichas têm comentários completos, IDs próprios e dados disponíveis nas 12 originais", () => {
+  const reviewIds = new Set<string>();
+  const requiredFields = Object.keys(chargingStations[0]);
+  for (const station of expandedChargingStations) {
+    for (const field of requiredFields) assert.ok(field in station, `${station.id}: ${field}`);
+    assert.ok(station.amenities.length >= 3);
+    assert.ok(station.openingHours.trim());
+    if (station.status !== "maintenance") assert.ok(station.lessBusyPeriods.length >= 2);
+    const authors = new Set<string>();
+    for (const review of station.reviews!) {
+      assert.equal(review.stationId, station.id);
+      assert.ok(!reviewIds.has(review.id));
+      reviewIds.add(review.id);
+      authors.add(review.userName);
+      for (const score of [review.rating, review.quality, review.cleaning, review.availability, review.amenities]) assert.ok(Number.isInteger(score) && score >= 1 && score <= 5);
+      assert.ok(review.comment.length >= 50);
+      assert.ok(Number.isFinite(Date.parse(review.createdAt)) && new Date(review.createdAt) < now);
+      if (station.status === "maintenance" || station.status === "unavailable") assert.equal(review.recommend, false);
+    }
+    assert.equal(authors.size, 3);
+  }
+  assert.equal(reviewIds.size, 180);
 });

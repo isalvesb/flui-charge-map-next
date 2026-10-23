@@ -1,5 +1,6 @@
 import type { StationImageKey } from "../../assets/stations";
-import type { ChargingStation, StationStatus } from "../../types";
+import { criarExperienciaDaEstacao } from "./expandedStationExperience";
+import type { Amenity, ChargingStation, StationStatus } from "../../types";
 import { obterOrigemDemonstrativa } from "../demonstracao";
 import { calcularDistanciaGeograficaKm } from "../../utils/demonstracao";
 
@@ -7,7 +8,7 @@ import { calcularDistanciaGeograficaKm } from "../../utils/demonstracao";
 // distribuem pontos pelo mapa; não localizam estabelecimentos ou rodovias reais.
 // Endereços plausíveis criados para a apresentação, não geocodificados/verificados.
 // As 12 fotos ilustrativas existentes são reutilizadas; não são fotos desses locais.
-// Sem importação externa, avaliações agregadas ou favoritos novos.
+// Notas e comentários também pertencem ao cenário; favoritos salvos não mudam.
 type LocalDoCenario = [id: string, local: string, cidade: string, estado: "SP" | "RJ", latitude: number, longitude: number];
 
 const locais: LocalDoCenario[] = [
@@ -84,22 +85,22 @@ export const expandedChargingStations: ChargingStation[] = locais.map(
       : index % 11 === 10 ? "unavailable" : index % 7 === 6 ? "busy" : "available";
     const powerKw = [150, 60, 120, 50][index % 4];
     const isAvailable = status === "available";
+    const amenities: Amenity[] = index % 3 === 0 ? ["parking", "coffee", "restroom", "wifi", "coveredArea", "security"]
+      : index % 3 === 1 ? ["coffee", "restroom", "parking", "restaurant"] : ["market", "restroom", "parking", "coveredArea"];
+    const experience = criarExperienciaDaEstacao(id, local, city, index, status, powerKw, amenities);
     return {
       id, name: `Flui ${local}`, city, state, latitude, longitude,
       address: `${ruasDoCenario[index % ruasDoCenario.length]}, ${numerosDoCenario[index % numerosDoCenario.length] + Math.floor(index / 12) * 100}`, neighborhood: local,
       imageKey: `station-${String(index % 12 + 1).padStart(2, "0")}` as StationImageKey,
       distanceKm: calcularDistanciaGeograficaKm(origem, { latitude, longitude }),
-      rating: 0, reviewCount: 0, reviews: [], isFavorite: false,
+      ...experience,
+      isFavorite: false,
       status, powerKw,
       connectors: [
         { id: `${id}-ccs2`, type: "ccs2", label: "CCS2", powerKw, totalChargers: 4, availableChargers: isAvailable ? 2 : 0 },
         { id: `${id}-type2`, type: "type2", label: "Type 2", powerKw: 22, totalChargers: 2, availableChargers: isAvailable ? 1 : 0 },
       ],
-      amenities: index % 3 === 0 ? ["parking", "coffee", "restroom", "wifi", "coveredArea"]
-        : index % 3 === 1 ? ["coffee", "restroom", "parking"] : ["market", "restroom", "parking"],
-      openingHours: "24 horas, todos os dias",
-      openingSchedule: { timeZone: "America/Sao_Paulo", periods: [{ days: ["sun", "mon", "tue", "wed", "thu", "fri", "sat"], opensAt: "00:00", closesAt: "24:00" }] },
-      lessBusyPeriods: [],
+      amenities,
     };
   },
 );

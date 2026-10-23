@@ -2,6 +2,16 @@
 
 Conferido em 23/10/2026, no Flui 2.3 experimental. Pesquisa e diagnóstico local, sem criação de serviço remoto.
 
+## Atualização: fichas completas e mapa sem raio implícito
+
+Feedback posterior em 23/10: os 60 pontos adicionais devem ter o mesmo nível de informação dos 12 originais. Agora têm nota agregada, total de avaliações e três comentários completos cada (180 ao todo), com autor fictício, data, notas por critério, retorno e recomendação. Comentários refletem manutenção/indisponibilidade/fila quando aplicável; não prometem funcionamento. Totais agregados seguem o padrão do cenário original e não representam apenas os três comentários exibidos. Dados de catálogo não modificam notas ou comentários escritos pelo usuário.
+
+Também foram preenchidos períodos de menor movimento e diversificados horários e comodidades. Fotos, endereço, bairro/cidade/UF, coordenadas, potência, conectores e contagem/status dos carregadores permanecem disponíveis, com IDs anteriores preservados. Os 12 originais não foram alterados. Favoritar continua uma escolha do usuário, sem adicionar os 60 automaticamente aos favoritos.
+
+Mapa livre agora inclui as 72 entradas sem exigir busca ou aplicar 10 km implicitamente. A origem/zoom inicial continuam FIAP; afastar o zoom/arrastar para outras cidades mostra os pontos. Raio explicitamente escolhido e demais filtros continuam limitando os resultados. Nenhuma distância/preferência foi apagada do armazenamento.
+
+240 testes passaram, incluindo comparação dos campos das fichas, integridade dos 180 comentários e regras do planejador. Conferência web mostrou 72 marcadores com busca vazia, fichas com imagens/notas/comentários e fonte Maior sem rolagem horizontal. Evidência em ../output/ux-feedback-20261023/validacao-72-fichas-completas.json. Não comprova revisão visual física ou cobertura de dados reais.
+
 ## Atualização solicitada: 72 pontos e 12 imagens reutilizadas
 
 Em 23/10, após feedback no iPhone, o catálogo foi ampliado de 66 para 72 pontos (50 SP/22 RJ): Moema, Vila Olímpia, Santo Amaro, Copacabana, Tijuca e Petrópolis. Os 60 pontos adicionais reutilizam ciclicamente as 12 imagens originais, sem novas cópias ou downloads. São fotos ilustrativas; não documentam esses locais. As 12 entradas originais e todos os IDs anteriores foram preservados. Os novos pontos continuam sem notas/comentários agregados inventados.
