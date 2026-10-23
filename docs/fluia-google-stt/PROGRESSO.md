@@ -137,3 +137,12 @@
 - Ledger retido: **3 chamadas/66 s reservados**, mais **1/4** do primeiro teste separado: **4 chamadas/70 s reservados** no histórico registrado. Não corresponde a custo/duração faturados. Sem nova chamada durante a preparação do handoff.
 - Servidores próprios conferidos e preservados: Metro 8117/PID 97294 e streaming privado 8787/PID 1283, ambos nesta worktree. Base UX `715ba52` e consolidação `abd5dfa` continuam limpas e não foram modificadas.
 - Próximo agente deve distinguir: 36 implementado; 37/38/40/41 em código, pendentes no iPhone; 39 não resolvido; 42 preferência Zephyr, sem API/consumo TTS autorizado. Não retomar automaticamente a base antiga nem apresentar testes simulados como integração real.
+
+## 23/10/2026 — retomada física após `5872b52`
+
+- Branch correta e limpa em `5872b52`, com `50d56cb` presente. Conferidas correções PCM/silêncio, parciais e duplicação; os 29/29 testes anteriores são informação do handoff, sem nova rodada nesta conferência. Código não foi reimplementado.
+- Remoção de “Parar leitura” confirmada na fonte. Interrupção pelo ícone de som, nova fala na Orb com conexão ativa e saída da tela continuam presentes; conferência visual/física ainda pendente.
+- iPhone 16 disponível e app experimental 2.3.0/20261022 instalado. Nenhuma recompilação, instalação ou exclusão foi realizada na retomada.
+- Ambos os servidores estavam parados. Após conferir portas livres, iniciados só os serviços desta worktree: Metro 8117/PID 2360 e streaming privado 8787/PID 2352. Cwd/IP conferidos; Metro e health HTTPS autenticado aprovados, sem reconhecimento/áudio.
+- Ledger encontrado **8 chamadas/216 s reservados**, e separado histórico **1/4**: total **9/220**. Preservado no reinício; diverge dos 3/66 informados no prompt. Não é custo faturado. Sem chamada nova nesta conferência.
+- Novo código copiado temporariamente sob autorização já concedida, sem exibição. Usuário solicitado a ativar em Configurações e informar o resultado antes do teste de abertura/escuta. Não considerar o novo fluxo homologado ainda.

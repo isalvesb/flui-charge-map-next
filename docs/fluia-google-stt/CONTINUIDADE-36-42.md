@@ -1,5 +1,19 @@
 # FluIA — continuidade dos itens 36–42
 
+## Atualização da retomada — 23/10/2026, após `5872b52`
+
+Esta atualização prevalece sobre o checkpoint histórico abaixo. Branch autorizada conferida em `5872b52188124a123d3ddc043700e5cc00d4ef84`, inicialmente limpa. `50d56cb` acrescenta detecção de aproximadamente 1 s de silêncio PCM, proteção contra finish duplicado/quadros tardios e preservação da parcial/segmentos; 29/29 testes do intermediário informados no handoff, sem repetir essa suíte na conferência inicial. Correção implementada, **ainda sem homologação física nesta retomada**. `5872b52` remove “Parar leitura”; o ícone de som, a nova escuta pela Orb (com conexão ativa) e a saída da tela continuam interrompendo a leitura, conforme inspeção de código.
+
+O usuário informou que a build PCM já foi instalada e abriu na Home. Consulta ao iPhone confirmou a instalação de Flui Voz 2.3 / `com.guicunhasou.fluiavozlocal`, versão 2.3.0, build 20261022, sem reinstalação. A informação antiga “build ainda não instalada” abaixo pertence ao checkpoint anterior.
+
+Na retomada, **Metro 8117 e intermediário 8787 estavam parados**, sem listeners e sem arquivo de código de sessão. IP atual conferido: 192.168.0.130. Iniciados somente os serviços desta worktree, após verificar portas e propriedade: Metro PID 2360, streaming privado PID 2352. Conferidos cwd de ambos, Metro `packager-status:running` e health HTTPS autenticado `ready=true`, `streaming=true`. Não houve áudio/chamada STT nesses checks. Logs locais novos `metro-validacao-20261023.log` e `stt/validacao-iphone-20261023.log`.
+
+**Contadores reais encontrados: 8 chamadas/216 s reservados no ledger retido**, além de 1/4 no ledger histórico separado: **9 chamadas/220 s reservados** no total registrado. O handoff que indicava 3/66 estava desatualizado. O ledger foi retomado sem zerar/substituir; limites 20/600, 30 s por escuta e uma simultânea preservados. Reserva não é cobrança efetiva.
+
+Novo código temporário gerado pelo início normal do intermediário, sem exibição/log. Copiado temporariamente ao clipboard sob autorização anterior. Solicitado ao usuário ativar a conexão nas Configurações, permanecendo nessa tela antes do teste. Ativação, remoção visual do botão e novo fluxo físico ainda aguardam evidência. Não concluir por silêncio do usuário. Credenciais/arquivos privados e outros ambientes preservados.
+
+---
+
 Checkpoint de 23/10/2026. Trabalho em andamento, preservado para troca de conversa por limite de franquia. Este documento descreve evidências e pendências; não declara a nova experiência validada no iPhone.
 
 ## Base correta e isolamento
