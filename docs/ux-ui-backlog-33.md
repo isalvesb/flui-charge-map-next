@@ -59,7 +59,7 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 | 15 | P3 | Configurações em largura total | Implementado; revisão física pendente | profile/ProfileScreen | Depende de 16 para transferência da saída. |
 | 16 | P2 | Saída no fim de configurações | Implementado; revisão física pendente | profile; settings | Saída atual é apenas visual; não inventar autenticação. |
 | 17 | P2 | Nova escala tipográfica | Implementado; matriz visual pendente | theme/appTheme | Menor=antigo padrão; padrão=antigo grande; maior=novo superior. |
-| 18 | P2 | Cartões de acessibilidade | Parcial existente | settings/SettingsScreen | Seção já existe; reorganizar fontes horizontalmente. Depende de 17. |
+| 18 | P2 | Cartões de acessibilidade | Implementado; revisão física pendente | settings/SettingsScreen | Seção já existe; reorganizar fontes horizontalmente. Depende de 17. |
 | 19 | P2 | Laboratório fora de configurações comuns | Pendente | settings; orb-lab | Preservar implementação e acesso interno. |
 | 20 | P3 | Proposta Auto Experience | Proposta pendente | docs; auto | Exige proposta prévia; sem promessa de CarPlay real ou uso de imagens sem direitos. |
 | 21 | P2 | Demonstração NEXT fora dos ajustes comuns | Pendente | settings | Preservar controles em acesso interno; depende do desenho mínimo de 32. |
@@ -194,3 +194,11 @@ Cada entrada deve informar IDs, commit, arquivos, verificações e limites human
 - Conferir: Configurações → Acessibilidade → três tamanhos, depois mapa/ficha/viagem/FluIA. Nenhuma certificação de acessibilidade humana.
 
 - Suíte completa CP12: primeira execução 164/165, com uma expectativa antiga do texto de bateria (04) em `assistantPresentation.test.ts`; atualizada sem retirar as asserções contra telemetria inventada. Reexecução documentada em `12-test-final.log`. Aviso ESLint herdado em ConnectivityContext:48, zero erros.
+
+### CP13 — 18: preferência única de tamanho da fonte
+
+- Arquivos: `src/features/settings/SettingsScreen.tsx`, `.styles.ts`.
+- Três cartões horizontais Menor/Padrão/Maior em um grupo de seleção, sem altura máxima. Alto contraste continua como opção independente da seção Acessibilidade.
+- Cartões têm estado de seleção/leitura e bloqueiam toques enquanto preferências carregam/salvam; descrições preservadas como dicas acessíveis.
+- Verificações: TypeScript, ESLint dirigido e testes de persistência/contraste/leitura (`13-*`). Revisão visual e VoiceOver físico pendentes.
+- Conferir: perfil → Configurações → Acessibilidade. CP11 `a33abd9`; CP12 `cea62de`, suíte completa 165/165.

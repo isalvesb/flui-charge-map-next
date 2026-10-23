@@ -115,17 +115,17 @@ export default function SettingsScreen() {
 
   const fontSizeOptions = [
     {
-      label: "Fonte menor",
+      label: "Menor",
       description: "Mais conteúdo visível por tela.",
       value: "small" as FontSizePreference,
     },
     {
-      label: "Fonte padrão",
+      label: "Padrão",
       description: "Equilíbrio entre leitura e espaço.",
       value: "default" as FontSizePreference,
     },
     {
-      label: "Fonte maior",
+      label: "Maior",
       description: "Leitura mais confortável.",
       value: "large" as FontSizePreference,
     },
@@ -402,32 +402,24 @@ export default function SettingsScreen() {
                 </View>
                 {renderOptionCheck(highContrast)}
               </PressableScale>
-              {fontSizeOptions.map((option) => {
+            </View>
+            <Text style={styles.fieldLabel}>Tamanho da fonte</Text>
+            <View accessibilityRole="radiogroup" accessibilityLabel="Tamanho da fonte" style={styles.fontSizeRow}>
+              {fontSizeOptions.map((option, index) => {
                 const isSelected = option.value === fontSize;
-
                 return (
                   <PressableScale
                     key={option.value}
-                    accessibilityRole="button"
-                    accessibilityLabel={`Selecionar ${option.label.toLowerCase()}`}
-                    accessibilityState={{ selected: isSelected }}
-                    style={[
-                      styles.optionButton,
-                      isSelected ? styles.optionButtonSelected : null,
-                    ]}
+                    accessibilityRole="radio"
+                    accessibilityLabel={`Fonte ${option.label.toLowerCase()}`}
+                    accessibilityHint={option.description}
+                    accessibilityState={{ checked: isSelected, disabled: isLoadingPreferences || isSavingPreferences }}
+                    disabled={isLoadingPreferences || isSavingPreferences}
+                    style={[styles.fontSizeCard, isSelected ? styles.optionButtonSelected : null]}
                     onPress={() => saveFontSize(option.value)}
                   >
-                    <View style={styles.optionIconBox}>
-                      <Type size={21} color={theme.primary} strokeWidth={2.1} />
-                    </View>
-
-                    <View style={styles.optionInfo}>
-                      <Text style={styles.optionTitle}>{option.label}</Text>
-                      <Text style={styles.optionDescription}>
-                        {option.description}
-                      </Text>
-                    </View>
-
+                    <Type accessible={false} size={18 + index * 4} color={theme.primary} />
+                    <Text style={styles.fontSizeLabel}>{option.label}</Text>
                     {renderOptionCheck(isSelected)}
                   </PressableScale>
                 );

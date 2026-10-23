@@ -125,6 +125,9 @@ export function createSettingsStyles(colors: AppTheme, fontScale: number) {
       gap: 10,
     },
 
+    fontSizeRow: { flexDirection: "row", gap: 8, alignItems: "stretch" },
+    fontSizeCard: { flex: 1, minWidth: 0, minHeight: 112, alignItems: "center", justifyContent: "center", gap: 10, paddingHorizontal: 4, paddingVertical: 12, borderRadius: 16, borderWidth: 1, borderColor: colors.border, backgroundColor: colors.surface },
+    fontSizeLabel: { color: colors.text, fontSize: s(12), fontWeight: "700", textAlign: "center" },
     fieldLabel: {
       marginTop: 16,
       marginBottom: 6,
