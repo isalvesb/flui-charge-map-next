@@ -105,6 +105,20 @@ test('extensão autorizada preserva ledger e só permite três chamadas, inclusi
   assert.throws(() => createStreamingBudget({ initial, limits: { requests: 24, reservedSeconds: 696 }, recordUsage: async () => {} }), /Orçamento/);
 });
 
+test('segunda autorização acrescenta dez reservas sem renovar saldo ou trocar ledger', async () => {
+  const initial = { requests: 23, reservedSeconds: 666 };
+  const env = { STT_APPROVED_VALIDATION_EXTENSION: '33/966' };
+  const limits = streamingBudgetLimits(env, initial);
+  const budget = createStreamingBudget({ initial, limits, recordUsage: async () => {} });
+  for (let i = 0; i < 10; i++) { const release = await budget.reserve(); release(); }
+  assert.deepEqual(budget.snapshot(), { requests: 33, reservedSeconds: 966 });
+  await assert.rejects(budget.reserve(), /SESSION_LIMIT/);
+  const restarted = createStreamingBudget({ initial: budget.snapshot(), limits: streamingBudgetLimits(env, budget.snapshot()), recordUsage: async () => {} });
+  await assert.rejects(restarted.reserve(), /SESSION_LIMIT/);
+  assert.throws(() => streamingBudgetLimits(env), /ledger/);
+  assert.throws(() => streamingBudgetLimits(env, { requests: 20, reservedSeconds: 576 }), /ledger/);
+});
+
 test('provedor Google configura resultados parciais/pausa 2 s e não repete chamada', async () => {
   const call = new EventEmitter(); const writes = [];
   call.write = value => { writes.push(value); return true; };

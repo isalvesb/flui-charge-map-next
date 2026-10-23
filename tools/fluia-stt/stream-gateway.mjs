@@ -8,16 +8,16 @@ export function isAuthorized(headers, token) {
   return a.length === b.length && timingSafeEqual(a, b);
 }
 
-// Explicit one-time authorization on 23/10/2026: preserve the 20/576 ledger,
-// allow only three additional 30-second reservations, never renew on restart.
+// Explicit, cumulative authorizations on 23/10/2026. Restarts never renew them.
 export function streamingBudgetLimits(env = {}, initial) {
   if (env.STT_APPROVED_VALIDATION_EXTENSION === undefined) return { requests: 20, reservedSeconds: 600 };
+  if (env.STT_APPROVED_VALIDATION_EXTENSION === '33/966' && initial && initial.requests >= 23 && initial.reservedSeconds >= 666) return { requests: 33, reservedSeconds: 966 };
   if (env.STT_APPROVED_VALIDATION_EXTENSION !== '23/666' || !initial || initial.requests < 20 || initial.reservedSeconds < 576) throw new Error('Extensão exige o ledger e os limites autorizados.');
   return { requests: 23, reservedSeconds: 666 };
 }
 
 export function createStreamingBudget({ initial = { requests: 0, reservedSeconds: 0 }, recordUsage, limits = { requests: 20, reservedSeconds: 600 } }) {
-  const approved = (limits.requests === 20 && limits.reservedSeconds === 600) || (limits.requests === 23 && limits.reservedSeconds === 666);
+  const approved = (limits.requests === 20 && limits.reservedSeconds === 600) || (limits.requests === 23 && limits.reservedSeconds === 666) || (limits.requests === 33 && limits.reservedSeconds === 966);
   if (!approved || !Number.isInteger(initial.requests) || !Number.isInteger(initial.reservedSeconds) || initial.requests < 0 || initial.requests > limits.requests || initial.reservedSeconds < 0 || initial.reservedSeconds > limits.reservedSeconds) throw new Error('Orçamento inválido.');
   const usage = { ...initial };
   let busy = false;

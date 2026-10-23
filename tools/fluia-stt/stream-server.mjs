@@ -1,12 +1,13 @@
 import { createServer } from 'node:https';
 import { readFile, writeFile, mkdir, rename, rm, stat } from 'node:fs/promises';
-import { randomBytes } from 'node:crypto';
 import { resolve, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { v2 } from '@google-cloud/speech';
 import { serverSettings } from './settings.mjs';
 import { attachStreamGateway, createStreamingBudget, isAuthorized, streamingBudgetLimits } from './stream-gateway.mjs';
 import { googleStreamProvider } from './google-stream.mjs';
+import { sessionToken } from './session-token.mjs';
+import { createPairingHandler } from './pairing.mjs';
 
 process.umask(0o077);
 // Keep SDK diagnostic request logging off: it can contain audio.
@@ -18,7 +19,6 @@ await mkdir(root, { recursive: true, mode: 0o700 });
 const client = new v2.SpeechClient({ projectId: project, keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS });
 await client.auth.getAccessToken();
 await client.initialize();
-const token = randomBytes(32).toString('hex');
 let usageFile = resolve(root, `consumo-${Date.now()}.json`), initial;
 if (process.env.STT_USAGE_FILE) {
   const previous = resolve(process.env.STT_USAGE_FILE);
@@ -32,9 +32,12 @@ const recordUsage = async usage => {
 };
 const limits = streamingBudgetLimits(process.env, initial);
 const budget = createStreamingBudget({ initial, recordUsage, limits });
+const token = await sessionToken({ resume: process.env.STT_RESUME_SESSION === '1', hasLedger: Boolean(initial) });
 const metrics = {};
 await recordUsage(budget.snapshot());
+const pairing = process.env.STT_PAIRING_ENABLED === '1' ? createPairingHandler({ token }) : null;
 const server = createServer({ cert: await readFile(process.env.STT_TLS_CERT), key: await readFile(process.env.STT_TLS_KEY), minVersion: 'TLSv1.2' }, (req, res) => {
+  if (pairing?.handle(req, res)) return;
   const allowed = isAuthorized(req.headers, token) && !req.headers.origin;
   res.writeHead(allowed && req.method === 'GET' && req.url === '/health' ? 200 : 401, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
   res.end(JSON.stringify(allowed ? { ready: true, streaming: true, ...budget.snapshot(), limits, metrics } : { code: 'UNAUTHORIZED' }));
@@ -47,7 +50,7 @@ try { await writeFile(resolve(root, 'session-code'), token, { mode: 0o600, flag:
 catch { gateway.close(); server.close(); await client.close(); throw new Error('Confira a sessão existente antes de iniciar outra.'); }
 console.info(`FluIA STT streaming privado na porta ${port}. Máximo: ${limits.requests} chamadas/${limits.reservedSeconds} s reservados, 30 s por escuta, sem repetição.`);
 async function shutdown() {
-  gateway.close(); server.close(); server.closeAllConnections();
+  pairing?.close(); gateway.close(); server.close(); server.closeAllConnections();
   await client.close(); await rm(resolve(root, 'session-code'), { force: true });
 }
 process.once('SIGINT', shutdown);
