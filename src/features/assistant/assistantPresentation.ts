@@ -25,7 +25,15 @@ export function describeAssistantContext(
   ].join("\n");
 }
 
-// Resumo visual; o motor, a explicação completa e os cálculos permanecem iguais.
+// O resumo é a resposta visível por padrão; a explicação completa continua disponível.
 export function summarizeSuggestion(recommendation: FluiAssistantRecommendation) {
-  return `${recommendation.primary.name}\n${formatAssistantDistance(recommendation.primary.distanceKm)} em linha reta · chegada ≈${recommendation.arrivalBatteryPercent}% · ${recommendation.powerKw} kW.\nDados simulados, com reserva de 5%. Confirme funcionamento e compatibilidade.`;
+  const free = recommendation.availableChargers === 1 ? "1 carregador livre" : `${recommendation.availableChargers} carregadores livres`;
+  const reasons = {
+    lowBattery: `Uma opção para preservar bateria, com ${free} no cadastro.`,
+    fastCharge: `Até ${recommendation.powerKw} kW no cadastro; a velocidade depende do carro.`,
+    avoidQueues: `${free} no cadastro; a fila real não é monitorada.`,
+    coffeeAndRestroom: "Café e banheiro cadastrados para sua parada.",
+    comfortableWait: "Comodidades cadastradas para esperar com conforto.",
+  };
+  return `Sugiro ${recommendation.primary.name}.\n${reasons[recommendation.intent]}\nChegada ≈${recommendation.arrivalBatteryPercent}% · ${formatAssistantDistance(recommendation.primary.distanceKm)} em linha reta.\nDados simulados, com reserva de 5%. Confirme funcionamento e compatibilidade.`;
 }

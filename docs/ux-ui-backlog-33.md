@@ -594,3 +594,9 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Fonte local ios/fluichargemap/AppDelegate.swift: DEBUG carrega bundle da LAN/Metro 8116; caminho não DEBUG usa main.jsbundle. Logo, abertura a frio sem Metro é limitação possível do binário de desenvolvimento, não corrigida por service worker web.
 - Fotos atuais usam require local; em desenvolvimento o asset ainda pode ser entregue pelo servidor. Não há evidência de perda do AsyncStorage. Não apagar dados nem forçar cache nativo sem diagnóstico; nenhuma instalação/compilação/configuração nativa alterada.
 - Item 30 permanece falhou no iPhone / diagnóstico em andamento; solução e teste nativos ainda pendentes.
+
+### S10 — 34: revisar também a resposta resumida visível
+
+- Arquivos: assistantPresentation.ts, tests/assistantPresentation.test.ts. O chat exibe resumo por padrão; revisar só chatEngine deixava as frases novas sob Ver explicação completa. Resumo agora começa Sugiro, explica a prioridade escolhida e mostra chegada/distância de forma direta.
+- Cinco prioridades geram motivos diferentes; potência não é promessa de velocidade e disponibilidade cadastrada não é fila real. Simulação, reserva de 5% e confirmação de funcionamento/compatibilidade permanecem.
+- Verificações: TypeScript, ESLint e testes de resumo/chat/motor. Captura da resposta resumida e expandida será conferida no desenvolvimento; ainda sem validação humana.

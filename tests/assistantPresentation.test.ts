@@ -11,7 +11,7 @@ test("resumo preserva os valores do motor e os limites de segurança", () => {
   const before = JSON.stringify(result);
   const text = summarizeSuggestion(result);
   assert.ok(text.includes(result.primary.name));
-  assert.ok(text.includes(`chegada ≈${result.arrivalBatteryPercent}%`));
+  assert.ok(text.includes(`Chegada ≈${result.arrivalBatteryPercent}%`));
   assert.ok(text.includes(`${result.powerKw} kW`));
   for (const warning of ["em linha reta", "Dados simulados", "reserva de 5%", "Confirme funcionamento e compatibilidade"]) assert.ok(text.includes(warning));
   assert.equal(JSON.stringify(result), before);
@@ -40,4 +40,22 @@ test("resumo contextual compacto preserva veículo, bateria e caráter demonstra
   const before = JSON.stringify(preferences);
   assert.equal(summarizeAssistantContext(preferences, "Vila Mariana"), `${preferences.vehicleName} · bateria 42%\nOrigem do cenário: Vila Mariana`);
   assert.equal(JSON.stringify(preferences), before);
+});
+
+
+test("resumo visível explica a prioridade sem prometer fila ou velocidade reais", () => {
+  const station = createStation({ name: "Ponto de teste", distanceKm: 7, amenities: ["coffee", "restroom", "wifi"] });
+  const intents = ["lowBattery", "fastCharge", "avoidQueues", "coffeeAndRestroom", "comfortableWait"] as const;
+  const texts = intents.map(intent => {
+    const recommendation = recommendStations({ stations: [station], intent, vehicleRangeKm: 400, batteryPercent: 70, now: new Date("2026-10-23T15:00:00Z") });
+    assert.ok(recommendation);
+    return summarizeSuggestion(recommendation);
+  });
+  assert.equal(new Set(texts).size, 5);
+  assert.match(texts[0], /preservar bateria/);
+  assert.match(texts[1], /velocidade depende do carro/);
+  assert.match(texts[2], /fila real não é monitorada/);
+  assert.match(texts[3], /Café e banheiro/);
+  assert.match(texts[4], /esperar com conforto/);
+  for (const text of texts) assert.match(text, /Sugiro Ponto de teste/);
 });
