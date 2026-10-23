@@ -4,7 +4,7 @@
 
 A adaptação parte do Flui 2.3 (`715ba52`). A build própria se chama **Flui Voz 2.3**, identificador `com.guicunhasou.fluiavozlocal`. Use esse app para o experimento; a instalação anterior não contém o módulo de microfone.
 
-Uma chamada real ao Google, com frase sintética gerada no Mac, passou pelo HTTPS privado e retornou a transcrição esperada. Isso ainda não comprova captura no iPhone. Consulte PROGRESSO.md para consumo, commits e verificações atualizadas.
+**Conferido em 23/10/2026:** após corrigir o modo de áudio em `e037429`, o usuário confirmou gravação/transcrição no iPhone 16 e, ao tocar em Enviar, resposta com som e status Explicando. O fluxo principal foi conferido fisicamente por feedback humano. Total real: duas requisições/10 segundos reservados (4 s sintéticos + 6 s humanos). A matriz abaixo registra casos adicionais ainda pendentes, não uma certificação completa. Consulte PROGRESSO.md para consumo, commits e verificações atualizadas.
 
 ## Preparação necessária
 
@@ -30,15 +30,15 @@ A confiança nesse certificado vale para o experimento. As chaves ficam locais e
 
 A saída ainda usa a leitura existente do sistema (`expo-speech`). O Google foi integrado para reconhecer a fala de entrada; não foi contratado nem integrado um serviço de voz sintética Google.
 
-## Verificações físicas pendentes
+## Verificações físicas adicionais pendentes
 
 - Primeiro pedido de permissão e recuperação após negar.
-- Frase em pt-BR, acentos e nomes de estações; precisão e tempo percebidos.
+- Ampliar a conferência de pt-BR para acentos/nomes de estações e medir precisão/tempo percebidos; somente uma frase humana teve confirmação básica.
 - Cancelar gravando e cancelar durante transcrição; nada deve ser acrescentado depois.
 - Colocar no fundo, bloquear, voltar ou receber interrupção durante captura. Não retomar gravação automaticamente.
 - Silêncio, áudio incompreensível, Mac indisponível, TLS não confiável, rede sem acesso e limite da sessão.
 - Preservação do texto digitado enquanto a transcrição ocorre; nenhuma consulta enviada sem toque em Enviar.
-- Leitura depois da captura, controle de som, teclado, fonte ampliada, VoiceOver e áreas seguras.
+- Ampliar a conferência de leitura após captura para controle de som, teclado, fonte ampliada, VoiceOver e áreas seguras; leitura básica e Explicando já tiveram confirmação humana.
 - Mapa nativo e demais fluxos na nova build.
 - Arquivos temporários são removidos nos caminhos controlados de conclusão/cancelamento/erro. Encerramento forçado pelo sistema ainda precisa ser avaliado; não prometer exclusão imediata após matar o processo.
 
