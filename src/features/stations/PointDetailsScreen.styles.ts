@@ -132,6 +132,8 @@ export const styles = StyleSheet.create({
     backgroundColor: "#FCFEFA",
   },
 
+  riskBanner: { flexDirection: "row", alignItems: "center", gap: 8, padding: 12, borderRadius: 16, borderWidth: 1, borderColor: colors.danger, backgroundColor: "#FBE5E2", marginBottom: 12 },
+  dismissRiskButton: { width: 44, height: 44, alignItems: "center", justifyContent: "center" },
   stationName: {
     color: "#10221E",
     fontSize: 29,

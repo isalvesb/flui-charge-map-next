@@ -110,9 +110,9 @@ for (const scenario of presentationCases) {
     const label = getStationChargerCountLabel(scenario.station, 1, 2, presentationDate);
     const arrival = getStationArrivalPresentation(scenario.station, arrivalAssessment, presentationDate);
     assert.equal(getStationStatusInfo(scenario.station, presentationDate).label, scenario.status);
-    assert.match(arrival.text, /Autonomia para chegar ao local/);
+    assert.match(arrival.text, /Autonomia disponível/);
     assert.match(arrival.text, /Chegada estimada com 45% de bateria/);
-    assert.match(arrival.text, /Não garante recarga no local/);
+    assert.match(arrival.text, /Estimativa em linha reta; confirme o funcionamento/);
     assert.equal(arrival.tone, scenario.canCharge ? "success" : "neutral");
     assert.equal(label, scenario.canCharge
       ? "1 de 2 carregadores livres no exemplo"
@@ -130,7 +130,7 @@ test("preserva alertas de autonomia limitada e insuficiente mesmo sem recarga", 
     const insufficient = getStationArrivalPresentation(station, avaliarAlcance(20, 400, 1), presentationDate);
     assert.equal(insufficient.tone, "danger");
     assert.match(insufficient.text, /faltam 16 km/);
-    assert.match(insufficient.text, /Não garante recarga no local/);
+    assert.match(insufficient.text, /Estimativa em linha reta; confirme o funcionamento/);
   }
 });
 
@@ -142,4 +142,16 @@ test("a mesma ficha deixa de anunciar carregadores livres exatamente ao fechar",
   assert.doesNotMatch(getStationChargerCountLabel(station, 3, 5, after), /livres|disponíveis/);
   assert.equal(getStationArrivalPresentation(station, arrivalAssessment, before).tone, "success");
   assert.equal(getStationArrivalPresentation(station, arrivalAssessment, after).tone, "neutral");
+});
+
+
+test("estimativa da ficha acompanha carga informada sem prometer recarga", () => {
+  const station = createStation({ distanceKm: 10 });
+  const full = getStationArrivalPresentation(station, avaliarAlcance(10, 200, 80));
+  const low = getStationArrivalPresentation(station, avaliarAlcance(10, 200, 2));
+  assert.match(full.text, /160 km/);
+  assert.match(full.text, /75%/);
+  assert.match(low.text, /4 km/);
+  assert.match(low.text, /insuficiente/);
+  assert.match(low.text, /confirme o funcionamento/);
 });

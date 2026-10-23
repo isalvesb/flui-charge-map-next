@@ -103,7 +103,7 @@ export function getStationArrivalPresentation(
       : canChargeAt(station, date) ? "success" : "neutral";
 
   return {
-    text: `Autonomia para chegar ao local\n${arrival}\nNão garante recarga no local.`,
+    text: `Autonomia disponível: ≈${Math.round(assessment.autonomiaAtualKm)} km\n${arrival}\nEstimativa em linha reta; confirme o funcionamento antes de ir.`,
     tone,
   } as const;
 }

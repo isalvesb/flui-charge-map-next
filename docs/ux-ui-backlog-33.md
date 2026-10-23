@@ -65,7 +65,7 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 | 21 | P2 | Demonstração NEXT fora dos ajustes comuns | Pendente | settings | Preservar controles em acesso interno; depende do desenho mínimo de 32. |
 | 22 | P3 | Nome e endereço da estação | Pendente | stations/PointDetailsScreen | Manter 29. |
 | 23 | P2 | Pills de status e avaliação | Pendente | stations/PointDetailsScreen | Transparência alinhada a 03; manter conteúdo da seção Avaliações. |
-| 24 | P1 | Banner e estimativas sincronizadas | Pendente | stations; utils/autonomia | Dispensa limitada à condição; reserva exata de 5%; depende da bateria compartilhada. |
+| 24 | P1 | Banner e estimativas sincronizadas | Implementado; revisão física pendente | stations; utils/autonomia | Dispensa limitada à condição; reserva exata de 5%; depende da bateria compartilhada. |
 | 25 | P2 | Carregadores e confirmação | Investigar antes de alterar | stations; stationPresentation | Entender Recarga não confirmada e manter função de segurança. |
 | 26 | P3 | Padrão dos cartões da ficha | Pendente | stations/PointDetailsScreen | Ícone/título com área distinta; distância continua aproximada. |
 | 27 | P2 | Identificação de catálogo sem repetição | Pendente | stations; identificacaoDados | Depende da identificação geral em 03/23/25. |
@@ -145,3 +145,14 @@ Cada entrada deve informar IDs, commit, arquivos, verificações e limites human
 - Verificações: TypeScript, ESLint, testes de demonstração, planejador e falhas de rota (`06-*`), incluindo preservação de origem salva.
 - Revisão humana/física pendente. Não limpar dados do iPhone para observar novo padrão.
 - Checkpoints: CP03 `228300f`, CP04 `abf1c44`, CP05 `8a7549f`.
+
+### CP07 — 24: aviso dispensável e estimativas
+
+- Arquivos: `src/features/stations/PointDetailsScreen.tsx`, `.styles.ts`, `stationPresentation.ts`, `tests/stationPresentation.test.ts`.
+- Aviso de manutenção abaixo de nome/endereço com botão X de 44 pt; dispensa só nesta visita/condição. Retorna ao reentrar ou se estação/status/abertura/disponibilidade/bateria mudar. Status e confirmação de rota permanecem mesmo dispensando.
+- Autonomia e chegada imediatamente abaixo; usam as preferências compartilhadas e mostram a carga usada. Removida frase “Não garante...” apenas dessa estimativa; mantidos linha reta, confirmação prévia e proteção da navegação.
+- Verificações: TypeScript, ESLint, apresentação da estação, integração de origem/bateria e limites do planejador (`07-*`). Nenhuma mudança na reserva exata de 5% do motor.
+- Conferir: alterar bateria no mapa → ficha; abrir estação em manutenção → fechar aviso → sair/reentrar. Revisão física/humana pendente.
+- CP06: `c8b611c`. Consulta de módulos do iPhone sem cliente em duas tentativas: abordagem interrompida; conexão inicial não é prova de Fast Refresh atual. Nenhuma reinstalação/recompilação efetuada.
+
+- Ajustes de verificação CP07: corrigidos tokens de cor ausentes no tema base; testes antigos de texto passaram a esperar “Autonomia disponível”, preservando asserções de cálculo/status/imutabilidade.

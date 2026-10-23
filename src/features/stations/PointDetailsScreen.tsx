@@ -28,6 +28,8 @@ import {
   Warehouse,
   Wifi,
   Zap,
+  X,
+  TriangleAlert,
 } from "lucide-react-native";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
@@ -212,6 +214,7 @@ export default function PointDetailsScreen() {
     toggleFavoriteStation,
   } = useFluiStorage();
 
+  const [dismissedWarningKey, setDismissedWarningKey] = useState<string | null>(null);
   const [isLoadingAction, setIsLoadingAction] = useState(false);
   const { checkConnection } = useConnectivity();
   const [connectionError, setConnectionError] = useState<string | null>(null);
@@ -222,6 +225,7 @@ export default function PointDetailsScreen() {
 
   useFocusEffect(
     useCallback(() => {
+      setDismissedWarningKey(null);
       void reloadStorage();
     }, [reloadStorage]),
   );
@@ -372,6 +376,8 @@ export default function PointDetailsScreen() {
     availableChargers,
     now,
   );
+  const warningKey = `${station.id}:${station.status}:${getStationStatusInfo(station, now).label}:${availableChargers}:${userPreferences.batteryPercent}`;
+  const showWarning = recomendacaoDoPonto === "Evite este ponto por enquanto" && dismissedWarningKey !== warningKey;
   const orientacaoDeEspera = isStationOpenAt(station, now)
     ? getWaitingLevel(station.status, availableChargers)
     : "Indisponível";
@@ -499,6 +505,33 @@ export default function PointDetailsScreen() {
 
           <Text style={styles.address}>{formatAddress(station)}</Text>
 
+          {showWarning ? (
+            <View style={styles.riskBanner}>
+              <TriangleAlert accessible={false} size={22} color={colors.danger} />
+              <View style={{ flex: 1 }}>
+                <Text accessibilityRole="alert" style={[styles.resumoTitle, { color: colors.danger }]}>{recomendacaoDoPonto}</Text>
+                <Text style={styles.infoDescription}>Manutenção indicada no catálogo. Confirme o funcionamento ou escolha outro ponto.</Text>
+              </View>
+              <Pressable accessibilityRole="button" accessibilityLabel="Dispensar aviso desta visita" style={styles.dismissRiskButton} onPress={() => setDismissedWarningKey(warningKey)}>
+                <X size={22} color={colors.danger} />
+              </Pressable>
+            </View>
+          ) : null}
+          <View
+            accessible
+            style={[
+              styles.alcanceBanner,
+              { backgroundColor: corFundoAlcance, borderColor: corAlcance },
+            ]}
+          >
+            <IconeAlcance size={20} color={corAlcance} strokeWidth={2.3} />
+
+            <Text style={[styles.alcanceBannerText, { color: corAlcance }]}>
+              {apresentacaoAlcance.text}{"\n"}Carga usada: {userPreferences.batteryPercent}%
+            </Text>
+          </View>
+
+
           <View style={styles.summaryRow}>
             <View style={styles.ratingGroup}>
               <Star
@@ -550,22 +583,8 @@ export default function PointDetailsScreen() {
             </Text>
           </View>
 
-          <Text style={styles.resumoTitle}>{recomendacaoDoPonto}</Text>
+          {recomendacaoDoPonto !== "Evite este ponto por enquanto" ? <Text style={styles.resumoTitle}>{recomendacaoDoPonto}</Text> : null}
           <ConnectionNotice />
-          <View
-            accessible
-            style={[
-              styles.alcanceBanner,
-              { backgroundColor: corFundoAlcance, borderColor: corAlcance },
-            ]}
-          >
-            <IconeAlcance size={20} color={corAlcance} strokeWidth={2.3} />
-
-            <Text style={[styles.alcanceBannerText, { color: corAlcance }]}>
-              {apresentacaoAlcance.text}
-            </Text>
-          </View>
-
           <View style={styles.infoGrid}>
             <View style={styles.infoRow}>
               <View style={styles.infoCard}>
