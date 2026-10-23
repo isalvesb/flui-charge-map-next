@@ -60,6 +60,7 @@ export default function SettingsScreen() {
     updateAppearanceMode,
     updateHighContrast,
     updateReduceMotion,
+    updateHapticsEnabled,
     updateFontSize,
   } = useAppPreferences();
 
@@ -175,6 +176,16 @@ export default function SettingsScreen() {
       showSettingsFeedback(enabled ? "Movimento reduzido" : "Animações restauradas");
     } catch {
       showSettingsFeedback("Não foi possível salvar o ajuste de movimento. Tente novamente.");
+    }
+  };
+
+  const saveHaptics = async (enabled: boolean) => {
+    if (isLoadingPreferences || isSavingPreferences) return;
+    try {
+      await updateHapticsEnabled(enabled);
+      showSettingsFeedback(enabled ? "Vibração dos toques ativada" : "Vibração dos toques desativada");
+    } catch {
+      showSettingsFeedback("Não foi possível salvar o ajuste de vibração. Tente novamente.");
     }
   };
 
@@ -349,6 +360,22 @@ export default function SettingsScreen() {
                 />
               </View>
               <Text style={styles.accessibilityDescription}>{systemReducedMotion ? "Ativado nas configurações de acessibilidade do dispositivo." : "Reduz animações, movimentos da Orb e transições do app."}</Text>
+            </View>
+            <View style={styles.accessibilityCard} testID="acessibilidade-vibracao">
+              <View style={styles.accessibilityToggleRow}>
+                <Text style={styles.accessibilityTitle}>Vibração nos toques</Text>
+                <Switch
+                  style={styles.accessibilitySwitch}
+                  accessibilityLabel="Vibração nos toques"
+                  accessibilityHint="Ativa ou desativa o retorno tátil dos botões do Flui."
+                  value={userPreferences.hapticsEnabled}
+                  disabled={isLoadingPreferences || isSavingPreferences}
+                  onValueChange={(enabled) => void saveHaptics(enabled)}
+                  trackColor={{ false: theme.border, true: theme.primary }}
+                  thumbColor={userPreferences.hapticsEnabled ? theme.onPrimary : theme.surface}
+                />
+              </View>
+              <Text style={styles.accessibilityDescription}>Ativa ou desativa o retorno tátil dos botões do Flui.</Text>
             </View>
             </View>
           </View>

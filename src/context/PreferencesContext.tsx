@@ -1,4 +1,5 @@
 import { normalizeBatteryData } from "../utils/batteryData";
+import { setHapticsEnabled } from "../utils/interaction";
 import { chargingStations } from "../data/fixtures/chargingStations";
 import { obterOrigemDemonstrativa } from "../data/demonstracao";
 import {
@@ -44,6 +45,7 @@ type PreferencesContextValue = {
   updateAppearanceMode: (appearanceMode: AppearanceMode) => Promise<void>;
   updateHighContrast: (highContrast: boolean) => Promise<void>;
   updateReduceMotion: (reduceMotion: boolean) => Promise<void>;
+  updateHapticsEnabled: (enabled: boolean) => Promise<void>;
   updateFontSize: (fontSize: FontSizePreference) => Promise<void>;
   updateBatteryPercent: (batteryPercent: number) => Promise<void>;
   updateDemoConfiguration: (config: ConfiguracaoDemonstrativa) => Promise<void>;
@@ -71,6 +73,7 @@ const defaultUserPreferences: UserPreferences = {
   appearanceMode: "light",
   highContrast: false,
   reduceMotion: false,
+  hapticsEnabled: true,
   fontSize: "default",
   ...normalizarConfiguracaoDemonstrativa(),
   ...normalizeBatteryData(),
@@ -85,6 +88,10 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
   const [isLoadingPreferences, setIsLoadingPreferences] = useState(true);
   const [isSavingPreferences, setIsSavingPreferences] = useState(false);
   const [preferencesError, setPreferencesError] = useState<string | null>(null);
+
+  useEffect(() => {
+    setHapticsEnabled(!isLoadingPreferences && userPreferences.hapticsEnabled);
+  }, [isLoadingPreferences, userPreferences.hapticsEnabled]);
 
   const reloadPreferences = useCallback(async () => {
     try {
@@ -156,6 +163,13 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
     [savePreferences],
   );
 
+  const updateHapticsEnabled = useCallback(
+    async (hapticsEnabled: boolean) => {
+      await savePreferences({ hapticsEnabled });
+    },
+    [savePreferences],
+  );
+
   const updateBatteryPercent = useCallback(
     async (batteryPercent: number) => {
       await savePreferences({
@@ -213,6 +227,7 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
       updateAppearanceMode,
       updateHighContrast,
       updateReduceMotion,
+      updateHapticsEnabled,
       updateFontSize,
       updateBatteryPercent,
       updateDemoConfiguration,
@@ -234,6 +249,7 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
       updateAppearanceMode,
       updateHighContrast,
       updateReduceMotion,
+      updateHapticsEnabled,
       updateFontSize,
       updateBatteryPercent,
       updateDemoConfiguration,

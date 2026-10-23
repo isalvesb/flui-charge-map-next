@@ -36,6 +36,7 @@ export type UserPreferences = {
   appearanceMode: AppearanceMode;
   highContrast: boolean;
   reduceMotion: boolean;
+  hapticsEnabled: boolean;
   fontSize: FontSizePreference;
   vehicleRangeKm: number;
   vehicleName: string;

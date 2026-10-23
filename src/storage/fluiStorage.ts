@@ -58,6 +58,7 @@ function createDefaultUserPreferences(): UserPreferences {
     appearanceMode: "light",
     highContrast: false,
     reduceMotion: false,
+    hapticsEnabled: true,
     fontSize: "default",
     ...normalizarConfiguracaoDemonstrativa(),
     ...normalizeBatteryData(),
@@ -110,6 +111,7 @@ function normalizeUserPreferences(
       : base.appearanceMode,
     highContrast: preferences.highContrast === true,
     reduceMotion: preferences.reduceMotion === true,
+    hapticsEnabled: typeof preferences.hapticsEnabled === "boolean" ? preferences.hapticsEnabled : base.hapticsEnabled,
     fontSize: isFontSizePreference(preferences.fontSize)
       ? preferences.fontSize
       : base.fontSize,
