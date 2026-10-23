@@ -73,9 +73,9 @@ import { useAppPreferences } from "../../context/PreferencesContext";
 import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
 import { identificacaoDados } from "../../data/identificacaoDados";
 import { FluiAssistantSheet } from "../assistant/FluiAssistantSheet";
-import { MapEnergyOrb } from "../assistant/MapEnergyOrb";
+import { DraggableMapOrb } from "./DraggableMapOrb";
 import { useIsFocused } from "@react-navigation/native";
-import { getMapExperimentLayout, MAP_ORB_SIZE, type OrbOrigin } from "./mapExperimentLayout";
+import { MAP_ORB_SIZE, type OrbOrigin, type OrbPosition } from "./mapExperimentLayout";
 
 const FEEDBACK_DURATION = 1500;
 const logoFluiXml = `
@@ -680,7 +680,7 @@ export default function HomeMapScreen() {
   const reduceMotionEnabled = useReducedMotion();
   const insets = useSafeAreaInsets();
   const isFocused = useIsFocused();
-  const orbRef = useRef<View>(null);
+  const [orbPosition, setOrbPosition] = useState<OrbPosition | null>(null);
   const [orbOrigin, setOrbOrigin] = useState<OrbOrigin>({ x: 195, y: 760, size: MAP_ORB_SIZE });
   const [quickFiltersVisible, setQuickFiltersVisible] = useState(false);
   const now = useCurrentTime();
@@ -710,7 +710,7 @@ export default function HomeMapScreen() {
   const [isLocatingUser, setIsLocatingUser] = useState(false);
   const [painelTotalmenteOculto, setPainelTotalmenteOculto] = useState(true);
   const [mapAreaHeight, setMapAreaHeight] = useState(0);
-  const experimentLayout = getMapExperimentLayout(insets.bottom);
+  const [mapAreaWidth, setMapAreaWidth] = useState(0);
   const cabecalhoCompacto = larguraJanela <= 360 || fontScale * escalaFonteSistema > 1.3;
   const [alturaCardPonto, setAlturaCardPonto] = useState<number | null>(null);
   const [filtrosRapidos, setFiltrosRapidos] = useState<FiltrosRapidos>(
@@ -1284,6 +1284,7 @@ export default function HomeMapScreen() {
           style={styles.mapArea}
           onLayout={(event) => {
             setMapAreaHeight(event.nativeEvent.layout.height);
+            setMapAreaWidth(event.nativeEvent.layout.width);
           }}
         >
           <MapView
@@ -1443,14 +1444,15 @@ export default function HomeMapScreen() {
             </PressableScale>
           </View>
 
-          {funcionalidadesExperimentais.fluia && !assistenteFluiApresentado ? <View ref={orbRef} collapsable={false} style={[styles.mapOrbAnchor, { bottom: experimentLayout.orbBottom }]}>
-            <PressableScale accessibilityRole="button" accessibilityLabel="Abrir assistente Flui IA" accessibilityHint="Expande a Orb e abre a FluIA em tela cheia." style={styles.mapOrbButton} pressedScale={0.96} onPress={() => {
+          {funcionalidadesExperimentais.fluia && !assistenteFluiApresentado && mapAreaWidth > 0 && mapAreaHeight > 0 ? <DraggableMapOrb
+            width={mapAreaWidth} height={mapAreaHeight} bottomInset={insets.bottom}
+            position={orbPosition} onPositionChange={setOrbPosition}
+            active={isFocused && painelTotalmenteOculto} reducedMotion={reduceMotionEnabled}
+            onOpen={origin => {
               searchInputRef.current?.blur(); Keyboard.dismiss();
-              orbRef.current?.measureInWindow((x, y, width, height) => { setOrbOrigin({ x: x + width / 2, y: y + height / 2, size: MAP_ORB_SIZE }); setAssistenteFluiApresentado(true); setAssistenteFluiAberto(true); });
-            }}>
-              <MapEnergyOrb mapVariant state="repouso" size={MAP_ORB_SIZE} active={isFocused && !assistenteFluiApresentado && painelTotalmenteOculto} reducedMotion={reduceMotionEnabled} />
-            </PressableScale>
-          </View> : null}
+              setOrbOrigin(origin); setAssistenteFluiApresentado(true); setAssistenteFluiAberto(true);
+            }}
+          /> : null}
 
           <Modal transparent visible={!painelTotalmenteOculto} animationType={reduceMotionEnabled ? "none" : "fade"} statusBarTranslucent presentationStyle="overFullScreen" onRequestClose={() => setPainelTotalmenteOculto(true)}>
             <View style={[styles.recommendationsOverlay, { paddingTop: insets.top + 24, paddingBottom: insets.bottom + 24 }]}>

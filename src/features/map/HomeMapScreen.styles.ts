@@ -565,8 +565,6 @@ const styles = StyleSheet.create({
 
   leftMapControls: { position: "absolute", left: 16, top: 16, gap: 8, alignItems: "center", zIndex: 12 },
   fixedMapControls: { position: "absolute", right: 16, top: 16, width: 48, gap: 8, alignItems: "center", zIndex: 12 },
-  mapOrbAnchor: { position: "absolute", left: "50%", marginLeft: -64, width: 128, height: 128, zIndex: 16 },
-  mapOrbButton: { width: 128, height: 128, borderRadius: 64, overflow: "hidden" },
   recommendationsOverlay: { flex: 1, justifyContent: "center", alignItems: "center", paddingHorizontal: 20 },
   recommendationsBackdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(7, 12, 18, 0.62)" },
   recommendationsPopup: { width: "100%", maxWidth: 560, maxHeight: "100%", borderRadius: 28, overflow: "hidden", backgroundColor: colors.background, borderWidth: 1, borderColor: colors.border },
