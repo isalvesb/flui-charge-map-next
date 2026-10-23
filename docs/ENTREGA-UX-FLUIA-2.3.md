@@ -6,9 +6,9 @@ A branch de trabalho é `local/fluia-google-stt-atual-20261023`, derivada do Flu
 
 Trata-se de **revisão em rascunho**, com voz experimental dependente de intermediário privado no Mac. A configuração nativa atual identifica o app separado **Flui Voz 2.3**, não uma candidata de produção. Não há deploy, publicação de aplicativo, atualização de SDK, integração Zephyr ou reconhecimento independente do Mac nesta entrega.
 
-## Itens 36–43
+## Itens 36–44
 
-Os dois pedidos chamados 43 foram mantidos e diferenciados pelo assunto.
+Numeração corrigida pelo usuário: 43 corresponde à conexão e 44 à criação da PR.
 
 | Pedido | Implementação atual | Evidência e limite |
 | --- | --- | --- |
@@ -20,7 +20,7 @@ Os dois pedidos chamados 43 foram mantidos e diferenciados pelo assunto.
 | 41 — conexão nas Configurações | Feito | Sem botão/campos técnicos e sem os avisos de apoio antigos no rodapé da FluIA. Consentimento sobre envio de áudio permanece nas Configurações. |
 | 42 — voz Zephyr | Pendente | Saída continua expo-speech/iPhone. Google TTS não ativado nem integrado. |
 | 43 — conectar sem burocracia | Parcial | Pareamento sem colar código confirmado no iPhone/Mac. Ainda depende do Mac e de permissão local; execução autônoma no iPhone foi adiada. |
-| 43 — abrir PR | Publicação desta proposta autorizada | Exceção específica ao bloqueio anterior de operações remotas; sem merge automático nem outras publicações. |
+| 44 — abrir PR | Feito | [PR #103](https://github.com/isalvesb/flui-charge-map-next/pull/103) aberta em rascunho para revisão; sem merge automático nem outras publicações. |
 
 ## Verificações desta preparação
 

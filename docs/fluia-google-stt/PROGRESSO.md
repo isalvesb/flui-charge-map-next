@@ -236,3 +236,4 @@
 - Branch remota nova: `review/flui-2.3-ux-fluia-20261023`, envio inicial `8fa3fcb`. GitHub confirmou a base `94c862e`, o head enviado e ausência de conflitos na conferência; sem merge realizado. CI remota ainda não foi comprovada concluída; checks locais aprovados estão descritos na entrega.
 - Push feito por URL explícita com guarda temporária restrita à branch/commit autorizados. Hook permanente e `origin.pushurl=disabled://ux-mapa-publicacao-bloqueada` conferidos intactos. Main, consolidação, outras worktrees e serviços existentes não foram alterados para publicar.
 - PR anexada à conversa. Itens 36–41 implementados; 42 pendente; 43 de conexão parcial por dependência do Mac. Não iniciar novas funcionalidades de voz a partir da publicação.
+- Numeração corrigida pelo usuário: **43 — conexão sem burocracia**, parcial; **44 — criar PR**, concluído com a PR #103 em rascunho. Matriz de entrega atualizada, sem alterações no aplicativo ou novos testes pagos.
