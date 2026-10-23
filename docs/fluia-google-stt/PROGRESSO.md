@@ -208,3 +208,8 @@
 - Pareamento fica desativado por padrão; habilitar `STT_PAIRING_ENABLED=1` no experimento. Não introduz serviço público, dependência, Keychain, API adicional ou escuta contínua. A autorização no Mac é por conexão; não se apresenta como pareamento permanente nem dispensa a permissão local.
 - Preparada retomada explícita do código em reinício controlado: `STT_RESUME_SESSION=1`, ledger existente e credencial transferida por **pipe anônimo stdin**. Sem segredo em argumentos, URL, ambiente público, clipboard ou arquivo extra. Entrada inválida/sem ledger/timeout falha; início normal continua criando código novo. Essa opção permite preservar a ativação atual ao aplicar esta mudança, sem outra colagem.
 - **40/40 testes locais do intermediário passaram**, cobrindo extensão, manutenção do saldo após reinício, pipe limitado, aprovação/negação/timeout/encerramento e rejeição de navegador. TypeScript, ESLint dirigido, sintaxe Node e diff passaram. Janela AppleScript compilada sem exibi-la. Logs `.validation/pairing-*` e `extension-session-resume-tests.log`. Pareamento real no iPhone/Mac ainda pendente.
+
+### Botão Conectar ao Mac
+
+- Removido o campo de código da configuração comum. O botão **Conectar ao Mac** solicita a permissão local e valida health autenticado antes de ativar voz. Informação sobre áudio Google permanece antes da ativação. Código nunca é mostrado no campo, URL ou mensagem; continua só em memória.
+- Background/cancelamento abortam solicitação pendente sem ativação tardia. Retenção de conexão já ativa permanece conforme a autorização anterior. Sem recompilação nativa; mudança JavaScript disponível pelo Metro. TypeScript/ESLint dirigidos aprovados; conferência física ainda pendente.
