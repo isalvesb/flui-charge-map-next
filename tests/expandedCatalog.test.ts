@@ -5,7 +5,7 @@ import { expandedChargingStations } from "../src/data/fixtures/expandedChargingS
 import { obterOrigemDemonstrativa } from "../src/data/demonstracao";
 import { aplicarOrigemDemonstrativa } from "../src/utils/demonstracao";
 import { filtrarEstacoes } from "../src/utils/filtrarEstacoes";
-import { defaultFilters } from "../src/data/filterOptions";
+import { defaultFilters, distanceOptions } from "../src/data/filterOptions";
 import { canChargeAt } from "../src/utils/stationAvailability";
 
 const now = new Date("2026-10-23T15:00:00Z");
@@ -51,4 +51,17 @@ test("base cobre NEXT, interior, litoral e RJ com distâncias calculadas desde a
   assert.ok(chargingStations.filter(s => s.state === "RJ").length >= 15);
   const fiap = aplicarOrigemDemonstrativa(chargingStations, obterOrigemDemonstrativa("fiap"));
   assert.ok(fiap.find(s => s.id === "next-butanta")!.distanceKm > nearNext.find(s => s.id === "next-butanta")!.distanceKm);
+});
+
+
+test("raio amplo permite consultar o RJ sem mudar filtros padrão nem ignorar status", () => {
+  const stations = aplicarOrigemDemonstrativa(chargingStations, obterOrigemDemonstrativa("fiap"));
+  const filters = { ...defaultFilters, distance: { maxKm: Math.max(...distanceOptions) } };
+  assert.equal(defaultFilters.distance.maxKm, 10);
+  const all = filtrarEstacoes({ estacoes: stations, filtros: filters, agora: now });
+  assert.equal(all.length, chargingStations.length);
+  assert.ok(all.some(station => station.id === "next-buzios"));
+  const available = filtrarEstacoes({ estacoes: stations, filtros: { ...filters, onlyAvailableChargers: true }, agora: now });
+  assert.ok(available.some(station => station.state === "RJ"));
+  for (const station of available) assert.ok(canChargeAt(station, now));
 });

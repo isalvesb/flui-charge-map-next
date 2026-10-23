@@ -37,6 +37,7 @@ import {
   amenityOptions,
   connectorOptions,
   defaultFilters,
+  distanceOptions,
 } from "../../data/filterOptions";
 import {
   Amenity,
@@ -111,7 +112,6 @@ const visibleAmenityOptions = amenityOptions
 
 const powerOptions = [22, 50, 100, 150, 250];
 const ratingOptions = [4, 4.5];
-const distanceOptions = [0.5, 1, 5];
 const sugestoesRapidas = [
   "Paulista",
   "Vila Mariana",

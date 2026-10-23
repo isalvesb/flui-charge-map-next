@@ -581,3 +581,16 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Arquivo: PointDetailsScreen.styles.ts. Altura mínima de 72 para 52 pt; padding vertical de 12 para 8 pt. Conteúdo pode ampliar a altura quando exigido por acessibilidade; ícones/títulos mantêm alinhamento e fonte reduzida da S03.
 - Verificações: TypeScript, ESLint dirigido e diff; inspeção visual com fonte Maior após exportação.
 - S06 `0c537b1` (66 estações); S07 `1402257` (toast escuro).
+
+### S09 — 31: tornar a cobertura ampliada consultável
+
+- Arquivos: filterOptions.ts, SearchFiltersScreen.tsx, expandedCatalog.test.ts. Opções de raio compartilhadas, incluindo 50/200/1000 km, permitem ver pontos fora da capital; antes a tela oferecia apenas 500 m/1/5 km. Raio padrão 10 km e filtros escolhidos preservados.
+- Distâncias continuam em linha reta desde a origem; raio amplo não indica alcance da bateria. Disponibilidade/horários/conectores continuam sendo filtrados normalmente. Não muda cálculo do item 01.
+- Verificações: TypeScript/ESLint e integração do catálogo com filtro amplo e disponibilidade; UI web será conferida.
+
+### Diagnóstico inicial — 30 offline no iPhone
+
+- Relato humano novo: não funcionou. Sintomas (fotos/dados vs abertura do app) solicitados, sem aguardar para fazer os demais ajustes.
+- Fonte local ios/fluichargemap/AppDelegate.swift: DEBUG carrega bundle da LAN/Metro 8116; caminho não DEBUG usa main.jsbundle. Logo, abertura a frio sem Metro é limitação possível do binário de desenvolvimento, não corrigida por service worker web.
+- Fotos atuais usam require local; em desenvolvimento o asset ainda pode ser entregue pelo servidor. Não há evidência de perda do AsyncStorage. Não apagar dados nem forçar cache nativo sem diagnóstico; nenhuma instalação/compilação/configuração nativa alterada.
+- Item 30 permanece falhou no iPhone / diagnóstico em andamento; solução e teste nativos ainda pendentes.
