@@ -1,3 +1,4 @@
+import { normalizeSpeechVoiceId } from "../features/assistant/speechVoices";
 import { createPresentationState, presentationPreferenceKeys, resolvePresentationPreferences, type PresentationState } from "../features/presentation/presentationScenario";
 import { presentationStore } from "../features/presentation/presentationStorage";
 import { normalizeBatteryData } from "../utils/batteryData";
@@ -52,6 +53,7 @@ type PreferencesContextValue = {
   updateHighContrast: (highContrast: boolean) => Promise<void>;
   updateReduceMotion: (reduceMotion: boolean) => Promise<void>;
   updateHapticsEnabled: (enabled: boolean) => Promise<void>;
+  updateSpeechVoiceId: (voiceId: string | null) => Promise<void>;
   updateFontSize: (fontSize: FontSizePreference) => Promise<void>;
   updateBatteryPercent: (batteryPercent: number) => Promise<void>;
   updateDemoConfiguration: (config: ConfiguracaoDemonstrativa) => Promise<void>;
@@ -80,6 +82,7 @@ const defaultUserPreferences: UserPreferences = {
   highContrast: false,
   reduceMotion: false,
   hapticsEnabled: true,
+  speechVoiceId: null,
   fontSize: "default",
   ...normalizarConfiguracaoDemonstrativa(),
   ...normalizeBatteryData(),
@@ -174,6 +177,10 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
     [savePreferences],
   );
 
+  const updateSpeechVoiceId = useCallback(async (voiceId: string | null) => {
+    await savePreferences({ speechVoiceId: normalizeSpeechVoiceId(voiceId) });
+  }, [savePreferences]);
+
   const updateFontSize = useCallback(
     async (fontSize: FontSizePreference) => {
       await savePreferences({ fontSize });
@@ -263,6 +270,7 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
       updateHighContrast,
       updateReduceMotion,
       updateHapticsEnabled,
+      updateSpeechVoiceId,
       updateFontSize,
       updateBatteryPercent,
       updateDemoConfiguration,
@@ -288,6 +296,7 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
       updateHighContrast,
       updateReduceMotion,
       updateHapticsEnabled,
+      updateSpeechVoiceId,
       updateFontSize,
       updateBatteryPercent,
       updateDemoConfiguration,

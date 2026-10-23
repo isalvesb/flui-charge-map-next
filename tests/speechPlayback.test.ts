@@ -53,3 +53,14 @@ test("falha ao preparar áudio é capturada e resposta continua disponível", as
   assert.equal(f.states.at(-1), "error");
   f.player.stop();
 });
+
+test("leitura usa identificador da voz selecionada sem alterar texto ou idioma", async () => {
+  let options: {voice?:string;language:string}|undefined;
+  const player=createSpeechPlayback({stop:async()=>{},speak:(_text,value)=>{options=value;}},()=>{},async()=>"pt-br-test");
+  await player.speak("Texto preservado");assert.equal(options?.voice,"pt-br-test");assert.equal(options?.language,"pt-BR");
+});
+test("cancelar enquanto consulta a voz impede reprodução tardia", async () => {
+  let release!:(id:string)=>void;const pending=new Promise<string>(resolve=>{release=resolve;});let count=0;
+  const player=createSpeechPlayback({stop:async()=>{},speak:()=>{count++;}},()=>{},()=>pending);
+  const speaking=player.speak("Não reproduzir");await Promise.resolve();player.stop();release("pt-br-test");await speaking;assert.equal(count,0);
+});

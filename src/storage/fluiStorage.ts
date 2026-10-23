@@ -1,3 +1,4 @@
+import { normalizeSpeechVoiceId } from "../features/assistant/speechVoices";
 import { normalizeBatteryData } from "../utils/batteryData";
 import { normalizarConfiguracaoDemonstrativa } from "../utils/demonstracao";
 import { defaultFilters } from "../data/filterOptions";
@@ -59,6 +60,7 @@ function createDefaultUserPreferences(): UserPreferences {
     highContrast: false,
     reduceMotion: false,
     hapticsEnabled: true,
+  speechVoiceId: null,
     fontSize: "default",
     ...normalizarConfiguracaoDemonstrativa(),
     ...normalizeBatteryData(),
@@ -112,6 +114,7 @@ function normalizeUserPreferences(
     highContrast: preferences.highContrast === true,
     reduceMotion: preferences.reduceMotion === true,
     hapticsEnabled: typeof preferences.hapticsEnabled === "boolean" ? preferences.hapticsEnabled : base.hapticsEnabled,
+    speechVoiceId: normalizeSpeechVoiceId(preferences.speechVoiceId),
     fontSize: isFontSizePreference(preferences.fontSize)
       ? preferences.fontSize
       : base.fontSize,

@@ -125,6 +125,9 @@ export function createSettingsStyles(colors: AppTheme, fontScale: number) {
       gap: 10,
     },
 
+    voiceChoiceButton: { minHeight: 48, padding: 12, borderRadius: 14, borderWidth: 1, borderColor: colors.border, flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 10 },
+    voiceOverlay: { flex: 1, padding: 20, backgroundColor: "rgba(0,0,0,0.5)", justifyContent: "center", alignItems: "center" },
+    voiceModal: { maxHeight: "85%", width: "100%", maxWidth: 480, padding: 16, borderRadius: 20, backgroundColor: colors.surface, gap: 10 },
     accessibilityCards: { marginTop: 12, gap: 12 },
     accessibilityCard: { padding: 14, gap: 10, borderRadius: 20, borderWidth: 1, borderColor: colors.border, backgroundColor: colors.surface },
     accessibilityToggleRow: { minHeight: 48, flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 12 },

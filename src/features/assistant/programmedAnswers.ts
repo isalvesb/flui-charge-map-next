@@ -61,6 +61,10 @@ export const programmedAnswers: ProgrammedAnswer[] = [
     answer: "Favoritos, avaliações e preferências ficam salvos no dispositivo. Para as fotos, confira o indicador de preparação em Configurações. Abrir o app do zero sem rede depende da versão instalada; a instalação de desenvolvimento ainda depende do Metro. A área de mapa disponível sem rede não é garantida.",
   },
   {
+    keywords: [], pattern: /\b(?:mudar (?:a |sua )?voz|trocar (?:a |sua )?voz|escolher (?:a |uma )?voz|voz da fluia)\b/,
+    answer: "Entre em Configurações, na seção Acessibilidade, e abra Voz da FluIA. Escolha uma voz em português disponível no aparelho e toque em Ouvir exemplo para testar. A escolha é salva para as próximas respostas; você pode voltar à voz padrão quando quiser.",
+  },
+  {
     keywords: [], pattern: /\b(?:voce (?:me )?ouve|voce (?:me )?escuta|microfone|reconhecimento de (?:voz|fala)|comando de voz|falar com voce)\b/, takesPrecedence: true,
     answer: "Nesta versão eu leio respostas em voz alta, mas ainda não capturo a sua fala. Digite a pergunta ou use uma opção pronta. Você pode parar a leitura pelo botão de parar; o estado Ouvindo no teste da Orb é apenas uma demonstração visual.",
   },

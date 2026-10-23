@@ -37,6 +37,7 @@ export type UserPreferences = {
   highContrast: boolean;
   reduceMotion: boolean;
   hapticsEnabled: boolean;
+  speechVoiceId: string | null;
   fontSize: FontSizePreference;
   vehicleRangeKm: number;
   vehicleName: string;

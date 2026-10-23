@@ -1,3 +1,4 @@
+import { resolveSpeechVoiceIdentifier } from "./speechVoices";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   Animated,
@@ -147,7 +148,9 @@ export function FluiAssistantSheet({
   const [voiceEnabled, setVoiceEnabled] = useState(true);
   const voiceEnabledRef = useRef(true);
   const [voicePlaybackState, setVoicePlaybackState] = useState<SpeechPlaybackState>("idle");
-  const speechPlayback = useMemo(() => createSpeechPlayback(Speech, setVoicePlaybackState), []);
+  const speechVoiceRef = useRef(userPreferences.speechVoiceId);
+  speechVoiceRef.current = userPreferences.speechVoiceId;
+  const speechPlayback = useMemo(() => createSpeechPlayback(Speech, setVoicePlaybackState, () => resolveSpeechVoiceIdentifier(speechVoiceRef.current, Speech.getAvailableVoicesAsync)), []);
   const [fluiaState, setFluiaState] = useState<FluiaState>("repouso");
   const [previewStatus, setPreviewStatus] = useState<FluiaVisualStatus | null>(null);
 

@@ -1,3 +1,4 @@
+import SpeechVoicePreference from "./SpeechVoicePreference";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { ScrollView, StatusBar, Switch, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -369,6 +370,7 @@ export default function SettingsScreen() {
                 </View>
                 <Text style={styles.accessibilityDescription}>Ativa ou desativa o retorno tátil dos botões do Flui.</Text>
               </View>
+              <SpeechVoicePreference />
             </View>
           </View>
 
