@@ -53,7 +53,7 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 | 09 | P3 | Título FluIA | Feito — informado pelo usuário | assistant/FluiAssistantSheet | Não reimplementar. |
 | 10 | P2 | Teclado e histórico | Implementado; revisão física pendente | assistant/FluiAssistantSheet | Conferir rolagem e alvos acessíveis no iPhone. |
 | 11 | P2 | Resposta por voz | Implementado; áudio físico pendente | assistant/FluiAssistantSheet; fluiaState | Preservar TTS; distinguir falha, interrupção e conclusão. |
-| 12 | P2 | Pesquisa de reconhecimento de fala | Pesquisa pendente | docs | Não contratar serviço, instalar dependência nativa nem introduzir credenciais. |
+| 12 | P2 | Pesquisa de reconhecimento de fala | Pesquisa concluída; implementação depende de decisão | docs | Não contratar serviço, instalar dependência nativa nem introduzir credenciais. |
 | 13 | P3 | Textos secundários do perfil | Implementado; revisão física pendente | profile/ProfileScreen | Preservar origem fictícia em identificação acessível/geral. |
 | 14 | P3 | Remoção de atalhos úteis | Implementado; revisão física pendente | profile/ProfileScreen | Mapa/filtros mantêm acessos próprios. |
 | 15 | P3 | Configurações em largura total | Implementado; revisão física pendente | profile/ProfileScreen | Depende de 16 para transferência da saída. |
@@ -244,3 +244,10 @@ Cada entrada deve informar IDs, commit, arquivos, verificações e limites human
 - Conferir no Flui 2.1: Configurações → Ferramentas internas. Revisão física pendente.
 
 - Rota `/orb-lab` também protegida contra acesso público direto em produção. Tipagem local de rotas estava anterior à nova rota: utilizado `Href` conforme padrão existente; arquivo de rota real será conferido pela exportação, sem editar tipos gerados nem reiniciar Metro.
+
+### CP19 — 12: pesquisa de entrada por voz
+
+- Arquivo: `docs/ux-ui-pesquisas-e-propostas.md`, seção 12. Fontes primárias Expo/Apple/Google, tipos instalados e dependências conferidos. Nenhuma mudança executável.
+- Comparados reconhecimento nativo e Google Cloud, permissões, integração por texto editável ao motor, custos exemplificativos, privacidade, falhas e latência ainda não medida.
+- Verificação: revisão das referências e do escopo; não se aplica teste de código. Próxima implementação exige decisão sobre módulo nativo/servidor/custo; não bloqueia demais itens.
+- CP17 `94cab38`; CP18 `a69d5d9`. Sem nova confirmação visual humana.
