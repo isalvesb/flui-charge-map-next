@@ -48,7 +48,6 @@ import {
   type FluiAssistantIntent,
 } from "./fluiAssistant";
 import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
-import { FLUIA_STATUS_PREVIEW_ENABLED } from "../../config/fluiaStatusPreview";
 import { MapEnergyOrb } from "./MapEnergyOrb";
 import { OrbAssistantModal } from "./OrbAssistantModal";
 import type { OrbOrigin } from "../map/mapExperimentLayout";
@@ -56,7 +55,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { answerMessage, RECOMMENDATION_DISCLAIMER } from "./chatEngine";
 import { summarizeSuggestion } from "./assistantPresentation";
 import { getFluiaScreenTheme, type FluiaScreenTheme } from "./fluiaScreenTheme";
-import { FLUIA_VISUAL_PRESENTATION, getFluiaPreviewState, getFluiaVisualStatus, nextFluiaVisualStatus, type FluiaVisualStatus } from "./fluiaVisualStatus";
+import { FLUIA_VISUAL_PRESENTATION, getFluiaPreviewState, getFluiaVisualStatus } from "./fluiaVisualStatus";
 
 import {
   tempoDeExibicaoFluia,
@@ -152,7 +151,6 @@ export function FluiAssistantSheet({
   const [voicePlaybackState, setVoicePlaybackState] = useState<SpeechPlaybackState>("idle");
   const speechPlayback = useMemo(() => createSpeechPlayback(Speech, setVoicePlaybackState), []);
   const [fluiaState, setFluiaState] = useState<FluiaState>("repouso");
-  const [previewStatus, setPreviewStatus] = useState<FluiaVisualStatus | null>(null);
   const [voicePhase, setVoicePhase] = useState<VoicePhase>("idle");
   const captureBusy = voiceBusy(voicePhase);
 
@@ -183,10 +181,8 @@ export function FluiAssistantSheet({
   const isSpeaking = voicePlaybackState === "speaking";
   const actualState: FluiaState = isSpeaking ? "respondendo" : isAnalyzing ? "pensando" : selectedIntent ? recommendation ? "respondendo" : "aviso" : fluiaState;
   const captureStatus = getVoiceVisualStatus(voicePhase, isSpeaking);
-  const visualStatus = captureStatus ?? (isSpeaking ? getFluiaVisualStatus(actualState, connectionStatus, true) : FLUIA_STATUS_PREVIEW_ENABLED && previewStatus ? previewStatus : getFluiaVisualStatus(actualState, connectionStatus));
-  const displayedState: FluiaState = captureStatus ? getFluiaPreviewState(captureStatus) : isSpeaking ? "respondendo" : FLUIA_STATUS_PREVIEW_ENABLED && previewStatus
-    ? getFluiaPreviewState(visualStatus)
-    : actualState;
+  const visualStatus = captureStatus ?? getFluiaVisualStatus(actualState, connectionStatus, isSpeaking);
+  const displayedState: FluiaState = captureStatus ? getFluiaPreviewState(captureStatus) : actualState;
   const statusPresentation = FLUIA_VISUAL_PRESENTATION[visualStatus];
 
   useEffect(() => {
@@ -239,7 +235,6 @@ export function FluiAssistantSheet({
   };
 
   const resetConversation = () => {
-    setPreviewStatus(null);
     setMessages([]);
     setDraft("");
     setIsChatThinking(false);
@@ -273,7 +268,6 @@ export function FluiAssistantSheet({
 
   const chooseIntent = (intent: FluiAssistantIntent) => {
     if (captureBusy) return;
-    setPreviewStatus(null);
     setShowExplanation(false);
     setSelectedIntent(intent);
     setIsAnalyzing(true);
@@ -289,7 +283,6 @@ export function FluiAssistantSheet({
   const sendMessage = () => {
     const text = draft.trim();
     if (!text || isChatThinking || captureBusy) return;
-    setPreviewStatus(null);
     if (stateTimeoutRef.current) {
       clearTimeout(stateTimeoutRef.current);
       stateTimeoutRef.current = null;
@@ -429,12 +422,9 @@ export function FluiAssistantSheet({
             onLayout={() => { if (followLatestRef.current) scrollToLatestMessage(); }}
           >
             <View testID="fluia-orb-fixa" style={styles.hero}>
-              <PressableScale testID="fluia-orb-status" accessibilityRole={FLUIA_STATUS_PREVIEW_ENABLED ? "button" : "image"}
-                accessibilityLabel={`Orb da FluIA: ${statusPresentation.label}`}
-                accessibilityHint={FLUIA_STATUS_PREVIEW_ENABLED ? "Teste visual: toque para alternar os estados. Não ativa microfone nem simula uma falha real." : undefined}
-                disabled={!FLUIA_STATUS_PREVIEW_ENABLED || captureBusy} onPress={() => setPreviewStatus(nextFluiaVisualStatus(visualStatus))}>
+              <View testID="fluia-orb-status" accessibilityRole="image" accessibilityLabel={`Orb da FluIA: ${statusPresentation.label}`}>
                 <MapEnergyOrb mapVariant size={128} state={displayedState} visualStatus={visualStatus} reducedMotion={reduceMotionEnabled} active={visible} />
-              </PressableScale>
+              </View>
             </View>
             <Text testID="fluia-status" accessibilityLiveRegion="polite" style={[styles.heroPrompt, { color: statusPresentation.color }]}>{statusPresentation.label}</Text>
             {isAnalyzing ? (
@@ -720,7 +710,7 @@ export function FluiAssistantSheet({
             fontScale={fontScale}
             onBeforeRecording={() => speechPlayback.stopAndWait()}
             onTranscript={(text) => { setDraft(current => appendTranscript(current, text)); markTyping(); }}
-            onPhase={(phase) => { setVoicePhase(phase); if (phase !== "idle") setPreviewStatus(null); }}
+            onPhase={setVoicePhase}
           />
           <View style={styles.inputRow}>
             <TextInput

@@ -110,3 +110,13 @@
 - Este é o checkpoint funcional básico do experimento isolado Flui Voz 2.3. Não certifica todas as permissões negadas, interrupções, bloqueio, segundo plano, cancelamento em rede, silêncio, desempenho, Android ou Release. Esses limites continuam registrados em TESTE-IPHONE.md; nenhuma matriz física completa foi alegada.
 - Leitura conferida com o texto já transcrito, sem nova chamada Google. Consumo agregado permanece **2 requisições / 10 segundos reservados**: uma sintética no Mac (4 s) e uma humana no iPhone (6 s). Custo efetivamente faturado não foi consultado/estimado como realizado.
 - Servidores próprios permanecem disponíveis para o experimento, sob os limites existentes. Ambiente UX-MAPA-01 e consolidação não foram alterados. Código protegido continua apenas em memória do app/arquivo privado do intermediário; área de transferência do Mac foi limpa depois da colagem.
+
+## 23/10/2026 — pedidos 36–42 e novo fluxo autorizado
+
+- **36 implementado:** removidos estado manual, ação de alternar status e flag temporária. A Orb passa a refletir apenas estados reais. Compilação TypeScript e ESLint dirigidos registrados no checkpoint; conferência física de remoção ainda pendente.
+- **37 fazendo:** Orb substituirá Gravar/Parar, mantendo cancelamento e alternativa por teclado acessíveis.
+- **38 fazendo:** iniciar uma escuta ao abrir a FluIA pelo mapa, somente com conexão ativada, permissão e app em primeiro plano. Não reiniciar automaticamente após resposta, cancelamento ou retorno do segundo plano.
+- **39/40 fazendo:** usuário autorizou expressamente transmissão em tempo real no mesmo caminho privado iPhone → Mac → Google, incluindo adaptação nativa e recompilação só do app experimental. Autoriza também a mudança para resposta automática ao concluir a fala; substitui a exigência anterior de revisar/enviar manualmente a transcrição. Texto digitado continua separado e só é enviado pelo botão normal. Nenhuma escuta contínua nem infraestrutura pública.
+- **41 fazendo:** conexão e informação sobre envio de áudio ficarão nas Configurações, sem controles técnicos no rodapé da FluIA. Código seguirá em memória e será apagado ao ir ao fundo; deverá sobreviver à navegação Configurações → mapa → FluIA para viabilizar esse fluxo.
+- **42 análise:** saída atual usa voz do iPhone. Google Chirp 3 HD oferece pt-BR, mas Google TTS ainda não foi ativado/contratado nem recebeu texto. Comparar alternativas sem presumir autorização de consumo/serviço adicional.
+- Streaming manterá uma chamada por vez, até 30 s por escuta, sem repetição e orçamento máximo de 20 chamadas/600 s reservados. Reserva conservadora de até 30 s por stream antes de abrir Google, inclusive se cancelado; consumo será agregado e distinguido do histórico síncrono.
