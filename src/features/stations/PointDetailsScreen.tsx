@@ -592,7 +592,11 @@ export default function PointDetailsScreen() {
             </Text>
           </View>
 
-          {recomendacaoDoPonto !== "Evite este ponto por enquanto" ? <Text style={styles.resumoTitle}>{recomendacaoDoPonto}</Text> : null}
+          {recomendacaoDoPonto !== "Evite este ponto por enquanto" ? (
+            <View style={recomendacaoDoPonto.startsWith("Recarga não confirmada") ? [styles.unconfirmedBanner, { backgroundColor: colors.warningLight, borderColor: colors.warningText }] : null}>
+              <Text style={recomendacaoDoPonto.startsWith("Recarga não confirmada") ? [styles.unconfirmedText, { color: colors.warningText }] : styles.resumoTitle}>{recomendacaoDoPonto}</Text>
+            </View>
+          ) : null}
           <ConnectionNotice />
           <View style={styles.infoGrid} onLayout={(event) => setInfoWidth(event.nativeEvent.layout.width)}>
             <View style={[styles.infoRow, stackInfoCards ? { flexDirection: "column" } : null]}>
@@ -691,7 +695,10 @@ export default function PointDetailsScreen() {
           </View>
 
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Comodidades próximas</Text>
+            <View style={[styles.infoCardHeader, styles.sectionHeaderBackground]}>
+              <Coffee size={20} color={colors.primaryBright} />
+              <Text accessibilityRole="header" style={styles.infoLabel}>Comodidades próximas</Text>
+            </View>
 
             <View style={styles.amenitiesGrid}>
               {station.amenities.map((amenity) => {
@@ -717,7 +724,10 @@ export default function PointDetailsScreen() {
           </View>
 
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Avaliações</Text>
+            <View style={[styles.infoCardHeader, styles.sectionHeaderBackground]}>
+              <Star size={20} color={colors.primaryBright} />
+              <Text accessibilityRole="header" style={styles.infoLabel}>Avaliações</Text>
+            </View>
             <Text style={styles.resumoDescription}>
               {identificacaoDados.avaliacoesExemplo.aviso}
             </Text>

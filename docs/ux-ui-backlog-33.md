@@ -70,7 +70,7 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 | 26 | P3 | Padrão dos cartões da ficha | Implementado; revisão física pendente | stations/PointDetailsScreen | Ícone/título com área distinta; distância continua aproximada. |
 | 27 | P2 | Identificação de catálogo sem repetição | Implementado; revisão física pendente | stations; identificacaoDados | Depende da identificação geral em 03/23/25. |
 | 28 | P3 | Cartões Estimativas e Conectores | Implementado; revisão física pendente | stations/PointDetailsScreen | Depende de 26; não modificar 29. |
-| 29 | — | Preservar Comodidades próximas e Avaliações | Preservação obrigatória | stations/PointDetailsScreen | Nenhuma alteração sem defeito comprovado ou autorização adicional. |
+| 29 | — | Preservar conteúdo de Comodidades próximas e Avaliações | Títulos com fundo autorizados em feedback; conteúdo preservado | stations/PointDetailsScreen | Nenhuma alteração sem defeito comprovado ou autorização adicional. |
 | 30 | P1 | Persistência offline de fotos e favoritos | Investigar cache existente | assets; storage; service-worker | Não introduzir armazenamento remoto; distinguir assets empacotados e cache web. |
 | 31 | P3 | Pesquisa catálogo/Supabase | Pesquisa pendente | docs | Sem migrar arquitetura, custos ou apresentar dados como verificados. |
 | 32 | P2 | Proposta de área interna | Proposta pendente | docs; settings | Controles fictícios separados; não implementar integralmente antes da decisão sobre proposta. |
@@ -276,3 +276,10 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Título do aviso reduzido de 20 para 15 pt base, corpo com cor de texto mais escura no claro; mantém contraste adaptativo no escuro/alto contraste. X continua com alvo 44 pt.
 - Card de autonomia exibe apenas autonomia estimada e chegada (ou falta de alcance), preservando alerta de autonomia limitada. Carga usada e explicação completa ficam no rótulo acessível; linha reta/compatibilidade continuam explicitadas nos cartões/fluxo de rota.
 - Verificações: TypeScript, ESLint e testes de apresentação/origem/bateria (`fb03-*`). Sem alteração dos cálculos. Revisão física após correção pendente.
+
+### FB04 — 25 e 29: hierarquia e títulos (comentários 7–8)
+
+- Arquivos: `src/features/stations/PointDetailsScreen.tsx`, `.styles.ts`.
+- Recarga não confirmada agora em faixa âmbar com texto contrastante. Condições de confirmação mantidas.
+- Usuário autorizou expressamente alterar os títulos de Comodidades próximas e Avaliações: ganharam fundo/ícone conforme cartões. Conteúdo das seções não alterado. A preservação literal anterior de toda seção foi substituída por preservação literal dos corpos.
+- Verificações: TypeScript, ESLint, testes de apresentação e comparação literal dos corpos com `b720c5a` (`fb04-*`, `29-preservacao-corpos.log`). Revisão física após correção pendente. FB03 registrado no próximo checkpoint.
