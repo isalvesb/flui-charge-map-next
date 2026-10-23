@@ -275,12 +275,15 @@ export default function SettingsScreen() {
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Acessibilidade</Text>
             <Text style={styles.sectionText}>
-              Ajuste o contraste e o tamanho da fonte para melhorar a leitura.
+              Escolha os ajustes mais confortáveis para usar o Flui.
             </Text>
 
-            <View style={styles.contrastRow}>
-              <Text style={[styles.fieldLabel, { marginTop: 0, marginBottom: 0 }]}>Alto contraste</Text>
+            <View style={styles.accessibilityCards}>
+            <View style={styles.accessibilityCard} testID="acessibilidade-contraste">
+            <View style={styles.accessibilityToggleRow}>
+              <Text style={styles.accessibilityTitle}>Alto contraste</Text>
               <Switch
+                style={styles.accessibilitySwitch}
                 accessibilityLabel="Alto contraste"
                 accessibilityHint="Reforça textos e contornos, mantendo o tema escolhido."
                 value={highContrast}
@@ -290,7 +293,10 @@ export default function SettingsScreen() {
                 thumbColor={highContrast ? theme.onPrimary : theme.surface}
               />
             </View>
-            <Text style={styles.fieldLabel}>Tamanho da fonte</Text>
+              <Text style={styles.accessibilityDescription}>Reforça textos e contornos, mantendo o tema escolhido.</Text>
+            </View>
+            <View style={styles.accessibilityCard} testID="acessibilidade-fonte">
+            <Text style={styles.accessibilityTitle}>Tamanho da fonte</Text>
             <View accessibilityRole="radiogroup" accessibilityLabel="Tamanho da fonte" style={styles.fontSizeRow}>
               {fontSizeOptions.map((option, index) => {
                 const isSelected = option.value === fontSize;
@@ -312,6 +318,8 @@ export default function SettingsScreen() {
                   </View>
                 );
               })}
+            </View>
+            </View>
             </View>
           </View>
 

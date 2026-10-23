@@ -125,7 +125,12 @@ export function createSettingsStyles(colors: AppTheme, fontScale: number) {
       gap: 10,
     },
 
-    contrastRow: { minHeight: 48, marginTop: 12, flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 12 },
+    accessibilityCards: { marginTop: 12, gap: 12 },
+    accessibilityCard: { padding: 14, gap: 10, borderRadius: 20, borderWidth: 1, borderColor: colors.border, backgroundColor: colors.surface },
+    accessibilityToggleRow: { minHeight: 48, flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 12 },
+    accessibilityTitle: { color: colors.text, fontSize: s(16), lineHeight: s(22), fontWeight: "800", flexShrink: 1 },
+    accessibilitySwitch: { flexShrink: 0 },
+    accessibilityDescription: { color: colors.textMuted, fontSize: s(12.5), lineHeight: s(19) },
     fontSizeItem: { flex: 1, minWidth: 0 },
     fontSizeRow: { width: "100%", alignSelf: "stretch", flexDirection: "row", gap: 8, alignItems: "stretch" },
     fontSizeCard: { width: "100%", minWidth: 0, minHeight: 112, alignItems: "center", justifyContent: "center", gap: 10, paddingHorizontal: 4, paddingVertical: 12, borderRadius: 16, borderWidth: 1, borderColor: colors.border, backgroundColor: colors.surface },
