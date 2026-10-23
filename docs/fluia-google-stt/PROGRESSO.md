@@ -221,3 +221,11 @@
 - Usuário pediu funcionamento nativo sem Mac; foram apenas consultadas referências Apple/Google e o código. Nenhum reconhecimento Apple, hospedagem, credencial no iPhone ou alteração nativa foi implementado.
 - Em seguida decidiu **deixar a voz para depois e resolver outras coisas primeiro**. Interrompida essa frente, com código preservado e sem testes pagos adicionais pelo agente. Não retomar automaticamente as hipóteses nativas ou a matriz física pendente.
 - Conferência anterior ao adiamento: ledger **23/666**, histórico separado **1/4**; teto atual autorizado **33/966**. Sem reset. Permanecem pendentes cancelamento físico/rascunho/segundo plano durante captura e estabilidade prolongada. Referência principal atualizada no topo de CONTINUIDADE-36-42.md.
+
+## 23/10/2026 — PR autorizada pelo usuário
+
+- Usuário pediu explicitamente abrir PR ao grupo, substituindo a restrição anterior somente para a publicação desta branch/proposta. Permanecem proibidos merge automático, issues/Projects, publicação de app/site e alterações nos ambientes protegidos. Voz independente do Mac/Zephyr continuam adiadas.
+- Conferidos branch isolada, árvore limpa e main remota `94c862e`; GitHub confirmou permissão de push. A main é ancestral e a diferença inclui o UX/UI acumulado anterior, além do experimento atual. Proposta em rascunho, sem incorporar outras PRs nesta execução.
+- Preparação: **271/271 testes do app**, TypeScript, lint sem erros (um aviso preexistente), **exportação web de 15 rotas**. Intermediário mantém a rodada aprovada de **40/40**. Nenhuma captura/chamada paga repetida para preparar PR.
+- Conferidos 686 blobs novos no histórico para padrões de segredo/arquivos protegidos, sem achados pelos padrões usados. Credenciais/valores de ambiente não exibidos. Bloqueio permanente de push da origem local e hook original serão preservados; eventual envio usa exceção única restrita à branch autorizada.
+- Matriz atual e limitações para o grupo: `docs/ENTREGA-UX-FLUIA-2.3.md`.
