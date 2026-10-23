@@ -962,3 +962,11 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Leitura do cliente iPhone conectado confirmou 72 entradas, 60 adicionais e 180 comentários adicionais (iphone-fichas-72.json). MapView recebeu 72 marcadores (iphone-mapa-72-sem-raio.json), sem limite implícito de 10 km. Isso comprova entrega dos componentes/dados, não conferência humana dos pixels nem desempenho medido.
 - Para conferir fisicamente: busca vazia e filtros sem raio explícito → afastar o zoom e arrastar de SP ao RJ; abrir qualquer ponto novo e conferir nota, três comentários e horários. A abertura continua próxima da FIAP. Todos os 72 não cabem no enquadramento urbano inicial, mas permanecem disponíveis sem pesquisa.
 - 240/240 testes e conferência web aprovados, um aviso de lint herdado sem erros. Sem alteração em dependências, serviços, armazenamento pessoal, instalações nativas ou consolidação. Revisão humana destes incrementos pendente.
+
+
+### S45 — 31: nomes solicitados nos comentários do cenário
+
+- `694273d`: acrescentados aos autores dos 60 pontos novos os 20 nomes fornecidos pelo usuário, com grafia/acentuação preservadas: Alexandre Barcelos; André Tritiack; Anderson Rodrigues; Antonio Sérgio; Artur Coelho; Bruna Matos; Daniel Corrêa; Gabriel Wulfrick; Heloiza Gabriolli; Leonardo Romão; Luís Carlos; Luiz Gustavo; Marcos Crivelaro; Mauricio Viana; Paula Regina; Rafael Piassa; Raíssa Fregolent; Thiago Keller; Thiago Yamamoto; Victor Atui Filho. Autores anteriores mantidos no conjunto.
+- Arquivo: expandedStationExperience.ts. Comentários continuam conteúdo do cenário, sem atribuir depoimentos verificados. Textos, IDs, notas, datas, contagens e 12 fichas originais preservados; nenhuma gravação nas avaliações/favoritos pessoais.
+- ESLint dirigido, diff e cinco testes de catálogo aprovados. Conferência dos dados gerados confirmou todos os 20 nomes presentes nos 180 comentários, sem duplicação de autor na mesma ficha. Exemplo para conferir: Flui Campinas contém Alexandre Barcelos. Suíte completa anterior 240/240 não repetida para esta alteração de nomes.
+- Atualização de dados JavaScript no mesmo ambiente servido pelo Metro; disponível por Fast Refresh/recarregamento, sem instalar/recompilar. Visualização física dos novos nomes não declarada. Nenhuma publicação ou alteração na consolidação.
