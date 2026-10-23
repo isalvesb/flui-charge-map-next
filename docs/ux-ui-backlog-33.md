@@ -431,3 +431,10 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Arquivos: `TripPlannerScreen.tsx`, `utils/tripPlanner.ts`, `tests/tripPlanner.test.ts`.
 - Seletor calcula cada destino com origem/bateria/autonomia atuais. Resumo da viagem usa a mesma descrição e lista explicitamente os locais das paradas, dentro do próprio cartão. Cenário inviável não é anunciado como viagem completa com zero paradas.
 - Verificações: TypeScript, ESLint e testes do planejador, incluindo catálogo com 3 candidatas que exige 0 ou 3 conforme carga/autonomia (`r04-*`). Revisão humana após correção pendente.
+
+### R05 — 19: excluir totalmente laboratório da Orb
+
+- Nova instrução humana substitui preservação anterior do laboratório.
+- Removidos rota `/orb-lab`, `OrbLabScreen`, protótipo exclusivo `EnergyOrbPrototype`, apresentação exclusiva e testes desse protótipo. Acesso interno removido. Busca de dependências confirmou uso restrito ao laboratório.
+- Orb ativa, Reacticx/Skia, gestos e preview de estados da FluIA preservados. Registros históricos permanecem como histórico, sem recursos executáveis do laboratório.
+- Verificações: TypeScript, ESLint do menu e busca sem referências executáveis (`r05-*`). Sem recompilar ou alterar dependências nativas.

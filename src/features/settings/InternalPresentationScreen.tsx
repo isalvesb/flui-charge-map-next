@@ -136,11 +136,6 @@ function PresentationControls() {
 
 
         {feedback ? <Text accessibilityLiveRegion="polite" style={styles.sectionText}>{feedback}</Text> : null}
-        <View style={styles.section}>
-          <PressableScale accessibilityRole="button" accessibilityLabel="Abrir laboratório da Energy Orb" style={styles.optionButton} onPress={() => router.push("/orb-lab")}>
-            <Text style={styles.optionTitle}>Laboratório da Orb</Text>
-          </PressableScale>
-        </View>
       </ScrollView>
       <LoadingOverlay visible={isLoadingPreferences || isSavingPreferences} message={isSavingPreferences ? "Salvando cenário..." : "Carregando cenário..."} />
     </SafeAreaView>
