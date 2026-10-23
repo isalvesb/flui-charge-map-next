@@ -265,3 +265,9 @@
 - Antes/depois do reinício: ledger STT retido `consumo-1792777163211.json` em **26 chamadas/756 s reservados**, teto **33/966**. Nenhuma chamada STT feita pelo agente nesta rodada; diferenças em relação ao checkpoint 23/666 já existiam antes do reinício.
 - **Uma síntese real Google aprovada**, Zephyr pt-BR, MP3 válido recebido em aproximadamente **2.162 ms**, 18.816 bytes; nenhum áudio salvo pelo teste Mac. Ledger TTS após teste: **1 chamada/62 caracteres** de **10/10.000**, `.validation/stt/tts-consumo.json`, separado do STT e mantido em reinícios.
 - Código disponível por Fast Refresh; não há recompilação/instalação nativa. Solicitada uma conferência física com resposta falada única. **Reprodução Zephyr no iPhone ainda pendente de feedback**, não confundir com a síntese real aprovada no Mac. Cancelamento e limpeza passaram em testes simulados, sem homologação física adicional.
+
+### Recarga completa após erro de módulo no iPhone
+
+- Usuário enviou tela vermelha: `Requiring unknown module "3709"`, na resolução do WebSocket pelo `liveTransport`. Intermediário continuava saudável; não houve indicação de falha Google nesse erro de carregamento JavaScript.
+- Não foram reinstaladas dependências/build, alterado o transporte ou reiniciado o Metro. Conferidos clientes do próprio Metro e enviada recarga JavaScript apenas ao cliente iOS; outro cliente preservado. Usuário confirmou **“Voltou à Home”**. Erro de carregamento superado após recarga; causa precisa da inconsistência de módulos não foi comprovada.
+- Checkpoint posterior de leitura: STT **28/816** (teto 33/966), TTS **3 chamadas/620 caracteres** (teto 10/10.000). Duas sínteses adicionais chegaram pelo app; isso não comprova som audível. Solicitada confirmação da nova voz uma única vez; se o usuário já testou, não repetir só para obter confirmação.
