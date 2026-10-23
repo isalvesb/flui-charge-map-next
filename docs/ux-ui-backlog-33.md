@@ -42,7 +42,7 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 
 | ID | Prioridade | Ajuste | Estado | Arquivos/área | Dependências, pendências e limites |
 |---|---|---|---|---|---|
-| 01 | P1 | Paradas e trajetos | Implementado; revisão física pendente | trip/TripPlannerScreen; utils/tripPlanner | Conferir ordem, mapa e trechos; percursos continuam simulados. |
+| 01 | P1 | Paradas e trajetos | Revisado após feedback; conferência física pendente | trip/TripPlannerScreen; utils/tripPlanner | Conferir ordem, mapa e trechos; percursos continuam simulados. |
 | 02 | P3 | Subtexto do popup de estações | Implementado; revisão física pendente | map/HomeMapScreen | Preservar identificação geral da simulação. |
 | 03 | P2 | Linguagem e transparência | Implementado no escopo; revisão de linguagem pendente | data/identificacaoDados; telas | Transversal a 04, 23, 25, 27; evitar remoção indiscriminada. |
 | 04 | P2 | Origem do valor de bateria | Implementado; revisão física pendente | utils/batteryData | Distinguir manual, simulado e desconhecido. |
@@ -291,3 +291,10 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Mantidos seleção, cancelar, salvar, teclado e alternativa acessível. Nenhuma dependência nativa adicionada.
 - Verificações: TypeScript, ESLint, testes de bateria e diff (`fb05-*`). Conferência web de abertura/fechamento pendente da exportação; percepção no iPhone requer revisão humana.
 - FB02 `fe751f5`, FB03 `8ef9d3f`; FB04 registrado no próximo checkpoint.
+
+### FB06 — 01: esclarecer resultado sem paradas (comentário 1)
+
+- Arquivos: `src/features/trip/TripPlannerScreen.tsx`, `.styles.ts`.
+- Diagnóstico reproduzível: padrão 400 km/70% na Referência NEXT calcula zero paradas nos três destinos. Assim, a numeração do CP01 não aparece; isso não comprova falha de atualização nem permite presumir os dados atuais do iPhone.
+- Novo resumo visível antes do mapa distingue viagem sem paradas, nenhuma parada alcançável e plano com paradas numeradas/nominadas na ordem. Não inventa recarga desnecessária. Marcadores e timeline mantêm correspondência.
+- Verificações: TypeScript, ESLint e 15 testes do planejador (`fb06-*`), incluindo três paradas e limites exatos de reserva. Conferência humana deste novo resumo pendente.

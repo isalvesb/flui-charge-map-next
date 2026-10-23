@@ -400,6 +400,18 @@ export default function TripPlannerScreen() {
             </View>
           </View>
 
+          <View testID="viagem-resumo-paradas" style={styles.stopsSummary} accessibilityLiveRegion="polite">
+            <Text style={styles.stopsSummaryTitle}>
+              {plano.paradas.length === 0
+                ? podeIniciar ? "Sem paradas de recarga com a carga atual" : "Nenhuma parada alcançável com a carga atual"
+                : `${plano.paradas.length} parada${plano.paradas.length === 1 ? "" : "s"} de recarga no plano`}
+            </Text>
+            <Text style={styles.stopsSummaryText}>
+              {plano.paradas.length > 0
+                ? plano.paradas.map((parada, index) => `${index + 1}. ${parada.nome}`).join(" → ")
+                : `${origemSelecionada.nome} → ${destinoSelecionado.nome}`}
+            </Text>
+          </View>
           <View style={styles.mapCard}>
             <MapView
               ref={mapRef}

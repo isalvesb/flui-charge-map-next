@@ -178,6 +178,9 @@ export const styles = StyleSheet.create({
     borderRadius: 3,
   },
 
+  stopsSummary: { padding: 12, borderRadius: 14, backgroundColor: colors.primarySoft, marginBottom: 10 },
+  stopsSummaryTitle: { color: colors.primary, fontSize: 14, lineHeight: 20, fontWeight: "700" },
+  stopsSummaryText: { color: colors.textSecondary, fontSize: 12, lineHeight: 18, marginTop: 4 },
   mapCard: {
     height: 160,
     borderRadius: radius.lg,
