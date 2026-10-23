@@ -4,7 +4,7 @@
 
 A branch de trabalho é `local/fluia-google-stt-atual-20261023`, derivada do Flui 2.3 em `715ba52`. A main conferida no GitHub estava em `94c862e`: a proposta inclui também as melhorias locais acumuladas de mapa/Orb, catálogo, perfil, configurações, acessibilidade, ficha de estação, planejador, apresentação e offline. O histórico completo foi preservado, sem reescrever branches protegidas.
 
-Trata-se de **revisão em rascunho**, com voz experimental dependente de intermediário privado no Mac. A configuração nativa atual identifica o app separado **Flui Voz 2.3**, não uma candidata de produção. Não há deploy, publicação de aplicativo, atualização de SDK ou reconhecimento independente do Mac. A integração Zephyr foi preparada localmente após a abertura da PR; ativação e validação real de síntese estão pendentes.
+Trata-se de **revisão em rascunho**, com voz experimental dependente de intermediário privado no Mac. A configuração nativa atual identifica o app separado **Flui Voz 2.3**, não uma candidata de produção. Não há deploy, publicação de aplicativo, atualização de SDK ou reconhecimento independente do Mac. A integração Zephyr foi implementada após a abertura da PR; uma síntese real Google foi aprovada, mas a reprodução no iPhone ainda aguarda conferência humana.
 
 ## Itens 36–46
 
@@ -18,7 +18,7 @@ Numeração corrigida pelo usuário: 43 corresponde à conexão e 44 à criaçã
 | 39 — concluir pelo silêncio | Feito, ajustado para cerca de 2 s | Usuário pediu prazo maior que 1 s e confirmou frase completa/resposta única no iPhone. |
 | 40 — transcrição ao vivo e resposta automática | Feito | Parciais na tela, sem preencher o campo digitado; resultado final segue para o motor determinístico e leitura. Fluxo principal conferido; rascunho durante cancelamento ainda não homologado fisicamente. |
 | 41 — conexão nas Configurações | Feito | Sem botão/campos técnicos e sem os avisos de apoio antigos no rodapé da FluIA. Consentimento sobre envio de áudio permanece nas Configurações. |
-| 42 — voz Zephyr | Preparada localmente; validação real pendente | Backend e reprodução MP3 no iPhone com cancelamento e limites próprios. TTS desativado no processo ativo; sem síntese paga ou confirmação física da Zephyr. API já habilitada, conferida por leitura; consumo específico aguarda autorização. |
+| 42 — voz Zephyr | Implementada; teste Google aprovado; iPhone pendente | Backend privado ativo com teto autorizado de 10 sínteses/10.000 caracteres, cumulativo em ledger separado. Primeira síntese real aprovada; reprodução física ainda não homologada. Voz do iPhone preservada quando Zephyr não estiver habilitada ou não houver sessão ativa. |
 | 43 — conectar sem burocracia | Parcial | Pareamento sem colar código confirmado no iPhone/Mac. Ainda depende do Mac e de permissão local; execução autônoma no iPhone foi adiada. |
 | 44 — abrir PR | Feito | [PR #103](https://github.com/isalvesb/flui-charge-map-next/pull/103) aberta em rascunho para revisão; sem merge automático nem outras publicações. |
 | 45 — animação da Orb na Home | Esclarecido | Usuário confirmou Reduzir movimento ativado; nenhuma alteração de código. |
@@ -31,12 +31,13 @@ Numeração corrigida pelo usuário: 43 corresponde à conexão e 44 à criaçã
 - Exportação web aprovada com **15 rotas**, sem publicar a exportação. Não equivale a uma nova revisão visual no navegador ou a validação nativa.
 - Versões de blobs novas no histórico revisadas para padrões de credenciais/arquivos protegidos, sem achados pelos padrões utilizados. `.validation`, ADC, chaves TLS e arquivos nativos gerados não entram na proposta.
 - Usuário confirmou no iPhone a frase com pausa no meio, conclusão automática e uma única resposta falada; retenção após bloquear/desbloquear; remoção de Parar leitura; conexão sem colar código.
+- Item 42, rodada posterior: **285/285 testes do app**, TypeScript/lint sem erros (um aviso preexistente), **48/48 testes do intermediário**, bundle iOS JavaScript aprovado. Síntese Google real com Zephyr pt-BR/MP3 aprovada em aproximadamente 2,2 s; não comprova reprodução no iPhone. Nenhuma build nativa reinstalada.
 
 ## Limitações para a revisão
 
 - Não certifica Android, Release, VoiceOver humano, desempenho, operação sem Mac ou estabilidade prolongada. Cancelamento físico, rascunho e segundo plano durante captura continuam pendentes.
 - Configuração experimental/bundle, patch nativo restrito ao expo-audio 1.1.1 e ferramentas temporárias precisam de decisão antes de uma integração para distribuição. Não substituir outros apps nem reaproveitar credenciais locais.
-- OAuth Google e TLS ficam exclusivamente no Mac. Entrada usa Google STT V2; saída usa voz do iPhone; o motor continua determinístico. Não há IA generativa nesta alteração.
+- OAuth Google e TLS ficam exclusivamente no Mac. Entrada usa Google STT V2; saída pode usar Zephyr Google TTS ou a voz do iPhone conforme capacidade da sessão. O texto continua vindo do motor determinístico; nenhum modelo generativo de respostas foi conectado. A síntese Zephyr não torna o motor conversacional generativo.
 - Orçamento conservador por escuta, uma chamada por vez, máximo 30 s e sem repetição automática. Extensões de teste são expressamente autorizadas e não renovam o ledger em reinícios.
 - Sem incorporar as PRs 99/100 nesta preparação, sem alterar issues/Projects ou modificar a consolidação protegida.
 
