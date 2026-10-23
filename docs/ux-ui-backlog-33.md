@@ -928,3 +928,11 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 
 - Conferência web final validacao-72-sem-seletor.json aprovada, sem erros: 18 marcadores no recorte inicial, Copacabana encontrada por busca, fichas novas com imagens originais carregadas/endereço atualizado e rodapé, seletor ausente, leitura com voz padrão mesmo com escolha antiga salva e Explicando durante fala. Contexto de teste isolado preservou bateria e campo legado. Primeira abertura do navegador foi impedida pelo sandbox; executado com permissão apropriada, sem modificar o produto por essa limitação.
 - Mesmo Metro 8116/PID67777/diretório experimental reconferidos; inspeção de leitura do cliente iPhone em iphone-catalogo-72.json. Consolidação permanece limpa em abd5dfacaf51350b32fa77066ee849dbfcc9fbdc e push bloqueado. Nenhuma confirmação humana/visual física inferida desses testes.
+
+
+### Fechamento S41/S42
+
+- Commits: `831464f` (72 pontos, imagens reutilizadas e endereços) e `ce1402c` (retirada da seleção de voz, FAQ e pesquisa Google). Nenhuma publicação.
+- Cliente iPhone conectado contém catálogo com 72 entradas, confirmado somente por leitura da árvore React; quantidade de marcadores montados não foi usada como prova visual. Bundle JavaScript iOS final HTTP200: novos locais, endereço atualizado, seletor ausente e FAQ atualizada (bundle-ios-72-sem-seletor.json). Não é instalação/build nativo ou audição da voz física.
+- Para conferir: buscar Copacabana/Petrópolis, abrir ficha e verificar foto/endereço; Configurações não deve mostrar Voz da FluIA. A leitura permanece padrão pt-BR. Naturalidade Google e reconhecimento do usuário ainda são propostas, não funcionalidades implementadas. Custos, backend e mudança nativa continuam dependentes de decisão humana específica.
+- Suíte final 239/239 aprovada, um aviso de lint herdado sem erros, QA web aprovada. Metro, consolidação protegida, candidata offline antiga, dados normais e bloqueios de publicação preservados. Revisão humana destes incrementos pendente.
