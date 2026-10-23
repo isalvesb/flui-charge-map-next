@@ -245,16 +245,11 @@ export function createSettingsStyles(colors: AppTheme, fontScale: number) {
     },
 
     feedbackToastIcon: {
-      width: 22,
-      height: 22,
-      borderRadius: 11,
-      overflow: "hidden",
-      backgroundColor: colors.primarySoft,
-      color: colors.primary,
-      fontSize: s(14),
-      fontWeight: "900",
-      lineHeight: 22,
-      textAlign: "center",
+      width: 24,
+      height: 24,
+      flexShrink: 0,
+      alignItems: "center",
+      justifyContent: "center",
     },
 
     feedbackToastText: {

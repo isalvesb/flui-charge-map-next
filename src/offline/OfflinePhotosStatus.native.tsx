@@ -15,25 +15,24 @@ export default function OfflinePhotosStatus() {
   const total = offlineImageMetadata.length;
   const state = offlinePhotosPresentation({ ready, total, preparing, supported });
   const color = state.complete ? theme.success : preparing ? theme.primary : theme.warningText;
-  const backgroundColor = state.complete ? theme.successSoft : preparing ? theme.surface : theme.yellow;
   return <View style={styles.section}>
     <Text style={styles.sectionTitle}>Uso sem conexão</Text>
-    <View style={[cardStyles.card, { backgroundColor, borderColor: color }]}>
+    <View style={[cardStyles.card, { backgroundColor: theme.surface, borderColor: theme.border }]}>
       <View style={cardStyles.heading}>
         {preparing && supported ? <ActivityIndicator color={color} accessibilityLabel={state.title} />
           : state.complete ? <CheckCircle2 color={color} size={26} accessibilityElementsHidden importantForAccessibility="no" />
             : <AlertCircle color={color} size={26} accessibilityElementsHidden importantForAccessibility="no" />}
-        <Text accessibilityLiveRegion="polite" style={[cardStyles.title, { color, fontSize: scaleFontSize(16, fontScale) }]}>{state.title}</Text>
+        <Text accessibilityLiveRegion="polite" style={[cardStyles.title, { color: theme.text, fontSize: scaleFontSize(16, fontScale) }]}>{state.title}</Text>
       </View>
       <Text style={[styles.sectionText, { color: theme.text }]}>{state.description}</Text>
       {supported ? <>
-        <Text style={[cardStyles.count, { color, fontSize: scaleFontSize(13, fontScale) }]}>{state.count} de {total} imagens</Text>
+        <Text style={[cardStyles.count, { color: theme.textMuted, fontSize: scaleFontSize(13, fontScale) }]}>{state.count} de {total} imagens</Text>
         <View accessibilityRole="progressbar" accessibilityLabel="Imagens preparadas para uso sem conexão" accessibilityValue={{ min: 0, max: total, now: state.count, text: `${state.count} de ${total} imagens` }} style={[cardStyles.track, { backgroundColor: theme.border }]}>
-          <View style={[cardStyles.fill, { backgroundColor: color, width: `${state.progress * 100}%` }]} />
+          <View style={[cardStyles.fill, { backgroundColor: theme.primary, width: `${state.progress * 100}%` }]} />
         </View>
       </> : null}
     </View>
-    <Text style={styles.sectionText}>O mapa de fundo pode ter áreas indisponíveis sem conexão. Navegação externa depende do aplicativo escolhido.{__DEV__ ? " A versão de desenvolvimento precisa do servidor para iniciar o app." : ""}</Text>
+    {__DEV__ ? <Text style={styles.sectionText}>A versão de desenvolvimento precisa do servidor para iniciar o app.</Text> : null}
     {state.canRetry ? <Pressable accessibilityRole="button" accessibilityLabel="Preparar fotos para uso sem conexão" style={[styles.optionButton, { marginTop: 12 }]} onPress={retry}>
       <Text style={styles.optionTitle}>Preparar fotos</Text>
     </Pressable> : null}

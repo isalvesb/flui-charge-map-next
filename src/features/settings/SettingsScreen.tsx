@@ -6,6 +6,7 @@ import appPackage from "../../../package.json";
 import {
   ArrowLeft,
   Check,
+  Info,
   LogOut,
   Moon,
   Sparkles,
@@ -393,7 +394,9 @@ export default function SettingsScreen() {
         {settingsFeedbackMessage ? (
           <View pointerEvents="none" style={styles.feedbackToastOverlay}>
             <View accessibilityLiveRegion="polite" style={styles.feedbackToastCard}>
-              <Text style={styles.feedbackToastIcon}>i</Text>
+              <View style={styles.feedbackToastIcon} accessible={false}>
+                <Info size={22} color="#FFFFFF" strokeWidth={2.2} />
+              </View>
               <Text style={styles.feedbackToastText}>
                 {settingsFeedbackMessage}
               </Text>
