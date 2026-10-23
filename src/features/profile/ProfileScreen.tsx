@@ -1,9 +1,10 @@
+import { OfflineImage as Image } from "../../offline/OfflineImage";
 import React, {
   useCallback,
   useMemo,
   useState,
 } from "react";
-import { Image, ScrollView, StatusBar, Text, View } from "react-native";
+import { ScrollView, StatusBar, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router, type Href, useFocusEffect } from "expo-router";
 import {

@@ -1,3 +1,4 @@
+import { OfflineImage as Image } from "../../offline/OfflineImage";
 import { ConnectionNotice } from "../../components/ConnectionNotice";
 import { useConnectivity } from "../../context/ConnectivityContext";
 import { prepareExternalRoute } from "../../utils/externalRoute";
@@ -34,7 +35,6 @@ import {
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Alert,
-  Image,
   Modal,
   Pressable,
   ScrollView,

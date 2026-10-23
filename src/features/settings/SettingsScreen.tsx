@@ -24,6 +24,7 @@ import type { AppearanceMode, FontSizePreference } from "../../types";
 import { createSettingsStyles } from "./SettingsScreen.styles";
 import { identificacaoDados } from "../../data/identificacaoDados";
 
+import OfflinePhotosStatus from "../../offline/OfflinePhotosStatus";
 import PresentationOriginPreference from "./PresentationOriginPreference";
 
 const FEEDBACK_DURATION = 3200;
@@ -356,6 +357,7 @@ export default function SettingsScreen() {
               </PressableScale>
             </View>
           </View>
+          <OfflinePhotosStatus />
           {__DEV__ ? <PresentationOriginPreference onFeedback={showSettingsFeedback} /> : null}
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Sobre os dados</Text>

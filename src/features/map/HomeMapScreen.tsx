@@ -1,3 +1,4 @@
+import { OfflineImage as Image } from "../../offline/OfflineImage";
 import { ConnectionNotice } from "../../components/ConnectionNotice";
 import React, {
   useCallback,
@@ -8,7 +9,6 @@ import React, {
 } from "react";
 import {
   Animated,
-  Image,
   Keyboard,
   Modal,
   Platform,
