@@ -36,7 +36,7 @@ Atualizado em 23/10/2026 (America/Recife). Evento: 24/10/2026.
 
 Prioridades iniciais mantidas; nenhum P0 comprovado. Reordenar por dependência ou feedback imediato. 06–09 já feitos conforme correção explícita do usuário nesta conversa.
 
-**Prevalece o feedback mais recente:** 12, 31, 32 e 34 em espera; 20 fora da execução, reservado ao pitch. Ampliação de pontos fica no 31; nenhuma nova execução de catálogo/planejador nesta rodada. Os blocos históricos abaixo não autorizam retomar itens suspensos.
+**Prevalece o feedback mais recente:** usuário retomou 31, 32, 34 e 12 em 23/10, nessa ordem. Investigar sem contratar serviços ou criar infraestrutura desnecessária; implementar incrementos locais autorizados. Item 20 continua fora da execução, reservado ao pitch. Restrições de instalação nativa e arquitetura relevante preservadas.
 
 ## Backlog original
 
@@ -74,7 +74,7 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 | 28 | P3 | Cartões Estimativas e Conectores | Estimativas unificadas após carregadores; revisão física pendente | stations/PointDetailsScreen | Removido cartão repetido; autonomia, chegada, espera e recarga no mesmo local. Conectores preservados. |
 | 29 | — | Preservar conteúdo de Comodidades próximas e Avaliações | Revisão visual/textual autorizada aplicada | stations/PointDetailsScreen | Comodidades com largura adaptável; retirados aviso secundário e demonstrativas do total de avaliações. Notas, comentários, ações locais e identificação geral no rodapé preservados. |
 | 30 | P1 | Persistência offline de fotos e favoritos | Parcial; candidata offline preparada, sem instalar | offline; storage; telas de imagem/perfil/ficha; inicialização nativa | Instalação atual ainda depende do Metro e falhou ao abrir offline. Candidata Release com código/fotos embutidos foi compilada e verificada; instalação e teste físico pendentes. Sem perda de registros. |
-| 31 | P3 | Pesquisa catálogo/Supabase e ampliação transferida do 01 | Em espera — 54 pontos já adicionados anteriormente | docs; data/fixtures | Base atual: 66 estações simuladas (47 SP/19 RJ). Não ampliar novamente nem introduzir Supabase nesta rodada. |
+| 31 | P3 | Pesquisa catálogo/Supabase e ampliação transferida do 01 | Investigação concluída; base ampliada reconferida | docs; data/fixtures | 66 estações simuladas (47 SP/19 RJ), 32 simulações e sete testes. Base já permite múltiplas paradas. Recomendado manter local para NEXT; relatório catalogo-next-e-supabase.md. |
 | 32 | P2 | Proposta de área interna | Em espera — decisão explícita do usuário | docs; settings | Seleção de origem básica preservada; cenários completos não implementados. Não retomar nesta rodada. |
 | 33 | P2 | Referência inicial de localização | Feito: FIAP padrão restaurada; escolhas salvas preservadas | data/demonstracao; LocationContext | FIAP usada quando não há escolha; origem já salva e GPS preservados. NEXT continua opção explícita. |
 | 34 | P2 provisória | Textos de respostas da FluIA | Em espera — decisão explícita do usuário | assistant/chatEngine; fluiAssistant; programmedAnswers | Revisões anteriores preservadas; não ampliar nem continuar revisão da base de respostas nesta rodada. |
@@ -831,3 +831,11 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 
 - `cd8acb6`: novo pedido aplicado em PresentationOriginPreference.tsx. Título Localização inicial acima do seletor, com mesma tipografia das demais seções e espaçamento padrão optionsList. Sem texto de apoio adicional. Salvamento automático, rótulo acessível e opções preservados.
 - ESLint dirigido e diff aprovados. Mudança restrita a título e espaçamento; não repetidos testes de persistência, suíte completa ou matriz visual. Disponível pelo mesmo Metro, sem compilação/instalação nativa. Conferência física desta alteração pendente.
+
+
+### S33 — 31: retomada e avaliação do catálogo/Supabase
+
+- Retomada autorizada pelo usuário: 31 → 32 → 34 → 12; item 20 não retomado. Pesquisa em fontes primárias e diagnóstico local em docs/catalogo-next-e-supabase.md.
+- Catálogo atual 66 pontos, 47 SP/19 RJ, 12 com imagens e 45 utilizáveis no relógio fixo. Matriz de 32 cenários executada, IDs/coordenadas/conectores/notas conferidos; sete testes do planejador aprovados. Evidências em ../output/ux-retomada-20261023. CLI tsx encontrou restrição de socket do sandbox; usado carregador node --import tsx, sem escalada ou mudança no produto.
+- Com 200 km/70%, Rio tem duas recargas e Cabo Frio/Búzios três. Sem alteração no motor ou catálogo e sem declarar item 01 aprovado fisicamente. Trechos continuam em linha reta.
+- Avaliação concluída: base local suficiente para o NEXT; Supabase só agrega com edição/sincronização entre usuários e fonte adequada. RLS, origem dos dados e offline exigem trabalho próprio. Não criados projeto, serviço, credencial ou dependência. Commit deste relatório registrado no próximo checkpoint.
