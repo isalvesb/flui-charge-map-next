@@ -213,3 +213,11 @@
 
 - Removido o campo de código da configuração comum. O botão **Conectar ao Mac** solicita a permissão local e valida health autenticado antes de ativar voz. Informação sobre áudio Google permanece antes da ativação. Código nunca é mostrado no campo, URL ou mensagem; continua só em memória.
 - Background/cancelamento abortam solicitação pendente sem ativação tardia. Retenção de conexão já ativa permanece conforme a autorização anterior. Sem recompilação nativa; mudança JavaScript disponível pelo Metro. TypeScript/ESLint dirigidos aprovados; conferência física ainda pendente.
+
+## 23/10/2026 — pareamento confirmado e voz adiada
+
+- Backend **`f0c52a2`**, interface sem campo **`4511772`**. Aplicação controlada preservou a credencial por stdin anônimo e o mesmo ledger; health aprovado com limites **33/966**, sem transcrição. Node atual **3975**, Metro **2360** preservado.
+- Usuário confirmou **“conectou sem código”** no teste físico botão Conectar ao Mac → Permitir. Não houve colagem nem chamada de reconhecimento nesse pareamento. A dependência do Mac permanece e foi considerada trabalhosa pelo usuário.
+- Usuário pediu funcionamento nativo sem Mac; foram apenas consultadas referências Apple/Google e o código. Nenhum reconhecimento Apple, hospedagem, credencial no iPhone ou alteração nativa foi implementado.
+- Em seguida decidiu **deixar a voz para depois e resolver outras coisas primeiro**. Interrompida essa frente, com código preservado e sem testes pagos adicionais pelo agente. Não retomar automaticamente as hipóteses nativas ou a matriz física pendente.
+- Conferência anterior ao adiamento: ledger **23/666**, histórico separado **1/4**; teto atual autorizado **33/966**. Sem reset. Permanecem pendentes cancelamento físico/rascunho/segundo plano durante captura e estabilidade prolongada. Referência principal atualizada no topo de CONTINUIDADE-36-42.md.

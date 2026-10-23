@@ -1,5 +1,18 @@
 # FluIA — continuidade dos itens 36–42
 
+## Estado mais recente — voz adiada por decisão do usuário
+
+O usuário decidiu deixar a voz para depois e priorizar outros ajustes. **Não retomar automaticamente investigação/implementação Apple, hospedagem Google ou testes físicos pendentes.** Preservar este experimento e aguardar o próximo objetivo. Não houve migração do reconhecimento nem implantação de serviço externo.
+
+- Código antes deste checkpoint documental: **`4511772`**, branch `local/fluia-google-stt-atual-20261023`, worktree `flui-fluia-google-stt-atual`.
+- **Confirmado no iPhone:** retenção da ativação após bloquear/desbloquear; frase completa com pausa curta no meio e conclusão com prazo maior, seguida de uma única resposta falada; remoção de “Parar leitura”; conexão pelo botão/Permitir no Mac, sem copiar ou colar código.
+- **Ainda depende do Mac para o Google.** Usuário achou isso trabalhoso e quer, futuramente, operação só no iPhone. Alternativa Apple começou a ser pesquisada por leitura; nenhuma troca de arquitetura, nova captura nativa, API, SDK ou build foi implementada nessa direção. Discutir essa decisão antes de avançar.
+- **Pendente físico:** pressão longa para cancelar, rascunho preservado, segundo plano durante captura e estabilidade prolongada. Um percurso aprovado não equivale à matriz inteira. O teste de cancelamento esbarrou no teto anterior.
+- Backend sem colagem **`f0c52a2`**, tela **`4511772`**. Pareamento real confirmado pelo usuário: “conectou sem código”. Continua exigindo autorização no Mac por conexão, não é autenticação permanente nem execução autônoma no iPhone.
+- Intermediário atual **3975**, com processo Python supervisor da retomada por pipe; Metro **2360**, porta **8117**. HTTPS/WSS privado **192.168.0.130:8787**. PIDs/IPs são instantâneos; conferir antes de agir. Sessão preservada em reinício por pipe, sem exibição da credencial.
+- Último ledger conferido antes do adiamento: **23 chamadas/666 s reservados**, mais separado histórico **1/4**. Teto adicional expressamente autorizado **33/966 no mesmo ledger**; não reiniciar saldo. Flags atuais `STT_APPROVED_VALIDATION_EXTENSION=33/966`, `STT_PAIRING_ENABLED=1`. `STT_RESUME_SESSION=1` exige o código pelo stdin anônimo e ledger existente: não copiar a flag para uma inicialização sem pipe. Início normal pode gerar código novo e o botão Conectar ao Mac faz o novo pareamento, sem colagem.
+- **40/40 testes locais do intermediário aprovados**, TypeScript/ESLint dirigidos e sintaxe Node aprovados; 13/13 de sessão/leitura na rodada anterior. Sem recompilação iOS nesta etapa e sem nova transcrição feita pelo agente para testar pareamento. Credenciais, consolidação e outras worktrees preservadas. Servidores não foram encerrados no adiamento.
+
 ## Atualização posterior — estabilidade, sessão e pausa
 
 Esta seção prevalece sobre as anteriores: usuário confirmou um percurso de voz funcionando no iPhone, seguido de quedas recorrentes; **estabilidade ainda não homologada**. “Parar leitura” deixou de aparecer por confirmação humana. Mensagem depois identificada: “Ative a voz da FluIA nas Configurações”. Print de Configurações mostrava sessão ativa com campo vazio, não uma falha Google comprovada.
