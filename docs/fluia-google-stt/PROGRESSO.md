@@ -19,3 +19,14 @@
 3. Adaptar sessão/captura/interface à página atual; preservar áudio de saída, estados, Orb, teclado e digitação.
 4. Verificar configuração nativa isolada, rede/TLS e assinatura, sem substituir app existente.
 5. Poucos testes reais pagos controlados, separados de testes simulados; registrar consumo/limites e evidência física quando ocorrer.
+
+## 23/10/2026 — intermediário adaptado à worktree atual
+
+- Retomada após auditoria de disco: base atual continua limpa em `715ba52`; esta worktree partiu dela e mantém o checkpoint de isolamento `ad21e6c`.
+- Metro 8116 sem listener nesta retomada. Nenhum processo de outra sessão foi encerrado ou redirecionado. iPhone 16 identificado, mas indisponível na consulta atual.
+- ADC utilizável. API Speech-to-Text inicialmente DISABLED; ativação bloqueada pela revisão automática até autorização explícita. Usuário respondeu **“Autorizo habilitar a API”**. Apenas `speech.googleapis.com` foi habilitada; estado ENABLED confirmado. Nenhuma alteração de conta de faturamento, bucket ou infraestrutura.
+- Consultas de IAM e billing não foram conclusivas: suas APIs de consulta estão desativadas. Isso não comprova ausência de permissão de reconhecimento nem faturamento desligado. Não habilitar outras APIs só para essas consultas.
+- Intermediário reaproveitado seletivamente, sem cherry-pick. Valida WAV real PCM mono/16 kHz/16 bits; até 30 s, uma chamada por vez, até 20 requisições/600 s reservados, sem repetição automática. HTTPS obrigatório e bind somente em IPv4 privado/loopback. Token não sobrescreve outra sessão. Logs persistem somente contadores agregados, sem áudio/transcrição/credenciais e sem apresentar estimativa como teto de faturamento.
+- Corrigidos timeout de leitura, resposta tardia e reserva de consumo antes do provedor. Falha de registro impede chamada; limites não podem ser elevados pela configuração do handler.
+- **10/10 testes do intermediário passaram com provedor simulado**, incluindo autorização, conteúdo, limites, duplicação, desconexão, timeout e falha de registro. Log local: `.validation/stt-backend-tests.log`. Ainda zero chamadas Google de reconhecimento.
+- Compilação/instalação nativa, captura e teste físico pendentes. O código deste checkpoint é identificado pelo commit `voz: adapta intermediário privado com limites de transcrição`; hash registrado no checkpoint seguinte.
