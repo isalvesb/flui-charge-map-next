@@ -72,6 +72,14 @@ const locais: LocalDoCenario[] = [
   ["copacabana", "Copacabana", "Rio de Janeiro", "RJ", -22.972, -43.186],
   ["tijuca", "Tijuca", "Rio de Janeiro", "RJ", -22.924, -43.233],
   ["petropolis", "Petrópolis", "Petrópolis", "RJ", -22.505, -43.179],
+  ["acesso-next", "Arca", "São Paulo", "SP", -23.5416, -46.7330],
+  ["vila-lageado", "Vila Lageado", "São Paulo", "SP", -23.5338, -46.7389],
+  ["campus-oeste", "Campus Oeste", "São Paulo", "SP", -23.5481, -46.7318],
+  ["jaguare", "Jaguaré", "São Paulo", "SP", -23.5358, -46.7281],
+  ["corifeu", "Corifeu", "São Paulo", "SP", -23.5521, -46.7410],
+  ["rio-pequeno", "Rio Pequeno", "São Paulo", "SP", -23.5488, -46.7511],
+  ["politecnica", "Politécnica", "São Paulo", "SP", -23.5271, -46.7461],
+  ["vila-universitaria", "Vila Universitária", "São Paulo", "SP", -23.5421, -46.7485],
 ];
 
 const origem = obterOrigemDemonstrativa("fiap");

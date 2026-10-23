@@ -10,11 +10,11 @@ import { canChargeAt } from "../src/utils/stationAvailability";
 
 const now = new Date("2026-10-23T15:00:00Z");
 
-test("catálogo de 72 preserva as 12 estações iniciais e reutiliza suas imagens com fichas completas de cenário", () => {
-  assert.equal(chargingStations.length, 72);
+test("catálogo de 80 preserva as 12 estações iniciais e reutiliza suas imagens com fichas completas de cenário", () => {
+  assert.equal(chargingStations.length, 80);
   assert.deepEqual(chargingStations.slice(0, 12).map(s => s.id), Array.from({ length: 12 }, (_, i) => `station-${String(i + 1).padStart(2, "0")}`));
   assert.equal(new Set(chargingStations.map(s => s.id)).size, chargingStations.length);
-  assert.equal(expandedChargingStations.length, 60);
+  assert.equal(expandedChargingStations.length, 68);
   assert.equal(new Set(expandedChargingStations.map(s => s.imageKey)).size, 12);
   for (const id of ["moema", "vila-olimpia", "santo-amaro", "copacabana", "tijuca", "petropolis"]) assert.ok(chargingStations.some(s => s.id === `next-${id}`));
   for (const station of expandedChargingStations) {
@@ -71,7 +71,7 @@ test("raio amplo permite consultar o RJ sem mudar filtros padrão nem ignorar st
 });
 
 
-test("60 fichas têm comentários completos, IDs próprios e dados disponíveis nas 12 originais", () => {
+test("68 fichas têm comentários completos, IDs próprios e dados disponíveis nas 12 originais", () => {
   const reviewIds = new Set<string>();
   const requiredFields = Object.keys(chargingStations[0]);
   for (const station of expandedChargingStations) {
@@ -92,5 +92,17 @@ test("60 fichas têm comentários completos, IDs próprios e dados disponíveis 
     }
     assert.equal(authors.size, 3);
   }
-  assert.equal(reviewIds.size, 180);
+  assert.equal(reviewIds.size, 204);
+});
+
+
+test("oito pontos adicionais ficam até 2 km do NEXT com a mesma ficha completa", () => {
+  const ids = ["acesso-next", "vila-lageado", "campus-oeste", "jaguare", "corifeu", "rio-pequeno", "politecnica", "vila-universitaria"].map(id => `next-${id}`);
+  const nearNext = aplicarOrigemDemonstrativa(chargingStations, obterOrigemDemonstrativa("next"));
+  for (const id of ids) {
+    const station = nearNext.find(s => s.id === id)!;
+    assert.ok(station && station.distanceKm > 0 && station.distanceKm <= 2, id);
+    assert.equal(station.reviews?.length, 3);
+    assert.ok(station.imageKey && station.reviewCount >= 3);
+  }
 });

@@ -988,3 +988,11 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Arquivos: TripPlannerScreen.tsx/.styles e PointDetailsScreen.tsx. Rótulos/pistas acessíveis, áreas tocáveis mínimas de 44/48 e chevron nas listas. Tipos/ESLint dirigido/diff e 24 testes do planejador aprovados.
 - validacao-paradas-ficha.json passou: resumo/marcador/linha abrem estação correta e voltam com destino Cabo Frio e mesmas paradas; bateria/autonomia preservadas, zero erros de página e sem rolagem horizontal em 320/393 fonte Maior. Conferência web, sem declarar gestos físicos/VoiceOver humano.
 - Disponível via JavaScript no mesmo Metro; sem build nativo/publicação ou mudança no motor de cálculo. Commit deste bloco registrado no próximo checkpoint.
+
+
+### S48 — 31: reforço do entorno NEXT e Flui Arca
+
+- Planejador/fichas S47: `b33c0f4`. Oito estações adicionais no entorno NEXT: Arca, Vila Lageado, Campus Oeste, Jaguaré, Corifeu, Rio Pequeno, Politécnica e Vila Universitária. Distâncias desde a referência NEXT entre 0,18 e 1,96 km. Coordenadas de cenário, sem alegar estabelecimentos reais ou GPS.
+- Catálogo agora tem 80 pontos (58 SP/22 RJ), com 68 adicionais aos 12 originais. Cada novo ponto reutiliza as imagens existentes e recebe ficha completa, três comentários e horários/conectores/comodidades; total de comentários adicionais passa a 204. IDs anteriores preservados. Flui Acesso NEXT foi chamado Flui Arca antes do commit, por correção do usuário; ID next-acesso-next preservado.
+- Arquivos: expandedChargingStations.ts, expandedCatalog.test.ts e mapSearchScope.test.ts. Suíte completa atual passou 242/242 (check-origens-paradas-next.log), tipos/lint sem erros (aviso herdado). Teste específico confere as oito distâncias de até 2 km e fichas completas; teste do mapa agora confere os 80 sem busca. Após alteração textual Arca, leitura dirigida dos dados confirmou nome, ID, distância e três comentários, sem repetir a suíte por um nome.
+- Fontes originais e imagens/cache/instalação preservados; nenhum serviço ou dado remoto importado. Revisão física pendente. Próximo bloco de nomes: 12 originais no padrão Flui + localização e Butantã → Villa-Lobos. Commit deste bloco registrado no próximo checkpoint.

@@ -2,6 +2,12 @@
 
 Conferido em 23/10/2026, no Flui 2.3 experimental. Pesquisa e diagnóstico local, sem criação de serviço remoto.
 
+## Atualização do entorno NEXT: 80 pontos
+
+Em feedback posterior, oito pontos foram adicionados a até 2 km do NEXT: Arca, Vila Lageado, Campus Oeste, Jaguaré, Corifeu, Rio Pequeno, Politécnica e Vila Universitária. Total atual: 80 (58 SP/22 RJ), 68 com a experiência adicional completa e 204 comentários adicionais. As 12 fotos continuam reutilizadas sem novos assets. Distâncias conferidas desde a referência NEXT; coordenadas, comentários e locais pertencem ao cenário.
+
+As notas abaixo sobre 72/66 pontos são checkpoints anteriores, preservados como histórico. Não houve migração remota/Supabase, instalação ou mudança de SDK. Dados salvos mantêm os IDs.
+
 ## Atualização: fichas completas e mapa sem raio implícito
 
 Feedback posterior em 23/10: os 60 pontos adicionais devem ter o mesmo nível de informação dos 12 originais. Agora têm nota agregada, total de avaliações e três comentários completos cada (180 ao todo), com autor fictício, data, notas por critério, retorno e recomendação. Comentários refletem manutenção/indisponibilidade/fila quando aplicável; não prometem funcionamento. Totais agregados seguem o padrão do cenário original e não representam apenas os três comentários exibidos. Dados de catálogo não modificam notas ou comentários escritos pelo usuário.
