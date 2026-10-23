@@ -12,7 +12,7 @@ import { calcularDistanciaGeograficaKm } from "../../utils/demonstracao";
 type LocalDoCenario = [id: string, local: string, cidade: string, estado: "SP" | "RJ", latitude: number, longitude: number];
 
 const locais: LocalDoCenario[] = [
-  ["butanta", "Butantã", "São Paulo", "SP", -23.542, -46.728],
+  ["butanta", "Villa-Lobos", "São Paulo", "SP", -23.542, -46.728],
   ["vila-sonia", "Vila Sônia", "São Paulo", "SP", -23.592, -46.737],
   ["pinheiros", "Pinheiros", "São Paulo", "SP", -23.566, -46.696],
   ["alto-pinheiros", "Alto de Pinheiros", "São Paulo", "SP", -23.548, -46.71],
@@ -75,7 +75,7 @@ const locais: LocalDoCenario[] = [
   ["acesso-next", "Arca", "São Paulo", "SP", -23.5416, -46.7330],
   ["vila-lageado", "Vila Lageado", "São Paulo", "SP", -23.5338, -46.7389],
   ["campus-oeste", "Campus Oeste", "São Paulo", "SP", -23.5481, -46.7318],
-  ["jaguare", "Jaguaré", "São Paulo", "SP", -23.5358, -46.7281],
+  ["jaguare", "Leopoldina", "São Paulo", "SP", -23.5358, -46.7281],
   ["corifeu", "Corifeu", "São Paulo", "SP", -23.5521, -46.7410],
   ["rio-pequeno", "Rio Pequeno", "São Paulo", "SP", -23.5488, -46.7511],
   ["politecnica", "Politécnica", "São Paulo", "SP", -23.5271, -46.7461],
