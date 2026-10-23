@@ -496,3 +496,8 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Verificações: TypeScript, ESLint e suíte completa (`r13-*`). Nova revisão humana ainda necessária; não marcar 03 aprovado apenas por essa revisão de código.
 
 - R13: suíte inicial encontrou expectativas textuais antigas em resumo/chat/flag; atualizadas para exigir identificação explícita da simulação na nova terminologia, sem remover verificações de disponibilidade/alcance. Log inicial preservado em `r13-check.log`; resultado final em `r13-check-final.log`.
+
+### R14 — 26: legibilidade do cabeçalho em duas colunas
+
+- Inspeção das capturas mostrou Funcionamento comprimindo o ícone no cartão estreito. Título simplificado para Horário e ícones preservam sua largura nos cabeçalhos. Não muda horário/status nem dados.
+- Verificações: TypeScript, ESLint dirigido e diff; conferência visual dirigida após exportação.

@@ -603,7 +603,7 @@ export default function PointDetailsScreen() {
             <View style={[styles.infoRow, stackInfoCards ? { flexDirection: "column" } : null]}>
               <View style={styles.infoCard}>
                 <View style={styles.infoCardHeader}>
-                  <Gauge size={20} color={colors.primaryBright} strokeWidth={2.2} />
+                  <Gauge size={20} style={{ flexShrink: 0 }} color={colors.primaryBright} strokeWidth={2.2} />
                   <Text style={styles.infoLabel}>Potência</Text>
                 </View>
                 <View style={styles.infoCardBody}>
@@ -613,7 +613,7 @@ export default function PointDetailsScreen() {
               </View>
               <View style={styles.infoCard}>
                 <View style={styles.infoCardHeader}>
-                  <Plug size={20} color={colors.primaryBright} strokeWidth={2.2} />
+                  <Plug size={20} style={{ flexShrink: 0 }} color={colors.primaryBright} strokeWidth={2.2} />
                   <Text style={styles.infoLabel}>Conectores</Text>
                 </View>
                 <View style={styles.infoCardBody}>
@@ -625,8 +625,8 @@ export default function PointDetailsScreen() {
             <View style={[styles.infoRow, stackInfoCards ? { flexDirection: "column" } : null]}>
               <View style={styles.infoCard}>
                 <View style={styles.infoCardHeader}>
-                  <AlarmClock size={20} color={colors.primaryBright} strokeWidth={2.2} />
-                  <Text style={styles.infoLabel}>Funcionamento</Text>
+                  <AlarmClock size={20} style={{ flexShrink: 0 }} color={colors.primaryBright} strokeWidth={2.2} />
+                  <Text style={styles.infoLabel}>Horário</Text>
                 </View>
                 <View style={styles.infoCardBody}>
                   <Text style={styles.infoValue}>{station.openingHours}</Text>
@@ -635,7 +635,7 @@ export default function PointDetailsScreen() {
               </View>
               <View style={styles.infoCard}>
                 <View style={styles.infoCardHeader}>
-                  <Navigation2 size={20} color={colors.primaryBright} strokeWidth={2.2} />
+                  <Navigation2 size={20} style={{ flexShrink: 0 }} color={colors.primaryBright} strokeWidth={2.2} />
                   <Text style={styles.infoLabel}>Distância</Text>
                 </View>
                 <View style={styles.infoCardBody}>
