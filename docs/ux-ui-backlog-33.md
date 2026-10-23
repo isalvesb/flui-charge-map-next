@@ -283,3 +283,11 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Recarga não confirmada agora em faixa âmbar com texto contrastante. Condições de confirmação mantidas.
 - Usuário autorizou expressamente alterar os títulos de Comodidades próximas e Avaliações: ganharam fundo/ícone conforme cartões. Conteúdo das seções não alterado. A preservação literal anterior de toda seção foi substituída por preservação literal dos corpos.
 - Verificações: TypeScript, ESLint, testes de apresentação e comparação literal dos corpos com `b720c5a` (`fb04-*`, `29-preservacao-corpos.log`). Revisão física após correção pendente. FB03 registrado no próximo checkpoint.
+
+### FB05 — 05: animações separadas de fundo/painel (comentário 4)
+
+- Arquivos: `src/features/map/BatteryEditorModal.tsx`, `HomeMapScreen.tsx`.
+- Modal nativo sem animação de toda a camada. Fundo fixo com opacity/fade; somente painel recebe translateY. Fechamento anima antes de desmontar, respeitando redução de movimento.
+- Mantidos seleção, cancelar, salvar, teclado e alternativa acessível. Nenhuma dependência nativa adicionada.
+- Verificações: TypeScript, ESLint, testes de bateria e diff (`fb05-*`). Conferência web de abertura/fechamento pendente da exportação; percepção no iPhone requer revisão humana.
+- FB02 `fe751f5`, FB03 `8ef9d3f`; FB04 registrado no próximo checkpoint.

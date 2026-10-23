@@ -72,6 +72,7 @@ import { useReducedMotion } from "../../hooks/useReducedMotion";
 import { useAppPreferences } from "../../context/PreferencesContext";
 import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
 import { FluiAssistantSheet } from "../assistant/FluiAssistantSheet";
+import { BatteryEditorModal } from "./BatteryEditorModal";
 import { BatteryLevelControl } from "../../components/BatteryLevelControl";
 import { DraggableMapOrb } from "./DraggableMapOrb";
 import { useIsFocused } from "@react-navigation/native";
@@ -1625,15 +1626,7 @@ export default function HomeMapScreen() {
           message="Abrindo detalhes..."
         />
 
-        {seletorBateriaAberto ? (
-          <Modal transparent visible animationType={reduceMotionEnabled ? "none" : "slide"} onRequestClose={cancelarEdicaoDeBateria}>
-          <View style={styles.batterySheetOverlay} accessibilityViewIsModal>
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel="Fechar seletor de bateria"
-              style={styles.batterySheetBackdrop}
-              onPress={cancelarEdicaoDeBateria}
-            />
+        <BatteryEditorModal visible={seletorBateriaAberto} reducedMotion={reduceMotionEnabled} onClose={cancelarEdicaoDeBateria}>
 
             <ScrollView
               style={[styles.batterySheetCard, { maxHeight: alturaJanela * 0.9 }]}
@@ -1747,9 +1740,7 @@ export default function HomeMapScreen() {
                 </Text>
               </PressableScale>
             </ScrollView>
-          </View>
-          </Modal>
-        ) : null}
+        </BatteryEditorModal>
       </ScreenTransition>
     </SafeAreaView>
   );
