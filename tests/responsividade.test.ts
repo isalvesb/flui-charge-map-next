@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { getMapPanelLayout, getMapVerticalFocusOffset, getMapHorizontalFocusOffset } from "../src/features/map/mapLayout";
+import { getMapPanelLayout, getMapVerticalFocusOffset, getMapHorizontalFocusOffset } from "../src/features/map/map/Map.utils";
 import { appThemes } from "../src/theme/appTheme";
 
 test("painel deixa espaço para controles em tela compacta e respeita a área do mapa", () => {

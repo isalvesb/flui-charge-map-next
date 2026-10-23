@@ -6,7 +6,7 @@ import {
   applyQuickFilters,
   hasActiveQuickFilters,
   rankStationsByQuickFilters,
-} from "../src/features/map/quickFilters";
+} from "../src/features/map/search/Search.utils";
 import { createStation } from "./fixtures";
 
 test("aplica filtros rápidos sem alterar o objeto original", () => {

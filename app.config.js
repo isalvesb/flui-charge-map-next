@@ -17,6 +17,7 @@ module.exports = {
     newArchEnabled: true,
     ios: {
       supportsTablet: true,
+      bundleIdentifier: "com.allyhere.flui-charge-map",
       config: {
         googleMapsApiKey: googleMapsApiKeyIos,
       },
@@ -59,6 +60,18 @@ module.exports = {
         {
           locationAlwaysAndWhenInUsePermission:
             "Permitir que $(PRODUCT_NAME) acesse sua localização.",
+        },
+      ],
+      [
+        "expo-speech-recognition",
+        {
+          microphonePermission:
+            "Permitir que $(PRODUCT_NAME) use o microfone.",
+          speechRecognitionPermission:
+            "Permitir que $(PRODUCT_NAME) converta a fala em texto.",
+          androidSpeechServicePackages: [
+            "com.google.android.googlequicksearchbox",
+          ],
         },
       ],
     ],

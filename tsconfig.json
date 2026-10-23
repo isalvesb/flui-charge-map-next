@@ -3,6 +3,42 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
+      "@/assets/*": [
+        "./src/assets/*"
+      ],
+      "@/components/*": [
+        "./src/components/*"
+      ],
+      "@/config/*": [
+        "./src/config/*"
+      ],
+      "@/context/*": [
+        "./src/context/*"
+      ],
+      "@/data/*": [
+        "./src/data/*"
+      ],
+      "@/features/*": [
+        "./src/features/*"
+      ],
+      "@/hooks/*": [
+        "./src/hooks/*"
+      ],
+      "@/screens/*": [
+        "./src/screens/*"
+      ],
+      "@/storage/*": [
+        "./src/storage/*"
+      ],
+      "@/theme/*": [
+        "./src/theme/*"
+      ],
+      "@/types/*": [
+        "./src/types/*"
+      ],
+      "@/utils/*": [
+        "./src/utils/*"
+      ],
       "@/*": [
         "./*"
       ]
