@@ -73,6 +73,7 @@ import { useAppPreferences } from "../../context/PreferencesContext";
 import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
 import { identificacaoDados } from "../../data/identificacaoDados";
 import { FluiAssistantSheet } from "../assistant/FluiAssistantSheet";
+import { BatteryLevelControl } from "../../components/BatteryLevelControl";
 import { DraggableMapOrb } from "./DraggableMapOrb";
 import { useIsFocused } from "@react-navigation/native";
 import { MAP_ORB_SIZE, type OrbOrigin, type OrbPosition } from "./mapExperimentLayout";
@@ -1642,6 +1643,8 @@ export default function HomeMapScreen() {
             <ScrollView
               style={[styles.batterySheetCard, { maxHeight: alturaJanela * 0.9 }]}
               contentContainerStyle={styles.batterySheetContent}
+              keyboardShouldPersistTaps="handled"
+              keyboardDismissMode="on-drag"
             >
               <View style={styles.batterySheetHeaderRow}>
                 <View
@@ -1731,6 +1734,8 @@ export default function HomeMapScreen() {
                   <Text style={styles.batteryStepperButtonText}>+</Text>
                 </PressableScale>
               </View>
+
+              <BatteryLevelControl value={bateriaEmEdicao} onChange={setBateriaEmEdicao} />
 
               <Text style={styles.batterySheetSafetyHint}>
                 Ajuste manualmente apenas com o veículo parado.

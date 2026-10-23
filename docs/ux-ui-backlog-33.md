@@ -46,7 +46,7 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 | 02 | P3 | Subtexto do popup de estações | Pendente | map/HomeMapScreen | Preservar identificação geral da simulação. |
 | 03 | P2 | Linguagem e transparência | Pendente | data/identificacaoDados; telas | Transversal a 04, 23, 25, 27; evitar remoção indiscriminada. |
 | 04 | P2 | Origem do valor de bateria | Implementado; revisão física pendente | utils/batteryData | Distinguir manual, simulado e desconhecido. |
-| 05 | P2 | Ajuste de bateria por arraste | Pendente | map; componente de bateria | Sem dependência nativa nova; alternativa acessível e precisão. |
+| 05 | P2 | Ajuste de bateria por arraste | Implementado; revisão física pendente | map; componente de bateria | Sem dependência nativa nova; alternativa acessível e precisão. |
 | 06 | P2 | Abertura da Orb | Feito — informado pelo usuário | assistant; map | Não reimplementar. Revisão adicional somente se houver feedback. |
 | 07 | P2 | Página roxa da FluIA | Feito — informado pelo usuário | assistant/FluiAssistantSheet | Preservar contexto e comportamento existente. |
 | 08 | P2 | Orb centralizada no alto | Feito — informado pelo usuário | assistant/FluiAssistantSheet | Não reimplementar. |
@@ -128,3 +128,11 @@ Cada entrada deve informar IDs, commit, arquivos, verificações e limites human
 - Valor padrão identificado como “Valor de simulação”; valor sem origem pede conferência no painel; edição manual mantém data/origem. Seletor deixa claro que a carga é informada pelo motorista. Sem alegação de leitura do veículo.
 - Verificações: TypeScript, ESLint dirigido, quatro testes da classificação/serialização de bateria e diff (`04-*`).
 - Conferir: tocar carro/bateria no cabeçalho; comparar identificação antes/depois de salvar uma carga. Revisão física pendente.
+
+### CP05 — 05: régua de bateria
+
+- Arquivos: `src/components/BatteryLevelControl.tsx`, `src/utils/batteryAdjustment.ts`, `src/features/map/HomeMapScreen.tsx`, `tests/batteryAdjustment.test.ts`.
+- Arraste em alvo com 48 pt e resolução de 1%; entrada numérica direta; ações acessíveis de 1%; botões anteriores de 5% preservados. Mudanças permanecem locais ao seletor até Definir carga; cancelar não salva.
+- Verificações: TypeScript, ESLint dirigido, testes de limites/precisão/layout inválido e bateria (`05-*`). Sem novas bibliotecas nativas.
+- Conferir: tocar bateria → arrastar régua → digitar valor exato → Definir carga; reabrir e cancelar outra alteração. Inspecionar também rolagem/teclado e VoiceOver.
+- Limites: gesto e teclado numérico dependem da revisão física; não alegar VoiceOver humano validado.
