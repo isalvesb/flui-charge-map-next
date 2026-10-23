@@ -4,6 +4,7 @@ import test from "node:test";
 import { obterOrigemDemonstrativa } from "../src/data/demonstracao";
 import {
   obterDestinoDemonstrativo,
+  destinosDemonstrativos,
   type DestinoViagem,
 } from "../src/data/destinosViagem";
 import { planejarViagem, podeIniciarViagem, describeTripStops } from "../src/utils/tripPlanner";
@@ -171,4 +172,22 @@ test("seletor e resumo descrevem paradas necessárias calculadas, não candidata
   assert.deepEqual(stops.paradas.map(p => p.nome), destination.paradas.map(p => p.nome));
   const blocked = planejarViagem(origem, destination, 80, 0);
   assert.equal(describeTripStops(blocked), "Plano inviável · nenhuma parada alcançável");
+});
+
+
+test("destinos no RJ ampliam cenários de zero, uma e duas paradas sem alterar a bateria", () => {
+  const ids = ["campinas", "rio-de-janeiro", "cabo-frio"];
+  const planos = ids.map(id => planejarViagem(origem, obterDestinoDemonstrativo(id), 400, 70));
+  assert.deepEqual(planos.map(plano => plano.paradas.length), [0, 1, 2]);
+  for (const plano of planos) {
+    assert.equal(podeIniciarViagem(plano), true);
+    for (const parada of plano.paradas) assert.ok(parada.bateriaChegadaPercent >= 5);
+  }
+  assert.ok(destinosDemonstrativos.filter(destino => destino.estado === "RJ").length >= 5);
+  const cabo = obterDestinoDemonstrativo("cabo-frio");
+  assert.deepEqual(planos[2].paradas.map(parada => parada.id), cabo.paradas.slice(0, 2).map(parada => parada.id));
+  const semCarga = planejarViagem(origem, cabo, 400, 0);
+  assert.equal(podeIniciarViagem(semCarga), false);
+  assert.deepEqual(semCarga.paradas, []);
+  assert.equal(planejarViagem(origem, cabo, 800, 100).paradas.length, 0);
 });

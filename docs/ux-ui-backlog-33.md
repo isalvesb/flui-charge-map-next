@@ -540,3 +540,11 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Arquivos: PointDetailsScreen.tsx/.styles.ts. Dados simulados retirado do topo e movido após todas as seções da ficha. Detalhe acessível e Sobre os dados preservados.
 - Títulos de 16 para 14 pt, mantendo bold 800 e alinhamento dos ícones; altura de linha 20. Redução pequena para evitar quebra na fonte Maior sem remover escala nativa.
 - Verificações: TypeScript, ESLint dirigido e diff. Conferir cartões com fonte maior na matriz web e no iPhone.
+
+### S04 — 01: origem configurada e viagens mais longas
+
+- Arquivos: data/destinosViagem.ts, TripPlannerScreen.tsx, tests/tripPlanner.test.ts. Origem agora é a preferência do cenário, sem seletor independente na viagem; mudanças em Configurações atualizam o planejamento.
+- Cinco destinos no RJ: Paraty, Angra dos Reis, Rio de Janeiro, Cabo Frio e Búzios. Cidades/coordenadas aproximadas; paradas novas são cenários fictícios interpolados, sem afirmar existência de postos ou roteiro rodoviário. Motor de cálculo/reserva não alterado nem contagem artificial forçada.
+- Com FIAP/400 km/70%, Campinas exige 0, Rio exige 1 e Cabo Frio/Búzios exigem 2 paradas no modelo; carga/autonomia diferentes mudam esses resultados. Todas as paradas aparecem em resumo/mapa/lista na ordem calculada.
+- Verificações: TypeScript, ESLint e testes de planejamento, incluindo novos destinos, bateria zerada bloqueada e ausência de paradas quando alcance basta.
+- S02 `6484277`; S03 `814833b`. Validação humana posterior pendente.

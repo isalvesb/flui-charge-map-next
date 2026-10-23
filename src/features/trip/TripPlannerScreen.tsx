@@ -37,7 +37,6 @@ import MapView, {
 import { PressableScale, ScreenTransition } from "../../components";
 import { useAppPreferences } from "../../context/PreferencesContext";
 import { useTelaComPreferencias } from "../../hooks/useTelaComPreferencias";
-import { origensDemonstrativas } from "../../data/demonstracao";
 import {
   destinosDemonstrativos,
   obterDestinoDemonstrativo,
@@ -56,8 +55,6 @@ import { getTripReadingLayout, shouldStackTripStats } from "./tripLayout";
 import { useReducedMotion } from "../../hooks/useReducedMotion";
 
 type Coordenada = { latitude: number; longitude: number };
-
-type SeletorAberto = "origem" | "destino" | null;
 
 function formatarDuracao(minutos: number) {
   const horas = Math.floor(minutos / 60);
@@ -101,22 +98,16 @@ export default function TripPlannerScreen() {
   const vehicleRangeKm = userPreferences.vehicleRangeKm;
   const batteryPercent = userPreferences.batteryPercent;
 
-  const [originId, setOriginId] = useState(demoOrigin.id);
   const [destinationId, setDestinationId] = useState(
     destinosDemonstrativos[0].id,
   );
-  const [seletorAberto, setSeletorAberto] = useState<SeletorAberto>(null);
+  const [seletorAberto, setSeletorAberto] = useState(false);
   const [erroDeRota, setErroDeRota] = useState<string | null>(null);
   const [isIniciandoViagem, setIsIniciandoViagem] = useState(false);
   const scrollRef = useRef<ScrollView>(null);
   const routeCardTop = useRef(0);
 
-  const origemSelecionada = useMemo(() => {
-    return (
-      origensDemonstrativas.find((origem) => origem.id === originId) ??
-      demoOrigin
-    );
-  }, [demoOrigin, originId]);
+  const origemSelecionada = demoOrigin;
 
   const destinoSelecionado = useMemo<DestinoViagem>(() => {
     return obterDestinoDemonstrativo(destinationId);
@@ -211,17 +202,6 @@ export default function TripPlannerScreen() {
   };
 
   const renderizarSeletor = () => {
-    const opcoesOrigem = origensDemonstrativas.map((origem) => ({
-      id: origem.id,
-      titulo: origem.nome,
-      subtitulo: "Origem do cenário",
-      selecionado: origem.id === originId,
-      onPress: () => {
-        setOriginId(origem.id);
-        setSeletorAberto(null);
-      },
-    }));
-
     const opcoesDestino = destinosDemonstrativos.map((destino) => {
       const preview = planejarViagem(origemSelecionada, destino, vehicleRangeKm, batteryPercent);
       return {
@@ -229,31 +209,29 @@ export default function TripPlannerScreen() {
         titulo: destino.nome,
         subtitulo: describeTripStops(preview),
         selecionado: destino.id === destinationId,
-        onPress: () => { setDestinationId(destino.id); setSeletorAberto(null); },
+        onPress: () => { setDestinationId(destino.id); setSeletorAberto(false); },
       };
     });
 
-    const opcoes = seletorAberto === "origem" ? opcoesOrigem : opcoesDestino;
+    const opcoes = opcoesDestino;
 
     return (
       <Modal
-        visible={seletorAberto !== null}
+        visible={seletorAberto}
         transparent
         animationType={reducedMotion ? "none" : "slide"}
-        onRequestClose={() => setSeletorAberto(null)}
+        onRequestClose={() => setSeletorAberto(false)}
       >
         <View style={styles.modalBackdrop}>
           <Pressable
             style={StyleSheet.absoluteFill}
             accessibilityRole="button"
             accessibilityLabel="Fechar seletor"
-            onPress={() => setSeletorAberto(null)}
+            onPress={() => setSeletorAberto(false)}
           />
           <View style={styles.modalSheet} accessibilityViewIsModal>
             <Text style={styles.modalTitle} accessibilityRole="header">
-              {seletorAberto === "origem"
-                ? "Escolher origem"
-                : "Escolher destino"}
+              Escolher destino
             </Text>
 
             <ScrollView showsVerticalScrollIndicator={false}>
@@ -282,7 +260,7 @@ export default function TripPlannerScreen() {
             <Pressable
               accessibilityRole="button"
               style={styles.modalCloseButton}
-              onPress={() => setSeletorAberto(null)}
+              onPress={() => setSeletorAberto(false)}
             >
               <Text style={styles.modalCloseButtonText}>Cancelar</Text>
             </Pressable>
@@ -319,15 +297,10 @@ export default function TripPlannerScreen() {
           showsVerticalScrollIndicator={false}
         >
           <View style={styles.card}>
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel={`Origem: ${origemSelecionada.nome}`}
-              accessibilityHint="Toque para escolher outra origem do cenário."
-              style={({ pressed }) => [
-                styles.routeField,
-                pressed ? styles.routeFieldPressed : null,
-              ]}
-              onPress={() => setSeletorAberto("origem")}
+            <View
+              accessible
+              accessibilityLabel={`Origem configurada: ${origemSelecionada.nome}`}
+              style={styles.routeField}
             >
               <View style={styles.routeDotWrap}>
                 <View style={styles.routeDotOrigin} />
@@ -338,7 +311,7 @@ export default function TripPlannerScreen() {
                   {origemSelecionada.nome}
                 </Text>
               </View>
-            </Pressable>
+            </View>
 
             <View style={styles.routeDivider} />
 
@@ -350,7 +323,7 @@ export default function TripPlannerScreen() {
                 styles.routeField,
                 pressed ? styles.routeFieldPressed : null,
               ]}
-              onPress={() => setSeletorAberto("destino")}
+              onPress={() => setSeletorAberto(true)}
             >
               <View style={styles.routeDotWrap}>
                 <MapPin size={18} color={colors.primary} strokeWidth={2.2} />
@@ -473,7 +446,7 @@ export default function TripPlannerScreen() {
                 accessibilityRole="button"
                 accessibilityLabel="Editar destino da viagem"
                 style={styles.editButton}
-                onPress={() => setSeletorAberto("destino")}
+                onPress={() => setSeletorAberto(true)}
               >
                 <Text style={styles.editButtonText}>Editar destino</Text>
                 <ChevronRight size={14} color={colors.primary} strokeWidth={2.4} />
