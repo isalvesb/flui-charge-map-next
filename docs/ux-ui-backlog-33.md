@@ -825,3 +825,9 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - `7291da0`: pacote e versão raiz do lockfile passam a 2.3.0; configuração de futuras compilações usa nome/CFBundleDisplayName Flui 2.3 e versão 2.3.0. Nenhuma versão de dependência mudou (comparação estrutural do lockfile confirmou apenas os dois campos raiz). Não alterados bundle ID, código nativo, buildNumber ou instalação física. Arquivos: package.json, package-lock.json, app.config.js; sintaxe e diff aprovados.
 - Conferência dirigida validacao-origem-versao.json, em contexto web isolado: textos externos ausentes, origem NEXT salva automaticamente e preservada ao reabrir, bateria preservada e rodapé Flui 2.3.0. Sem erros de página. Não repetida a suíte completa para exclusão de três textos e metadados de versão.
 - Mesmo Metro, sem reinício/reconfiguração ou compilação nativa. Fonte do rodapé é package.json; nome sob o ícone e versão da instalação atual do iPhone permanecem os da compilação instalada até atualização nativa autorizada. Não confundir nome no código com reinstalação concluída. Pacote offline anterior continua snapshot antigo Flui 2.2, intocado.
+
+
+### S32 — 19/21: título Localização inicial
+
+- `cd8acb6`: novo pedido aplicado em PresentationOriginPreference.tsx. Título Localização inicial acima do seletor, com mesma tipografia das demais seções e espaçamento padrão optionsList. Sem texto de apoio adicional. Salvamento automático, rótulo acessível e opções preservados.
+- ESLint dirigido e diff aprovados. Mudança restrita a título e espaçamento; não repetidos testes de persistência, suíte completa ou matriz visual. Disponível pelo mesmo Metro, sem compilação/instalação nativa. Conferência física desta alteração pendente.
