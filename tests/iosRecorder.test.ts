@@ -5,6 +5,7 @@ import { beginIosRecording } from "../src/features/assistant/voice/iosRecorder";
 type Load = NonNullable<Parameters<typeof beginIosRecording>[2]>;
 function fixture({ granted = true, canAskAgain = false, request = async () => ({ granted: true, canAskAgain: true }), prepare = async () => {}, readFails = false } = {}) {
   const events: string[] = [];
+  const modes: { allowsRecording: boolean; playsInSilentMode?: boolean }[] = [];
   let options: Record<string, unknown> = {};
   let listener: (status: { isFinished: boolean; hasError: boolean; url?: string }) => void = () => {};
   class Recorder {
@@ -23,7 +24,13 @@ function fixture({ granted = true, canAskAgain = false, request = async () => ({
       IOSOutputFormat: { LINEARPCM: "lpcm" }, AudioQuality: { HIGH: 96 },
       getRecordingPermissionsAsync: async () => ({ granted, canAskAgain }),
       requestRecordingPermissionsAsync: request,
-      setAudioModeAsync: async (mode: { allowsRecording: boolean }) => { events.push(mode.allowsRecording ? "mode:record" : "mode:play"); },
+      setAudioModeAsync: async (mode: { allowsRecording: boolean; playsInSilentMode?: boolean }) => {
+        // ExpoAudio 1.1.1 / AudioUtils.validateAudioMode rejects this combination
+        // before creating a recorder. Omitted playsInSilentMode defaults to false.
+        if (mode.allowsRecording && !mode.playsInSilentMode) throw new Error("Impossible audio mode on iOS");
+        modes.push(mode);
+        events.push(mode.allowsRecording ? "mode:record" : "mode:play");
+      },
     },
     fs: {
       EncodingType: { Base64: "base64" },
@@ -32,12 +39,13 @@ function fixture({ granted = true, canAskAgain = false, request = async () => ({
       deleteAsync: async () => { events.push("delete"); },
     },
   });
-  return { load: load as unknown as Load, events, options: () => options, emit: (status: Parameters<typeof listener>[0]) => listener(status) };
+  return { load: load as unknown as Load, events, modes, options: () => options, emit: (status: Parameters<typeof listener>[0]) => listener(status) };
 }
 
 test("adaptador iOS usa PCM mono com limite nativo e remove arquivo antes de devolver áudio", async () => {
   const f = fixture();
   const recording = await beginIosRecording(new AbortController().signal, () => {}, f.load);
+  assert.equal(f.modes.find(mode => mode.allowsRecording)?.playsInSilentMode, true);
   assert.equal(f.options().outputFormat, "lpcm");
   assert.equal(f.options().sampleRate, 16000);
   assert.equal(f.options().numberOfChannels, 1);
@@ -48,6 +56,8 @@ test("adaptador iOS usa PCM mono com limite nativo e remove arquivo antes de dev
   await recording.dispose(); await recording.dispose();
   assert.equal(f.events.filter((event) => event === "release").length, 1);
   assert.ok(f.events.includes("mode:play"));
+  assert.equal(f.modes.at(-1)?.allowsRecording, false);
+  assert.equal(f.modes.at(-1)?.playsInSilentMode, undefined);
 });
 
 test("permissão negada não cria gravador; erro de leitura ainda exclui arquivo", async () => {

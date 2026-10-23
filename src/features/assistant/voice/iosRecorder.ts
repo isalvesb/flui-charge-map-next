@@ -50,7 +50,9 @@ export async function beginIosRecording(signal: AbortSignal, interrupted: () => 
     }
     checkCanceled(signal);
     if (!permission.granted) throw new VoiceError("Microfone não autorizado. Ative o acesso em Ajustes > Privacidade e Segurança > Microfone, ou use o teclado.");
-    await audio.setAudioModeAsync({ allowsRecording: true, shouldPlayInBackground: false, allowsBackgroundRecording: false });
+    // SDK 54 rejects allowsRecording without playsInSilentMode on iOS.
+    // Cleanup restores the non-recording mode after this explicit capture.
+    await audio.setAudioModeAsync({ allowsRecording: true, playsInSilentMode: true, shouldPlayInBackground: false, allowsBackgroundRecording: false });
     checkCanceled(signal);
     // SDK 54 exposes the native constructor; unlike the React hook, it can be
     // created lazily after permission and released by the session owner.
