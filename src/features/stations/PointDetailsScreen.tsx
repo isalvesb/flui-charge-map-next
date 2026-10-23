@@ -562,7 +562,7 @@ export default function PointDetailsScreen() {
             </View>
           </View>
 
-          <Text style={styles.dataOriginLabel}>Status e notas do catálogo de simulação</Text>
+          <Text style={styles.dataOriginLabel}>{identificacaoDados.catalogo.resumo}</Text>
 
           <View style={styles.availableRow}>
             <View style={styles.availableIconBox}>
@@ -665,9 +665,6 @@ export default function PointDetailsScreen() {
             </View>
           </View>
 
-          <Text style={styles.resumoDescription}>
-            {identificacaoDados.catalogo.aviso}{" "}{identificacaoDados.estimativas.aviso}
-          </Text>
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Estimativas de recarga</Text>
             <Text style={styles.infoDescription}>Espera simulada: {orientacaoDeEspera} · Carga: {tempoEstimadoCarga}</Text>

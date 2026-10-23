@@ -66,9 +66,9 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 | 22 | P3 | Nome e endereço da estação | Implementado; revisão física pendente | stations/PointDetailsScreen | Manter 29. |
 | 23 | P2 | Pills de status e avaliação | Implementado; revisão física pendente | stations/PointDetailsScreen | Transparência alinhada a 03; manter conteúdo da seção Avaliações. |
 | 24 | P1 | Banner e estimativas sincronizadas | Implementado; revisão física pendente | stations; utils/autonomia | Dispensa limitada à condição; reserva exata de 5%; depende da bateria compartilhada. |
-| 25 | P2 | Carregadores e confirmação | Investigar antes de alterar | stations; stationPresentation | Entender Recarga não confirmada e manter função de segurança. |
+| 25 | P2 | Carregadores e confirmação | Implementado; confirmação preservada | stations; stationPresentation | Entender Recarga não confirmada e manter função de segurança. |
 | 26 | P3 | Padrão dos cartões da ficha | Pendente | stations/PointDetailsScreen | Ícone/título com área distinta; distância continua aproximada. |
-| 27 | P2 | Identificação de catálogo sem repetição | Pendente | stations; identificacaoDados | Depende da identificação geral em 03/23/25. |
+| 27 | P2 | Identificação de catálogo sem repetição | Implementado; revisão física pendente | stations; identificacaoDados | Depende da identificação geral em 03/23/25. |
 | 28 | P3 | Cartões Estimativas e Conectores | Pendente | stations/PointDetailsScreen | Depende de 26; não modificar 29. |
 | 29 | — | Preservar Comodidades próximas e Avaliações | Preservação obrigatória | stations/PointDetailsScreen | Nenhuma alteração sem defeito comprovado ou autorização adicional. |
 | 30 | P1 | Persistência offline de fotos e favoritos | Investigar cache existente | assets; storage; service-worker | Não introduzir armazenamento remoto; distinguir assets empacotados e cache web. |
@@ -163,3 +163,11 @@ Cada entrada deve informar IDs, commit, arquivos, verificações e limites human
 - Nome/endereço aproximados com respiro abaixo. Status em primeira pill, nota/contagem em outra ao lado, com quebra flexível em fontes grandes. Uma identificação conjunta explica simulação de status/notas, evitando repetir o termo em cada valor.
 - Verificações: TypeScript, ESLint dirigido, diff (`08-*`). Seções Comodidades próximas e Avaliações preservadas.
 - Conferir: abrir ficha, comparar grupo nome/endereço e pills em claro/escuro e fonte ampliada. Revisão física pendente.
+
+### CP09 — 25 e 27: carregadores e identificação única do catálogo
+
+- Arquivos: `src/features/stations/stationPresentation.ts`, `PointDetailsScreen.tsx`, `src/data/identificacaoDados.ts`, `tests/stationPresentation.test.ts`.
+- Investigação: “Recarga não confirmada” cobre estação fechada, manutenção, estado/horário desconhecido ou ausência de conectores utilizáveis (`canChargeAt`). Mantida nos cenários não elegíveis; não há garantia nem reserva automática.
+- Removido “no exemplo” das quantidades. Identificação única junto ao resumo informa simulação, ausência de verificação/tempo real e possível desatualização; eliminado o bloco duplicado antes das estimativas.
+- Verificações: TypeScript, ESLint, testes de apresentação e filtragem, incluindo mudança de horário e conectores inválidos (`09-*`).
+- Conferir: ficha de ponto disponível e indisponível; comparar quantidade/status/aviso. Seções de comodidades/avaliações intactas. Revisão física pendente. CP07 `b3dade0`, CP08 `6f19aba`.

@@ -79,7 +79,7 @@ test("resume status, recomendação e espera sem depender da tela", () => {
   assert.equal(getStationStatusInfo(station, now).label, "Aberto agora");
   assert.equal(
     getStationRecommendation(station, 1),
-    "Opção com conector rápido no exemplo",
+    "Opção com conector rápido",
   );
   assert.equal(getWaitingLevel(station.status, 1), "Moderada");
 });
@@ -89,7 +89,7 @@ test("não promete parada rápida quando só o conector lento está utilizável"
     {id: "dc", type: "ccs2", label: "CCS2", powerKw: 150, totalChargers: 2, availableChargers: 0},
     {id: "ac", type: "type2", label: "Tipo 2", powerKw: 22, totalChargers: 1, availableChargers: 1},
   ]});
-  assert.equal(getStationRecommendation(station, 1), "Opção de recarga nos dados demonstrativos");
+  assert.equal(getStationRecommendation(station, 1), "Opção de recarga no catálogo");
 });
 
 const presentationDate = new Date("2026-10-17T01:00:00Z");
@@ -115,8 +115,8 @@ for (const scenario of presentationCases) {
     assert.match(arrival.text, /Estimativa em linha reta; confirme o funcionamento/);
     assert.equal(arrival.tone, scenario.canCharge ? "success" : "neutral");
     assert.equal(label, scenario.canCharge
-      ? "1 de 2 carregadores livres no exemplo"
-      : "2 carregadores cadastrados no exemplo. Recarga não confirmada.");
+      ? "1 de 2 carregadores livres"
+      : "2 carregadores cadastrados. Recarga não confirmada.");
     assert.deepEqual(scenario.station, snapshot, "A apresentação preserva os dados cadastrados");
     assert.deepEqual(arrivalAssessment, avaliarAlcance(0.3, 400, 45), "O cálculo de autonomia não muda");
   });
@@ -138,7 +138,7 @@ test("a mesma ficha deixa de anunciar carregadores livres exatamente ao fechar",
   const station = createStation({ openingSchedule: undefined, openingHours: "Todos os dias, 06h às 22h" });
   const before = new Date("2026-10-17T00:59:59Z");
   const after = new Date("2026-10-17T01:00:00Z");
-  assert.match(getStationChargerCountLabel(station, 3, 5, before), /3 de 5 carregadores livres no exemplo/);
+  assert.match(getStationChargerCountLabel(station, 3, 5, before), /3 de 5 carregadores livres/);
   assert.doesNotMatch(getStationChargerCountLabel(station, 3, 5, after), /livres|disponíveis/);
   assert.equal(getStationArrivalPresentation(station, arrivalAssessment, before).tone, "success");
   assert.equal(getStationArrivalPresentation(station, arrivalAssessment, after).tone, "neutral");

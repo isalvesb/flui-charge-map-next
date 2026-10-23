@@ -84,8 +84,8 @@ export function getStationChargerCountLabel(
   date = new Date(),
 ) {
   return canChargeAt(station, date)
-    ? `${availableChargers} de ${totalChargers} carregadores livres no exemplo`
-    : `${totalChargers} carregadores cadastrados no exemplo. Recarga não confirmada.`;
+    ? `${availableChargers} de ${totalChargers} carregadores livres`
+    : `${totalChargers} carregadores cadastrados. Recarga não confirmada.`;
 }
 
 export function getStationArrivalPresentation(
@@ -164,11 +164,11 @@ export function getStationRecommendation(
     Math.max(...getUsableConnectors(station).map(connector => connector.powerKw)),
   );
   if (availableChargers > 0 && usablePowerKw >= 120) {
-    return "Opção com conector rápido no exemplo";
+    return "Opção com conector rápido";
   }
 
   if (availableChargers > 0) {
-    return "Opção de recarga nos dados demonstrativos";
+    return "Opção de recarga no catálogo";
   }
 
   return "Verifique a fila antes de ir";
