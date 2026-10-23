@@ -4,7 +4,7 @@ import { requireOptionalNativeModule } from "expo";
 import { useConnectivity } from "../context/ConnectivityContext";
 import { stationImages } from "../assets/stations";
 import { offlineImageMetadata } from "./offlineImageMetadata";
-import { createOfflineAssetCache } from "./offlineAssetCache";
+import { createOfflineAssetCache, resolveOfflineImage, type OfflineAsset } from "./offlineAssetCache";
 
 // Both native modules already belong to the installed SDK54 pods. No new module
 // or dependency is installed. Methods checked against that SDK's native source.
@@ -24,12 +24,14 @@ const sources: Record<string, ImageSourcePropType> = {
 const fs = requireOptionalNativeModule<FileSystemModule>("ExponentFileSystem");
 const downloader = requireOptionalNativeModule<AssetModule>("ExpoAsset");
 const directory = fs?.documentDirectory ? `${fs.documentDirectory}flui-demo-images-v1/` : null;
+const matches = async (uri: string, asset: OfflineAsset) => {
+  if (!fs) return false;
+  const info = await fs.getInfoAsync(uri, { md5: true });
+  return info.exists && !info.isDirectory && (info.size ?? 0) > 0 && info.md5 === asset.md5;
+};
 const cache = fs && downloader && directory ? createOfflineAssetCache({
   directory,
-  matches: async (uri, asset) => {
-    const info = await fs.getInfoAsync(uri, { md5: true });
-    return info.exists && !info.isDirectory && (info.size ?? 0) > 0 && info.md5 === asset.md5;
-  },
+  matches,
   ensureDirectory: () => fs.makeDirectoryAsync(directory, { intermediates: true }),
   download: async asset => {
     const source = Image.resolveAssetSource(sources[asset.id]);
@@ -58,10 +60,10 @@ export function OfflineAssetsProvider({ children }: { children: React.ReactNode 
       while (index < offlineImageMetadata.length && active) {
         const asset = offlineImageMetadata[index++];
         try {
-          const uri = await store.prepare(asset, status !== "offline");
           const module = sources[asset.id];
+          const resolved = Image.resolveAssetSource(module);
+          const uri = await resolveOfflineImage(asset, resolved?.uri, status !== "offline", { matches, prepare: store.prepare });
           if (active && typeof module === "number") {
-            const resolved = Image.resolveAssetSource(module);
             setLocal(current => new Map(current).set(module, { ...resolved, uri }));
           }
         } catch {

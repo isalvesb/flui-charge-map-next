@@ -5,12 +5,48 @@ import { copyFile, mkdir, mkdtemp, readFile, rm, stat, writeFile } from "node:fs
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { createOfflineAssetCache, type OfflineAsset, type OfflineAssetIO } from "../src/offline/offlineAssetCache";
+import { createOfflineAssetCache, resolveOfflineImage, type OfflineAsset, type OfflineAssetIO } from "../src/offline/offlineAssetCache";
 import { offlineImageMetadata } from "../src/offline/offlineImageMetadata";
 
 const bytes = Buffer.from("demo image bytes");
 const md5 = (data: Buffer) => createHash("md5").update(data).digest("hex");
 const asset: OfflineAsset = { id: "profile", type: "png", md5: md5(bytes) };
+
+test("primeira abertura offline reconhece todas as fotos embutidas sem rede ou cópia prévia", async () => {
+  let cacheCalls = 0;
+  for (const entry of offlineImageMetadata) {
+    const source = pathToFileURL(join(process.cwd(), entry.sourceFile)).href;
+    const uri = await resolveOfflineImage(entry, source, false, {
+      matches: async (file, descriptor) => md5(await readFile(fileURLToPath(file))) === descriptor.md5,
+      prepare: async () => { cacheCalls++;throw new Error("Não deveria precisar de cache/rede"); },
+    });
+    assert.equal(uri, source);
+  }
+  assert.equal(cacheCalls, 0);
+});
+
+test("origem HTTP não é acessada offline e bundle inválido pode usar cópia persistente", async () => {
+  for (const source of ["http://metro.invalid/image.png", "file:///missing.png"]) {
+    let checkedSource = false;
+    const uri = await resolveOfflineImage(asset, source, false, {
+      matches: async () => { checkedSource = true;throw new Error("unreadable"); },
+      prepare: async (expected, networkAllowed) => {
+        assert.equal(expected, asset);
+        assert.equal(networkAllowed, false);
+        return "file:///documents/prepared.png";
+      },
+    });
+    assert.equal(checkedSource, source.startsWith("file://"));
+    assert.equal(uri, "file:///documents/prepared.png");
+  }
+});
+
+test("foto embutida corrompida sem cópia não vira uma imagem preparada", async () => {
+  await assert.rejects(resolveOfflineImage(asset, "file:///app/partial.png", false, {
+    matches: async () => false,
+    prepare: async (_asset, networkAllowed) => { assert.equal(networkAllowed, false);throw new Error("not prepared"); },
+  }), /not prepared/);
+});
 
 function memoryIO() {
   const files = new Map<string, Buffer>();

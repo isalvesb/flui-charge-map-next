@@ -7,6 +7,25 @@ export type OfflineAssetIO = {
   copy: (from: string, to: string) => Promise<void>;
 };
 
+// Release images already live inside the application. Validate those files
+// before asking the persistent store: first launch offline must not require
+// an earlier online session just to copy an image that is already bundled.
+export async function resolveOfflineImage(
+  asset: OfflineAsset,
+  bundledSource: string | undefined,
+  allowNetwork: boolean,
+  io: Pick<OfflineAssetIO, "matches"> & { prepare: (asset: OfflineAsset, allowNetwork: boolean) => Promise<string> },
+) {
+  if (bundledSource?.startsWith("file://")) {
+    try {
+      if (await io.matches(bundledSource, asset)) return bundledSource;
+    } catch {
+      // A missing/unreadable bundle file may still have a valid stored copy.
+    }
+  }
+  return io.prepare(asset, allowNetwork);
+}
+
 // Only the bundled, allowlisted images enter this store. No private URLs or
 // user records are written here; file names are versioned by content hash.
 export function createOfflineAssetCache(io: OfflineAssetIO) {

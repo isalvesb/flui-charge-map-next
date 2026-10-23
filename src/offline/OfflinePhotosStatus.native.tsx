@@ -33,7 +33,7 @@ export default function OfflinePhotosStatus() {
         </View>
       </> : null}
     </View>
-    <Text style={styles.sectionText}>Mapa de fundo e navegação externa precisam de conexão. A versão de desenvolvimento também precisa do servidor para iniciar o app.</Text>
+    <Text style={styles.sectionText}>O mapa de fundo pode ter áreas indisponíveis sem conexão. Navegação externa depende do aplicativo escolhido.{__DEV__ ? " A versão de desenvolvimento precisa do servidor para iniciar o app." : ""}</Text>
     {state.canRetry ? <Pressable accessibilityRole="button" accessibilityLabel="Preparar fotos para uso sem conexão" style={[styles.optionButton, { marginTop: 12 }]} onPress={retry}>
       <Text style={styles.optionTitle}>Preparar fotos</Text>
     </Pressable> : null}
