@@ -130,6 +130,6 @@ Conferência obrigatória da proposta: identidade desejada, imagens disponíveis
 
 ## Atualização de 23/10 — base simulada ampliada
 
-Após escolha explícita do usuário, catálogo local ampliado de 12 para 66 estações (54 novas, total 47 em SP e 19 no RJ). Dados anteriores preservados; novos pontos são fictícios, sem avaliações/fotos/favoritos atribuídos e sem fontes externas. Não representa base operacional verificada nem migração Supabase. Planejador ainda usa paradas próprias de destinosViagem e será revisado depois desta base, por instrução humana. Ver checkpoints S06/S09 no registro UX/UI.
+Após escolha explícita do usuário, catálogo local ampliado de 12 para 66 estações (54 novas, total 47 em SP e 19 no RJ). Dados anteriores preservados; novos pontos são fictícios, sem avaliações/fotos/favoritos atribuídos e sem fontes externas. Não representa base operacional verificada nem migração Supabase. Depois da ampliação e conferência da base, S12 passou a selecionar paradas do mesmo catálogo do mapa, com IDs/coordenadas compartilhados, reserva exata de 5% e estimativa em linha reta. A lista antiga dos destinos permanece apenas como cenário histórico/teste do motor anterior. Ver checkpoints S06/S09/S12 no registro UX/UI; não equivale a roteamento rodoviário real.
 
 Relato físico novo: offline não funcionou no iPhone. Sintomas solicitados, sem confirmação ainda. Fonte nativa de desenvolvimento depende do Metro; evidência de cache web não prova arranque ou fotos offline no iPhone. Nenhuma recompilação/instalação realizada.

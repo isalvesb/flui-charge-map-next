@@ -42,7 +42,7 @@ Estados técnicos e humanos são separados. “Implementado” não significa �
 
 | ID | Prioridade | Ajuste | Estado | Arquivos/área | Dependências, pendências e limites |
 |---|---|---|---|---|---|
-| 01 | P1 | Paradas e trajetos | Pendente; retomada após ampliar a base, por instrução humana | trip/TripPlannerScreen; utils/tripPlanner | Base de mapa ampliada em S06; planejador ainda usa paradas separadas de destinosViagem. Não marcar resolvido nem integrar sem revisar critérios. |
+| 01 | P1 | Paradas e trajetos | Implementado com base ampliada; revisão física pendente | utils/catalogTripPlanner; trip/TripPlannerScreen | S12 posterior à base: mesmos IDs/nomes/coordenadas do mapa, menos recargas com reserva exata de 5%, seletor/resumo correspondentes. Linha reta, sem roteiro rodoviário validado. |
 | 02 | P3 | Subtexto do popup de estações | Feito; usuário respondeu ok | map/HomeMapScreen | Preservar identificação geral da simulação. |
 | 03 | P2 | Linguagem e transparência | Revisado novamente; usuário ainda não aprovou a redução | data/identificacaoDados; telas | Transversal a 04, 23, 25, 27; evitar remoção indiscriminada. |
 | 04 | P2 | Origem do valor de bateria | Feito; usuário respondeu ok | utils/batteryData | Distinguir manual, simulado e desconhecido. |
@@ -635,3 +635,12 @@ Em 22/10, usuário relatou: (1) não viu diferença no planejador; (2) versão d
 - Verificações: TypeScript, ESLint e testes de rota direta, três paradas, menor número de recargas, manutenção/fechamento, reserva exata, entradas inválidas e correspondência com a base SP/RJ. Conferência web dirigida e revisão humana ainda pendentes.
 
 - S12: primeira suíte dirigida detectou fixture de teste que ainda mantinha calendário estruturado 24h enquanto trocava só o texto de horário. Cenário fechado corrigido para testar fallback e calendário fechado separadamente; precedência do calendário e motor não alterados. Log inicial preservado.
+
+### Verificação final após retomada do 01
+
+- S12 `856b0b3`: TypeScript/ESLint, 24 testes dirigidos e suíte completa 188/188 aprovados. Um aviso ESLint herdado, sem erros.
+- `validacao-viagem-catalogo.json`: aprovado, zero erros de página; três contextos isolados FIAP → Cabo Frio: 400 km/70%=1 parada, 400 km/40%=2 paradas e 200 km/70%=3 paradas. Seletor e resumo correspondem e exibem nomes do catálogo. Contextos de navegador não alteraram dados do iPhone.
+- Captura viagem-400-40.png inspecionada. Testes verificam coordenadas/IDs da mesma base e reserva exata; evidência web não comprova renderização nativa do mapa nem roteiro real. Revisão humana do novo comportamento pendente.
+- Exportação final e manifesto de 15 fotos locais atualizados após S12. Pontos novos usam ilustração vetorial, sem novos downloads de imagens.
+- Atualização posterior ao fechamento anterior: item 01 foi retomado somente depois da base pronta e conferida, conforme ordem solicitada. Não permanece apenas na contagem antiga dos destinos. Próximas pendências: diagnóstico nativo offline, captura de fala, seleção por veículo e cenários completos; dependências de decisão específicas continuam registradas.
+- Metro experimental 8116 permanece disponível no diretório/branch da tarefa. Servidor temporário de QA 8120 encerrado no fechamento; não encerra Metro nem reinicia ambientes protegidos.
