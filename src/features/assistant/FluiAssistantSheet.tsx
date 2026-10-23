@@ -33,8 +33,8 @@ import {
 
 import * as Speech from "expo-speech";
 import { createSpeechPlayback, type SpeechPlaybackState } from "./speechPlayback";
-import { FluiaVoiceInput } from "./voice/FluiaVoiceInput";
-import { appendTranscript, voiceBusy, type VoicePhase } from "./voice/voiceSession";
+import { useLiveVoice } from "./voice/useLiveVoice";
+import { voiceBusy } from "./voice/voiceSession";
 import { getVoiceVisualStatus } from "./voice/voicePresentation";
 import { PressableScale } from "../../components";
 import { useAppPreferences } from "../../context/PreferencesContext";
@@ -151,8 +151,12 @@ export function FluiAssistantSheet({
   const [voicePlaybackState, setVoicePlaybackState] = useState<SpeechPlaybackState>("idle");
   const speechPlayback = useMemo(() => createSpeechPlayback(Speech, setVoicePlaybackState), []);
   const [fluiaState, setFluiaState] = useState<FluiaState>("repouso");
-  const [voicePhase, setVoicePhase] = useState<VoicePhase>("idle");
-  const captureBusy = voiceBusy(voicePhase);
+  const voiceSubmit = useRef<(text: string) => void>(() => {});
+  const liveVoice = useLiveVoice({
+    visible, disabled: isChatThinking || isAnalyzing || !visible, reducedMotion: reduceMotionEnabled,
+    beforeRecording: () => speechPlayback.stopAndWait(), received: text => voiceSubmit.current(text),
+  });
+  const captureBusy = voiceBusy(liveVoice.phase);
 
   const recommendation = useMemo(() => {
     if (!funcionalidadesExperimentais.fluia || !selectedIntent || isAnalyzing) return null;
@@ -180,7 +184,7 @@ export function FluiAssistantSheet({
 
   const isSpeaking = voicePlaybackState === "speaking";
   const actualState: FluiaState = isSpeaking ? "respondendo" : isAnalyzing ? "pensando" : selectedIntent ? recommendation ? "respondendo" : "aviso" : fluiaState;
-  const captureStatus = getVoiceVisualStatus(voicePhase, isSpeaking);
+  const captureStatus = getVoiceVisualStatus(liveVoice.phase, isSpeaking);
   const visualStatus = captureStatus ?? getFluiaVisualStatus(actualState, connectionStatus, isSpeaking);
   const displayedState: FluiaState = captureStatus ? getFluiaPreviewState(captureStatus) : actualState;
   const statusPresentation = FLUIA_VISUAL_PRESENTATION[visualStatus];
@@ -280,9 +284,9 @@ export function FluiAssistantSheet({
     );
   };
 
-  const sendMessage = () => {
-    const text = draft.trim();
-    if (!text || isChatThinking || captureBusy) return;
+  const submitText = (raw: string, source: "typed" | "voice") => {
+    const text = raw.trim();
+    if (!text || isChatThinking || (source === "typed" && captureBusy)) return;
     if (stateTimeoutRef.current) {
       clearTimeout(stateTimeoutRef.current);
       stateTimeoutRef.current = null;
@@ -292,7 +296,7 @@ export function FluiAssistantSheet({
 
     followLatestRef.current = true;
     setShowLatestMessage(false);
-    setDraft("");
+    if (source === "typed") setDraft("");
     setMessages((current) => [
       ...current,
       { id: nextMessageId.current++, from: "user", text },
@@ -336,6 +340,9 @@ export function FluiAssistantSheet({
       reduceMotionEnabled ? 0 : ASSISTANT_THINKING_DURATION,
     );
   };
+
+  const sendMessage = () => submitText(draft, "typed");
+  voiceSubmit.current = text => submitText(text, "voice");
 
   const scrollToLatestMessage = () => {
     if (messages.length > 0) {
@@ -422,11 +429,17 @@ export function FluiAssistantSheet({
             onLayout={() => { if (followLatestRef.current) scrollToLatestMessage(); }}
           >
             <View testID="fluia-orb-fixa" style={styles.hero}>
-              <View testID="fluia-orb-status" accessibilityRole="image" accessibilityLabel={`Orb da FluIA: ${statusPresentation.label}`}>
+              <PressableScale testID="fluia-orb-status" accessibilityRole={liveVoice.supported ? "button" : "image"}
+                accessibilityLabel={liveVoice.phase === "recording" ? "Concluir fala e pedir resposta" : captureBusy ? "Cancelar escuta ou transcrição" : isSpeaking ? "Interromper resposta e falar" : "Falar com a FluIA"}
+                accessibilityHint={liveVoice.phase === "recording" ? "Uma pausa de um segundo também conclui a fala." : "Inicia uma escuta. A pergunta é enviada ao terminar de falar."}
+                accessibilityState={{ disabled: !liveVoice.supported || isChatThinking || isAnalyzing, busy: captureBusy }}
+                disabled={!liveVoice.supported || isChatThinking || isAnalyzing} onPress={liveVoice.press}>
                 <MapEnergyOrb mapVariant size={128} state={displayedState} visualStatus={visualStatus} reducedMotion={reduceMotionEnabled} active={visible} />
-              </View>
+              </PressableScale>
             </View>
             <Text testID="fluia-status" accessibilityLiveRegion="polite" style={[styles.heroPrompt, { color: statusPresentation.color }]}>{statusPresentation.label}</Text>
+            {captureBusy && liveVoice.text ? <View testID="fluia-transcricao-ao-vivo" style={styles.liveTranscript}><Text style={styles.liveTranscriptText}>{liveVoice.text}</Text></View> : null}
+            {liveVoice.phase === "error" && liveVoice.message ? <Text accessibilityRole="alert" style={styles.voiceNotice}>{liveVoice.message}</Text> : null}
             {isAnalyzing ? (
               <View
                 style={styles.analyzingCard}
@@ -614,7 +627,7 @@ export function FluiAssistantSheet({
                   cenário.
                 </Text>
               </View>
-            ) : messages.length === 0 ? (
+            ) : messages.length === 0 && !captureBusy ? (
               <View style={[styles.optionsScroll, styles.optionsContent]}>
                 {options.map(({ id, label, Icon }) => (
                   <PressableScale
@@ -680,6 +693,7 @@ export function FluiAssistantSheet({
 
           {voicePlaybackState === "error" ? <Text accessibilityRole="alert" style={styles.voiceNotice}>Não foi possível ler a resposta. O texto continua disponível; tente ouvir novamente.</Text> : null}
           <View style={styles.composerTools}>
+            {captureBusy ? <PressableScale accessibilityRole="button" accessibilityLabel="Cancelar escuta ou transcrição" style={styles.composerToolButton} onPress={liveVoice.cancel}><Text style={styles.secondaryButtonText}>Cancelar escuta</Text></PressableScale> : null}
             {voicePlaybackState === "speaking" ? (
               <PressableScale accessibilityRole="button" accessibilityLabel="Parar leitura da resposta" style={styles.composerToolButton} onPress={() => speechPlayback.stop()}>
                 <Square size={16} color={theme.primary} />
@@ -703,15 +717,6 @@ export function FluiAssistantSheet({
               </PressableScale>
             ) : null}
           </View>
-          <FluiaVoiceInput
-            visible={visible}
-            disabled={isChatThinking || isAnalyzing || !visible}
-            theme={theme}
-            fontScale={fontScale}
-            onBeforeRecording={() => speechPlayback.stopAndWait()}
-            onTranscript={(text) => { setDraft(current => appendTranscript(current, text)); markTyping(); }}
-            onPhase={setVoicePhase}
-          />
           <View style={styles.inputRow}>
             <TextInput
               value={draft}
@@ -1078,6 +1083,8 @@ function createStyles(theme: FluiaScreenTheme, fontScale: number) {
       fontWeight: "600",
     },
     voiceNotice: { color: theme.text, fontSize: font(13), lineHeight: font(19), paddingVertical: 8 },
+    liveTranscript: { marginVertical: 12, padding: 16, borderRadius: 20, backgroundColor: theme.surface, borderWidth: 1, borderColor: theme.border },
+    liveTranscriptText: { color: theme.text, fontSize: font(18), lineHeight: font(26), fontWeight: "600" },
     composerTools: { flexDirection: "row", flexWrap: "wrap", justifyContent: "flex-end", gap: 8 },
     composerToolButton: { minHeight: 44, paddingHorizontal: 8, flexDirection: "row", alignItems: "center", gap: 4 },
     inputRow: {

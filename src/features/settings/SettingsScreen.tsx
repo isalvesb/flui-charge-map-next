@@ -28,6 +28,7 @@ import { identificacaoDados } from "../../data/identificacaoDados";
 import OfflinePhotosStatus from "../../offline/OfflinePhotosStatus";
 import PresentationOriginPreference from "./PresentationOriginPreference";
 import { useSystemReducedMotion } from "../../hooks/useReducedMotion";
+import { FluiaVoiceSettings } from "./FluiaVoiceSettings";
 
 const FEEDBACK_DURATION = 3200;
 
@@ -406,6 +407,7 @@ export default function SettingsScreen() {
           </View>
           <OfflinePhotosStatus />
           {__DEV__ ? <>
+            <FluiaVoiceSettings />
             <PresentationOriginPreference onFeedback={showSettingsFeedback} />
             <View style={styles.optionsList}>
               <PressableScale accessibilityRole="button" accessibilityLabel="Cenários internos de apresentação" accessibilityHint="Configura dados fictícios separados dos registros normais deste dispositivo." style={styles.optionButton} onPress={() => router.push("/presentation")}>
