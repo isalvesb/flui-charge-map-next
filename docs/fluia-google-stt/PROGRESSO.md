@@ -237,3 +237,14 @@
 - Push feito por URL explícita com guarda temporária restrita à branch/commit autorizados. Hook permanente e `origin.pushurl=disabled://ux-mapa-publicacao-bloqueada` conferidos intactos. Main, consolidação, outras worktrees e serviços existentes não foram alterados para publicar.
 - PR anexada à conversa. Itens 36–41 implementados; 42 pendente; 43 de conexão parcial por dependência do Mac. Não iniciar novas funcionalidades de voz a partir da publicação.
 - Numeração corrigida pelo usuário: **43 — conexão sem burocracia**, parcial; **44 — criar PR**, concluído com a PR #103 em rascunho. Matriz de entrega atualizada, sem alterações no aplicativo ou novos testes pagos.
+
+## 23/10/2026 — retomada expressa do item 42, Zephyr
+
+- Base conferida: `local/fluia-google-stt-atual-20261023`, `fdd2026`, árvore limpa. Metro 8117/PID 2360 e intermediário 8787/PID 3975 pertencem a esta worktree; preservados nesta preparação.
+- Preparada síntese REST com `pt-BR-Chirp3-HD-Zephyr`, MP3, credencial Google somente no Mac. Mesmo HTTPS privado e autenticação temporária; sem serviço público, SDK novo ou mudança no motor determinístico.
+- Backend desativado por padrão. Ativação exige `TTS_APPROVED_VALIDATION=10/10000`, somente após autorização específica da API Text-to-Speech e consumo. Teto proposto: 10 chamadas/10.000 caracteres cumulativos, uma síntese por vez, sem repetição, no ledger próprio `tts-consumo.json`; reiniciar não renova saldo. STT e seu ledger permanecem separados.
+- Reservas ocorrem antes do Google e permanecem em erro/cancelamento; autenticação, origem, tamanho, duplicação, timeout e resposta limitada são conferidos. Nenhum texto/áudio/token é registrado pelo TTS; resultados ficam em memória no Mac.
+- **48/48 testes do intermediário aprovados**, incluindo 8 novos testes de TTS com provedor simulado. Log `.validation/zephyr-backend-tests.log`. Sem habilitar API ou realizar síntese real; app e reprodução ainda em preparação.
+- Item **45** esclarecido pelo usuário: Reduzir movimento estava ligado; comportamento previsto, sem alteração de código.
+- Item **46** solicitado: investigar conexão de IA generativa para respostas. Em análise, sem novo modelo/serviço/credencial/consumo ativado; priorizada a conclusão da voz Zephyr.
+- Referências oficiais: https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd ; https://cloud.google.com/text-to-speech/pricing . Preço consultado: US$30/milhão de caracteres após franquia; 10.000 caracteres equivalem a US$0,30 de síntese antes de eventuais créditos/impostos.

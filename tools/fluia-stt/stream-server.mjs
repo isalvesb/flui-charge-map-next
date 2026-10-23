@@ -8,6 +8,7 @@ import { attachStreamGateway, createStreamingBudget, isAuthorized, streamingBudg
 import { googleStreamProvider } from './google-stream.mjs';
 import { sessionToken } from './session-token.mjs';
 import { createPairingHandler } from './pairing.mjs';
+import { createTtsBudget, createTtsHandler, googleZephyrProvider, TTS_LIMITS, ZEPHYR_VOICE } from './tts.mjs';
 
 process.umask(0o077);
 // Keep SDK diagnostic request logging off: it can contain audio.
@@ -36,11 +37,28 @@ const token = await sessionToken({ resume: process.env.STT_RESUME_SESSION === '1
 const metrics = {};
 await recordUsage(budget.snapshot());
 const pairing = process.env.STT_PAIRING_ENABLED === '1' ? createPairingHandler({ token }) : null;
+let ttsBudget, tts;
+if (process.env.TTS_APPROVED_VALIDATION === '10/10000') {
+  const ttsFile = resolve(root, 'tts-consumo.json');
+  let ttsInitial;
+  try {
+    if (((await stat(ttsFile)).mode & 0o777) !== 0o600) throw new Error('Permissão do ledger TTS inválida.');
+    ttsInitial = JSON.parse(await readFile(ttsFile, 'utf8'));
+  } catch (error) { if (error.code !== 'ENOENT') throw error; }
+  const recordTtsUsage = async usage => {
+    await writeFile(ttsFile + '.tmp', JSON.stringify(usage), { mode: 0o600 });
+    await rename(ttsFile + '.tmp', ttsFile);
+  };
+  ttsBudget = createTtsBudget({ initial: ttsInitial, recordUsage: recordTtsUsage });
+  await recordTtsUsage(ttsBudget.snapshot());
+  tts = createTtsHandler({ token, budget: ttsBudget, synthesize: googleZephyrProvider(client.auth, project) });
+}
 const server = createServer({ cert: await readFile(process.env.STT_TLS_CERT), key: await readFile(process.env.STT_TLS_KEY), minVersion: 'TLSv1.2' }, (req, res) => {
   if (pairing?.handle(req, res)) return;
+  if (req.url === '/synthesize' && tts) { void tts(req, res); return; }
   const allowed = isAuthorized(req.headers, token) && !req.headers.origin;
   res.writeHead(allowed && req.method === 'GET' && req.url === '/health' ? 200 : 401, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
-  res.end(JSON.stringify(allowed ? { ready: true, streaming: true, ...budget.snapshot(), limits, metrics } : { code: 'UNAUTHORIZED' }));
+  res.end(JSON.stringify(allowed ? { ready: true, streaming: true, ...budget.snapshot(), limits, metrics, synthesis: tts ? { voice: ZEPHYR_VOICE, ...ttsBudget.snapshot(), limits: TTS_LIMITS } : null } : { code: 'UNAUTHORIZED' }));
 });
 const gateway = attachStreamGateway(server, { token, budget, openRecognition: googleStreamProvider(client, project, metrics) });
 server.headersTimeout = 10_000;
@@ -50,7 +68,7 @@ try { await writeFile(resolve(root, 'session-code'), token, { mode: 0o600, flag:
 catch { gateway.close(); server.close(); await client.close(); throw new Error('Confira a sessão existente antes de iniciar outra.'); }
 console.info(`FluIA STT streaming privado na porta ${port}. Máximo: ${limits.requests} chamadas/${limits.reservedSeconds} s reservados, 30 s por escuta, sem repetição.`);
 async function shutdown() {
-  pairing?.close(); gateway.close(); server.close(); server.closeAllConnections();
+  pairing?.close(); tts?.close(); gateway.close(); server.close(); server.closeAllConnections();
   await client.close(); await rm(resolve(root, 'session-code'), { force: true });
 }
 process.once('SIGINT', shutdown);
