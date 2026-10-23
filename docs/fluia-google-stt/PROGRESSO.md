@@ -120,3 +120,10 @@
 - **41 fazendo:** conexão e informação sobre envio de áudio ficarão nas Configurações, sem controles técnicos no rodapé da FluIA. Código seguirá em memória e será apagado ao ir ao fundo; deverá sobreviver à navegação Configurações → mapa → FluIA para viabilizar esse fluxo.
 - **42 análise:** saída atual usa voz do iPhone. Google Chirp 3 HD oferece pt-BR, mas Google TTS ainda não foi ativado/contratado nem recebeu texto. Comparar alternativas sem presumir autorização de consumo/serviço adicional.
 - Streaming manterá uma chamada por vez, até 30 s por escuta, sem repetição e orçamento máximo de 20 chamadas/600 s reservados. Reserva conservadora de até 30 s por stream antes de abrir Google, inclusive se cancelado; consumo será agregado e distinguido do histórico síncrono.
+
+### Captura PCM para o item 40
+
+- Captura nativa própria e restrita ao app experimental: AVAudioEngine converte para PCM Int16 mono/16 kHz, em eventos de 100 ms. Áudio fica em memória, sem arquivo. Fila, bytes e duração limitados; máximo de 30 s independente do JavaScript. Interrupção, saída do primeiro plano ou troca de dispositivo encerram o motor, sem retomada automática. Restaura categoria anterior do áudio; falha de restauração é sinalizada.
+- Patch reproduzível do expo-audio somente na versão 1.1.1/árvore real desta worktree, sem atualizar pacote/SDK. Fonte Swift própria em tools/fluia-stt/native; preparação ligada ao plugin local existente. Nova fonte incluída pelos Pods existentes, sem atualizar versões nativas.
+- Teste de aplicação/idempotência/recusa de versão divergente passou; prebuild, instalação dos mesmos Pods e **compilação assinada iOS passaram** (`native-stream-build.log`). Arquivo compilado comparado com o template versionado. Captura dessa nova modalidade no aparelho ainda pendente; a validação física anterior pertence ao fluxo por arquivo.
+- Item **42**: usuário escolheu **Zephyr**. Registrar preferência para `pt-BR-Chirp3-HD-Zephyr`, a conferir na documentação oficial. API de síntese e consumo de TTS permanecem sem ativação/autorização específica; seleção não foi tratada como licença de gastos ilimitados.
