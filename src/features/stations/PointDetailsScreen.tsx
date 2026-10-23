@@ -62,7 +62,6 @@ import {
   triggerImpact,
   type PressableVisualState,
 } from "../../utils/interaction";
-import { canChargeAt } from "../../utils/stationAvailability";
 import { isStationOpenAt } from "../../utils/stationHours";
 import {
   RoutingModalPermission,
@@ -357,7 +356,6 @@ export default function PointDetailsScreen() {
     0,
   );
 
-  const chargingConfirmed = canChargeAt(station, now);
   const hasCatalogReviews = station.reviewCount > 0;
   const connectorLabels = station.connectors
     .map((connector) => connector.label)
@@ -413,6 +411,12 @@ export default function PointDetailsScreen() {
           : station.status === "busy"
             ? colors.warningText
             : colors.textLight;
+  const statusBackgroundColor =
+    station.status === "maintenance" ? colors.dangerSoft
+      : !isStationOpenAt(station, now) ? colors.background
+        : station.status === "available" ? colors.successSoft
+          : station.status === "busy" ? colors.warningLight
+            : colors.background;
 
   const IconeAlcance = obterIconeDeAlcance(avaliacaoAlcance.nivel);
   const apresentacaoAlcance = getStationArrivalPresentation(
@@ -494,6 +498,19 @@ export default function PointDetailsScreen() {
 
           <Text style={styles.address}>{formatAddress(station)}</Text>
 
+          {showWarning ? (
+            <View style={styles.riskBanner}>
+              <TriangleAlert accessible={false} size={20} color={colors.dangerText} />
+              <View style={{ flex: 1 }}>
+                <Text accessibilityRole="alert" style={styles.riskTitle}>{recomendacaoDoPonto}</Text>
+                <Text style={styles.riskDescription}>Manutenção indicada no catálogo. Confirme o funcionamento ou escolha outro ponto.</Text>
+              </View>
+              <Pressable accessibilityRole="button" accessibilityLabel="Dispensar aviso desta visita" style={styles.dismissRiskButton} onPress={() => setDismissedWarningKey(warningKey)}>
+                <X size={22} color={colors.dangerText} />
+              </Pressable>
+            </View>
+          ) : null}
+
           <View style={styles.summaryRow}>
             <View style={styles.statusGroup}>
               <View
@@ -527,17 +544,17 @@ export default function PointDetailsScreen() {
           </View>
 
 
-          <View style={[styles.availableRow, !chargingConfirmed ? [styles.unconfirmedBanner, { backgroundColor: colors.warningLight, borderColor: colors.warningText }] : null]}>
+          <View style={[styles.availableRow, styles.chargerBanner, { backgroundColor: statusBackgroundColor, borderColor: statusColor }]}>
             <View style={styles.availableIconBox}>
               <Zap
                 size={17}
-                color={colors.primaryBright}
-                fill={colors.primaryBright}
+                color={statusColor}
+                fill={statusColor}
                 strokeWidth={2.2}
               />
             </View>
 
-            <Text style={[styles.availableText, !chargingConfirmed ? { color: colors.warningText } : null]}>
+            <Text style={[styles.availableText, { color: statusColor }]}>
               {getStationChargerCountLabel(
                 station,
                 availableChargers,
@@ -547,20 +564,8 @@ export default function PointDetailsScreen() {
             </Text>
           </View>
 
-          {recomendacaoDoPonto !== "Evite este ponto por enquanto" && !recomendacaoDoPonto.startsWith("Recarga não confirmada") ? (
+          {recomendacaoDoPonto !== "Evite este ponto por enquanto" && recomendacaoDoPonto !== "Opção de recarga no catálogo" && !recomendacaoDoPonto.startsWith("Recarga não confirmada") ? (
             <Text style={styles.resumoTitle}>{recomendacaoDoPonto}</Text>
-          ) : null}
-          {showWarning ? (
-            <View style={styles.riskBanner}>
-              <TriangleAlert accessible={false} size={20} color={colors.dangerText} />
-              <View style={{ flex: 1 }}>
-                <Text accessibilityRole="alert" style={styles.riskTitle}>{recomendacaoDoPonto}</Text>
-                <Text style={styles.riskDescription}>Manutenção indicada no catálogo. Confirme o funcionamento ou escolha outro ponto.</Text>
-              </View>
-              <Pressable accessibilityRole="button" accessibilityLabel="Dispensar aviso desta visita" style={styles.dismissRiskButton} onPress={() => setDismissedWarningKey(warningKey)}>
-                <X size={22} color={colors.dangerText} />
-              </Pressable>
-            </View>
           ) : null}
           <View
             accessible

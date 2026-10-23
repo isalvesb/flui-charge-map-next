@@ -133,7 +133,7 @@ export const styles = StyleSheet.create({
   },
 
   riskBanner: { flexDirection: "row", alignItems: "center", gap: 8, padding: 12, borderRadius: 16, borderWidth: 1, borderColor: colors.danger, backgroundColor: "#FBE5E2", marginBottom: 12 },
-  unconfirmedBanner: { paddingHorizontal: 14, paddingVertical: 12, borderWidth: 1, borderRadius: 14, marginBottom: 12 },
+  chargerBanner: { paddingHorizontal: 14, paddingVertical: 12, borderWidth: 1, borderRadius: 14 },
   unconfirmedText: { fontSize: 14, lineHeight: 20, fontWeight: "700" },
   riskTitle: { color: "#10221E", fontSize: 15, lineHeight: 20, fontWeight: "700", marginBottom: 4 },
   riskDescription: { color: "#3F554F", fontSize: 13, lineHeight: 18 },
@@ -225,7 +225,7 @@ export const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: "#E8F5EE",
+    backgroundColor: "transparent",
     alignItems: "center",
     justifyContent: "center",
     marginRight: 10,
