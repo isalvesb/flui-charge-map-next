@@ -1,64 +1,29 @@
 import { ConnectionNotice } from "../../components/ConnectionNotice";
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useRef, useState, type RefObject } from "react";
 import {
   Animated,
-  Image,
   Keyboard,
   Modal,
-  Platform,
   Pressable,
   ScrollView,
   StatusBar,
   Text,
-  TextInput,
   useWindowDimensions,
   View,
+  type ViewStyle,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import MapView, {
-  Marker,
-  PROVIDER_GOOGLE,
-  type MapViewHandle,
-  type Region,
-} from "../../components/MapSurface";
-import { SvgXml } from "react-native-svg";
-import { router, type Href, useLocalSearchParams } from "expo-router";
+import { router, type Href } from "expo-router";
 import {
-  BatteryFull,
-  BatteryLow,
-  BatteryMedium,
-  BatteryWarning,
-  ChevronRight,
   Clock3,
   Crosshair,
-  Maximize2,
-  Milestone,
   Plug,
-  Search,
-  SlidersHorizontal,
-  Star,
   Toilet,
   X,
   Zap,
 } from "lucide-react-native";
 
-import { chargingStations } from "../../data";
-import { defaultFilters } from "../../data/filterOptions";
-import { StationFilters } from "../../types";
-import { filtrarEstacoes } from "../../utils/filtrarEstacoes";
-import { avaliarAlcance, calcularAutonomiaAtualKm } from "../../utils/autonomia";
-import { formatarDistanciaDemonstrativa } from "../../utils/demonstracao";
-import { canChargeAt } from "../../utils/stationAvailability";
-import { isStationOpenAt } from "../../utils/stationHours";
-import { getStationStatusInfo } from "../stations/stationPresentation";
-import { getBatterySourceLabels } from "../../utils/batteryData";
-import { useCurrentTime } from "../../hooks/useCurrentTime";
+import { calcularAutonomiaAtualKm } from "../../utils/autonomia";
 import {
   LoadingOverlay,
   PressableScale,
@@ -67,1056 +32,207 @@ import {
 import baseStyles, { colors as baseColors } from "./HomeMapScreen.styles";
 import { useTelaComPreferencias } from "../../hooks/useTelaComPreferencias";
 import { useReducedMotion } from "../../hooks/useReducedMotion";
+import { useMapArea, useMapContext } from "../../context/MapContext";
 import { useAppPreferences } from "../../context/PreferencesContext";
+import { useSearchContext } from "../../context/SearchContext";
 import { funcionalidadesExperimentais } from "../../config/funcionalidadesExperimentais";
-import { identificacaoDados } from "../../data/identificacaoDados";
-import { getMapPanelLayout, getMapVerticalFocusOffset, getMapHorizontalFocusOffset } from "./mapLayout";
 import { FluiAssistantSheet } from "../assistant/FluiAssistantSheet";
+import { LocationPermissionModal } from "./location/LocationPermissionModal";
+import { useAskLocation } from "../../context/AskLocationContext";
+import type { AssistantRevealOrigin } from "../assistant/coverRadius";
 import { FluiAiIcon } from "../assistant/FluiAiIcon";
+import {
+  ASSISTANT_BUTTON_GAP,
+  ASSISTANT_HIDDEN_BOTTOM,
+  ASSISTANT_SHEET_GAP,
+  deslocamentoLateralComPainel,
+  larguraBotaoAssistente,
+  MAX_CONTENT_WIDTH,
+  TABLET_BREAKPOINT,
+} from "./HomeMapScreen.constants";
+import {
+  PASSO_AJUSTE_BATERIA,
+  obterCorDeBateriaAtual,
+  obterIconeDeBateriaAtual,
+} from "./header/FluiHeader.utils";
+import { FluiHeader } from "./header/FluiHeader";
+import { MapCanvas } from "./canvas/MapCanvas";
+import { MapControls } from "./controls/MapControls";
+import { MapArea } from "./map/MapArea";
+import { PointsSheet } from "./points/PointsSheet";
+import { Search } from "./search/Search";
 
-const FEEDBACK_DURATION = 1500;
-const SHEET_VISIBLE_HANDLE = 30;
-const SHEET_OCULTO_MARGEM_EXTRA = 40;
-const HANDLE_HINT_DISTANCE = 4;
-const ASSISTANT_SHEET_GAP = 4;
-const ASSISTANT_HIDDEN_BOTTOM = 20;
-
-const chevronControleBaixoXml = `<svg width="28" height="12" viewBox="0 0 28 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 4.25L14 8.25L22 4.25" stroke="#BECAC5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-
-const chevronControleCimaXml = `<svg width="28" height="12" viewBox="0 0 28 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 7.75L14 3.75L22 7.75" stroke="#BECAC5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-
-const logoFluiXml = `
-<svg width="1115" height="516" viewBox="0 0 1115 516" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M706 14L702 11L694 9L660 6L659 5H649L648 4H637L636 3L606 2L605 1H582L581 0H524L523 1H505L504 2H491L490 3L464 5L428 11L407 16L372 27L367 30L355 34L308 58L269 84L212 128L181 148L155 161L120 174L92 181L55 187L19 188L17 189L14 193V202L12 209L11 222L2 268L0 273V278L3 281H67L69 283L55 309L49 324L43 345L40 362V395L42 407L49 430L62 454L69 463L86 480L106 494L124 503L138 508L171 515L200 516L201 515H212L231 512L265 501L281 493L295 484L305 476L324 457L336 441L348 419L357 393L361 368L360 336L356 317L350 300L342 285V282L343 281H410L412 280L415 276L426 236L428 233L430 224L440 197V192L435 188H305L304 187L305 184L314 173L337 151L367 131L403 115L442 104L477 98L507 96L508 95H526L527 94H578L579 95H600L601 96L628 97L639 99H654L658 96L670 78L706 29L708 25V18L706 14ZM425 436L426 437V452L430 472L434 482L444 496L456 505L469 510L480 512L506 511L523 506L536 500L560 483L583 460L592 448L594 449V457L597 471L604 486L612 496L623 504L638 510L649 512H667L683 508L692 504L705 495L727 473L751 439L765 415L766 416L765 420V449L767 462L773 481L779 491L788 500L805 509L821 512H838L853 509L871 501L883 493L897 481L928 445L929 446V456L931 468L934 477L943 493L953 502L964 508L980 512H1000L1014 509L1034 500L1048 490L1066 473L1076 461L1088 444L1100 423L1115 387L1114 379L1111 376L1105 375L1102 377L1090 399L1076 421L1054 448L1043 458L1032 464H1025L1020 459L1018 453V443L1025 413L1048 350L1093 241V231L1085 223L1071 218L1050 215H1033L1032 216L1018 217L1009 220L1000 225L991 234L984 247L963 303L943 362L933 397L917 422L906 436L884 457L870 464H863L857 460L854 451L855 435L859 419L875 374L903 306L925 258L926 250L924 245L918 240L908 237L893 236L892 235H859L841 239L828 246L817 257L810 267L796 298L774 356L740 417L727 436L708 457L699 463L691 464L685 459L683 454V440L687 420L715 341L745 267L752 253V244L748 238L741 234L723 230L677 229L661 233L653 237L647 242L638 254L634 263L611 334L610 341L602 367L594 408L574 433L556 450L545 458L535 463L520 464L513 457L512 445L515 428L523 399L540 350L570 274L571 269L618 155L619 144L616 140L612 138H513L509 140L505 149L501 163L497 171L495 179L473 237L447 316L431 380L426 414L425 436ZM228 287L240 292L252 300L262 310L271 324L276 338L278 348L277 371L271 390L258 411L242 427L222 439L206 444L193 446L173 445L159 441L143 432L132 422L123 409L119 400L115 385V362L120 343L126 331L136 317L147 306L163 295L182 287L197 284H214L228 287Z" fill="#2B0055"/>
-  <path d="M1064.4 192C1091.74 192 1113.9 169.838 1113.9 142.5C1113.9 115.162 1091.74 93 1064.4 93C1037.06 93 1014.9 115.162 1014.9 142.5C1014.9 169.838 1037.06 192 1064.4 192Z" fill="#9B35F5"/>
-</svg>
-`;
-
-const imagemPerfilUsuario = require("../../assets/user/profile1.webp");
-const imagemCarroUsuario = require("../../assets/user/car1.png");
-const iconeMarcadorVerde = require("../../assets/map/marker-green.png");
-const iconeMarcadorAmarelo = require("../../assets/map/marker-yellow.png");
-const iconeMarcadorVermelho = require("../../assets/map/marker-red.png");
-const iconeMarcadorCinza = require("../../assets/map/marker-gray.png");
-
-const criarLogoFluiXml = (corPrincipal: string, corPonto: string) => {
-  return logoFluiXml
-    .replace('fill="#2B0055"', `fill="${corPrincipal}"`)
-    .replace('fill="#9B35F5"', `fill="${corPonto}"`);
-};
-
-type EstiloMapa = {
-  elementType?: string;
-  featureType?: string;
-  stylers: Record<string, string>[];
-}[];
-
-const estiloEscuroDoMapa: EstiloMapa = [
-  { elementType: "geometry", stylers: [{ color: "#172033" }] },
-  { elementType: "labels.text.fill", stylers: [{ color: "#D7E4DF" }] },
-  { elementType: "labels.text.stroke", stylers: [{ color: "#0E1320" }] },
-  {
-    featureType: "administrative",
-    elementType: "geometry",
-    stylers: [{ color: "#2F405C" }],
-  },
-  {
-    featureType: "poi",
-    elementType: "geometry",
-    stylers: [{ color: "#1D2A3D" }],
-  },
-  {
-    featureType: "poi.park",
-    elementType: "geometry",
-    stylers: [{ color: "#183628" }],
-  },
-  {
-    featureType: "road",
-    elementType: "geometry",
-    stylers: [{ color: "#26344D" }],
-  },
-  {
-    featureType: "road",
-    elementType: "geometry.stroke",
-    stylers: [{ color: "#111827" }],
-  },
-  {
-    featureType: "road.highway",
-    elementType: "geometry",
-    stylers: [{ color: "#384D6B" }],
-  },
-  {
-    featureType: "transit",
-    elementType: "geometry",
-    stylers: [{ color: "#243149" }],
-  },
-  {
-    featureType: "water",
-    elementType: "geometry",
-    stylers: [{ color: "#0A2237" }],
-  },
-];
-
-type FiltroRapidoId = "openNow" | "ccs2" | "fast" | "restroom";
-
-type ControleMapaAtivo = "aproximar" | "afastar" | "centralizar" | null;
-
-type FiltrosRapidos = Record<FiltroRapidoId, boolean>;
-
-const filtrosRapidosIniciais: FiltrosRapidos = {
-  openNow: false,
-  ccs2: false,
-  fast: false,
-  restroom: false,
-};
-
-type Station = (typeof chargingStations)[number];
-
-const isRecord = (value: unknown): value is Record<string, unknown> => {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
-};
-type MapColorTokens = typeof baseColors & {
-  dangerBorder?: string;
-  success?: string;
-  successSoft?: string;
-  dangerSoft?: string;
-  warningLight?: string;
-  warningText?: string;
-  dangerText?: string;
-};
-
-const toRecord = (value: unknown): Record<string, unknown> => {
-  return typeof value === "object" && value !== null
-    ? (value as Record<string, unknown>)
-    : {};
-};
-
-const readString = (source: unknown, key: string, fallback = "") => {
-  const value = toRecord(source)[key];
-  return typeof value === "string" ? value : fallback;
-};
-
-const readNumber = (source: unknown, key: string, fallback = 0) => {
-  const value = toRecord(source)[key];
-  return typeof value === "number" ? value : fallback;
-};
-
-const readBoolean = (source: unknown, key: string, fallback = false) => {
-  const value = toRecord(source)[key];
-  return typeof value === "boolean" ? value : fallback;
-};
-
-const readArray = (source: unknown, key: string) => {
-  const value = toRecord(source)[key];
-  return Array.isArray(value) ? value : [];
-};
-
-const readStringArray = (source: unknown, key: string) => {
-  return readArray(source, key).filter(
-    (item): item is string => typeof item === "string",
-  );
-};
-
-const getRouteParamAsString = (param: unknown) => {
-  if (typeof param === "string") {
-    return param;
+function assistantButtonSide(
+  horizontal: boolean,
+  assistantWidth: number,
+): Pick<ViewStyle, "left" | "right" | "marginLeft"> {
+  if (horizontal) {
+    return { right: 16, left: undefined, marginLeft: 0 };
   }
 
-  if (Array.isArray(param) && typeof param[0] === "string") {
-    return param[0];
+  return { right: undefined, left: "50%", marginLeft: -assistantWidth / 2 };
+}
+
+function assistantButtonEdge(
+  horizontal: boolean,
+  compactControls: boolean,
+  sheetHeight: number,
+): Pick<ViewStyle, "top" | "bottom"> {
+  if (!compactControls) {
+    return { top: undefined, bottom: sheetHeight + ASSISTANT_SHEET_GAP };
   }
 
-  return "";
-};
-
-const parseRouteFilters = (param: unknown): StationFilters => {
-  const rawFilters = getRouteParamAsString(param);
-
-  if (!rawFilters) {
-    return defaultFilters;
+  if (horizontal) {
+    return { top: undefined, bottom: 12 };
   }
 
-  try {
-    const parsedFilters = JSON.parse(rawFilters);
-    const parsedRecord = toRecord(parsedFilters);
+  return { top: 74, bottom: undefined };
+}
 
-    return {
-      connectorTypes: readStringArray(
-        parsedRecord,
-        "connectorTypes",
-      ) as StationFilters["connectorTypes"],
-      statuses: readStringArray(
-        parsedRecord,
-        "statuses",
-      ) as StationFilters["statuses"],
-      amenities: readStringArray(
-        parsedRecord,
-        "amenities",
-      ) as StationFilters["amenities"],
-      power: {
-        minKw: readNumber(
-          parsedRecord.power,
-          "minKw",
-          defaultFilters.power.minKw,
-        ),
-      },
-      distance: {
-        maxKm: readNumber(
-          parsedRecord.distance,
-          "maxKm",
-          defaultFilters.distance.maxKm,
-        ),
-      },
-      rating: {
-        minRating: readNumber(
-          parsedRecord.rating,
-          "minRating",
-          defaultFilters.rating.minRating,
-        ),
-      },
-      onlyOpenNow: readBoolean(
-        parsedRecord,
-        "onlyOpenNow",
-        defaultFilters.onlyOpenNow,
-      ),
-      onlyAvailableChargers: readBoolean(
-        parsedRecord,
-        "onlyAvailableChargers",
-        defaultFilters.onlyAvailableChargers,
-      ),
-      onlyOpen24h: readBoolean(
-        parsedRecord,
-        "onlyOpen24h",
-        defaultFilters.onlyOpen24h,
-      ),
-    };
-  } catch {
-    return defaultFilters;
-  }
-};
-
-const hasActiveFilters = (filters: StationFilters) => {
-  return (
-    filters.connectorTypes.length > 0 ||
-    filters.statuses.length > 0 ||
-    filters.amenities.length > 0 ||
-    filters.power.minKw > 0 ||
-    filters.distance.maxKm !== defaultFilters.distance.maxKm ||
-    filters.rating.minRating > 0 ||
-    filters.onlyOpenNow ||
-    filters.onlyAvailableChargers ||
-    filters.onlyOpen24h
-  );
-};
-
-const combinarFiltrosRapidos = (
-  filters: StationFilters,
-  filtrosRapidos: FiltrosRapidos,
-): StationFilters => {
+function assistantButtonPosition({
+  horizontal,
+  compactControls,
+  assistantWidth,
+  sheetHeight,
+  translateX,
+  translateY,
+}: {
+  horizontal: boolean;
+  compactControls: boolean;
+  assistantWidth: number;
+  sheetHeight: number;
+  translateX: Animated.AnimatedInterpolation<number>;
+  translateY: Animated.AnimatedInterpolation<number>;
+}) {
   return {
-    connectorTypes: filtrosRapidos.ccs2
-      ? Array.from(new Set([...filters.connectorTypes, "ccs2"]))
-      : filters.connectorTypes,
-    statuses: filters.statuses,
-    amenities: filtrosRapidos.restroom
-      ? Array.from(new Set([...filters.amenities, "restroom"]))
-      : filters.amenities,
-    power: {
-      minKw: filtrosRapidos.fast
-        ? Math.max(filters.power.minKw, 50)
-        : filters.power.minKw,
-    },
-    distance: filters.distance,
-    rating: filters.rating,
-    onlyOpenNow: filters.onlyOpenNow || filtrosRapidos.openNow,
-    onlyAvailableChargers: filters.onlyAvailableChargers,
-    onlyOpen24h: filters.onlyOpen24h,
+    ...assistantButtonSide(horizontal, assistantWidth),
+    ...assistantButtonEdge(horizontal, compactControls, sheetHeight),
+    transform: [
+      { translateX },
+      { translateY: compactControls ? 0 : translateY },
+    ],
   };
-};
-
-const hasFiltrosRapidosAtivos = (filtrosRapidos: FiltrosRapidos) => {
-  return Object.values(filtrosRapidos).some(Boolean);
-};
-
-const getStationId = (station: Station, index: number) => {
-  return readString(
-    station,
-    "id",
-    `station-${String(index + 1).padStart(2, "0")}`,
-  );
-};
-
-const getStationName = (station: Station) => {
-  return readString(station, "name", readString(station, "title", "Ponto"));
-};
-
-const getStationNameById = (stationId: string) => {
-  const station = chargingStations.find((item, index) => {
-    return getStationId(item, index) === stationId;
-  });
-
-  return station ? getStationName(station) : "ponto de recarga";
-};
-
-const getStationAddress = (station: Station) => {
-  return readString(
-    station,
-    "address",
-    readString(station, "location", "Endereço não informado"),
-  );
-};
-
-const getRawStationStatus = (station: Station) => {
-  return readString(station, "status", "available").toLowerCase();
-};
-
-const getStationStatus = (station: Station, now: Date) =>
-  getStationStatusInfo(station, now).label;
-
-const getStationPowerNumber = (station: Station) => {
-  const stationPower = readNumber(
-    station,
-    "powerKw",
-    readNumber(
-      station,
-      "powerKW",
-      readNumber(station, "maxPowerKw", readNumber(station, "power", 0)),
-    ),
-  );
-
-  const connectorPowers = readArray(station, "connectors").map((connector) =>
-    readNumber(connector, "powerKw", readNumber(connector, "powerKW", 0)),
-  );
-
-  return Math.max(stationPower, ...connectorPowers, 0);
-};
-
-const getStationPower = (station: Station) => {
-  const customLabel = readString(station, "powerLabel");
-
-  if (customLabel) {
-    return customLabel;
-  }
-
-  const power = getStationPowerNumber(station);
-
-  return power > 0 ? `${power} kW` : "-- kW";
-};
-
-const getStationRatingNumber = (station: Station) => {
-  return readNumber(station, "rating", readNumber(station, "averageRating", 0));
-};
-
-const getStationRating = (station: Station) => {
-  const rating = getStationRatingNumber(station) || 4.8;
-
-  return rating.toFixed(1).replace(".", ",");
-};
-
-const getStationDistanceNumber = (station: Station, index: number) => {
-  return readNumber(station, "distanceKm", 0.45 + index * 0.8);
-};
-
-const criarRegiaoDoMapa = (
-  station: Station | undefined,
-  aproxima: boolean,
-): Region => {
-  return {
-    latitude: station?.latitude ?? -23.5639,
-    longitude: station?.longitude ?? -46.6524,
-    latitudeDelta: aproxima ? 0.018 : 0.035,
-    longitudeDelta: aproxima ? 0.018 : 0.035,
-  };
-};
-
-const criarRegiaoComFocoVisivel = (
-  latitude: number,
-  longitude: number,
-  aproxima = true,
-  fracaoDeDeslocamento = 0.08,
-  fracaoHorizontal = 0,
-): Region => {
-  const latitudeDelta = aproxima ? 0.014 : 0.026;
-  const longitudeDelta = aproxima ? 0.014 : 0.026;
-
-  return {
-    latitude: latitude - latitudeDelta * fracaoDeDeslocamento,
-    longitude: longitude - longitudeDelta * fracaoHorizontal,
-    latitudeDelta,
-    longitudeDelta,
-  };
-};
-
-const limitarValor = (value: number, min: number, max: number) => {
-  return Math.min(Math.max(value, min), max);
-};
-
-const getStationMarkerColor = (station: Station, colorSet: MapColorTokens, now: Date) => {
-  const status = getRawStationStatus(station);
-
-  if (status === "maintenance") {
-    return colorSet.dangerBorder ?? colorSet.yellowDark;
-  }
-
-  if (status === "unavailable" || !isStationOpenAt(station, now)) {
-    return colorSet.textLight;
-  }
-
-  if (status === "busy") {
-    return colorSet.yellowDark;
-  }
-
-  return colorSet.green ?? colorSet.success ?? colorSet.primary;
-};
-
-const getStationMarkerIcon = (station: Station, now: Date) => {
-  const status = getRawStationStatus(station);
-
-  if (status === "maintenance") {
-    return iconeMarcadorVermelho;
-  }
-
-  if (status === "unavailable" || !isStationOpenAt(station, now)) {
-    return iconeMarcadorCinza;
-  }
-
-  if (status === "busy") {
-    return iconeMarcadorAmarelo;
-  }
-
-  return iconeMarcadorVerde;
-};
-
-const PASSO_AJUSTE_BATERIA = 5;
-
-function obterIconeDeBateriaAtual(percentual: number) {
-  if (percentual >= 60) {
-    return BatteryFull;
-  }
-
-  if (percentual >= 25) {
-    return BatteryMedium;
-  }
-
-  return BatteryLow;
 }
 
-function obterCorDeBateriaAtual(percentual: number, colorSet: MapColorTokens) {
-  if (percentual >= 50) {
-    return colorSet.green ?? colorSet.success ?? colorSet.primary;
-  }
-
-  if (percentual >= 25) {
-    return colorSet.warningText ?? colorSet.yellowDark;
-  }
-
-  return colorSet.dangerText ?? colorSet.dangerBorder ?? colorSet.yellowDark;
-}
-
-function obterCorDoAlcance(
-  nivel: ReturnType<typeof avaliarAlcance>["nivel"],
-  colorSet: MapColorTokens,
-) {
-  if (nivel === "tranquilo") {
-    return colorSet.green ?? colorSet.success ?? colorSet.primary;
-  }
-
-  if (nivel === "apertado") {
-    return colorSet.warningText ?? colorSet.yellowDark;
-  }
-
-  return colorSet.dangerText ?? colorSet.dangerBorder ?? colorSet.yellowDark;
-}
-
-function obterFundoDoAlcance(
-  nivel: ReturnType<typeof avaliarAlcance>["nivel"],
-  colorSet: MapColorTokens,
-) {
-  if (nivel === "tranquilo") {
-    return colorSet.successSoft ?? colorSet.primarySoft;
-  }
-
-  if (nivel === "apertado") {
-    return colorSet.warningLight ?? colorSet.yellow;
-  }
-
-  return colorSet.dangerSoft ?? colorSet.warningLight ?? colorSet.yellow;
-}
-
-function obterRotuloDoAlcance(nivel: ReturnType<typeof avaliarAlcance>["nivel"]) {
-  if (nivel === "tranquilo") {
-    return "Confortável";
-  }
-
-  if (nivel === "apertado") {
-    return "Limitada";
-  }
-
-  return "Insuficiente";
-}
-
-function obterIconeDoAlcance(nivel: ReturnType<typeof avaliarAlcance>["nivel"]) {
-  if (nivel === "foraDeAlcance") {
-    return BatteryWarning;
-  }
-
-  if (nivel === "apertado") {
-    return BatteryLow;
-  }
-
-  return BatteryFull;
-}
-
-const getStationConnectors = (station: Station) => {
-  return [
-    ...readArray(station, "connectors"),
-    ...readArray(station, "connectorTypes"),
-  ]
-    .map((connector) => {
-      if (typeof connector === "string") {
-        return connector.toLowerCase();
-      }
-
-      const type = readString(connector, "type").toLowerCase();
-      const label = readString(connector, "label").toLowerCase();
-
-      return `${type} ${label}`.trim();
-    })
-    .filter(Boolean);
-};
-
-const getStationAmenities = (station: Station) => {
-  return readArray(station, "amenities")
-    .map((amenity) => {
-      if (typeof amenity === "string") {
-        return amenity.toLowerCase();
-      }
-
-      return readString(
-        amenity,
-        "value",
-        readString(amenity, "id", readString(amenity, "label")),
-      ).toLowerCase();
-    })
-    .filter(Boolean);
-};
-
-const stationHasAvailableCharger = (station: Station) => {
-  const connectors = readArray(station, "connectors");
-
-  return connectors.some((connector) => {
-    if (!isRecord(connector)) {
-      return false;
-    }
-
-    return readNumber(connector, "availableChargers") > 0;
-  });
-};
-
-
-const calcularPontuacaoDosFiltrosRapidos = (
-  station: Station,
-  filtrosRapidos: FiltrosRapidos,
-) => {
-  let pontuacao = 0;
-
-  if (filtrosRapidos.openNow && stationHasAvailableCharger(station)) {
-    pontuacao += 80;
-  }
-
-  if (filtrosRapidos.ccs2) {
-    const hasCcs2 = getStationConnectors(station).some((connector) =>
-      connector.includes("ccs2"),
-    );
-
-    if (hasCcs2) {
-      pontuacao += 60;
-    }
-  }
-
-  if (filtrosRapidos.fast) {
-    pontuacao += getStationPowerNumber(station);
-  }
-
-  if (filtrosRapidos.restroom) {
-    const hasRestroom = getStationAmenities(station).includes("restroom");
-
-    if (hasRestroom) {
-      pontuacao += 50;
-    }
-  }
-
-  return pontuacao;
-};
-
-const ordenarPorFiltrosRapidos = (
-  estacoes: { station: Station; index: number }[],
-  filtrosRapidos: FiltrosRapidos,
-) => {
-  if (!hasFiltrosRapidosAtivos(filtrosRapidos)) {
-    return estacoes;
-  }
-
-  return [...estacoes].sort((a, b) => {
-    const pontuacaoA = calcularPontuacaoDosFiltrosRapidos(
-      a.station,
-      filtrosRapidos,
-    );
-    const pontuacaoB = calcularPontuacaoDosFiltrosRapidos(
-      b.station,
-      filtrosRapidos,
-    );
-
-    if (pontuacaoA !== pontuacaoB) {
-      return pontuacaoB - pontuacaoA;
-    }
-
-    return (
-      (a.station.distanceKm ?? a.index) - (b.station.distanceKm ?? b.index)
-    );
-  });
-};
-
-const TABLET_BREAKPOINT = 700;
-const MAX_CONTENT_WIDTH = 560;
-
-export default function HomeMapScreen() {
-  const { styles, colors, isDarkMode, fontScale } = useTelaComPreferencias(
+function MapAssistantButton({
+  buttonRef,
+  onPress,
+}: {
+  buttonRef: RefObject<View | null>;
+  onPress: () => void;
+}) {
+  const { styles, colors, fontScale } = useTelaComPreferencias(
     baseStyles,
     baseColors,
   );
-  const { userPreferences, updateBatteryPercent, demoOrigin, demoStations } = useAppPreferences();
-  const reduceMotionEnabled = useReducedMotion();
-  const now = useCurrentTime();
-  const batteryLabels = getBatterySourceLabels(userPreferences);
-  const batteryPercent = userPreferences.batteryPercent;
-  const vehicleRangeKm = userPreferences.vehicleRangeKm;
-  const [seletorBateriaAberto, setSeletorBateriaAberto] = useState(false);
-  const [bateriaEmEdicao, setBateriaEmEdicao] = useState(batteryPercent);
-  const { width: larguraJanela, height: alturaJanela, fontScale: escalaFonteSistema } =
-    useWindowDimensions();
-  const isTelaLarga = larguraJanela >= TABLET_BREAKPOINT;
-  const margemHorizontalConteudo = isTelaLarga
-    ? Math.max(16, (larguraJanela - MAX_CONTENT_WIDTH) / 2)
-    : 20;
-  const margemHorizontalSheet = isTelaLarga
-    ? Math.max(16, (larguraJanela - MAX_CONTENT_WIDTH) / 2)
-    : 16;
-  const alturaMaximaListaPontos = Math.max(
-    180,
-    Math.min(320, alturaJanela * 0.32),
+  const { fontScale: escalaFonteSistema } = useWindowDimensions();
+  const {
+    viewport: {
+      horizontal,
+      compactControls,
+      sheetHeight,
+      translateY,
+      collapsedOffset,
+      hiddenOffset,
+      restorePillWidth,
+    },
+  } = useMapArea();
+  const assistantWidth = larguraBotaoAssistente(fontScale * escalaFonteSistema);
+  const deslocamentoHorizontalBotaoAssistente = deslocamentoLateralComPainel(
+    translateY,
+    hiddenOffset,
+    horizontal || compactControls || restorePillWidth <= 0
+      ? 0
+      : (restorePillWidth + ASSISTANT_BUTTON_GAP) / 2,
   );
-  const routeParams = useLocalSearchParams();
-  const filtersParam = routeParams.filters;
-  const queryParam = routeParams.query;
-  const mapRef = useRef<MapViewHandle | null>(null);
-  const searchInputRef = useRef<TextInput>(null);
-  const currentMapRegionRef = useRef<Region | null>(null);
-  const sheetTranslateY = useRef(new Animated.Value(0)).current;
-  const sheetHintTranslateY = useRef(new Animated.Value(0)).current;
-  const userLocationPulseProgress = useRef(new Animated.Value(0)).current;
-  const sheetPositionRef = useRef(0);
-  const localizacaoUsuario = demoOrigin;
-  const [isLocatingUser, setIsLocatingUser] = useState(false);
-  const [isSheetCollapsed, setIsSheetCollapsed] = useState(false);
-  const [painelTotalmenteOculto, setPainelTotalmenteOculto] = useState(false);
-  const [sheetHeight, setSheetHeight] = useState(0);
-  const [mapAreaHeight, setMapAreaHeight] = useState(0);
-  const [mapAreaWidth, setMapAreaWidth] = useState(0);
-  const layout = getMapPanelLayout(larguraJanela, alturaJanela, mapAreaHeight, fontScale * escalaFonteSistema, sheetHeight);
-  const cabecalhoCompacto = larguraJanela <= 360 || fontScale * escalaFonteSistema > 1.3;
-  const [alturaCardPonto, setAlturaCardPonto] = useState<number | null>(null);
-  const [hasInteractedWithSheet, setHasInteractedWithSheet] = useState(false);
-  const [filtrosRapidos, setFiltrosRapidos] = useState<FiltrosRapidos>(
-    filtrosRapidosIniciais,
-  );
-  const [searchTerm, setSearchTerm] = useState(() =>
-    getRouteParamAsString(queryParam),
-  );
-  const [isOpeningDetails, setIsOpeningDetails] = useState(false);
-  const [mapFeedbackMessage, setMapFeedbackMessage] = useState<string | null>(
-    null,
-  );
-  const [controleMapaAtivo, setControleMapaAtivo] =
-    useState<ControleMapaAtivo>(null);
-  const [assistenteFluiAberto, setAssistenteFluiAberto] = useState(false);
-  const [assistenteFluiApresentado, setAssistenteFluiApresentado] = useState(false);
-  const [mapaPronto, setMapaPronto] = useState(false);
-
-  const mapFeedbackTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
-    null,
-  );
-
-  const routeSearchTerm = useMemo(() => {
-    return getRouteParamAsString(queryParam);
-  }, [queryParam]);
-
-  const logoFluiDoTema = useMemo(() => {
-    return criarLogoFluiXml(
-      isDarkMode ? "#F3E9FF" : colors.primary,
-      isDarkMode ? "#D8C7FF" : "#9B35F5",
-    );
-  }, [colors.primary, isDarkMode]);
-
-  const usarMapaEscuro = Platform.OS === "android" && isDarkMode;
-
-  const escalaPulsoLocalizacao = userLocationPulseProgress.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0.78, 1.18],
-  });
-
-  const opacidadePulsoLocalizacao = userLocationPulseProgress.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0.34, 0.1],
-  });
-
-  const assistantWidth = Math.min(220, Math.max(132, 132 * fontScale * escalaFonteSistema));
-
-  const sheetCollapsedTranslateY = useMemo(() => {
-    return Math.max(sheetHeight - SHEET_VISIBLE_HANDLE, 0);
-  }, [sheetHeight]);
-
-  const deslocamentoVerticalBotaoAssistente = sheetTranslateY.interpolate({
+  const deslocamentoVerticalBotaoAssistente = translateY.interpolate({
     inputRange: [
       0,
-      Math.max(sheetCollapsedTranslateY, 1),
-      Math.max(sheetHeight + SHEET_OCULTO_MARGEM_EXTRA, 2),
+      Math.max(collapsedOffset, 1),
+      Math.max(hiddenOffset, 2),
     ],
     outputRange: [
       0,
-      sheetCollapsedTranslateY,
-      Math.max(
-        sheetHeight + ASSISTANT_SHEET_GAP - ASSISTANT_HIDDEN_BOTTOM,
-        0,
-      ),
+      collapsedOffset,
+      Math.max(sheetHeight + ASSISTANT_SHEET_GAP - ASSISTANT_HIDDEN_BOTTOM, 0),
     ],
     extrapolate: "clamp",
   });
 
-  useEffect(() => {
-    setSearchTerm(routeSearchTerm);
-  }, [routeSearchTerm]);
-
-  useEffect(() => {
-    if (reduceMotionEnabled) {
-      userLocationPulseProgress.stopAnimation();
-      userLocationPulseProgress.setValue(0.35);
-      return;
-    }
-
-    const pulseAnimation = Animated.loop(
-      Animated.sequence([
-        Animated.timing(userLocationPulseProgress, {
-          toValue: 1,
-          duration: 1400,
-          useNativeDriver: true,
+  return (
+    <Animated.View
+      style={[
+        styles.fluiAssistantFloating,
+        assistantButtonPosition({
+          horizontal,
+          compactControls,
+          assistantWidth,
+          sheetHeight,
+          translateX: deslocamentoHorizontalBotaoAssistente,
+          translateY: deslocamentoVerticalBotaoAssistente,
         }),
-        Animated.timing(userLocationPulseProgress, {
-          toValue: 0,
-          duration: 1400,
-          useNativeDriver: true,
-        }),
-      ]),
-    );
-
-    pulseAnimation.start();
-
-    return () => {
-      pulseAnimation.stop();
-      userLocationPulseProgress.setValue(0);
-    };
-  }, [reduceMotionEnabled, userLocationPulseProgress]);
-
-  useEffect(() => {
-    if (hasInteractedWithSheet || reduceMotionEnabled) {
-      sheetHintTranslateY.stopAnimation();
-      sheetHintTranslateY.setValue(0);
-      return;
-    }
-
-    const hintOffset = isSheetCollapsed
-      ? -HANDLE_HINT_DISTANCE
-      : HANDLE_HINT_DISTANCE;
-    const hintAnimation = Animated.loop(
-      Animated.sequence([
-        Animated.timing(sheetHintTranslateY, {
-          toValue: hintOffset,
-          duration: 420,
-          useNativeDriver: true,
-        }),
-        Animated.timing(sheetHintTranslateY, {
-          toValue: 0,
-          duration: 520,
-          useNativeDriver: true,
-        }),
-        Animated.delay(1400),
-      ]),
-    );
-
-    hintAnimation.start();
-
-    return () => {
-      hintAnimation.stop();
-      sheetHintTranslateY.setValue(0);
-    };
-  }, [
-    hasInteractedWithSheet,
-    isSheetCollapsed,
-    reduceMotionEnabled,
-    sheetHintTranslateY,
-  ]);
-
-  const appliedFilters = useMemo(() => {
-    return parseRouteFilters(filtersParam);
-  }, [filtersParam]);
-
-  const filtrosDoMapa = useMemo(() => {
-    return combinarFiltrosRapidos(appliedFilters, filtrosRapidos);
-  }, [appliedFilters, filtrosRapidos]);
-
-  const hasFiltersApplied = useMemo(() => {
-    return (
-      hasActiveFilters(filtrosDoMapa) || hasFiltrosRapidosAtivos(filtrosRapidos)
-    );
-  }, [filtrosDoMapa, filtrosRapidos]);
-
-  const filterChips = useMemo(() => {
-    return [
-      {
-        id: "openNow" as const,
-        label: "Aberto agora",
-        icon: Clock3,
-        active: filtrosRapidos.openNow,
-      },
-      {
-        id: "ccs2" as const,
-        label: "CCS2",
-        icon: Plug,
-        active: filtrosRapidos.ccs2,
-      },
-      {
-        id: "fast" as const,
-        label: "Rápido",
-        icon: Zap,
-        active: filtrosRapidos.fast,
-      },
-      {
-        id: "restroom" as const,
-        label: "Banheiro",
-        icon: Toilet,
-        active: filtrosRapidos.restroom,
-      },
-    ];
-  }, [filtrosRapidos]);
-
-  const visibleStations = useMemo(() => {
-    const filtradas = filtrarEstacoes({
-      estacoes: demoStations,
-      filtros: filtrosDoMapa,
-      termoBusca: searchTerm,
-      agora: now,
-    });
-
-    return ordenarPorFiltrosRapidos(
-      filtradas.map((station) => ({
-        station,
-        index: demoStations.indexOf(station),
-      })),
-      filtrosRapidos,
-    );
-  }, [filtrosDoMapa, filtrosRapidos, searchTerm, now, demoStations]);
-
-  const estacoesRecomendadas = useMemo(() => {
-    return visibleStations.filter((item) => canChargeAt(item.station, now));
-  }, [visibleStations, now]);
-
-  const points = useMemo(() => {
-    return estacoesRecomendadas.map((item) => {
-      const cardId = getStationId(item.station, item.index);
-
-      return {
-        id: cardId,
-        stationId: getStationId(item.station, item.index),
-        criterioLabel: "No catálogo",
-        criterioIcon: Zap,
-        nomeEstacao: getStationName(item.station),
-        address: getStationAddress(item.station),
-        status: getStationStatus(item.station, now),
-        statusColor: getStationMarkerColor(item.station, colors, now),
-        rating: getStationRating(item.station),
-        power: getStationPower(item.station),
-        distancia: formatarDistanciaDemonstrativa(item.station.distanceKm),
-        alcance: avaliarAlcance(
-          getStationDistanceNumber(item.station, item.index),
-          vehicleRangeKm,
-          batteryPercent,
-        ),
-      };
-    });
-  }, [batteryPercent, colors, estacoesRecomendadas, vehicleRangeKm, now]);
-
-  const hasNoResults = estacoesRecomendadas.length === 0;
-  const hasSearchTerm = searchTerm.trim().length > 0;
-
-  const fracaoDeDeslocamentoVertical = getMapVerticalFocusOffset(
-    layout.horizontal,
-    mapAreaHeight,
-    isSheetCollapsed ? SHEET_VISIBLE_HANDLE : sheetHeight,
-    painelTotalmenteOculto,
+      ]}
+    >
+      <Animated.View
+        style={[styles.fluiAssistantAnimatedButton, { width: assistantWidth }]}
+      >
+        <View ref={buttonRef} collapsable={false} style={{ width: assistantWidth }}>
+          <PressableScale
+            accessibilityRole="button"
+            accessibilityLabel="Abrir assistente Flui IA"
+            accessibilityHint="Abre opções de recomendação simulada para encontrar um ponto de recarga."
+            pressedScale={0.95}
+            style={styles.fluiAssistantButton}
+            onPress={onPress}
+          >
+            <FluiAiIcon color={colors.white} size={21} />
+            <Text style={styles.fluiAssistantButtonText}>FluIA</Text>
+          </PressableScale>
+        </View>
+      </Animated.View>
+    </Animated.View>
   );
+}
 
-  const fracaoDeDeslocamentoHorizontal = getMapHorizontalFocusOffset(
-    layout.horizontal,
-    mapAreaWidth,
-    layout.panelWidth ?? 0,
-    painelTotalmenteOculto || isSheetCollapsed,
+export default function HomeMapScreen() {
+  const { styles, colors, isDarkMode } = useTelaComPreferencias(
+    baseStyles,
+    baseColors,
   );
-  const fracaoDeDeslocamentoHorizontalRef = useRef(fracaoDeDeslocamentoHorizontal);
-  fracaoDeDeslocamentoHorizontalRef.current = fracaoDeDeslocamentoHorizontal;
+  const { updateBatteryPercent } = useAppPreferences();
+  const {
+    state: {
+      visibleStations,
+      now,
+      batteryPercent,
+      vehicleRangeKm,
+      isOpeningDetails,
+      feedbackMessage,
+    },
+    actions: { openStation, adjustSearch },
+  } = useMapContext();
+  const {
+    meta: { inputRef: searchInputRef },
+  } = useSearchContext();
+  const reduceMotionEnabled = useReducedMotion();
+  const location = useAskLocation();
+  const [seletorBateriaAberto, setSeletorBateriaAberto] = useState(false);
+  const [bateriaEmEdicao, setBateriaEmEdicao] = useState(batteryPercent);
+  const { width: larguraJanela, height: alturaJanela } = useWindowDimensions();
+  const isTelaLarga = larguraJanela >= TABLET_BREAKPOINT;
+  const margemHorizontalConteudo = isTelaLarga
+    ? Math.max(16, (larguraJanela - MAX_CONTENT_WIDTH) / 2)
+    : 20;
+  const assistenteBotaoRef = useRef<View>(null);
+  const [assistenteFluiAberto, setAssistenteFluiAberto] = useState(false);
+  const [origemAssistente, setOrigemAssistente] =
+    useState<AssistantRevealOrigin | null>(null);
 
-  const fracaoDeDeslocamentoVerticalRef = useRef(fracaoDeDeslocamentoVertical);
-  fracaoDeDeslocamentoVerticalRef.current = fracaoDeDeslocamentoVertical;
-
-  const mapRegion = useMemo(() => {
-    const firstVisibleStation =
-      visibleStations[0]?.station ?? demoStations[0];
-
-    if ((hasFiltersApplied || hasSearchTerm) && firstVisibleStation) {
-      return criarRegiaoDoMapa(firstVisibleStation, true);
-    }
-
-    if (localizacaoUsuario) {
-      return criarRegiaoComFocoVisivel(
-        localizacaoUsuario.latitude,
-        localizacaoUsuario.longitude,
-        true,
-        fracaoDeDeslocamentoVerticalRef.current,
-        fracaoDeDeslocamentoHorizontalRef.current,
-      );
-    }
-
-    return criarRegiaoDoMapa(firstVisibleStation, false);
-    // fracaoDeDeslocamentoVertical é lido via ref de propósito: ela só
-    // reflete o layout (sheet/mapArea) se estabilizando, e recalcular a
-    // região a cada ajuste fazia o mapa reanimar várias vezes seguidas
-    // logo na abertura, deixando o carregamento visivelmente mais lento.
-  }, [hasFiltersApplied, hasSearchTerm, localizacaoUsuario, visibleStations, demoStations]);
-
-  const isPrimeiraRegiaoRef = useRef(true);
-  const criteriosDeFocoRef = useRef({
-    filtros: filtrosDoMapa,
-    busca: searchTerm,
-    localizacao: localizacaoUsuario,
-  });
-
-  useEffect(() => {
-    const anteriores = criteriosDeFocoRef.current;
-    const mudouCriterio =
-      anteriores.filtros !== filtrosDoMapa ||
-      anteriores.busca !== searchTerm ||
-      anteriores.localizacao !== localizacaoUsuario;
-
-    criteriosDeFocoRef.current = {
-      filtros: filtrosDoMapa,
-      busca: searchTerm,
-      localizacao: localizacaoUsuario,
-    };
-
-    if (isPrimeiraRegiaoRef.current) {
-      currentMapRegionRef.current = mapRegion;
-      isPrimeiraRegiaoRef.current = false;
-      return;
-    }
-
-    // O relógio atualiza resultados e estados, mas não é uma ação de navegação.
-    // Preserve também a região usada pelos controles de zoom e centralização.
-    if (!mudouCriterio) return;
-
-    currentMapRegionRef.current = mapRegion;
-    mapRef.current?.animateToRegion(mapRegion, reduceMotionEnabled ? 0 : 450);
-  }, [filtrosDoMapa, localizacaoUsuario, mapRegion, reduceMotionEnabled, searchTerm]);
-
-  const ajusteInicialDeCentralizacaoRef = useRef(false);
-
-  useEffect(() => {
-    if (ajusteInicialDeCentralizacaoRef.current) {
-      return;
-    }
-
-    if (!mapaPronto || mapAreaHeight <= 0 || sheetHeight <= 0) {
-      return;
-    }
-
-    if (hasFiltersApplied || hasSearchTerm || !localizacaoUsuario) {
-      return;
-    }
-
-    ajusteInicialDeCentralizacaoRef.current = true;
-
-    const regiaoCentralizada = criarRegiaoComFocoVisivel(
-      localizacaoUsuario.latitude,
-      localizacaoUsuario.longitude,
-      true,
-      fracaoDeDeslocamentoVertical,
-      fracaoDeDeslocamentoHorizontal,
-    );
-
-    currentMapRegionRef.current = regiaoCentralizada;
-    mapRef.current?.animateToRegion(
-      regiaoCentralizada,
-      reduceMotionEnabled ? 0 : 400,
-    );
-  }, [
-    fracaoDeDeslocamentoHorizontal,
-    fracaoDeDeslocamentoVertical,
-    hasFiltersApplied,
-    hasSearchTerm,
-    localizacaoUsuario,
-    mapAreaHeight,
-    mapaPronto,
-    reduceMotionEnabled,
-    sheetHeight,
-  ]);
-
-  const alterarZoomMapa = (direction: "aproximar" | "afastar") => {
-    const currentRegion = currentMapRegionRef.current ?? mapRegion;
-    const zoomFactor = direction === "aproximar" ? 0.58 : 1.55;
-
-    const nextRegion = {
-      ...currentRegion,
-      latitudeDelta: limitarValor(
-        currentRegion.latitudeDelta * zoomFactor,
-        0.004,
-        0.08,
-      ),
-      longitudeDelta: limitarValor(
-        currentRegion.longitudeDelta * zoomFactor,
-        0.004,
-        0.08,
-      ),
-    };
-
-    currentMapRegionRef.current = nextRegion;
-    mapRef.current?.animateToRegion(
-      nextRegion,
-      reduceMotionEnabled ? 0 : 240,
-    );
-  };
-
-  const sheetTitle = hasNoResults
-    ? "Nenhum ponto disponível"
-    : "Pontos de recarga";
-
-  const corBateriaAtual = obterCorDeBateriaAtual(batteryPercent, colors);
-  const autonomiaAtualKm = Math.round(calcularAutonomiaAtualKm(vehicleRangeKm, batteryPercent));
   const IconeBateriaEmEdicao = obterIconeDeBateriaAtual(bateriaEmEdicao);
   const corBateriaEmEdicao = obterCorDeBateriaAtual(bateriaEmEdicao, colors);
   const autonomiaEmEdicaoKm = Math.round(
     calcularAutonomiaAtualKm(vehicleRangeKm, bateriaEmEdicao),
   );
-  const alturaListaComDoisCards = alturaCardPonto
-    ? alturaCardPonto * 2
-    : Math.min(alturaMaximaListaPontos, 250);
 
   const abrirSeletorDeBateria = useCallback(() => {
     setBateriaEmEdicao(batteryPercent);
@@ -1140,157 +256,39 @@ export default function HomeMapScreen() {
     setSeletorBateriaAberto(false);
   };
 
-  const moverPainelDePontosPara = useCallback(
-    (destino: number) => {
-      sheetPositionRef.current = destino;
-
-      sheetTranslateY.stopAnimation();
-
-      if (reduceMotionEnabled) {
-        sheetTranslateY.setValue(destino);
-        return;
-      }
-
-      Animated.spring(sheetTranslateY, {
-        toValue: destino,
-        useNativeDriver: true,
-        friction: 8,
-        tension: 58,
-      }).start();
-    },
-    [reduceMotionEnabled, sheetTranslateY],
-  );
-
-  const alternarModalDePontos = useCallback(
-    (shouldCollapse: boolean) => {
-      setPainelTotalmenteOculto(false);
-      setIsSheetCollapsed(shouldCollapse);
-      moverPainelDePontosPara(shouldCollapse ? sheetCollapsedTranslateY : 0);
-    },
-    [moverPainelDePontosPara, sheetCollapsedTranslateY],
-  );
-
-  const ocultarPainelDePontosCompletamente = useCallback(() => {
-    setPainelTotalmenteOculto(true);
-    moverPainelDePontosPara(sheetHeight + SHEET_OCULTO_MARGEM_EXTRA);
-  }, [moverPainelDePontosPara, sheetHeight]);
-
-  useEffect(() => {
-    if (sheetHeight <= 0) {
-      return;
-    }
-
-    if (painelTotalmenteOculto) {
-      const destinoOculto = sheetHeight + SHEET_OCULTO_MARGEM_EXTRA;
-      sheetTranslateY.setValue(destinoOculto);
-      sheetPositionRef.current = destinoOculto;
-      return;
-    }
-
-    if (isSheetCollapsed) {
-      sheetTranslateY.setValue(sheetCollapsedTranslateY);
-      sheetPositionRef.current = sheetCollapsedTranslateY;
-    }
-  }, [
-    isSheetCollapsed,
-    painelTotalmenteOculto,
-    sheetCollapsedTranslateY,
-    sheetHeight,
-    sheetTranslateY,
-  ]);
-
-  const openStationDetails = (stationId: string, startRoute = false) => {
-    if (isOpeningDetails) {
-      return;
-    }
-
-    const route = {
-      pathname: "/point-details",
-      params: { stationId, ...(startRoute ? { startRoute: "1" } : {}) },
-    } as Href;
-
-    setIsOpeningDetails(true);
-
-    setTimeout(() => {
-      setIsOpeningDetails(false);
-      router.push(route);
-    }, 280);
-  };
-
-  const abrirBusca = () => {
-    router.push("/search" as Href);
-  };
-
-  const alternarFiltroRapido = (filterId: FiltroRapidoId) => {
-    setFiltrosRapidos((filtrosAtuais) => ({
-      ...filtrosAtuais,
-      [filterId]: !filtrosAtuais[filterId],
-    }));
-  };
-
-  const renderizarChevronDeControle = (apontaParaCima: boolean) => {
-    return (
-      <SvgXml
-        xml={apontaParaCima ? chevronControleCimaXml : chevronControleBaixoXml}
-        width={28}
-        height={12}
-      />
-    );
-  };
-
   const openProfile = () => {
     router.push("/profile" as Href);
   };
 
-  const abrirPlanejadorDeViagens = () => {
-    router.push("/trip-planner" as Href);
-  };
-
-  const showLocationFeedback = (message: string) => {
-    if (mapFeedbackTimeoutRef.current) {
-      clearTimeout(mapFeedbackTimeoutRef.current);
-    }
-
-    setMapFeedbackMessage(message);
-
-    mapFeedbackTimeoutRef.current = setTimeout(() => {
-      setMapFeedbackMessage(null);
-    }, FEEDBACK_DURATION);
-  };
-
-  const centralizarLocalizacaoUsuario = () => {
-    if (isLocatingUser) {
+  const abrirAssistente = () => {
+    searchInputRef.current?.blur();
+    Keyboard.dismiss();
+    const button = assistenteBotaoRef.current;
+    if (!button) {
+      setOrigemAssistente({
+        x: larguraJanela / 2,
+        y: alturaJanela - 80,
+        height: 52,
+      });
+      setAssistenteFluiAberto(true);
       return;
     }
-
-    setIsLocatingUser(true);
-
-    const nextLocation = demoOrigin;
-
-    mapRef.current?.animateToRegion(
-      criarRegiaoComFocoVisivel(
-        nextLocation.latitude,
-        nextLocation.longitude,
-        true,
-        fracaoDeDeslocamentoVertical,
-        getMapHorizontalFocusOffset(
-          layout.horizontal,
-          mapAreaWidth,
-          layout.panelWidth ?? 0,
-        ),
-      ),
-      reduceMotionEnabled ? 0 : 500,
-    );
-
-    showLocationFeedback(`Origem demonstrativa centralizada: ${demoOrigin.nome}`);
-
-    if (isSheetCollapsed || painelTotalmenteOculto) {
-      alternarModalDePontos(false);
-    }
-
-    setTimeout(() => {
-      setIsLocatingUser(false);
-    }, 450);
+    button.measureInWindow((x, y, width, height) => {
+      if (width === 0 || height === 0) {
+        setOrigemAssistente({
+          x: larguraJanela / 2,
+          y: alturaJanela - 80,
+          height: 52,
+        });
+      } else {
+        setOrigemAssistente({
+          x: x + width / 2,
+          y: y + height / 2,
+          height,
+        });
+      }
+      setAssistenteFluiAberto(true);
+    });
   };
 
   return (
@@ -1304,751 +302,205 @@ export default function HomeMapScreen() {
             { paddingHorizontal: margemHorizontalConteudo },
           ]}
         >
-          <View style={styles.header}>
-            <SvgXml xml={logoFluiDoTema} width={76} height={36} />
+          <FluiHeader>
+            <FluiHeader.Actions>
+              <FluiHeader.Vehicle onPress={abrirSeletorDeBateria} />
+              <FluiHeader.Profile onPress={openProfile} />
+            </FluiHeader.Actions>
+          </FluiHeader>
 
-            <View style={styles.headerActions}>
-              <PressableScale
-                accessibilityRole="button"
-                accessibilityLabel={`${userPreferences.vehicleName}. Bateria para estimativa: ${batteryPercent} por cento. ${batteryLabels.source}. ${batteryLabels.detail}. Cerca de ${autonomiaAtualKm} quilômetros estimados`}
-                accessibilityHint="Toque para ajustar o nível de bateria e ver o alcance nos pontos."
-                style={styles.vehicleButton}
-                onPress={abrirSeletorDeBateria}
-              >
-                <View style={styles.vehicleInfo}>
-                  <View
-                    style={[
-                      styles.vehicleBatteryPill,
-                      { borderColor: corBateriaAtual + "55" },
-                    ]}
-                  >
-                    <View style={styles.vehicleBatteryIconRow}>
-                      <View
-                        style={[
-                          styles.vehicleBatteryIcon,
-                          { borderColor: corBateriaAtual },
-                        ]}
-                      >
-                        <View
-                          style={[
-                            styles.vehicleBatteryLevel,
-                            {
-                              width: `${batteryPercent}%`,
-                              backgroundColor: corBateriaAtual,
-                            },
-                          ]}
-                        />
-                      </View>
-                      <View
-                        style={[
-                          styles.vehicleBatteryCap,
-                          { backgroundColor: corBateriaAtual },
-                        ]}
-                      />
-                    </View>
-
-                    <Text
-                      style={[
-                        styles.vehicleBatteryText,
-                        { color: corBateriaAtual },
-                      ]}
-                    >
-                      {batteryPercent}%
-                    </Text>
-                  </View>
-
-                  <Text style={styles.vehicleBatterySource} numberOfLines={1}>
-                    {batteryLabels.source}
-                  </Text>
-                  <Text style={styles.vehicleBatteryUpdatedAt}>
-                    {batteryLabels.detail}
-                  </Text>
-                </View>
-
-                <Image
-                  source={imagemCarroUsuario}
-                  style={[styles.vehicleImage, cabecalhoCompacto && { display: "none" }]}
-                  resizeMode="cover"
-                />
-              </PressableScale>
-
-              <PressableScale
-                accessibilityRole="button"
-                accessibilityLabel="Abrir perfil"
-                style={styles.profileButton}
-                onPress={openProfile}
-              >
-                <Image
-                  source={imagemPerfilUsuario}
-                  style={styles.profileImage}
-                  resizeMode="cover"
-                />
-              </PressableScale>
-            </View>
-          </View>
-
-          <View style={styles.searchBar}>
-            <Search size={21} color={colors.textMuted} strokeWidth={2} />
-
-            <TextInput
-              ref={searchInputRef}
-              accessibilityLabel="Buscar no mapa"
-              accessibilityHint="Digite endereço, bairro ou nome do ponto de recarga."
-              value={searchTerm}
-              onChangeText={setSearchTerm}
-              placeholder="Buscar endereço, bairro ou ponto"
-              placeholderTextColor={colors.textMuted}
-              style={styles.searchText}
-              returnKeyType="search"
-            />
-
-            <View style={styles.searchDivider} />
-
-            <PressableScale
-              accessibilityRole="button"
-              accessibilityLabel="Abrir busca e filtros"
-              style={styles.filterButton}
-              onPress={abrirBusca}
-            >
-              <SlidersHorizontal
-                size={21}
-                color={colors.primary}
-                strokeWidth={2}
-              />
-            </PressableScale>
-          </View>
-
-          <View style={styles.quickFiltersArea}>
-              <ScrollView
-                horizontal
-                tabIndex={-1}
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.filtersContent}
-              >
-                {filterChips.map((filter) => {
-                  const Icon = filter.icon;
-
-                  return (
-                    <PressableScale
-                      key={filter.id}
-                      accessibilityRole="button"
-                      accessibilityLabel={`${filter.label}${filter.active ? ", filtro ativo" : ""}`}
-                      accessibilityHint="Filtra os pontos do catálogo demonstrativo."
-                      accessibilityState={{ selected: filter.active }}
-                      pressedScale={0.96}
-                      style={[
-                        styles.chip,
-                        filter.active ? styles.chipActive : null,
-                      ]}
-                      onPress={() => alternarFiltroRapido(filter.id)}
-                    >
-                      <Icon
-                        size={17}
-                        color={filter.active ? colors.white : colors.primary}
-                        strokeWidth={2}
-                      />
-
-                      <Text
-                        style={[
-                          styles.chipText,
-                          filter.active ? styles.chipTextActive : null,
-                        ]}
-                      >
-                        {filter.label}
-                      </Text>
-                    </PressableScale>
-                  );
-                })}
-              </ScrollView>
-          </View>
+          <Search.Bar>
+            <Search.Field />
+            <Search.FiltersButton onPress={adjustSearch} />
+          </Search.Bar>
+          <Search.Filters
+            filters={[
+              { id: "openNow", label: "Aberto agora", icon: Clock3 },
+              { id: "ccs2", label: "CCS2", icon: Plug },
+              { id: "fast", label: "Rápido", icon: Zap },
+              { id: "restroom", label: "Banheiro", icon: Toilet },
+            ]}
+          />
         </View>
 
         <ConnectionNotice />
-        <View
-          style={styles.mapArea}
-          onLayout={(event) => {
-            setMapAreaHeight(event.nativeEvent.layout.height);
-            setMapAreaWidth(event.nativeEvent.layout.width);
-          }}
-        >
-          <MapView
-            ref={mapRef}
-            style={styles.realMap}
-            provider={PROVIDER_GOOGLE}
-            initialRegion={mapRegion}
-            onMapReady={() => setMapaPronto(true)}
-            showsUserLocation={false}
-            showsMyLocationButton={false}
-            showsCompass={false}
-            toolbarEnabled={false}
-            loadingEnabled
-            customMapStyle={usarMapaEscuro ? estiloEscuroDoMapa : []}
-            onRegionChangeComplete={(region) => {
-              currentMapRegionRef.current = region;
-            }}
-            accessibilityLabel="Mapa com pontos de recarga próximos"
-          >
-            {localizacaoUsuario ? (
-              <Marker
-                key="user-location"
-                coordinate={{
-                  latitude: localizacaoUsuario.latitude,
-                  longitude: localizacaoUsuario.longitude,
-                }}
-                title={`Origem demonstrativa: ${demoOrigin.nome}`}
-                description="Localização simulada para demonstração."
-                anchor={{ x: 0.5, y: 0.5 }}
-                tracksViewChanges={!reduceMotionEnabled}
-              >
-                <View collapsable={false} style={styles.userLocationMarker}>
-                  <Animated.View
-                    style={[
-                      styles.userLocationPulse,
-                      {
-                        opacity: opacidadePulsoLocalizacao,
-                        transform: [{ scale: escalaPulsoLocalizacao }],
-                      },
-                    ]}
-                  />
-                  <View style={styles.userLocationDot} />
-                </View>
-              </Marker>
-            ) : null}
-
-            {visibleStations.map((item) => {
-              const stationId = getStationId(item.station, item.index);
-              const markerIcon = getStationMarkerIcon(item.station, now);
-
-              return (
-                <Marker
-                  key={stationId}
-                  coordinate={{
-                    latitude: item.station.latitude,
-                    longitude: item.station.longitude,
-                  }}
-                  title={getStationName(item.station)}
-                  description={`${getStationStatus(item.station, now)} • ${getStationPower(item.station)}`}
-                  onPress={() => openStationDetails(stationId)}
-                  anchor={{ x: 0.5, y: 0.87 }}
-                  accessible
-                  accessibilityRole="button"
-                  accessibilityLabel={`Abrir ficha de ${getStationNameById(stationId)}`}
-                  accessibilityHint={`${getStationStatus(item.station, now)}. Mostra detalhes e dados demonstrativos do ponto.`}
-                  icon={markerIcon}
-                  tracksViewChanges={false}
-                />
-              );
-            })}
-          </MapView>
-
-          <View
-            pointerEvents="none"
-            style={[
-              styles.mapTintOverlay,
-              usarMapaEscuro ? styles.mapTintOverlayDark : null,
-            ]}
-          />
-
-          <View pointerEvents="box-none" style={[styles.fixedMapControls, layout.compactControls && styles.mapControlsCompact]}>
-            <View style={[styles.zoomPill, layout.compactControls && styles.zoomPillCompact]}>
-              <PressableScale
-                accessibilityRole="button"
-                accessibilityLabel="Aumentar zoom do mapa"
-                accessibilityHint="Aproxima a visualização do mapa."
-                pressedScale={0.92}
-                style={[
-                  styles.zoomPillButton,
-                  controleMapaAtivo === "aproximar"
-                    ? styles.zoomPillButtonActive
-                    : null,
-                ]}
-                onPressIn={() => setControleMapaAtivo("aproximar")}
-                onPressOut={() => setControleMapaAtivo(null)}
-                onPress={() => alterarZoomMapa("aproximar")}
-              >
-                <Text allowFontScaling={false} style={styles.mapControlText}>+</Text>
-              </PressableScale>
-
-              <View style={[styles.zoomPillDivider, layout.compactControls && styles.zoomDividerCompact]} />
-
-              <PressableScale
-                accessibilityRole="button"
-                accessibilityLabel="Diminuir zoom do mapa"
-                accessibilityHint="Afasta a visualização do mapa."
-                pressedScale={0.92}
-                style={[
-                  styles.zoomPillButton,
-                  controleMapaAtivo === "afastar"
-                    ? styles.zoomPillButtonActive
-                    : null,
-                ]}
-                onPressIn={() => setControleMapaAtivo("afastar")}
-                onPressOut={() => setControleMapaAtivo(null)}
-                onPress={() => alterarZoomMapa("afastar")}
-              >
-                <Text allowFontScaling={false} style={styles.mapControlText}>−</Text>
-              </PressableScale>
-            </View>
-
-            <PressableScale
-              accessibilityRole="button"
-              accessibilityLabel={`Centralizar origem demonstrativa: ${demoOrigin.nome}`}
-              accessibilityHint="Centraliza na origem selecionada nas configurações. Sem GPS."
-              accessibilityState={{ busy: isLocatingUser }}
-              pressedScale={0.94}
-              style={[
-                styles.mapControlButton,
-                controleMapaAtivo === "centralizar"
-                  ? styles.mapControlButtonActive
-                  : null,
-                isLocatingUser ? styles.mapControlButtonLoading : null,
-              ]}
-              onPressIn={() => setControleMapaAtivo("centralizar")}
-              onPressOut={() => setControleMapaAtivo(null)}
-              onPress={centralizarLocalizacaoUsuario}
-              disabled={isLocatingUser}
-            >
-              <Crosshair size={25} color={colors.primary} strokeWidth={2.2} />
-            </PressableScale>
-
-            <PressableScale
-              accessibilityRole="button"
-              accessibilityLabel="Planejar viagem"
-              accessibilityHint="Abre o planejador de rota com paradas de recarga estimadas."
-              pressedScale={0.94}
-              style={styles.mapControlButton}
-              onPress={abrirPlanejadorDeViagens}
-            >
-              <Milestone size={22} color={colors.primary} strokeWidth={2.2} />
-            </PressableScale>
-          </View>
-
-          {funcionalidadesExperimentais.fluia && !assistenteFluiApresentado ? <Animated.View
-            style={[
-              styles.fluiAssistantFloating,
-              {
-                right: layout.horizontal ? 16 : undefined,
-                left: layout.horizontal ? undefined : "50%",
-                marginLeft: layout.horizontal ? 0 : -assistantWidth / 2,
-                top: layout.compactControls && !layout.horizontal ? 74 : undefined,
-                bottom: layout.compactControls ? (layout.horizontal ? 12 : undefined) : sheetHeight + ASSISTANT_SHEET_GAP,
-                transform: [
-                  { translateY: layout.compactControls ? 0 : deslocamentoVerticalBotaoAssistente },
-                ],
-              },
-            ]}
-          >
-            <Animated.View
-              style={[
-                styles.fluiAssistantAnimatedButton,
-                { width: assistantWidth },
-              ]}
-            >
-              <PressableScale
-                accessibilityRole="button"
-                accessibilityLabel="Abrir assistente Flui IA"
-                accessibilityHint="Abre opções de recomendação simulada para encontrar um ponto de recarga."
-                pressedScale={0.95}
-                style={styles.fluiAssistantButton}
-                onPress={() => {
-                  searchInputRef.current?.blur();
-                  Keyboard.dismiss();
-                  setAssistenteFluiApresentado(true);
-                  setAssistenteFluiAberto(true);
-                }}
-              >
-                <FluiAiIcon color={colors.white} size={21} />
-                <Text style={styles.fluiAssistantButtonText}>FluIA</Text>
-              </PressableScale>
-            </Animated.View>
-          </Animated.View> : null}
-
-          <Animated.View
-            aria-hidden={painelTotalmenteOculto}
-            accessibilityElementsHidden={painelTotalmenteOculto}
-            importantForAccessibility={painelTotalmenteOculto ? "no-hide-descendants" : "auto"}
-            style={[
-              styles.bottomSheet,
-              {
-                left: layout.horizontal ? 16 : margemHorizontalSheet,
-                right: layout.horizontal ? undefined : margemHorizontalSheet,
-                width: layout.panelWidth,
-                transform: [{ translateY: sheetTranslateY }],
-              },
-            ]}
-          >
-            <ScrollView
-              // Recalcular os textos nativos quando o Dynamic Type mudar durante a sessão.
-              key={`painel-${fontScale}-${escalaFonteSistema}`}
-              tabIndex={-1}
-              nestedScrollEnabled
-              style={[styles.bottomSheetCard, { maxHeight: layout.panelMaxHeight }]}
-              contentContainerStyle={styles.bottomSheetContent}
-              onLayout={(event) => {
-                setSheetHeight(event.nativeEvent.layout.height);
-              }}
-            >
-              <PressableScale
-                accessibilityRole="button"
-                accessibilityLabel="Minimizar pontos de recarga para ver o mapa inteiro"
-                tabIndex={painelTotalmenteOculto ? -1 : 0}
-                accessibilityHint="Esconde completamente o painel, deixando só um atalho para trazê-lo de volta."
-                hitSlop={{ top: 10, right: 44, bottom: 10, left: 44 }}
-                pressedScale={0.94}
-                style={styles.sheetHandleArea}
-                onPress={() => {
-                  setHasInteractedWithSheet(true);
-                  ocultarPainelDePontosCompletamente();
-                }}
-              >
-                <Animated.View
-                  style={{ transform: [{ translateY: sheetHintTranslateY }] }}
-                >
-                  <View style={styles.sheetChevronButton}>
-                    {renderizarChevronDeControle(isSheetCollapsed)}
-                  </View>
-                </Animated.View>
-              </PressableScale>
-              <View style={styles.sheetHeader}>
-                <Text style={styles.sheetTitle}>{sheetTitle}</Text>
-              </View>
-              <Text style={styles.originDescription}>
-                {identificacaoDados.catalogo.aviso}{"\n"}
-                Origem: {demoOrigin.nome} · distâncias em linha reta, sem cálculo de percurso
-              </Text>
-
-            {hasNoResults ? (
-              <View style={styles.emptyCard}>
-                <Text style={styles.emptyTitle}>
-                  Não encontramos pontos com esses critérios.
-                </Text>
-
-                <Text style={styles.emptyText}>
-                  Tente limpar alguns filtros ou buscar por outro endereço.
-                </Text>
-
-                <PressableScale
-                  accessibilityRole="button"
-                  accessibilityLabel="Ajustar busca"
-                  tabIndex={painelTotalmenteOculto ? -1 : 0}
-                  style={styles.emptyButton}
-                  onPress={abrirBusca}
-                >
-                  <Text style={styles.emptyButtonText}>Ajustar busca</Text>
-                </PressableScale>
-              </View>
-            ) : (
-              <ScrollView
-                tabIndex={-1}
-                style={[
-                  styles.pointsScroll,
-                  { height: alturaListaComDoisCards },
-                ]}
-                contentContainerStyle={styles.pointsScrollContent}
-                showsVerticalScrollIndicator={points.length > 2}
-                nestedScrollEnabled
-              >
-                {points.map((point, pointIndex) => {
-                  const CriterioIcon = point.criterioIcon;
-                  const IconeAlcance = obterIconeDoAlcance(point.alcance.nivel);
-                  const corAlcance = obterCorDoAlcance(
-                    point.alcance.nivel,
-                    colors,
-                  );
-                  const corFundoAlcance = obterFundoDoAlcance(
-                    point.alcance.nivel,
-                    colors,
-                  );
-                  const textoAlcance = obterRotuloDoAlcance(point.alcance.nivel);
-                  const legendaAlcance =
-                    point.alcance.nivel === "foraDeAlcance"
-                      ? `Fora do alcance atual, faltariam ${point.alcance.kmFaltantes} km`
-                      : `Chegada estimada com ${point.alcance.bateriaAoChegarPercent}% de bateria`;
-
-                  return (
-                    <PressableScale
-                      key={`${point.id}-${point.stationId}`}
-                      tabIndex={painelTotalmenteOculto ? -1 : 0}
-                      accessibilityRole="button"
-                      accessibilityLabel={`${point.nomeEstacao}. ${point.criterioLabel}. ${point.address}. ${point.status}. Nota ${point.rating}. ${point.power}. ${point.distancia} em linha reta. ${legendaAlcance}.`}
-                      accessibilityHint="Abre a ficha detalhada do ponto de recarga."
-                      style={styles.pointCard}
-                      onPress={() => openStationDetails(point.stationId)}
-                      onLayout={
-                        pointIndex === 0
-                          ? (event) => {
-                              const proximaAltura = Math.ceil(
-                                event.nativeEvent.layout.height,
-                              );
-
-                              if (proximaAltura !== alturaCardPonto) {
-                                setAlturaCardPonto(proximaAltura);
-                              }
-                            }
-                          : undefined
-                      }
-                    >
-                      <View style={styles.pointCardTopRow}>
-                        <View style={styles.pointCardTags}>
-                          <View style={styles.pointBadge}>
-                            <CriterioIcon
-                              size={12}
-                              color={colors.primary}
-                              strokeWidth={2.4}
-                            />
-                            <Text style={styles.pointBadgeText}>
-                              {point.criterioLabel}
-                            </Text>
-                          </View>
-
-                          <View
-                            style={[
-                              styles.pointAutonomiaChip,
-                              { backgroundColor: corFundoAlcance },
-                            ]}
-                          >
-                            <IconeAlcance
-                              size={12}
-                              color={corAlcance}
-                              strokeWidth={2.4}
-                            />
-
-                            <Text
-                              style={[
-                                styles.pointAutonomiaChipText,
-                                { color: corAlcance },
-                              ]}
-                            >
-                              {textoAlcance}
-                            </Text>
-                          </View>
-                        </View>
-
-                        <ChevronRight
-                          size={18}
-                          color={colors.textLight}
-                          strokeWidth={2.2}
-                        />
-                      </View>
-
-                      <Text style={styles.pointStationName}>
-                        {point.nomeEstacao}
-                      </Text>
-                      <Text style={styles.pointAddress}>
-                        {point.address}
-                      </Text>
-
-                      <Text style={styles.pointAddress}>{point.distancia} em linha reta</Text>
-                      <View style={styles.pointInlineMetaRow}>
-                        <View style={styles.metaRow}>
-                          <View
-                            style={[
-                              styles.statusDot,
-                              { backgroundColor: point.statusColor },
-                            ]}
-                          />
-                          <Text style={styles.metaText}>{point.status}</Text>
-                        </View>
-
-                        <View style={styles.metaRow}>
-                          <Star
-                            size={12}
-                            color={colors.yellowDark}
-                            fill={colors.yellowDark}
-                            strokeWidth={2}
-                          />
-                          <Text style={styles.metaText}>{point.rating}</Text>
-                        </View>
-
-                        <View style={styles.metaRow}>
-                          <Zap
-                            size={12}
-                            color={colors.textLight}
-                            fill={colors.textLight}
-                            strokeWidth={2}
-                          />
-                          <Text style={styles.metaText}>{point.power}</Text>
-                        </View>
-                      </View>
-
-                    </PressableScale>
-                  );
-                })}
-              </ScrollView>
-              )}
-            </ScrollView>
-          </Animated.View>
-
-          {painelTotalmenteOculto ? (
-            <View
-              pointerEvents="box-none"
-              style={styles.restaurarPainelWrapper}
-            >
-              <PressableScale
-                accessibilityRole="button"
-                accessibilityLabel="Mostrar pontos de recarga"
-                accessibilityHint="Traz de volta a lista de pontos recomendados."
-                pressedScale={0.94}
-                style={styles.restaurarPainelPill}
-                onPress={() => alternarModalDePontos(false)}
-              >
-                <Maximize2 size={16} color={colors.primary} strokeWidth={2.3} />
-                <Text style={styles.restaurarPainelPillText}>
-                  Pontos de recarga
-                </Text>
-              </PressableScale>
-            </View>
+        <MapArea>
+          <MapCanvas />
+          <MapControls />
+          {funcionalidadesExperimentais.fluia ? (
+            <MapAssistantButton
+              buttonRef={assistenteBotaoRef}
+              onPress={abrirAssistente}
+            />
           ) : null}
-        </View>
+          <PointsSheet />
+        </MapArea>
 
-        {funcionalidadesExperimentais.fluia ? <FluiAssistantSheet
-          visible={assistenteFluiAberto}
-          stations={visibleStations.map(item => item.station)}
-          now={now}
-          batteryPercent={batteryPercent}
-          vehicleRangeKm={vehicleRangeKm}
-          onClose={() => {
-            setAssistenteFluiAberto(false);
-            if (Platform.OS !== "ios") setAssistenteFluiApresentado(false);
-          }}
-          onDismiss={() => setAssistenteFluiApresentado(false)}
-          onSelectStation={openStationDetails}
-          onStartRoute={(stationId) => openStationDetails(stationId, true)}
-        /> : null}
+        {funcionalidadesExperimentais.fluia ? (
+          <FluiAssistantSheet
+            visible={assistenteFluiAberto}
+            stations={visibleStations.map((item) => item.station)}
+            now={now}
+            batteryPercent={batteryPercent}
+            vehicleRangeKm={vehicleRangeKm}
+            origin={origemAssistente}
+            onClose={() => setAssistenteFluiAberto(false)}
+            onSelectStation={openStation}
+            onStartRoute={(stationId) => openStation(stationId, true)}
+          />
+        ) : null}
 
         <LoadingOverlay
           visible={isOpeningDetails}
           message="Abrindo detalhes..."
         />
 
-        {mapFeedbackMessage ? (
+        {feedbackMessage ? (
           <View pointerEvents="none" style={styles.feedbackToastOverlay}>
             <View style={styles.feedbackToastCard}>
               <Crosshair size={18} color={colors.primary} strokeWidth={2.4} />
-              <Text style={styles.feedbackToastText}>{mapFeedbackMessage}</Text>
+              <Text style={styles.feedbackToastText}>{feedbackMessage}</Text>
             </View>
           </View>
         ) : null}
 
+        <LocationPermissionModal
+          visible={location.needsPrompt}
+          onAllow={() => {
+            void location.allow();
+          }}
+          onDecline={location.decline}
+        />
+
         {seletorBateriaAberto ? (
-          <Modal transparent visible animationType={reduceMotionEnabled ? "none" : "slide"} onRequestClose={cancelarEdicaoDeBateria}>
-          <View style={styles.batterySheetOverlay} accessibilityViewIsModal>
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel="Fechar seletor de bateria"
-              style={styles.batterySheetBackdrop}
-              onPress={cancelarEdicaoDeBateria}
-            />
+          <Modal
+            transparent
+            visible
+            animationType={reduceMotionEnabled ? "none" : "slide"}
+            onRequestClose={cancelarEdicaoDeBateria}
+          >
+            <View style={styles.batterySheetOverlay} accessibilityViewIsModal>
+              <Pressable
+                accessibilityRole="button"
+                accessibilityLabel="Fechar seletor de bateria"
+                style={styles.batterySheetBackdrop}
+                onPress={cancelarEdicaoDeBateria}
+              />
 
-            <ScrollView
-              style={[styles.batterySheetCard, { maxHeight: alturaJanela * 0.9 }]}
-              contentContainerStyle={styles.batterySheetContent}
-            >
-              <View style={styles.batterySheetHeaderRow}>
-                <View
-                  style={[
-                    styles.batterySheetPreviewIcon,
-                    { backgroundColor: corBateriaEmEdicao + "1F" },
-                  ]}
-                >
-                  <IconeBateriaEmEdicao
-                    size={26}
-                    color={corBateriaEmEdicao}
-                    strokeWidth={2.4}
-                  />
-                </View>
-
-                <View style={styles.batterySheetHeaderText}>
-                  <Text style={styles.batterySheetTitle}>
-                    Bateria para estimativa
-                  </Text>
-                  <Text style={styles.batterySheetSubtitle}>
-                    ≈{autonomiaEmEdicaoKm} km estimados · sem telemetria
-                  </Text>
-                </View>
-
-                <PressableScale
-                  accessibilityRole="button"
-                  accessibilityLabel="Fechar sem definir a carga"
-                  accessibilityHint="Descarta a carga selecionada e fecha este painel."
-                  pressedScale={0.92}
-                  style={styles.batterySheetCloseButton}
-                  onPress={cancelarEdicaoDeBateria}
-                >
-                  <X size={21} color={colors.textMuted} strokeWidth={2.3} />
-                </PressableScale>
-              </View>
-
-              <View style={styles.batteryStepperRow}>
-                <PressableScale
-                  accessibilityRole="button"
-                  accessibilityLabel="Diminuir bateria em 5 por cento"
-                  accessibilityState={{ disabled: bateriaEmEdicao === 0 }}
-                  pressedScale={0.92}
-                  style={[
-                    styles.batteryStepperButton,
-                    bateriaEmEdicao === 0
-                      ? styles.batteryStepperButtonDisabled
-                      : null,
-                  ]}
-                  onPress={() => ajustarNivelDeBateria(-PASSO_AJUSTE_BATERIA)}
-                  disabled={bateriaEmEdicao === 0}
-                >
-                  <Text style={styles.batteryStepperButtonText}>−</Text>
-                </PressableScale>
-
-                <View
-                  accessibilityRole="text"
-                  accessibilityLabel={`Bateria selecionada em ${bateriaEmEdicao} por cento, cerca de ${autonomiaEmEdicaoKm} quilômetros`}
-                  style={styles.batteryStepperValue}
-                >
-                  <Text
+              <ScrollView
+                style={[
+                  styles.batterySheetCard,
+                  { maxHeight: alturaJanela * 0.9 },
+                ]}
+                contentContainerStyle={styles.batterySheetContent}
+              >
+                <View style={styles.batterySheetHeaderRow}>
+                  <View
                     style={[
-                      styles.batteryStepperPercent,
-                      { color: corBateriaEmEdicao },
+                      styles.batterySheetPreviewIcon,
+                      { backgroundColor: corBateriaEmEdicao + "1F" },
                     ]}
                   >
-                    {bateriaEmEdicao}%
-                  </Text>
-                  <Text style={styles.batteryStepperRange}>
-                    ≈{autonomiaEmEdicaoKm} km
-                  </Text>
+                    <IconeBateriaEmEdicao
+                      size={26}
+                      color={corBateriaEmEdicao}
+                      strokeWidth={2.4}
+                    />
+                  </View>
+
+                  <View style={styles.batterySheetHeaderText}>
+                    <Text style={styles.batterySheetTitle}>
+                      Bateria para estimativa
+                    </Text>
+                    <Text style={styles.batterySheetSubtitle}>
+                      ≈{autonomiaEmEdicaoKm} km estimados · sem telemetria
+                    </Text>
+                  </View>
+
+                  <PressableScale
+                    accessibilityRole="button"
+                    accessibilityLabel="Fechar sem definir a carga"
+                    accessibilityHint="Descarta a carga selecionada e fecha este painel."
+                    pressedScale={0.92}
+                    style={styles.batterySheetCloseButton}
+                    onPress={cancelarEdicaoDeBateria}
+                  >
+                    <X size={21} color={colors.textMuted} strokeWidth={2.3} />
+                  </PressableScale>
                 </View>
+
+                <View style={styles.batteryStepperRow}>
+                  <PressableScale
+                    accessibilityRole="button"
+                    accessibilityLabel="Diminuir bateria em 5 por cento"
+                    accessibilityState={{ disabled: bateriaEmEdicao === 0 }}
+                    pressedScale={0.92}
+                    style={[
+                      styles.batteryStepperButton,
+                      bateriaEmEdicao === 0
+                        ? styles.batteryStepperButtonDisabled
+                        : null,
+                    ]}
+                    onPress={() =>
+                      ajustarNivelDeBateria(-PASSO_AJUSTE_BATERIA)
+                    }
+                    disabled={bateriaEmEdicao === 0}
+                  >
+                    <Text style={styles.batteryStepperButtonText}>−</Text>
+                  </PressableScale>
+
+                  <View
+                    accessibilityRole="text"
+                    accessibilityLabel={`Bateria selecionada em ${bateriaEmEdicao} por cento, cerca de ${autonomiaEmEdicaoKm} quilômetros`}
+                    style={styles.batteryStepperValue}
+                  >
+                    <Text
+                      style={[
+                        styles.batteryStepperPercent,
+                        { color: corBateriaEmEdicao },
+                      ]}
+                    >
+                      {bateriaEmEdicao}%
+                    </Text>
+                    <Text style={styles.batteryStepperRange}>
+                      ≈{autonomiaEmEdicaoKm} km
+                    </Text>
+                  </View>
+
+                  <PressableScale
+                    accessibilityRole="button"
+                    accessibilityLabel="Aumentar bateria em 5 por cento"
+                    accessibilityState={{ disabled: bateriaEmEdicao === 100 }}
+                    pressedScale={0.92}
+                    style={[
+                      styles.batteryStepperButton,
+                      bateriaEmEdicao === 100
+                        ? styles.batteryStepperButtonDisabled
+                        : null,
+                    ]}
+                    onPress={() => ajustarNivelDeBateria(PASSO_AJUSTE_BATERIA)}
+                    disabled={bateriaEmEdicao === 100}
+                  >
+                    <Text style={styles.batteryStepperButtonText}>+</Text>
+                  </PressableScale>
+                </View>
+
+                <Text style={styles.batterySheetSafetyHint}>
+                  Ajuste manualmente apenas com o veículo parado.
+                </Text>
 
                 <PressableScale
                   accessibilityRole="button"
-                  accessibilityLabel="Aumentar bateria em 5 por cento"
-                  accessibilityState={{ disabled: bateriaEmEdicao === 100 }}
-                  pressedScale={0.92}
-                  style={[
-                    styles.batteryStepperButton,
-                    bateriaEmEdicao === 100
-                      ? styles.batteryStepperButtonDisabled
-                      : null,
-                  ]}
-                  onPress={() => ajustarNivelDeBateria(PASSO_AJUSTE_BATERIA)}
-                  disabled={bateriaEmEdicao === 100}
+                  accessibilityLabel="Definir carga da bateria"
+                  style={styles.batterySheetDoneButton}
+                  onPress={() => void definirNivelDeBateria()}
                 >
-                  <Text style={styles.batteryStepperButtonText}>+</Text>
+                  <Text style={styles.batterySheetDoneButtonText}>
+                    Definir carga
+                  </Text>
                 </PressableScale>
-              </View>
-
-              <Text style={styles.batterySheetSafetyHint}>
-                Ajuste manualmente apenas com o veículo parado.
-              </Text>
-
-              <PressableScale
-                accessibilityRole="button"
-                accessibilityLabel="Definir carga da bateria"
-                style={styles.batterySheetDoneButton}
-                onPress={() => void definirNivelDeBateria()}
-              >
-                <Text style={styles.batterySheetDoneButtonText}>
-                  Definir carga
-                </Text>
-              </PressableScale>
-            </ScrollView>
-          </View>
+              </ScrollView>
+            </View>
           </Modal>
         ) : null}
       </ScreenTransition>

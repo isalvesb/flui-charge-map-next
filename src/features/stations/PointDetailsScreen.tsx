@@ -74,7 +74,7 @@ import {
 } from "./stationPresentation";
 import type { LocationObject } from "expo-location";
 
-const imagemPerfilUsuario = require("../../assets/user/profile1.webp");
+const imagemPerfilUsuario = require("@/assets/user/profile1.webp");
 
 type Station = (typeof chargingStations)[number];
 

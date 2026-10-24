@@ -1,5 +1,5 @@
-import { defaultFilters } from "../../data/filterOptions";
-import type { ChargingStation, StationFilters } from "../../types";
+import { defaultFilters } from "../../../data/filterOptions";
+import type { ChargingStation, StationFilters } from "../../../types";
 
 export type QuickFilterId = "openNow" | "ccs2" | "fast" | "restroom";
 export type QuickFilters = Record<QuickFilterId, boolean>;
@@ -25,18 +25,19 @@ export function hasActiveStationFilters(filters: StationFilters) {
   );
 }
 
+function including<T>(values: T[], value: T, selected: boolean) {
+  if (!selected) return values;
+  return Array.from(new Set([...values, value]));
+}
+
 export function applyQuickFilters(
   filters: StationFilters,
   quickFilters: QuickFilters,
 ): StationFilters {
   return {
-    connectorTypes: quickFilters.ccs2
-      ? Array.from(new Set([...filters.connectorTypes, "ccs2"]))
-      : filters.connectorTypes,
+    connectorTypes: including(filters.connectorTypes, "ccs2", quickFilters.ccs2),
     statuses: filters.statuses,
-    amenities: quickFilters.restroom
-      ? Array.from(new Set([...filters.amenities, "restroom"]))
-      : filters.amenities,
+    amenities: including(filters.amenities, "restroom", quickFilters.restroom),
     power: {
       minKw: quickFilters.fast
         ? Math.max(filters.power.minKw, 50)
@@ -54,23 +55,25 @@ export function hasActiveQuickFilters(quickFilters: QuickFilters) {
   return Object.values(quickFilters).some(Boolean);
 }
 
+function hasAvailableCharger(station: ChargingStation) {
+  return station.connectors.some((connector) => connector.availableChargers > 0);
+}
+
+function hasCcs2(station: ChargingStation) {
+  return station.connectors.some((connector) => connector.type === "ccs2");
+}
+
 function quickFilterScore(
   station: ChargingStation,
   quickFilters: QuickFilters,
 ) {
   let score = 0;
 
-  if (
-    quickFilters.openNow &&
-    station.connectors.some((connector) => connector.availableChargers > 0)
-  ) {
+  if (quickFilters.openNow && hasAvailableCharger(station)) {
     score += 80;
   }
 
-  if (
-    quickFilters.ccs2 &&
-    station.connectors.some((connector) => connector.type === "ccs2")
-  ) {
+  if (quickFilters.ccs2 && hasCcs2(station)) {
     score += 60;
   }
 

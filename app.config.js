@@ -17,11 +17,13 @@ module.exports = {
     newArchEnabled: true,
     ios: {
       supportsTablet: true,
+      bundleIdentifier: "com.allyhere.flui-charge-map",
       config: {
         googleMapsApiKey: googleMapsApiKeyIos,
       },
     },
     android: {
+      package: "com.allyhere.fluichargemap",
       adaptiveIcon: {
         backgroundColor: "#E6F4FE",
         foregroundImage: "./src/assets/images/android-icon-foreground.png",
@@ -59,6 +61,18 @@ module.exports = {
         {
           locationAlwaysAndWhenInUsePermission:
             "Permitir que $(PRODUCT_NAME) acesse sua localização.",
+        },
+      ],
+      [
+        "expo-speech-recognition",
+        {
+          microphonePermission:
+            "Permitir que $(PRODUCT_NAME) use o microfone.",
+          speechRecognitionPermission:
+            "Permitir que $(PRODUCT_NAME) converta a fala em texto.",
+          androidSpeechServicePackages: [
+            "com.google.android.googlequicksearchbox",
+          ],
         },
       ],
     ],

@@ -46,14 +46,14 @@ export default function SplashScreen() {
         <View style={styles.logoWrapper}>
           {reduceMotionEnabled ? (
             <Image
-              source={require("../../assets/images/splash-icon.png")}
+              source={require("@/assets/images/splash-icon.png")}
               style={styles.staticLogo}
               resizeMode="contain"
               accessible={false}
             />
           ) : (
             <LottieView
-              source={require("../../assets/lottie/data.json")}
+              source={require("@/assets/lottie/data.json")}
               autoPlay
               loop={false}
               style={styles.animation}

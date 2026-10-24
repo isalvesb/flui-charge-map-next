@@ -29,25 +29,25 @@ const onboardingSteps: OnboardingStep[] = [
     title: "Encontre pontos próximos",
     description:
       "Explore estações demonstrativas no mapa, com disponibilidade simulada e distâncias aproximadas em linha reta.",
-    image: require("../../assets/onboarding/1.webp"),
+    image: require("@/assets/onboarding/1.webp"),
   },
   {
     title: "Compare antes de parar",
     description:
       "Analise potência, conectores, horários e comodidades antes de escolher onde carregar.",
-    image: require("../../assets/onboarding/2.webp"),
+    image: require("@/assets/onboarding/2.webp"),
   },
   {
     title: "Escolha com confiança",
     description:
       "Compare notas e comentários demonstrativos. Eles não representam experiências verificadas de outros motoristas.",
-    image: require("../../assets/onboarding/3.webp"),
+    image: require("@/assets/onboarding/3.webp"),
   },
   {
     title: "Salve seus favoritos",
     description:
       "Guarde favoritos, histórico e avaliações neste dispositivo. Seus registros não são publicados para outros motoristas.",
-    image: require("../../assets/onboarding/4.webp"),
+    image: require("@/assets/onboarding/4.webp"),
   },
 ];
 

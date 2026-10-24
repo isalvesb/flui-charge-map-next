@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Platform } from "react-native";
 import { ConnectivityProvider } from "../src/context/ConnectivityContext";
+import { AskLocationProvider } from "../src/context/AskLocationContext";
 import { Stack } from "expo-router";
 
 import {
@@ -39,7 +40,9 @@ export default function Layout() {
   return (
     <PreferencesProvider>
       <ConnectivityProvider>
-        <RootStack />
+        <AskLocationProvider>
+          <RootStack />
+        </AskLocationProvider>
       </ConnectivityProvider>
     </PreferencesProvider>
   );
