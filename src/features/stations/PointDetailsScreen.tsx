@@ -1,6 +1,9 @@
 import { ConnectionNotice } from "../../components/ConnectionNotice";
 import { useConnectivity } from "../../context/ConnectivityContext";
 import { prepareExternalRoute } from "../../utils/externalRoute";
+import { RECOMPENSAS_ENABLED } from "../rewards/flag";
+import { ehEstacaoParceira } from "../rewards/parceiros";
+import { CardAvaliarEGanhar, SeloParceiro } from "../rewards/components/StationRewards";
 import {
   router,
   useFocusEffect,
@@ -497,6 +500,8 @@ export default function PointDetailsScreen() {
         <View style={styles.sheet}>
           <Text style={styles.stationName}>{station.name}</Text>
 
+          {RECOMPENSAS_ENABLED && ehEstacaoParceira(station.id) ? <SeloParceiro /> : null}
+
           <Text style={styles.address}>{formatAddress(station)}</Text>
 
           <View style={styles.summaryRow}>
@@ -852,6 +857,12 @@ export default function PointDetailsScreen() {
             )}
           </View>
         </View>
+
+        {RECOMPENSAS_ENABLED ? (
+          <View style={styles.sheet}>
+            <CardAvaliarEGanhar stationId={station.id} />
+          </View>
+        ) : null}
       </ScrollView>
 
       <SafeAreaView edges={["bottom"]} style={styles.bottomActions}>

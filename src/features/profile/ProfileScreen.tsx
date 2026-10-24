@@ -30,6 +30,7 @@ import { useFluiStorage } from "../../hooks/useFluiStorage";
 import { useAppPreferences } from "../../context/PreferencesContext";
 import { createProfileStyles } from "./ProfileScreen.styles";
 import { RECOMPENSAS_ENABLED } from "../rewards/flag";
+import { PontosStatCard } from "../rewards/components/StationRewards";
 
 type ProfileTab = "favorites" | "history";
 type Station = (typeof chargingStations)[number];
@@ -476,6 +477,8 @@ export default function ProfileScreen() {
               <Text style={styles.statNumber}>{reviewedStations.length}</Text>
               <Text style={styles.statLabel}>avaliações</Text>
             </View>
+
+            {RECOMPENSAS_ENABLED ? <PontosStatCard styles={styles} /> : null}
           </View>
 
           <View style={styles.profileActionsRow}>
