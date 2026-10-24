@@ -12,6 +12,7 @@ import {
   FontSizePreference,
 } from "../types";
 import { getJsonItem, removeStorageItems, setJsonItem } from "./jsonStorage";
+import { recompensasStorageKeys } from "../features/rewards/storage";
 
 export const fluiStorageKeys = {
   favoriteStationIds: "@flui:favoriteStationIds",
@@ -299,6 +300,9 @@ export const fluiStorage = {
   },
 
   async clearAll() {
-    await removeStorageItems(Object.values(fluiStorageKeys));
+    await removeStorageItems([
+      ...Object.values(fluiStorageKeys),
+      ...Object.values(recompensasStorageKeys),
+    ]);
   },
 };
