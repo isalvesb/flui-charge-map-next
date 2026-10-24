@@ -36,10 +36,7 @@ export function progressoNivel(acumulado: number): ProgressoNivel {
   }
 
   const intervalo = seguinte.minimo - atual.minimo;
-  const fracao = Math.min(
-    1,
-    Math.max(0, (acumulado - atual.minimo) / intervalo),
-  );
+  const fracao = Math.min(1, Math.max(0, (acumulado - atual.minimo) / intervalo));
 
   return {
     nivel: atual.nivel,

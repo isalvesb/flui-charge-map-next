@@ -20,7 +20,6 @@ export const RECOMPENSAS_DEMONSTRATIVAS: readonly RecompensaExibicao[] = [
     detalhe: "Válido por 30 dias",
     icone: "carregador",
   },
-
   {
     id: "rec-vila-mariana-cafe",
     estacaoId: "station-06",
@@ -31,7 +30,6 @@ export const RECOMPENSAS_DEMONSTRATIVAS: readonly RecompensaExibicao[] = [
     detalhe: "No espaço de convivência",
     icone: "cafe",
   },
-
   {
     id: "rec-jardins-vaga",
     estacaoId: "station-04",

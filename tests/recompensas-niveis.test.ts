@@ -1,10 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import {
-  NIVEIS,
-  calcularNivel,
-  progressoNivel,
-} from "../src/features/rewards/levels";
+import { NIVEIS, calcularNivel, progressoNivel } from "../src/features/rewards/levels";
 
 test("níveis respeitam os limites de pontos acumulados", () => {
   assert.equal(calcularNivel(0), "bronze");

@@ -1,5 +1,5 @@
-import assert from "node:assert/strict";
 import test from "node:test";
+import assert from "node:assert/strict";
 import {
   BONUS_POR_VISITA,
   MAX_HISTORICO,
@@ -10,12 +10,7 @@ import {
 const agora = "2026-10-23T14:00:00.000Z";
 
 test("uma visita concede o bônus uma única vez", () => {
-  const primeira = creditarVisita(
-    criarPontosIniciais(),
-    "visita-1",
-    agora,
-    "mov-1",
-  );
+  const primeira = creditarVisita(criarPontosIniciais(), "visita-1", agora, "mov-1");
   assert.equal(primeira.creditado, true);
   assert.equal(primeira.pontos.saldo, BONUS_POR_VISITA);
   assert.equal(primeira.pontos.acumulado, BONUS_POR_VISITA);

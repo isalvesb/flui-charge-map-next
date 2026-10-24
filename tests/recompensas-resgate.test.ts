@@ -59,12 +59,7 @@ test("resgate não rebaixa o nível", () => {
 
 test("recompensa com custo inválido é recusada", () => {
   for (const custoPontos of [0, -10, 1.5, Number.NaN]) {
-    const resultado = resgatar(
-      comSaldo(100),
-      { ...recompensa, custoPontos },
-      agora,
-      "r1",
-    );
+    const resultado = resgatar(comSaldo(100), { ...recompensa, custoPontos }, agora, "r1");
     assert.deepEqual(resultado, { ok: false, motivo: "recompensa_invalida" });
   }
 });

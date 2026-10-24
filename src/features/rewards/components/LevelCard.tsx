@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View } from "react-native";
 import { Award } from "lucide-react-native";
-import type { AppTheme } from "@/src/theme/appTheme";
+import type { AppTheme } from "../../../theme/appTheme";
 import { progressoNivel } from "../levels";
 import { ROTULO_NIVEL, formatarPontos } from "../rewardsView";
 import type { RewardsStyles } from "../RewardsScreen.styles";
@@ -30,9 +30,7 @@ export function LevelCard({ pontos, theme, styles }: Props) {
       </View>
 
       <View style={styles.balanceRow}>
-        <Text style={styles.balance}>
-          {pontos.saldo.toLocaleString("pt-BR")}
-        </Text>
+        <Text style={styles.balance}>{pontos.saldo.toLocaleString("pt-BR")}</Text>
         <Text style={styles.balanceUnit}>pts</Text>
       </View>
       <Text style={styles.balanceLabel}>Saldo disponível para resgate</Text>
@@ -40,14 +38,9 @@ export function LevelCard({ pontos, theme, styles }: Props) {
       {progresso.proximo ? (
         <>
           <View style={styles.progressRow}>
-            <Text style={styles.progressText}>
-              Rumo ao nível {ROTULO_NIVEL[progresso.proximo]}
-            </Text>
-            <Text style={styles.progressText}>
-              Faltam {progresso.faltam} pts
-            </Text>
+            <Text style={styles.progressText}>Rumo ao nível {ROTULO_NIVEL[progresso.proximo]}</Text>
+            <Text style={styles.progressText}>Faltam {progresso.faltam} pts</Text>
           </View>
-
           <View
             style={styles.progressTrack}
             accessibilityRole="progressbar"

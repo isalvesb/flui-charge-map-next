@@ -1,5 +1,5 @@
-import { useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
+import { useFocusEffect } from "expo-router";
 import { criarPontosIniciais } from "./points";
 import { lerPontos } from "./storage";
 import type { Pontos } from "./types";

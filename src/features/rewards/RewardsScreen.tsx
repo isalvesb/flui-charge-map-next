@@ -10,6 +10,7 @@ import { RECOMPENSAS_DEMONSTRATIVAS } from "./catalog";
 import { LevelCard } from "./components/LevelCard";
 import { RewardCard } from "./components/RewardCard";
 import { BONUS_POR_VISITA } from "./points";
+import { RESGATE_LIBERADO } from "./flag";
 import { resgatarRecompensa } from "./storage";
 import type { RecompensaExibicao } from "./catalog";
 import { createStyles } from "./RewardsScreen.styles";
@@ -30,7 +31,7 @@ export default function RewardsScreen() {
   }
 
   async function handleResgatar(recompensa: RecompensaExibicao) {
-    if (resgatandoRef.current) return;
+    if (!RESGATE_LIBERADO || resgatandoRef.current) return;
     resgatandoRef.current = true;
     try {
       const voucher = await resgatarRecompensa(recompensa, Date.now());
