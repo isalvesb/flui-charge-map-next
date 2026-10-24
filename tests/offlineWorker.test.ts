@@ -12,7 +12,7 @@ function worker() {
   const entries = new Map<string, Response>();
   const requests: string[] = [];
   let online = true;
-  let serverError = false;
+  let serverStatus = 200;
   let quotaExceeded = false;
   const key = (request: string | { url: string }) => new URL(typeof request === "string" ? request : request.url, origin).href;
   const cache = {
@@ -30,14 +30,15 @@ function worker() {
     fetch: async (request: string | { url: string }) => {
       requests.push(key(request));
       if (!online) throw Error("offline");
-      return new Response(`<html><script src="/_expo/entry.js"></script><link href="/font.woff2"><img src="https://external.test/photo.jpg"></html>`, { status: serverError ? 503 : 200 });
+      return new Response(`<html><script src="/_expo/entry.js"></script><link href="/font.woff2"><img src="https://external.test/photo.jpg"></html>`, { status: serverStatus });
     },
     URL, Response, AbortController, setTimeout, clearTimeout,
   });
   return {
     requests, entries, deleted,
     setOnline: (value: boolean) => { online = value; },
-    setServerError: () => { serverError = true; },
+    setServerError: () => { serverStatus = 503; },
+    setNotFound: () => { serverStatus = 404; },
     setQuotaExceeded: () => { quotaExceeded = true; },
     lifecycle: (name: string) => new Promise<void>((resolve, reject) => handlers.get(name)!({ waitUntil: (work) => { work.then(resolve, reject); } })),
     request: (path: string, mode = "navigate", destination = "", method = "GET"): Promise<Response> | undefined => {
@@ -92,5 +93,13 @@ test("falha de quota rejeita preparação sem impedir consulta online", async ()
   const app = worker();
   app.setQuotaExceeded();
   await assert.rejects(app.lifecycle("install"), /quota/);
+  assert.equal((await app.request("/map"))?.status, 200);
+});
+
+test("worker preserva 404 de página desconhecida sem perder fallback de uma rota preparada", async () => {
+  const app = worker();
+  await app.lifecycle("install");
+  app.setNotFound();
+  assert.equal((await app.request("/rota-inexistente"))?.status, 404);
   assert.equal((await app.request("/map"))?.status, 200);
 });
