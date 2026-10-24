@@ -29,6 +29,7 @@ import { PressableScale, ScreenTransition } from "../../components";
 import { useFluiStorage } from "../../hooks/useFluiStorage";
 import { useAppPreferences } from "../../context/PreferencesContext";
 import { createProfileStyles } from "./ProfileScreen.styles";
+import { RECOMPENSAS_ENABLED } from "../rewards/flag";
 
 type ProfileTab = "favorites" | "history";
 type Station = (typeof chargingStations)[number];
@@ -529,6 +530,15 @@ export default function ProfileScreen() {
                 "Refinar busca",
                 "/search" as Href,
               )}
+
+              {RECOMPENSAS_ENABLED
+                ? renderShortcutCard(
+                    <Star size={21} color={theme.primary} strokeWidth={2.1} />,
+                    "Flui Pontos",
+                    "Ver recompensas",
+                    "/rewards" as Href,
+                  )
+                : null}
             </View>
           </View>
 

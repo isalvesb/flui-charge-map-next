@@ -1,15 +1,17 @@
+import React, { useMemo, useRef } from "react";
+import { Alert, ScrollView, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { router, type Href } from "expo-router";
 import { ArrowLeft, Info, Star } from "lucide-react-native";
-import React, { useMemo } from "react";
-import { ScrollView, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
-import { PressableScale } from "@/src/components";
-import { useAppPreferences } from "@/src/context/PreferencesContext";
+import { PressableScale } from "../../components";
+import { useAppPreferences } from "../../context/PreferencesContext";
 import { RECOMPENSAS_DEMONSTRATIVAS } from "./catalog";
 import { LevelCard } from "./components/LevelCard";
 import { RewardCard } from "./components/RewardCard";
 import { BONUS_POR_VISITA } from "./points";
+import { resgatarRecompensa } from "./storage";
+import type { RecompensaExibicao } from "./catalog";
 import { createStyles } from "./RewardsScreen.styles";
 import { usePontos } from "./usePontos";
 
@@ -17,12 +19,30 @@ export default function RewardsScreen() {
   const { theme, scale } = useAppPreferences();
   const styles = useMemo(() => createStyles(theme, scale), [theme, scale]);
   const pontos = usePontos();
+  const resgatandoRef = useRef(false);
 
   function voltar() {
     if (router.canGoBack()) {
       router.back();
     } else {
       router.replace("/map" as Href);
+    }
+  }
+
+  async function handleResgatar(recompensa: RecompensaExibicao) {
+    if (resgatandoRef.current) return;
+    resgatandoRef.current = true;
+    try {
+      const voucher = await resgatarRecompensa(recompensa, Date.now());
+      if (!voucher) {
+        Alert.alert("Pontos insuficientes", "Você ainda não tem saldo para esta recompensa.");
+        return;
+      }
+      router.push(`/voucher?voucherId=${encodeURIComponent(voucher.id)}` as Href);
+    } catch {
+      Alert.alert("Erro ao resgatar", "Não foi possível concluir o resgate agora. Tente novamente.");
+    } finally {
+      resgatandoRef.current = false;
     }
   }
 
@@ -47,7 +67,7 @@ export default function RewardsScreen() {
         {pontos ? (
           <LevelCard pontos={pontos} theme={theme} styles={styles} />
         ) : (
-          <Text style={styles.loading}>Carregando seus pontos...</Text>
+          <Text style={styles.loading}>Carregando seus pontos…</Text>
         )}
 
         <Text style={styles.sectionTitle}>Recompensas disponíveis</Text>
@@ -61,6 +81,7 @@ export default function RewardsScreen() {
             saldo={pontos?.saldo ?? 0}
             theme={theme}
             styles={styles}
+            onResgatar={handleResgatar}
           />
         ))}
 
@@ -69,17 +90,15 @@ export default function RewardsScreen() {
           <Star size={22} color={theme.primary} />
           <View style={styles.flex}>
             <Text style={styles.rowTitle}>Avaliar após recarregar</Text>
-            <Text style={styles.rowText}>
-              Confirme o funcionamento do plugee
-            </Text>
+            <Text style={styles.rowText}>Confirme o funcionamento do plugue</Text>
           </View>
-          <Text style={styles.rowBadge}>+{BONUS_POR_VISITA}pts</Text>
+          <Text style={styles.rowBadge}>+{BONUS_POR_VISITA} pts</Text>
         </View>
 
         <View style={styles.disclaimer}>
           <Info size={16} color={theme.textMuted} />
           <Text style={styles.disclaimerText}>
-            Recompensas simuladas no protótipo • Financiadas por parceiros
+            Recompensas simuladas no protótipo · Financiadas por parceiros
           </Text>
         </View>
       </ScrollView>
