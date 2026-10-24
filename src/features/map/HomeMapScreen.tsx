@@ -42,8 +42,11 @@ import { useAskLocation } from "../../context/AskLocationContext";
 import type { AssistantRevealOrigin } from "../assistant/coverRadius";
 import { FluiAiIcon } from "../assistant/FluiAiIcon";
 import {
+  ASSISTANT_BUTTON_GAP,
   ASSISTANT_HIDDEN_BOTTOM,
   ASSISTANT_SHEET_GAP,
+  deslocamentoLateralComPainel,
+  larguraBotaoAssistente,
   MAX_CONTENT_WIDTH,
   TABLET_BREAKPOINT,
 } from "./HomeMapScreen.constants";
@@ -91,18 +94,23 @@ function assistantButtonPosition({
   compactControls,
   assistantWidth,
   sheetHeight,
+  translateX,
   translateY,
 }: {
   horizontal: boolean;
   compactControls: boolean;
   assistantWidth: number;
   sheetHeight: number;
+  translateX: Animated.AnimatedInterpolation<number>;
   translateY: Animated.AnimatedInterpolation<number>;
 }) {
   return {
     ...assistantButtonSide(horizontal, assistantWidth),
     ...assistantButtonEdge(horizontal, compactControls, sheetHeight),
-    transform: [{ translateY: compactControls ? 0 : translateY }],
+    transform: [
+      { translateX },
+      { translateY: compactControls ? 0 : translateY },
+    ],
   };
 }
 
@@ -126,11 +134,16 @@ function MapAssistantButton({
       translateY,
       collapsedOffset,
       hiddenOffset,
+      restorePillWidth,
     },
   } = useMapArea();
-  const assistantWidth = Math.min(
-    220,
-    Math.max(132, 132 * fontScale * escalaFonteSistema),
+  const assistantWidth = larguraBotaoAssistente(fontScale * escalaFonteSistema);
+  const deslocamentoHorizontalBotaoAssistente = deslocamentoLateralComPainel(
+    translateY,
+    hiddenOffset,
+    horizontal || compactControls || restorePillWidth <= 0
+      ? 0
+      : (restorePillWidth + ASSISTANT_BUTTON_GAP) / 2,
   );
   const deslocamentoVerticalBotaoAssistente = translateY.interpolate({
     inputRange: [
@@ -155,6 +168,7 @@ function MapAssistantButton({
           compactControls,
           assistantWidth,
           sheetHeight,
+          translateX: deslocamentoHorizontalBotaoAssistente,
           translateY: deslocamentoVerticalBotaoAssistente,
         }),
       ]}

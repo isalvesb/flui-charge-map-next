@@ -46,14 +46,15 @@ export function criarRegiaoComFocoVisivel(
   aproxima = true,
   fracaoDeDeslocamento = 0.08,
   fracaoHorizontal = 0,
+  delta?: number,
 ): Region {
-  const delta = aproxima ? 0.014 : 0.026;
+  const abertura = delta ?? (aproxima ? 0.014 : 0.026);
 
   return {
-    latitude: latitude - delta * fracaoDeDeslocamento,
-    longitude: longitude - delta * fracaoHorizontal,
-    latitudeDelta: delta,
-    longitudeDelta: delta,
+    latitude: latitude - abertura * fracaoDeDeslocamento,
+    longitude: longitude - abertura * fracaoHorizontal,
+    latitudeDelta: abertura,
+    longitudeDelta: abertura,
   };
 }
 

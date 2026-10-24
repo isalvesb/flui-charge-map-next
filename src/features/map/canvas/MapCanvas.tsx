@@ -20,10 +20,11 @@ export function MapCanvas() {
   const {
     state: { visibleStations, origin, now, dark },
     actions: { openStation },
-    viewport: { region, onMapReady, onRegionChangeComplete },
+    viewport: { region, onMapReady, onRegionChangeComplete, focusOn },
     meta: { mapRef },
   } = useMapArea();
   const userLocationPulseProgress = useRef(new Animated.Value(0)).current;
+  const pontoEmFocoRef = useRef<string | null>(null);
 
   const escalaPulsoLocalizacao = userLocationPulseProgress.interpolate({
     inputRange: [0, 1],
@@ -118,9 +119,14 @@ export function MapCanvas() {
             description={`${place.latitude.toFixed(5)}, ${place.longitude.toFixed(5)}`}
             anchor={{ x: 0.5, y: 1 }}
             tracksViewChanges
+            onPress={() => {
+              pontoEmFocoRef.current = null;
+              focusOn(place.latitude, place.longitude);
+            }}
             accessible
             accessibilityRole="button"
             accessibilityLabel={`${place.name}: ${place.latitude.toFixed(5)}, ${place.longitude.toFixed(5)}`}
+            accessibilityHint="Aproxima o mapa neste ponto."
           >
             <View collapsable={false} style={styles.askedPlace}>
               <Text style={styles.askedPlaceCoordinates}>
@@ -145,12 +151,20 @@ export function MapCanvas() {
               }}
               title={station.name}
               description={`${statusLabel} • ${station.powerKw} kW`}
-              onPress={() => openStation(station.id)}
+              onPress={() => {
+                if (pontoEmFocoRef.current === station.id) {
+                  openStation(station.id);
+                  return;
+                }
+
+                pontoEmFocoRef.current = station.id;
+                focusOn(station.latitude, station.longitude);
+              }}
               anchor={{ x: 0.5, y: 0.87 }}
               accessible
               accessibilityRole="button"
-              accessibilityLabel={`Abrir ficha de ${station.name}`}
-              accessibilityHint={`${statusLabel}. Mostra detalhes e dados demonstrativos do ponto.`}
+              accessibilityLabel={`Centralizar ${station.name} no mapa`}
+              accessibilityHint={`${statusLabel}. Aproxima o mapa neste ponto de recarga. Toque de novo para abrir a ficha.`}
               icon={markerIcon}
               tracksViewChanges={false}
             />

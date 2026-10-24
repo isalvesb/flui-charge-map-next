@@ -216,6 +216,27 @@ export function MapArea({ children }: MapAreaProps) {
     reduceMotionEnabled,
   ]);
 
+  const focarNoMapa = useCallback(
+    (latitude: number, longitude: number) => {
+      const regiao = criarRegiaoComFocoVisivel(
+        latitude,
+        longitude,
+        true,
+        fracaoDeDeslocamentoVertical,
+        fracaoDeDeslocamentoHorizontal,
+        0.006,
+      );
+
+      currentMapRegionRef.current = regiao;
+      mapRef.current?.animateToRegion(regiao, reduceMotionEnabled ? 0 : 450);
+    },
+    [
+      fracaoDeDeslocamentoHorizontal,
+      fracaoDeDeslocamentoVertical,
+      reduceMotionEnabled,
+    ],
+  );
+
   const centralizarLocalizacaoUsuario = () => {
     if (isLocatingUser) {
       return;
@@ -249,6 +270,11 @@ export function MapArea({ children }: MapAreaProps) {
     }, 450);
   };
 
+  const [larguraPillRestaurar, setLarguraPillRestaurar] = useState(0);
+  const registrarLarguraPillRestaurar = useCallback((width: number) => {
+    setLarguraPillRestaurar((atual) => (atual === width ? atual : width));
+  }, []);
+
   const marcarMapaPronto = useCallback(() => {
     setMapaPronto(true);
   }, []);
@@ -271,9 +297,12 @@ export function MapArea({ children }: MapAreaProps) {
     locating: isLocatingUser,
     region: mapRegion,
     recenter: centralizarLocalizacaoUsuario,
+    focusOn: focarNoMapa,
     onMapReady: marcarMapaPronto,
     onRegionChangeComplete: registrarRegiao,
     onMotionChange: atualizarOcupacao,
+    restorePillWidth: larguraPillRestaurar,
+    onRestorePillWidth: registrarLarguraPillRestaurar,
   };
 
   const meta: MapMeta = {

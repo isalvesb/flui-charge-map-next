@@ -60,9 +60,12 @@ export type MapViewport = {
   locating: boolean;
   region: Region;
   recenter: () => void;
+  focusOn: (latitude: number, longitude: number) => void;
   onMapReady: () => void;
   onRegionChangeComplete: (region: Region) => void;
   onMotionChange: (motion: PointsSheetMotion) => void;
+  restorePillWidth: number;
+  onRestorePillWidth: (width: number) => void;
 };
 
 export type MapMeta = {

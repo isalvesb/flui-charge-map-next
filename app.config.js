@@ -23,6 +23,7 @@ module.exports = {
       },
     },
     android: {
+      package: "com.allyhere.fluichargemap",
       adaptiveIcon: {
         backgroundColor: "#E6F4FE",
         foregroundImage: "./src/assets/images/android-icon-foreground.png",

@@ -17,9 +17,15 @@ import { SvgXml } from "react-native-svg";
 import { Maximize2 } from "lucide-react-native";
 
 import { PressableScale } from "../../../components";
+import { funcionalidadesExperimentais } from "../../../config/funcionalidadesExperimentais";
 import { useAskLocation } from "../../../context/AskLocationContext";
 import { useMapArea } from "../../../context/MapContext";
 import { fetchNearbyPlaces, type NearbyPlace } from "../../assistant/askPlaces";
+import {
+  ASSISTANT_BUTTON_GAP,
+  deslocamentoLateralComPainel,
+  larguraBotaoAssistente,
+} from "../HomeMapScreen.constants";
 import { useReducedMotion } from "../../../hooks/useReducedMotion";
 import { useTelaComPreferencias } from "../../../hooks/useTelaComPreferencias";
 import { formatarDistanciaDemonstrativa } from "../../../utils/demonstracao";
@@ -54,10 +60,13 @@ export function PointsSheet() {
     state: { horizontalInset },
     viewport: {
       horizontal,
+      compactControls,
       panelWidth,
       panelMaxHeight,
       translateY,
       onMotionChange,
+      focusOn,
+      onRestorePillWidth,
     },
     meta: { sheetRef },
   } = useMapArea();
@@ -65,8 +74,11 @@ export function PointsSheet() {
     baseStyles,
     baseColors,
   );
-  const { height: alturaJanela, fontScale: escalaFonteSistema } =
-    useWindowDimensions();
+  const {
+    width: larguraJanela,
+    height: alturaJanela,
+    fontScale: escalaFonteSistema,
+  } = useWindowDimensions();
   const askedLocation = useAskLocation();
   const [defaults, setDefaults] = useState<NearbyPlace[]>([]);
   const [isSheetCollapsed, setIsSheetCollapsed] = useState(false);
@@ -84,7 +96,15 @@ export function PointsSheet() {
     sheetHeight - SHEET_VISIBLE_HANDLE,
     0,
   );
-  const hiddenOffset = sheetHeight + SHEET_OCULTO_MARGEM_EXTRA;
+  const hiddenTravel = sheetHeight + SHEET_OCULTO_MARGEM_EXTRA;
+  const assistantWidth = larguraBotaoAssistente(fontScale * escalaFonteSistema);
+  const botoesLadoALado =
+    funcionalidadesExperimentais.fluia && !horizontal && !compactControls;
+  const deslocamentoHorizontalGaveta = deslocamentoLateralComPainel(
+    translateY,
+    hiddenTravel,
+    botoesLadoALado ? -(assistantWidth + ASSISTANT_BUTTON_GAP) / 2 : 0,
+  );
   const alturaMaximaListaPontos = Math.max(
     180,
     Math.min(320, alturaJanela * 0.32),
@@ -130,8 +150,8 @@ export function PointsSheet() {
 
   const ocultarPainelDePontosCompletamente = useCallback(() => {
     setPainelTotalmenteOculto(true);
-    moverPainelDePontosPara(hiddenOffset);
-  }, [hiddenOffset, moverPainelDePontosPara]);
+    moverPainelDePontosPara(hiddenTravel);
+  }, [hiddenTravel, moverPainelDePontosPara]);
 
   useImperativeHandle(
     sheetRef,
@@ -171,8 +191,8 @@ export function PointsSheet() {
     }
 
     if (painelTotalmenteOculto) {
-      translateY.setValue(hiddenOffset);
-      sheetPositionRef.current = hiddenOffset;
+      translateY.setValue(hiddenTravel);
+      sheetPositionRef.current = hiddenTravel;
       setPlaced(true);
       return;
     }
@@ -183,7 +203,7 @@ export function PointsSheet() {
     }
     setPlaced(true);
   }, [
-    hiddenOffset,
+    hiddenTravel,
     isSheetCollapsed,
     painelTotalmenteOculto,
     sheetCollapsedTranslateY,
@@ -236,7 +256,7 @@ export function PointsSheet() {
       fullyHidden: painelTotalmenteOculto,
       collapsed: isSheetCollapsed,
       collapsedOffset: sheetCollapsedTranslateY,
-      hiddenOffset,
+      hiddenOffset: hiddenTravel,
       obstructedHeight: painelTotalmenteOculto
         ? 0
         : isSheetCollapsed
@@ -244,7 +264,7 @@ export function PointsSheet() {
           : sheetHeight,
     });
   }, [
-    hiddenOffset,
+    hiddenTravel,
     isSheetCollapsed,
     painelTotalmenteOculto,
     sheetCollapsedTranslateY,
@@ -334,9 +354,13 @@ export function PointsSheet() {
               nestedScrollEnabled
             >
               {places.map((place, pointIndex) => (
-                <View
+                <PressableScale
                   key={`${place.category}-${place.latitude}-${place.longitude}`}
+                  accessibilityRole="button"
+                  accessibilityLabel={place.name}
+                  accessibilityHint="Aproxima o mapa neste ponto."
                   style={styles.placeCard}
+                  onPress={() => focusOn(place.latitude, place.longitude)}
                   onLayout={
                     pointIndex === 0
                       ? (event) => {
@@ -372,7 +396,7 @@ export function PointsSheet() {
                       .filter(Boolean)
                       .join(" · ")}
                   </Text>
-                </View>
+                </PressableScale>
               ))}
             </ScrollView>
           )}
@@ -381,19 +405,39 @@ export function PointsSheet() {
 
       {painelTotalmenteOculto ? (
         <View pointerEvents="box-none" style={styles.restaurarPainelWrapper}>
-          <PressableScale
-            accessibilityRole="button"
-            accessibilityLabel="Mostrar pontos de recarga"
-            accessibilityHint="Traz de volta a lista de pontos recomendados."
-            pressedScale={0.94}
-            style={styles.restaurarPainelPill}
-            onPress={() => alternarModalDePontos(false)}
+          <Animated.View
+            style={{ transform: [{ translateX: deslocamentoHorizontalGaveta }] }}
           >
-            <Maximize2 size={16} color={colors.primary} strokeWidth={2.3} />
-            <Text style={styles.restaurarPainelPillText}>
-              Pontos de recarga
-            </Text>
-          </PressableScale>
+            <PressableScale
+              accessibilityRole="button"
+              accessibilityLabel="Mostrar pontos de recarga"
+              accessibilityHint="Traz de volta a lista de pontos recomendados."
+              pressedScale={0.94}
+              onLayout={(event) => {
+                onRestorePillWidth(Math.round(event.nativeEvent.layout.width));
+              }}
+              style={[
+                styles.restaurarPainelPill,
+                botoesLadoALado
+                  ? {
+                      maxWidth: Math.max(
+                        120,
+                        larguraJanela -
+                          32 -
+                          assistantWidth -
+                          ASSISTANT_BUTTON_GAP,
+                      ),
+                    }
+                  : null,
+              ]}
+              onPress={() => alternarModalDePontos(false)}
+            >
+              <Maximize2 size={16} color={colors.primary} strokeWidth={2.3} />
+              <Text numberOfLines={1} style={styles.restaurarPainelPillText}>
+                Pontos de recarga
+              </Text>
+            </PressableScale>
+          </Animated.View>
         </View>
       ) : null}
     </>

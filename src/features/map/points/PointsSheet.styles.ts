@@ -96,9 +96,9 @@ const styles = StyleSheet.create({
   },
 
   restaurarPainelPill: {
-    height: 46,
+    height: 52,
     paddingHorizontal: 18,
-    borderRadius: 23,
+    borderRadius: 26,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
@@ -110,6 +110,7 @@ const styles = StyleSheet.create({
   },
 
   restaurarPainelPillText: {
+    flexShrink: 1,
     color: colors.primary,
     fontSize: 14,
     fontWeight: "800",
